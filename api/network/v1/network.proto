@@ -1,0 +1,103 @@
+syntax = "proto3";
+package network.v1;
+option go_package = "github.com/zhangzhe-ctrl/ani-network-service/api/network/v1;networkv1";
+import "google/protobuf/timestamp.proto";
+
+// NetworkService owns tenant network intent, operations and queries. Caller
+// authentication is deferred; tenant_id is mandatory caller-supplied scope.
+service NetworkService {
+  rpc CreateVPC(CreateVPCRequest) returns (CreateVPCResponse);
+  rpc GetVPC(GetVPCRequest) returns (GetVPCResponse);
+  rpc ListVPCs(ListVPCsRequest) returns (ListVPCsResponse);
+  rpc DeleteVPC(DeleteVPCRequest) returns (DeleteVPCResponse);
+  rpc GetOperation(GetOperationRequest) returns (GetOperationResponse);
+}
+
+enum ResourceState {
+  RESOURCE_STATE_UNSPECIFIED = 0;
+  RESOURCE_STATE_PROVISIONING = 1;
+  RESOURCE_STATE_AVAILABLE = 2;
+  RESOURCE_STATE_DEGRADED = 3;
+  RESOURCE_STATE_FAILED = 4;
+  RESOURCE_STATE_DELETING = 5;
+  RESOURCE_STATE_DELETED = 6;
+}
+enum OperationState {
+  OPERATION_STATE_UNSPECIFIED = 0;
+  OPERATION_STATE_QUEUED = 1;
+  OPERATION_STATE_RUNNING = 2;
+  OPERATION_STATE_RETRYING = 3;
+  OPERATION_STATE_BLOCKED = 4;
+  OPERATION_STATE_SUCCEEDED = 5;
+  OPERATION_STATE_FAILED = 6;
+}
+enum OperationKind {
+  OPERATION_KIND_UNSPECIFIED = 0;
+  OPERATION_KIND_CREATE_VPC = 1;
+  OPERATION_KIND_DELETE_VPC = 2;
+}
+message VPC {
+  string id = 1;
+  string tenant_id = 2;
+  string name = 3;
+  string description = 4;
+  string cidr = 5;
+  ResourceState state = 6;
+  string reason = 7;
+  google.protobuf.Timestamp created_at = 8;
+  google.protobuf.Timestamp updated_at = 9;
+  int64 version = 10;
+  google.protobuf.Timestamp observed_at = 11;
+  bool observation_stale = 12;
+  string last_operation_id = 13;
+  // Always zero in NET-01; actual child count is delivered with NET-02.
+  int64 subnet_count = 14;
+  string reason_message = 15;
+}
+enum ResourceType {
+  RESOURCE_TYPE_UNSPECIFIED = 0;
+  RESOURCE_TYPE_VPC = 1;
+}
+message Operation {
+  string id = 1;
+  string tenant_id = 2;
+  string resource_id = 3;
+  OperationKind kind = 4;
+  OperationState state = 5;
+  string reason = 6;
+  google.protobuf.Timestamp created_at = 7;
+  google.protobuf.Timestamp updated_at = 8;
+  google.protobuf.Timestamp completed_at = 9;
+  google.protobuf.Timestamp next_attempt_at = 10;
+  ResourceType resource_type = 11;
+  string reason_message = 12;
+}
+// Unverified attribution; never an authenticated principal or tenant owner.
+message Attribution {
+  string actor = 1;
+  string direct_caller = 2;
+  string correlation_id = 3;
+}
+message CreateVPCRequest {
+  string tenant_id = 1;
+  string name = 2;
+  string cidr = 3;
+  string description = 4;
+  string idempotency_key = 5;
+  Attribution attribution = 6;
+}
+message CreateVPCResponse { VPC vpc = 1; }
+message GetVPCRequest { string tenant_id = 1; string vpc_id = 2; }
+message GetVPCResponse { VPC vpc = 1; }
+message ListVPCsRequest {
+  string tenant_id = 1;
+  string name = 2;
+  ResourceState state = 3;
+  int32 limit = 4;
+  string cursor = 5;
+}
+message ListVPCsResponse { repeated VPC items = 1; string next_cursor = 2; }
+message DeleteVPCRequest { string tenant_id = 1; string vpc_id = 2; }
+message DeleteVPCResponse { VPC vpc = 1; }
+message GetOperationRequest { string tenant_id = 1; string operation_id = 2; }
+message GetOperationResponse { Operation operation = 1; }

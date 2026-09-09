@@ -1,0 +1,123 @@
+#!/usr/bin/env python3
+"""Run a command on an isolated verified source snapshot on ubuntu.
+
+Usage: scripts/remote-run -- go test -count=1 ./internal/biz
+Logs and exit codes stay in .work/net01-runs. Lost SSH responses never trigger
+automatic command replay.
+"""
+import argparse
+import hashlib
+import json
+import os
+from pathlib import Path
+import shlex
+import subprocess
+import tarfile
+import time
+import uuid
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("command", nargs=argparse.REMAINDER)
+    command = parser.parse_args().command
+    if command[:1] == ["--"]:
+        command = command[1:]
+    if not command:
+        parser.error("an explicit command is required")
+    root = Path(__file__).resolve().parents[1]
+    os.chdir(root)
+    run = time.strftime("%Y%m%dT%H%M%SZ", time.gmtime()) + "-" + uuid.uuid4().hex[:8]
+    output = root / ".work/net01-runs" / run
+    output.mkdir(parents=True)
+    remote = "/home/ubuntu/workspace/ani-network-service-runs/net01-" + run
+    names = sorted(set(subprocess.check_output(
+        ["git", "ls-files", "-co", "--exclude-standard", "-z"]
+    ).decode().split("\0")) - {""})
+    records = []
+    for name in names:
+        path = Path(name)
+        if (not path.is_file() or path.is_symlink() or path.name.startswith(".env")
+                or path.suffix in (".key", ".pem", ".cert")):
+            raise SystemExit("refusing unexpected/sensitive source: " + name)
+        records.append({
+            "path": name,
+            "mode": "100755" if path.stat().st_mode & 0o111 else "100644",
+            "sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
+        })
+    archive = output / "source.tar.gz"
+    with tarfile.open(archive, "w:gz") as package:
+        for name in names:
+            package.add(name, arcname=name, recursive=False)
+    digest = hashlib.sha256(archive.read_bytes()).hexdigest()
+    metadata = {
+        "remote": remote,
+        "head": subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip(),
+        "archive_sha256": digest,
+        "command": command,
+        "files": records,
+    }
+    (output / "snapshot.json").write_text(json.dumps(metadata, indent=2) + "\n")
+    (root / ".work/net01-runs/latest").write_text(str(output) + "\n")
+    options = ["-F", "/home/chabking/.ssh/config", "-o", "BatchMode=yes",
+               "-o", "ConnectTimeout=12", "-o", "ControlMaster=auto",
+               "-o", "ControlPersist=120", "-o", "ControlPath=" + str(root / ".work/ubuntu.sock")]
+    ssh = ["ssh", *options, "ubuntu"]
+    subprocess.run(ssh + ["mkdir -- " + shlex.quote(remote)], check=True)
+    subprocess.run(["scp", *options,
+                    str(archive), str(output / "snapshot.json"), "ubuntu:" + remote + "/"], check=True)
+    script = """set -Eeuo pipefail
+cd {remote}
+printf '%s  source.tar.gz\\n' {digest} | sha256sum -c -
+mkdir source
+tar -xzf source.tar.gz -C source
+python3 - <<'CHECK'
+import hashlib,json,pathlib
+metadata=json.loads(pathlib.Path('snapshot.json').read_text())
+for item in metadata['files']:
+    path=pathlib.Path('source')/item['path']
+    assert hashlib.sha256(path.read_bytes()).hexdigest()==item['sha256'], item['path']
+    assert ('100755' if path.stat().st_mode & 0o111 else '100644')==item['mode'], item['path']
+print('verified source files:',len(metadata['files']))
+CHECK
+cd source
+source /home/ubuntu/.local/share/ani-network-service/env.sh
+git -c init.defaultBranch=verification init -q
+git add .
+git -c user.name='Network Snapshot' -c user.email='snapshot@localhost' -c commit.gpgsign=false commit -qm 'Verification input'
+mkdir -p .tools/bin
+for tool in buf sqlc govulncheck cyclonedx-gomod gitleaks; do
+  if [[ -x /home/ubuntu/.local/share/ani-network-service/bin/$tool ]]; then
+    ln -s /home/ubuntu/.local/share/ani-network-service/bin/$tool .tools/bin/$tool
+  fi
+done
+printf '%s\\n' "$$" > ../shell.pid
+set +e
+{command} 2>&1 | tee ../command.log
+result=$?
+set -e
+printf '%s\\n' "$result" > ../command.exit
+printf 'REMOTE_COMMAND_EXIT=%s\\n' "$result"
+exit "$result"
+""".format(remote=shlex.quote(remote), digest=shlex.quote(digest), command=shlex.join(command))
+    (output / "run.sh").write_text(script)
+    print("snapshot=" + str(output), flush=True)
+    print("remote=" + remote, flush=True)
+    with (output / "command.log").open("w") as log:
+        process = subprocess.Popen(ssh + ["bash -s"], stdin=subprocess.PIPE,
+                                   stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
+        process.stdin.write(script)
+        process.stdin.close()
+        for line in process.stdout:
+            print(line, end="", flush=True)
+            log.write(line)
+            log.flush()
+        code = process.wait()
+    (output / "ssh.exit").write_text(str(code) + "\n")
+    if code == 255:
+        print("SSH result uncertain; inspect this run's command.exit and shell.pid before deciding next action.")
+    raise SystemExit(code)
+
+
+if __name__ == "__main__":
+    main()

@@ -4,6 +4,8 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"github.com/zhangzhe-ctrl/ani-network-service/internal/biz"
+	"go.opentelemetry.io/otel/attribute"
 	"log/slog"
 
 	kratosmetrics "github.com/go-kratos/kratos/contrib/otel/v3/metrics"
@@ -25,11 +27,13 @@ import (
 )
 
 type Observability struct {
-	registry       *prometheus.Registry
-	meterProvider  *metricSdk.MeterProvider
-	tracerProvider *traceSdk.TracerProvider
-	requests       metric.Int64Counter
-	seconds        metric.Float64Histogram
+	registry          *prometheus.Registry
+	meterProvider     *metricSdk.MeterProvider
+	tracerProvider    *traceSdk.TracerProvider
+	requests          metric.Int64Counter
+	seconds           metric.Float64Histogram
+	workerAttempts    metric.Int64Counter
+	providerReachable metric.Int64Gauge
 }
 
 func NewObservability(name, version string, readiness *Readiness) (*Observability, error) {
@@ -78,7 +82,7 @@ func NewObservability(name, version string, readiness *Readiness) (*Observabilit
 	}
 	if _, err := meter.Int64ObservableGauge(
 		"ani_runtime_ready",
-		metric.WithDescription("Whether this process completed its local runtime start hook."),
+		metric.WithDescription("Whether lifecycle, worker and Network database readiness checks pass."),
 		metric.WithInt64Callback(func(_ context.Context, observer metric.Int64Observer) error {
 			if readiness.Ready() {
 				observer.Observe(1)
@@ -97,8 +101,17 @@ func NewObservability(name, version string, readiness *Readiness) (*Observabilit
 		propagation.Baggage{},
 	))
 
+	workerAttempts, err := meter.Int64Counter("ani_network_worker_attempts", metric.WithDescription("Durable worker attempts by bounded result."))
+	if err != nil {
+		return nil, err
+	}
+	providerReachable, err := meter.Int64Gauge("ani_network_provider_reachable", metric.WithDescription("Whether the most recent provider observation was reachable; absence means not observed yet."))
+	if err != nil {
+		return nil, err
+	}
 	return &Observability{
 		registry:       registry,
+		workerAttempts: workerAttempts, providerReachable: providerReachable,
 		meterProvider:  meterProvider,
 		tracerProvider: tracerProvider,
 		requests:       requests,
@@ -129,4 +142,27 @@ func (o *Observability) Shutdown(ctx context.Context) error {
 		o.meterProvider.Shutdown(ctx),
 		o.tracerProvider.Shutdown(ctx),
 	)
+}
+
+func (o *Observability) ObserveWork(ctx context.Context, logger *slog.Logger, work biz.Work, progress biz.Progress, err error) {
+	result := "observed"
+	if work.ActiveOperation {
+		result = string(progress.OperationState)
+	}
+	if errors.Is(err, biz.ErrLeaseLost) {
+		result = "lease_lost"
+	} else if err != nil {
+		result = "database_error"
+	}
+	o.workerAttempts.Add(ctx, 1, metric.WithAttributes(attribute.String("result", result)))
+	if err == nil {
+		reachable := int64(1)
+		if progress.Reason == biz.ProviderUnavailable || progress.Reason == biz.ProviderUnknown {
+			reachable = 0
+		}
+		o.providerReachable.Record(ctx, reachable)
+	}
+	if work.ActiveOperation || err != nil || work.VPC.State != progress.State || work.VPC.Reason != progress.Reason {
+		logger.InfoContext(ctx, "network reconciliation", "tenant_id", work.VPC.TenantID, "vpc_id", work.VPC.ID, "operation_id", work.Operation.ID, "epoch", work.Epoch, "resource_state", progress.State, "result", result, "reason", progress.Reason)
+	}
 }

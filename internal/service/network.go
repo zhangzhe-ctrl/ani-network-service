@@ -1,0 +1,134 @@
+package service
+
+import (
+	"context"
+	"errors"
+	"time"
+
+	networkv1 "github.com/zhangzhe-ctrl/ani-network-service/api/network/v1"
+	"github.com/zhangzhe-ctrl/ani-network-service/internal/biz"
+	"google.golang.org/genproto/googleapis/rpc/errdetails"
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/status"
+	"google.golang.org/protobuf/types/known/timestamppb"
+)
+
+// NetworkService only translates the wire contract; domain decisions and
+// transactions remain behind Network's use cases.
+type NetworkService struct {
+	networkv1.UnimplementedNetworkServiceServer
+	network *biz.Network
+}
+
+func NewNetworkService(network *biz.Network) *NetworkService {
+	return &NetworkService{network: network}
+}
+
+func (s *NetworkService) CreateVPC(ctx context.Context, r *networkv1.CreateVPCRequest) (*networkv1.CreateVPCResponse, error) {
+	attribution := r.GetAttribution()
+	value, err := s.network.CreateVPC(ctx, biz.CreateVPC{TenantID: r.GetTenantId(), Name: r.GetName(), CIDR: r.GetCidr(), Description: r.GetDescription(), IdempotencyKey: r.GetIdempotencyKey(),
+		Attribution: biz.Attribution{Actor: attribution.GetActor(), DirectCaller: attribution.GetDirectCaller(), CorrelationID: attribution.GetCorrelationId()}})
+	if err != nil {
+		return nil, rpcError(err)
+	}
+	return &networkv1.CreateVPCResponse{Vpc: wireVPC(value)}, nil
+}
+func (s *NetworkService) GetVPC(ctx context.Context, r *networkv1.GetVPCRequest) (*networkv1.GetVPCResponse, error) {
+	value, err := s.network.GetVPC(ctx, r.GetTenantId(), r.GetVpcId())
+	if err != nil {
+		return nil, rpcError(err)
+	}
+	return &networkv1.GetVPCResponse{Vpc: wireVPC(value)}, nil
+}
+func (s *NetworkService) ListVPCs(ctx context.Context, r *networkv1.ListVPCsRequest) (*networkv1.ListVPCsResponse, error) {
+	state, exists := statesFromWire[r.GetState()]
+	if !exists {
+		return nil, rpcError(biz.Fail(biz.InvalidArgument, "invalid VPC state filter"))
+	}
+	value, err := s.network.ListVPCs(ctx, biz.ListVPCs{TenantID: r.GetTenantId(), Name: r.GetName(), State: string(state), Limit: int(r.GetLimit()), Cursor: r.GetCursor()})
+	if err != nil {
+		return nil, rpcError(err)
+	}
+	result := &networkv1.ListVPCsResponse{NextCursor: value.NextCursor, Items: make([]*networkv1.VPC, 0, len(value.Items))}
+	for _, v := range value.Items {
+		result.Items = append(result.Items, wireVPC(v))
+	}
+	return result, nil
+}
+func (s *NetworkService) DeleteVPC(ctx context.Context, r *networkv1.DeleteVPCRequest) (*networkv1.DeleteVPCResponse, error) {
+	value, err := s.network.DeleteVPC(ctx, r.GetTenantId(), r.GetVpcId())
+	if err != nil {
+		return nil, rpcError(err)
+	}
+	return &networkv1.DeleteVPCResponse{Vpc: wireVPC(value)}, nil
+}
+func (s *NetworkService) GetOperation(ctx context.Context, r *networkv1.GetOperationRequest) (*networkv1.GetOperationResponse, error) {
+	v, err := s.network.GetOperation(ctx, r.GetTenantId(), r.GetOperationId())
+	if err != nil {
+		return nil, rpcError(err)
+	}
+	return &networkv1.GetOperationResponse{Operation: &networkv1.Operation{Id: v.ID, TenantId: v.TenantID, ResourceId: v.ResourceID, ResourceType: networkv1.ResourceType_RESOURCE_TYPE_VPC, Kind: kindsToWire[v.Kind], State: operationsToWire[v.State], Reason: string(v.Reason), ReasonMessage: v.Reason.Message(), CreatedAt: timestamppb.New(v.CreatedAt), UpdatedAt: timestamppb.New(v.UpdatedAt), CompletedAt: optionalTime(v.CompletedAt), NextAttemptAt: optionalTime(v.NextAttemptAt)}}, nil
+}
+func wireVPC(v biz.VPC) *networkv1.VPC {
+	return &networkv1.VPC{Id: v.ID, TenantId: v.TenantID, Name: v.Name, Description: v.Description, Cidr: v.CIDR, State: statesToWire[v.State], Reason: string(v.Reason), ReasonMessage: v.Reason.Message(), CreatedAt: timestamppb.New(v.CreatedAt), UpdatedAt: timestamppb.New(v.UpdatedAt), Version: v.Version, ObservedAt: optionalTime(v.ObservedAt), ObservationStale: v.ObservationStale, LastOperationId: v.LastOperationID, SubnetCount: v.SubnetCount}
+}
+func optionalTime(v *time.Time) *timestamppb.Timestamp {
+	if v == nil {
+		return nil
+	}
+	return timestamppb.New(*v)
+}
+
+var statesToWire = map[biz.ResourceState]networkv1.ResourceState{
+	biz.Provisioning: networkv1.ResourceState_RESOURCE_STATE_PROVISIONING, biz.Available: networkv1.ResourceState_RESOURCE_STATE_AVAILABLE,
+	biz.Degraded: networkv1.ResourceState_RESOURCE_STATE_DEGRADED, biz.Failed: networkv1.ResourceState_RESOURCE_STATE_FAILED,
+	biz.Deleting: networkv1.ResourceState_RESOURCE_STATE_DELETING, biz.Deleted: networkv1.ResourceState_RESOURCE_STATE_DELETED,
+}
+var statesFromWire = map[networkv1.ResourceState]biz.ResourceState{
+	networkv1.ResourceState_RESOURCE_STATE_UNSPECIFIED: "", networkv1.ResourceState_RESOURCE_STATE_PROVISIONING: biz.Provisioning,
+	networkv1.ResourceState_RESOURCE_STATE_AVAILABLE: biz.Available, networkv1.ResourceState_RESOURCE_STATE_DEGRADED: biz.Degraded,
+	networkv1.ResourceState_RESOURCE_STATE_FAILED: biz.Failed, networkv1.ResourceState_RESOURCE_STATE_DELETING: biz.Deleting, networkv1.ResourceState_RESOURCE_STATE_DELETED: biz.Deleted,
+}
+var operationsToWire = map[biz.OperationState]networkv1.OperationState{
+	biz.Queued: networkv1.OperationState_OPERATION_STATE_QUEUED, biz.Running: networkv1.OperationState_OPERATION_STATE_RUNNING,
+	biz.Retrying: networkv1.OperationState_OPERATION_STATE_RETRYING, biz.Blocked: networkv1.OperationState_OPERATION_STATE_BLOCKED,
+	biz.Succeeded: networkv1.OperationState_OPERATION_STATE_SUCCEEDED, biz.OpFailed: networkv1.OperationState_OPERATION_STATE_FAILED,
+}
+var kindsToWire = map[string]networkv1.OperationKind{"create_vpc": networkv1.OperationKind_OPERATION_KIND_CREATE_VPC, "delete_vpc": networkv1.OperationKind_OPERATION_KIND_DELETE_VPC}
+
+func rpcError(err error) error {
+	if errors.Is(err, context.Canceled) {
+		return status.Error(codes.Canceled, "request canceled")
+	}
+	if errors.Is(err, context.DeadlineExceeded) {
+		return status.Error(codes.DeadlineExceeded, "request deadline exceeded; replay creation with the same key")
+	}
+	code := codes.Internal
+	reason := biz.ReasonOf(err)
+	message := "Network request failed"
+	var failure *biz.Error
+	if errors.As(err, &failure) {
+		message = failure.Message
+	}
+	switch reason {
+	case biz.InvalidArgument, biz.TenantRequired, biz.InvalidCursor:
+		code = codes.InvalidArgument
+	case biz.ResourceNotFound:
+		code = codes.NotFound
+	case biz.IdempotencyConflict:
+		code = codes.AlreadyExists
+	case biz.ResourceInUse, biz.ResourceBusy:
+		code = codes.FailedPrecondition
+	case biz.DependencyUnavailable:
+		code = codes.Unavailable
+	default:
+		reason = "INTERNAL_ERROR"
+		message = "Network request failed"
+	}
+	value := status.New(code, message)
+	withDetails, e := value.WithDetails(&errdetails.ErrorInfo{Reason: string(reason), Domain: "network.ani.io"})
+	if e == nil {
+		value = withDetails
+	}
+	return value.Err()
+}

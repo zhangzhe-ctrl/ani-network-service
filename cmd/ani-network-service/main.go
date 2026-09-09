@@ -19,21 +19,29 @@ import (
 
 // Name and Version can be overridden with -ldflags at build time.
 var (
-	Name     = "ani-network-service"
-	Version  = "dev"
-	flagconf string
-	id, _    = os.Hostname()
+	Name        = "ani-network-service"
+	Version     = "dev"
+	flagconf    string
+	flagMigrate bool
+	id, _       = os.Hostname()
 )
 
 func init() {
 	flag.StringVar(&flagconf, "conf", "configs", "config path, for example -conf configs/config.yaml")
+	flag.BoolVar(&flagMigrate, "migrate", false, "apply Network migrations using explicit owner environment")
 }
 
 func main() {
 	flag.Parse()
 	logger := newRuntimeLogger(os.Stdout)
 	log.SetDefault(logger)
-	if err := run(logger); err != nil {
+	execute := func() error {
+		if flagMigrate {
+			return runMigration()
+		}
+		return run(logger)
+	}
+	if err := execute(); err != nil {
 		logger.Error("service terminated", "error", err)
 		os.Exit(1)
 	}

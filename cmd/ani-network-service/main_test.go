@@ -3,7 +3,9 @@ package main
 import (
 	"bytes"
 	"encoding/json"
+	"github.com/zhangzhe-ctrl/ani-network-service/tests/testenv"
 	"net/http"
+	"net/http/httptest"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -58,6 +60,11 @@ func TestRuntimeLoggerIncludesProcessIdentityAndSource(t *testing.T) {
 }
 
 func TestMainProcessHandlesSignalAndClosesListeners(t *testing.T) {
+	fixture := testenv.NewDatabase(t)
+	provider := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) { http.Error(w, "unavailable", 503) }))
+	defer provider.Close()
+	kubeconfig := testenv.Kubeconfig(t, provider.URL)
+
 	if testing.Short() {
 		t.Skip("external process gate is disabled by -short")
 	}
@@ -85,6 +92,10 @@ func TestMainProcessHandlesSignalAndClosesListeners(t *testing.T) {
 	process.Stdout = &stdout
 	process.Stderr = &stderr
 	process.Env = runtimeEnvironment(
+		"ANI_NETWORK_DATABASE_DSN="+fixture.RuntimeDSN,
+		"ANI_NETWORK_KUBECONFIG="+kubeconfig,
+		"ANI_NETWORK_CLUSTER_ID=test-cluster",
+		"ANI_NETWORK_CURSOR_SIGNING_KEY="+testenv.SigningKey(),
 		"ANI_SERVER_GRPC_ADDR="+grpcAddress,
 		"ANI_SERVER_ADMIN_ADDR="+adminAddress,
 		"ANI_SERVER_SHUTDOWN_TIMEOUT=2s",
@@ -94,10 +105,14 @@ func TestMainProcessHandlesSignalAndClosesListeners(t *testing.T) {
 	}
 	processDone := make(chan error, 1)
 	go func() { processDone <- process.Wait() }()
+	exited := false
 	t.Cleanup(func() {
-		if process.ProcessState == nil || !process.ProcessState.Exited() {
+		if !exited {
 			_ = process.Process.Kill()
 			<-processDone
+		}
+		if t.Failed() {
+			t.Log("process output: " + strings.ReplaceAll(stdout.String()+stderr.String(), fixture.RuntimeDSN, "<redacted>"))
 		}
 	})
 
@@ -108,10 +123,14 @@ func TestMainProcessHandlesSignalAndClosesListeners(t *testing.T) {
 	}
 	select {
 	case err := <-processDone:
+		exited = true
 		if err != nil {
 			t.Fatalf("process exit after interrupt: %v; stdout=%s stderr=%s", err, stdout.String(), stderr.String())
 		}
 	case <-time.After(4 * time.Second):
+		_ = process.Process.Kill()
+		<-processDone
+		exited = true
 		t.Fatalf("process exceeded graceful shutdown bound; stdout=%s stderr=%s", stdout.String(), stderr.String())
 	}
 
@@ -131,7 +150,7 @@ func runtimeEnvironment(overrides ...string) []string {
 	environment := make([]string, 0, len(os.Environ())+len(overrides))
 	for _, entry := range os.Environ() {
 		key, _, _ := strings.Cut(entry, "=")
-		if _, found := blocked[key]; !found {
+		if _, found := blocked[key]; !found && key != "NETWORK_TEST_ADMIN_DSN" {
 			environment = append(environment, entry)
 		}
 	}

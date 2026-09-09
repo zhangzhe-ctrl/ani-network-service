@@ -2,14 +2,15 @@ package server
 
 import "sync/atomic"
 
-// Readiness records only the local process lifecycle. A service with external
-// dependencies must add domain-specific readiness checks at composition time.
+// Readiness combines local lifecycle with the dependency checks installed by
+// the composition root. Checks read bounded local health observations.
 type Readiness struct {
-	ready atomic.Bool
+	ready  atomic.Bool
+	checks []func() bool
 }
 
-func NewReadiness() *Readiness {
-	return &Readiness{}
+func NewReadiness(checks ...func() bool) *Readiness {
+	return &Readiness{checks: checks}
 }
 
 func (r *Readiness) Set(ready bool) {
@@ -17,5 +18,13 @@ func (r *Readiness) Set(ready bool) {
 }
 
 func (r *Readiness) Ready() bool {
-	return r.ready.Load()
+	if !r.ready.Load() {
+		return false
+	}
+	for _, check := range r.checks {
+		if !check() {
+			return false
+		}
+	}
+	return true
 }

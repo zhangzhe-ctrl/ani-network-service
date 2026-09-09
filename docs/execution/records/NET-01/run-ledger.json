@@ -1,0 +1,680 @@
+[
+  {
+    "run": "20260909T101812Z-9aca4362",
+    "host": "ubuntu",
+    "remote": "/home/ubuntu/workspace/ani-network-service-runs/net01-20260909T101812Z-9aca4362",
+    "head": "f8d44daaff6dc1bbe2ed9960ce43b99045550583",
+    "files": 55,
+    "source_manifest_sha256": "e0c6a1d5afb1d7fd81f28dce30dafec0fec7c9e77c8ac775ce9390297f719f36",
+    "archive_sha256": "aa4c650fa4eec0ab1a681e44bcbabdfa3aee21d687bcdd037b609e1816ee28b3",
+    "command": [
+      "go",
+      "test",
+      "-count=1",
+      "./internal/biz"
+    ],
+    "ssh_exit": 1
+  },
+  {
+    "run": "20260909T101915Z-adbc3842",
+    "host": "ubuntu",
+    "remote": "/home/ubuntu/workspace/ani-network-service-runs/net01-20260909T101915Z-adbc3842",
+    "head": "f8d44daaff6dc1bbe2ed9960ce43b99045550583",
+    "files": 56,
+    "source_manifest_sha256": "8d9900b6b36017c29b93e1bcc606bd8b3cd0568a2be079613e15afaf215fc26c",
+    "archive_sha256": "3435cec3c4f146e0b1779f920cc49617779bb1a3475dcb538f1bd9ccf3075c73",
+    "command": [
+      "go",
+      "test",
+      "-count=1",
+      "./internal/biz"
+    ],
+    "ssh_exit": 255
+  },
+  {
+    "run": "20260909T102310Z-a4aaa74c",
+    "host": "ubuntu",
+    "remote": "/home/ubuntu/workspace/ani-network-service-runs/net01-20260909T102310Z-a4aaa74c",
+    "head": "f8d44daaff6dc1bbe2ed9960ce43b99045550583",
+    "files": 58,
+    "source_manifest_sha256": "da9a49e04aaf63a5177f3a43a72a978d49a01150419db9a0b6cdb78f85ccd8ee",
+    "archive_sha256": "4c10edf58701e5cb064050287e48d91446b431ade6fa4c0daedd3bbe47dbec1c",
+    "command": [
+      "bash",
+      "-c",
+      "go get github.com/jackc/pgx/v5@v5.10.0 && go test -count=1 ./internal/data"
+    ],
+    "ssh_exit": null
+  },
+  {
+    "run": "20260909T102325Z-8e1d7902",
+    "host": "ubuntu",
+    "remote": "/home/ubuntu/workspace/ani-network-service-runs/net01-20260909T102325Z-8e1d7902",
+    "head": "f8d44daaff6dc1bbe2ed9960ce43b99045550583",
+    "files": 58,
+    "source_manifest_sha256": "f1b0e54f05af161e0f72c62c5e42f019d9eeab1c85b8fbd2af03c71d395749ce",
+    "archive_sha256": "d8fa1d6fc0214dc58c176510099e0a565d95f24d11c9680325ab3b1df402f021",
+    "command": [
+      "bash",
+      "-c",
+      "go get github.com/jackc/pgx/v5@v5.10.0 && go test -count=1 ./internal/data"
+    ],
+    "ssh_exit": 1
+  },
+  {
+    "run": "20260909T102451Z-940aaf7b",
+    "host": "ubuntu",
+    "remote": "/home/ubuntu/workspace/ani-network-service-runs/net01-20260909T102451Z-940aaf7b",
+    "head": "f8d44daaff6dc1bbe2ed9960ce43b99045550583",
+    "files": 58,
+    "source_manifest_sha256": "e54c5055352155171e0db76ab65a677d23a43739fb123c4cb8aa93b9208898d5",
+    "archive_sha256": "1ab7633586cebfb8e3bbf12e2f16bd5118fda4254bd474fcfe1d9d8f70b32efe",
+    "command": [
+      "bash",
+      "-c",
+      "go get github.com/jackc/pgx/v5/pgxpool@v5.10.0 && go test -count=1 ./internal/data"
+    ],
+    "ssh_exit": 1
+  },
+  {
+    "run": "20260909T102711Z-3b4e65e1",
+    "host": "ubuntu",
+    "remote": "/home/ubuntu/workspace/ani-network-service-runs/net01-20260909T102711Z-3b4e65e1",
+    "head": "f8d44daaff6dc1bbe2ed9960ce43b99045550583",
+    "files": 63,
+    "source_manifest_sha256": "71fba06286bff01ffdf5f2d16dc084b2c72a047bcc67bffa68205a9991d2dc8e",
+    "archive_sha256": "195c46aaed3d92110a43e97f18f7e0aef239ec63d64aa7b2c05c6a7dfb19c817",
+    "command": [
+      "sqlc",
+      "generate"
+    ],
+    "ssh_exit": 0
+  },
+  {
+    "run": "20260909T103035Z-aca4c2fe",
+    "host": "ubuntu",
+    "remote": "/home/ubuntu/workspace/ani-network-service-runs/net01-20260909T103035Z-aca4c2fe",
+    "head": "f8d44daaff6dc1bbe2ed9960ce43b99045550583",
+    "files": 68,
+    "source_manifest_sha256": "18ffc442c8236c577d98cc40ef5d5f1bce394c04227dc7ce91a6613c23404997",
+    "archive_sha256": "1892e5f5b5b8ea6cc87865aacaf7eb2256e4bd98de61047869d95907ae866257",
+    "command": [
+      "scripts/integration",
+      "./internal/data"
+    ],
+    "ssh_exit": 0
+  },
+  {
+    "run": "20260909T103138Z-4d774d2e",
+    "host": "ubuntu",
+    "remote": "/home/ubuntu/workspace/ani-network-service-runs/net01-20260909T103138Z-4d774d2e",
+    "head": "f8d44daaff6dc1bbe2ed9960ce43b99045550583",
+    "files": 68,
+    "source_manifest_sha256": "bc0dfb9104d9dec6d7dd742f1dd51b4ca288b052941024d1d3a5e447bf2125b5",
+    "archive_sha256": "5a02c2f70c79facdb28e11f7aef873f77b643adac5bbe8eab26cb915d266e56a",
+    "command": [
+      "scripts/integration",
+      "./internal/data",
+      "-run",
+      "TestVPCPages"
+    ],
+    "ssh_exit": 1
+  },
+  {
+    "run": "20260909T103249Z-a878d729",
+    "host": "ubuntu",
+    "remote": "/home/ubuntu/workspace/ani-network-service-runs/net01-20260909T103249Z-a878d729",
+    "head": "f8d44daaff6dc1bbe2ed9960ce43b99045550583",
+    "files": 69,
+    "source_manifest_sha256": "c054067dd40b5e7c5d535e15cc6b7713a95650037c904cfcf845ed68a894a7d5",
+    "archive_sha256": "033b71ee2cd8aceb20e7204dedaadf63e517ab511e86fe6245c9c78694470cca",
+    "command": [
+      "bash",
+      "-c",
+      "sqlc generate && scripts/integration ./internal/data"
+    ],
+    "ssh_exit": 0
+  },
+  {
+    "run": "20260909T103652Z-c076fafb",
+    "host": "ubuntu",
+    "remote": "/home/ubuntu/workspace/ani-network-service-runs/net01-20260909T103652Z-c076fafb",
+    "head": "f8d44daaff6dc1bbe2ed9960ce43b99045550583",
+    "files": 70,
+    "source_manifest_sha256": "b4db82ac806b2291015b8c93a7bf89311dcd6016a9f164fbfbabd90ac3243876",
+    "archive_sha256": "427083355045dd8e70717e3a96cbe1546e543e3bcca9df5b81593ecd685b21d3",
+    "command": [
+      "scripts/integration",
+      "./internal/data",
+      "-run",
+      "TestNetworkWorker"
+    ],
+    "ssh_exit": 1
+  },
+  {
+    "run": "20260909T104349Z-5ebbdd95",
+    "host": "ubuntu",
+    "remote": "/home/ubuntu/workspace/ani-network-service-runs/net01-20260909T104349Z-5ebbdd95",
+    "head": "f8d44daaff6dc1bbe2ed9960ce43b99045550583",
+    "files": 72,
+    "source_manifest_sha256": "3c062d8051ad59823b21d0d7d9b9827e6cf2ade4936c25a47af8317219bbacba",
+    "archive_sha256": "6dda3f13924b4ba6faac3a95fd8ae46a77eb7eba9507cc19b9c250f8316a8619",
+    "command": [
+      "sqlc",
+      "generate"
+    ],
+    "ssh_exit": 0
+  },
+  {
+    "run": "20260909T104512Z-896dd124",
+    "host": "ubuntu",
+    "remote": "/home/ubuntu/workspace/ani-network-service-runs/net01-20260909T104512Z-896dd124",
+    "head": "f8d44daaff6dc1bbe2ed9960ce43b99045550583",
+    "files": 74,
+    "source_manifest_sha256": "e4ce1dff59a8fdc6185bb09ee4395de05f9804b08caad4059fd8e0cffc16094a",
+    "archive_sha256": "371261f2e59745f494095725544a78e85c54e89b1a76aa14ec8e948269123cb3",
+    "command": [
+      "scripts/integration",
+      "./internal/data"
+    ],
+    "ssh_exit": 0
+  },
+  {
+    "run": "20260909T104657Z-68111ef5",
+    "host": "ubuntu",
+    "remote": "/home/ubuntu/workspace/ani-network-service-runs/net01-20260909T104657Z-68111ef5",
+    "head": "f8d44daaff6dc1bbe2ed9960ce43b99045550583",
+    "files": 75,
+    "source_manifest_sha256": "c47003059c6873ef19bb044842f7de02923b1b1029e18bd94023140606e6ddb7",
+    "archive_sha256": "4c45d47c1824f3f7cbe9695f8fc187fdb3ba9aa1b2a9c1d4de784d98bc82df2e",
+    "command": [
+      "bash",
+      "-c",
+      "go get k8s.io/client-go@v0.36.0 k8s.io/apimachinery@v0.36.0 && go mod tidy && scripts/integration ./internal/data -run TestKCAdapterExecutesTheVPCContractThroughHTTP"
+    ],
+    "ssh_exit": 1
+  },
+  {
+    "run": "20260909T104917Z-977b5896",
+    "host": "ubuntu",
+    "remote": "/home/ubuntu/workspace/ani-network-service-runs/net01-20260909T104917Z-977b5896",
+    "head": "f8d44daaff6dc1bbe2ed9960ce43b99045550583",
+    "files": 76,
+    "source_manifest_sha256": "2fa2683118500d0bc5bba86297f01513a5c0a9556a113b57f8963d48a10e3c97",
+    "archive_sha256": "c20da49347f1777e7f04b27b87474c5ae3a84eaa8fc645d6c58fe6df02ddfedf",
+    "command": [
+      "bash",
+      "-c",
+      "go mod tidy && scripts/integration ./internal/data"
+    ],
+    "ssh_exit": 0
+  },
+  {
+    "run": "20260909T105146Z-33862822",
+    "host": "ubuntu",
+    "remote": "/home/ubuntu/workspace/ani-network-service-runs/net01-20260909T105146Z-33862822",
+    "head": "f8d44daaff6dc1bbe2ed9960ce43b99045550583",
+    "files": 77,
+    "source_manifest_sha256": "5ff33f555d01684eb4395263e5fef8d21873cfd14ac9bd435987690555045464",
+    "archive_sha256": "d1683f04cdd0419a6668e1ea5a3d5638b38678fc9909387db624026d0e261c69",
+    "command": [
+      "scripts/integration",
+      "./internal/data",
+      "-run",
+      "TestUnknownPOST|TestLeaseExpiry|TestConcurrentAcceptance|TestPureQueries",
+      "-v"
+    ],
+    "ssh_exit": 0
+  },
+  {
+    "run": "20260909T105229Z-63c6d72e",
+    "host": "ubuntu",
+    "remote": "/home/ubuntu/workspace/ani-network-service-runs/net01-20260909T105229Z-63c6d72e",
+    "head": "f8d44daaff6dc1bbe2ed9960ce43b99045550583",
+    "files": 77,
+    "source_manifest_sha256": "ebc4d54c5f8caf067b4fab17b8dfeff4258ed4127be3201cf27469a1907d4951",
+    "archive_sha256": "aa2e6a7b755b415046486db008588c604ac7a81b1620d192d89183b9a2c57f48",
+    "command": [
+      "scripts/integration",
+      "./internal/data",
+      "-run",
+      "TestPostgresRejects|TestRuntimeRoleCannot",
+      "-v"
+    ],
+    "ssh_exit": 1
+  },
+  {
+    "run": "20260909T105302Z-f504e689",
+    "host": "ubuntu",
+    "remote": "/home/ubuntu/workspace/ani-network-service-runs/net01-20260909T105302Z-f504e689",
+    "head": "f8d44daaff6dc1bbe2ed9960ce43b99045550583",
+    "files": 77,
+    "source_manifest_sha256": "705bb68911e2aad0c6dc29cf360744592ed40b0bf8e1e3020259c8421c61f444",
+    "archive_sha256": "b64917c1d6a961053901cabd88bffe76b143a83f756997ec3af2b2d11f83eb9d",
+    "command": [
+      "scripts/integration",
+      "./internal/data",
+      "-run",
+      "TestPostgresRejects|TestRuntimeRoleCannot",
+      "-v"
+    ],
+    "ssh_exit": 0
+  },
+  {
+    "run": "20260909T105342Z-9fc6a449",
+    "host": "ubuntu",
+    "remote": "/home/ubuntu/workspace/ani-network-service-runs/net01-20260909T105342Z-9fc6a449",
+    "head": "f8d44daaff6dc1bbe2ed9960ce43b99045550583",
+    "files": 78,
+    "source_manifest_sha256": "45c53b6528094d3bef369d75bb8430c6f08f95f477f787c590252fcb66afe5e2",
+    "archive_sha256": "ddf003802aa19d8b60418c0e79d59f65f9d28f0f1b5de88fd6ff11e48d057446",
+    "command": [
+      "scripts/integration",
+      "./internal/data",
+      "-run",
+      "TestGRPCExposesTenantScopedNetworkContractAndStableErrors"
+    ],
+    "ssh_exit": 1
+  },
+  {
+    "run": "20260909T105424Z-7d59bc7a",
+    "host": "ubuntu",
+    "remote": "/home/ubuntu/workspace/ani-network-service-runs/net01-20260909T105424Z-7d59bc7a",
+    "head": "f8d44daaff6dc1bbe2ed9960ce43b99045550583",
+    "files": 79,
+    "source_manifest_sha256": "f9c3fc981c6cb7e57388bf454abca6258ea7138751a9cbf088fe636ce3de3aac",
+    "archive_sha256": "a980bfdd1e8e9719e6482063f581a93e12a36debcd7b875f14914227109d9b42",
+    "command": [
+      "bash",
+      "-c",
+      "buf lint && buf build && buf generate"
+    ],
+    "ssh_exit": 0
+  },
+  {
+    "run": "20260909T105539Z-b7a40d13",
+    "host": "ubuntu",
+    "remote": "/home/ubuntu/workspace/ani-network-service-runs/net01-20260909T105539Z-b7a40d13",
+    "head": "f8d44daaff6dc1bbe2ed9960ce43b99045550583",
+    "files": 82,
+    "source_manifest_sha256": "389764822369bae5206f59d6cc554ea1214d29d6552d94d7f83a9d6a7fd380cb",
+    "archive_sha256": "a5ce20dcdcd26a8f6e568b5d1e7935de57d9198de651150637af17507ae49a7e",
+    "command": [
+      "scripts/integration",
+      "./internal/data",
+      "-run",
+      "TestGRPCExposesTenantScopedNetworkContractAndStableErrors",
+      "-v"
+    ],
+    "ssh_exit": 1
+  },
+  {
+    "run": "20260909T105641Z-4818f260",
+    "host": "ubuntu",
+    "remote": "/home/ubuntu/workspace/ani-network-service-runs/net01-20260909T105641Z-4818f260",
+    "head": "f8d44daaff6dc1bbe2ed9960ce43b99045550583",
+    "files": 82,
+    "source_manifest_sha256": "d573f27f9eed82bbb164696a5e9cb76f6dc504c70584e5304792f93eb2fc0e05",
+    "archive_sha256": "de5a02c0223773212b2cb6ca990f0bdff2a1480cdd58ce968dd93a9d123eb9a6",
+    "command": [
+      "go",
+      "test",
+      "./internal/conf/v1"
+    ],
+    "ssh_exit": 1
+  },
+  {
+    "run": "20260909T105733Z-9ecd6882",
+    "host": "ubuntu",
+    "remote": "/home/ubuntu/workspace/ani-network-service-runs/net01-20260909T105733Z-9ecd6882",
+    "head": "f8d44daaff6dc1bbe2ed9960ce43b99045550583",
+    "files": 82,
+    "source_manifest_sha256": "bc4055ed6c4a11876e7c4914732b13679221cdcf00608f37a0853748e51cea00",
+    "archive_sha256": "e5b0219f20a7753bf8fe129ef1fd8bc2d6cb942526023c4b33826a1a3b386294",
+    "command": [
+      "bash",
+      "-c",
+      "buf lint && buf generate && go test ./internal/conf/v1 && scripts/integration ./internal/data -run TestGRPCExposesTenantScopedNetworkContractAndStableErrors -v"
+    ],
+    "ssh_exit": 0
+  },
+  {
+    "run": "20260909T105815Z-90aeb187",
+    "host": "ubuntu",
+    "remote": "/home/ubuntu/workspace/ani-network-service-runs/net01-20260909T105815Z-90aeb187",
+    "head": "f8d44daaff6dc1bbe2ed9960ce43b99045550583",
+    "files": 83,
+    "source_manifest_sha256": "e29737a7fda750708e8b32f5c943c5108322a54107f05a80b1d68d9b1457fece",
+    "archive_sha256": "59bcdc40061a0bcc6ec7b75576d6772e2b57ae34d8b32448e98d3cb6e323ba49",
+    "command": [
+      "go",
+      "test",
+      "./internal/server",
+      "-run",
+      "TestWorkerLifecycleReadinessDetectsDependencyLossAndUnexpectedExit"
+    ],
+    "ssh_exit": 1
+  },
+  {
+    "run": "20260909T105834Z-6fca81b6",
+    "host": "ubuntu",
+    "remote": "/home/ubuntu/workspace/ani-network-service-runs/net01-20260909T105834Z-6fca81b6",
+    "head": "f8d44daaff6dc1bbe2ed9960ce43b99045550583",
+    "files": 83,
+    "source_manifest_sha256": "ada6613499fb446ef68947fd60e5153e572860926410e27ad8fb77d8b78bbf64",
+    "archive_sha256": "f850281a782d47daaf192f0422470a9e5345c6b891f80d0eda23eab8de90b2e0",
+    "command": [
+      "go",
+      "test",
+      "./internal/server",
+      "-run",
+      "TestWorkerLifecycleReadinessDetectsDependencyLossAndUnexpectedExit"
+    ],
+    "ssh_exit": 1
+  },
+  {
+    "run": "20260909T105930Z-9edc30b3",
+    "host": "ubuntu",
+    "remote": "/home/ubuntu/workspace/ani-network-service-runs/net01-20260909T105930Z-9edc30b3",
+    "head": "f8d44daaff6dc1bbe2ed9960ce43b99045550583",
+    "files": 84,
+    "source_manifest_sha256": "047bae62b01642df0692155cdde73f881c2655ffb7ca7476005b4a4a6873066e",
+    "archive_sha256": "b6f91cecbc3fa57178a219740cce9ec714165ef4706ad9fe1c13becf8e214a30",
+    "command": [
+      "go",
+      "test",
+      "./internal/server",
+      "-run",
+      "TestWorkerLifecycleReadinessDetectsDependencyLossAndUnexpectedExit"
+    ],
+    "ssh_exit": 0
+  },
+  {
+    "run": "20260909T110131Z-ce3c75d4",
+    "host": "ubuntu",
+    "remote": "/home/ubuntu/workspace/ani-network-service-runs/net01-20260909T110131Z-ce3c75d4",
+    "head": "f8d44daaff6dc1bbe2ed9960ce43b99045550583",
+    "files": 85,
+    "source_manifest_sha256": "79ef374d070e3ff6669fb674bf51aac0074bebf4e1574e6f9c6b1e2b25564652",
+    "archive_sha256": "243f1ff01f34765876725fa165da645b5464cb6b41b17838a8215ab36c1b4db3",
+    "command": [
+      "go",
+      "test",
+      "./internal/server",
+      "./cmd/ani-network-service"
+    ],
+    "ssh_exit": 1
+  },
+  {
+    "run": "20260909T110251Z-796583a0",
+    "host": "ubuntu",
+    "remote": "/home/ubuntu/workspace/ani-network-service-runs/net01-20260909T110251Z-796583a0",
+    "head": "f8d44daaff6dc1bbe2ed9960ce43b99045550583",
+    "files": 86,
+    "source_manifest_sha256": "d2e43f8fac07e82b560487354ea0470699dee8568c887f711766bafd01448b52",
+    "archive_sha256": "e8bd29208c10c983734acf2fbdf8335a2b26fd5a3e5f6dedf48e82a284b0e43b",
+    "command": [
+      "scripts/integration",
+      "./cmd/ani-network-service",
+      "./internal/data"
+    ],
+    "ssh_exit": 1
+  },
+  {
+    "run": "20260909T110333Z-d393bbf9",
+    "host": "ubuntu",
+    "remote": "/home/ubuntu/workspace/ani-network-service-runs/net01-20260909T110333Z-d393bbf9",
+    "head": "f8d44daaff6dc1bbe2ed9960ce43b99045550583",
+    "files": 87,
+    "source_manifest_sha256": "a2972eda57c0f84902a91686372ac2951ac2d13c00b3c8845b13b34f21ee5828",
+    "archive_sha256": "d8f33eae19e38ed53119dfcb7952d3247b9c744369c023abc83772da37e699b9",
+    "command": [
+      "scripts/integration",
+      "./cmd/ani-network-service",
+      "./internal/data"
+    ],
+    "ssh_exit": 1
+  },
+  {
+    "run": "20260909T110532Z-1c3d460a",
+    "host": "ubuntu",
+    "remote": "/home/ubuntu/workspace/ani-network-service-runs/net01-20260909T110532Z-1c3d460a",
+    "head": "f8d44daaff6dc1bbe2ed9960ce43b99045550583",
+    "files": 88,
+    "source_manifest_sha256": "99808e8f8571bd8cec652b5ca28ec2451be405da27b3e64ea73a28303552ab2c",
+    "archive_sha256": "935bc2c4fee94d411d7f3f9a673fd0e2d40e3d1999aeba3c808024cdd74d7117",
+    "command": [
+      "scripts/integration",
+      "./internal/data",
+      "-run",
+      "TestServiceProcessesRecoverT1AndProviderSuccessWithoutCaller",
+      "-v"
+    ],
+    "ssh_exit": 1
+  },
+  {
+    "run": "20260909T110614Z-3fb206da",
+    "host": "ubuntu",
+    "remote": "/home/ubuntu/workspace/ani-network-service-runs/net01-20260909T110614Z-3fb206da",
+    "head": "f8d44daaff6dc1bbe2ed9960ce43b99045550583",
+    "files": 88,
+    "source_manifest_sha256": "22c8f6559ab5b0b0785115b502810ced65a11a814b7cecd494a3494193714e90",
+    "archive_sha256": "059540cf2a46295f28c44be675b086f6c766dbc7ad62c3772ce7040472d39c5c",
+    "command": [
+      "scripts/integration",
+      "./cmd/ani-network-service",
+      "-run",
+      "TestMainProcessHandlesSignalAndClosesListeners",
+      "-v"
+    ],
+    "ssh_exit": 1
+  },
+  {
+    "run": "20260909T110704Z-58d5286d",
+    "host": "ubuntu",
+    "remote": "/home/ubuntu/workspace/ani-network-service-runs/net01-20260909T110704Z-58d5286d",
+    "head": "f8d44daaff6dc1bbe2ed9960ce43b99045550583",
+    "files": 88,
+    "source_manifest_sha256": "bea344e2a05ebe2bca05267dd0908f5ee7ec280ab549e711ce07cf0c0a36a5a1",
+    "archive_sha256": "05e4af832aad8235bcc00734e4afc2bc087b4e223e4fe098725fce61b7cabdcc",
+    "command": [
+      "scripts/integration",
+      "./internal/data",
+      "./cmd/ani-network-service",
+      "-run",
+      "TestServiceProcessesRecover|TestMainProcessHandles",
+      "-v"
+    ],
+    "ssh_exit": 0
+  },
+  {
+    "run": "20260909T110956Z-1805f6fe",
+    "host": "ubuntu",
+    "remote": "/home/ubuntu/workspace/ani-network-service-runs/net01-20260909T110956Z-1805f6fe",
+    "head": "f8d44daaff6dc1bbe2ed9960ce43b99045550583",
+    "files": 90,
+    "source_manifest_sha256": "8d3f2463e34c8e6e26260fa2e21b5b1e9340dc313796c66e95042838b702b7d4",
+    "archive_sha256": "03cbe96509f398713b4875495b7b805a82c95d361c0810fa06b9b5420876ca1a",
+    "command": [
+      "bash",
+      "-c",
+      "scripts/integration ./internal/data -run \"TestConfirmedProvider|TestActualAdapterBlocks|TestProviderOutage\" -v && scripts/integration --mutations"
+    ],
+    "ssh_exit": 0
+  },
+  {
+    "run": "20260909T111225Z-7e44947c",
+    "host": "ubuntu",
+    "remote": "/home/ubuntu/workspace/ani-network-service-runs/net01-20260909T111225Z-7e44947c",
+    "head": "f8d44daaff6dc1bbe2ed9960ce43b99045550583",
+    "files": 91,
+    "source_manifest_sha256": "9874d06e7a6fba40e47bf92c99cc434c0224aea111468e8fc437defce61c8a92",
+    "archive_sha256": "4b28364580b0defeb6fa266ecff2bf270254ee06c8d5ae4da68c72e1691f5c3b",
+    "command": [
+      "scripts/integration",
+      "./internal/data",
+      "-run",
+      "TestPostgresRejects|TestRuntimeRoleCannot",
+      "-v"
+    ],
+    "ssh_exit": 0
+  },
+  {
+    "run": "20260909T111334Z-e30be18f",
+    "host": "ubuntu",
+    "remote": "/home/ubuntu/workspace/ani-network-service-runs/net01-20260909T111334Z-e30be18f",
+    "head": "f8d44daaff6dc1bbe2ed9960ce43b99045550583",
+    "files": 92,
+    "source_manifest_sha256": "656feab99a9d227f7c49775bd6a62e8b44303a8dac8a0c1006289457e7d75984",
+    "archive_sha256": "19668e2bb3b1fba79a6710cf92a7de5e9cea226dcf4e2712cabda272410a260b",
+    "command": [
+      "bash",
+      "-c",
+      "go mod tidy && make verify"
+    ],
+    "ssh_exit": 2
+  },
+  {
+    "run": "20260909T111439Z-55afd456",
+    "host": "ubuntu",
+    "remote": "/home/ubuntu/workspace/ani-network-service-runs/net01-20260909T111439Z-55afd456",
+    "head": "f8d44daaff6dc1bbe2ed9960ce43b99045550583",
+    "files": 92,
+    "source_manifest_sha256": "52f5d5f0a7a2f6740ad3c92716f41f4f7ba3ccabf22cfb90ed0f78a3b3fbef83",
+    "archive_sha256": "7063eebfd22082844146729e1292fee3282f5325923e6ab449262053073777a7",
+    "command": [
+      "bash",
+      "-c",
+      "make verify && make integration && make race && make tenant-mutations && make audit"
+    ],
+    "ssh_exit": 2
+  },
+  {
+    "run": "20260909T111507Z-26659ea1",
+    "host": "ubuntu",
+    "remote": "/home/ubuntu/workspace/ani-network-service-runs/net01-20260909T111507Z-26659ea1",
+    "head": "f8d44daaff6dc1bbe2ed9960ce43b99045550583",
+    "files": 92,
+    "source_manifest_sha256": "6314c86cbdbc9941f994a9dde5cda8fbf369d7c199724df55dec1e3f5e47876e",
+    "archive_sha256": "c8f9420c74497690dcc24d8e9c8d39c522ab323e8cf5dd6938b329933c1d949e",
+    "command": [
+      "scripts/integration",
+      "./internal/data",
+      "-run",
+      "TestActualAdapterBlocksWrongOwnerChangedUIDAndUnexpectedChildren",
+      "-v"
+    ],
+    "ssh_exit": 1
+  },
+  {
+    "run": "20260909T111545Z-81e59640",
+    "host": "ubuntu",
+    "remote": "/home/ubuntu/workspace/ani-network-service-runs/net01-20260909T111545Z-81e59640",
+    "head": "f8d44daaff6dc1bbe2ed9960ce43b99045550583",
+    "files": 92,
+    "source_manifest_sha256": "323df03f42cb4ace51c20a49dbe6eec82e686160a7ca3c1c3ad92cf57ea1f0fc",
+    "archive_sha256": "c563f9d37884047af420710c5caaea20c28ac5ecc03c1b34c32351c1562917df",
+    "command": [
+      "bash",
+      "-c",
+      "make verify && make integration && make race && make tenant-mutations && make audit"
+    ],
+    "ssh_exit": 2
+  },
+  {
+    "run": "20260909T112124Z-61d0ca87",
+    "host": "ubuntu",
+    "remote": "/home/ubuntu/workspace/ani-network-service-runs/net01-20260909T112124Z-61d0ca87",
+    "head": "f8d44daaff6dc1bbe2ed9960ce43b99045550583",
+    "files": 93,
+    "source_manifest_sha256": "7a7efa6f43276a6e135ab4f45b310a8f2dd7626cce07514cf5e5441793f3f6f3",
+    "archive_sha256": "ec687face301faf80259f48ca944c0ef26e72d20527f03deab851e3e3f0947ab",
+    "command": [
+      "bash",
+      "-c",
+      "make verify && make integration && make race && make tenant-mutations && make audit"
+    ],
+    "ssh_exit": 2
+  },
+  {
+    "run": "20260909T112309Z-27c347cc",
+    "host": "ubuntu",
+    "remote": "/home/ubuntu/workspace/ani-network-service-runs/net01-20260909T112309Z-27c347cc",
+    "head": "f8d44daaff6dc1bbe2ed9960ce43b99045550583",
+    "files": 93,
+    "source_manifest_sha256": "ac8087d0e387953a5d4df6492413df44e01cf45eab5de0345b628adb7b325c1f",
+    "archive_sha256": "ab8d5c4b401346cccc4eb398d5b94d320b003fb11654895b1535c5aed7a344ca",
+    "command": [
+      "scripts/integration",
+      "./internal/data",
+      "-run",
+      "TestServiceProcessesRecoverT1AndProviderSuccessWithoutCaller",
+      "-v"
+    ],
+    "ssh_exit": 1
+  },
+  {
+    "run": "20260909T112456Z-f30122f3",
+    "host": "ubuntu",
+    "remote": "/home/ubuntu/workspace/ani-network-service-runs/net01-20260909T112456Z-f30122f3",
+    "head": "f8d44daaff6dc1bbe2ed9960ce43b99045550583",
+    "files": 93,
+    "source_manifest_sha256": "3ddb05a1bc7fa929fd6567ad1f0a93aef1eb6d54d48f3daeda53ecea87df01af",
+    "archive_sha256": "9d66264686ab6b1154e4eb4132738b10def28e981aec98aeeb197b2b5019d4a4",
+    "command": [
+      "bash",
+      "-c",
+      "buf lint && buf generate && scripts/integration ./internal/data -run \"TestServiceProcessesRecover|TestGRPCExposes\" -v"
+    ],
+    "ssh_exit": 0
+  },
+  {
+    "run": "20260909T112551Z-9c530ed8",
+    "host": "ubuntu",
+    "remote": "/home/ubuntu/workspace/ani-network-service-runs/net01-20260909T112551Z-9c530ed8",
+    "head": "f8d44daaff6dc1bbe2ed9960ce43b99045550583",
+    "files": 93,
+    "source_manifest_sha256": "8ebd97049c15d2ce4e01dd35ea695391b4e61191243033a424f29415aed92070",
+    "archive_sha256": "d4fdda0a1b19fbb4e977994462068fbedc66dda5822f3d5d1362841bf5839dc5",
+    "command": [
+      "scripts/integration",
+      "./internal/data",
+      "-run",
+      "TestConfirmedProviderRejectionFailsCreationButKeepsDeletionRecoverable",
+      "-v"
+    ],
+    "ssh_exit": 0
+  },
+  {
+    "run": "20260909T112605Z-17001a10",
+    "host": "ubuntu",
+    "remote": "/home/ubuntu/workspace/ani-network-service-runs/net01-20260909T112605Z-17001a10",
+    "head": "f8d44daaff6dc1bbe2ed9960ce43b99045550583",
+    "files": 93,
+    "source_manifest_sha256": "3cf365f1f8ecbb496e944bccfe080dc9a0f7e473e3c769c45332069162944541",
+    "archive_sha256": "14606280713e9013a2227c77eb0bf1788387747622136bbf2729eb41378f5ea1",
+    "command": [
+      "scripts/integration",
+      "./internal/data",
+      "-run",
+      "TestConfirmedProviderRejectionFailsCreationButKeepsDeletionRecoverable",
+      "-v"
+    ],
+    "ssh_exit": 1
+  },
+  {
+    "run": "20260909T112705Z-a21b8620",
+    "host": "ubuntu",
+    "remote": "/home/ubuntu/workspace/ani-network-service-runs/net01-20260909T112705Z-a21b8620",
+    "head": "f8d44daaff6dc1bbe2ed9960ce43b99045550583",
+    "files": 93,
+    "source_manifest_sha256": "c25bcdcb60a1f7942c6d1f497bd88369a303d6858ebeb1514649b19d2a586d49",
+    "archive_sha256": "3d1834b8b28070efb909790fbd2625ff1ec66968976717b336ec15b2a9cf9b9d",
+    "command": [
+      "bash",
+      "-c",
+      "make verify && make integration && make race && make tenant-mutations && make audit"
+    ],
+    "ssh_exit": 0
+  }
+]

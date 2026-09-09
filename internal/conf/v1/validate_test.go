@@ -1,6 +1,7 @@
 package conf
 
 import (
+	"github.com/zhangzhe-ctrl/ani-network-service/tests/testenv"
 	"testing"
 	"time"
 
@@ -9,7 +10,9 @@ import (
 )
 
 func validConfig() *Bootstrap {
-	return &Bootstrap{Server: &Server{
+	return &Bootstrap{Network: &Network{DatabaseDsn: "postgres://runtime@127.0.0.1/network", ClusterId: "test", NamespacePrefix: "tenant-", CursorSigningKey: testenv.SigningKey(), Worker: &Worker{
+		Lease: durationpb.New(20 * time.Second), RequestTimeout: durationpb.New(5 * time.Second), ObserveEvery: durationpb.New(10 * time.Second), StaleAfter: durationpb.New(time.Minute), RetryMin: durationpb.New(time.Second), RetryMax: durationpb.New(time.Minute), PollInterval: durationpb.New(100 * time.Millisecond),
+	}}, Server: &Server{
 		Grpc:            &Server_GRPC{Network: "tcp", Addr: "127.0.0.1:19090", Timeout: durationpb.New(time.Second)},
 		Admin:           &Server_Admin{Network: "tcp", Addr: "127.0.0.1:19091", Timeout: durationpb.New(time.Second)},
 		ShutdownTimeout: durationpb.New(5 * time.Second),
@@ -97,5 +100,28 @@ func TestBootstrapValidateRequiresCompleteServerConfig(t *testing.T) {
 				t.Fatal("Validate() unexpectedly succeeded")
 			}
 		})
+	}
+}
+
+func TestBootstrapRequiresVPCDependenciesAndBoundedWorkerTiming(t *testing.T) {
+	cfg := validConfig()
+	cfg.Network = &Network{DatabaseDsn: "postgres://runtime@127.0.0.1/network", ClusterId: "test", NamespacePrefix: "tenant-", CursorSigningKey: testenv.SigningKey(), Worker: &Worker{
+		Lease: durationpb.New(20 * time.Second), RequestTimeout: durationpb.New(5 * time.Second), ObserveEvery: durationpb.New(10 * time.Second), StaleAfter: durationpb.New(time.Minute), RetryMin: durationpb.New(time.Second), RetryMax: durationpb.New(time.Minute), PollInterval: durationpb.New(100 * time.Millisecond),
+	}}
+	if err := cfg.Validate(); err != nil {
+		t.Fatal(err)
+	}
+	cfg.Network.Worker.Lease = durationpb.New(time.Second)
+	if err := cfg.Validate(); err == nil {
+		t.Fatal("lease shorter than external request budget accepted")
+	}
+	cfg.Network.Worker.Lease = durationpb.New(20 * time.Second)
+	cfg.Network.CursorSigningKey = "short"
+	if err := cfg.Validate(); err == nil {
+		t.Fatal("short cursor signing key accepted")
+	}
+	cfg.Network = nil
+	if err := cfg.Validate(); err == nil {
+		t.Fatal("missing business dependencies accepted")
 	}
 }

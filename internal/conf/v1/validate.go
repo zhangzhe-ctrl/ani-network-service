@@ -2,9 +2,11 @@
 package conf
 
 import (
+	"encoding/base64"
 	"fmt"
 	"net"
 	"strconv"
+	"strings"
 	"time"
 
 	"google.golang.org/protobuf/types/known/durationpb"
@@ -32,7 +34,39 @@ func (c *Bootstrap) Validate() error {
 	if grpcPort == adminPort {
 		return fmt.Errorf("grpc and admin listeners must use distinct ports")
 	}
-	return validateDuration("shutdown", c.Server.ShutdownTimeout, maximumTimeout)
+	if err := validateDuration("shutdown", c.Server.ShutdownTimeout, maximumTimeout); err != nil {
+		return err
+	}
+	if c.Network == nil || c.Network.Worker == nil || strings.TrimSpace(c.Network.DatabaseDsn) == "" ||
+		strings.TrimSpace(c.Network.ClusterId) == "" || c.Network.NamespacePrefix == "" {
+		return fmt.Errorf("Network database, placement and worker config are required")
+	}
+	key, err := base64.StdEncoding.DecodeString(c.Network.CursorSigningKey)
+	if err != nil || len(key) < 32 || len(key) > 128 {
+		return fmt.Errorf("cursor_signing_key must encode 32..128 bytes as base64")
+	}
+	w := c.Network.Worker
+	for _, setting := range []struct {
+		name    string
+		value   *durationpb.Duration
+		maximum time.Duration
+	}{
+		{"worker lease", w.Lease, 2 * time.Minute}, {"provider request", w.RequestTimeout, 30 * time.Second},
+		{"observation interval", w.ObserveEvery, time.Minute}, {"observation freshness", w.StaleAfter, 10 * time.Minute},
+		{"retry minimum", w.RetryMin, time.Minute}, {"retry maximum", w.RetryMax, time.Minute},
+		{"worker poll", w.PollInterval, time.Second},
+	} {
+		if err := validateDuration(setting.name, setting.value, setting.maximum); err != nil {
+			return err
+		}
+		if setting.value.AsDuration() < time.Millisecond {
+			return fmt.Errorf("%s must be at least 1ms", setting.name)
+		}
+	}
+	if w.Lease.AsDuration() < 3*w.RequestTimeout.AsDuration() || w.StaleAfter.AsDuration() <= w.ObserveEvery.AsDuration() || w.RetryMax.AsDuration() < w.RetryMin.AsDuration() {
+		return fmt.Errorf("worker lease, observation and retry timing are inconsistent")
+	}
+	return nil
 }
 
 func validateListener(name, network, address string, timeout *durationpb.Duration) error {

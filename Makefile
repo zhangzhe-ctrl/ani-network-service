@@ -4,11 +4,13 @@ SHELL := /bin/bash
 GO ?= go
 TOOLS_DIR := $(CURDIR)/.tools/bin
 BUF := $(TOOLS_DIR)/buf
+SQLC := $(TOOLS_DIR)/sqlc
 GOVULNCHECK := $(TOOLS_DIR)/govulncheck
 CYCLONEDX_GOMOD := $(TOOLS_DIR)/cyclonedx-gomod
 GITLEAKS := $(TOOLS_DIR)/gitleaks
 
 BUF_VERSION := v1.60.0
+SQLC_VERSION := v1.31.1
 GOVULNCHECK_VERSION := v1.7.0
 CYCLONEDX_GOMOD_VERSION := v1.12.0
 GITLEAKS_VERSION := v8.30.1
@@ -21,9 +23,17 @@ SERVICE_NAME ?= ani-network-service
 VERSION ?= $(shell git describe --tags --always --dirty 2>/dev/null || echo dev)
 LDFLAGS := -X main.Name=$(SERVICE_NAME) -X main.Version=$(VERSION)
 
-.PHONY: tools check-buf supply-chain-tools check-govulncheck check-cyclonedx check-gitleaks config generate build test verify vuln secrets sbom supply-chain-verify audit clean help
+.PHONY: tools check-buf check-sqlc supply-chain-tools check-govulncheck check-cyclonedx check-gitleaks config sql generate build test verify integration race tenant-mutations vuln secrets sbom supply-chain-verify audit clean help
 
-tools: check-buf
+tools: check-buf check-sqlc
+
+$(SQLC):
+	mkdir -p $(TOOLS_DIR)
+	GOBIN=$(TOOLS_DIR) $(GO) install github.com/sqlc-dev/sqlc/cmd/sqlc@$(SQLC_VERSION)
+
+check-sqlc: $(SQLC)
+	test "$$($(SQLC) version)" = "$(SQLC_VERSION)"
+	test "$$(go version -m $(SQLC) | awk '$$1 == "mod" {print $$2 "@" $$3; exit}')" = "github.com/sqlc-dev/sqlc@$(SQLC_VERSION)"
 
 $(BUF):
 	mkdir -p $(TOOLS_DIR)
@@ -58,14 +68,17 @@ $(GITLEAKS):
 check-gitleaks: $(GITLEAKS)
 	test "$$(go version -m $(GITLEAKS) | awk '$$1 == "mod" {print $$2 "@" $$3; exit}')" = "$(GITLEAKS_MODULE)"
 
-config: $(BUF)
+config: check-buf
 	$(BUF) lint
 	$(BUF) build
 	$(BUF) generate --template buf.gen.yaml
 
-generate: config
+sql: check-sqlc
+	$(SQLC) generate
+
+generate: config sql
 	$(GO) generate ./...
-	find . -type f -name '*.go' -not -path './.git/*' -not -path './.tools/*' -print0 | xargs -0 --no-run-if-empty gofmt -w
+	find . -type f -name '*.go' -not -path './.git/*' -not -path './.tools/*' -not -path './.work/*' -not -path './.tmp/*' -print0 | xargs -0 --no-run-if-empty gofmt -w
 
 build:
 	mkdir -p bin
@@ -74,14 +87,24 @@ build:
 test:
 	$(GO) test -count=1 ./...
 
-verify: check-buf
-	./scripts/verify-source $(BUF)
+verify: check-buf check-sqlc
+	./scripts/verify-source $(BUF) $(SQLC)
+	./scripts/verify-boundaries
 	$(GO) mod tidy -diff
 	$(GO) test -count=1 ./...
 	$(GO) vet ./...
 	$(GO) build -trimpath ./...
 	$(GO) mod verify
 	git diff --check
+
+integration:
+	./scripts/integration ./...
+
+race:
+	./scripts/integration -race ./...
+
+tenant-mutations: check-sqlc
+	./scripts/integration --mutations
 
 vuln: check-govulncheck
 	$(GOVULNCHECK) -show version,verbose ./...
@@ -101,9 +124,12 @@ clean:
 	rm -rf bin .tools .work .tmp
 
 help:
-	@echo "make tools    install pinned config generator"
-	@echo "make generate regenerate typed config"
+	@echo "make tools    install pinned Proto and SQL generators"
+	@echo "make generate regenerate Proto, typed config and SQL"
 	@echo "make verify   run deterministic local quality gates"
+	@echo "make integration run real PostgreSQL and service process tests"
+	@echo "make race     run all tests, with real PostgreSQL and race detector"
+	@echo "make tenant-mutations prove tenant boundary assertions detect broken SQL"
 	@echo "make vuln     scan the current dependency graph"
 	@echo "make secrets  scan all Git history with pinned Gitleaks"
 	@echo "make sbom     write a CycloneDX SBOM"

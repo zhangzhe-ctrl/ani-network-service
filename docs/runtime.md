@@ -1,121 +1,65 @@
-# Generic Runtime Contract
+# Network 运行契约
 
-- Status: **FROZEN CONTRACT**
-- Scope: runtime shell emitted by LAYOUT-0
+本文接替初始化时的通用运行骨架说明，描述 NET-01 的实际装配。业务规则以 [VPC/Subnet 规格](specs/vpc-subnet.md) 为准，实际检查结果以 [执行状态](execution/status.md) 为准。
 
-This is the minimum runtime contract shared by newly generated ANI services.
-It standardizes application mechanics while leaving business ownership to the
-service.
+## 启动和迁移
 
-## Process topology
+`cmd/ani-network-service` 是唯一组合根。正常启动装配受限 PostgreSQL、实际 kc adapter、Network 用例、持久 worker、gRPC 和 admin HTTP；不存在 fake、内存数据库或旧 ANI 后端的运行配置开关。
 
-One Kratos application owns two listeners:
+先为专用的空 Network 数据库准备不同的 migration owner 和 runtime login role。owner 拥有数据库与 schema；runtime 不拥有表，不具有 superuser、BYPASSRLS、CREATEDB、CREATEROLE、持久或临时 DDL 权限，也不能 SET ROLE 为 owner/管理角色。迁移会撤销 PUBLIC 的数据库 CREATE/TEMP 和 public schema CREATE，给 runtime 授予具体表权限；不会创建 IAM Tenant 表、启用 RLS 或访问其他服务的数据库。
 
-| Listener | Purpose | Default local bind | Public business API |
-| --- | --- | --- | --- |
-| gRPC | future service APIs plus standard gRPC health | `127.0.0.1:19090` | no API supplied by the layout |
-| admin HTTP | process health, readiness, and metrics | `127.0.0.1:19091` | no |
+构建后显式迁移：
 
-The committed defaults are safe for local execution. A service deployment may
-override an address to an unspecified IP such as `0.0.0.0`; that choice belongs
-to the service deployment, not to the template default.
+```bash
+# 以下变量由本次环境的凭据管理方式注入，不把连接串写进源码或日志。
+# ANI_NETWORK_MIGRATION_DSN：migration owner 的连接串
+# ANI_NETWORK_RUNTIME_ROLE：事先创建的受限 login role 名
+./bin/ani-network-service -migrate
+```
 
-## Configuration
+迁移入口拒绝包含其他 public 业务表的数据库及未经版本管理的 Network 表，核对已应用 migration checksum，支持相同 migration 的重放。正常启动只检查权限、schema 版本和 checksum，不读取 owner 变量或隐式执行迁移。
 
-- configuration is typed from `internal/conf/v1/conf.proto`;
-- the process reads a configuration file selected by `-conf`;
-- environment overrides use the `ANI` prefix;
-- server configuration contains gRPC, admin HTTP, request timeout, and graceful
-  shutdown timeout only;
-- validation runs before listeners start;
-- supported network value is `tcp`;
-- listener addresses must use a literal loopback or unspecified IP plus a valid
-  non-zero port;
-- gRPC and admin must use distinct non-zero ports; and
-- timeout values must be positive and bounded by the validation contract.
+正常启动需要以下环境输入：
 
-No database, message broker, cache, identity endpoint, or provider configuration
-is present in LAYOUT-0.
+| 变量 | 含义 |
+|---|---|
+| `ANI_NETWORK_DATABASE_DSN` | runtime 角色的 PostgreSQL 连接串，必填 |
+| `ANI_NETWORK_CURSOR_SIGNING_KEY` | 32–128 字节 secret 的标准 Base64，必填；同一服务的副本共享，重启保持稳定 |
+| `ANI_NETWORK_KUBECONFIG` | 管理员提供的 kc 集群 kubeconfig 路径；空值使用 Kubernetes in-cluster 凭据 |
+| `ANI_NETWORK_CLUSTER_ID` | 固定的内部集群标识，默认 `primary`；须与已保存映射一致 |
+| `ANI_NETWORK_NAMESPACE_PREFIX` | 默认 `tenant-`；DNS 前缀，长度受限，末尾为 `-` |
 
-## Composition and lifecycle
+```bash
+./bin/ani-network-service -conf ./configs
+```
 
-- `cmd/ani-network-service/main.go` owns process concerns: configuration loading, logger
-  construction, signal handling, and process metadata.
-- `cmd/ani-network-service/app.go` is the explicit composition root.
-- Kratos `App` owns server start and stop.
-- graceful shutdown uses the configured timeout and returns a non-zero result
-  when startup or shutdown fails.
-- `automaxprocs` is integrated into the same structured logger rather than
-  writing an unrelated log format.
-- Wire and generated DI code are absent.
+不要把默认前缀/集群标识变更当作已有资源迁移。产品 ID 与 Provider 位置、对象名、UID 的映射在受理时持久化。kc 凭据需允许管理专用租户 namespace、GET/CREATE/DELETE VPC、跨 namespace LIST Subnet；NET-01 不删除 namespace，不删除或修改 Subnet，不移除 kc finalizer。namespace 首次由 Network 创建并验证管理者/租户标签，同租户多个 VPC 共享该 namespace。实际 Kubernetes RBAC、kc 部署和租户隔离的集群验收属于 NET-05。
 
-The layout assumes one Kratos app per process. A service that changes this model
-must review global telemetry-provider ownership explicitly.
+## 类型化配置
 
-## Logging and request correlation
+配置由 [conf.proto](../internal/conf/v1/conf.proto) 生成，示例在 [config.yaml](../configs/config.yaml)。Kratos 按 `ANI` 前缀加载环境变量。Duration 使用 Protobuf JSON 秒格式，例如 `0.1s`、`20s`，不能写 `100ms` 或 `1m`。
 
-The process emits Kratos structured JSON logs with at least service name,
-version, instance ID, timestamp, caller, and trace/span identifiers when a span
-is active. Sensitive values must be filtered at the logger boundary. The layout
-does not define a business audit log.
+监听器默认 `127.0.0.1:19090`（gRPC）和 `127.0.0.1:19091`（admin），允许用已有 `ANI_SERVER_*` 变量设置 loopback 或 unspecified IP；两个端口必须不同且非零。服务间调用验证按 [ADR-0003](adr/0003-defer-workload-authentication.md) 延期，当前 tenant 输入不代表认证；环境应限制直接访问范围。
 
-## Transport middleware
+worker 默认：lease 20s、单次 Provider 调用 5s、观察 10s、观测有效期 60s、重试 1–60s、空闲轮询 0.1s。可通过 `ANI_WORKER_LEASE`、`REQUEST_TIMEOUT`、`OBSERVE_EVERY`、`STALE_AFTER`、`RETRY_MIN`、`RETRY_MAX`、`POLL_INTERVAL`（均加 `ANI_WORKER_` 前缀）设置。验证要求 lease 至少为单次调用的三倍、有效期大于观察间隔、退避上下界有序；每次 Step 的总期限也受 lease 限制。具体上下界由 [配置验证](../internal/conf/v1/validate.go) 实现。
 
-The frozen gRPC middleware order is:
+## 进程生命周期与健康
 
-1. recovery;
-2. metadata;
-3. tracing;
-4. logging;
-5. metrics; and
-6. validation.
+Kratos 同时启动 gRPC、admin 和 worker。请求方退出不终止持久任务；worker 的内存状态仅用于运行，不是待执行队列。停止时取消外部调用、等待 worker 和监听器退出，未完成记录留在数据库，之后由新的租约持有者恢复。
 
-Changing the order is a runtime-contract change because it affects whether
-panics, request metadata, trace context, validation failures, latency, and status
-are observable consistently.
+| 接口 | 实际含义 |
+|---|---|
+| `GET /healthz` | admin 进程可以响应 |
+| `GET /readyz` | 应用已启动、worker 正在运行、数据库/schema/角色检查通过且探测记录未过期 |
+| 标准 gRPC health Check/Watch | 与 readiness 相同；服务名支持空串和 `network.v1.NetworkService` |
+| `GET /metrics` | 本地 Prometheus registry；不代表实际 scrape、告警或远端 tracing 导出已配置 |
 
-Kratos error and codec handlers remain the transport boundary. gRPC reflection
-is disabled by default. The standard gRPC health service is enabled.
+数据库每秒独立检查，单次探测最多 0.5s，超过 3s 的健康缓存失效。Provider 暂时失联不会单独关闭可持久受理和查询的服务；资源/operation reason 和 `ani_network_provider_reachable` 呈现观测结果。worker 异常返回或 panic 会使 readiness 失败并导致应用退出，不会继续假报健康。GET/LIST/GetOperation 只读数据库，`observation_stale` 在查询时纯计算。
 
-## Administrative endpoints
+日志保留 Kratos JSON、service 身份、source 和 trace/span；worker 日志增加资源、operation、epoch、状态和稳定 reason。tenant/resource ID 只用于日志，不作为 metrics label。新增 `ani_network_worker_attempts` 按封闭结果分类，Provider gauge 表示最近一次观测；尚未观测时没有成功证据。指标不能代替数据库历史。
 
-| Endpoint | Meaning | Must not imply |
-| --- | --- | --- |
-| `GET /healthz` | the process and admin server can answer | downstream dependencies are healthy |
-| `GET /readyz` | the generic process reached its running lifecycle state | business dependency readiness |
-| `GET /metrics` | Prometheus exposition for registered runtime metrics | telemetry has been scraped or exported |
+保留原中间件顺序：recovery → metadata → tracing → logging → metrics → validation。gRPC reflection 关闭。一个进程只装配一个 Kratos app，应用拥有全局 OTel provider 的初始化和关闭。
 
-Administrative handlers use the same Kratos error, codec, and middleware path
-rather than an unrelated ad-hoc HTTP stack.
+## 验证边界
 
-`/readyz` is intentionally process-only in this template. When a service owns a
-database, broker, provider, or other mandatory dependency, the service must add
-an explicit readiness contribution and tests. It must not reinterpret the
-generic result silently.
-
-## Telemetry
-
-- Prometheus exposes process and Kratos transport metrics on the admin listener;
-- OpenTelemetry provides trace propagation and an export integration seam;
-- the generic readiness gauge is named `ani_runtime_ready`;
-- telemetry initialization and shutdown are owned by the application lifecycle;
-  and
-- absence of an external collector must not invent successful export evidence.
-
-Local metric exposition can be verified without proving a production scrape,
-dashboard, alert, or trace backend.
-
-## Extension seams
-
-A generated service adds its own API, use cases, repositories, providers, and
-dependency-specific probes below the explicit composition root. The empty
-`internal/biz`, `internal/data`, and `internal/service` packages are navigation
-seams, not permission boundaries and not a mandate to reproduce ANI's historical
-Core/Service split.
-
-## Verification boundary
-
-The executable local checks are described in
-[runtime-verification.md](runtime-verification.md). The layout release records
-its own acceptance evidence separately; each generated service must record its
-own results. Contract text alone is not runtime evidence.
+运行入口和命令见 [运行验证](runtime-verification.md)。受控 HTTP/API server 验证实际适配器请求，真实 PostgreSQL 验证持久事务，独立进程验证恢复；它们都不能证明真实 kc、OVN、kind、Pod/VM 或 IAM 已验收。

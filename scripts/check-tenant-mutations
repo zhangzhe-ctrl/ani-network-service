@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+set -Eeuo pipefail
+[[ -n ${NETWORK_TEST_ADMIN_DSN:-} ]] || { echo 'requires scripts/integration --mutations'; exit 1; }
+root=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd -P)
+cd "$root"
+temporary=$(mktemp -d)
+tar -cf "$temporary/original.tar" internal/data/queries internal/data/sqlcgen
+restore() { tar -xf "$temporary/original.tar"; }
+cleanup() { restore; rm -rf -- "$temporary"; }
+trap cleanup EXIT
+for query in GetVPC GetOperation ListVPCs; do
+  restore
+  python3 - "$query" <<'PY'
+import pathlib,sys
+path=pathlib.Path('internal/data/queries/vpcs.sql');text=path.read_text();name=sys.argv[1]
+start=text.index('-- name: '+name+' :');end=text.find('-- name:',start+1)
+if end<0:end=len(text)
+part=text[start:end]
+if name=='ListVPCs':
+    before='tenant_id = sqlc.arg(tenant_id)'
+    after='(tenant_id = sqlc.arg(tenant_id) OR sqlc.arg(tenant_id) IS NOT NULL)'
+else:
+    before='tenant_id = $1'
+    after='(tenant_id = $1 OR $1 IS NOT NULL)'
+assert part.count(before)==1
+path.write_text(text[:start]+part.replace(before,after)+text[end:])
+PY
+  .tools/bin/sqlc generate
+  set +e
+  go test -count=1 ./internal/data -run 'TestVPCAcceptanceIsTenantScopedAndReplaysExactly|TestPostgresRejectsPartialAcceptanceAndCrossTenantReferences' >"$temporary/result.log" 2>&1
+  result=$?
+  set -e
+  [[ $result -ne 0 ]] || { echo "tenant mutation survived: $query"; exit 1; }
+  case $query in
+    GetVPC) expected='cross-tenant read' ;;
+    GetOperation) expected='cross-tenant operation exposed' ;;
+    ListVPCs) expected='cross-tenant list exposed' ;;
+  esac
+  grep -F "$expected" "$temporary/result.log" >/dev/null || { cat "$temporary/result.log"; exit 1; }
+  printf 'tenant mutation killed by behavioral assertion: %s\n' "$query"
+done
+restore
+printf 'original SQL and generated queries restored\n'

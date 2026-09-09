@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"context"
 	"errors"
+	"github.com/zhangzhe-ctrl/ani-network-service/tests/testenv"
 	"go/parser"
 	"go/token"
 	"io"
@@ -52,7 +53,7 @@ func TestRuntimeLifecycle(t *testing.T) {
 		t.Fatalf("NewObservability() error = %v", err)
 	}
 	middlewares := observability.ServerMiddleware(logger)
-	grpcServer := serverpkg.NewGRPCServer(cfg.Server.Grpc, middlewares...)
+	grpcServer := serverpkg.NewGRPCServer(cfg.Server.Grpc, readiness, middlewares...)
 	fixture := &runtimeFixture{}
 	registerRuntimeFixture(grpcServer, fixture)
 	adminServer := serverpkg.NewAdminServer(cfg.Server.Admin, readiness, observability.Gatherer(), middlewares...)
@@ -143,6 +144,8 @@ func TestAdminReadinessUsesKratosErrorEncoding(t *testing.T) {
 }
 
 func TestCommittedConfigLoadsAsGeneratedType(t *testing.T) {
+	t.Setenv("ANI_NETWORK_DATABASE_DSN", "postgres://runtime@127.0.0.1/network")
+	t.Setenv("ANI_NETWORK_CURSOR_SIGNING_KEY", testenv.SigningKey())
 	t.Setenv("ANI_SERVER_GRPC_ADDR", "127.0.0.1:29090")
 	t.Setenv("ANI_SERVER_ADMIN_ADDR", "127.0.0.1:29091")
 	_, filename, _, ok := runtime.Caller(0)
@@ -337,7 +340,7 @@ func assertGRPCMiddleware(t *testing.T, addr string, fixture *runtimeFixture) {
 	}
 	defer connection.Close()
 
-	valid := &conf.Bootstrap{Server: &conf.Server{
+	valid := &conf.Bootstrap{Network: runtimeNetworkConfig(), Server: &conf.Server{
 		Grpc:            &conf.Server_GRPC{Network: "tcp", Addr: "127.0.0.1:19090", Timeout: durationpb.New(time.Second)},
 		Admin:           &conf.Server_Admin{Network: "tcp", Addr: "127.0.0.1:19091", Timeout: durationpb.New(time.Second)},
 		ShutdownTimeout: durationpb.New(time.Second),
@@ -370,4 +373,10 @@ func newTestLogger(writer io.Writer) *slog.Logger {
 		kratoslog.WithExtractor(kratostracing.TraceAttrs),
 		kratoslog.WithFilter(kratoslog.FilterKey("args")),
 	))
+}
+
+func runtimeNetworkConfig() *conf.Network {
+	return &conf.Network{DatabaseDsn: "postgres://runtime@127.0.0.1/network", ClusterId: "test", NamespacePrefix: "tenant-", CursorSigningKey: testenv.SigningKey(), Worker: &conf.Worker{
+		Lease: durationpb.New(20 * time.Second), RequestTimeout: durationpb.New(5 * time.Second), ObserveEvery: durationpb.New(10 * time.Second), StaleAfter: durationpb.New(time.Minute), RetryMin: durationpb.New(time.Second), RetryMax: durationpb.New(time.Minute), PollInterval: durationpb.New(100 * time.Millisecond),
+	}}
 }

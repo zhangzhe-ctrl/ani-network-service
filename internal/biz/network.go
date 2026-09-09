@@ -1,0 +1,165 @@
+package biz
+
+import (
+	"context"
+	"fmt"
+	"strings"
+	"time"
+	"unicode"
+	"unicode/utf8"
+
+	"github.com/google/uuid"
+)
+
+type ResourceState string
+type OperationState string
+
+const (
+	Provisioning ResourceState = "provisioning"
+	Available    ResourceState = "available"
+	Degraded     ResourceState = "degraded"
+	Failed       ResourceState = "failed"
+	Deleting     ResourceState = "deleting"
+	Deleted      ResourceState = "deleted"
+
+	Queued    OperationState = "queued"
+	Running   OperationState = "running"
+	Retrying  OperationState = "retrying"
+	Blocked   OperationState = "blocked"
+	Succeeded OperationState = "succeeded"
+	OpFailed  OperationState = "failed"
+)
+
+type VPC struct {
+	ID, TenantID, Name, CIDR, Description string
+	State                                 ResourceState
+	Reason                                Reason
+	Version                               int64
+	CreatedAt, UpdatedAt                  time.Time
+	ObservedAt                            *time.Time
+	ObservationStale                      bool
+	LastOperationID                       string
+	SubnetCount                           int64
+}
+
+type Operation struct {
+	ID, TenantID, ResourceID string
+	Kind                     string
+	State                    OperationState
+	Reason                   Reason
+	CreatedAt, UpdatedAt     time.Time
+	CompletedAt              *time.Time
+	NextAttemptAt            *time.Time
+}
+
+// Attribution is unverified caller-supplied attribution during the agreed IAM
+// deferral. It is neither tenant ownership nor authentication evidence.
+type Attribution struct {
+	Actor, DirectCaller, CorrelationID string
+}
+
+type CreateVPC struct {
+	TenantID, Name, CIDR, Description, IdempotencyKey string
+	Attribution                                       Attribution
+}
+
+type VPCRepository interface {
+	AcceptVPC(context.Context, VPCIntent, Attribution) (VPC, error)
+	GetVPC(context.Context, string, string) (VPC, error)
+	GetOperation(context.Context, string, string) (Operation, error)
+	ListVPCs(context.Context, string, VPCFilter) ([]VPC, error)
+	DeleteVPC(context.Context, string, string) (VPC, error)
+}
+
+// Network owns the caller-facing use cases. Repositories never see unvalidated
+// tenant scope; neither the transport nor the caller orchestrates persistence.
+type Network struct {
+	repository VPCRepository
+	cursorKey  []byte
+	freshness  time.Duration
+	now        func() time.Time
+}
+
+func NewNetwork(repository VPCRepository, cursorKey []byte, freshness time.Duration, now func() time.Time) (*Network, error) {
+	if repository == nil || len(cursorKey) < 32 || freshness <= 0 || now == nil {
+		return nil, fmt.Errorf("repository, >=32 byte cursor key, freshness and clock are required")
+	}
+	return &Network{repository: repository, cursorKey: append([]byte(nil), cursorKey...), freshness: freshness, now: now}, nil
+}
+
+func (n *Network) CreateVPC(ctx context.Context, request CreateVPC) (VPC, error) {
+	intent, err := NewVPCIntent(request.TenantID, request.Name, request.CIDR, request.Description, request.IdempotencyKey)
+	if err != nil {
+		return VPC{}, err
+	}
+	for _, value := range []string{request.Attribution.Actor, request.Attribution.DirectCaller, request.Attribution.CorrelationID} {
+		if !utf8.ValidString(value) || utf8.RuneCountInString(value) > 256 {
+			return VPC{}, Fail(InvalidArgument, "attribution exceeds 256 characters")
+		}
+		for _, character := range value {
+			if unicode.IsControl(character) {
+				return VPC{}, Fail(InvalidArgument, "attribution contains a control character")
+			}
+		}
+	}
+	return n.repository.AcceptVPC(ctx, intent, request.Attribution)
+}
+
+func (n *Network) GetVPC(ctx context.Context, tenant, id string) (VPC, error) {
+	tenant, err := ParseTenant(tenant)
+	if err != nil {
+		return VPC{}, err
+	}
+	if !validVPCID(id) {
+		return VPC{}, Fail(ResourceNotFound, "VPC not found")
+	}
+	value, err := n.repository.GetVPC(ctx, tenant, id)
+	if err == nil {
+		value = n.observation(value)
+	}
+	return value, err
+}
+
+func (n *Network) GetOperation(ctx context.Context, tenant, id string) (Operation, error) {
+	tenant, err := ParseTenant(tenant)
+	if err != nil {
+		return Operation{}, err
+	}
+	parsed, err := uuid.Parse(id)
+	if err != nil || len(id) != 36 || parsed == uuid.Nil {
+		return Operation{}, Fail(ResourceNotFound, "operation not found")
+	}
+	return n.repository.GetOperation(ctx, tenant, parsed.String())
+}
+
+func (n *Network) DeleteVPC(ctx context.Context, tenant, id string) (VPC, error) {
+	tenant, err := ParseTenant(tenant)
+	if err != nil {
+		return VPC{}, err
+	}
+	if !validVPCID(id) {
+		return VPC{}, Fail(ResourceNotFound, "VPC not found")
+	}
+	value, err := n.repository.DeleteVPC(ctx, tenant, id)
+	if err == nil {
+		value = n.observation(value)
+	}
+	return value, err
+}
+
+func (n *Network) observation(value VPC) VPC {
+	value.ObservationStale = value.ObservedAt == nil || n.now().Sub(*value.ObservedAt) > n.freshness
+	return value
+}
+
+func validVPCID(id string) bool {
+	if len(id) != 36 || !strings.HasPrefix(id, "vpc_") {
+		return false
+	}
+	for _, c := range id[4:] {
+		if !strings.ContainsRune("0123456789abcdef", c) {
+			return false
+		}
+	}
+	return true
+}

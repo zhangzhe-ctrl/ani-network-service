@@ -5,39 +5,39 @@ Module: `github.com/zhangzhe-ctrl/ani-network-service`
 This repository was generated from ANI's pinned Kratos layout. It is an
 independent source snapshot: builds and runtime do not require the layout.
 
-本仓库承接 ANI Network 独立服务。当前仅完成 Kratos 运行骨架初始化；
-VPC/Subnet、sqlc、无 RLS 多租户持久化及 Gateway 接线尚未实现。
-继续讨论前请阅读 [开发起点与交接](docs/START-HERE.md)。
+本仓库承接 ANI Network 独立服务，拥有租户网络资源的生命周期与状态。
+首片为 VPC/Subnet 及普通容器接入，随后验证 VM。
+
+从 [文档导航](docs/START-HERE.md) 开始阅读；其中链接当前规格、领域词汇、
+设计决定、实施计划和唯一执行状态。设计目标与实际实现/验证结果分别记录。
 
 `THIRD_PARTY_NOTICES.go-kratos-layout.txt` preserves the upstream template's
 MIT notice. This generated repository intentionally has no project `LICENSE`;
 its owner must make that choice before publication.
 
-## Local commands
+## 开发与运行
 
 ```bash
 make tools
 make verify
-go run ./cmd/ani-network-service -conf ./configs
+make integration
+make race
+make tenant-mutations
 ```
 
-After the initial source commit, run `make supply-chain-tools` and `make audit`;
-review and commit `docs/scaffold/bom.cdx.json`. CI deliberately fails when that
-runtime SBOM is missing or stale and reruns the vulnerability, secret,
-notice-integrity, and license-evidence gates.
+编译、完整测试和依赖工具构建优先在 SSH `ubuntu` 执行，见 [远程约定](docs/remote-execution.md)。
+正常启动需要专用 PostgreSQL 的 runtime 连接串、游标签名 secret 和 kc 集群凭据；
+迁移使用独立 owner，通过显式 `-migrate` 入口执行。
+具体变量、权限、启动命令和健康含义见 [运行说明](docs/runtime.md)。
 
-The committed listeners are loopback-only local defaults. Override them through
-the typed `ANI` environment configuration when the deployment design is added.
+NET-01 实现 `network.v1` VPC 创建、查询、列表、删除和操作查询，
+由 Network 自有持久 worker 推进、观察和恢复。
+Subnet、实例接入、Gateway、真实数据面与 IAM 仍按后续工作包推进。
+当前实施结果和证据只在 [执行状态](docs/execution/status.md) 维护。
 
-## Runtime shell
+已有 Kratos 日志、中间件、trace、metrics 和优雅停机门禁继续保留。
+readiness 现在包含 worker 与真实数据库状态；实际 kc adapter 是正常运行的唯一 Provider。
 
-- Kratos lifecycle with graceful shutdown.
-- gRPC and a separate admin HTTP server.
-- Structured redacted logs, tracing, metrics, and middleware.
-- `/healthz` reports process liveness.
-- `/readyz` reports only completion of the local runtime start hook; add checks
-  for real dependencies when the first vertical slice introduces them.
-- `/metrics` exports the local Prometheus registry.
-
-There is intentionally no sample domain, persistence, broker, auth, provider,
-container, or deployment configuration.
+`make audit` 保留漏洞、Git secret、notice、许可证据和 SBOM 门禁。
+生成 SBOM 需要干净的已提交源码；本轮的独立远程验证提交流程见 [运行验证](docs/runtime-verification.md)。
+没有执行真实 kc 部署、数据面验收或发布，就不能据这些检查宣称网络可用。

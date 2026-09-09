@@ -3,9 +3,13 @@ package main
 import (
 	"bytes"
 	"context"
+	"github.com/zhangzhe-ctrl/ani-network-service/tests/testenv"
 	"io"
 	"net"
 	"net/http"
+	"net/http/httptest"
+	"os"
+	"path/filepath"
 	"regexp"
 	"strings"
 	"testing"
@@ -20,12 +24,25 @@ import (
 )
 
 func TestBuildAppRunsProductionComposition(t *testing.T) {
+	fixture := testenv.NewDatabase(t)
+	provider := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		http.Error(w, "unavailable", http.StatusServiceUnavailable)
+	}))
+	defer provider.Close()
+	kubeconfig := filepath.Join(t.TempDir(), "kubeconfig")
+	body := "apiVersion: v1\nkind: Config\ncurrent-context: test\nclusters:\n- name: test\n  cluster:\n    server: " + provider.URL + "\ncontexts:\n- name: test\n  context:\n    cluster: test\n    user: test\nusers:\n- name: test\n  user: {}\n"
+	if err := os.WriteFile(kubeconfig, []byte(body), 0600); err != nil {
+		t.Fatal(err)
+	}
+
 	grpcAddress := reserveAddress(t)
 	adminAddress := reserveAddress(t)
 	for adminAddress == grpcAddress {
 		adminAddress = reserveAddress(t)
 	}
-	bc := &conf.Bootstrap{Server: &conf.Server{
+	bc := &conf.Bootstrap{Network: &conf.Network{DatabaseDsn: fixture.RuntimeDSN, Kubeconfig: kubeconfig, ClusterId: "test-cluster", NamespacePrefix: "tenant-", CursorSigningKey: testenv.SigningKey(), Worker: &conf.Worker{
+		Lease: durationpb.New(20 * time.Second), RequestTimeout: durationpb.New(5 * time.Second), ObserveEvery: durationpb.New(10 * time.Second), StaleAfter: durationpb.New(time.Minute), RetryMin: durationpb.New(time.Second), RetryMax: durationpb.New(time.Minute), PollInterval: durationpb.New(100 * time.Millisecond),
+	}}, Server: &conf.Server{
 		Grpc:            &conf.Server_GRPC{Network: "tcp", Addr: grpcAddress, Timeout: durationpb.New(time.Second)},
 		Admin:           &conf.Server_Admin{Network: "tcp", Addr: adminAddress, Timeout: durationpb.New(time.Second)},
 		ShutdownTimeout: durationpb.New(3 * time.Second),

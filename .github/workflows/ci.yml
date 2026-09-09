@@ -21,11 +21,17 @@ jobs:
       - name: Install CI prerequisites
         run: |
           sudo apt-get update
-          sudo apt-get install --yes --no-install-recommends ripgrep
+          sudo apt-get install --yes --no-install-recommends ripgrep jq python3
       - name: Install pinned tools
         run: make tools supply-chain-tools
       - name: Verify
         run: make verify
+      - name: Real PostgreSQL and process recovery
+        run: make integration
+      - name: Race detector with real PostgreSQL
+        run: make race
+      - name: Tenant predicate mutations
+        run: make tenant-mutations
       - name: Supply-chain verification
         run: |
           make audit

@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+set -Eeuo pipefail
+
+# Every invocation owns one ephemeral instance. Tests use separate databases.
+readonly image='docker.io/library/postgres@sha256:4ef4dbc939d61acea57712655ddb4b4ab27419c913f94cca0cd57cb3ea3c2280'
+container=''
+cleanup() {
+  if [[ -n $container ]]; then docker rm -f -v "$container" >/dev/null; printf 'removed task container=%s\n' "$container"; fi
+}
+trap cleanup EXIT
+password=$(python3 -c 'import secrets; print(secrets.token_hex(24))')
+docker image inspect "$image" >/dev/null 2>&1 || docker pull "$image"
+container=$(docker run -d --label ani.network.task=net01-integration \
+  --memory=768m --cpus=1 --mount type=tmpfs,destination=/var/lib/postgresql \
+  -e POSTGRES_PASSWORD="$password" -p 127.0.0.1::5432 "$image")
+for attempt in $(seq 1 45); do
+  if docker exec "$container" pg_isready -U postgres >/dev/null 2>&1; then break; fi
+  sleep 1
+done
+docker exec "$container" pg_isready -U postgres
+
+port=$(docker port "$container" 5432/tcp | awk -F: '$1 == "127.0.0.1" {print $2}')
+[[ $port =~ ^[0-9]+$ ]]
+export NETWORK_TEST_ADMIN_DSN="postgres://postgres:$password@127.0.0.1:$port/postgres?sslmode=disable"
+printf 'PostgreSQL image=%s container=%s\n' "$image" "$container"
+if [[ ${1:-} == --mutations ]]; then
+  shift
+  [[ $# -eq 0 ]] || { echo 'unexpected mutation arguments'; exit 1; }
+  scripts/check-tenant-mutations
+else
+  if [[ $# -eq 0 ]]; then set -- ./...; fi
+  go test -count=1 "$@"
+fi

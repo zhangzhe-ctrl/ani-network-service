@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+set -Eeuo pipefail
+imports=$(go list -f '{{join .Imports "\n"}}' ./internal/biz)
+if printf '%s\n' "$imports" | grep -E 'kratos|protobuf|grpc|jackc|k8s.io|internal/(conf|data|server|service)' >/dev/null; then
+  echo 'biz imports framework, transport or infrastructure implementation' >&2
+  exit 1
+fi
+if go list -m all | grep -E '(ani-iam|ani-notification-service|kubercloud.com/networking|ani-kratos-layout)' >/dev/null; then
+  echo 'runtime graph depends on a sibling repository implementation' >&2
+  exit 1
+fi
+if grep -E '^[[:space:]]*replace[[:space:]]|=>[[:space:]]*\.{1,2}/' go.mod >/dev/null; then
+  echo 'runtime graph must not contain local replace directives' >&2
+  exit 1
+fi
+printf 'domain and repository ownership boundaries verified\n'
