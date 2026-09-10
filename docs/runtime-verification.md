@@ -20,7 +20,7 @@ make audit
 
 `make race` 在同一真实 PostgreSQL 设施下执行全包 race 测试。恢复测试还构建带 race detector 的实际服务二进制，保留同一数据库与受控 Provider 事实，在 T1 之后、Provider 成功但 T4 之前、删除结果未知时终止进程并恢复；不会重建空库冒充重启。测试还覆盖不同服务进程共享持久租约，以及墓碑处理保留历史 operation。
 
-`make tenant-mutations` 分别破坏 GetVPC、GetOperation 和 ListVPCs 的 tenant 过滤，再用 sqlc 生成并执行真实数据库行为测试。只有相应跨租户断言实际失败才算识别成功；编译失败或其他测试错误不能充数。脚本始终恢复输入 SQL 和生成物，变异不留在最终代码。
+`make tenant-mutations` 分别破坏 GetVPC、GetOperation、ListVPCs、GetSubnet、ListSubnets 和 GetAttachment 的 tenant 过滤，再用 sqlc 生成并执行真实数据库行为测试。只有相应跨租户断言实际失败才算识别成功；编译失败或其他测试错误不能充数。脚本始终恢复输入 SQL 和生成物，变异不留在最终代码。
 
 主要测试入口：
 
@@ -38,4 +38,14 @@ make audit
 
 SBOM 生成使用除旧 SBOM 外的跟踪源码建立固定作者/时间的 synthetic source commit，删除扫描器自身构建 hash，输出不含随机 serial/timestamp。重新构建的扫描器在固定 module/version 门禁下可复现输出；扫描时点和工具二进制 hash 留在执行日志。源文档变化也会改变 synthetic source identity，因此最终文档完成后须同步生成 SBOM。
 
-最新 pass/fail/not_verified 只在 [执行状态](execution/status.md) 维护，NET-01 证据见 [实施记录](execution/records/NET-01-implementation.md)。真实 Kubernetes/kc/OVN、Gateway/Console、普通容器、VM、IAM 和生产发布各自保持独立验收边界。
+最新 pass/fail/not_verified 只在 [执行状态](execution/status.md) 维护，NET-01 证据见 [实施记录](execution/records/NET-01-implementation.md)。真实 Kubernetes/kc/OVN 数据面、Console、VM、IAM 和生产发布各自保持独立验收边界。
+
+## NET-02–04 双仓库接口验证
+
+`scripts/remote-pair -- <argv>` 从固定 ANI 专用 worktree 与 Network 工作树建立各自源清单和归档，在 ubuntu 新建目录；不包含 ANI 主 checkout 改动或兄弟运行模块。`scripts/integration-pair` 创建专属 PG 容器，ANI 与 Network 使用不同数据库/owner/runtime。环境变量 `NET0204_TEST_ADMIN_DSN` 只由该入口设置，专项测试没有 live DSN fallback。
+
+```bash
+scripts/remote-pair -- bash -c '"$NETWORK_SOURCE/scripts/integration-pair" "$NETWORK_SOURCE/scripts/test-net0204-wire"'
+```
+
+该入口构建独立 Network 服务、实际 Gateway 路由测试进程与 ANI 实例 owner 测试进程。HTTP fixture 只提供固定 kc/Kubernetes 契约和可控故障事实；使用真实 client、renderer、持久实例受理/封闭、gRPC consumer 查询与数据库恢复，不构成真实 kc 控制器、OVN 或 IAM 认证证明。具体故障场景、执行结果与源码身份见 [组合记录](execution/records/NET-02-04-implementation.md)。

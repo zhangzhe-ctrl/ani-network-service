@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+set -Eeuo pipefail
+[[ -n ${ANI_SOURCE:-} && -n ${NETWORK_SOURCE:-} ]] || { echo 'requires scripts/remote-pair'; exit 1; }
+readonly image='docker.io/library/postgres@sha256:4ef4dbc939d61acea57712655ddb4b4ab27419c913f94cca0cd57cb3ea3c2280'
+container=''
+cleanup(){ if [[ -n $container ]]; then docker rm -f -v "$container" >/dev/null; printf 'removed pair task container=%s\n' "$container"; fi; }
+trap cleanup EXIT
+password=$(python3 -c 'import secrets;print(secrets.token_hex(24))')
+docker image inspect "$image" >/dev/null 2>&1 || docker pull "$image"
+container=$(docker run -d --label ani.network.task=net02-04-pair-integration --memory=1g --cpus=2 --mount type=tmpfs,destination=/var/lib/postgresql -e POSTGRES_PASSWORD="$password" -p 127.0.0.1::5432 "$image")
+for attempt in $(seq 1 45); do if docker exec "$container" pg_isready -h 127.0.0.1 -U postgres >/dev/null 2>&1; then break; fi; sleep 1; done
+docker exec "$container" pg_isready -h 127.0.0.1 -U postgres
+port=$(docker port "$container" 5432/tcp | awk -F: '$1=="127.0.0.1" {print $2}')
+[[ $port =~ ^[0-9]+$ ]]
+export NET0204_TEST_ADMIN_DSN="postgres://postgres:$password@127.0.0.1:$port/postgres?sslmode=disable"
+export NETWORK_TEST_ADMIN_DSN="$NET0204_TEST_ADMIN_DSN"
+printf 'PostgreSQL image=%s container=%s\n' "$image" "$container"
+[[ $# -gt 0 ]] || { echo 'explicit pair command required'; exit 1; }
+"$@"

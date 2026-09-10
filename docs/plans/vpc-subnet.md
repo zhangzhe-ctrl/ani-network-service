@@ -48,17 +48,17 @@
 
 **退出证据。** Network `make verify`、跨服务契约测试、实例 Adapter 的实际检查命令、关键竞态与恢复轨迹进入记录。证明调用职责分离与普通容器绑定契约；真实连通性仍由 NET-05 给出证据。VM renderer 的改造与行为验收留给 NET-06。
 
-## NET-04：Gateway 与 Console 产品适配
+## NET-04：Gateway/OpenAPI 接口适配
 
-**目标。** 沿用合理的 ANI OpenAPI 产品表达，将 VPC/Subnet 路由接到 Network，并让 Console 展示规格规定的处理中、失败和删除状态，完成稳定状态前的刷新行为。
+**本次范围。** NET-02–04 Goal 明确授权接口实施：九条 VPC/Subnet/Operation REST 路由、普通容器显式网络接入必需字段、Gateway RPC 接线、固定协议生成与接口测试。前端、Console 类型生成、前端构建和页面测试明确排除，Console 交互保持 `not_verified`。
 
-**依赖。** NET-01/02 的产品契约已稳定。Gateway/Console 契约工作可以与 NET-03 并行，但进入 NET-05 前必须和实例接入路径使用同一 Network 资源权威。
+**依赖。** NET-01/02 产品契约稳定后推进，接口与 NET-03 消费同一 Network 权威事实。
 
-**仓库路径角色。** ANI 的 `repo/api/openapi/` 维护面向用户的契约，`repo/services/ani-gateway/` 承载 Network 客户端与路由适配；受影响生成物按 ANI 固定流程更新。Console 的 `ani-console/frontends/console/` 调整请求与状态刷新。本仓库业务契约与适配按需要对齐。上述路径均为后续包的计划，不在本次文档变更中操作。
+**仓库路径角色。** ANI 专用 worktree 的 `repo/api/openapi/v1.yaml`、`repo/services/ani-gateway/`、本片 ports/adapters、descriptor 快照及实际受影响 SDK/API docs/authz 生成物。来源与范围见 [组合实施记录](../execution/records/NET-02-04-implementation.md)。
 
-**行为验证。** 检查创建响应、Get/List、分页、错误映射与幂等重试；Console 在操作未完成时持续刷新，并正确展示失败与完成状态。缺失或错误租户上下文不能产生资源，跨租户查询不得返回他人数据。Gateway 不直接访问 Network 数据库或 Provider，不在失败时回落旧 Network。验证变更字段与生成客户端一致。
+**行为验证。** 真实 Gateway HTTP → Network gRPC → 独立 PostgreSQL → 受控 kc HTTP server 的独立进程链验证九路由、分页、严格 JSON、错误、租户、永久幂等、断连恢复；缺失/非法租户在 RPC 前拒绝；无旧表、旧 Provider 或 Core task fallback。
 
-**退出证据。** 受影响仓库实际存在的契约/生成漂移/测试命令及结果、产品请求响应样例、Console 状态交互证据和 Network `make verify` 结果进入记录。移除响应字段或改变语义的差异按规格明确列出，不用“仅改 URL”代替行为验证。
+**退出证据。** 两仓库适用生成/契约门禁和接口测试实际通过；V-13 仅接口范围。Console 与真实数据面证据由后续单独工作取得，不作为本 Goal 阻断。
 
 ## NET-05：真实 kind 环境普通容器验收
 

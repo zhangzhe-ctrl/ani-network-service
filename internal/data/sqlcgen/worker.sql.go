@@ -13,16 +13,16 @@ const acquireLease = `-- name: AcquireLease :one
 UPDATE network_reconciliations
 SET lease_owner=$1::uuid, lease_epoch=lease_epoch+1,
     lease_until=clock_timestamp()+$2::bigint*interval '1 microsecond'
-WHERE tenant_id=$3 AND vpc_id=$4
+WHERE tenant_id=$3 AND coalesce(vpc_id,subnet_id)=$4::text
   AND (lease_until IS NULL OR lease_until <= clock_timestamp())
-RETURNING tenant_id, vpc_id, next_run_at, lease_owner, lease_until, lease_epoch
+RETURNING tenant_id, vpc_id, next_run_at, lease_owner, lease_until, lease_epoch, subnet_id, reconciliation_id
 `
 
 type AcquireLeaseParams struct {
 	Owner       string
 	LeaseMicros int64
 	TenantID    string
-	VpcID       string
+	ResourceID  string
 }
 
 func (q *Queries) AcquireLease(ctx context.Context, arg AcquireLeaseParams) (NetworkReconciliation, error) {
@@ -30,7 +30,7 @@ func (q *Queries) AcquireLease(ctx context.Context, arg AcquireLeaseParams) (Net
 		arg.Owner,
 		arg.LeaseMicros,
 		arg.TenantID,
-		arg.VpcID,
+		arg.ResourceID,
 	)
 	var i NetworkReconciliation
 	err := row.Scan(
@@ -40,6 +40,8 @@ func (q *Queries) AcquireLease(ctx context.Context, arg AcquireLeaseParams) (Net
 		&i.LeaseOwner,
 		&i.LeaseUntil,
 		&i.LeaseEpoch,
+		&i.SubnetID,
+		&i.ReconciliationID,
 	)
 	return i, err
 }
@@ -131,18 +133,18 @@ const beginProviderMutation = `-- name: BeginProviderMutation :execrows
 UPDATE network_provider_bindings
 SET pending_action=$1, pending_since=clock_timestamp(),
     provider_uid=CASE WHEN provider_uid='' THEN $2::text ELSE provider_uid END
-WHERE tenant_id=$3 AND vpc_id=$4 AND binding_id=$5
+WHERE tenant_id=$3 AND coalesce(vpc_id,subnet_id)=$4::text AND binding_id=$5
   AND (provider_uid='' OR provider_uid=$2)
   AND (($1::text='create' AND pending_action='')
        OR ($1='delete' AND (pending_action IN ('','delete') OR $2::text<>'')))
 `
 
 type BeginProviderMutationParams struct {
-	Action    string
-	Identity  string
-	TenantID  string
-	VpcID     string
-	BindingID string
+	Action     string
+	Identity   string
+	TenantID   string
+	ResourceID string
+	BindingID  string
 }
 
 func (q *Queries) BeginProviderMutation(ctx context.Context, arg BeginProviderMutationParams) (int64, error) {
@@ -150,7 +152,7 @@ func (q *Queries) BeginProviderMutation(ctx context.Context, arg BeginProviderMu
 		arg.Action,
 		arg.Identity,
 		arg.TenantID,
-		arg.VpcID,
+		arg.ResourceID,
 		arg.BindingID,
 	)
 	if err != nil {
@@ -160,15 +162,15 @@ func (q *Queries) BeginProviderMutation(ctx context.Context, arg BeginProviderMu
 }
 
 const checkLease = `-- name: CheckLease :one
-SELECT tenant_id, vpc_id, next_run_at, lease_owner, lease_until, lease_epoch FROM network_reconciliations
-WHERE tenant_id=$1 AND vpc_id=$2 AND lease_owner=$3 AND lease_epoch=$4
+SELECT tenant_id, vpc_id, next_run_at, lease_owner, lease_until, lease_epoch, subnet_id, reconciliation_id FROM network_reconciliations
+WHERE tenant_id=$1 AND coalesce(vpc_id,subnet_id)=$2::text AND lease_owner=$3 AND lease_epoch=$4
   AND lease_until > clock_timestamp()
 FOR UPDATE
 `
 
 type CheckLeaseParams struct {
 	TenantID   string
-	VpcID      string
+	ResourceID string
 	LeaseOwner *string
 	LeaseEpoch int64
 }
@@ -176,7 +178,7 @@ type CheckLeaseParams struct {
 func (q *Queries) CheckLease(ctx context.Context, arg CheckLeaseParams) (NetworkReconciliation, error) {
 	row := q.db.QueryRow(ctx, checkLease,
 		arg.TenantID,
-		arg.VpcID,
+		arg.ResourceID,
 		arg.LeaseOwner,
 		arg.LeaseEpoch,
 	)
@@ -188,6 +190,8 @@ func (q *Queries) CheckLease(ctx context.Context, arg CheckLeaseParams) (Network
 		&i.LeaseOwner,
 		&i.LeaseUntil,
 		&i.LeaseEpoch,
+		&i.SubnetID,
+		&i.ReconciliationID,
 	)
 	return i, err
 }
@@ -198,7 +202,7 @@ SET state=$1, reason=$2, updated_at=clock_timestamp(),
     completed_at=CASE WHEN $1::text IN ('succeeded','failed') THEN clock_timestamp() ELSE NULL END,
     next_attempt_at=CASE WHEN $1::text IN ('succeeded','failed') THEN NULL
       ELSE clock_timestamp()+$3::bigint*interval '1 microsecond' END
-WHERE tenant_id=$4 AND vpc_id=$5
+WHERE tenant_id=$4 AND coalesce(vpc_id,subnet_id)=$5::text
   AND operation_id=$6 AND execution_epoch=$7
   AND state NOT IN ('succeeded','failed')
 `
@@ -208,7 +212,7 @@ type CompleteAttemptParams struct {
 	Reason      string
 	DelayMicros int64
 	TenantID    string
-	VpcID       string
+	ResourceID  string
 	OperationID string
 	Epoch       int64
 }
@@ -219,7 +223,7 @@ func (q *Queries) CompleteAttempt(ctx context.Context, arg CompleteAttemptParams
 		arg.Reason,
 		arg.DelayMicros,
 		arg.TenantID,
-		arg.VpcID,
+		arg.ResourceID,
 		arg.OperationID,
 		arg.Epoch,
 	)
@@ -230,16 +234,16 @@ func (q *Queries) CompleteAttempt(ctx context.Context, arg CompleteAttemptParams
 }
 
 const getBinding = `-- name: GetBinding :one
-SELECT tenant_id, vpc_id, binding_id, cluster_id, namespace, provider_name, provider_uid, pending_action, pending_since FROM network_provider_bindings WHERE tenant_id=$1 AND vpc_id=$2
+SELECT tenant_id, vpc_id, binding_id, cluster_id, namespace, provider_name, provider_uid, pending_action, pending_since, subnet_id, resource_kind FROM network_provider_bindings WHERE tenant_id=$1 AND coalesce(vpc_id,subnet_id)=$2::text
 `
 
 type GetBindingParams struct {
-	TenantID string
-	VpcID    string
+	TenantID   string
+	ResourceID string
 }
 
 func (q *Queries) GetBinding(ctx context.Context, arg GetBindingParams) (NetworkProviderBinding, error) {
-	row := q.db.QueryRow(ctx, getBinding, arg.TenantID, arg.VpcID)
+	row := q.db.QueryRow(ctx, getBinding, arg.TenantID, arg.ResourceID)
 	var i NetworkProviderBinding
 	err := row.Scan(
 		&i.TenantID,
@@ -251,6 +255,8 @@ func (q *Queries) GetBinding(ctx context.Context, arg GetBindingParams) (Network
 		&i.ProviderUid,
 		&i.PendingAction,
 		&i.PendingSince,
+		&i.SubnetID,
+		&i.ResourceKind,
 	)
 	return i, err
 }
@@ -319,14 +325,14 @@ const releaseLease = `-- name: ReleaseLease :execrows
 UPDATE network_reconciliations
 SET lease_owner=NULL, lease_until=NULL,
     next_run_at=clock_timestamp()+$1::bigint*interval '1 microsecond'
-WHERE tenant_id=$2 AND vpc_id=$3
+WHERE tenant_id=$2 AND coalesce(vpc_id,subnet_id)=$3::text
   AND lease_owner=$4 AND lease_epoch=$5 AND lease_until>clock_timestamp()
 `
 
 type ReleaseLeaseParams struct {
 	DelayMicros int64
 	TenantID    string
-	VpcID       string
+	ResourceID  string
 	Owner       *string
 	Epoch       int64
 }
@@ -335,7 +341,7 @@ func (q *Queries) ReleaseLease(ctx context.Context, arg ReleaseLeaseParams) (int
 	result, err := q.db.Exec(ctx, releaseLease,
 		arg.DelayMicros,
 		arg.TenantID,
-		arg.VpcID,
+		arg.ResourceID,
 		arg.Owner,
 		arg.Epoch,
 	)
@@ -348,15 +354,15 @@ func (q *Queries) ReleaseLease(ctx context.Context, arg ReleaseLeaseParams) (int
 const runOperation = `-- name: RunOperation :one
 UPDATE network_operations SET state='running', attempt=attempt+1,
     execution_epoch=$1, updated_at=clock_timestamp()
-WHERE tenant_id=$2 AND vpc_id=$3
+WHERE tenant_id=$2 AND coalesce(vpc_id,subnet_id)=$3::text
   AND operation_id=$4 AND state NOT IN ('succeeded','failed')
-RETURNING tenant_id, operation_id, vpc_id, kind, state, reason, attempt, execution_epoch, created_at, updated_at, completed_at, next_attempt_at
+RETURNING tenant_id, operation_id, vpc_id, kind, state, reason, attempt, execution_epoch, created_at, updated_at, completed_at, next_attempt_at, subnet_id
 `
 
 type RunOperationParams struct {
 	Epoch       int64
 	TenantID    string
-	VpcID       string
+	ResourceID  string
 	OperationID string
 }
 
@@ -364,7 +370,7 @@ func (q *Queries) RunOperation(ctx context.Context, arg RunOperationParams) (Net
 	row := q.db.QueryRow(ctx, runOperation,
 		arg.Epoch,
 		arg.TenantID,
-		arg.VpcID,
+		arg.ResourceID,
 		arg.OperationID,
 	)
 	var i NetworkOperation
@@ -381,6 +387,7 @@ func (q *Queries) RunOperation(ctx context.Context, arg RunOperationParams) (Net
 		&i.UpdatedAt,
 		&i.CompletedAt,
 		&i.NextAttemptAt,
+		&i.SubnetID,
 	)
 	return i, err
 }
@@ -390,7 +397,7 @@ UPDATE network_provider_bindings
 SET provider_uid=CASE WHEN provider_uid='' THEN $1::text ELSE provider_uid END,
     pending_action=CASE WHEN $2::boolean THEN '' ELSE pending_action END,
     pending_since=CASE WHEN $2::boolean THEN NULL ELSE pending_since END
-WHERE tenant_id=$3 AND vpc_id=$4 AND binding_id=$5
+WHERE tenant_id=$3 AND coalesce(vpc_id,subnet_id)=$4::text AND binding_id=$5
   AND (provider_uid='' OR provider_uid=$1)
 `
 
@@ -398,7 +405,7 @@ type SaveBindingObservationParams struct {
 	Identity     string
 	ClearPending bool
 	TenantID     string
-	VpcID        string
+	ResourceID   string
 	BindingID    string
 }
 
@@ -407,7 +414,7 @@ func (q *Queries) SaveBindingObservation(ctx context.Context, arg SaveBindingObs
 		arg.Identity,
 		arg.ClearPending,
 		arg.TenantID,
-		arg.VpcID,
+		arg.ResourceID,
 		arg.BindingID,
 	)
 	if err != nil {
@@ -419,16 +426,16 @@ func (q *Queries) SaveBindingObservation(ctx context.Context, arg SaveBindingObs
 const scheduleDeletion = `-- name: ScheduleDeletion :execrows
 UPDATE network_reconciliations SET next_run_at=clock_timestamp(),
     lease_owner=NULL, lease_until=NULL, lease_epoch=lease_epoch+1
-WHERE tenant_id=$1 AND vpc_id=$2
+WHERE tenant_id=$1 AND coalesce(vpc_id,subnet_id)=$2::text
 `
 
 type ScheduleDeletionParams struct {
-	TenantID string
-	VpcID    string
+	TenantID   string
+	ResourceID string
 }
 
 func (q *Queries) ScheduleDeletion(ctx context.Context, arg ScheduleDeletionParams) (int64, error) {
-	result, err := q.db.Exec(ctx, scheduleDeletion, arg.TenantID, arg.VpcID)
+	result, err := q.db.Exec(ctx, scheduleDeletion, arg.TenantID, arg.ResourceID)
 	if err != nil {
 		return 0, err
 	}

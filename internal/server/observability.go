@@ -162,7 +162,7 @@ func (o *Observability) ObserveWork(ctx context.Context, logger *slog.Logger, wo
 		}
 		o.providerReachable.Record(ctx, reachable)
 	}
-	if work.ActiveOperation || err != nil || work.VPC.State != progress.State || work.VPC.Reason != progress.Reason {
-		logger.InfoContext(ctx, "network reconciliation", "tenant_id", work.VPC.TenantID, "vpc_id", work.VPC.ID, "operation_id", work.Operation.ID, "epoch", work.Epoch, "resource_state", progress.State, "result", result, "reason", progress.Reason)
+	if work.ActiveOperation || err != nil || work.Resource.State != progress.State || work.Resource.Reason != progress.Reason {
+		logger.InfoContext(ctx, "network reconciliation", "tenant_id", work.Resource.TenantID, "resource_type", work.Resource.Kind, "resource_id", work.Resource.ID, "operation_id", work.Operation.ID, "epoch", work.Epoch, "resource_state", progress.State, "result", result, "reason", progress.Reason)
 	}
 }

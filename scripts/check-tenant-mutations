@@ -8,26 +8,32 @@ tar -cf "$temporary/original.tar" internal/data/queries internal/data/sqlcgen
 restore() { tar -xf "$temporary/original.tar"; }
 cleanup() { restore; rm -rf -- "$temporary"; }
 trap cleanup EXIT
-for query in GetVPC GetOperation ListVPCs; do
+for query in GetVPC GetOperation ListVPCs GetSubnet ListSubnets GetAttachment; do
   restore
   python3 - "$query" <<'PY'
 import pathlib,sys
-path=pathlib.Path('internal/data/queries/vpcs.sql');text=path.read_text();name=sys.argv[1]
+name=sys.argv[1]
+path=pathlib.Path('internal/data/queries/attachments.sql' if name=='GetAttachment' else 'internal/data/queries/subnets.sql' if name in ('GetSubnet','ListSubnets') else 'internal/data/queries/vpcs.sql')
+text=path.read_text()
 start=text.index('-- name: '+name+' :');end=text.find('-- name:',start+1)
 if end<0:end=len(text)
 part=text[start:end]
-if name=='ListVPCs':
-    before='tenant_id = sqlc.arg(tenant_id)'
-    after='(tenant_id = sqlc.arg(tenant_id) OR sqlc.arg(tenant_id) IS NOT NULL)'
-else:
-    before='tenant_id = $1'
-    after='(tenant_id = $1 OR $1 IS NOT NULL)'
+before={
+ 'GetVPC':'v.tenant_id=$1',
+ 'ListVPCs':'v.tenant_id = sqlc.arg(tenant_id)',
+ 'GetOperation':'tenant_id = $1',
+ 'GetSubnet':'tenant_id=$1',
+ 'GetAttachment':'tenant_id=$1',
+ 'ListSubnets':'tenant_id=sqlc.arg(tenant_id)',
+}[name]
+argument='sqlc.arg(tenant_id)' if name.startswith('List') else '$1'
+after='('+before+' OR '+argument+' IS NOT NULL)'
 assert part.count(before)==1
 path.write_text(text[:start]+part.replace(before,after)+text[end:])
 PY
   .tools/bin/sqlc generate
   set +e
-  go test -count=1 ./internal/data -run 'TestVPCAcceptanceIsTenantScopedAndReplaysExactly|TestPostgresRejectsPartialAcceptanceAndCrossTenantReferences' >"$temporary/result.log" 2>&1
+  go test -count=1 ./internal/data -run 'TestVPCAcceptanceIsTenantScopedAndReplaysExactly|TestPostgresRejectsPartialAcceptanceAndCrossTenantReferences|TestSubnetConcurrentPermanentIdempotencyAndDeletion|TestSubnetTargetConstraintsAndPagination|TestAttachmentPermanentIdentityTenantScopeAndParentDeletion' >"$temporary/result.log" 2>&1
   result=$?
   set -e
   [[ $result -ne 0 ]] || { echo "tenant mutation survived: $query"; exit 1; }
@@ -35,6 +41,9 @@ PY
     GetVPC) expected='cross-tenant read' ;;
     GetOperation) expected='cross-tenant operation exposed' ;;
     ListVPCs) expected='cross-tenant list exposed' ;;
+    GetSubnet) expected='cross-tenant read' ;;
+    GetAttachment) expected='cross-tenant attachment exposed' ;;
+    ListSubnets) expected='tenant list leaked' ;;
   esac
   grep -F "$expected" "$temporary/result.log" >/dev/null || { cat "$temporary/result.log"; exit 1; }
   printf 'tenant mutation killed by behavioral assertion: %s\n' "$query"

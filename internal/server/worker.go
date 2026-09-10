@@ -17,7 +17,8 @@ type DatabaseReadiness interface{ CheckReady(context.Context) error }
 // WorkerServer participates in the same Kratos lifecycle as the transports.
 // It owns no task queue; stopping it leaves durable work for the next process.
 type WorkerServer struct {
-	worker           *biz.Worker
+	worker           Stepper
+	additional       []Stepper
 	database         DatabaseReadiness
 	logger           *slog.Logger
 	poll             time.Duration
@@ -30,8 +31,12 @@ type WorkerServer struct {
 	databaseChecked  atomic.Int64
 }
 
-func NewWorkerServer(worker *biz.Worker, database DatabaseReadiness, logger *slog.Logger, poll time.Duration) *WorkerServer {
-	return &WorkerServer{worker: worker, database: database, logger: logger, poll: poll, done: make(chan struct{})}
+type Stepper interface {
+	Step(context.Context) (bool, error)
+}
+
+func NewWorkerServer(worker Stepper, database DatabaseReadiness, logger *slog.Logger, poll time.Duration, additional ...Stepper) *WorkerServer {
+	return &WorkerServer{worker: worker, database: database, logger: logger, poll: poll, additional: additional, done: make(chan struct{})}
 }
 func (s *WorkerServer) Ready() bool {
 	return s.alive.Load() && s.databaseReady.Load() && time.Since(time.Unix(0, s.databaseChecked.Load())) < 3*time.Second
@@ -70,6 +75,14 @@ func (s *WorkerServer) Start(parent context.Context) (err error) {
 		case <-timer.C:
 		}
 		worked, stepErr := s.worker.Step(ctx)
+		for _, additional := range s.additional {
+			if stepErr != nil || ctx.Err() != nil {
+				break
+			}
+			ran, err := additional.Step(ctx)
+			worked = worked || ran
+			stepErr = err
+		}
 		if ctx.Err() != nil {
 			return nil
 		}

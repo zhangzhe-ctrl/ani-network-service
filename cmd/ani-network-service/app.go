@@ -56,17 +56,37 @@ func buildApp(bc *conf.Bootstrap, logger *slog.Logger) (*kratos.App, error) {
 		_ = observability.Shutdown(ctx)
 		return nil, err
 	}
-	execution = server.NewWorkerServer(worker, repository, logger, w.PollInterval.AsDuration())
+	consumer, err := data.NewInstanceConsumer(bc.Network.InstanceConsumerEndpoint)
+	if err != nil {
+		_ = observability.Shutdown(ctx)
+		return nil, err
+	}
+	attachmentWorker, err := biz.NewAttachmentWorker(repository, provider, consumer, uuid.NewString(), policy)
+	if err != nil {
+		consumer.Close()
+		_ = observability.Shutdown(ctx)
+		return nil, err
+	}
+	defer func() {
+		if !configured {
+			consumer.Close()
+		}
+	}()
+	execution = server.NewWorkerServer(worker, repository, logger, w.PollInterval.AsDuration(), attachmentWorker)
 	middlewares := observability.ServerMiddleware(logger)
 	grpcServer := server.NewGRPCServer(bc.Server.Grpc, readiness, middlewares...)
-	networkv1.RegisterNetworkServiceServer(grpcServer, service.NewNetworkService(network))
+	networkv1.RegisterNetworkServiceServer(grpcServer, service.NewNetworkService(network, biz.NewAttachments(repository, policy.StaleAfter)))
 	adminServer := server.NewAdminServer(bc.Server.Admin, readiness, observability.Gatherer(), middlewares...)
 	app := kratos.New(
 		kratos.ID(id), kratos.Name(Name), kratos.Version(Version), kratos.Logger(logger),
 		kratos.Server(grpcServer, adminServer, execution),
 		kratos.AfterStart(func(context.Context) error { readiness.Set(true); return nil }),
 		kratos.BeforeStop(func(context.Context) error { readiness.Set(false); return nil }),
-		kratos.AfterStop(func(ctx context.Context) error { repository.Close(); return observability.Shutdown(ctx) }),
+		kratos.AfterStop(func(ctx context.Context) error {
+			consumer.Close()
+			repository.Close()
+			return observability.Shutdown(ctx)
+		}),
 		kratos.StopTimeout(bc.Server.ShutdownTimeout.AsDuration()),
 	)
 	configured = true

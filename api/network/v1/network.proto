@@ -10,7 +10,15 @@ service NetworkService {
   rpc GetVPC(GetVPCRequest) returns (GetVPCResponse);
   rpc ListVPCs(ListVPCsRequest) returns (ListVPCsResponse);
   rpc DeleteVPC(DeleteVPCRequest) returns (DeleteVPCResponse);
+  rpc CreateSubnet(CreateSubnetRequest) returns (CreateSubnetResponse);
+  rpc GetSubnet(GetSubnetRequest) returns (GetSubnetResponse);
+  rpc ListSubnets(ListSubnetsRequest) returns (ListSubnetsResponse);
+  rpc DeleteSubnet(DeleteSubnetRequest) returns (DeleteSubnetResponse);
   rpc GetOperation(GetOperationRequest) returns (GetOperationResponse);
+  rpc PrepareAttachment(PrepareAttachmentRequest) returns (PrepareAttachmentResponse);
+  rpc GetAttachment(GetAttachmentRequest) returns (GetAttachmentResponse);
+  rpc ConfirmAttachment(ConfirmAttachmentRequest) returns (ConfirmAttachmentResponse);
+  rpc ReleaseAttachment(ReleaseAttachmentRequest) returns (ReleaseAttachmentResponse);
 }
 
 enum ResourceState {
@@ -35,6 +43,8 @@ enum OperationKind {
   OPERATION_KIND_UNSPECIFIED = 0;
   OPERATION_KIND_CREATE_VPC = 1;
   OPERATION_KIND_DELETE_VPC = 2;
+  OPERATION_KIND_CREATE_SUBNET = 3;
+  OPERATION_KIND_DELETE_SUBNET = 4;
 }
 message VPC {
   string id = 1;
@@ -50,13 +60,14 @@ message VPC {
   google.protobuf.Timestamp observed_at = 11;
   bool observation_stale = 12;
   string last_operation_id = 13;
-  // Always zero in NET-01; actual child count is delivered with NET-02.
+  // Non-deleted subnets counted in the same query snapshot.
   int64 subnet_count = 14;
   string reason_message = 15;
 }
 enum ResourceType {
   RESOURCE_TYPE_UNSPECIFIED = 0;
   RESOURCE_TYPE_VPC = 1;
+  RESOURCE_TYPE_SUBNET = 2;
 }
 message Operation {
   string id = 1;
@@ -101,3 +112,161 @@ message DeleteVPCRequest { string tenant_id = 1; string vpc_id = 2; }
 message DeleteVPCResponse { VPC vpc = 1; }
 message GetOperationRequest { string tenant_id = 1; string operation_id = 2; }
 message GetOperationResponse { Operation operation = 1; }
+
+message Subnet {
+  string id = 1;
+  string tenant_id = 2;
+  string name = 3;
+  string description = 4;
+  string cidr = 5;
+  ResourceState state = 6;
+  string reason = 7;
+  google.protobuf.Timestamp created_at = 8;
+  google.protobuf.Timestamp updated_at = 9;
+  int64 version = 10;
+  google.protobuf.Timestamp observed_at = 11;
+  bool observation_stale = 12;
+  string last_operation_id = 13;
+  string vpc_id = 14;
+  string reason_message = 15;
+  string gateway = 16;
+}
+message CreateSubnetRequest {
+ string tenant_id = 1;
+ string name = 2;
+ string cidr = 3;
+ string description = 4;
+ string idempotency_key = 5;
+ Attribution attribution = 6;
+ string vpc_id = 7;
+ optional string gateway = 8;
+}
+message CreateSubnetResponse { Subnet subnet = 1; }
+message GetSubnetRequest { string tenant_id = 1; string subnet_id = 2; }
+message GetSubnetResponse { Subnet subnet = 1; }
+message ListSubnetsRequest {
+ string tenant_id = 1;
+ string name = 2;
+ ResourceState state = 3;
+ int32 limit = 4;
+ string cursor = 5;
+ string vpc_id = 6;
+}
+message ListSubnetsResponse { repeated Subnet items = 1; string next_cursor = 2; }
+message DeleteSubnetRequest { string tenant_id = 1; string subnet_id = 2; }
+message DeleteSubnetResponse { Subnet subnet = 1; }
+
+// Versioned, closed primary Pod network handoff. No arbitrary Pod patch/map.
+message PodPrimaryPlan {
+ int32 format_version = 1;
+ string namespace = 2;
+ string subnet_annotation = 3;
+ AttachmentLabels labels = 4;
+}
+message AttachmentLabels {
+ string tenant_id = 1;
+ string instance_id = 2;
+ string attachment_id = 3;
+ string submission_id = 4;
+ int64 generation = 5;
+}
+enum AttachmentState {
+ ATTACHMENT_STATE_UNSPECIFIED = 0;
+ ATTACHMENT_STATE_RESERVED = 1;
+ ATTACHMENT_STATE_ATTACHED = 2;
+ ATTACHMENT_STATE_RELEASING = 3;
+ ATTACHMENT_STATE_RELEASED = 4;
+}
+message Attachment {
+ string id = 1;
+ string tenant_id = 2;
+ string vpc_id = 3;
+ string subnet_id = 4;
+ string instance_id = 5;
+ string slot = 6;
+ string submission_id = 7;
+ int64 generation = 8;
+ string cluster_id = 9;
+ string namespace = 10;
+ string binding_revision = 11;
+ AttachmentState state = 12;
+ string reason = 13;
+ int64 version = 14;
+ // Only reserved/attached may deliver a plan; released replay is identity only.
+ PodPrimaryPlan pod_primary = 15;
+ string pod_name = 16;
+ string pod_uid = 17;
+ string consumer_finalization_id = 18;
+ google.protobuf.Timestamp created_at = 19;
+ google.protobuf.Timestamp updated_at = 20;
+ google.protobuf.Timestamp observed_at = 21;
+ google.protobuf.Timestamp released_at = 22;
+}
+message PrepareAttachmentRequest {
+ string tenant_id = 1;
+ string instance_id = 2;
+ string subnet_id = 3;
+ string vpc_id = 4;
+ string slot = 5;
+ string request_key = 6;
+ string submission_id = 7;
+ int64 generation = 8;
+ string cluster_id = 9;
+ string namespace = 10;
+}
+message GetAttachmentRequest { string tenant_id = 1; string attachment_id = 2; }
+message ConfirmAttachmentRequest {
+ string tenant_id = 1;
+ string attachment_id = 2;
+ int64 expected_version = 3;
+ string cluster_id = 4;
+ string namespace = 5;
+ string pod_name = 6;
+ string pod_uid = 7;
+}
+message ReleaseAttachmentRequest {
+ string tenant_id = 1;
+ string attachment_id = 2;
+ int64 expected_version = 3;
+ string consumer_finalization_id = 4;
+}
+message PrepareAttachmentResponse { Attachment attachment = 1; }
+message GetAttachmentResponse { Attachment attachment = 1; }
+message ConfirmAttachmentResponse { Attachment attachment = 1; }
+message ReleaseAttachmentResponse { Attachment attachment = 1; }
+
+// Required outbound consumer contract. ANI instance owner implements this
+// read-only service from this pinned descriptor; Network never writes workloads.
+service InstanceNetworkConsumerService {
+ rpc GetSubmission(GetSubmissionRequest) returns (GetSubmissionResponse);
+}
+message GetSubmissionRequest {
+ int32 protocol_version = 1;
+ string tenant_id = 2;
+ string instance_id = 3;
+ string submission_id = 4;
+ int64 generation = 5;
+ string attachment_id = 6;
+ string expected_finalization_id = 7;
+}
+enum SubmissionState {
+ SUBMISSION_STATE_UNSPECIFIED = 0;
+ SUBMISSION_STATE_OPEN = 1;
+ SUBMISSION_STATE_CLOSING = 2;
+ SUBMISSION_STATE_CLOSED = 3;
+}
+message GetSubmissionResponse {
+ int32 protocol_version = 1;
+ string tenant_id = 2;
+ string instance_id = 3;
+ string submission_id = 4;
+ int64 generation = 5;
+ string attachment_id = 6;
+ string cluster_id = 7;
+ string namespace = 8;
+ SubmissionState state = 9;
+ string finalization_id = 10;
+ repeated string pod_uids = 11;
+ repeated string controller_uids = 12;
+ google.protobuf.Timestamp closed_at = 13;
+}

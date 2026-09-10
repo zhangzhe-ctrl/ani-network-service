@@ -30,9 +30,9 @@ make tenant-mutations
 迁移使用独立 owner，通过显式 `-migrate` 入口执行。
 具体变量、权限、启动命令和健康含义见 [运行说明](docs/runtime.md)。
 
-NET-01 实现 `network.v1` VPC 创建、查询、列表、删除和操作查询，
-由 Network 自有持久 worker 推进、观察和恢复。
-Subnet、实例接入、Gateway、真实数据面与 IAM 仍按后续工作包推进。
+`network.v1` 提供 VPC/Subnet 创建、查询、列表、删除、操作查询，以及普通容器 Attachment 协议；
+由 Network 自有持久 worker 推进、观察和恢复。ANI 的独立 Gateway 适配及实例 owner 通过版本化 RPC 接入。
+真实数据面、前端与 IAM 仍按后续工作包独立验证。
 当前实施结果和证据只在 [执行状态](docs/execution/status.md) 维护。
 
 已有 Kratos 日志、中间件、trace、metrics 和优雅停机门禁继续保留。

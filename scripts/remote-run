@@ -2,7 +2,7 @@
 """Run a command on an isolated verified source snapshot on ubuntu.
 
 Usage: scripts/remote-run -- go test -count=1 ./internal/biz
-Logs and exit codes stay in .work/net01-runs. Lost SSH responses never trigger
+Logs and exit codes stay in .work/net02-04-runs. Lost SSH responses never trigger
 automatic command replay.
 """
 import argparse
@@ -28,12 +28,14 @@ def main():
     root = Path(__file__).resolve().parents[1]
     os.chdir(root)
     run = time.strftime("%Y%m%dT%H%M%SZ", time.gmtime()) + "-" + uuid.uuid4().hex[:8]
-    output = root / ".work/net01-runs" / run
+    output = root / ".work/net02-04-runs" / run
     output.mkdir(parents=True)
-    remote = "/home/ubuntu/workspace/ani-network-service-runs/net01-" + run
+    remote = "/home/ubuntu/workspace/ani-network-service-runs/net02-04-" + run
     names = sorted(set(subprocess.check_output(
         ["git", "ls-files", "-co", "--exclude-standard", "-z"]
     ).decode().split("\0")) - {""})
+    excluded = [n for n in names if n.startswith("docs/execution/records/KC-KIND-20260909T144827Z/")]
+    names = [n for n in names if n not in excluded]
     records = []
     for name in names:
         path = Path(name)
@@ -56,9 +58,10 @@ def main():
         "archive_sha256": digest,
         "command": command,
         "files": records,
+        "excluded_concurrent_task_paths": excluded,
     }
     (output / "snapshot.json").write_text(json.dumps(metadata, indent=2) + "\n")
-    (root / ".work/net01-runs/latest").write_text(str(output) + "\n")
+    (root / ".work/net02-04-runs/latest").write_text(str(output) + "\n")
     options = ["-F", "/home/chabking/.ssh/config", "-o", "BatchMode=yes",
                "-o", "ConnectTimeout=12", "-o", "ControlMaster=auto",
                "-o", "ControlPersist=120", "-o", "ControlPath=" + str(root / ".work/ubuntu.sock")]

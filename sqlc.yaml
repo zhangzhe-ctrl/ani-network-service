@@ -11,6 +11,11 @@ sql:
         emit_empty_slices: true
         query_parameter_limit: 0
         overrides:
+          - db_type: text
+            nullable: true
+            go_type:
+              type: string
+              pointer: true
           - db_type: uuid
             go_type: string
           - db_type: uuid

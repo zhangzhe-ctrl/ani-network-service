@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+set -Eeuo pipefail
+[[ -n ${ANI_SOURCE:-} && -n ${NETWORK_SOURCE:-} && -n ${NET0204_TEST_ADMIN_DSN:-} ]] || { echo 'requires isolated pair integration environment'; exit 1; }
+output=$(mktemp -d "${NETWORK_SOURCE}/../net0204-wire-binaries.XXXXXX")
+export NET0204_NETWORK_BINARY="$output/network" NET0204_GATEWAY_TEST_BINARY="$output/gateway-router.test" NET0204_NETWORK_CONFIG="$NETWORK_SOURCE/configs"
+(cd "$NETWORK_SOURCE" && go build -race -trimpath -o "$NET0204_NETWORK_BINARY" ./cmd/ani-network-service)
+(cd "$ANI_SOURCE/repo/services/ani-gateway" && go test -race -c -o "$NET0204_GATEWAY_TEST_BINARY" ./internal/router)
+(cd "$ANI_SOURCE/repo/pkg" && go test -race -count=1 -timeout=6m -run '^TestNetworkWireGatewayAndOwnerProcessesRecover$' -v ./adapters/runtime)

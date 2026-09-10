@@ -1,0 +1,145 @@
+package biz
+
+import (
+	"context"
+	"crypto/sha256"
+	"encoding/hex"
+	"encoding/json"
+	"github.com/google/uuid"
+	"regexp"
+	"strings"
+	"time"
+)
+
+type AttachmentState string
+
+const (
+	Reserved            AttachmentState = "reserved"
+	Attached            AttachmentState = "attached"
+	Releasing           AttachmentState = "releasing"
+	Released            AttachmentState = "released"
+	AttachmentConflict  Reason          = "ATTACHMENT_CONFLICT"
+	VersionConflict     Reason          = "VERSION_CONFLICT"
+	ConsumerUnclosed    Reason          = "CONSUMER_NOT_CLOSED"
+	ConsumerUnavailable Reason          = "CONSUMER_UNAVAILABLE"
+	AttachmentProtocol  Reason          = "ATTACHMENT_PROTOCOL_VIOLATION"
+)
+
+// PodPrimaryPlan is a closed delivery DTO. Infrastructure owns the mapping to
+// annotation keys; business logic neither builds nor merges arbitrary patches.
+type PodPrimaryPlan struct {
+	FormatVersion                                    int32
+	Namespace, PrimaryNetworkRef                     string
+	TenantID, InstanceID, AttachmentID, SubmissionID string
+	Generation                                       int64
+}
+type Attachment struct {
+	ID, TenantID, VPCID, SubnetID, InstanceID, Slot, SubmissionID string
+	Generation                                                    int64
+	ClusterID, Namespace, BindingRevision                         string
+	State                                                         AttachmentState
+	Reason                                                        Reason
+	Version                                                       int64
+	Plan                                                          *PodPrimaryPlan
+	PodName, PodUID, ConfirmUID, FinalizationID                   string
+	CreatedAt, UpdatedAt                                          time.Time
+	ObservedAt, ReleasedAt                                        *time.Time
+}
+type PrepareAttachment struct {
+	TenantID, InstanceID, SubnetID, VPCID, Slot, RequestKey string
+	SubmissionID                                            string
+	Generation                                              int64
+	ClusterID, Namespace                                    string
+}
+
+func (r PrepareAttachment) Fingerprint() string {
+	r.RequestKey = ""
+	b, _ := json.Marshal(struct {
+		Version int
+		Intent  PrepareAttachment
+	}{1, r})
+	h := sha256.Sum256(b)
+	return hex.EncodeToString(h[:])
+}
+
+type ConfirmAttachment struct {
+	TenantID, AttachmentID, ClusterID, Namespace, PodName, PodUID string
+	ExpectedVersion                                               int64
+}
+type ReleaseAttachment struct {
+	TenantID, AttachmentID, FinalizationID string
+	ExpectedVersion                        int64
+}
+type AttachmentRepository interface {
+	PrepareAttachment(context.Context, PrepareAttachment, time.Duration) (Attachment, error)
+	GetAttachment(context.Context, string, string) (Attachment, error)
+	ConfirmAttachment(context.Context, ConfirmAttachment) (Attachment, error)
+	ReleaseAttachment(context.Context, ReleaseAttachment) (Attachment, error)
+}
+type Attachments struct {
+	repository AttachmentRepository
+	freshness  time.Duration
+}
+
+func NewAttachments(r AttachmentRepository, freshness time.Duration) *Attachments {
+	return &Attachments{r, freshness}
+}
+
+var attachmentName = regexp.MustCompile(`^[A-Za-z0-9][A-Za-z0-9_.-]{0,62}$`)
+var namespaceName = regexp.MustCompile(`^[a-z0-9]([-a-z0-9]{0,61}[a-z0-9])?$`)
+
+func (a *Attachments) Prepare(ctx context.Context, r PrepareAttachment) (Attachment, error) {
+	tenant, err := ParseTenant(r.TenantID)
+	if err != nil {
+		return Attachment{}, err
+	}
+	r.TenantID = tenant
+	submission, err := uuid.Parse(r.SubmissionID)
+	if err != nil || submission == uuid.Nil || r.SubmissionID != submission.String() || r.Generation < 1 || !attachmentName.MatchString(r.InstanceID) || r.Slot != "primary" || strings.TrimSpace(r.RequestKey) != r.RequestKey || len(r.RequestKey) < 1 || len(r.RequestKey) > 128 || !validSubnetID(r.SubnetID) || (r.VPCID != "" && !validVPCID(r.VPCID)) || strings.TrimSpace(r.ClusterID) == "" || len(r.ClusterID) > 128 || !namespaceName.MatchString(r.Namespace) {
+		return Attachment{}, Fail(InvalidArgument, "invalid attachment intent")
+	}
+	return a.repository.PrepareAttachment(ctx, r, a.freshness)
+}
+func attachmentScope(tenant, id string) (string, error) {
+	t, e := ParseTenant(tenant)
+	if e != nil {
+		return "", e
+	}
+	if !strings.HasPrefix(id, "att_") || len(id) != 36 {
+		return "", Fail(ResourceNotFound, "attachment not found")
+	}
+	if _, e := hex.DecodeString(id[4:]); e != nil {
+		return "", Fail(ResourceNotFound, "attachment not found")
+	}
+	return t, nil
+}
+func (a *Attachments) Get(ctx context.Context, t, id string) (Attachment, error) {
+	t, e := attachmentScope(t, id)
+	if e != nil {
+		return Attachment{}, e
+	}
+	return a.repository.GetAttachment(ctx, t, id)
+}
+func (a *Attachments) Confirm(ctx context.Context, r ConfirmAttachment) (Attachment, error) {
+	t, e := attachmentScope(r.TenantID, r.AttachmentID)
+	if e != nil {
+		return Attachment{}, e
+	}
+	r.TenantID = t
+	if r.PodUID == "" || len(r.PodUID) > 128 || !namespaceName.MatchString(r.PodName) || r.ExpectedVersion < 1 {
+		return Attachment{}, Fail(InvalidArgument, "immutable Pod identity and version required")
+	}
+	return a.repository.ConfirmAttachment(ctx, r)
+}
+func (a *Attachments) Release(ctx context.Context, r ReleaseAttachment) (Attachment, error) {
+	t, e := attachmentScope(r.TenantID, r.AttachmentID)
+	if e != nil {
+		return Attachment{}, e
+	}
+	r.TenantID = t
+	id, e := uuid.Parse(r.FinalizationID)
+	if e != nil || id == uuid.Nil || r.FinalizationID != id.String() || r.ExpectedVersion < 1 {
+		return Attachment{}, Fail(InvalidArgument, "stable finalization identity and version required")
+	}
+	return a.repository.ReleaseAttachment(ctx, r)
+}

@@ -21,7 +21,7 @@ type Database struct {
 	RuntimeDSN, OwnerRole, RuntimeRole string
 }
 
-func NewDatabase(t *testing.T) *Database {
+func NewDatabase(t *testing.T, beforeMigrate ...func(*pgxpool.Pool, string)) *Database {
 	t.Helper()
 	dsn := os.Getenv("NETWORK_TEST_ADMIN_DSN")
 	if dsn == "" {
@@ -68,6 +68,9 @@ func NewDatabase(t *testing.T) *Database {
 		t.Fatal(err)
 	}
 	t.Cleanup(owner.Close)
+	for _, prepare := range beforeMigrate {
+		prepare(owner, runtimeRole)
+	}
 	if err := data.Migrate(ctx, owner, runtimeRole); err != nil {
 		t.Fatal(err)
 	}

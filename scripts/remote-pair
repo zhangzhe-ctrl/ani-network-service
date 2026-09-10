@@ -1,0 +1,103 @@
+#!/usr/bin/env python3
+"""Run NET-02-04 checks on isolated Network and ANI worktree snapshots on ubuntu.
+Command argv runs at the pair root with NETWORK_SOURCE and ANI_SOURCE exported.
+"""
+import argparse,hashlib,json,os,pathlib,shlex,subprocess,tarfile,time,uuid
+p=argparse.ArgumentParser(description=__doc__);p.add_argument('command',nargs=argparse.REMAINDER);args=p.parse_args();command=args.command
+if command[:1]==['--']:command=command[1:]
+if not command:p.error('an explicit command is required')
+root=pathlib.Path(__file__).resolve().parents[1]
+ani=pathlib.Path('/home/chabking/workspace/.worktrees/ani-net-02-04')
+bases={'network':(root,'40ab0cf64246da13b43296dff8175f16738c12c4'),'ani':(ani,'50aa9fe2099b7ff4c276f883939a8d26c9d9eff8')}
+run=time.strftime('%Y%m%dT%H%M%SZ',time.gmtime())+'-'+uuid.uuid4().hex[:8]
+out=root/'.work/net02-04-pairs'/run;out.mkdir(parents=True)
+remote='/home/ubuntu/workspace/ani-network-service-runs/net02-04-pair-'+run
+meta={'remote':remote,'command':command,'sources':{}}
+for kind,(source,base) in bases.items():
+ def git(*args):return subprocess.check_output(['git','-C',str(source),*args])
+ head=git('rev-parse','HEAD').decode().strip()
+ if head!=base:raise SystemExit('fixed worktree HEAD drift: '+kind)
+ names=sorted(set(git('ls-files','-co','--exclude-standard','-z').decode().split('\0'))-{''})
+ excluded=[n for n in names if kind=='network' and n.startswith('docs/execution/records/KC-KIND-20260909T144827Z/')]
+ names=[n for n in names if n not in excluded]
+ files=[]
+ for name in names:
+  path=source/name
+  if not path.exists():continue
+  if path.is_symlink() or not path.is_file() or (path.name.startswith('.env') and path.name!='.env.example') or path.suffix in ('.key','.pem','.cert'):raise SystemExit('unexpected or sensitive source: '+name)
+  files.append({'path':name,'sha256':hashlib.sha256(path.read_bytes()).hexdigest(),'mode':'100755' if path.stat().st_mode&0o111 else '100644'})
+ archive=out/(kind+'.tar.gz')
+ with tarfile.open(archive,'w:gz') as t:
+  for f in files:t.add(source/f['path'],arcname=f['path'],recursive=False)
+ # Only the accepted commit and its tree, no sibling history/config/credentials.
+ ids=git('rev-list','--objects','--no-object-names',base+'^{tree}')+base.encode()+b'\n'
+ # Authz generation reads two immutable historical OpenAPI blobs. Transfer only
+ # those commits and the tree chain to that public source file, never history.
+ historical=[]
+ if kind=='ani':
+  for commit in ['0cedae825a489d936cf41815dc27f278f6d3213c','bde4ea72b5a91cd43cc271dd44c09ff262c637e5']:
+   objects=[commit,git('rev-parse',commit+'^{tree}').decode().strip()]
+   for path in ['repo','repo/api','repo/api/openapi','repo/api/openapi/v1.yaml','repo/api/openapi/services','repo/api/openapi/services/v1.yaml']:
+    objects.append(git('rev-parse',commit+':'+path).decode().strip())
+   ids+=('\n'.join(objects)+'\n').encode()
+   historical.append({'commit':commit,'path':'repo/api/openapi/v1.yaml','objects':objects})
+
+ pack=out/(kind+'-base.pack')
+ with pack.open('wb') as dest:subprocess.run(['git','-C',str(source),'pack-objects','--stdout'],input=ids,stdout=dest,check=True)
+ meta['sources'][kind]={'local':str(source),'base':base,'tree':git('rev-parse',base+'^{tree}').decode().strip(),'files':files,'archive_sha256':hashlib.sha256(archive.read_bytes()).hexdigest(),'baseline_pack_sha256':hashlib.sha256(pack.read_bytes()).hexdigest(),'historical_public_sources':historical,'excluded_concurrent_task_paths':excluded}
+(out/'snapshot.json').write_text(json.dumps(meta,indent=2)+'\n')
+options=['-F','/home/chabking/.ssh/config','-o','BatchMode=yes','-o','ConnectTimeout=12','-o','ControlMaster=auto','-o','ControlPersist=120','-o','ControlPath='+str(root/'.work/ubuntu.sock')]
+ssh=['ssh',*options,'ubuntu']
+subprocess.run(ssh+['mkdir -- '+shlex.quote(remote)],check=True)
+subprocess.run(['scp',*options,*[str(out/n) for n in ['snapshot.json','network.tar.gz','ani.tar.gz','network-base.pack','ani-base.pack']],'ubuntu:'+remote+'/'],check=True)
+script='''set -Eeuo pipefail
+cd REMOTE
+source /home/ubuntu/.local/share/ani-network-service/env.sh
+if [[ -d /home/ubuntu/.local/share/ani-network-service/net0204-python/bin ]]; then export PATH="/home/ubuntu/.local/share/ani-network-service/net0204-python/bin:$PATH"; fi
+python3 - <<'CHECK'
+import json,pathlib,hashlib,tarfile,subprocess
+meta=json.loads(pathlib.Path('snapshot.json').read_text())
+for kind,source in meta['sources'].items():
+ archive=pathlib.Path(kind+'.tar.gz');pack=pathlib.Path(kind+'-base.pack')
+ assert hashlib.sha256(archive.read_bytes()).hexdigest()==source['archive_sha256']
+ assert hashlib.sha256(pack.read_bytes()).hexdigest()==source['baseline_pack_sha256']
+ target=pathlib.Path(kind);target.mkdir()
+ with tarfile.open(archive) as t:t.extractall(target,filter='data')
+ for item in source['files']:
+  f=target/item['path'];assert hashlib.sha256(f.read_bytes()).hexdigest()==item['sha256'],item['path']
+  assert ('100755' if f.stat().st_mode&0o111 else '100644')==item['mode']
+ def git(*a,**kw):return subprocess.run(['git','-C',str(target),*a],check=True,**kw)
+ git('-c','init.defaultBranch=verification','init','-q')
+ with pack.open('rb') as f:git('index-pack','--stdin',stdin=f,stdout=subprocess.DEVNULL)
+ (target/'.git/shallow').write_text(source['base']+'\\n')
+ git('update-ref','refs/heads/fixed-base',source['base']);git('update-ref','refs/remotes/origin/main',source['base']);git('update-ref','HEAD',source['base'])
+ git('read-tree',source['base']);git('add','--all')
+ git('-c','user.name=NET-02-04 Snapshot','-c','user.email=snapshot@localhost','-c','commit.gpgsign=false','commit','--allow-empty','-qm','Isolated uncommitted source validation snapshot')
+ source['remote_snapshot_commit']=subprocess.check_output(['git','-C',str(target),'rev-parse','HEAD'],text=True).strip()
+ print('verified',kind,'source files=',len(source['files']),'temporary snapshot=',source['remote_snapshot_commit'])
+pathlib.Path('remote-snapshots.json').write_text(json.dumps(meta,indent=2)+'\\n')
+CHECK
+export NETWORK_SOURCE="$PWD/network" ANI_SOURCE="$PWD/ani"
+mkdir -p network/.tools/bin
+for tool in buf sqlc govulncheck cyclonedx-gomod gitleaks; do
+ if [[ -x /home/ubuntu/.local/share/ani-network-service/bin/$tool ]]; then ln -s /home/ubuntu/.local/share/ani-network-service/bin/$tool network/.tools/bin/$tool; fi
+done
+printf '%s\\n' "$$" > shell.pid
+set +e
+COMMAND 2>&1 | tee command.log
+result=$?
+set -e
+printf '%s\\n' "$result" > command.exit
+printf 'REMOTE_COMMAND_EXIT=%s\\n' "$result"
+exit "$result"
+'''.replace('REMOTE',shlex.quote(remote),1).replace('COMMAND',shlex.join(command),1)
+(out/'run.sh').write_text(script)
+print('snapshot='+str(out),flush=True);print('remote='+remote,flush=True)
+with (out/'command.log').open('w') as log:
+ process=subprocess.Popen(ssh+['bash -s'],stdin=subprocess.PIPE,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,text=True)
+ process.stdin.write(script);process.stdin.close()
+ for line in process.stdout:print(line,end='',flush=True);log.write(line);log.flush()
+ result=process.wait()
+(out/'ssh.exit').write_text(str(result)+'\n')
+if result==255:print('SSH result unknown; inspect command.exit and shell.pid before retrying.')
+raise SystemExit(result)

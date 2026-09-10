@@ -1,0 +1,25 @@
+Source: 20260909T154851Z-e259ccad; current Go source; actual race/process run
+    network_wire_process_integration_test.go:605: actual HTTP->Gateway->Network gRPC->separate restricted PG->controlled kc; tenant=1cb725ff-330d-47ad-8f4c-aa0f2e695ab2 instance=inst_f8817298-d3e3-4c0d-8406-1e34ae22fb28 submission=ef1b6392-d217-419b-b9e2-0d84e4327338 attachment=att_cb33fe038daa4d39b860c70f06ac2fe3 pod_uid=8d4e2f1f-c5ec-4a84-ac37-921c19a085b4 finalization=69f5069d-e554-41cf-a3fa-723252df8bd1; scenario=accepted-response-lost actual_deployment_posts=1
+    network_wire_process_integration_test.go:605: actual HTTP->Gateway->Network gRPC->separate restricted PG->controlled kc; tenant=729f562f-eb3f-44b3-a803-8bea2675ffb7 instance=inst_8c4e0110-93e9-4397-8ad3-a7bdc1b54fae submission=28376db8-ba96-41d5-a177-ed33bd902bc7 attachment=att_4f935ac9e3b04b6097d2cf484426ea3f pod_uid=a3b57ded-7e17-4393-80bc-b81a0a647436 finalization=61bbcf35-2aa8-4daa-ab10-3a59283e9e7e; scenario=unknown-create-late-after-delete actual_deployment_posts=1
+    network_wire_process_integration_test.go:605: actual HTTP->Gateway->Network gRPC->separate restricted PG->controlled kc; tenant=b28cdea4-9f77-435a-9a51-a9ea7c4dbf34 instance=inst_addca5dc-55f9-430b-9d04-8db3e45e4633 submission=33c64c44-b453-4672-9187-a46ab0ea49dd attachment=att_ee6f1ade93dd44ccb14a3ff493a7e892 pod_uid= finalization=e39ba80b-f5d1-4a35-a69d-578138243606; scenario=create-rejected actual_deployment_posts=0
+    network_wire_process_integration_test.go:605: actual HTTP->Gateway->Network gRPC->separate restricted PG->controlled kc; tenant=35611962-523f-4a84-87f9-9a75b98fae60 instance=inst_05aab210-4e1a-49b4-a90c-4fc498a7bc4b submission=8e60c4a0-439d-41c5-9ca1-e160bf5e65c4 attachment=att_68d2a09b51b14cc1aa4d075161b26872 pod_uid=02e044f6-7e00-4e2d-a37c-caca42495e35 finalization=b3d8c658-3009-49af-afbd-ac291f3d6aae; scenario=confirm-release-lost actual_deployment_posts=1
+    network_wire_process_integration_test.go:605: actual HTTP->Gateway->Network gRPC->separate restricted PG->controlled kc; tenant=b06bbb6f-9462-430d-8845-a3c392a42052 instance=inst_04e19545-c10c-4517-b101-437056de9558 submission=a4479c06-48f1-41c3-bcec-e675660d3ba5 attachment=att_331213926a5b476083ddae95aef7018b pod_uid=2fd22a09-81d1-427e-9322-9007cece2ca0 finalization=53e5b5a4-3fea-4404-ac65-4fa1f9050d25; scenario=owner-only-restart actual_deployment_posts=1
+    network_wire_process_integration_test.go:605: actual HTTP->Gateway->Network gRPC->separate restricted PG->controlled kc; tenant=b0cd00e2-fc2b-4293-a016-b827b1f2ea10 instance=inst_b3d4fb40-51fb-4aef-8df7-2560f49b274b submission=ad5907c2-6c9b-4c75-a425-47972a8a7428 attachment=att_25fe84581ab74628b6ec6c24feaca4d4 pod_uid=2ba4e5c8-a433-4d03-bba3-18d2ab6a6d59 finalization=219927a4-92ca-4467-803c-eb0468e36117; scenario=network-only-restart actual_deployment_posts=1
+    network_wire_process_integration_test.go:605: actual HTTP->Gateway->Network gRPC->separate restricted PG->controlled kc; tenant=3ba863c3-0a8f-44b6-be9a-86d85052b204 instance=inst_6ffe7b49-b4b2-43fa-afa8-0557c71f3f8b submission=7cd1e599-6453-458b-b219-e0f25d94562f attachment=att_cb2b1f855f1e4eeb96ce75d6f3738085 pod_uid=6f4766a4-b6c0-4c4e-b65d-3e342b44e85b finalization=1287ca11-6154-44c3-9364-9d7aa6eb08c1; scenario=residual-nic-ip actual_deployment_posts=1
+    network_wire_process_integration_test.go:508: scenario=multiple-pods tenant=0162376d-4eab-4221-9b42-aefcc3d4ceda attachment=att_1ebc1c0c96f046f494d98cd89defa439: conflicting Provider facts retained, deletion blocked across both process restarts
+    network_wire_process_integration_test.go:508: scenario=wrong-pod-uid tenant=889812fe-1f60-4e11-86bd-865cfd9caf2d attachment=att_64f506737c4c48bba019b730b88b6eae: conflicting Provider facts retained, deletion blocked across both process restarts
+    network_wire_process_integration_test.go:573: scenario=released-late-pod attachment=att_43448419ae864e81a9dc3b35668e0027: released identity retained, late Pod does not revive plan or permit Subnet deletion
+--- PASS: TestNetworkWireGatewayAndOwnerProcessesRecover (177.43s)
+    --- PASS: TestNetworkWireGatewayAndOwnerProcessesRecover/accepted-response-lost (18.87s)
+    --- PASS: TestNetworkWireGatewayAndOwnerProcessesRecover/unknown-create-late-after-delete (21.56s)
+    --- PASS: TestNetworkWireGatewayAndOwnerProcessesRecover/create-rejected (12.87s)
+    --- PASS: TestNetworkWireGatewayAndOwnerProcessesRecover/confirm-release-lost (24.33s)
+    --- PASS: TestNetworkWireGatewayAndOwnerProcessesRecover/owner-only-restart (18.20s)
+    --- PASS: TestNetworkWireGatewayAndOwnerProcessesRecover/network-only-restart (12.10s)
+    --- PASS: TestNetworkWireGatewayAndOwnerProcessesRecover/residual-nic-ip (22.14s)
+    --- PASS: TestNetworkWireGatewayAndOwnerProcessesRecover/multiple-pods (15.49s)
+    --- PASS: TestNetworkWireGatewayAndOwnerProcessesRecover/wrong-pod-uid (15.43s)
+    --- PASS: TestNetworkWireGatewayAndOwnerProcessesRecover/released-late-pod (16.43s)
+PASS
+removed pair task container=2f6d3c5a827fcacdecbfff2767638d9a75a4d9f12f05da1349c1fce7f03f5d6b
+REMOTE_COMMAND_EXIT=0
