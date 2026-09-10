@@ -22,6 +22,18 @@ message Network {
   Worker worker = 6;
   // Fixed instance owner RPC target. Empty keeps attachments conservatively occupied.
   string instance_consumer_endpoint = 7;
+  Observation observation = 8;
+}
+
+message Observation {
+  google.protobuf.Duration audit_interval = 1;
+  google.protobuf.Duration audit_jitter = 2;
+  google.protobuf.Duration audit_timeout = 3;
+  google.protobuf.Duration flush_interval = 4;
+  uint32 queue_capacity = 5;
+  uint32 workers_per_kind = 6;
+  uint32 request_qps = 7;
+  uint32 request_burst = 8;
 }
 
 message Worker {

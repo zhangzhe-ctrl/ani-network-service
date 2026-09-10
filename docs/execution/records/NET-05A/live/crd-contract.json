@@ -1,0 +1,57 @@
+{
+  "vpcs": {
+    "schema_sha256": "4a69c7d2bbf5a946ad9ce6639b8930a3238c71fad2a08179c94eec6642b1086c",
+    "spec_fields": [
+      "allowedNamespaces",
+      "cidrBlock",
+      "ipVersion",
+      "policyRoutes",
+      "routeTable"
+    ]
+  },
+  "subnets": {
+    "schema_sha256": "c3dc69fb0873e15b83df35e676087c93a0c280389322ea94f86baa32dcab33a9",
+    "spec_fields": [
+      "allowedNamespaces",
+      "cidrBlock",
+      "dnsServers",
+      "enableDHCP",
+      "enableIPv6RA",
+      "excludeIPs",
+      "gateway",
+      "gatewayIP",
+      "ipVersion",
+      "natOutgoing",
+      "routeTable",
+      "type",
+      "underlayConfig"
+    ]
+  },
+  "vnics": {
+    "schema_sha256": "087334f1ab45b78b5201051b4fc38ae9bcc3f08cc1261f36e2a648a710ccc547",
+    "spec_fields": [
+      "macAddress",
+      "securityGroups",
+      "subnet",
+      "type"
+    ]
+  },
+  "vnicips": {
+    "schema_sha256": "a5a0f5fd8fef2cbb692b0b1b11ed2478ac104a02575ab20254002c07e1984e04",
+    "spec_fields": [
+      "dhcp",
+      "ipAddress",
+      "subnet",
+      "vNic"
+    ]
+  },
+  "eips": {
+    "schema_sha256": "a0bcb125aa3bbd70ac6f24a50a2b8433dd4ede11a88e226ff4eb9cd3abf180b9",
+    "spec_fields": [
+      "ipAddress",
+      "ipVersion",
+      "securityGroups",
+      "subnet"
+    ]
+  }
+}

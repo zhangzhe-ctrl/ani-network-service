@@ -1,0 +1,132 @@
+{
+  "apiVersion": "v1",
+  "items": [
+    {
+      "apiVersion": "networking.kubercloud.com/v1",
+      "kind": "VPC",
+      "metadata": {
+        "creationTimestamp": "2026-09-10T06:59:01Z",
+        "finalizers": [
+          "networking.kubercloud.com/finalizer"
+        ],
+        "generation": 1,
+        "labels": {
+          "network.ani.io/binding-id": "07b576f9-9020-4e2c-84dc-f98024c6be74",
+          "network.ani.io/managed-by": "ani-network-service",
+          "network.ani.io/resource-id": "vpc_69b854018ba64a2d90e43392642997b9",
+          "network.ani.io/tenant-id": "18648eba-1f32-4ddd-9029-c0b84ae0f875"
+        },
+        "name": "vpc-69b854018ba64a2d90e43392642997b9",
+        "namespace": "net05a-1fae0bbf-18648eba-1f32-4ddd-9029-c0b84ae0f875",
+        "resourceVersion": "143507",
+        "uid": "f4acfc1b-5a92-4932-9da2-08aaa6d04788"
+      },
+      "spec": {
+        "allowedNamespaces": {
+          "from": "Same"
+        },
+        "cidrBlock": "10.205.0.0/16",
+        "ipVersion": "IPv4"
+      },
+      "status": {
+        "boundResources": {
+          "chassisNode": "",
+          "router": "vpc.net05a-1fae0bbf-18648eba-1f32-4ddd-9029-c0b84ae0f875.vpc-69b854018ba64a2d90e43392642997b9"
+        },
+        "conditions": [
+          {
+            "lastTransitionTime": "2026-09-10T06:59:01Z",
+            "message": "",
+            "reason": "Valid",
+            "status": "True",
+            "type": "Valid"
+          },
+          {
+            "lastTransitionTime": "2026-09-10T06:59:01Z",
+            "message": "",
+            "reason": "Initialized",
+            "status": "True",
+            "type": "Initialized"
+          },
+          {
+            "lastTransitionTime": "2026-09-10T06:59:01Z",
+            "message": "",
+            "reason": "Ready",
+            "status": "True",
+            "type": "Ready"
+          }
+        ],
+        "observedGeneration": 1,
+        "subnets": {
+          "net05a-1fae0bbf-18648eba-1f32-4ddd-9029-c0b84ae0f875/subnet-f7c3311914fe4498815a0697535b3cb6": "10.205.1.0/24"
+        }
+      }
+    },
+    {
+      "apiVersion": "networking.kubercloud.com/v1",
+      "kind": "VPC",
+      "metadata": {
+        "creationTimestamp": "2026-09-10T06:58:43Z",
+        "finalizers": [
+          "networking.kubercloud.com/finalizer"
+        ],
+        "generation": 1,
+        "labels": {
+          "network.ani.io/binding-id": "ac8f007c-164b-4346-821f-b7be24ed6140",
+          "network.ani.io/managed-by": "ani-network-service",
+          "network.ani.io/resource-id": "vpc_a1a111ad5dda4198816d6e694ed46e51",
+          "network.ani.io/tenant-id": "18648eba-1f32-4ddd-9029-c0b84ae0f875"
+        },
+        "name": "vpc-a1a111ad5dda4198816d6e694ed46e51",
+        "namespace": "net05a-1fae0bbf-18648eba-1f32-4ddd-9029-c0b84ae0f875",
+        "resourceVersion": "147625",
+        "uid": "08be32df-3cfd-491b-a25f-304a47742e9c"
+      },
+      "spec": {
+        "allowedNamespaces": {
+          "from": "Same"
+        },
+        "cidrBlock": "10.205.0.0/16",
+        "ipVersion": "IPv4"
+      },
+      "status": {
+        "boundResources": {
+          "chassisNode": "",
+          "router": "vpc.net05a-1fae0bbf-18648eba-1f32-4ddd-9029-c0b84ae0f875.vpc-a1a111ad5dda4198816d6e694ed46e51"
+        },
+        "conditions": [
+          {
+            "lastTransitionTime": "2026-09-10T06:58:43Z",
+            "message": "",
+            "reason": "Valid",
+            "status": "True",
+            "type": "Valid"
+          },
+          {
+            "lastTransitionTime": "2026-09-10T06:58:43Z",
+            "message": "",
+            "reason": "Initialized",
+            "status": "True",
+            "type": "Initialized"
+          },
+          {
+            "lastTransitionTime": "2026-09-10T06:58:44Z",
+            "message": "",
+            "reason": "Ready",
+            "status": "True",
+            "type": "Ready"
+          }
+        ],
+        "observedGeneration": 1,
+        "subnets": {
+          "net05a-1fae0bbf-18648eba-1f32-4ddd-9029-c0b84ae0f875/subnet-c3432c5b7d1b4cee87b040ff73326b14": "10.205.2.0/24",
+          "net05a-1fae0bbf-18648eba-1f32-4ddd-9029-c0b84ae0f875/subnet-e7c9d41dc8364ec79163b3cf9a72b596": "10.205.1.0/24"
+        }
+      }
+    }
+  ],
+  "kind": "List",
+  "metadata": {
+    "resourceVersion": ""
+  }
+}

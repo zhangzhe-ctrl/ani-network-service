@@ -1,0 +1,66 @@
+{
+  "action": "fence",
+  "at": "2026-09-10T07:53:56.639565091Z",
+  "data": {
+    "progress": {
+      "Proof": {
+        "CollectedAt": "2026-09-10T07:53:53.44162Z",
+        "Hash": "a4c3d414e6955cf8bf42f2cc9d3f4928801d1af06095555ea1dd974ff3778d53",
+        "CoveredGeneration": 1
+      },
+      "Backoff": true,
+      "State": "provisioning",
+      "OperationState": "retrying",
+      "Reason": "PROVIDER_NOT_READY",
+      "Observed": true,
+      "Identity": "d5583a66-56f1-41d3-9fae-b1b889f39877",
+      "ClearPending": true,
+      "NextDelay": 1056098308
+    },
+    "work": {
+      "Requirement": {
+        "RequestedGeneration": 1,
+        "AppliedAt": "1970-01-01T00:00:00Z",
+        "Hash": ""
+      },
+      "Resource": {
+        "ID": "vpc_ee98515d77d64f3d9d4d991237eb85a6",
+        "TenantID": "18648eba-1f32-4ddd-9029-c0b84ae0f875",
+        "Kind": "vpc",
+        "VPCID": "",
+        "CIDR": "10.205.0.0/16",
+        "Gateway": "",
+        "LastOperationID": "ed5f4b80-82ce-4101-8028-f24988cf3b49",
+        "State": "provisioning",
+        "Reason": "",
+        "Version": 1,
+        "UpdatedAt": "2026-09-10T07:53:47.843915Z",
+        "ObservedAt": null
+      },
+      "Operation": {
+        "ID": "ed5f4b80-82ce-4101-8028-f24988cf3b49",
+        "TenantID": "18648eba-1f32-4ddd-9029-c0b84ae0f875",
+        "ResourceID": "vpc_ee98515d77d64f3d9d4d991237eb85a6",
+        "ResourceType": "vpc",
+        "Kind": "create_vpc",
+        "State": "running",
+        "Reason": "",
+        "CreatedAt": "2026-09-10T07:53:47.843915Z",
+        "UpdatedAt": "2026-09-10T07:53:53.441204Z",
+        "CompletedAt": null,
+        "NextAttemptAt": "2026-09-10T07:53:47.843915Z"
+      },
+      "ActiveOperation": true,
+      "BindingID": "82d946b6-663c-4d6a-b8d3-a00482b042ec",
+      "KnownIdentity": "",
+      "PendingAction": "",
+      "Owner": "07a30f79-4fdc-494b-b203-0bc02aa53500",
+      "Epoch": 1,
+      "Attempt": 1,
+      "Now": "2026-09-10T07:53:53.441497Z"
+    }
+  },
+  "key": "vpc_ee98515d77d64f3d9d4d991237eb85a6",
+  "pid": 1,
+  "point": "before-finish"
+}

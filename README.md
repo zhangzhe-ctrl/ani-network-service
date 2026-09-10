@@ -31,8 +31,8 @@ make tenant-mutations
 具体变量、权限、启动命令和健康含义见 [运行说明](docs/runtime.md)。
 
 `network.v1` 提供 VPC/Subnet 创建、查询、列表、删除、操作查询，以及普通容器 Attachment 协议；
-由 Network 自有持久 worker 推进、观察和恢复。ANI 的独立 Gateway 适配及实例 owner 通过版本化 RPC 接入。
-真实数据面、前端与 IAM 仍按后续工作包独立验证。
+由 Network 自有持久 worker 推进和恢复，共享 List/Watch、关系索引与完整审计提供观察事实。ANI 的独立 Gateway 适配及实例 owner 通过版本化 RPC 接入。
+NET-05A 对新版本普通容器真实链路独立复验；VM、前端、IAM 与配额保持后续工作包边界。
 当前实施结果和证据只在 [执行状态](docs/execution/status.md) 维护。
 
 已有 Kratos 日志、中间件、trace、metrics 和优雅停机门禁继续保留。

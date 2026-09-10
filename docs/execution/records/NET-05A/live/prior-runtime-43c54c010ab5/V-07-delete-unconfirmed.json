@@ -1,0 +1,133 @@
+{
+  "window": {
+    "action": "hold",
+    "at": "2026-09-10T07:14:58.899949576Z",
+    "data": {
+      "progress": {
+        "Proof": {
+          "CollectedAt": "2026-09-10T07:14:58.690443Z",
+          "Hash": "dfc7cd59fc4f9160a550e33ec67b4fcc8eab69fa9ae4d6528e5cb3e7e230e2b9",
+          "CoveredGeneration": 3
+        },
+        "Backoff": true,
+        "State": "deleting",
+        "OperationState": "retrying",
+        "Reason": "CLEANUP_PENDING",
+        "Observed": true,
+        "Identity": "9481ae3f-f625-4a6f-a472-80b7b60fd066",
+        "ClearPending": false,
+        "NextDelay": 818841991
+      },
+      "work": {
+        "Requirement": {
+          "RequestedGeneration": 3,
+          "AppliedAt": "2026-09-10T07:14:57.464626Z",
+          "Hash": "dfc7cd59fc4f9160a550e33ec67b4fcc8eab69fa9ae4d6528e5cb3e7e230e2b9"
+        },
+        "Resource": {
+          "ID": "vpc_c35109dc7d274dffbba3cee1aa9454d6",
+          "TenantID": "18648eba-1f32-4ddd-9029-c0b84ae0f875",
+          "Kind": "vpc",
+          "VPCID": "",
+          "CIDR": "10.205.0.0/16",
+          "Gateway": "",
+          "LastOperationID": "5a6b5626-6407-4db1-8d08-dfb6e0e00f59",
+          "State": "deleting",
+          "Reason": "",
+          "Version": 3,
+          "UpdatedAt": "2026-09-10T07:14:58.683169Z",
+          "ObservedAt": "2026-09-10T07:14:57.453266Z"
+        },
+        "Operation": {
+          "ID": "5a6b5626-6407-4db1-8d08-dfb6e0e00f59",
+          "TenantID": "18648eba-1f32-4ddd-9029-c0b84ae0f875",
+          "ResourceID": "vpc_c35109dc7d274dffbba3cee1aa9454d6",
+          "ResourceType": "vpc",
+          "Kind": "delete_vpc",
+          "State": "running",
+          "Reason": "",
+          "CreatedAt": "2026-09-10T07:14:58.681838Z",
+          "UpdatedAt": "2026-09-10T07:14:58.689487Z",
+          "CompletedAt": null,
+          "NextAttemptAt": "2026-09-10T07:14:58.681838Z"
+        },
+        "ActiveOperation": true,
+        "BindingID": "46d111af-d82b-40c9-8afb-3545cbf67e1f",
+        "KnownIdentity": "9481ae3f-f625-4a6f-a472-80b7b60fd066",
+        "PendingAction": "",
+        "Owner": "a9c91408-dc59-4199-9693-2585e618f19c",
+        "Epoch": 4,
+        "Attempt": 1,
+        "Now": "2026-09-10T07:14:58.6903Z"
+      }
+    },
+    "key": "vpc_c35109dc7d274dffbba3cee1aa9454d6",
+    "pid": 1,
+    "point": "before-finish"
+  },
+  "before": {
+    "tenant_id": "18648eba-1f32-4ddd-9029-c0b84ae0f875",
+    "vpc_id": "vpc_c35109dc7d274dffbba3cee1aa9454d6",
+    "name": "net05a-1fae0bbf-t3-before-t4",
+    "description": "",
+    "cidr": "10.205.0.0/16",
+    "state": "deleting",
+    "reason": "",
+    "version": 3,
+    "created_at": "2026-09-10T07:14:37.395708+00:00",
+    "updated_at": "2026-09-10T07:14:58.683169+00:00",
+    "observed_at": "2026-09-10T07:14:57.453266+00:00",
+    "last_operation_id": "5a6b5626-6407-4db1-8d08-dfb6e0e00f59",
+    "binding_id": "46d111af-d82b-40c9-8afb-3545cbf67e1f",
+    "namespace": "net05a-1fae0bbf-18648eba-1f32-4ddd-9029-c0b84ae0f875",
+    "provider_name": "vpc-c35109dc7d274dffbba3cee1aa9454d6",
+    "provider_uid": "9481ae3f-f625-4a6f-a472-80b7b60fd066",
+    "pending_action": "delete",
+    "lease_owner": "a9c91408-dc59-4199-9693-2585e618f19c",
+    "lease_epoch": 4,
+    "lease_until": "2026-09-10T07:15:18.688955+00:00",
+    "operation_state": "running",
+    "operation_reason": ""
+  },
+  "after": {
+    "tenant_id": "18648eba-1f32-4ddd-9029-c0b84ae0f875",
+    "vpc_id": "vpc_c35109dc7d274dffbba3cee1aa9454d6",
+    "name": "net05a-1fae0bbf-t3-before-t4",
+    "description": "",
+    "cidr": "10.205.0.0/16",
+    "state": "deleted",
+    "reason": "",
+    "version": 4,
+    "created_at": "2026-09-10T07:14:37.395708+00:00",
+    "updated_at": "2026-09-10T07:15:18.900378+00:00",
+    "observed_at": "2026-09-10T07:15:18.69708+00:00",
+    "last_operation_id": "5a6b5626-6407-4db1-8d08-dfb6e0e00f59",
+    "binding_id": "46d111af-d82b-40c9-8afb-3545cbf67e1f",
+    "namespace": "net05a-1fae0bbf-18648eba-1f32-4ddd-9029-c0b84ae0f875",
+    "provider_name": "vpc-c35109dc7d274dffbba3cee1aa9454d6",
+    "provider_uid": "9481ae3f-f625-4a6f-a472-80b7b60fd066",
+    "pending_action": "",
+    "lease_owner": null,
+    "lease_epoch": 5,
+    "lease_until": null,
+    "operation_state": "succeeded",
+    "operation_reason": ""
+  },
+  "deletes": [
+    {
+      "id": "de9a70a277404d4bb128c553ee9deb4a",
+      "identity": "network",
+      "method": "DELETE",
+      "path": "/apis/networking.kubercloud.com/v1/namespaces/net05a-1fae0bbf-18648eba-1f32-4ddd-9029-c0b84ae0f875/vpcs/vpc-c35109dc7d274dffbba3cee1aa9454d6",
+      "name": "vpc-c35109dc7d274dffbba3cee1aa9454d6",
+      "dry_run": false,
+      "watch": false,
+      "kind": "VPC",
+      "uid": "9481ae3f-f625-4a6f-a472-80b7b60fd066",
+      "reason": null,
+      "event": "upstream",
+      "status": 200,
+      "at": "2026-09-10T07:14:58.899384+00:00"
+    }
+  ]
+}

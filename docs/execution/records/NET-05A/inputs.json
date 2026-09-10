@@ -1,0 +1,81 @@
+{
+  "schema_version": 1,
+  "prepared_on": "2026-09-10",
+  "purpose": "Immutable inputs for NET-05A Goal; not an implementation or current status ledger",
+  "network": {
+    "object_repository": "/home/chabking/workspace/ani-network-service",
+    "verified_source_worktree": "/home/chabking/workspace/.worktrees/network-net-05-main",
+    "base_commit": "72cdd974d0d25dfd3d65051ac91a03e0e92da0d2",
+    "base_tree": "4f614625d2f748fabdb9af64f63ec1414da06bea"
+  },
+  "design": {
+    "archive": "/home/chabking/workspace/ani-network-service/.work/net-05a-design.tar.gz",
+    "archive_sha256": "5e62fd28220fdc171c57c9e0d3bf723f9e88ff62eb634b501a428bb1acfd5dfd",
+    "files": [
+      {
+        "path": "docs/START-HERE.md",
+        "sha256": "ca516c2cbae8a05f2ff381135bd06ce6eebb8921fc22c8198aa7ce74dc9d4ae6",
+        "mode": "100644"
+      },
+      {
+        "path": "docs/adr/0004-observe-cr-with-durable-reconciliation.md",
+        "sha256": "4a97a664fe7a08b641bad0d0e07a62fe0b2684a51054f68e4eb26327a0b88884",
+        "mode": "100644"
+      },
+      {
+        "path": "docs/specs/cr-observation.md",
+        "sha256": "8742b9576de5960c14d0461e7db6d5f827ba6cdeba521803277b08a41a50861e",
+        "mode": "100644"
+      },
+      {
+        "path": "docs/specs/vpc-subnet.md",
+        "sha256": "5a92e235166a0b15d05c90947ab03604eeec98d9c80a68e8b22b3699805b5bbd",
+        "mode": "100644"
+      },
+      {
+        "path": "docs/plans/cr-observation.md",
+        "sha256": "29df9d061be19d937df041aa0bac25a2c6598d88ac4355dfbf896a34f488769f",
+        "mode": "100644"
+      },
+      {
+        "path": "docs/plans/vpc-subnet.md",
+        "sha256": "9d96c0c55bb6ee9a11abbdfb4e21d1f94482dd5572b1ee5cac7271aaffd70758",
+        "mode": "100644"
+      },
+      {
+        "path": "docs/execution/records/2026-09-10-cr-observation-selection.md",
+        "sha256": "ad2babec5659004067255e4afee70429f0e77f716c6b6fcfaa8adb34982154a0",
+        "mode": "100644"
+      },
+      {
+        "path": "docs/execution/records/2026-09-10-cr-observation-plan.md",
+        "sha256": "1246d5abd6184b3460764186dccf7d53cf1ea34731ed78452b764bc5c6056166",
+        "mode": "100644"
+      }
+    ],
+    "status_merge_rule": "Use NET-05 completed status from the pinned base; add NET-05A only. Do not copy stale status from the design checkout."
+  },
+  "ani": {
+    "read_only_worktree": "/home/chabking/workspace/.worktrees/ani-net-05",
+    "head": "0363b6b5f906886c3ab2748ef68940c562b93382",
+    "base_tree": "113d664efc7baa96ab1e16bbd9a021ad612c999b",
+    "source_manifest_sha256": "d851f490e71941f22ab084cfb265c1fb00ced5369c7bec0c3698bf5971f125e0",
+    "file_count": 2899,
+    "reference_record": "/home/chabking/workspace/.worktrees/network-net-05-main/docs/execution/records/NET-05/final-source-audit.json",
+    "reference_record_sha256": "02f843a6cc9c3f272676635add5bd4ca08024681fbc970ab19ea20ee8fc0544b",
+    "verified_at_preparation": {
+      "all_listed_file_hashes_and_modes": "pass",
+      "unlisted_paths": "check at execution; never automatically include",
+      "bytes_hashed": 41279940
+    },
+    "transfer_rule": "Frozen read-only snapshot; exclude private tool configuration, credentials, caches and unrelated outputs, and record exact exclusions separately from full manifest identity."
+  },
+  "cluster": {
+    "ssh_alias": "ubuntu",
+    "context": "kind-kc062",
+    "kube_system_uid": "a05787f7-fd36-482d-97ce-daef70e269c6",
+    "prepared_directory": "/home/ubuntu/workspace/ani-network-service-runs/kc-kind-20260909T144827Z",
+    "kc_contract_commit": "a2245883eb2b46a998f041feb3ad0ed3f6cf7c60",
+    "runtime_verification": "must recheck before writes; preparation did not access cluster"
+  }
+}

@@ -1,0 +1,528 @@
+{
+  "attachment": {
+    "tenant_id": "18648eba-1f32-4ddd-9029-c0b84ae0f875",
+    "attachment_id": "att_387bea3671824a2981ee6cecfd3643eb",
+    "vpc_id": "vpc_2bc8f4ec315348ffb11bfa543a08bfca",
+    "subnet_id": "subnet_ca14a47929b2405989cd1c2b08fffaf8",
+    "binding_id": "ca5c066c-e196-4f31-97a6-2a6ba52cf34e",
+    "instance_id": "inst_d3692f18-e8b4-4e0c-a4be-481ae29412b8",
+    "slot": "primary",
+    "request_key": "net05a-1fae0bbf-owner-recovery",
+    "submission_id": "569d7b11-3a9d-4363-afe8-4635e094923d",
+    "generation": 1,
+    "fingerprint": "0996971c9f5c6321e855145b25a4f2f9235a18f0d90df808c2716ee902a9eae0",
+    "cluster_id": "net05a-1fae0bbf",
+    "namespace": "net05a-1fae0bbf-18648eba-1f32-4ddd-9029-c0b84ae0f875",
+    "binding_revision": "ca5c066c-e196-4f31-97a6-2a6ba52cf34e:a7d659fb-d726-4458-a9e1-b41f86c6f58a",
+    "plan": {
+      "TenantID": "18648eba-1f32-4ddd-9029-c0b84ae0f875",
+      "Namespace": "net05a-1fae0bbf-18648eba-1f32-4ddd-9029-c0b84ae0f875",
+      "Generation": 1,
+      "InstanceID": "inst_d3692f18-e8b4-4e0c-a4be-481ae29412b8",
+      "AttachmentID": "att_387bea3671824a2981ee6cecfd3643eb",
+      "SubmissionID": "569d7b11-3a9d-4363-afe8-4635e094923d",
+      "FormatVersion": 1,
+      "PrimaryNetworkRef": "net05a-1fae0bbf-18648eba-1f32-4ddd-9029-c0b84ae0f875/subnet-ca14a47929b2405989cd1c2b08fffaf8"
+    },
+    "state": "releasing",
+    "reason": "CLEANUP_PENDING",
+    "protocol_blocked": false,
+    "version": 7,
+    "pod_name": "net05a-1fae0bbf-owner-recovery-569ff94874-pr6nm",
+    "pod_uid": "dd7a02ca-ea15-4da6-b0b2-806558c96154",
+    "confirm_uid": "",
+    "finalization_id": "45dfef41-27aa-4f96-9e71-1cc8ba797fca",
+    "provider_relations": [
+      {
+        "UID": "69ed3ab1-56c7-4069-8177-20561c31313c",
+        "Kind": "VNic",
+        "Name": "auto-net05a-1fae0bbf-owner-recovery-569ff94-vnic-765vc",
+        "OwnerUID": "dd7a02ca-ea15-4da6-b0b2-806558c96154",
+        "Namespace": "net05a-1fae0bbf-18648eba-1f32-4ddd-9029-c0b84ae0f875"
+      },
+      {
+        "UID": "0757aaaa-dd26-47c3-a2ac-6e12b9b68085",
+        "Kind": "VNicIP",
+        "Name": "auto-net05a-1fae0bbf-owner-recovery-569ff94-vnic-765vc",
+        "OwnerUID": "69ed3ab1-56c7-4069-8177-20561c31313c",
+        "Namespace": "net05a-1fae0bbf-18648eba-1f32-4ddd-9029-c0b84ae0f875"
+      }
+    ],
+    "created_at": "2026-09-10T07:16:59.761199+00:00",
+    "updated_at": "2026-09-10T07:18:40.096634+00:00",
+    "observed_at": "2026-09-10T07:18:23.369385+00:00",
+    "released_at": null,
+    "next_check_at": "2026-09-10T07:19:10.096634+00:00",
+    "lease_owner": null,
+    "lease_until": null,
+    "epoch": 6,
+    "requested_generation": 6,
+    "processed_generation": 6,
+    "retry_not_before": "1970-01-01T00:00:00+00:00",
+    "evidence_hash": "9569d16ea567aff15b3280b5ed1182e4c17df54ac4ebecb6d5fb5d28dd63c8b1",
+    "evidence_applied_at": "2026-09-10T07:18:40.096635+00:00"
+  },
+  "pod": {
+    "apiVersion": "v1",
+    "kind": "Pod",
+    "metadata": {
+      "annotations": {
+        "ani.io/demo-description": "",
+        "ani.kubercloud.io/network-planes": "tenant_vpc,foundation_mesh",
+        "ani.kubercloud.io/render-mode": "dry-run",
+        "ani.kubercloud.io/runtime-adapter": "planning",
+        "ani.kubercloud.io/storage-kinds": "",
+        "ani.kubercloud.io/subnet-id": "subnet_ca14a47929b2405989cd1c2b08fffaf8",
+        "ani.kubercloud.io/vpc-id": "vpc_2bc8f4ec315348ffb11bfa543a08bfca",
+        "ani.kubercloud.io/workload-identity-key-id": "2f003a7b-da6c-4658-a482-8afaa7f709c8",
+        "ani.kubercloud.io/workload-identity-secret": "ani-wi-2f003a7b-da6c-4658-a482",
+        "networking.kubercloud.com/subnet": "net05a-1fae0bbf-18648eba-1f32-4ddd-9029-c0b84ae0f875/subnet-ca14a47929b2405989cd1c2b08fffaf8",
+        "networking.kubercloud.com/vnic": "auto-net05a-1fae0bbf-owner-recovery-569ff94-vnic-765vc"
+      },
+      "creationTimestamp": "2026-09-10T07:17:59Z",
+      "generateName": "net05a-1fae0bbf-owner-recovery-569ff94874-",
+      "generation": 1,
+      "labels": {
+        "ani.kubercloud.io/instance": "net05a-1fae0bbf-owner-recovery",
+        "ani.kubercloud.io/tenant-id": "18648eba-1f32-4ddd-9029-c0b84ae0f875",
+        "network.ani.io/attachment-id": "att_387bea3671824a2981ee6cecfd3643eb",
+        "network.ani.io/generation": "1",
+        "network.ani.io/instance-id": "inst_d3692f18-e8b4-4e0c-a4be-481ae29412b8",
+        "network.ani.io/submission-id": "569d7b11-3a9d-4363-afe8-4635e094923d",
+        "network.ani.io/tenant-id": "18648eba-1f32-4ddd-9029-c0b84ae0f875",
+        "pod-template-hash": "569ff94874"
+      },
+      "name": "net05a-1fae0bbf-owner-recovery-569ff94874-pr6nm",
+      "namespace": "net05a-1fae0bbf-18648eba-1f32-4ddd-9029-c0b84ae0f875",
+      "ownerReferences": [
+        {
+          "apiVersion": "apps/v1",
+          "blockOwnerDeletion": true,
+          "controller": true,
+          "kind": "ReplicaSet",
+          "name": "net05a-1fae0bbf-owner-recovery-569ff94874",
+          "uid": "8d6b766c-3684-430c-8b77-b7c9655822d6"
+        }
+      ],
+      "resourceVersion": "148960",
+      "uid": "dd7a02ca-ea15-4da6-b0b2-806558c96154"
+    },
+    "spec": {
+      "containers": [
+        {
+          "env": [
+            {
+              "name": "ANI_WORKLOAD_TOKEN",
+              "valueFrom": {
+                "secretKeyRef": {
+                  "key": "token",
+                  "name": "ani-wi-2f003a7b-da6c-4658-a482"
+                }
+              }
+            },
+            {
+              "name": "ANI_WORKLOAD_ID",
+              "value": "inst_d3692f18-e8b4-4e0c-a4be-481ae29412b8"
+            },
+            {
+              "name": "NET05_ID",
+              "value": "net05a-1fae0bbf-owner-recovery"
+            },
+            {
+              "name": "NET05_PORT",
+              "value": "18083"
+            },
+            {
+              "name": "NET05_TERMINATION_DELAY",
+              "value": "20"
+            }
+          ],
+          "image": "docker.io/library/net05a-1fae0bbf-probe:ffcf0c98acaedd82",
+          "imagePullPolicy": "IfNotPresent",
+          "name": "net05a-1fae0bbf-owner-recovery",
+          "ports": [
+            {
+              "containerPort": 18083,
+              "name": "probe",
+              "protocol": "TCP"
+            }
+          ],
+          "resources": {
+            "limits": {
+              "cpu": "50m",
+              "memory": "64Mi"
+            },
+            "requests": {
+              "cpu": "50m",
+              "memory": "64Mi"
+            }
+          },
+          "terminationMessagePath": "/dev/termination-log",
+          "terminationMessagePolicy": "File",
+          "volumeMounts": [
+            {
+              "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+              "name": "kube-api-access-mhhwh",
+              "readOnly": true
+            }
+          ]
+        }
+      ],
+      "dnsPolicy": "ClusterFirst",
+      "enableServiceLinks": true,
+      "nodeName": "kc062-worker2",
+      "preemptionPolicy": "PreemptLowerPriority",
+      "priority": 0,
+      "restartPolicy": "Always",
+      "schedulerName": "default-scheduler",
+      "securityContext": {},
+      "serviceAccount": "default",
+      "serviceAccountName": "default",
+      "terminationGracePeriodSeconds": 30,
+      "tolerations": [
+        {
+          "effect": "NoExecute",
+          "key": "node.kubernetes.io/not-ready",
+          "operator": "Exists",
+          "tolerationSeconds": 300
+        },
+        {
+          "effect": "NoExecute",
+          "key": "node.kubernetes.io/unreachable",
+          "operator": "Exists",
+          "tolerationSeconds": 300
+        }
+      ],
+      "volumes": [
+        {
+          "name": "kube-api-access-mhhwh",
+          "projected": {
+            "defaultMode": 420,
+            "sources": [
+              {
+                "serviceAccountToken": {
+                  "expirationSeconds": 3607,
+                  "path": "token"
+                }
+              },
+              {
+                "configMap": {
+                  "items": [
+                    {
+                      "key": "ca.crt",
+                      "path": "ca.crt"
+                    }
+                  ],
+                  "name": "kube-root-ca.crt"
+                }
+              },
+              {
+                "downwardAPI": {
+                  "items": [
+                    {
+                      "fieldRef": {
+                        "apiVersion": "v1",
+                        "fieldPath": "metadata.namespace"
+                      },
+                      "path": "namespace"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "status": {
+      "allocatedResources": {
+        "cpu": "50m",
+        "memory": "64Mi"
+      },
+      "conditions": [
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-09-10T07:18:00Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "PodReadyToStartContainers"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-09-10T07:17:59Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "Initialized"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-09-10T07:18:01Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "Ready"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-09-10T07:18:01Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "ContainersReady"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-09-10T07:17:59Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "PodScheduled"
+        }
+      ],
+      "containerStatuses": [
+        {
+          "allocatedResources": {
+            "cpu": "50m",
+            "memory": "64Mi"
+          },
+          "containerID": "containerd://455e7a0151924170643411ad17df0d7671b1b413e820fd5959b6219ff088234e",
+          "image": "docker.io/library/net05-1717d354-probe:ffcf0c98acaedd82",
+          "imageID": "docker.io/library/import-2026-09-10@sha256:8b305a958323064c72a1215a35b41cb5af96f1c435d33e5425664572a2b85176",
+          "lastState": {},
+          "name": "net05a-1fae0bbf-owner-recovery",
+          "ready": true,
+          "resources": {
+            "limits": {
+              "cpu": "50m",
+              "memory": "64Mi"
+            },
+            "requests": {
+              "cpu": "50m",
+              "memory": "64Mi"
+            }
+          },
+          "restartCount": 0,
+          "started": true,
+          "state": {
+            "running": {
+              "startedAt": "2026-09-10T07:18:01Z"
+            }
+          },
+          "user": {
+            "linux": {
+              "gid": 0,
+              "supplementalGroups": [
+                0
+              ],
+              "uid": 65532
+            }
+          },
+          "volumeMounts": [
+            {
+              "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+              "name": "kube-api-access-mhhwh",
+              "readOnly": true,
+              "recursiveReadOnly": "Disabled"
+            }
+          ]
+        }
+      ],
+      "hostIP": "172.18.0.3",
+      "hostIPs": [
+        {
+          "ip": "172.18.0.3"
+        }
+      ],
+      "observedGeneration": 1,
+      "phase": "Running",
+      "podIP": "10.205.40.2",
+      "podIPs": [
+        {
+          "ip": "10.205.40.2"
+        }
+      ],
+      "qosClass": "Guaranteed",
+      "resources": {
+        "limits": {
+          "cpu": "50m",
+          "memory": "64Mi"
+        },
+        "requests": {
+          "cpu": "50m",
+          "memory": "64Mi"
+        }
+      },
+      "startTime": "2026-09-10T07:17:59Z"
+    }
+  },
+  "vnics": [
+    {
+      "apiVersion": "networking.kubercloud.com/v1",
+      "kind": "VNic",
+      "metadata": {
+        "annotations": {
+          "networking.kubercloud.com/allocate_ip_with_dhcp": "false",
+          "networking.kubercloud.com/allocated_vnicip": "auto-net05a-1fae0bbf-owner-recovery-569ff94-vnic-765vc",
+          "pod.networking.kubercloud.com/net05a-1fae0bbf-owner-recovery-569ff94874-pr6nm": "kc062-worker2/eth0"
+        },
+        "creationTimestamp": "2026-09-10T07:17:59Z",
+        "finalizers": [
+          "networking.kubercloud.com/finalizer"
+        ],
+        "generation": 2,
+        "labels": {
+          "node.networking.kubercloud.com/kc062-worker2": ""
+        },
+        "name": "auto-net05a-1fae0bbf-owner-recovery-569ff94-vnic-765vc",
+        "namespace": "net05a-1fae0bbf-18648eba-1f32-4ddd-9029-c0b84ae0f875",
+        "ownerReferences": [
+          {
+            "apiVersion": "v1",
+            "kind": "Pod",
+            "name": "net05a-1fae0bbf-owner-recovery-569ff94874-pr6nm",
+            "uid": "dd7a02ca-ea15-4da6-b0b2-806558c96154"
+          }
+        ],
+        "resourceVersion": "148946",
+        "uid": "69ed3ab1-56c7-4069-8177-20561c31313c"
+      },
+      "spec": {
+        "macAddress": "fa:00:45:fd:30:07",
+        "subnet": "net05a-1fae0bbf-18648eba-1f32-4ddd-9029-c0b84ae0f875/subnet-ca14a47929b2405989cd1c2b08fffaf8",
+        "type": "VETH"
+      },
+      "status": {
+        "conditions": [
+          {
+            "lastTransitionTime": "2026-09-10T07:17:59Z",
+            "message": "",
+            "reason": "Initialized",
+            "status": "True",
+            "type": "Initialized"
+          },
+          {
+            "lastTransitionTime": "2026-09-10T07:17:59Z",
+            "message": "",
+            "reason": "Valid",
+            "status": "True",
+            "type": "Valid"
+          },
+          {
+            "lastTransitionTime": "2026-09-10T07:17:59Z",
+            "message": "",
+            "reason": "Ready",
+            "status": "True",
+            "type": "Ready"
+          }
+        ],
+        "dstNic": "",
+        "gateway": "",
+        "ips": {
+          "auto-net05a-1fae0bbf-owner-recovery-569ff94-vnic-765vc": "10.205.40.2"
+        },
+        "nic": "kcn-system/nic-net05a-1fae0bbf-18648eba-1f32-4ddd-9029-c0b84ae0f875--h5pcq",
+        "nodeName": "kc062-worker2",
+        "primaryIP": "10.205.40.2"
+      }
+    }
+  ],
+  "vnicips": [
+    {
+      "apiVersion": "networking.kubercloud.com/v1",
+      "kind": "VNicIP",
+      "metadata": {
+        "creationTimestamp": "2026-09-10T07:17:59Z",
+        "finalizers": [
+          "networking.kubercloud.com/finalizer"
+        ],
+        "generation": 2,
+        "name": "auto-net05a-1fae0bbf-owner-recovery-569ff94-vnic-765vc",
+        "namespace": "net05a-1fae0bbf-18648eba-1f32-4ddd-9029-c0b84ae0f875",
+        "ownerReferences": [
+          {
+            "apiVersion": "networking.kubercloud.com/v1",
+            "kind": "VNic",
+            "name": "auto-net05a-1fae0bbf-owner-recovery-569ff94-vnic-765vc",
+            "uid": "69ed3ab1-56c7-4069-8177-20561c31313c"
+          }
+        ],
+        "resourceVersion": "148942",
+        "uid": "0757aaaa-dd26-47c3-a2ac-6e12b9b68085"
+      },
+      "spec": {
+        "ipAddress": "10.205.40.2",
+        "subnet": "net05a-1fae0bbf-18648eba-1f32-4ddd-9029-c0b84ae0f875/subnet-ca14a47929b2405989cd1c2b08fffaf8",
+        "vNic": "auto-net05a-1fae0bbf-owner-recovery-569ff94-vnic-765vc"
+      },
+      "status": {
+        "conditions": [
+          {
+            "lastTransitionTime": "2026-09-10T07:17:59Z",
+            "message": "",
+            "reason": "Initialized",
+            "status": "True",
+            "type": "Initialized"
+          },
+          {
+            "lastTransitionTime": "2026-09-10T07:17:59Z",
+            "message": "",
+            "reason": "Valid",
+            "status": "True",
+            "type": "Valid"
+          }
+        ],
+        "vNic": "auto-net05a-1fae0bbf-owner-recovery-569ff94-vnic-765vc"
+      }
+    }
+  ],
+  "owner": {
+    "tenant_id": "18648eba-1f32-4ddd-9029-c0b84ae0f875",
+    "instance_id": "inst_d3692f18-e8b4-4e0c-a4be-481ae29412b8",
+    "submission_id": "569d7b11-3a9d-4363-afe8-4635e094923d",
+    "operation_id": "816de0f0-0c1b-4161-bd50-72dae3719608",
+    "state": "closing",
+    "version": 27,
+    "phase": "attached",
+    "reason": "WORKLOAD_DELETE_PENDING",
+    "pod_uid": "dd7a02ca-ea15-4da6-b0b2-806558c96154",
+    "pod_name": "net05a-1fae0bbf-owner-recovery-569ff94874-pr6nm",
+    "pending_confirm": "false",
+    "pending_release": "true",
+    "finalization_id": "45dfef41-27aa-4f96-9e71-1cc8ba797fca",
+    "identity_revoked": "false",
+    "objects": [
+      {
+        "UID": "802a6483-1795-4d94-a273-cca63df2f393",
+        "Kind": "Secret",
+        "Name": "ani-wi-2f003a7b-da6c-4658-a482",
+        "Phase": "known",
+        "Namespace": "net05a-1fae0bbf-18648eba-1f32-4ddd-9029-c0b84ae0f875",
+        "ResourceVersion": "148845"
+      },
+      {
+        "UID": "84d74be1-c925-4e2f-95a9-8d8194e839e8",
+        "Kind": "Service",
+        "Name": "net05a-1fae0bbf-owner-recovery",
+        "Phase": "known",
+        "Namespace": "net05a-1fae0bbf-18648eba-1f32-4ddd-9029-c0b84ae0f875",
+        "ResourceVersion": "148858"
+      },
+      {
+        "UID": "0b520f6c-6beb-4893-988e-427186533f2e",
+        "Kind": "Deployment",
+        "Name": "net05a-1fae0bbf-owner-recovery",
+        "Phase": "deleting",
+        "Namespace": "net05a-1fae0bbf-18648eba-1f32-4ddd-9029-c0b84ae0f875",
+        "ResourceVersion": "148964"
+      }
+    ]
+  },
+  "held_owner_delete": {
+    "id": "3618283032804d268b0851135c812195",
+    "identity": "ani",
+    "method": "DELETE",
+    "path": "/apis/apps/v1/namespaces/net05a-1fae0bbf-18648eba-1f32-4ddd-9029-c0b84ae0f875/deployments/net05a-1fae0bbf-owner-recovery",
+    "name": "net05a-1fae0bbf-owner-recovery",
+    "dry_run": false,
+    "watch": false,
+    "phase": "before",
+    "action": "hold_before"
+  }
+}

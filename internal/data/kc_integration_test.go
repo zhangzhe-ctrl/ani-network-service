@@ -30,6 +30,27 @@ func (s *controlledKC) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	s.mu.Lock()
 	defer s.mu.Unlock()
 	w.Header().Set("Content-Type", "application/json")
+	if r.URL.Query().Get("watch") == "true" {
+		w.WriteHeader(403)
+		_, _ = w.Write([]byte(`{"apiVersion":"v1","kind":"Status","code":403,"reason":"Forbidden","status":"Failure"}`))
+		return
+	}
+	for plural, kind := range map[string]string{"vpcs": "VPC", "subnets": "Subnet", "vnics": "VNic", "vnicips": "VNicIP", "eips": "EIP", "pods": "Pod"} {
+		base := "/apis/networking.kubercloud.com/v1/"
+		version := "networking.kubercloud.com/v1"
+		if plural == "pods" {
+			base = "/api/v1/"
+			version = "v1"
+		}
+		if r.Method == "GET" && r.URL.Path == base+plural {
+			items := []any{}
+			if plural == "vpcs" && s.object != nil {
+				items = append(items, s.object)
+			}
+			_ = json.NewEncoder(w).Encode(map[string]any{"apiVersion": version, "kind": kind + "List", "metadata": map[string]any{"resourceVersion": "1"}, "items": items})
+			return
+		}
+	}
 	missing := func() {
 		w.WriteHeader(404)
 		_, _ = w.Write([]byte(`{"kind":"Status","apiVersion":"v1","status":"Failure","reason":"NotFound","code":404}`))

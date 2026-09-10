@@ -1,0 +1,12 @@
+127.0.0.1:5432 - accepting connections
+PostgreSQL image=docker.io/library/postgres@sha256:4ef4dbc939d61acea57712655ddb4b4ab27419c913f94cca0cd57cb3ea3c2280 container=4e2b2e2e63665bc2a4456602624a778ec73e80beea66536be0e71739181c3b0e
+=== RUN   TestNET05ACapacity
+    net05a_capacity_test.go:429: capacity net05 100 replicas=1 phase=cold_start p95=-1.000 p99=-1.000 age=11.702
+    net05a_capacity_test.go:429: capacity net05 100 replicas=1 phase=steady p95=-1.000 p99=-1.000 age=11.700
+    net05a_capacity_test.go:429: capacity net05 100 replicas=1 phase=normal_changes p95=11.221 p99=11.696 age=11.702
+    net05a_capacity_test.go:429: capacity net05 100 replicas=1 phase=storm p95=-1.000 p99=-1.000 age=11.701
+    net05a_capacity_test.go:429: capacity net05 100 replicas=1 phase=reconnect p95=-1.000 p99=-1.000 age=11.701
+--- PASS: TestNET05ACapacity (415.47s)
+PASS
+ok  	github.com/zhangzhe-ctrl/ani-network-service/internal/data	415.481s
+removed task container=4e2b2e2e63665bc2a4456602624a778ec73e80beea66536be0e71739181c3b0e

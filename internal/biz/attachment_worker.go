@@ -10,15 +10,20 @@ import (
 )
 
 type AttachmentWork struct {
-	Attachment      Attachment
-	Plan            PodPrimaryPlan
-	Relations       []byte
-	ConsumerPodUIDs []string
-	ProtocolBlocked bool
-	Owner           string
-	Epoch           int64
+	Requirement           ObservationRequirement
+	Now                   time.Time
+	RequireFreshRelations bool
+	Attachment            Attachment
+	Plan                  PodPrimaryPlan
+	Relations             []byte
+	ConsumerPodUIDs       []string
+	ProtocolBlocked       bool
+	Owner                 string
+	Epoch                 int64
 }
 type AttachmentProgress struct {
+	Proof                           ObservationProof
+	Backoff                         bool
 	State                           AttachmentState
 	Reason                          Reason
 	PodName, PodUID, FinalizationID string
@@ -31,6 +36,7 @@ type AttachmentWorkRepository interface {
 	FinishAttachment(context.Context, AttachmentWork, AttachmentProgress) error
 }
 type AttachmentObservation struct {
+	Proof                   ObservationProof
 	Exists, HasDependencies bool
 	PodName, PodUID         string
 	Relations               []byte
@@ -55,14 +61,19 @@ type AttachmentWorker struct {
 	consumer   InstanceConsumer
 	owner      string
 	policy     WorkerPolicy
+	observer   func(context.Context, AttachmentWork, AttachmentProgress, error)
 }
 
-func NewAttachmentWorker(r AttachmentWorkRepository, p AttachmentProvider, c InstanceConsumer, owner string, policy WorkerPolicy) (*AttachmentWorker, error) {
+func NewAttachmentWorker(r AttachmentWorkRepository, p AttachmentProvider, c InstanceConsumer, owner string, policy WorkerPolicy, observers ...func(context.Context, AttachmentWork, AttachmentProgress, error)) (*AttachmentWorker, error) {
 	id, e := uuid.Parse(owner)
-	if e != nil || id == uuid.Nil || r == nil || p == nil || c == nil || policy.RequestTimeout <= 0 || policy.Lease < 3*policy.RequestTimeout || policy.ObserveEvery <= 0 {
+	if len(observers) > 1 || e != nil || id == uuid.Nil || r == nil || p == nil || c == nil || policy.RequestTimeout <= 0 || policy.Lease < 3*policy.RequestTimeout || policy.ObserveEvery <= 0 {
 		return nil, fmt.Errorf("invalid attachment worker dependencies")
 	}
-	return &AttachmentWorker{r, p, c, owner, policy}, nil
+	worker := &AttachmentWorker{repository: r, provider: p, consumer: c, owner: owner, policy: policy}
+	if len(observers) == 1 {
+		worker.observer = observers[0]
+	}
+	return worker, nil
 }
 func (w *AttachmentWorker) Step(ctx context.Context) (bool, error) {
 	ctx, cancel := context.WithTimeout(ctx, w.policy.Lease)
@@ -78,6 +89,7 @@ func (w *AttachmentWorker) Step(ctx context.Context) (bool, error) {
 	cancel()
 	if consumerErr == nil && validConsumer(a, consumer) {
 		work.ConsumerPodUIDs = consumer.PodUIDs
+		work.RequireFreshRelations = consumer.State == "closed" && a.State != Released
 	}
 	call, cancel = context.WithTimeout(ctx, w.policy.RequestTimeout)
 	o, observeErr := w.provider.ObserveAttachment(call, work)
@@ -90,6 +102,10 @@ func (w *AttachmentWorker) Step(ctx context.Context) (bool, error) {
 		}
 	} else {
 		p.Observed = true
+		p.Proof = o.Proof
+		if p.Proof.CollectedAt.IsZero() {
+			p.Proof = ObservationProof{CollectedAt: work.Now, CoveredGeneration: work.Requirement.RequestedGeneration}
+		}
 		p.Relations = o.Relations
 		if o.Exists && (o.PodUID == "" || (a.PodUID != "" && a.PodUID != o.PodUID) || (a.ConfirmUID != "" && a.ConfirmUID != o.PodUID)) {
 			p.Reason = AttachmentProtocol
@@ -142,7 +158,11 @@ func (w *AttachmentWorker) Step(ctx context.Context) (bool, error) {
 	if p.ProtocolBlocked {
 		p.Reason = AttachmentProtocol
 	}
+	p.Backoff = observeErr != nil || consumerErr != nil
 	err = w.repository.FinishAttachment(ctx, work, p)
+	if w.observer != nil {
+		w.observer(ctx, work, p, err)
+	}
 	if errors.Is(err, ErrLeaseLost) {
 		err = nil
 	}

@@ -1,0 +1,67 @@
+{
+  "fixed_before_measurements": true,
+  "seed": 5102026,
+  "attachment_counts": [
+    100,
+    1000,
+    2000
+  ],
+  "tenants": 10,
+  "subnets_per_tenant": 10,
+  "vpcs_per_tenant": 2,
+  "relations_per_attachment": {
+    "pods": 1,
+    "vnics": 1,
+    "vnicips": 1
+  },
+  "eips_per_subnet": 1,
+  "object_payload_padding_bytes": 512,
+  "replicas": [
+    1,
+    2
+  ],
+  "phases_seconds": {
+    "cold_start": 90,
+    "steady": 90,
+    "normal_changes": 90,
+    "storm": 30,
+    "reconnect": 90
+  },
+  "normal_events_per_second": 10,
+  "storm_events_per_second": 200,
+  "audit_interval_seconds": 30,
+  "audit_jitter_max_seconds": 2,
+  "audit_collect_timeout_seconds": 10,
+  "normal_latency_seconds": {
+    "p95": 2,
+    "p99": 5
+  },
+  "freshness_budget_seconds": 60,
+  "baseline_commit": "72cdd974d0d25dfd3d65051ac91a03e0e92da0d2",
+  "comparison": [
+    "requests_by_verb_gvr",
+    "response_bytes",
+    "relation_candidates",
+    "latency_p50_p95_p99",
+    "oldest_queue_age",
+    "maximum_evidence_age",
+    "rss_and_index_bytes",
+    "pg_transactions_updates_wal",
+    "fairness_by_type_tenant_parent",
+    "cold_start_and_reconnect_seconds"
+  ],
+  "heavy_pipeline_limit": 1,
+  "go_parallelism": 1,
+  "api_qps_per_replica": 40,
+  "api_burst_per_replica": 80,
+  "pg_cpu": 1,
+  "pg_memory_mib": 768,
+  "source_change_reason": "API rate limit and serial compilation fixed before the first capacity run; no measurement-driven relaxation",
+  "measurement_corrections": {
+    "reason": "preliminary 100/1 run found phase-boundary censoring and startup counter omission; corrected before final matrix and preserved preliminary results",
+    "normal_tail_max_seconds": 5,
+    "tail_policy": "stop events at exactly 90 seconds; retain pending events up to 5 seconds before censoring as failures; no SLO relaxation",
+    "storm_emission": "catch up scheduled events instead of dropping timer ticks",
+    "pagination": "independent opaque tokens retain original collection revision for each concurrent client; complete dataset unchanged"
+  }
+}

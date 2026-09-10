@@ -32,7 +32,19 @@ func buildApp(bc *conf.Bootstrap, logger *slog.Logger) (*kratos.App, error) {
 			repository.Close()
 		}
 	}()
-	provider, err := data.OpenKCProvider(repository, bc.Network.Kubeconfig)
+	clientPolicy := data.KCClientPolicy{QPS: 5, Burst: 10}
+	if o := bc.Network.Observation; o != nil {
+		clientPolicy = data.KCClientPolicy{QPS: float32(o.RequestQps), Burst: int(o.RequestBurst)}
+	}
+	provider, err := data.OpenKCProvider(repository, bc.Network.Kubeconfig, clientPolicy)
+	if err != nil {
+		return nil, err
+	}
+	options := data.DefaultObservationOptions()
+	if o := bc.Network.Observation; o != nil {
+		options = data.ObservationOptions{AuditInterval: o.AuditInterval.AsDuration(), AuditJitter: o.AuditJitter.AsDuration(), AuditTimeout: o.AuditTimeout.AsDuration(), FlushInterval: o.FlushInterval.AsDuration(), QueueCapacity: int(o.QueueCapacity)}
+	}
+	observation, err := provider.EnableObservation(options)
 	if err != nil {
 		return nil, err
 	}
@@ -49,6 +61,9 @@ func buildApp(bc *conf.Bootstrap, logger *slog.Logger) (*kratos.App, error) {
 	if err != nil {
 		return nil, err
 	}
+	if err = observability.RegisterObservation(observation); err != nil {
+		return nil, err
+	}
 	worker, err := biz.NewWorker(repository, provider, uuid.NewString(), policy, func(ctx context.Context, work biz.Work, progress biz.Progress, err error) {
 		observability.ObserveWork(ctx, logger, work, progress, err)
 	})
@@ -61,7 +76,7 @@ func buildApp(bc *conf.Bootstrap, logger *slog.Logger) (*kratos.App, error) {
 		_ = observability.Shutdown(ctx)
 		return nil, err
 	}
-	attachmentWorker, err := biz.NewAttachmentWorker(repository, provider, consumer, uuid.NewString(), policy)
+	attachmentWorker, err := biz.NewAttachmentWorker(repository, provider, consumer, uuid.NewString(), policy, observability.ObserveAttachmentWork)
 	if err != nil {
 		consumer.Close()
 		_ = observability.Shutdown(ctx)
@@ -73,13 +88,18 @@ func buildApp(bc *conf.Bootstrap, logger *slog.Logger) (*kratos.App, error) {
 		}
 	}()
 	execution = server.NewWorkerServer(worker, repository, logger, w.PollInterval.AsDuration(), attachmentWorker)
+	if o := bc.Network.Observation; o != nil {
+		if err = execution.SetConcurrency(int(o.WorkersPerKind)); err != nil {
+			return nil, err
+		}
+	}
 	middlewares := observability.ServerMiddleware(logger)
 	grpcServer := server.NewGRPCServer(bc.Server.Grpc, readiness, middlewares...)
 	networkv1.RegisterNetworkServiceServer(grpcServer, service.NewNetworkService(network, biz.NewAttachments(repository, policy.StaleAfter)))
 	adminServer := server.NewAdminServer(bc.Server.Admin, readiness, observability.Gatherer(), middlewares...)
 	app := kratos.New(
 		kratos.ID(id), kratos.Name(Name), kratos.Version(Version), kratos.Logger(logger),
-		kratos.Server(grpcServer, adminServer, execution),
+		kratos.Server(grpcServer, adminServer, observation, execution),
 		kratos.AfterStart(func(context.Context) error { readiness.Set(true); return nil }),
 		kratos.BeforeStop(func(context.Context) error { readiness.Set(false); return nil }),
 		kratos.AfterStop(func(ctx context.Context) error {

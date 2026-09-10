@@ -46,7 +46,11 @@ func (p *Postgres) ClaimAttachment(ctx context.Context, owner string, lease time
 	if e != nil {
 		return biz.AttachmentWork{}, false, e
 	}
-	work := biz.AttachmentWork{Attachment: value, Owner: owner, Epoch: a.Epoch, Relations: a.ProviderRelations, ProtocolBlocked: a.ProtocolBlocked}
+	now, e := q.DatabaseTime(ctx)
+	if e != nil {
+		return biz.AttachmentWork{}, false, databaseFailure(e)
+	}
+	work := biz.AttachmentWork{Now: now, Requirement: biz.ObservationRequirement{RequestedGeneration: a.RequestedGeneration, AppliedAt: a.EvidenceAppliedAt, Hash: a.EvidenceHash}, Attachment: value, Owner: owner, Epoch: a.Epoch, Relations: a.ProviderRelations, ProtocolBlocked: a.ProtocolBlocked}
 	if e = json.Unmarshal(a.Plan, &work.Plan); e != nil {
 		return biz.AttachmentWork{}, false, databaseFailure(e)
 	}
@@ -69,6 +73,9 @@ func (p *Postgres) FinishAttachment(ctx context.Context, w biz.AttachmentWork, p
 	if a.Version != w.Attachment.Version || a.Epoch != w.Epoch || textValue(a.LeaseOwner) != w.Owner {
 		return biz.ErrLeaseLost
 	}
+	if progress.Observed && !progress.Proof.Covers(w.Requirement) {
+		return biz.ErrLeaseLost
+	}
 	old := biz.AttachmentState(a.State)
 	valid := old == progress.State || (old == biz.Reserved && (progress.State == biz.Attached || progress.State == biz.Releasing || progress.State == biz.Released)) || (old == biz.Attached && (progress.State == biz.Releasing || progress.State == biz.Released)) || (old == biz.Releasing && progress.State == biz.Released)
 	if !valid || (a.PodUid != "" && a.PodUid != progress.PodUID) || (a.FinalizationID != nil && *a.FinalizationID != progress.FinalizationID) {
@@ -78,7 +85,7 @@ func (p *Postgres) FinishAttachment(ctx context.Context, w biz.AttachmentWork, p
 	if progress.FinalizationID != "" {
 		finalization = &progress.FinalizationID
 	}
-	row, e := q.FinishAttachment(ctx, sqlcgen.FinishAttachmentParams{TenantID: a.TenantID, AttachmentID: a.AttachmentID, Version: a.Version, Epoch: w.Epoch, Owner: w.Owner, State: string(progress.State), Reason: string(progress.Reason), ProtocolBlocked: a.ProtocolBlocked || progress.ProtocolBlocked, PodName: progress.PodName, PodUid: progress.PodUID, FinalizationID: finalization, ProviderRelations: progress.Relations, Observed: progress.Observed, DelayMicros: progress.NextDelay.Microseconds()})
+	row, e := q.FinishAttachment(ctx, sqlcgen.FinishAttachmentParams{TenantID: a.TenantID, AttachmentID: a.AttachmentID, Version: a.Version, Epoch: w.Epoch, Owner: w.Owner, State: string(progress.State), Reason: string(progress.Reason), ProtocolBlocked: a.ProtocolBlocked || progress.ProtocolBlocked, PodName: progress.PodName, PodUid: progress.PodUID, FinalizationID: finalization, ProviderRelations: progress.Relations, Observed: progress.Observed, ObservedAt: proofTime(progress.Observed, progress.Proof), CoveredGeneration: coveredGeneration(progress.Observed, progress.Proof, w.Requirement), EvidenceHash: progress.Proof.Hash, Backoff: progress.Backoff, DelayMicros: progress.NextDelay.Microseconds()})
 	if errors.Is(e, pgx.ErrNoRows) {
 		return biz.ErrLeaseLost
 	}

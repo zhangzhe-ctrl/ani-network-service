@@ -46,7 +46,7 @@ ORDER BY r.next_run_at,s.subnet_id LIMIT 1 FOR UPDATE OF s SKIP LOCKED;
 
 -- name: AdvanceSubnet :one
 UPDATE network_subnets SET state=sqlc.arg(state),reason=sqlc.arg(reason),version=version+1,updated_at=clock_timestamp(),
- observed_at=CASE WHEN sqlc.arg(observed)::boolean THEN clock_timestamp() ELSE observed_at END
+ observed_at=CASE WHEN sqlc.arg(observed)::boolean THEN sqlc.narg(observed_at)::timestamptz ELSE observed_at END
 WHERE tenant_id=sqlc.arg(tenant_id) AND subnet_id=sqlc.arg(subnet_id) AND version=sqlc.arg(version) RETURNING *;
 
 -- name: AdmitSubnetDeletion :one

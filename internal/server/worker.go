@@ -22,6 +22,7 @@ type WorkerServer struct {
 	database         DatabaseReadiness
 	logger           *slog.Logger
 	poll             time.Duration
+	concurrency      int
 	mu               sync.Mutex
 	started, stopped bool
 	cancel           context.CancelFunc
@@ -36,7 +37,7 @@ type Stepper interface {
 }
 
 func NewWorkerServer(worker Stepper, database DatabaseReadiness, logger *slog.Logger, poll time.Duration, additional ...Stepper) *WorkerServer {
-	return &WorkerServer{worker: worker, database: database, logger: logger, poll: poll, additional: additional, done: make(chan struct{})}
+	return &WorkerServer{worker: worker, database: database, logger: logger, poll: poll, concurrency: 1, additional: additional, done: make(chan struct{})}
 }
 func (s *WorkerServer) Ready() bool {
 	return s.alive.Load() && s.databaseReady.Load() && time.Since(time.Unix(0, s.databaseChecked.Load())) < 3*time.Second
@@ -66,6 +67,41 @@ func (s *WorkerServer) Start(parent context.Context) (err error) {
 	go func() { defer close(healthDone); s.monitorDatabase(ctx) }()
 	defer func() { cancel(); <-healthDone }()
 	s.alive.Store(true)
+	// Each resource lane has reserved capacity; owner RPCs cannot consume it.
+	lanes := append([]Stepper{s.worker}, s.additional...)
+	results := make(chan error, len(lanes)*s.concurrency)
+	var group sync.WaitGroup
+	for _, stepper := range lanes {
+		for i := 0; i < s.concurrency; i++ {
+			group.Add(1)
+			go func() { defer group.Done(); results <- s.runLane(ctx, stepper) }()
+		}
+	}
+	select {
+	case <-ctx.Done():
+	case err = <-results:
+	}
+	cancel()
+	group.Wait()
+	return err
+}
+
+// SetConcurrency is only valid before Start. It bounds each kind separately.
+func (s *WorkerServer) SetConcurrency(n int) error {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+	if s.started || n < 1 || n > 4 {
+		return fmt.Errorf("invalid worker concurrency")
+	}
+	s.concurrency = n
+	return nil
+}
+func (s *WorkerServer) runLane(ctx context.Context, stepper Stepper) (err error) {
+	defer func() {
+		if recover() != nil {
+			err = fmt.Errorf("network worker terminated unexpectedly")
+		}
+	}()
 	timer := time.NewTimer(0)
 	defer timer.Stop()
 	for {
@@ -74,15 +110,7 @@ func (s *WorkerServer) Start(parent context.Context) (err error) {
 			return nil
 		case <-timer.C:
 		}
-		worked, stepErr := s.worker.Step(ctx)
-		for _, additional := range s.additional {
-			if stepErr != nil || ctx.Err() != nil {
-				break
-			}
-			ran, err := additional.Step(ctx)
-			worked = worked || ran
-			stepErr = err
-		}
+		worked, stepErr := stepper.Step(ctx)
 		if ctx.Err() != nil {
 			return nil
 		}
@@ -100,6 +128,7 @@ func (s *WorkerServer) Start(parent context.Context) (err error) {
 		timer.Reset(delay)
 	}
 }
+
 func (s *WorkerServer) monitorDatabase(ctx context.Context) {
 	ticker := time.NewTicker(time.Second)
 	defer ticker.Stop()

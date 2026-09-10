@@ -1,0 +1,130 @@
+#!/usr/bin/env python3
+"""Evaluate the frozen NET-05A capacity contract without changing measurements.
+
+Input: an exported run directory containing capacity/, capacity-results.json and
+snapshot.json. Output is a derived JSON report plus a compact Markdown comparison.
+Incomplete runs remain not_verified. Baseline performance failures are retained.
+"""
+import argparse, hashlib, json, pathlib
+
+p = argparse.ArgumentParser(description=__doc__)
+p.add_argument('run', type=pathlib.Path)
+p.add_argument('--baseline-from', type=pathlib.Path, help='reuse only completed fixed old-version cases; each case retains its original evidence source')
+p.add_argument('--contract', type=pathlib.Path, default=pathlib.Path(__file__).resolve().parents[1] / 'docs/execution/records/NET-05A/capacity-contract.json')
+a = p.parse_args()
+contract = json.loads(a.contract.read_text())
+results = [(a.run, row) for row in json.loads((a.run / 'capacity-results.json').read_text())]
+if a.baseline_from:
+    results += [(a.baseline_from, row) for row in json.loads((a.baseline_from / 'capacity-results.json').read_text()) if row['variant'] == 'net05']
+cases = {}
+for source, execution in results:
+    if 'attachments' not in execution:
+        # Early preliminary receipts carried counts only in their unique summary.
+        candidates = list((source / 'capacity').glob(execution['variant'] + '-*/summary.json'))
+        assert len(candidates) == 1, 'ambiguous historical capacity receipt'
+        identity = json.loads(candidates[0].read_text())
+        execution = execution | {k: identity[k] for k in ['attachments', 'replicas']}
+    name = '{variant}-{attachments}-{replicas}'.format(**execution)
+    assert name not in cases, 'duplicate capacity case: ' + name
+    folder = source / 'capacity' / name
+    summary = json.loads((folder / 'summary.json').read_text())
+    samples = [json.loads(line) for line in (folder / 'samples.jsonl').read_text().splitlines()]
+    phases = {phase['phase']: phase for phase in summary['phase_results']}
+    observers = [o for s in samples for o in s['observer'].values()]
+    maximum = lambda key: max((o.get(key, 0) for o in observers), default=0)
+    normal = phases.get('normal_changes', {})
+    before_reconnect = next((s for s in reversed(samples) if s['phase'] == 'storm'), None)
+    streams_recovered, audit_recovered = None, None
+    if before_reconnect and execution['variant'] == 'net05a':
+        for sample in [s for s in samples if s['phase'] == 'reconnect']:
+            current = sample['observer']
+            if streams_recovered is None and len(current) == execution['replicas'] and all(
+                current.get(replica, {}).get('bytes_WATCH_' + gvr + '_total', 0) > old.get('bytes_WATCH_' + gvr + '_total', 0)
+                and current.get(replica, {}).get('requests_WATCH_' + gvr + '_total', 0) > old.get('requests_WATCH_' + gvr + '_total', 0)
+                for replica, old in before_reconnect['observer'].items()
+                for gvr in ['vpcs', 'subnets', 'pods', 'vnics', 'vnicips', 'eips']):
+                streams_recovered = sample['elapsed_seconds']
+            if streams_recovered is not None and all(
+                0 <= observer.get('audit_evidence_age_seconds', 1e9) < sample['elapsed_seconds'] - streams_recovered
+                for observer in current.values()):
+                audit_recovered = sample['elapsed_seconds']
+                break
+    steps = summary.get('worker', {})
+    step_max = max((v for k, v in steps.items() if k.endswith('_max_seconds')), default=0)
+    collection = maximum('audit_collection_max_seconds')
+    queue = max([maximum('durable_queue_age_seconds'), *[r['max_queue_age_seconds'] for r in phases.values()]])
+    evidence = max((r['max_evidence_age_seconds'] for r in phases.values()), default=0)
+    # auditLoop waits after collection and its bounded PG telemetry probe. Count
+    # the previous and next full collections, then durable observation deadline,
+    # measured queue, poll and end-to-end Step (which includes the commit).
+    budget_parts = {'audit_interval_and_jitter': 32, 'previous_and_next_collection': 2 * collection,
+                    'telemetry_timeout': .5, 'durable_observation_deadline': 10,
+                    'measured_queue': queue, 'worker_poll': .1, 'measured_step': step_max}
+    budget = sum(budget_parts.values())
+    checks = {
+        'execution': execution['exit'] == 0,
+        'phases_complete': set(phases) == set(contract['phases_seconds']),
+        'normal_emissions': normal.get('emitted_events') == 900,
+        'normal_samples': normal.get('latency_samples') == 900,
+        'storm_emissions': phases.get('storm', {}).get('emitted_events') == 6000,
+        'normal_p95': 0 <= normal.get('p95', -1) <= 2,
+        'normal_p99': 0 <= normal.get('p99', -1) <= 5,
+        'normal_no_missed': normal.get('missed_changes') == 0,
+        'cold_converged': 0 <= summary.get('cold_converged_seconds', -1) < 60,
+        'maximum_evidence_age': evidence < 60,
+        'all_type_tenant_parent_groups_fresh': all(r['maximum_evidence_age_seconds'] < 60 for r in summary['fairness'].values()),
+    }
+    if execution['variant'] == 'net05a':
+        checks.update(audit_measured=collection > 0, worst_measured_budget=budget < 60, reconnect_watch_and_audit=audit_recovered is not None and audit_recovered < 60)
+    cases[name] = {'status': 'pass' if all(checks.values()) else 'fail', 'checks': checks, 'evidence_source': str(source),
+                   'execution': execution, 'dataset_sha256': summary['dataset_sha256'],
+                   'object_count': summary.get('objects'), 'object_bytes': summary.get('object_bytes'),
+                   'cold_converged_seconds': summary.get('cold_converged_seconds'),
+                   'normal_p95': normal.get('p95'), 'normal_p99': normal.get('p99'),
+                   'maximum_evidence_age_seconds': evidence, 'maximum_queue_age_seconds': queue,
+                   'audit_collection_max_seconds': collection, 'reconnect_stream_bytes_upper_seconds': streams_recovered, 'reconnect_watch_and_audit_upper_seconds': audit_recovered, 'worst_measured_budget_seconds': budget if execution['variant'] == 'net05a' else None,
+                   'budget_parts_seconds': budget_parts, 'fairness_groups': len(summary['fairness']),
+                   'max_audit_index_payload_bytes': maximum('audit_index_payload_bytes'),
+                   'max_watch_index_payload_bytes': maximum('watch_index_payload_bytes'),
+                   'max_process_rss_high_water_bytes': max((s['rss_high_water_bytes'] for s in samples), default=0),
+                   'maximum_relation_candidates_total': maximum('relation_candidates_total'),
+                   'phases': phases,
+                   'raw_sha256': {f.name: hashlib.sha256(f.read_bytes()).hexdigest() for f in folder.iterdir() if f.is_file()}}
+
+pairs = []
+for count in contract['attachment_counts']:
+    for replicas in contract['replicas']:
+        old, new = [cases.get(f'{variant}-{count}-{replicas}') for variant in ['net05', 'net05a']]
+        if not old or not new:
+            pairs.append({'attachments': count, 'replicas': replicas, 'status': 'not_verified'})
+            continue
+        same = old['dataset_sha256'] == new['dataset_sha256']
+        old_list = sum(v for k, v in old['phases']['steady']['requests'].items() if k in ['LIST/pods', 'LIST/vnics', 'LIST/vnicips', 'LIST/eips'])
+        new_list = sum(v for k, v in new['phases']['steady']['requests'].items() if k in ['LIST/pods', 'LIST/vnics', 'LIST/vnicips', 'LIST/eips'])
+        pairs.append({'attachments': count, 'replicas': replicas, 'dataset_identical': same,
+                      'baseline_status': old['status'], 'current_status': new['status'],
+                      'old_steady_relation_list_pages': old_list, 'new_steady_relation_list_pages': new_list,
+                      'status': 'pass' if same and new['status'] == 'pass' and new_list < old_list else 'fail'})
+status = 'not_verified' if any(r['status'] == 'not_verified' for r in pairs) else ('pass' if all(r['status'] == 'pass' for r in pairs) else 'fail')
+report = {'status': status, 'contract_sha256': hashlib.sha256(a.contract.read_bytes()).hexdigest(), 'cases': cases, 'comparisons': pairs,
+          'limits': ['Controlled HTTP List/Watch provider and real PostgreSQL on one ubuntu host; no production kc capacity claim.',
+                     'Replica clients, observers and PG pools are independent but share one Go process; real process recovery has separate evidence.',
+                     'RSS is process high-water memory including fixture; index payload is encoded JSON, not allocator memory.',
+                     'The conservative budget sums measured maxima and configured delays in this fixed load; it is not an unlimited-load guarantee.',
+                     'Reconnect recovery is an upper bound from approximately one-second samples: bytes arrive again on all six streams in every replica, followed by a complete audit begun after that sample; applied-state safety is checked separately.',
+                     'A passing Go benchmark execution only confirms measurement completion; contract checks above determine performance status.']}
+if a.baseline_from:
+    report['limits'].append('Old-version measurements are reused from the explicitly named earlier run on the same host and fixed dataset; they were not rerun concurrently with this current version. Source manifests and resource samples remain separate.')
+(a.run / 'capacity-evaluation.json').write_text(json.dumps(report, indent=2, ensure_ascii=False) + '\n')
+lines = ['# NET-05A 固定容量对照', '', f'结果：`{status}`。逐项原始数据、断言及摘要见 [capacity-evaluation.json](capacity-evaluation.json)。', '',
+         '| Attachment / 副本 | 版本 | 冷启动 s | 正常 p95 / p99 s | 最大证据年龄 s | 保守预算 s | 结果 |', '|---|---|---:|---:|---:|---:|---|']
+number = lambda v: '-' if v is None else f'{v:.3f}'
+for name, row in cases.items():
+    ex = row['execution']
+    lines.append(f"| {ex['attachments']} / {ex['replicas']} | {ex['variant']} | {number(row['cold_converged_seconds'])} | {number(row['normal_p95'])} / {number(row['normal_p99'])} | {row['maximum_evidence_age_seconds']:.3f} | {number(row['worst_measured_budget_seconds'])} | {row['status']} |")
+lines += ['', '正常阶段固定 90 秒、10 次/秒；仅延长最多 5 秒收集尾部已发事件，不延长事件阶段或放宽 SLO。风暴为 30 秒、200 次/秒。旧版本超目标仍记 fail。', '',
+          '预算包含 32 秒间隔/抖动、前后两次实测最长完整采集、0.5 秒遥测探测、10 秒持久执行间隔、实测最长排队、0.1 秒轮询和最长 Step（含提交）。完整采集失败或来源边界失效时不能据此承诺 fresh，实际 stale 与拒绝准入另有故障测试。', '',
+          '两副本共享一个 Go 测量进程；RSS 含受控服务端，索引字节是 JSON payload 估计。PG 事务、UPDATE、WAL、各 verb/GVR 请求与字节完整保留在 JSON，优化没有消除证据回写成本。', '']
+(a.run / 'capacity-comparison.md').write_text('\n'.join(lines))
+print(json.dumps({'status': status, 'cases': len(cases), 'comparisons': pairs}, ensure_ascii=False))
+raise SystemExit(0 if status == 'pass' else 2)

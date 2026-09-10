@@ -1,0 +1,6 @@
+source.tar.gz: OK
+verified source files: 360
+test "$(/home/ubuntu/workspace/ani-network-service-runs/net05a-20260910T050249Z-b717cb8f/source/.tools/bin/sqlc version)" = "v1.31.1"
+test "$(go version -m /home/ubuntu/workspace/ani-network-service-runs/net05a-20260910T050249Z-b717cb8f/source/.tools/bin/sqlc | awk '$1 == "mod" {print $2 "@" $3; exit}')" = "github.com/sqlc-dev/sqlc@v1.31.1"
+/home/ubuntu/workspace/ani-network-service-runs/net05a-20260910T050249Z-b717cb8f/source/.tools/bin/sqlc generate
+REMOTE_COMMAND_EXIT=0

@@ -1,0 +1,26 @@
+[
+  {
+    "role": "network",
+    "database": "ani",
+    "exit": 2,
+    "response": "psql: error: connection to server at \"127.0.0.1\", port 5432 failed: FATAL:  permission denied for database \"ani\"\nDETAIL:  User does not have CONNECT privilege.\n"
+  },
+  {
+    "role": "ani",
+    "database": "network",
+    "exit": 2,
+    "response": "psql: error: connection to server at \"127.0.0.1\", port 5432 failed: FATAL:  permission denied for database \"network\"\nDETAIL:  User does not have CONNECT privilege.\n"
+  },
+  {
+    "role": "network",
+    "action": "DDL",
+    "exit": 3,
+    "response": "ERROR:  permission denied for schema public\nLINE 1: CREATE TABLE net05_forbidden(id int);\n                     ^\n"
+  },
+  {
+    "role": "ani",
+    "action": "DDL",
+    "exit": 3,
+    "response": "ERROR:  permission denied for schema public\nLINE 1: CREATE TABLE net05_forbidden(id int);\n                     ^\n"
+  }
+]

@@ -1,0 +1,18 @@
+capacity start net05a attachments=100 replicas=1
+    net05a_capacity_test.go:429: capacity net05a 100 replicas=1 phase=cold_start p95=-1.000 p99=-1.000 age=40.594
+    net05a_capacity_test.go:429: capacity net05a 100 replicas=1 phase=steady p95=-1.000 p99=-1.000 age=40.248
+    net05a_capacity_test.go:429: capacity net05a 100 replicas=1 phase=normal_changes p95=0.176 p99=0.196 age=37.702
+    net05a_capacity_test.go:429: capacity net05a 100 replicas=1 phase=storm p95=-1.000 p99=-1.000 age=37.524
+    net05a_capacity_test.go:429: capacity net05a 100 replicas=1 phase=reconnect p95=-1.000 p99=-1.000 age=36.761
+--- PASS: TestNET05ACapacity (410.74s)
+PASS
+{"attachments": 100, "replicas": 1, "variant": "net05a", "exit": 0, "elapsed_seconds": 423.49236154556274, "command": ["scripts/integration", "-run", "^TestNET05ACapacity$", "-timeout", "18m", "-v", "./internal/data"], "log_sha256": "9328a4118d55efd92bca5c3e0309e7c33bc3a9cf58fddc40a63438d7043e80c2"}
+capacity start net05a attachments=100 replicas=2
+    net05a_capacity_test.go:429: capacity net05a 100 replicas=2 phase=cold_start p95=-1.000 p99=-1.000 age=40.519
+    net05a_capacity_test.go:429: capacity net05a 100 replicas=2 phase=steady p95=-1.000 p99=-1.000 age=40.607
+    net05a_capacity_test.go:429: capacity net05a 100 replicas=2 phase=normal_changes p95=0.171 p99=0.196 age=37.206
+    net05a_capacity_test.go:429: capacity net05a 100 replicas=2 phase=storm p95=-1.000 p99=-1.000 age=41.967
+    net05a_capacity_test.go:429: capacity net05a 100 replicas=2 phase=reconnect p95=-1.000 p99=-1.000 age=41.154
+--- PASS: TestNET05ACapacity (410.64s)
+PASS
+{"attachments": 100, "replicas": 2, "variant": "net05a", "exit": 0, "elapsed_seconds": 414.6667926311493, "command": ["scripts/integration", "-run", "^TestNET05ACapacity$", "-timeout", "18m", "-v", "./internal/data"], "log_sha256": "644505b7c2c78de9e784ed31e62b6d486d6e10f3d36193ca61feffa0c65cd693"}

@@ -1,0 +1,33 @@
+{
+  "at": "2026-09-10T08:55:54.029014+00:00",
+  "status": "pass",
+  "host": "ubuntu / i-8yg2l7u8",
+  "run": "20260910T085304Z-3a592e95",
+  "command": [
+    "make",
+    "audit"
+  ],
+  "exit": 0,
+  "audit_log": "stages/20260910T085304Z-3a592e95/command.log",
+  "log_sha256": "f54f206e65743768949882d996bfca90be2529945dd29e96bd68b40a05e459b6",
+  "input_source_manifest_sha256": "4d83c5c2070f7040d4c4be5906cf12fe1ac06597e0a46fbcc21f026b8099d864",
+  "source_archive_sha256": "94da60e7107e6251ee4af26433d45c461755f7c36d8dc716452daa7987516ea4",
+  "temporary_repository_commit": "37a9956f14aaeaf20819a7f2f67c4e57e435f480",
+  "deterministic_sbom_source_snapshot": "326a9d1ccea330aee3595044836c665f696abc35",
+  "cyclonedx_tool_sha256": "dc7031a1f097ffa92660275e360c5a7e8c8511313403b3caa000e7ca0845f653",
+  "sbom_output_sha256": "9f62b81c4fe8043a5bc391330bc6377a979d68b6f32ac845c9db731a992c0084",
+  "returned_file": "docs/scaffold/bom.cdx.json",
+  "previous_local_sbom_sha256": "bd7fbe51d3756b2119a224027b0d1cd824b86782e0fd763fd65facfcbdf9820f",
+  "return_safety": "downloaded to task temporary file, structurally reviewed, remote digest verified, local before-hash rechecked, only generated SBOM copied",
+  "review": "prior 59 dependency components unchanged; existing pinned go-difflib added with references; root source identity updated",
+  "local_matches_audited_input_except_generated_sbom": true,
+  "production_matches_final_live_and_capacity": "67 files; see final-source-audit.json and final-capacity-source-match.json",
+  "source_profile": "396 files; explicit snapshot exclusion list retained, raw NET-05A/KC evidence and private inputs excluded; generated SBOM is not its own source input",
+  "checks": {
+    "vulnerability_scan": "pass",
+    "gitleaks": "pass",
+    "pinned_sbom_generation": "pass",
+    "supply_chain_verification": "pass"
+  },
+  "limits": "No local commit or publishing. A future different publication payload requires its own source identity and verification."
+}

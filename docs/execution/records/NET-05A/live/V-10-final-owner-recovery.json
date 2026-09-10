@@ -1,0 +1,123 @@
+{
+  "released": {
+    "tenant_id": "18648eba-1f32-4ddd-9029-c0b84ae0f875",
+    "attachment_id": "att_ee379a6268324b2695bf10a99d6c0b83",
+    "vpc_id": "vpc_f0d42bf23e924844be5dc475c180f065",
+    "subnet_id": "subnet_ae4b098edcd541af865c9847442bc9c2",
+    "binding_id": "e3df8789-a97c-490c-b919-fdc4f03bbc6f",
+    "instance_id": "inst_ac7f45b4-3e85-47e8-ade5-f7dddb9ac962",
+    "slot": "primary",
+    "request_key": "net05a-1fae0bbf-auditfix-owner-recovery",
+    "submission_id": "05c7ae52-e71c-45ad-9823-826fc3045412",
+    "generation": 1,
+    "fingerprint": "005d102a58588229fafabad48b03a850050a96bc840532c6f6823b4460898ea2",
+    "cluster_id": "net05a-1fae0bbf",
+    "namespace": "net05a-1fae0bbf-18648eba-1f32-4ddd-9029-c0b84ae0f875",
+    "binding_revision": "e3df8789-a97c-490c-b919-fdc4f03bbc6f:97a2b426-d236-4dbb-accf-f723982ff8f5",
+    "plan": {
+      "TenantID": "18648eba-1f32-4ddd-9029-c0b84ae0f875",
+      "Namespace": "net05a-1fae0bbf-18648eba-1f32-4ddd-9029-c0b84ae0f875",
+      "Generation": 1,
+      "InstanceID": "inst_ac7f45b4-3e85-47e8-ade5-f7dddb9ac962",
+      "AttachmentID": "att_ee379a6268324b2695bf10a99d6c0b83",
+      "SubmissionID": "05c7ae52-e71c-45ad-9823-826fc3045412",
+      "FormatVersion": 1,
+      "PrimaryNetworkRef": "net05a-1fae0bbf-18648eba-1f32-4ddd-9029-c0b84ae0f875/subnet-ae4b098edcd541af865c9847442bc9c2"
+    },
+    "state": "released",
+    "reason": "",
+    "protocol_blocked": false,
+    "version": 12,
+    "pod_name": "net05a-1fae0bbf-auditfix-owner-recovery-66668c86cd-tb5d4",
+    "pod_uid": "cf795af3-ebbb-4f0d-a6ca-6e0b2e8745dd",
+    "confirm_uid": "",
+    "finalization_id": "f5196f38-7d22-45d9-ad82-b8468b543a4a",
+    "provider_relations": [
+      {
+        "UID": "ae5cd8b8-b28e-4a96-a7d5-ea6db4c7a708",
+        "Kind": "VNic",
+        "Name": "auto-net05a-1fae0bbf-auditfix-owner-recover-vnic-zx5s2",
+        "OwnerUID": "cf795af3-ebbb-4f0d-a6ca-6e0b2e8745dd",
+        "Namespace": "net05a-1fae0bbf-18648eba-1f32-4ddd-9029-c0b84ae0f875"
+      },
+      {
+        "UID": "0064cd90-3d62-40f6-bcd8-4469a596d66b",
+        "Kind": "VNicIP",
+        "Name": "auto-net05a-1fae0bbf-auditfix-owner-recover-vnic-zx5s2",
+        "OwnerUID": "ae5cd8b8-b28e-4a96-a7d5-ea6db4c7a708",
+        "Namespace": "net05a-1fae0bbf-18648eba-1f32-4ddd-9029-c0b84ae0f875"
+      }
+    ],
+    "created_at": "2026-09-10T07:57:28.594949+00:00",
+    "updated_at": "2026-09-10T08:01:00.855702+00:00",
+    "observed_at": "2026-09-10T08:00:59.456119+00:00",
+    "released_at": "2026-09-10T08:01:00.855702+00:00",
+    "next_check_at": "2026-09-10T08:01:30.855702+00:00",
+    "lease_owner": null,
+    "lease_until": null,
+    "epoch": 11,
+    "requested_generation": 12,
+    "processed_generation": 12,
+    "retry_not_before": "1970-01-01T00:00:00+00:00",
+    "evidence_hash": "2f5479ddc0e60cae5626ee0f79e1576b4be0d57744908210f078836d707be61d",
+    "evidence_applied_at": "2026-09-10T08:01:00.855704+00:00"
+  },
+  "final_owner": {
+    "tenant_id": "18648eba-1f32-4ddd-9029-c0b84ae0f875",
+    "instance_id": "inst_ac7f45b4-3e85-47e8-ade5-f7dddb9ac962",
+    "submission_id": "05c7ae52-e71c-45ad-9823-826fc3045412",
+    "operation_id": "37402c6e-1397-494b-a3cc-6b67ae20927d",
+    "state": "closed",
+    "version": 54,
+    "phase": "closed",
+    "reason": "",
+    "pod_uid": "cf795af3-ebbb-4f0d-a6ca-6e0b2e8745dd",
+    "pod_name": "net05a-1fae0bbf-auditfix-owner-recovery-66668c86cd-tb5d4",
+    "pending_confirm": "false",
+    "pending_release": "false",
+    "finalization_id": "f5196f38-7d22-45d9-ad82-b8468b543a4a",
+    "identity_revoked": "true",
+    "objects": [
+      {
+        "UID": "bbf89632-910e-487c-b11f-a1e58ca55a32",
+        "Kind": "Secret",
+        "Name": "ani-wi-ae22a1aa-04fc-40e5-a881",
+        "Phase": "deleted",
+        "Namespace": "net05a-1fae0bbf-18648eba-1f32-4ddd-9029-c0b84ae0f875",
+        "ResourceVersion": "158575"
+      },
+      {
+        "UID": "fdbf8414-59e7-43a7-87f2-97b1d324e375",
+        "Kind": "Service",
+        "Name": "net05a-1fae0bbf-auditfix-owner-recovery",
+        "Phase": "deleted",
+        "Namespace": "net05a-1fae0bbf-18648eba-1f32-4ddd-9029-c0b84ae0f875",
+        "ResourceVersion": "158598"
+      },
+      {
+        "UID": "e9391647-4e44-4a3c-b2e2-5eae3280b222",
+        "Kind": "Deployment",
+        "Name": "net05a-1fae0bbf-auditfix-owner-recovery",
+        "Phase": "deleted",
+        "Namespace": "net05a-1fae0bbf-18648eba-1f32-4ddd-9029-c0b84ae0f875",
+        "ResourceVersion": "158736"
+      }
+    ]
+  },
+  "pod_identity": {
+    "name": "net05a-1fae0bbf-auditfix-owner-recovery-66668c86cd-tb5d4",
+    "uid": "cf795af3-ebbb-4f0d-a6ca-6e0b2e8745dd",
+    "ip": "10.205.40.2",
+    "node": "kc062-worker2",
+    "namespace": "net05a-1fae0bbf-18648eba-1f32-4ddd-9029-c0b84ae0f875",
+    "tenant": 0,
+    "fixture_id": "net05a-1fae0bbf-auditfix-owner-recovery",
+    "instance_id": "inst_ac7f45b4-3e85-47e8-ade5-f7dddb9ac962",
+    "attachment_id": "att_ee379a6268324b2695bf10a99d6c0b83",
+    "subnet_id": "subnet_ae4b098edcd541af865c9847442bc9c2",
+    "vpc_id": "vpc_f0d42bf23e924844be5dc475c180f065",
+    "port": 18083,
+    "gateway": "10.205.40.1",
+    "image_id": "docker.io/library/import-2026-09-10@sha256:8b305a958323064c72a1215a35b41cb5af96f1c435d33e5425664572a2b85176"
+  }
+}

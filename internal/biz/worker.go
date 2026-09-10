@@ -41,11 +41,14 @@ func (e *ProviderError) Unwrap() error { return e.Cause }
 // ProviderTarget contains only domain references and an opaque provider object
 // identity. The adapter resolves namespace/name/cluster from its persisted map.
 type ProviderTarget struct {
+	Requirement                                          ObservationRequirement
+	Direct                                               bool
 	TenantID, ResourceID, BindingID, KnownIdentity, CIDR string
 	Kind, VPCID, Gateway                                 string
 }
 
 type ProviderObservation struct {
+	Proof                          ObservationProof
 	Exists, Ready, HasDependencies bool
 	Identity                       string
 }
@@ -71,6 +74,7 @@ type ResourceWork struct {
 }
 
 type Work struct {
+	Requirement     ObservationRequirement
 	Resource        ResourceWork
 	Operation       Operation
 	ActiveOperation bool
@@ -84,6 +88,8 @@ type Work struct {
 }
 
 type Progress struct {
+	Proof          ObservationProof
+	Backoff        bool
 	State          ResourceState
 	OperationState OperationState
 	Reason         Reason
@@ -152,6 +158,7 @@ func (w *Worker) Step(ctx context.Context) (bool, error) {
 	target := ProviderTarget{
 		TenantID: work.Resource.TenantID, ResourceID: work.Resource.ID, BindingID: work.BindingID,
 		KnownIdentity: work.KnownIdentity, CIDR: work.Resource.CIDR,
+		Requirement: work.Requirement, Direct: work.ActiveOperation || work.PendingAction != "" || work.Resource.State == Deleted,
 		Kind: work.Resource.Kind, VPCID: work.Resource.VPCID, Gateway: work.Resource.Gateway,
 	}
 	callCtx, cancel := context.WithTimeout(ctx, w.policy.RequestTimeout)
@@ -172,6 +179,10 @@ func (w *Worker) Step(ctx context.Context) (bool, error) {
 		}
 	} else {
 		progress.Observed = true
+		progress.Proof = observation.Proof
+		if progress.Proof.CollectedAt.IsZero() {
+			progress.Proof = ObservationProof{CollectedAt: work.Now, CoveredGeneration: work.Requirement.RequestedGeneration}
+		}
 		progress.Identity = observation.Identity
 		if progress.Identity == "" {
 			progress.Identity = work.KnownIdentity
@@ -189,6 +200,10 @@ func (w *Worker) Step(ctx context.Context) (bool, error) {
 		default:
 			progress, err = w.ensure(ctx, work, target, observation, progress)
 		}
+	}
+	progress.Backoff = observeErr != nil || (work.ActiveOperation && progress.OperationState != Succeeded && progress.OperationState != OpFailed)
+	if progress.Backoff {
+		progress.NextDelay = w.retryDelay(work.Attempt)
 	}
 	if err == nil {
 		err = w.repository.Finish(ctx, work, progress)
@@ -248,6 +263,9 @@ func (w *Worker) ensure(ctx context.Context, work Work, target ProviderTarget, o
 			return progress, nil
 		}
 		observed = value
+		if !value.Proof.CollectedAt.IsZero() {
+			progress.Proof = value.Proof
+		}
 		progress.Identity = observed.Identity
 		progress.ClearPending = true
 	}

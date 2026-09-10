@@ -3,6 +3,7 @@ package data
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 	"github.com/zhangzhe-ctrl/ani-network-service/internal/biz"
 	"github.com/zhangzhe-ctrl/ani-network-service/internal/data/sqlcgen"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
@@ -26,13 +27,26 @@ type attachmentRelation struct{ Kind, Namespace, Name, UID, OwnerUID string }
 func (p *KCProvider) listAll(ctx context.Context, resource schema.GroupVersionResource) ([]unstructured.Unstructured, error) {
 	var values []unstructured.Unstructured
 	next := ""
+	revision := ""
+	seen := map[string]bool{}
 	for {
 		page, e := p.client.Resource(resource).List(ctx, metav1.ListOptions{Limit: 500, Continue: next})
 		if e != nil {
 			return nil, readFailure(e)
 		}
+		if p.observation != nil && page.GetResourceVersion() == "" {
+			return nil, readFailure(fmt.Errorf("audit LIST has no collection revision"))
+		}
+		if revision != "" && page.GetResourceVersion() != revision {
+			return nil, readFailure(fmt.Errorf("audit pagination revision changed"))
+		}
+		revision = page.GetResourceVersion()
 		values = append(values, page.Items...)
 		next = page.GetContinue()
+		if next != "" && seen[next] {
+			return nil, readFailure(fmt.Errorf("audit pagination repeated token"))
+		}
+		seen[next] = true
 		if next == "" {
 			return values, nil
 		}
@@ -53,7 +67,7 @@ func ownerUID(o unstructured.Unstructured, kind string, ids map[string]bool) (st
 	}
 	return "", false
 }
-func (p *KCProvider) ObserveAttachment(ctx context.Context, w biz.AttachmentWork) (biz.AttachmentObservation, error) {
+func (p *KCProvider) observeAttachment(ctx context.Context, w biz.AttachmentWork, list func(context.Context, schema.GroupVersionResource) ([]unstructured.Unstructured, error)) (biz.AttachmentObservation, error) {
 	a, plan := w.Attachment, w.Plan
 	conflict := func() (biz.AttachmentObservation, error) {
 		return biz.AttachmentObservation{}, &biz.ProviderError{Kind: biz.ProviderConflict}
@@ -86,7 +100,7 @@ func (p *KCProvider) ObserveAttachment(ctx context.Context, w biz.AttachmentWork
 			vnicNames[r.Namespace+"/"+r.Name] = r.UID
 		}
 	}
-	allPods, e := p.listAll(ctx, pods)
+	allPods, e := list(ctx, pods)
 	if e != nil {
 		return biz.AttachmentObservation{}, e
 	}
@@ -113,7 +127,7 @@ func (p *KCProvider) ObserveAttachment(ctx context.Context, w biz.AttachmentWork
 		result.PodUID = string(o.GetUID())
 		podUIDs[result.PodUID] = true
 	}
-	vnics, e := p.listAll(ctx, schema.GroupVersionResource{Group: kcVPCs.Group, Version: kcVPCs.Version, Resource: "vnics"})
+	vnics, e := list(ctx, schema.GroupVersionResource{Group: kcVPCs.Group, Version: kcVPCs.Version, Resource: "vnics"})
 	if e != nil {
 		return result, e
 	}
@@ -145,7 +159,7 @@ func (p *KCProvider) ObserveAttachment(ctx context.Context, w biz.AttachmentWork
 		liveVNics[o.GetNamespace()+"/"+o.GetName()] = uid
 		result.HasDependencies = true
 	}
-	ips, e := p.listAll(ctx, schema.GroupVersionResource{Group: kcVPCs.Group, Version: kcVPCs.Version, Resource: "vnicips"})
+	ips, e := list(ctx, schema.GroupVersionResource{Group: kcVPCs.Group, Version: kcVPCs.Version, Resource: "vnicips"})
 	if e != nil {
 		return result, e
 	}

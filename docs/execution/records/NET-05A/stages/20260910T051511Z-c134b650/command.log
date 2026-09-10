@@ -1,0 +1,30 @@
+source.tar.gz: OK
+verified source files: 370
+test "$(/home/ubuntu/workspace/ani-network-service-runs/net05a-20260910T051511Z-c134b650/source/.tools/bin/buf --version)" = "1.60.0"
+test "$(go version -m /home/ubuntu/workspace/ani-network-service-runs/net05a-20260910T051511Z-c134b650/source/.tools/bin/buf | awk '$1 == "mod" {print $2 "@" $3; exit}')" = "github.com/bufbuild/buf@v1.60.0"
+/home/ubuntu/workspace/ani-network-service-runs/net05a-20260910T051511Z-c134b650/source/.tools/bin/buf lint
+/home/ubuntu/workspace/ani-network-service-runs/net05a-20260910T051511Z-c134b650/source/.tools/bin/buf build
+/home/ubuntu/workspace/ani-network-service-runs/net05a-20260910T051511Z-c134b650/source/.tools/bin/buf generate --template buf.gen.yaml
+test "$(/home/ubuntu/workspace/ani-network-service-runs/net05a-20260910T051511Z-c134b650/source/.tools/bin/sqlc version)" = "v1.31.1"
+test "$(go version -m /home/ubuntu/workspace/ani-network-service-runs/net05a-20260910T051511Z-c134b650/source/.tools/bin/sqlc | awk '$1 == "mod" {print $2 "@" $3; exit}')" = "github.com/sqlc-dev/sqlc@v1.31.1"
+/home/ubuntu/workspace/ani-network-service-runs/net05a-20260910T051511Z-c134b650/source/.tools/bin/sqlc generate
+go generate ./...
+find . -type f -name '*.go' -not -path './.git/*' -not -path './.tools/*' -not -path './.work/*' -not -path './.tmp/*' -print0 | xargs -0 --no-run-if-empty gofmt -w
+ok  	github.com/zhangzhe-ctrl/ani-network-service/internal/biz	0.004s
+ok  	github.com/zhangzhe-ctrl/ani-network-service/internal/server	2.018s
+ok  	github.com/zhangzhe-ctrl/ani-network-service/internal/conf/v1	0.009s
+127.0.0.1:5432 - accepting connections
+PostgreSQL image=docker.io/library/postgres@sha256:4ef4dbc939d61acea57712655ddb4b4ab27419c913f94cca0cd57cb3ea3c2280 container=4996e61f0a95a07bcae263849828636eb201d2db7b8104a333488f9b0836c02a
+I0910 13:15:29.823490 4186646 reflector.go:664] "Warning: watch ended with error" reflector="pkg/mod/k8s.io/client-go@v0.36.0/tools/cache/reflector.go:343" type="*unstructured.Unstructured" err="very short watch: pkg/mod/k8s.io/client-go@v0.36.0/tools/cache/reflector.go:343: Unexpected watch close - watch lasted less than a second and no items received"
+I0910 13:15:29.823539 4186646 reflector.go:664] "Warning: watch ended with error" reflector="pkg/mod/k8s.io/client-go@v0.36.0/tools/cache/reflector.go:343" type="*unstructured.Unstructured" err="very short watch: pkg/mod/k8s.io/client-go@v0.36.0/tools/cache/reflector.go:343: Unexpected watch close - watch lasted less than a second and no items received"
+I0910 13:15:29.823610 4186646 reflector.go:664] "Warning: watch ended with error" reflector="pkg/mod/k8s.io/client-go@v0.36.0/tools/cache/reflector.go:343" type="*unstructured.Unstructured" err="very short watch: pkg/mod/k8s.io/client-go@v0.36.0/tools/cache/reflector.go:343: Unexpected watch close - watch lasted less than a second and no items received"
+I0910 13:15:29.823651 4186646 reflector.go:664] "Warning: watch ended with error" reflector="pkg/mod/k8s.io/client-go@v0.36.0/tools/cache/reflector.go:343" type="*unstructured.Unstructured" err="very short watch: pkg/mod/k8s.io/client-go@v0.36.0/tools/cache/reflector.go:343: Unexpected watch close - watch lasted less than a second and no items received"
+I0910 13:15:29.823676 4186646 reflector.go:664] "Warning: watch ended with error" reflector="pkg/mod/k8s.io/client-go@v0.36.0/tools/cache/reflector.go:343" type="*unstructured.Unstructured" err="very short watch: pkg/mod/k8s.io/client-go@v0.36.0/tools/cache/reflector.go:343: Unexpected watch close - watch lasted less than a second and no items received"
+--- FAIL: TestNET05AInitialForbiddenThrottledWatchDoesNotInventFreshness (2.87s)
+    --- FAIL: TestNET05AInitialForbiddenThrottledWatchDoesNotInventFreshness/429 (1.04s)
+        kc_observation_integration_test.go:145: failure path not exercised
+FAIL
+FAIL	github.com/zhangzhe-ctrl/ani-network-service/internal/data	5.903s
+FAIL
+removed task container=4996e61f0a95a07bcae263849828636eb201d2db7b8104a333488f9b0836c02a
+REMOTE_COMMAND_EXIT=1

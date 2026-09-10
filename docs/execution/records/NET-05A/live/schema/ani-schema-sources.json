@@ -1,0 +1,180 @@
+{
+  "fixed_commit": "0363b6b5f906886c3ab2748ef68940c562b93382",
+  "schema_sha256": "73b417aa782a04ff9f2d9d4ab13352887f386e5e47b217b10681244a2facf8f4",
+  "extracts": [
+    {
+      "source": "repo/deploy/migrations/20260501000100_init_schema.sql",
+      "source_sha256": "269c60113fe43c3f6fba2bda7861cca2e883231b3a40e28da79548294dfecf15",
+      "rule": "exact CREATE TABLE tenants",
+      "extracted_sha256": "28afea59c9a507077b334ac4f36fa86c13c932ec08ee83dcef497ccf5d39e322"
+    },
+    {
+      "source": "repo/deploy/migrations/20260501000100_init_schema.sql",
+      "source_sha256": "269c60113fe43c3f6fba2bda7861cca2e883231b3a40e28da79548294dfecf15",
+      "rule": "exact CREATE TABLE users",
+      "extracted_sha256": "7f8cd429ddbbd7914c3bff77501ed1080d727a8d1894f995992b5face65c51f5"
+    },
+    {
+      "source": "repo/deploy/migrations/20260501000100_init_schema.sql",
+      "source_sha256": "269c60113fe43c3f6fba2bda7861cca2e883231b3a40e28da79548294dfecf15",
+      "rule": "exact CREATE TABLE api_keys",
+      "extracted_sha256": "17ced1777be66f1d0ccdd14c6758449b53cc22f12c3849961a1b34d7e826b63a"
+    },
+    {
+      "source": "repo/deploy/migrations/20260501000100_init_schema.sql",
+      "source_sha256": "269c60113fe43c3f6fba2bda7861cca2e883231b3a40e28da79548294dfecf15",
+      "rule": "exact CREATE TABLE instance_plan_audits",
+      "extracted_sha256": "76a4ccada10b1180c9023ff9f47cb1accd7f8cc50a9167567ea4330e03b7881a"
+    },
+    {
+      "source": "repo/deploy/migrations/20260501000100_init_schema.sql",
+      "source_sha256": "269c60113fe43c3f6fba2bda7861cca2e883231b3a40e28da79548294dfecf15",
+      "rule": "exact CREATE TABLE workload_instances",
+      "extracted_sha256": "6d582c48e9a2dc67d88fcf9f444f877c044a72b7bb7442dc75e0a45609bf52f8"
+    },
+    {
+      "source": "repo/deploy/migrations/20260501000100_init_schema.sql",
+      "source_sha256": "269c60113fe43c3f6fba2bda7861cca2e883231b3a40e28da79548294dfecf15",
+      "rule": "exact CREATE TABLE async_tasks",
+      "extracted_sha256": "c475e6746ba6e3cf812df0301deb563604633ce55113e29b62f97aa436585592"
+    },
+    {
+      "source": "repo/deploy/migrations/20260501000100_init_schema.sql",
+      "source_sha256": "269c60113fe43c3f6fba2bda7861cca2e883231b3a40e28da79548294dfecf15",
+      "rule": "exact existing RLS statement: ALTER TABLE api_keys ENABLE ROW LEVEL SECURITY;",
+      "extracted_sha256": "21028c3b7c4497f655c900247a4e6531f5b8dfca71f16c41e34b0139ebd1cdff"
+    },
+    {
+      "source": "repo/deploy/migrations/20260501000100_init_schema.sql",
+      "source_sha256": "269c60113fe43c3f6fba2bda7861cca2e883231b3a40e28da79548294dfecf15",
+      "rule": "exact existing RLS statement: ALTER TABLE api_keys FORCE ROW LEVEL SECURITY;",
+      "extracted_sha256": "181a010a65e132bf6d0f5d28fc6d406cabc223f2b6ea2632771e53425b4fface"
+    },
+    {
+      "source": "repo/deploy/migrations/20260501000100_init_schema.sql",
+      "source_sha256": "269c60113fe43c3f6fba2bda7861cca2e883231b3a40e28da79548294dfecf15",
+      "rule": "exact existing RLS statement: CREATE POLICY tenant_isolation ON api_keys\\s+[\\s\\S]*?;",
+      "extracted_sha256": "9417131799e7d28b99fccfb857afa904296ff5db81ad790a8b6e64a668a6ae93"
+    },
+    {
+      "source": "repo/deploy/migrations/20260501000100_init_schema.sql",
+      "source_sha256": "269c60113fe43c3f6fba2bda7861cca2e883231b3a40e28da79548294dfecf15",
+      "rule": "exact existing RLS statement: ALTER TABLE instance_plan_audits ENABLE ROW LEVEL SECURITY;",
+      "extracted_sha256": "9f326d05bf52b5b666e3f87a3488559d86e562b3867ff565088f19f48f94e9ad"
+    },
+    {
+      "source": "repo/deploy/migrations/20260501000100_init_schema.sql",
+      "source_sha256": "269c60113fe43c3f6fba2bda7861cca2e883231b3a40e28da79548294dfecf15",
+      "rule": "exact existing RLS statement: ALTER TABLE instance_plan_audits FORCE ROW LEVEL SECURITY;",
+      "extracted_sha256": "1b1425daedd648b9f5a33ed54e25942597b60615ec90f59fe41481b748c63ece"
+    },
+    {
+      "source": "repo/deploy/migrations/20260501000100_init_schema.sql",
+      "source_sha256": "269c60113fe43c3f6fba2bda7861cca2e883231b3a40e28da79548294dfecf15",
+      "rule": "exact existing RLS statement: CREATE POLICY tenant_isolation ON instance_plan_audits\\s+[\\s\\S]*?;",
+      "extracted_sha256": "75a0f32dd4ea35297e9f9ab0cb63a15a9d0e609b64923bebc254732cca183996"
+    },
+    {
+      "source": "repo/deploy/migrations/20260501000100_init_schema.sql",
+      "source_sha256": "269c60113fe43c3f6fba2bda7861cca2e883231b3a40e28da79548294dfecf15",
+      "rule": "exact existing RLS statement: ALTER TABLE workload_instances ENABLE ROW LEVEL SECURITY;",
+      "extracted_sha256": "65cc146247359d73afa8544e4700b2ecf0a12e41ccc83415def36262ad5d3d90"
+    },
+    {
+      "source": "repo/deploy/migrations/20260501000100_init_schema.sql",
+      "source_sha256": "269c60113fe43c3f6fba2bda7861cca2e883231b3a40e28da79548294dfecf15",
+      "rule": "exact existing RLS statement: ALTER TABLE workload_instances FORCE ROW LEVEL SECURITY;",
+      "extracted_sha256": "07e418fc3c17f03356d1d4947c3dc600a38c166e4a96b5e4258af09acfecabe2"
+    },
+    {
+      "source": "repo/deploy/migrations/20260501000100_init_schema.sql",
+      "source_sha256": "269c60113fe43c3f6fba2bda7861cca2e883231b3a40e28da79548294dfecf15",
+      "rule": "exact existing RLS statement: CREATE POLICY tenant_isolation ON workload_instances\\s+[\\s\\S]*?;",
+      "extracted_sha256": "a1326cb7551364e0443060d7413f62fc1aae4574a4810dc5c1515d2b03f397fd"
+    },
+    {
+      "source": "repo/deploy/migrations/20260501000100_init_schema.sql",
+      "source_sha256": "269c60113fe43c3f6fba2bda7861cca2e883231b3a40e28da79548294dfecf15",
+      "rule": "exact existing RLS statement: ALTER TABLE async_tasks ENABLE ROW LEVEL SECURITY;",
+      "extracted_sha256": "b01adf5565e4153fc42e27a7cfd2b170ae7bb2a8f70cd99c6f967bc321c63503"
+    },
+    {
+      "source": "repo/deploy/migrations/20260501000100_init_schema.sql",
+      "source_sha256": "269c60113fe43c3f6fba2bda7861cca2e883231b3a40e28da79548294dfecf15",
+      "rule": "exact existing RLS statement: ALTER TABLE async_tasks FORCE ROW LEVEL SECURITY;",
+      "extracted_sha256": "6fb832c62dea409238deb0b7f05efcc08d8599d01a3b272899671324048a6410"
+    },
+    {
+      "source": "repo/deploy/migrations/20260501000100_init_schema.sql",
+      "source_sha256": "269c60113fe43c3f6fba2bda7861cca2e883231b3a40e28da79548294dfecf15",
+      "rule": "exact existing RLS statement: CREATE POLICY tenant_isolation ON async_tasks\\s+[\\s\\S]*?;",
+      "extracted_sha256": "ca2b3b7558cafae3d9f81db763741c7d0e699b35e97f56d47c8f119cb355098b"
+    },
+    {
+      "source": "repo/deploy/migrations/20260502000200_operations_idempotency.sql",
+      "source_sha256": "599b2afd632fcaded6ea1d4cb3122249d21f28efa20d658dc0d4c4561d85dd07",
+      "rule": "whole file, existing api_keys follows ELSE branch",
+      "extracted_sha256": "599b2afd632fcaded6ea1d4cb3122249d21f28efa20d658dc0d4c4561d85dd07"
+    },
+    {
+      "source": "repo/deploy/migrations/20260502000200_operations_idempotency.sql",
+      "source_sha256": "599b2afd632fcaded6ea1d4cb3122249d21f28efa20d658dc0d4c4561d85dd07",
+      "rule": "exact existing permissive api_keys policy from conditional CREATE branch",
+      "extracted_sha256": "633852cb1071ca3557bb30f47edb7129572134ebd529d7d768831d9b0594e0c6"
+    },
+    {
+      "source": "repo/deploy/migrations/20260519000400_instance_u_vm_protection.sql",
+      "source_sha256": "c5e7cfdc33f5759b05cc317e6647d4f22c55d45cd5956cbbc3f33d82db09b694",
+      "rule": "whole file",
+      "extracted_sha256": "c5e7cfdc33f5759b05cc317e6647d4f22c55d45cd5956cbbc3f33d82db09b694"
+    },
+    {
+      "source": "repo/deploy/migrations/20260520000700_workload_identity_api_keys.sql",
+      "source_sha256": "53ee7ec6ffd9231036ce4889da218b4fd38434364b20c6d83026a358a4b93c6f",
+      "rule": "whole file",
+      "extracted_sha256": "53ee7ec6ffd9231036ce4889da218b4fd38434364b20c6d83026a358a4b93c6f"
+    },
+    {
+      "source": "repo/deploy/migrations/20260730000100_instance_management_lifecycle_ops.sql",
+      "source_sha256": "3ddab05c6b488c507258e6ffcd89007da7ab35dd2c813262ff27db7ab975479e",
+      "rule": "whole file",
+      "extracted_sha256": "3ddab05c6b488c507258e6ffcd89007da7ab35dd2c813262ff27db7ab975479e"
+    },
+    {
+      "source": "repo/deploy/migrations/20260812000100_quota_tx_ids.sql",
+      "source_sha256": "32bede0a9ece264725c977f0a2485a5b9e19805bcdaaa609f6a4a420f56dc8c1",
+      "rule": "whole file",
+      "extracted_sha256": "32bede0a9ece264725c977f0a2485a5b9e19805bcdaaa609f6a4a420f56dc8c1"
+    },
+    {
+      "source": "repo/deploy/migrations/20260825000100_workload_instances_rls_fix.sql",
+      "source_sha256": "34edcd417b791d5f77d7dba52e45b9b182a6fff3a4e7267946375f4f1fbdf9c5",
+      "rule": "whole file",
+      "extracted_sha256": "34edcd417b791d5f77d7dba52e45b9b182a6fff3a4e7267946375f4f1fbdf9c5"
+    },
+    {
+      "source": "repo/deploy/migrations/20260828_001_instance_resource_rls_fix.sql",
+      "source_sha256": "68a01ecf788a688ea95ed3b883c5a59fff11ea6e55d7f1a310f3ef993522db5b",
+      "rule": "exact audit RLS block only",
+      "extracted_sha256": "a65deabc48013fbf3005d6f584c8cb83bd0b645540fd15ec7f4183ed25fd1b80"
+    },
+    {
+      "source": "repo/deploy/migrations/20260831_001_async_tasks_rls_fix.sql",
+      "source_sha256": "4b64ae003621a5042bc46328106ef41ec918a78bf26a0040d472734fd31c3320",
+      "rule": "whole file",
+      "extracted_sha256": "4b64ae003621a5042bc46328106ef41ec918a78bf26a0040d472734fd31c3320"
+    },
+    {
+      "source": "repo/deploy/migrations/20260828000200_app_role_privileges.sql",
+      "source_sha256": "ed341f29d78f339af21b7faebaba01a1d74ff46956883a02873b0a2018f8bd8c",
+      "rule": "existing grants for actual fixture tables only",
+      "extracted_sha256": "e9bd74ac59ca8dbe99ae2f45c7438d08153c6efeb43613c5d189b787673c9a8e"
+    },
+    {
+      "source": "repo/deploy/migrations/20260909000100_instance_network_submissions.sql",
+      "source_sha256": "a34f6d5ee844b46d0edea270fc501c72ba35e3b75b212e00d19685839030af51",
+      "rule": "whole file, unchanged bytes",
+      "extracted_sha256": "a34f6d5ee844b46d0edea270fc501c72ba35e3b75b212e00d19685839030af51"
+    }
+  ]
+}

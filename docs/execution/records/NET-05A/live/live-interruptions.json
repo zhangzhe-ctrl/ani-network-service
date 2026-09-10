@@ -1,0 +1,49 @@
+{
+  "runtime": "net05a-1fae0bbf",
+  "events": [
+    {
+      "pipeline": "20260910T065725Z-b7958dfc/live-continuation",
+      "observed_exit": 1,
+      "cause": "critical audit waiter starvation on VPC deletion",
+      "resolution": "production auditCollection/refresh fix, deterministic red/green and exact same live intent recovered"
+    },
+    {
+      "pipeline": "20260910T073025Z-6e6ac2fa/live-revalidation",
+      "observed_exit": 1,
+      "cause": "harness queried asynchronously starting normal Gateway before listener was ready",
+      "resolution": "verified actual normal mains and image, continued from recorded upgrade; readiness wait added to reusable runner"
+    },
+    {
+      "pipeline": "20260910T073025Z-6e6ac2fa/live-resumed",
+      "observed_exit": 1,
+      "cause": "API harness reused old permanent idempotency keys and received deleted resource as designed",
+      "resolution": "unique auditfix wave keys; full API matrix passed"
+    },
+    {
+      "pipeline": "20260910T073025Z-6e6ac2fa/live-api-wave",
+      "observed_exit": 75,
+      "cause": "fixed resource guard: load1 above 6 continuously; last load1 7.5556640625 at 2026-09-10T08:10:39Z; memory/disk thresholds not hit",
+      "checkpoint": "30 attachments released, 8 subnets deleted, 3 VPCs still available; live database preserved",
+      "resolution": "host load recovered; continue product cleanup from verified retired-wave checkpoint"
+    },
+    {
+      "pipeline": "cleanup-resume SSH dispatch",
+      "observed_exit": 255,
+      "cause": "remote closed SSH connection; dispatch initially uncertain",
+      "resolution": "after SSH recovered, cleanup-resume.log/exit absent and no matching Python process; confirmed not started before dispatching once"
+    },
+    {
+      "pipeline": "20260910T073025Z-6e6ac2fa/cleanup-resume",
+      "observed_exit": 1,
+      "cause": "products completed successfully; remaining gate wrapper could not resolve versioned installed Atlas binary by unversioned name",
+      "resolution": "use existing pinned atlas-v1.3.0; only unfinished gates/export/fixture cleanup resumed"
+    },
+    {
+      "pipeline": "20260910T073025Z-6e6ac2fa/gates-cleanup-resume",
+      "observed_exit": 1,
+      "cause": "resume wrapper asserted a nonexistent evidence filename before executing any gate",
+      "resolution": "assert actual product_cleanup_passed state plus product-resource-ownership-and-cleanup.json; no product API replay"
+    }
+  ],
+  "limits": "Historical failed/interrupted attempts are preserved; final functional acceptance relies on later exact-source successful runs, never on these exits."
+}

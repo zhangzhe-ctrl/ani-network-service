@@ -49,3 +49,17 @@ scripts/remote-pair -- bash -c '"$NETWORK_SOURCE/scripts/integration-pair" "$NET
 ```
 
 该入口构建独立 Network 服务、实际 Gateway 路由测试进程与 ANI 实例 owner 测试进程。HTTP fixture 只提供固定 kc/Kubernetes 契约和可控故障事实；使用真实 client、renderer、持久实例受理/封闭、gRPC consumer 查询与数据库恢复，不构成真实 kc 控制器、OVN 或 IAM 认证证明。具体故障场景、执行结果与源码身份见 [组合记录](execution/records/NET-02-04-implementation.md)。
+
+## NET-05A 持续观察与真实复验
+
+单仓重任务入口为 `scripts/net05a-remote -- scripts/net05a-gates`，从专用 dirty worktree 建立逐文件校验快照。`scripts/net05a-stage` 提供开发期间定向生成与真实 PG 测试；不能替代完整门禁。观察受控用例位于 [kc_observation_integration_test.go](../internal/data/kc_observation_integration_test.go)，通知/公平性位于 [observation_integration_test.go](../internal/data/observation_integration_test.go)。协议 fixture 使用真实 dynamic client 的 HTTP List/Watch，仅证明受控层。
+
+固定容量入口为 `scripts/net05a-remote -- scripts/net05a-capacity --matrix --verify-first`。同一进程串行执行旧/新版本、100/1000/2000 Attachment、1/2 副本和五个固定阶段；每组独立真实 PG。条件与随机种子见 [容量合同](execution/records/NET-05A/capacity-contract.json)。导出后通过 `scripts/net05a-capacity-report <run-directory>` 生成判定，保留基线失败、丢失/截尾样本和未完成组；Go 测量程序 exit=0 不等于性能通过。
+
+本轮用户允许资源限制下的大负载延期后，补验使用 `scripts/net05a-remote -- scripts/net05a-capacity --small-matrix --variants net05a`，只重测固定的 100 Attachment / 1、2 副本。报告的 `--baseline-from <prior-run-directory>` 仅引用旧版已完成组，保留各组源目录和摘要；不能据此将全矩阵写为通过。
+
+真实链路使用 `scripts/net05a-pair -- python3 -B network/scripts/net05a-live.py build` 建立精确双仓隔离构建。后续对同一 `NET05A_RUN_DIR` 依次运行 `positive`、`setup-faults`、`queries`、`transactions`、`lease`、`unknown`、`provider`、`owner`、`watch`、`rollback`、`product-cleanup`、`gates`、`export`、`fixture-cleanup`。每阶段先检查已保存身份与结果，不盲目重放失败写入；新源码快照沿用旧 run 时仍须保留实际构建/运行身份映射。NET-05A wrapper 核对并适配固定 NET-05 runner，原脚本保留为历史输入。
+
+本包重要修复后的精确新构建可用 `upgrade` 保留原失败意图并验证恢复，再用 `NET05A_WAVE=<unique-wave>` 的 `recheck-products` 经产品 API 清理并创建新普通容器波次。两阶段有已启动检查点，失败后先检查记录；不会自动重放。`NET05A_WAVE` 同时隔离后续故障用例的永久幂等键，测试暂停点必须使用同一源码构建。
+
+新 V-09 分别证明全部后台暂停时查询零副作用，以及只暂停状态应用、保留 Watch 时持久证据仍过期并拒绝准入。正常 Network 使用新镜像；明确标记的测试构建只暂停本包进程。真实 Watch、真实 PG、普通容器数据面、受控 403/429/410 和容量证据各自分列。ANI 固定源码不修改；既有八条 compatibility 与全历史 Atlas 失败不能由 schema fixture 改写。详细源身份、实际命令和结果见 [NET-05A 记录](execution/records/NET-05A-implementation.md)。

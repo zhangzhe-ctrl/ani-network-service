@@ -1,0 +1,70 @@
+{
+  "apiVersion": "v1",
+  "items": [
+    {
+      "apiVersion": "networking.kubercloud.com/v1",
+      "kind": "VPC",
+      "metadata": {
+        "creationTimestamp": "2026-09-10T06:59:03Z",
+        "finalizers": [
+          "networking.kubercloud.com/finalizer"
+        ],
+        "generation": 1,
+        "labels": {
+          "network.ani.io/binding-id": "b7e0dba7-95bb-49d9-b125-39e652ab1ab3",
+          "network.ani.io/managed-by": "ani-network-service",
+          "network.ani.io/resource-id": "vpc_9e3d6b035c674a2a9a6eab4d515d61e7",
+          "network.ani.io/tenant-id": "fd39ecf7-ac0c-4540-9fbd-4ba08486f30f"
+        },
+        "name": "vpc-9e3d6b035c674a2a9a6eab4d515d61e7",
+        "namespace": "net05a-1fae0bbf-fd39ecf7-ac0c-4540-9fbd-4ba08486f30f",
+        "resourceVersion": "143518",
+        "uid": "a21f19bd-ab2d-4807-ba1a-74b9619b275d"
+      },
+      "spec": {
+        "allowedNamespaces": {
+          "from": "Same"
+        },
+        "cidrBlock": "10.205.0.0/16",
+        "ipVersion": "IPv4"
+      },
+      "status": {
+        "boundResources": {
+          "chassisNode": "",
+          "router": "vpc.net05a-1fae0bbf-fd39ecf7-ac0c-4540-9fbd-4ba08486f30f.vpc-9e3d6b035c674a2a9a6eab4d515d61e7"
+        },
+        "conditions": [
+          {
+            "lastTransitionTime": "2026-09-10T06:59:03Z",
+            "message": "",
+            "reason": "Valid",
+            "status": "True",
+            "type": "Valid"
+          },
+          {
+            "lastTransitionTime": "2026-09-10T06:59:03Z",
+            "message": "",
+            "reason": "Initialized",
+            "status": "True",
+            "type": "Initialized"
+          },
+          {
+            "lastTransitionTime": "2026-09-10T06:59:03Z",
+            "message": "",
+            "reason": "Ready",
+            "status": "True",
+            "type": "Ready"
+          }
+        ],
+        "observedGeneration": 1,
+        "subnets": {
+          "net05a-1fae0bbf-fd39ecf7-ac0c-4540-9fbd-4ba08486f30f/subnet-9e1b5884d6a64182806baf56964e0e85": "10.205.1.0/24"
+        }
+      }
+    }
+  ],
+  "kind": "List",
+  "metadata": {
+    "resourceVersion": ""
+  }
+}

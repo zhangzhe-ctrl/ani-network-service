@@ -85,7 +85,8 @@ type Network struct {
 	CursorSigningKey string  `protobuf:"bytes,5,opt,name=cursor_signing_key,json=cursorSigningKey,proto3" json:"cursor_signing_key,omitempty"`
 	Worker           *Worker `protobuf:"bytes,6,opt,name=worker,proto3" json:"worker,omitempty"`
 	// Fixed instance owner RPC target. Empty keeps attachments conservatively occupied.
-	InstanceConsumerEndpoint string `protobuf:"bytes,7,opt,name=instance_consumer_endpoint,json=instanceConsumerEndpoint,proto3" json:"instance_consumer_endpoint,omitempty"`
+	InstanceConsumerEndpoint string       `protobuf:"bytes,7,opt,name=instance_consumer_endpoint,json=instanceConsumerEndpoint,proto3" json:"instance_consumer_endpoint,omitempty"`
+	Observation              *Observation `protobuf:"bytes,8,opt,name=observation,proto3" json:"observation,omitempty"`
 	unknownFields            protoimpl.UnknownFields
 	sizeCache                protoimpl.SizeCache
 }
@@ -169,6 +170,113 @@ func (x *Network) GetInstanceConsumerEndpoint() string {
 	return ""
 }
 
+func (x *Network) GetObservation() *Observation {
+	if x != nil {
+		return x.Observation
+	}
+	return nil
+}
+
+type Observation struct {
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	AuditInterval  *durationpb.Duration   `protobuf:"bytes,1,opt,name=audit_interval,json=auditInterval,proto3" json:"audit_interval,omitempty"`
+	AuditJitter    *durationpb.Duration   `protobuf:"bytes,2,opt,name=audit_jitter,json=auditJitter,proto3" json:"audit_jitter,omitempty"`
+	AuditTimeout   *durationpb.Duration   `protobuf:"bytes,3,opt,name=audit_timeout,json=auditTimeout,proto3" json:"audit_timeout,omitempty"`
+	FlushInterval  *durationpb.Duration   `protobuf:"bytes,4,opt,name=flush_interval,json=flushInterval,proto3" json:"flush_interval,omitempty"`
+	QueueCapacity  uint32                 `protobuf:"varint,5,opt,name=queue_capacity,json=queueCapacity,proto3" json:"queue_capacity,omitempty"`
+	WorkersPerKind uint32                 `protobuf:"varint,6,opt,name=workers_per_kind,json=workersPerKind,proto3" json:"workers_per_kind,omitempty"`
+	RequestQps     uint32                 `protobuf:"varint,7,opt,name=request_qps,json=requestQps,proto3" json:"request_qps,omitempty"`
+	RequestBurst   uint32                 `protobuf:"varint,8,opt,name=request_burst,json=requestBurst,proto3" json:"request_burst,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
+}
+
+func (x *Observation) Reset() {
+	*x = Observation{}
+	mi := &file_conf_v1_conf_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Observation) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Observation) ProtoMessage() {}
+
+func (x *Observation) ProtoReflect() protoreflect.Message {
+	mi := &file_conf_v1_conf_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Observation.ProtoReflect.Descriptor instead.
+func (*Observation) Descriptor() ([]byte, []int) {
+	return file_conf_v1_conf_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *Observation) GetAuditInterval() *durationpb.Duration {
+	if x != nil {
+		return x.AuditInterval
+	}
+	return nil
+}
+
+func (x *Observation) GetAuditJitter() *durationpb.Duration {
+	if x != nil {
+		return x.AuditJitter
+	}
+	return nil
+}
+
+func (x *Observation) GetAuditTimeout() *durationpb.Duration {
+	if x != nil {
+		return x.AuditTimeout
+	}
+	return nil
+}
+
+func (x *Observation) GetFlushInterval() *durationpb.Duration {
+	if x != nil {
+		return x.FlushInterval
+	}
+	return nil
+}
+
+func (x *Observation) GetQueueCapacity() uint32 {
+	if x != nil {
+		return x.QueueCapacity
+	}
+	return 0
+}
+
+func (x *Observation) GetWorkersPerKind() uint32 {
+	if x != nil {
+		return x.WorkersPerKind
+	}
+	return 0
+}
+
+func (x *Observation) GetRequestQps() uint32 {
+	if x != nil {
+		return x.RequestQps
+	}
+	return 0
+}
+
+func (x *Observation) GetRequestBurst() uint32 {
+	if x != nil {
+		return x.RequestBurst
+	}
+	return 0
+}
+
 type Worker struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
 	Lease          *durationpb.Duration   `protobuf:"bytes,1,opt,name=lease,proto3" json:"lease,omitempty"`
@@ -184,7 +292,7 @@ type Worker struct {
 
 func (x *Worker) Reset() {
 	*x = Worker{}
-	mi := &file_conf_v1_conf_proto_msgTypes[2]
+	mi := &file_conf_v1_conf_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -196,7 +304,7 @@ func (x *Worker) String() string {
 func (*Worker) ProtoMessage() {}
 
 func (x *Worker) ProtoReflect() protoreflect.Message {
-	mi := &file_conf_v1_conf_proto_msgTypes[2]
+	mi := &file_conf_v1_conf_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -209,7 +317,7 @@ func (x *Worker) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Worker.ProtoReflect.Descriptor instead.
 func (*Worker) Descriptor() ([]byte, []int) {
-	return file_conf_v1_conf_proto_rawDescGZIP(), []int{2}
+	return file_conf_v1_conf_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *Worker) GetLease() *durationpb.Duration {
@@ -272,7 +380,7 @@ type Server struct {
 
 func (x *Server) Reset() {
 	*x = Server{}
-	mi := &file_conf_v1_conf_proto_msgTypes[3]
+	mi := &file_conf_v1_conf_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -284,7 +392,7 @@ func (x *Server) String() string {
 func (*Server) ProtoMessage() {}
 
 func (x *Server) ProtoReflect() protoreflect.Message {
-	mi := &file_conf_v1_conf_proto_msgTypes[3]
+	mi := &file_conf_v1_conf_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -297,7 +405,7 @@ func (x *Server) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Server.ProtoReflect.Descriptor instead.
 func (*Server) Descriptor() ([]byte, []int) {
-	return file_conf_v1_conf_proto_rawDescGZIP(), []int{3}
+	return file_conf_v1_conf_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *Server) GetGrpc() *Server_GRPC {
@@ -332,7 +440,7 @@ type Server_GRPC struct {
 
 func (x *Server_GRPC) Reset() {
 	*x = Server_GRPC{}
-	mi := &file_conf_v1_conf_proto_msgTypes[4]
+	mi := &file_conf_v1_conf_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -344,7 +452,7 @@ func (x *Server_GRPC) String() string {
 func (*Server_GRPC) ProtoMessage() {}
 
 func (x *Server_GRPC) ProtoReflect() protoreflect.Message {
-	mi := &file_conf_v1_conf_proto_msgTypes[4]
+	mi := &file_conf_v1_conf_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -357,7 +465,7 @@ func (x *Server_GRPC) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Server_GRPC.ProtoReflect.Descriptor instead.
 func (*Server_GRPC) Descriptor() ([]byte, []int) {
-	return file_conf_v1_conf_proto_rawDescGZIP(), []int{3, 0}
+	return file_conf_v1_conf_proto_rawDescGZIP(), []int{4, 0}
 }
 
 func (x *Server_GRPC) GetNetwork() string {
@@ -392,7 +500,7 @@ type Server_Admin struct {
 
 func (x *Server_Admin) Reset() {
 	*x = Server_Admin{}
-	mi := &file_conf_v1_conf_proto_msgTypes[5]
+	mi := &file_conf_v1_conf_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -404,7 +512,7 @@ func (x *Server_Admin) String() string {
 func (*Server_Admin) ProtoMessage() {}
 
 func (x *Server_Admin) ProtoReflect() protoreflect.Message {
-	mi := &file_conf_v1_conf_proto_msgTypes[5]
+	mi := &file_conf_v1_conf_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -417,7 +525,7 @@ func (x *Server_Admin) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Server_Admin.ProtoReflect.Descriptor instead.
 func (*Server_Admin) Descriptor() ([]byte, []int) {
-	return file_conf_v1_conf_proto_rawDescGZIP(), []int{3, 1}
+	return file_conf_v1_conf_proto_rawDescGZIP(), []int{4, 1}
 }
 
 func (x *Server_Admin) GetNetwork() string {
@@ -448,7 +556,7 @@ const file_conf_v1_conf_proto_rawDesc = "" +
 	"\x12conf/v1/conf.proto\x12\aconf.v1\x1a\x1egoogle/protobuf/duration.proto\"`\n" +
 	"\tBootstrap\x12'\n" +
 	"\x06server\x18\x01 \x01(\v2\x0f.conf.v1.ServerR\x06server\x12*\n" +
-	"\anetwork\x18\x02 \x01(\v2\x10.conf.v1.NetworkR\anetwork\"\xab\x02\n" +
+	"\anetwork\x18\x02 \x01(\v2\x10.conf.v1.NetworkR\anetwork\"\xe3\x02\n" +
 	"\aNetwork\x12!\n" +
 	"\fdatabase_dsn\x18\x01 \x01(\tR\vdatabaseDsn\x12\x1e\n" +
 	"\n" +
@@ -459,7 +567,18 @@ const file_conf_v1_conf_proto_rawDesc = "" +
 	"\x10namespace_prefix\x18\x04 \x01(\tR\x0fnamespacePrefix\x12,\n" +
 	"\x12cursor_signing_key\x18\x05 \x01(\tR\x10cursorSigningKey\x12'\n" +
 	"\x06worker\x18\x06 \x01(\v2\x0f.conf.v1.WorkerR\x06worker\x12<\n" +
-	"\x1ainstance_consumer_endpoint\x18\a \x01(\tR\x18instanceConsumerEndpoint\"\xa9\x03\n" +
+	"\x1ainstance_consumer_endpoint\x18\a \x01(\tR\x18instanceConsumerEndpoint\x126\n" +
+	"\vobservation\x18\b \x01(\v2\x14.conf.v1.ObservationR\vobservation\"\xa6\x03\n" +
+	"\vObservation\x12@\n" +
+	"\x0eaudit_interval\x18\x01 \x01(\v2\x19.google.protobuf.DurationR\rauditInterval\x12<\n" +
+	"\faudit_jitter\x18\x02 \x01(\v2\x19.google.protobuf.DurationR\vauditJitter\x12>\n" +
+	"\raudit_timeout\x18\x03 \x01(\v2\x19.google.protobuf.DurationR\fauditTimeout\x12@\n" +
+	"\x0eflush_interval\x18\x04 \x01(\v2\x19.google.protobuf.DurationR\rflushInterval\x12%\n" +
+	"\x0equeue_capacity\x18\x05 \x01(\rR\rqueueCapacity\x12(\n" +
+	"\x10workers_per_kind\x18\x06 \x01(\rR\x0eworkersPerKind\x12\x1f\n" +
+	"\vrequest_qps\x18\a \x01(\rR\n" +
+	"requestQps\x12#\n" +
+	"\rrequest_burst\x18\b \x01(\rR\frequestBurst\"\xa9\x03\n" +
 	"\x06Worker\x12/\n" +
 	"\x05lease\x18\x01 \x01(\v2\x19.google.protobuf.DurationR\x05lease\x12B\n" +
 	"\x0frequest_timeout\x18\x02 \x01(\v2\x19.google.protobuf.DurationR\x0erequestTimeout\x12>\n" +
@@ -494,37 +613,43 @@ func file_conf_v1_conf_proto_rawDescGZIP() []byte {
 	return file_conf_v1_conf_proto_rawDescData
 }
 
-var file_conf_v1_conf_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
+var file_conf_v1_conf_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
 var file_conf_v1_conf_proto_goTypes = []any{
 	(*Bootstrap)(nil),           // 0: conf.v1.Bootstrap
 	(*Network)(nil),             // 1: conf.v1.Network
-	(*Worker)(nil),              // 2: conf.v1.Worker
-	(*Server)(nil),              // 3: conf.v1.Server
-	(*Server_GRPC)(nil),         // 4: conf.v1.Server.GRPC
-	(*Server_Admin)(nil),        // 5: conf.v1.Server.Admin
-	(*durationpb.Duration)(nil), // 6: google.protobuf.Duration
+	(*Observation)(nil),         // 2: conf.v1.Observation
+	(*Worker)(nil),              // 3: conf.v1.Worker
+	(*Server)(nil),              // 4: conf.v1.Server
+	(*Server_GRPC)(nil),         // 5: conf.v1.Server.GRPC
+	(*Server_Admin)(nil),        // 6: conf.v1.Server.Admin
+	(*durationpb.Duration)(nil), // 7: google.protobuf.Duration
 }
 var file_conf_v1_conf_proto_depIdxs = []int32{
-	3,  // 0: conf.v1.Bootstrap.server:type_name -> conf.v1.Server
+	4,  // 0: conf.v1.Bootstrap.server:type_name -> conf.v1.Server
 	1,  // 1: conf.v1.Bootstrap.network:type_name -> conf.v1.Network
-	2,  // 2: conf.v1.Network.worker:type_name -> conf.v1.Worker
-	6,  // 3: conf.v1.Worker.lease:type_name -> google.protobuf.Duration
-	6,  // 4: conf.v1.Worker.request_timeout:type_name -> google.protobuf.Duration
-	6,  // 5: conf.v1.Worker.observe_every:type_name -> google.protobuf.Duration
-	6,  // 6: conf.v1.Worker.stale_after:type_name -> google.protobuf.Duration
-	6,  // 7: conf.v1.Worker.retry_min:type_name -> google.protobuf.Duration
-	6,  // 8: conf.v1.Worker.retry_max:type_name -> google.protobuf.Duration
-	6,  // 9: conf.v1.Worker.poll_interval:type_name -> google.protobuf.Duration
-	4,  // 10: conf.v1.Server.grpc:type_name -> conf.v1.Server.GRPC
-	5,  // 11: conf.v1.Server.admin:type_name -> conf.v1.Server.Admin
-	6,  // 12: conf.v1.Server.shutdown_timeout:type_name -> google.protobuf.Duration
-	6,  // 13: conf.v1.Server.GRPC.timeout:type_name -> google.protobuf.Duration
-	6,  // 14: conf.v1.Server.Admin.timeout:type_name -> google.protobuf.Duration
-	15, // [15:15] is the sub-list for method output_type
-	15, // [15:15] is the sub-list for method input_type
-	15, // [15:15] is the sub-list for extension type_name
-	15, // [15:15] is the sub-list for extension extendee
-	0,  // [0:15] is the sub-list for field type_name
+	3,  // 2: conf.v1.Network.worker:type_name -> conf.v1.Worker
+	2,  // 3: conf.v1.Network.observation:type_name -> conf.v1.Observation
+	7,  // 4: conf.v1.Observation.audit_interval:type_name -> google.protobuf.Duration
+	7,  // 5: conf.v1.Observation.audit_jitter:type_name -> google.protobuf.Duration
+	7,  // 6: conf.v1.Observation.audit_timeout:type_name -> google.protobuf.Duration
+	7,  // 7: conf.v1.Observation.flush_interval:type_name -> google.protobuf.Duration
+	7,  // 8: conf.v1.Worker.lease:type_name -> google.protobuf.Duration
+	7,  // 9: conf.v1.Worker.request_timeout:type_name -> google.protobuf.Duration
+	7,  // 10: conf.v1.Worker.observe_every:type_name -> google.protobuf.Duration
+	7,  // 11: conf.v1.Worker.stale_after:type_name -> google.protobuf.Duration
+	7,  // 12: conf.v1.Worker.retry_min:type_name -> google.protobuf.Duration
+	7,  // 13: conf.v1.Worker.retry_max:type_name -> google.protobuf.Duration
+	7,  // 14: conf.v1.Worker.poll_interval:type_name -> google.protobuf.Duration
+	5,  // 15: conf.v1.Server.grpc:type_name -> conf.v1.Server.GRPC
+	6,  // 16: conf.v1.Server.admin:type_name -> conf.v1.Server.Admin
+	7,  // 17: conf.v1.Server.shutdown_timeout:type_name -> google.protobuf.Duration
+	7,  // 18: conf.v1.Server.GRPC.timeout:type_name -> google.protobuf.Duration
+	7,  // 19: conf.v1.Server.Admin.timeout:type_name -> google.protobuf.Duration
+	20, // [20:20] is the sub-list for method output_type
+	20, // [20:20] is the sub-list for method input_type
+	20, // [20:20] is the sub-list for extension type_name
+	20, // [20:20] is the sub-list for extension extendee
+	0,  // [0:20] is the sub-list for field type_name
 }
 
 func init() { file_conf_v1_conf_proto_init() }
@@ -538,7 +663,7 @@ func file_conf_v1_conf_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_conf_v1_conf_proto_rawDesc), len(file_conf_v1_conf_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   6,
+			NumMessages:   7,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

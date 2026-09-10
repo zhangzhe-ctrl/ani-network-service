@@ -1,0 +1,18 @@
+# NET-05A captured metadata contains public resource IDs, idempotency keys
+# and Kubernetes Secret names. These are not Secret data or credentials.
+# Keep default rules; the exception requires this evidence path AND an exact
+# reviewed JSON property/value line. No directory-wide or rule-wide exclusion.
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "Exact reviewed NET-05A fixture metadata, preserving original evidence hashes"
+targetRules = ["generic-api-key"]
+condition = "AND"
+paths = ['''^docs/execution/records/NET-05A/live/.*\.json$''']
+regexTarget = "line"
+regexes = [
+  '''^\s*"ani\.kubercloud\.io/workload\-identity\-secret": "(?:ani\-wi\-18a3c4e1\-baf3\-40d5\-86be|ani\-wi\-2f003a7b\-da6c\-4658\-a482|ani\-wi\-2f50d8d9\-1ff4\-4615\-91c8|ani\-wi\-3ab51187\-c358\-46d5\-9985|ani\-wi\-3dd7b3f8\-e8db\-41d6\-b4cd|ani\-wi\-45852c96\-6e7f\-427d\-bed9|ani\-wi\-61096668\-259e\-47d0\-a65a|ani\-wi\-6c0779c5\-59d2\-47ae\-95c8|ani\-wi\-ae22a1aa\-04fc\-40e5\-a881|ani\-wi\-b380e5ec\-f76a\-484c\-984f)",?\s*$''',
+  '''^\s*"key": "(?:inst_ac7f45b4\-3e85\-47e8\-ade5\-f7dddb9ac962|inst_d3692f18\-e8b4\-4e0c\-a4be\-481ae29412b8|vpc_ae61aaf508aa4ef6897deea2eedbe9fb|vpc_c35109dc7d274dffbba3cee1aa9454d6|vpc_d5b0309262ef4446a253e1d316295bf6|vpc_ee98515d77d64f3d9d4d991237eb85a6)",?\s*$''',
+  '''^\s*"request_key": "(?:net05a\-1fae0bbf\-a1s1\-p3|net05a\-1fae0bbf\-a1s1\-p4|net05a\-1fae0bbf\-a1s2\-p1|net05a\-1fae0bbf\-p2|net05a\-1fae0bbf\-placement\-0|net05a\-1fae0bbf\-relocated\-a1s1\-p3|net05a\-1fae0bbf\-relocated\-a1s1\-p4|net05a\-1fae0bbf\-relocated\-a1s2\-p1|net05a\-1fae0bbf\-relocated\-a2\-p1|net05a\-1fae0bbf\-relocated\-a2\-p2|net05a\-1fae0bbf\-relocated\-b1\-p1|net05a\-1fae0bbf\-relocated\-b1\-p2|net05a\-1fae0bbf\-relocated\-p1|net05a\-1fae0bbf\-relocated\-p2)",?\s*$''',
+]

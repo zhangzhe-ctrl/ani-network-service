@@ -1,0 +1,123 @@
+[
+  {
+    "command": [
+      "/home/ubuntu/.local/share/ani-network-service/net0204-python/bin/python3",
+      "-B",
+      "-c",
+      "import importlib.util,os,pathlib\nroot=pathlib.Path(os.environ['NETWORK_SOURCE'])\nsp=importlib.util.spec_from_file_location('adapter',root/'scripts/net05a-adapt.py');adapter=importlib.util.module_from_spec(sp);sp.loader.exec_module(adapter)\nbody=adapter.adapted('api')\nassert body.count(\"state['id']\")==12 and body.count('import concurrent.futures')==1\nbody=body.replace('import concurrent.futures','import concurrent.futures\\nimport os')\nbody=body.replace(\"state['id']\", \"(state['id']+('-'+os.environ['NET05A_WAVE'] if os.environ.get('NET05A_WAVE') else ''))\")\npath=str(root/'scripts/net05a-api.py')\nexec(compile(body,path,'exec'),{'__file__':path,'__name__':'__main__'})\n"
+    ],
+    "started": "2026-09-10T07:47:59.501755+00:00",
+    "finished": "2026-09-10T07:50:09.413178+00:00",
+    "exit": 0
+  },
+  {
+    "command": [
+      "/home/ubuntu/.local/share/ani-network-service/net0204-python/bin/python3",
+      "-B",
+      "scripts/net05a-cleanup.py",
+      "permissions"
+    ],
+    "started": "2026-09-10T07:50:09.413492+00:00",
+    "finished": "2026-09-10T07:50:25.145358+00:00",
+    "exit": 0
+  },
+  {
+    "command": [
+      "/home/ubuntu/.local/share/ani-network-service/net0204-python/bin/python3",
+      "-B",
+      "scripts/net05a-live.py",
+      "setup-faults"
+    ],
+    "started": "2026-09-10T07:50:25.145683+00:00",
+    "finished": "2026-09-10T07:50:32.991536+00:00",
+    "exit": 0
+  },
+  {
+    "command": [
+      "/home/ubuntu/.local/share/ani-network-service/net0204-python/bin/python3",
+      "-B",
+      "scripts/net05a-live.py",
+      "queries"
+    ],
+    "started": "2026-09-10T07:50:32.991945+00:00",
+    "finished": "2026-09-10T07:52:18.980678+00:00",
+    "exit": 0
+  },
+  {
+    "command": [
+      "/home/ubuntu/.local/share/ani-network-service/net0204-python/bin/python3",
+      "-B",
+      "scripts/net05a-live.py",
+      "transactions"
+    ],
+    "started": "2026-09-10T07:52:18.981047+00:00",
+    "finished": "2026-09-10T07:53:47.134443+00:00",
+    "exit": 0
+  },
+  {
+    "command": [
+      "/home/ubuntu/.local/share/ani-network-service/net0204-python/bin/python3",
+      "-B",
+      "scripts/net05a-live.py",
+      "lease"
+    ],
+    "started": "2026-09-10T07:53:47.134820+00:00",
+    "finished": "2026-09-10T07:54:49.560198+00:00",
+    "exit": 0
+  },
+  {
+    "command": [
+      "/home/ubuntu/.local/share/ani-network-service/net0204-python/bin/python3",
+      "-B",
+      "scripts/net05a-live.py",
+      "unknown"
+    ],
+    "started": "2026-09-10T07:54:49.560603+00:00",
+    "finished": "2026-09-10T07:55:47.200647+00:00",
+    "exit": 0
+  },
+  {
+    "command": [
+      "/home/ubuntu/.local/share/ani-network-service/net0204-python/bin/python3",
+      "-B",
+      "scripts/net05a-live.py",
+      "provider"
+    ],
+    "started": "2026-09-10T07:55:47.201077+00:00",
+    "finished": "2026-09-10T07:56:55.896293+00:00",
+    "exit": 0
+  },
+  {
+    "command": [
+      "/home/ubuntu/.local/share/ani-network-service/net0204-python/bin/python3",
+      "-B",
+      "scripts/net05a-live.py",
+      "owner"
+    ],
+    "started": "2026-09-10T07:56:55.896697+00:00",
+    "finished": "2026-09-10T08:01:33.765403+00:00",
+    "exit": 0
+  },
+  {
+    "command": [
+      "/home/ubuntu/.local/share/ani-network-service/net0204-python/bin/python3",
+      "-B",
+      "scripts/net05a-live.py",
+      "watch"
+    ],
+    "started": "2026-09-10T08:01:33.765824+00:00",
+    "finished": "2026-09-10T08:05:36.608399+00:00",
+    "exit": 0
+  },
+  {
+    "command": [
+      "/home/ubuntu/.local/share/ani-network-service/net0204-python/bin/python3",
+      "-B",
+      "scripts/net05a-live.py",
+      "rollback"
+    ],
+    "started": "2026-09-10T08:05:36.608795+00:00",
+    "finished": "2026-09-10T08:05:40.950858+00:00",
+    "exit": 0
+  }
+]

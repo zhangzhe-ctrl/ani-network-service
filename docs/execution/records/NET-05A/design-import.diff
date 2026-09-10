@@ -1,0 +1,200 @@
+diff --git a/docs/START-HERE.md b/docs/START-HERE.md
+index de58052..c8adbff 100644
+--- a/docs/START-HERE.md
++++ b/docs/START-HERE.md
+@@ -8,7 +8,7 @@
+ 1. [领域词汇](../CONTEXT.md)：网络资源、消费者、操作、资源状态与身份角色。
+ 2. [首片规格：VPC/Subnet](specs/vpc-subnet.md)：产品规则、REST/RPC、数据、状态、恢复、接入和验收。
+ 3. [架构决定](#架构决定)：已由用户确认的所有权、数据和身份接入取舍。
+-4. [纵向实施计划](plans/vpc-subnet.md)：NET-01 至 NET-06 与 NET-AUTH 的依赖和退出证据。
++4. [纵向实施计划](plans/vpc-subnet.md)：NET-01 至 NET-06（含新增 NET-05A）与 NET-AUTH 的依赖和退出证据；[NET-05A 专案](plans/cr-observation.md)安排持续观察改造。
+ 5. [执行状态](execution/status.md)：当前工作包、下一步、验证范围与记录索引。
+ 
+ ## 架构决定
+@@ -18,10 +18,13 @@
+ | [ADR-0001](adr/0001-own-network-lifecycle.md) | Network 自己拥有资源、operation、worker、状态、恢复和真实删除，Core 不兜底；实例 owner 仍拥有 Pod/VM。 |
+ | [ADR-0002](adr/0002-use-tenant-owned-data-without-rls.md) | 独立 PostgreSQL + sqlc/pgx；租户资源显式 tenant 约束，无 RLS、共享写表或跨服务 FK。 |
+ | [ADR-0003](adr/0003-defer-workload-authentication.md) | 本期暂缓服务间身份验证，IAM 就绪后单独接入；租户业务边界继续实现和测试。 |
++| [ADR-0004](adr/0004-observe-cr-with-durable-reconciliation.md) | 共享 CR 观察与 Network 持久执行，NET-05A 位于 NET-06 前；兄弟服务框架自主选择，配额延后到 Core 重构之后。 |
+ 
+ ADR 记录已确认的方向及理由；规格中本轮补齐的数值、字段和协议细节是工程设计，不冒充已经逐项人工批准或实际验收。
+ 当前用户明确决定优先。规格、ADR、代码或证据出现差异时，标明是待实现目标、过期材料还是需要变更的决定，并更新对应权威材料，不能静默挑选有利版本。
+ 
++NET-05A 的观察、时效、调度与增量验收统一见[持续观察规格](specs/cr-observation.md)。它是待实现目标；既有资源与 Attachment 协议仍以首片规格为准，当前结果只看执行状态。
++
+ ## 文档职责
+ 
+ | 位置 | 唯一职责 |
+@@ -46,6 +49,8 @@ ADR 记录已确认的方向及理由；规格中本轮补齐的数值、字段
+ - [生成溯源](scaffold/provenance.md) 与 [运行依赖 SBOM](scaffold/bom.cdx.json)
+ - [2026-09-09 源码评估](execution/records/2026-09-09-source-assessment.md)：ANI、IAM、Notification、kc 的设计输入与快照。
+ - [2026-09-09 文档交付检查](execution/records/2026-09-09-design-verification.md)
++- [2026-09-10 CR 持续观察选型](execution/records/2026-09-10-cr-observation-selection.md)：选型研究与社区主源；已由 ADR-0004 和持续观察规格承接设计，配额讨论仅保留为后续输入。
++- [2026-09-10 NET-05A 方案检查](execution/records/2026-09-10-cr-observation-plan.md)：文档交付、编排与静态检查，不代表实施验收。
+ 
+ 本仓库独立拥有生成源码，不在构建或运行时依赖 layout 或 ANI 内部目录。
+ 旧版 START-HERE 中的初始化交接及待讨论问题由上述词汇、ADR、规格和来源记录取代；历史版本仍可从 Git 查询。
+diff --git a/docs/execution/status.md b/docs/execution/status.md
+index a3c9398..3b2302c 100644
+--- a/docs/execution/status.md
++++ b/docs/execution/status.md
+@@ -4,6 +4,8 @@
+ 
+ ## 当前工作
+ 
++NET-05A 已由用户启动，正在独立 `codex/net-05a` worktree 实施与验证；固定输入及证据见 [NET-05A 记录](records/NET-05A-implementation.md)。配额等待 Core 重构后独立接入。NET-05 历史验收及发布事实保留，持续观察豁免不适用于 NET-05A。
++
+ NET-05 已按用户调整后的范围完成，复用固定远端 `kind-kc062`，实际普通容器主链、带身份数据面、故障恢复及产品/临时环境清理均通过。独立 Network/ANI worktree、环境身份、用例断言和实际证据见 [NET-05 记录](records/NET-05-implementation.md)。验收完成后的新授权仅将 Network 提交至远端 main；ANI 继续保留本地。NET-06、部署和整体切换不在本次发布范围。
+ 
+ 执行中用户将 worker 资源持续观察专项交由并行任务，本包停止扩展/重复该项；此前证据保留并标明源码时点。该调整不取消产品创建/删除、实例 owner 恢复和其他 NET-05 验收。
+@@ -19,7 +21,8 @@ NET-02/03 实施与受控验收、NET-04 接口实现和进程验收已完成，
+ | NET-03 | `completed` | 两端持久提交/封闭/释放与占用保护；真实 PG、十场景独立进程故障验收通过 |
+ | NET-04 | `completed` | 九路由/生成契约/HTTP链路与无新增兼容回归通过；8 条既有失败按用户决定单独保留，原门禁仍 fail；仅接口，无前端 |
+ | NET-05 | `completed` | 实际 main、V-12 连通/隔离/重叠、V-06–11 适用 live 扩展、V-13 接口、最终门禁和清理通过；持续观察专项按用户调整不再追加 |
+-| NET-06 | `not_started` | 普通容器之后的 VM/KubeVirt 接入与验收 |
++| NET-05A | `in_progress` | 持续观察、持久通知、共享关系、容量对照与新版本普通容器复验；尚无运行通过结论 |
++| NET-06 | `not_started` | NET-05A 新版本验收通过后再独立启动 VM/KubeVirt 接入与验收 |
+ | NET-AUTH | `not_started` | 明确延期：IAM 就绪后接入服务间身份验证 |
+ 
+ ## 验证状态
+@@ -48,6 +51,8 @@ NET-02–04 后续发布记录属于历史输入：Network 固定提交已发布
+ 
+ ## 下一步
+ 
++完成 NET-05A 的实施、门禁、V-16～19、容量对照和真实清理；成果保持未提交，完成后停止。以下 NET-05 发布说明为历史安排。
++
+ NET-05 验收完成，按用户后续授权发布 Network main，ANI 成果继续保持本地未提交状态。NET-06、NET-AUTH、Console、生产发布/升级和整体切换等待各自独立授权；不自动继续。
+ 
+ ## 记录索引
+diff --git a/docs/plans/vpc-subnet.md b/docs/plans/vpc-subnet.md
+index 1de5110..df5ca89 100644
+--- a/docs/plans/vpc-subnet.md
++++ b/docs/plans/vpc-subnet.md
+@@ -12,6 +12,8 @@
+ - 单元/契约测试、真实 PostgreSQL 测试和真实 kc 数据面证据分别记录。模拟 Provider 只能证明 Network 的边界行为，不能替代真实网络连通和隔离。
+ - 所有真实环境工作使用 fresh、隔离资源，不关联旧 Storage/LB/Route，不迁移存量资源。发现 kc 实现缺口时记录最小复现、需要的 Provider 契约与阻断证据，交由 kc 团队处理；不在本计划中新增 kc 改代码包。
+ 
++2026-09-10 按用户要求插入独立 NET-05A，不重排原编号：`NET-01～04 → NET-05 → NET-05A → NET-06`。配额接入等待 Core 重构及治理契约就绪后独立编排，不作为上述链路的前置条件。
++
+ ## NET-01：VPC 生命周期与真实 PostgreSQL
+ 
+ **目标。** 实现 VPC 创建、Get/List、真实删除意图、持久幂等、操作执行与失败恢复的第一条纵向路径。资源和操作以 Network 数据库为权威来源，进程重启后继续处理；Provider Adapter 承接 kc 的创建、观测和删除语义。
+@@ -72,11 +74,21 @@
+ 
+ **退出证据。** 记录各仓库 commit、镜像/Provider 版本、测试资源身份、可复现命令、实际流量结果、失败路径和最终清理结果。每项写明 `pass`、`fail` 或 `not_verified`；普通容器闭环通过不等于 VM、IAM 服务间验证或生产部署完成。
+ 
++## NET-05A：CR 持续观察与执行扩展
++
++**目标。** 将当前逐资源轮询和重复关系扫描改造为共享观察、持久唤醒、统一领域执行及有时效预算的真实校验。此包是独立实现与验收，不是给 NET-05 补记结果。范围、步骤、计划路径及退出证据统一见[NET-05A 方案](cr-observation.md)，行为和 V-16～19 以[持续观察规格](../specs/cr-observation.md)为准。
++
++**依赖。** NET-05 已验收的普通容器路径及其固定源码、镜像、Provider 和环境作为基线；新实现需要取得自己的真实 PG、故障、多副本、容量及真实 kc 证据，并在新版本上复验普通容器链路。
++
++**范围边界。** Network 当前使用 client-go + PG 持久执行；向兄弟服务推广职责与恢复规则，允许其自行选择 controller-runtime。本包不改兄弟仓库，不实现配额，也不以 Core 重构、配额接线或 IAM 就绪为启动条件。
++
++**退出证据。** 依专案完成适用门禁及 V-16～19，交付精确新版本与运行配置给 NET-06。只有 VPC/Subnet Watch、仍保留每 Attachment 全集群扫描，或沿用 NET-05 的旧版本结果，均不足以完成本包。
++
+ ## NET-06：VM 后续接入与验证
+ 
+ **目标。** 普通容器闭环后，验证现有 VM 实例路径消费同一 Network Attachment 产品协议，并按 kc 的 VM 能力完成绑定、连通、隔离、释放和恢复。
+ 
+-**依赖。** NET-05 已形成普通容器证据；用户提供的是运行 kind 的宿主虚拟机，KubeVirt 运行条件、是否可复用该宿主以及业务 VM fixture 届时另行核定，不预写为用户已经提供或承诺。kc 团队提供可用的 VM 接入能力。不能从普通容器结果推定 bridge、地址配置或 VM 数据面已经支持。
++**依赖。** NET-05 普通容器证据，以及 NET-05A 新观察实现及新版本普通容器复验通过；使用 NET-05A 交付的固定版本。用户提供的是运行 kind 的宿主虚拟机，KubeVirt 运行条件、是否可复用该宿主以及业务 VM fixture 届时另行核定，不预写为用户已经提供或承诺。kc 团队提供可用的 VM 接入能力。不能从普通容器结果推定 bridge、地址配置或 VM 数据面已经支持。Core 重构与配额接入不是 NET-06 依赖。
+ 
+ **仓库路径角色。** 计划在 ANI 实例 resolver/renderer 的现有 Adapter 调整 VM 消费方式；Network 仅在固定契约确有需求时扩展接入结果。kc 源码变更继续由 kc 团队负责，本包不包含该仓库开发任务。
+ 
+@@ -96,6 +108,10 @@
+ 
+ **退出证据。** 固定 IAM 契约与实现版本、真实服务间正反向结果、受影响仓库的实际检查命令、Network `make verify` 和业务回归结果。只在对应证据取得后更新执行状态，不把前序数据隔离测试记为 IAM 接入完成。
+ 
++## Core 重构后的配额接入
++
++按用户要求延期，待 Core 重构完成且治理权威/版本化契约明确后独立编排。输入与范围见[NET-05A 方案的后续安排](cr-observation.md#6-core-重构后的配额接入)；当前不设配额实施编号，不预建临时账本或结算接口，不把配额纳入 NET-05A/06 的退出证据。
++
+ ## 验收责任映射
+ 
+ 以下引用规格 V 编号，不复制断言或测试结果；当前结果仍只维护在执行状态及记录中。
+@@ -115,3 +131,6 @@
+ | V-13 | NET-04 | NET-05 产品入口端到端证据 |
+ | V-14 | NET-06 | 不由普通容器结果替代 |
+ | V-15 | NET-AUTH | 不由无验证的联调结果替代 |
++| V-16～19 | NET-05A | 新实现的观察、调度、索引、容量及真实普通容器复验；详细断言只在持续观察规格 |
++
++NET-05A 还需回归受影响的 V-01～13；历史编号与原包证据保持不变，新版本结果另行记录。V-09 按当前规格区分查询副作用与独立后台 Watch，不能沿用单 worker 假设误判。
+diff --git a/docs/specs/vpc-subnet.md b/docs/specs/vpc-subnet.md
+index 57c1f9e..a7c88a5 100644
+--- a/docs/specs/vpc-subnet.md
++++ b/docs/specs/vpc-subnet.md
+@@ -1,6 +1,6 @@
+ # 租户 VPC / Subnet 首片规格
+ 
+-日期：2026-09-09。文档版本：1。
++日期：2026-09-09；更新：2026-09-10。文档版本：2。新增 NET-05A 观察目标及后续依赖，未改变当前实施状态。
+ 
+ 本规格是本轮形成的实施设计；用户已接受的架构方向见 [ADR](../START-HERE.md#架构决定)。
+ 字段限制、状态枚举、分页和接入协议等细节是本轮补齐的工程设计，不宣称已经逐项获得人工验收。
+@@ -19,6 +19,7 @@ VPC/Subnet 的持久操作、后台推进、状态判定、失败恢复、占用
+ - 首片是 IPv4 私有 VPC 网络：同子网、同 VPC 跨子网连通；不同 VPC 默认隔离，跨租户隔离。
+ - 自定义路由、SG、LB、NAT/EIP、公网访问、Storage 挂载、IPv6、多集群调度不在本片；同 VPC 的系统连接路由由 Provider 实现。
+ - 服务间身份验证延期到 IAM 契约就绪；这不阻断本期本地功能及指定测试环境联调，不得将其记为认证/授权验收通过。
++- 配额接入延期到 Core 重构及治理契约就绪之后独立编排，不作为 NET-05A 或 NET-06 的前置条件；现有引用占用和删除保护继续生效。
+ - 用户在设计理清后提供虚拟机，再准备 kind；本轮文档工作不创建集群或访问 live 环境。
+ 
+ ## 2. 所有权与模块接口
+@@ -174,7 +175,7 @@ succeeded/failed 是不可重写的历史结果。创建 succeeded 后资源发
+ Provider 超时、失联、执行结果未知不能直接映射为业务 failed 或 deleted。
+ 创建确证失败后可由 DELETE 清理；不增加“重试同一失败创建变成另一意图”的隐式接口。
+ 
+-初版默认后台观察间隔 10 秒、观测有效期 60 秒，均为有界运行配置。
++NET-05A 前的初版轮询默认后台观察间隔 10 秒、观测有效期 60 秒，均为有界运行配置。NET-05A 保留有效期与准入语义，观察方式及各类时钟改由[持续观察规格](cr-observation.md#4-事实时效与真实校验)定义；该增量是待实现目标。
+ 过期状态由 worker 持久推进为 degraded；查询可以纯计算 `observation_stale`，不能触发写入。
+ 接入必须同时满足 state=available 和 observation_stale=false，防止 worker 停止后凭旧快照继续绑定。
+ available 表示配置就绪，不替代端到端连通验收。
+@@ -221,6 +222,10 @@ deleting 资源拒绝新子资源/接入；删除调用采用已记录 Provider
+ 明确 NotFound 可作为删除完成的必要观测之一，但不能忽略仍在执行/结果未知的旧请求。
+ 未 deleted 的失败/删除中子网仍占用 CIDR，避免与残留数据面重叠。
+ 
++### 5.5 NET-05A 持续观察增量
++
++NET-05A 的观察范围、共享索引、持久通知代次、公平调度、真实校验及多副本规则统一见[持续观察规格](cr-observation.md)。上述 T1～T4、状态和删除规则继续适用，通知进入同一执行路径。公开版本与内部观察控制字段的边界见该规格的[查询与版本约束](cr-observation.md#5-查询版本与数据库成本)，不在本文件另建一套调度 schema。
++
+ ## 6. 持久化设计
+ 
+ 以下是表与约束设计，不是已执行 DDL。关系型权威字段使用 typed columns；JSON 只用于不可变响应快照或有限的事件/审计快照。
+@@ -316,6 +321,7 @@ Prepare、Confirm 和 Release 在各自 Network 本地事务内提交接入事
+ worker 从 Attachment 持久记录领取到期核验，以数据库时钟维护该 attachment 的执行 lease/epoch；外部只读观察在事务外进行，回写必须同时匹配 tenant、version、epoch 与允许的状态迁移。
+ reserved 持续查找匹配消费者，attached 持续核验实际占用，releasing 重试提交封闭及残留释放核验；released 的墓碑核验继续发现迟到对象，不重新激活接入。
+ 状态变化与历史、下一次核验时间同事务保存；两端重启或暂时失联时从持久记录恢复，不能依赖 Confirm/Release 重发、GET 副作用或内存定时器恢复工作。
++NET-05A 对本段的调度与共享关系观察增量同样由[持续观察规格](cr-observation.md)约束，不改变本节的接入/封闭/释放协议。
+ 接入核验不使用 VPC/Subnet 的 mutation operation，也不与其共用一个数据库长事务；涉及删除准入的写事务仍遵守第 5.4 节的父资源加锁顺序。
+ 接入表通过 `(tenant_id,vpc_id,subnet_id)` 外键指向唯一父子关系，绑定通过
+ `(tenant_id,subnet_id,binding_id)` 外键指向同一 Subnet；接入历史与派生关系快照以同租户 Attachment 外键闭合。
+@@ -382,13 +388,17 @@ worker 异常退出必须体现为不健康，不能继续只有进程存活就
+ | V-06 | T1 后停止 Gateway，Network 自己完成；Core/Gateway 无 Network 表及 VPC/Subnet CR 写权限仍闭环，实例 Pod 权限保留 |
+ | V-07 | T1 后、Provider 成功但 T4 前、删除未确认时终止 Network；重启无重复身份、无丢任务、无伪终态 |
+ | V-08 | 多副本 lease/version/fencing 竞争，旧回写拒绝；验证外部迟到请求不会破坏当前意图，不能只测 mutex |
+-| V-09 | 停 worker 后反复 GET/LIST/GetOperation，DB version 与 Provider 调用计数不变；stale 可见，接入拒绝；恢复 worker 才推进 |
++| V-09 | 停止相关后台观察/校验/执行后反复 GET/LIST/GetOperation，DB version 与 Provider 调用计数不变，证明查询纯读；另测只暂停状态应用、保留 Watch 健康时，未应用事实不能续鲜，stale 可见且接入拒绝；恢复应用后才推进 |
+ | V-10 | Prepare/删除互斥，提交后 Confirm 丢失可恢复；未封闭的 reserved 不被 TTL 释放；确认 Pod/网卡释放后才可删子网 |
+ | V-11 | Provider 失联/明确拒绝/未知结果分别呈现；恢复后继续；对象归属不匹配不认领、不误删；删除不以业务软标记代替 |
+ | V-12 | 新 kind 中普通容器同子网同节点及跨节点连通、同 VPC 跨子网连通、不同 VPC/跨租户隔离；重叠 CIDR 使用独立带身份响应的端点验证，避免 ping 自己造成假通过 |
+ | V-13 | 本次只验收 Gateway 接口创建、分页、状态及稳定幂等键；无查询时仍推进；无旧表或旧 Provider fallback。Console 后续独立验收 |
+ | V-14 | 后续 VM 单独验证实际 KubeVirt 网络路径与网关/地址行为，不从普通 Pod 通过推导 VM 通过 |
+ | V-15 | 后续 IAM 验证调用身份、目标租户与委托语义；本期未经验证测试输入不可被作为此项 pass |
++| V-16 | NET-05A Watch、快照与时效故障，断言见[观察验收合同](cr-observation.md#8-验收合同) |
++| V-17 | NET-05A 持久通知竞争、多副本与公平性，同上 |
++| V-18 | NET-05A 共享关系索引、容量对照与兼容，同上 |
++| V-19 | NET-05A 精确新版本真实观察及普通容器复验，同上 |
+ 
+ 每条记录固定源身份、环境、实际命令、结果及限制，使用 `pass / fail / not_verified`。
+ 本地 fake/provider 合同测试只证明对应层；真实 PostgreSQL、真实 kc、容器、VM、IAM 分别记证据。
+@@ -405,7 +415,9 @@ Kind 多节点跨节点测试是多个 kind node 的验证，不外推物理多
+ | 实例提交封闭/恢复协议、放置与 Pod 绑定 | NET-03 | 同步改实例接入适配；没有释放证据时保留占用，不猜测 |
+ | Gateway OpenAPI/错误 envelope/生成门禁的准确实现 | NET-04 | 按该仓库当前源码固定基线并更新消费者，不照搬旧 drift |
+ | 用户提供 VM / kind 环境参数 | NET-05 | 后续提供，不阻塞文档/本地实现 |
+-| KubeVirt 可用接入方式 | NET-06 | 后续单独契约和真实验收 |
++| 共享观察及持久调度实现、真实 Watch 权限和新版本复验 | NET-05A，NET-06 前 | [观察方案](../plans/cr-observation.md)；不复用旧 NET-05 结果冒充新实现验收 |
++| KubeVirt 可用接入方式 | NET-06 | NET-05A 通过后，单独契约和真实验收 |
+ | IAM Workload 调用契约 | NET-AUTH | 暂缓 S2S 验证；保留入站适配，不在 Network 实现临时 IAM |
++| Core 重构后的配额治理契约 | 后续独立工作包，尚未编排 | 明确延期；不预建配额表/RPC/结算，不阻断 NET-05A/06 |
+ 
+ 生产切流、存量迁移、全平台配额/计量/任务中心改造不作为本片隐含交付。

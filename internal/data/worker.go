@@ -56,7 +56,7 @@ func (p *Postgres) Claim(ctx context.Context, owner string, duration time.Durati
 	if err := tx.Commit(ctx); err != nil {
 		return biz.Work{}, false, databaseFailure(err)
 	}
-	return biz.Work{Resource: resource, Operation: operation(op), ActiveOperation: active, BindingID: binding.BindingID,
+	return biz.Work{Requirement: biz.ObservationRequirement{RequestedGeneration: lease.RequestedGeneration, AppliedAt: lease.EvidenceAppliedAt, Hash: lease.EvidenceHash}, Resource: resource, Operation: operation(op), ActiveOperation: active, BindingID: binding.BindingID,
 		KnownIdentity: binding.ProviderUid, PendingAction: binding.PendingAction, Owner: owner, Epoch: lease.LeaseEpoch, Attempt: op.Attempt, Now: now}, true, nil
 }
 
@@ -118,6 +118,9 @@ func (p *Postgres) Finish(ctx context.Context, work biz.Work, progress biz.Progr
 	if err := lockedWork(ctx, q, work); err != nil {
 		return err
 	}
+	if progress.Observed && !progress.Proof.Covers(work.Requirement) {
+		return biz.ErrLeaseLost
+	}
 	row, err := advanceResource(ctx, q, work.Resource, progress)
 	if err != nil {
 		return databaseFailure(err)
@@ -155,6 +158,7 @@ func (p *Postgres) Finish(ctx context.Context, work biz.Work, progress biz.Progr
 	}
 	if err := affected(q.ReleaseLease(ctx, sqlcgen.ReleaseLeaseParams{
 		TenantID: row.TenantID, ResourceID: row.ID, Owner: &work.Owner, Epoch: work.Epoch, DelayMicros: progress.NextDelay.Microseconds(),
+		CoveredGeneration: coveredGeneration(progress.Observed, progress.Proof, work.Requirement), Observed: progress.Observed, EvidenceHash: progress.Proof.Hash, Backoff: progress.Backoff,
 	})); err != nil {
 		return err
 	}

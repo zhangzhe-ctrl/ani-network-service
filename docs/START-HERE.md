@@ -8,7 +8,7 @@
 1. [领域词汇](../CONTEXT.md)：网络资源、消费者、操作、资源状态与身份角色。
 2. [首片规格：VPC/Subnet](specs/vpc-subnet.md)：产品规则、REST/RPC、数据、状态、恢复、接入和验收。
 3. [架构决定](#架构决定)：已由用户确认的所有权、数据和身份接入取舍。
-4. [纵向实施计划](plans/vpc-subnet.md)：NET-01 至 NET-06 与 NET-AUTH 的依赖和退出证据。
+4. [纵向实施计划](plans/vpc-subnet.md)：NET-01 至 NET-06（含新增 NET-05A）与 NET-AUTH 的依赖和退出证据；[NET-05A 专案](plans/cr-observation.md)安排持续观察改造。
 5. [执行状态](execution/status.md)：当前工作包、下一步、验证范围与记录索引。
 
 ## 架构决定
@@ -18,9 +18,12 @@
 | [ADR-0001](adr/0001-own-network-lifecycle.md) | Network 自己拥有资源、operation、worker、状态、恢复和真实删除，Core 不兜底；实例 owner 仍拥有 Pod/VM。 |
 | [ADR-0002](adr/0002-use-tenant-owned-data-without-rls.md) | 独立 PostgreSQL + sqlc/pgx；租户资源显式 tenant 约束，无 RLS、共享写表或跨服务 FK。 |
 | [ADR-0003](adr/0003-defer-workload-authentication.md) | 本期暂缓服务间身份验证，IAM 就绪后单独接入；租户业务边界继续实现和测试。 |
+| [ADR-0004](adr/0004-observe-cr-with-durable-reconciliation.md) | 共享 CR 观察与 Network 持久执行，NET-05A 位于 NET-06 前；兄弟服务框架自主选择，配额延后到 Core 重构之后。 |
 
 ADR 记录已确认的方向及理由；规格中本轮补齐的数值、字段和协议细节是工程设计，不冒充已经逐项人工批准或实际验收。
 当前用户明确决定优先。规格、ADR、代码或证据出现差异时，标明是待实现目标、过期材料还是需要变更的决定，并更新对应权威材料，不能静默挑选有利版本。
+
+NET-05A 的观察、时效、调度与增量验收统一见[持续观察规格](specs/cr-observation.md)；既有资源与 Attachment 协议仍以首片规格为准。实际源码、分层验收和容量边界见 [NET-05A 实施记录](execution/records/NET-05A-implementation.md)，当前结果只看执行状态。
 
 ## 文档职责
 
@@ -46,6 +49,8 @@ ADR 记录已确认的方向及理由；规格中本轮补齐的数值、字段�
 - [生成溯源](scaffold/provenance.md) 与 [运行依赖 SBOM](scaffold/bom.cdx.json)
 - [2026-09-09 源码评估](execution/records/2026-09-09-source-assessment.md)：ANI、IAM、Notification、kc 的设计输入与快照。
 - [2026-09-09 文档交付检查](execution/records/2026-09-09-design-verification.md)
+- [2026-09-10 CR 持续观察选型](execution/records/2026-09-10-cr-observation-selection.md)：选型研究与社区主源；已由 ADR-0004 和持续观察规格承接设计，配额讨论仅保留为后续输入。
+- [2026-09-10 NET-05A 方案检查](execution/records/2026-09-10-cr-observation-plan.md)：文档交付、编排与静态检查，不代表实施验收。
 
 本仓库独立拥有生成源码，不在构建或运行时依赖 layout 或 ANI 内部目录。
 旧版 START-HERE 中的初始化交接及待讨论问题由上述词汇、ADR、规格和来源记录取代；历史版本仍可从 Git 查询。

@@ -7,6 +7,7 @@ import (
 	"github.com/zhangzhe-ctrl/ani-network-service/internal/biz"
 	"go.opentelemetry.io/otel/attribute"
 	"log/slog"
+	"time"
 
 	kratosmetrics "github.com/go-kratos/kratos/contrib/otel/v3/metrics"
 	kratostracing "github.com/go-kratos/kratos/contrib/otel/v3/tracing"
@@ -33,6 +34,7 @@ type Observability struct {
 	requests          metric.Int64Counter
 	seconds           metric.Float64Histogram
 	workerAttempts    metric.Int64Counter
+	evidenceAge       metric.Float64Gauge
 	providerReachable metric.Int64Gauge
 }
 
@@ -109,7 +111,12 @@ func NewObservability(name, version string, readiness *Readiness) (*Observabilit
 	if err != nil {
 		return nil, err
 	}
+	evidenceAge, err := meter.Float64Gauge("ani_network_applied_evidence_age_seconds")
+	if err != nil {
+		return nil, err
+	}
 	return &Observability{
+		evidenceAge:    evidenceAge,
 		registry:       registry,
 		workerAttempts: workerAttempts, providerReachable: providerReachable,
 		meterProvider:  meterProvider,
@@ -154,7 +161,10 @@ func (o *Observability) ObserveWork(ctx context.Context, logger *slog.Logger, wo
 	} else if err != nil {
 		result = "database_error"
 	}
-	o.workerAttempts.Add(ctx, 1, metric.WithAttributes(attribute.String("result", result)))
+	o.workerAttempts.Add(ctx, 1, metric.WithAttributes(attribute.String("result", result), attribute.String("kind", work.Resource.Kind)))
+	if err == nil && progress.Observed {
+		o.evidenceAge.Record(ctx, time.Since(progress.Proof.CollectedAt).Seconds(), metric.WithAttributes(attribute.String("kind", work.Resource.Kind)))
+	}
 	if err == nil {
 		reachable := int64(1)
 		if progress.Reason == biz.ProviderUnavailable || progress.Reason == biz.ProviderUnknown {
@@ -164,5 +174,18 @@ func (o *Observability) ObserveWork(ctx context.Context, logger *slog.Logger, wo
 	}
 	if work.ActiveOperation || err != nil || work.Resource.State != progress.State || work.Resource.Reason != progress.Reason {
 		logger.InfoContext(ctx, "network reconciliation", "tenant_id", work.Resource.TenantID, "resource_type", work.Resource.Kind, "resource_id", work.Resource.ID, "operation_id", work.Operation.ID, "epoch", work.Epoch, "resource_state", progress.State, "result", result, "reason", progress.Reason)
+	}
+}
+
+func (o *Observability) ObserveAttachmentWork(ctx context.Context, work biz.AttachmentWork, p biz.AttachmentProgress, err error) {
+	result := "observed"
+	if errors.Is(err, biz.ErrLeaseLost) {
+		result = "lease_lost"
+	} else if err != nil {
+		result = "database_error"
+	}
+	o.workerAttempts.Add(ctx, 1, metric.WithAttributes(attribute.String("kind", "attachment"), attribute.String("result", result)))
+	if err == nil && p.Observed {
+		o.evidenceAge.Record(ctx, time.Since(p.Proof.CollectedAt).Seconds(), metric.WithAttributes(attribute.String("kind", "attachment")))
 	}
 }

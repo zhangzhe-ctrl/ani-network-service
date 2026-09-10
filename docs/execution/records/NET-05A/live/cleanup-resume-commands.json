@@ -1,0 +1,13 @@
+[
+  {
+    "command": [
+      "/home/ubuntu/.local/share/ani-network-service/net0204-python/bin/python3",
+      "-B",
+      "-c",
+      "import importlib.util,os,pathlib,sys\nroot=pathlib.Path(os.environ['NETWORK_SOURCE'])\nsp=importlib.util.spec_from_file_location('adapter',root/'scripts/net05a-adapt.py');adapter=importlib.util.module_from_spec(sp);sp.loader.exec_module(adapter)\nbody=adapter.adapted('cleanup')\nassert body.count('    n.delete_probes()')==1\nbody=body.replace('    n.delete_probes()',\"    if s.get('probes'):\\n        n.delete_probes()\\n    else:\\n        assert s.get('retired_probe_waves'), 'missing prior product cleanup checkpoint'\\n        assert not rows('network',\\\"SELECT attachment_id FROM network_attachments WHERE state<>'released' OR protocol_blocked\\\")\\n        assert not rows('ani',\\\"SELECT instance_id FROM instance_network_submissions WHERE state<>'closed' OR record->>'PendingRelease'<>'false' OR record->>'IdentityRevoked'<>'true'\\\")\\n        n.event('product-probe-cleanup-resume',status='pass',retired_waves=len(s['retired_probe_waves']),checks='all persisted owner submissions closed and all attachments released before continuing resource cleanup')\")\npath=str(root/'scripts/net05a-cleanup.py');sys.argv=[path,'products']\nexec(compile(body,path,'exec'),{'__file__':path,'__name__':'__main__'})\n"
+    ],
+    "started": "2026-09-10T08:17:10.465282+00:00",
+    "finished": "2026-09-10T08:21:08.868091+00:00",
+    "exit": 0
+  }
+]

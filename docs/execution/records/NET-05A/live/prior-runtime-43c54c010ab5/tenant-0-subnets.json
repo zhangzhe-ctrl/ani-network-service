@@ -1,0 +1,207 @@
+{
+  "apiVersion": "v1",
+  "items": [
+    {
+      "apiVersion": "networking.kubercloud.com/v1",
+      "kind": "Subnet",
+      "metadata": {
+        "creationTimestamp": "2026-09-10T06:59:05Z",
+        "finalizers": [
+          "networking.kubercloud.com/finalizer"
+        ],
+        "generation": 1,
+        "labels": {
+          "network.ani.io/binding-id": "a801982a-f433-4326-a326-debb55eb4967",
+          "network.ani.io/managed-by": "ani-network-service",
+          "network.ani.io/resource-id": "subnet_c3432c5b7d1b4cee87b040ff73326b14",
+          "network.ani.io/tenant-id": "18648eba-1f32-4ddd-9029-c0b84ae0f875"
+        },
+        "name": "subnet-c3432c5b7d1b4cee87b040ff73326b14",
+        "namespace": "net05a-1fae0bbf-18648eba-1f32-4ddd-9029-c0b84ae0f875",
+        "resourceVersion": "146353",
+        "uid": "ded1357d-a529-4383-a52d-69b878631ccf"
+      },
+      "spec": {
+        "allowedNamespaces": {
+          "from": "Same"
+        },
+        "cidrBlock": "10.205.2.0/24",
+        "gateway": "net05a-1fae0bbf-18648eba-1f32-4ddd-9029-c0b84ae0f875/vpc-a1a111ad5dda4198816d6e694ed46e51",
+        "gatewayIP": "10.205.2.1",
+        "ipVersion": "IPv4",
+        "type": "VPC"
+      },
+      "status": {
+        "boundResources": {
+          "gatewayPort": "vpc.net05a-1fae0bbf-18648eba-1f32-4ddd-9029-c0b84ae0f875.vpc-a1a111ad5dda4198816d6e694ed46e51-net05a-1fae0bbf-18648eba-1f32-4ddd-9029-c0b84ae0f875.subnet-c3432c5b7d1b4cee87b040ff73326b14",
+          "switch": "net05a-1fae0bbf-18648eba-1f32-4ddd-9029-c0b84ae0f875.subnet-c3432c5b7d1b4cee87b040ff73326b14"
+        },
+        "conditions": [
+          {
+            "lastTransitionTime": "2026-09-10T06:59:05Z",
+            "message": "",
+            "reason": "Initialized",
+            "status": "True",
+            "type": "Initialized"
+          },
+          {
+            "lastTransitionTime": "2026-09-10T06:59:05Z",
+            "message": "",
+            "reason": "Valid",
+            "status": "True",
+            "type": "Valid"
+          },
+          {
+            "lastTransitionTime": "2026-09-10T06:59:05Z",
+            "message": "",
+            "reason": "Ready",
+            "status": "True",
+            "type": "Ready"
+          }
+        ],
+        "gatewayMac": "fa:00:02:36:3b:85",
+        "observedGeneration": 1,
+        "v4availableIPrange": "10.205.2.2,10.205.2.4-10.205.2.254",
+        "v4availableIPs": 252,
+        "v4usingIPrange": "10.205.2.3",
+        "v4usingIPs": 1
+      }
+    },
+    {
+      "apiVersion": "networking.kubercloud.com/v1",
+      "kind": "Subnet",
+      "metadata": {
+        "creationTimestamp": "2026-09-10T06:58:46Z",
+        "finalizers": [
+          "networking.kubercloud.com/finalizer"
+        ],
+        "generation": 1,
+        "labels": {
+          "network.ani.io/binding-id": "e32d1c03-ea9c-46f2-b8d4-157b84ae301f",
+          "network.ani.io/managed-by": "ani-network-service",
+          "network.ani.io/resource-id": "subnet_e7c9d41dc8364ec79163b3cf9a72b596",
+          "network.ani.io/tenant-id": "18648eba-1f32-4ddd-9029-c0b84ae0f875"
+        },
+        "name": "subnet-e7c9d41dc8364ec79163b3cf9a72b596",
+        "namespace": "net05a-1fae0bbf-18648eba-1f32-4ddd-9029-c0b84ae0f875",
+        "resourceVersion": "146263",
+        "uid": "270a5f75-1dc7-4714-9d84-b886ddfeab63"
+      },
+      "spec": {
+        "allowedNamespaces": {
+          "from": "Same"
+        },
+        "cidrBlock": "10.205.1.0/24",
+        "gateway": "net05a-1fae0bbf-18648eba-1f32-4ddd-9029-c0b84ae0f875/vpc-a1a111ad5dda4198816d6e694ed46e51",
+        "gatewayIP": "10.205.1.1",
+        "ipVersion": "IPv4",
+        "type": "VPC"
+      },
+      "status": {
+        "boundResources": {
+          "gatewayPort": "vpc.net05a-1fae0bbf-18648eba-1f32-4ddd-9029-c0b84ae0f875.vpc-a1a111ad5dda4198816d6e694ed46e51-net05a-1fae0bbf-18648eba-1f32-4ddd-9029-c0b84ae0f875.subnet-e7c9d41dc8364ec79163b3cf9a72b596",
+          "switch": "net05a-1fae0bbf-18648eba-1f32-4ddd-9029-c0b84ae0f875.subnet-e7c9d41dc8364ec79163b3cf9a72b596"
+        },
+        "conditions": [
+          {
+            "lastTransitionTime": "2026-09-10T06:58:46Z",
+            "message": "",
+            "reason": "Initialized",
+            "status": "True",
+            "type": "Initialized"
+          },
+          {
+            "lastTransitionTime": "2026-09-10T06:58:46Z",
+            "message": "",
+            "reason": "Valid",
+            "status": "True",
+            "type": "Valid"
+          },
+          {
+            "lastTransitionTime": "2026-09-10T06:58:46Z",
+            "message": "",
+            "reason": "Ready",
+            "status": "True",
+            "type": "Ready"
+          }
+        ],
+        "gatewayMac": "fa:00:d3:b9:7f:16",
+        "observedGeneration": 1,
+        "v4availableIPrange": "10.205.1.2-10.205.1.6,10.205.1.11-10.205.1.254",
+        "v4availableIPs": 249,
+        "v4usingIPrange": "10.205.1.7-10.205.1.10",
+        "v4usingIPs": 4
+      }
+    },
+    {
+      "apiVersion": "networking.kubercloud.com/v1",
+      "kind": "Subnet",
+      "metadata": {
+        "creationTimestamp": "2026-09-10T06:59:08Z",
+        "finalizers": [
+          "networking.kubercloud.com/finalizer"
+        ],
+        "generation": 1,
+        "labels": {
+          "network.ani.io/binding-id": "ffc87f3e-0188-4b53-9924-24f243784560",
+          "network.ani.io/managed-by": "ani-network-service",
+          "network.ani.io/resource-id": "subnet_f7c3311914fe4498815a0697535b3cb6",
+          "network.ani.io/tenant-id": "18648eba-1f32-4ddd-9029-c0b84ae0f875"
+        },
+        "name": "subnet-f7c3311914fe4498815a0697535b3cb6",
+        "namespace": "net05a-1fae0bbf-18648eba-1f32-4ddd-9029-c0b84ae0f875",
+        "resourceVersion": "146532",
+        "uid": "4afd74db-9158-4042-b154-2fc70e37fcb1"
+      },
+      "spec": {
+        "allowedNamespaces": {
+          "from": "Same"
+        },
+        "cidrBlock": "10.205.1.0/24",
+        "gateway": "net05a-1fae0bbf-18648eba-1f32-4ddd-9029-c0b84ae0f875/vpc-69b854018ba64a2d90e43392642997b9",
+        "gatewayIP": "10.205.1.1",
+        "ipVersion": "IPv4",
+        "type": "VPC"
+      },
+      "status": {
+        "boundResources": {
+          "gatewayPort": "vpc.net05a-1fae0bbf-18648eba-1f32-4ddd-9029-c0b84ae0f875.vpc-69b854018ba64a2d90e43392642997b9-net05a-1fae0bbf-18648eba-1f32-4ddd-9029-c0b84ae0f875.subnet-f7c3311914fe4498815a0697535b3cb6",
+          "switch": "net05a-1fae0bbf-18648eba-1f32-4ddd-9029-c0b84ae0f875.subnet-f7c3311914fe4498815a0697535b3cb6"
+        },
+        "conditions": [
+          {
+            "lastTransitionTime": "2026-09-10T06:59:08Z",
+            "message": "",
+            "reason": "Initialized",
+            "status": "True",
+            "type": "Initialized"
+          },
+          {
+            "lastTransitionTime": "2026-09-10T06:59:08Z",
+            "message": "",
+            "reason": "Valid",
+            "status": "True",
+            "type": "Valid"
+          },
+          {
+            "lastTransitionTime": "2026-09-10T06:59:08Z",
+            "message": "",
+            "reason": "Ready",
+            "status": "True",
+            "type": "Ready"
+          }
+        ],
+        "gatewayMac": "fa:00:7a:5e:ee:f2",
+        "observedGeneration": 1,
+        "v4availableIPrange": "10.205.1.2-10.205.1.3,10.205.1.6-10.205.1.254",
+        "v4availableIPs": 251,
+        "v4usingIPrange": "10.205.1.4-10.205.1.5",
+        "v4usingIPs": 2
+      }
+    }
+  ],
+  "kind": "List",
+  "metadata": {
+    "resourceVersion": ""
+  }
+}

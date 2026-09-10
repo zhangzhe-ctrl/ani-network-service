@@ -9,38 +9,43 @@ import (
 )
 
 type NetworkAttachment struct {
-	TenantID          string
-	AttachmentID      string
-	VpcID             string
-	SubnetID          string
-	BindingID         string
-	InstanceID        string
-	Slot              string
-	RequestKey        string
-	SubmissionID      string
-	Generation        int64
-	Fingerprint       string
-	ClusterID         string
-	Namespace         string
-	BindingRevision   string
-	Plan              []byte
-	State             string
-	Reason            string
-	ProtocolBlocked   bool
-	Version           int64
-	PodName           string
-	PodUid            string
-	ConfirmUid        string
-	FinalizationID    *string
-	ProviderRelations []byte
-	CreatedAt         time.Time
-	UpdatedAt         time.Time
-	ObservedAt        *time.Time
-	ReleasedAt        *time.Time
-	NextCheckAt       time.Time
-	LeaseOwner        *string
-	LeaseUntil        *time.Time
-	Epoch             int64
+	TenantID            string
+	AttachmentID        string
+	VpcID               string
+	SubnetID            string
+	BindingID           string
+	InstanceID          string
+	Slot                string
+	RequestKey          string
+	SubmissionID        string
+	Generation          int64
+	Fingerprint         string
+	ClusterID           string
+	Namespace           string
+	BindingRevision     string
+	Plan                []byte
+	State               string
+	Reason              string
+	ProtocolBlocked     bool
+	Version             int64
+	PodName             string
+	PodUid              string
+	ConfirmUid          string
+	FinalizationID      *string
+	ProviderRelations   []byte
+	CreatedAt           time.Time
+	UpdatedAt           time.Time
+	ObservedAt          *time.Time
+	ReleasedAt          *time.Time
+	NextCheckAt         time.Time
+	LeaseOwner          *string
+	LeaseUntil          *time.Time
+	Epoch               int64
+	RequestedGeneration int64
+	ProcessedGeneration int64
+	RetryNotBefore      time.Time
+	EvidenceHash        string
+	EvidenceAppliedAt   time.Time
 }
 
 type NetworkAttachmentHistory struct {
@@ -100,14 +105,19 @@ type NetworkProviderBinding struct {
 }
 
 type NetworkReconciliation struct {
-	TenantID         string
-	VpcID            *string
-	NextRunAt        time.Time
-	LeaseOwner       *string
-	LeaseUntil       *time.Time
-	LeaseEpoch       int64
-	SubnetID         *string
-	ReconciliationID string
+	TenantID            string
+	VpcID               *string
+	NextRunAt           time.Time
+	LeaseOwner          *string
+	LeaseUntil          *time.Time
+	LeaseEpoch          int64
+	SubnetID            *string
+	ReconciliationID    string
+	RequestedGeneration int64
+	ProcessedGeneration int64
+	RetryNotBefore      time.Time
+	EvidenceHash        string
+	EvidenceAppliedAt   time.Time
 }
 
 type NetworkResourceHistory struct {

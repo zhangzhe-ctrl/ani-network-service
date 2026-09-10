@@ -1,0 +1,233 @@
+{
+  "before_post": {
+    "id": "2d0a953999e44331ad9e59bab38be14a",
+    "identity": "ani",
+    "method": "POST",
+    "path": "/apis/apps/v1/namespaces/net05a-1fae0bbf-18648eba-1f32-4ddd-9029-c0b84ae0f875/deployments",
+    "name": "net05a-1fae0bbf-owner-recovery",
+    "dry_run": false,
+    "watch": false,
+    "phase": "before",
+    "action": "hold_before"
+  },
+  "unknown": {
+    "tenant_id": "18648eba-1f32-4ddd-9029-c0b84ae0f875",
+    "instance_id": "inst_d3692f18-e8b4-4e0c-a4be-481ae29412b8",
+    "submission_id": "569d7b11-3a9d-4363-afe8-4635e094923d",
+    "operation_id": "816de0f0-0c1b-4161-bd50-72dae3719608",
+    "state": "open",
+    "version": 10,
+    "phase": "submitting",
+    "reason": "WORKLOAD_CREATE_RESULT_UNKNOWN",
+    "pod_uid": "",
+    "pod_name": "",
+    "pending_confirm": "false",
+    "pending_release": "false",
+    "finalization_id": "",
+    "identity_revoked": "false",
+    "objects": [
+      {
+        "UID": "802a6483-1795-4d94-a273-cca63df2f393",
+        "Kind": "Secret",
+        "Name": "ani-wi-2f003a7b-da6c-4658-a482",
+        "Phase": "known",
+        "Namespace": "net05a-1fae0bbf-18648eba-1f32-4ddd-9029-c0b84ae0f875",
+        "ResourceVersion": "148845"
+      },
+      {
+        "UID": "84d74be1-c925-4e2f-95a9-8d8194e839e8",
+        "Kind": "Service",
+        "Name": "net05a-1fae0bbf-owner-recovery",
+        "Phase": "known",
+        "Namespace": "net05a-1fae0bbf-18648eba-1f32-4ddd-9029-c0b84ae0f875",
+        "ResourceVersion": "148858"
+      },
+      {
+        "UID": "",
+        "Kind": "Deployment",
+        "Name": "net05a-1fae0bbf-owner-recovery",
+        "Phase": "pending",
+        "Namespace": "net05a-1fae0bbf-18648eba-1f32-4ddd-9029-c0b84ae0f875",
+        "ResourceVersion": ""
+      }
+    ]
+  },
+  "real_404s": [
+    {
+      "id": "7f298293f9104b0793e9b8540843aa2e",
+      "identity": "ani",
+      "method": "GET",
+      "path": "/apis/apps/v1/namespaces/net05a-1fae0bbf-18648eba-1f32-4ddd-9029-c0b84ae0f875/deployments/net05a-1fae0bbf-owner-recovery",
+      "name": "net05a-1fae0bbf-owner-recovery",
+      "dry_run": false,
+      "watch": false,
+      "kind": "Status",
+      "uid": null,
+      "reason": "NotFound",
+      "event": "upstream",
+      "status": 404,
+      "at": "2026-09-10T07:17:46.657196+00:00"
+    },
+    {
+      "id": "3fff184988634910862af786df5d6590",
+      "identity": "ani",
+      "method": "GET",
+      "path": "/apis/apps/v1/namespaces/net05a-1fae0bbf-18648eba-1f32-4ddd-9029-c0b84ae0f875/deployments/net05a-1fae0bbf-owner-recovery",
+      "name": "net05a-1fae0bbf-owner-recovery",
+      "dry_run": false,
+      "watch": false,
+      "kind": "Status",
+      "uid": null,
+      "reason": "NotFound",
+      "event": "upstream",
+      "status": 404,
+      "at": "2026-09-10T07:17:54.610170+00:00"
+    },
+    {
+      "id": "21a6c795f3344440a5bd955920a8192c",
+      "identity": "ani",
+      "method": "GET",
+      "path": "/apis/apps/v1/namespaces/net05a-1fae0bbf-18648eba-1f32-4ddd-9029-c0b84ae0f875/deployments/net05a-1fae0bbf-owner-recovery",
+      "name": "net05a-1fae0bbf-owner-recovery",
+      "dry_run": false,
+      "watch": false,
+      "kind": "Status",
+      "uid": null,
+      "reason": "NotFound",
+      "event": "upstream",
+      "status": 404,
+      "at": "2026-09-10T07:17:56.743097+00:00"
+    },
+    {
+      "id": "56db11b2e9604b06a5f8970b2182f530",
+      "identity": "ani",
+      "method": "GET",
+      "path": "/apis/apps/v1/namespaces/net05a-1fae0bbf-18648eba-1f32-4ddd-9029-c0b84ae0f875/deployments/net05a-1fae0bbf-owner-recovery",
+      "name": "net05a-1fae0bbf-owner-recovery",
+      "dry_run": false,
+      "watch": false,
+      "kind": "Status",
+      "uid": null,
+      "reason": "NotFound",
+      "event": "upstream",
+      "status": 404,
+      "at": "2026-09-10T07:17:59.025777+00:00"
+    }
+  ],
+  "lost_confirm": {
+    "action": "drop",
+    "at": "2026-09-10T07:18:03.381118866Z",
+    "data": {
+      "attachment_id": "att_387bea3671824a2981ee6cecfd3643eb",
+      "pod_uid": "dd7a02ca-ea15-4da6-b0b2-806558c96154"
+    },
+    "key": "inst_d3692f18-e8b4-4e0c-a4be-481ae29412b8",
+    "pid": 1,
+    "point": "before-confirm"
+  },
+  "auto_attached": {
+    "tenant_id": "18648eba-1f32-4ddd-9029-c0b84ae0f875",
+    "attachment_id": "att_387bea3671824a2981ee6cecfd3643eb",
+    "vpc_id": "vpc_2bc8f4ec315348ffb11bfa543a08bfca",
+    "subnet_id": "subnet_ca14a47929b2405989cd1c2b08fffaf8",
+    "binding_id": "ca5c066c-e196-4f31-97a6-2a6ba52cf34e",
+    "instance_id": "inst_d3692f18-e8b4-4e0c-a4be-481ae29412b8",
+    "slot": "primary",
+    "request_key": "net05a-1fae0bbf-owner-recovery",
+    "submission_id": "569d7b11-3a9d-4363-afe8-4635e094923d",
+    "generation": 1,
+    "fingerprint": "0996971c9f5c6321e855145b25a4f2f9235a18f0d90df808c2716ee902a9eae0",
+    "cluster_id": "net05a-1fae0bbf",
+    "namespace": "net05a-1fae0bbf-18648eba-1f32-4ddd-9029-c0b84ae0f875",
+    "binding_revision": "ca5c066c-e196-4f31-97a6-2a6ba52cf34e:a7d659fb-d726-4458-a9e1-b41f86c6f58a",
+    "plan": {
+      "TenantID": "18648eba-1f32-4ddd-9029-c0b84ae0f875",
+      "Namespace": "net05a-1fae0bbf-18648eba-1f32-4ddd-9029-c0b84ae0f875",
+      "Generation": 1,
+      "InstanceID": "inst_d3692f18-e8b4-4e0c-a4be-481ae29412b8",
+      "AttachmentID": "att_387bea3671824a2981ee6cecfd3643eb",
+      "SubmissionID": "569d7b11-3a9d-4363-afe8-4635e094923d",
+      "FormatVersion": 1,
+      "PrimaryNetworkRef": "net05a-1fae0bbf-18648eba-1f32-4ddd-9029-c0b84ae0f875/subnet-ca14a47929b2405989cd1c2b08fffaf8"
+    },
+    "state": "attached",
+    "reason": "",
+    "protocol_blocked": false,
+    "version": 5,
+    "pod_name": "net05a-1fae0bbf-owner-recovery-569ff94874-pr6nm",
+    "pod_uid": "dd7a02ca-ea15-4da6-b0b2-806558c96154",
+    "confirm_uid": "",
+    "finalization_id": null,
+    "provider_relations": [
+      {
+        "UID": "69ed3ab1-56c7-4069-8177-20561c31313c",
+        "Kind": "VNic",
+        "Name": "auto-net05a-1fae0bbf-owner-recovery-569ff94-vnic-765vc",
+        "OwnerUID": "dd7a02ca-ea15-4da6-b0b2-806558c96154",
+        "Namespace": "net05a-1fae0bbf-18648eba-1f32-4ddd-9029-c0b84ae0f875"
+      },
+      {
+        "UID": "0757aaaa-dd26-47c3-a2ac-6e12b9b68085",
+        "Kind": "VNicIP",
+        "Name": "auto-net05a-1fae0bbf-owner-recovery-569ff94-vnic-765vc",
+        "OwnerUID": "69ed3ab1-56c7-4069-8177-20561c31313c",
+        "Namespace": "net05a-1fae0bbf-18648eba-1f32-4ddd-9029-c0b84ae0f875"
+      }
+    ],
+    "created_at": "2026-09-10T07:16:59.761199+00:00",
+    "updated_at": "2026-09-10T07:18:05.294546+00:00",
+    "observed_at": "2026-09-10T07:18:05.071615+00:00",
+    "released_at": null,
+    "next_check_at": "2026-09-10T07:18:35.294546+00:00",
+    "lease_owner": null,
+    "lease_until": null,
+    "epoch": 4,
+    "requested_generation": 5,
+    "processed_generation": 5,
+    "retry_not_before": "1970-01-01T00:00:00+00:00",
+    "evidence_hash": "9569d16ea567aff15b3280b5ed1182e4c17df54ac4ebecb6d5fb5d28dd63c8b1",
+    "evidence_applied_at": "2026-09-10T07:18:05.294549+00:00"
+  },
+  "owner_pending": {
+    "tenant_id": "18648eba-1f32-4ddd-9029-c0b84ae0f875",
+    "instance_id": "inst_d3692f18-e8b4-4e0c-a4be-481ae29412b8",
+    "submission_id": "569d7b11-3a9d-4363-afe8-4635e094923d",
+    "operation_id": "816de0f0-0c1b-4161-bd50-72dae3719608",
+    "state": "open",
+    "version": 16,
+    "phase": "submitting",
+    "reason": "NETWORK_CONFIRM_PENDING",
+    "pod_uid": "dd7a02ca-ea15-4da6-b0b2-806558c96154",
+    "pod_name": "net05a-1fae0bbf-owner-recovery-569ff94874-pr6nm",
+    "pending_confirm": "true",
+    "pending_release": "false",
+    "finalization_id": "",
+    "identity_revoked": "false",
+    "objects": [
+      {
+        "UID": "802a6483-1795-4d94-a273-cca63df2f393",
+        "Kind": "Secret",
+        "Name": "ani-wi-2f003a7b-da6c-4658-a482",
+        "Phase": "known",
+        "Namespace": "net05a-1fae0bbf-18648eba-1f32-4ddd-9029-c0b84ae0f875",
+        "ResourceVersion": "148845"
+      },
+      {
+        "UID": "84d74be1-c925-4e2f-95a9-8d8194e839e8",
+        "Kind": "Service",
+        "Name": "net05a-1fae0bbf-owner-recovery",
+        "Phase": "known",
+        "Namespace": "net05a-1fae0bbf-18648eba-1f32-4ddd-9029-c0b84ae0f875",
+        "ResourceVersion": "148858"
+      },
+      {
+        "UID": "0b520f6c-6beb-4893-988e-427186533f2e",
+        "Kind": "Deployment",
+        "Name": "net05a-1fae0bbf-owner-recovery",
+        "Phase": "known",
+        "Namespace": "net05a-1fae0bbf-18648eba-1f32-4ddd-9029-c0b84ae0f875",
+        "ResourceVersion": "148964"
+      }
+    ]
+  }
+}
