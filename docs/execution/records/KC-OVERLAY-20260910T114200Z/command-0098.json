@@ -1,0 +1,15 @@
+{
+  "at": "2026-09-10T11:48:44.017729+00:00",
+  "argv": [
+    "docker",
+    "exec",
+    "kc062-worker2",
+    "ip",
+    "-4",
+    "route"
+  ],
+  "exit": 0,
+  "elapsed": 0.043,
+  "stdout": "default via 172.18.0.1 dev eth0 \n10.16.0.0/16 via 100.64.0.1 dev ovn0 src 100.64.0.2 \n10.250.200.0/28 via 100.64.128.8 dev ovn0 src 100.64.128.2 \n100.64.0.0/17 dev ovn0 scope link \n100.64.128.0/17 dev ovn0 scope link \n172.18.0.0/16 dev eth0 proto kernel scope link src 172.18.0.3 \n",
+  "stderr": ""
+}

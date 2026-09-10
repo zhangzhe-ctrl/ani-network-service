@@ -1,0 +1,21 @@
+{
+  "at": "2026-09-10T11:54:36.939153+00:00",
+  "argv": [
+    "docker",
+    "exec",
+    "kc062-worker",
+    "iptables",
+    "-t",
+    "nat",
+    "-L",
+    "POSTROUTING",
+    "-n",
+    "-v",
+    "-x",
+    "--line-numbers"
+  ],
+  "exit": 0,
+  "elapsed": 0.047,
+  "stdout": "Chain POSTROUTING (policy ACCEPT 57334 packets, 4112691 bytes)\nnum      pkts      bytes target     prot opt in     out     source               destination         \n1       63786  4499547 KUBE-POSTROUTING  all  --  *      *       0.0.0.0/0            0.0.0.0/0            /* kubernetes postrouting rules */\n2           0        0 DOCKER_POSTROUTING  all  --  *      *       0.0.0.0/0            198.18.0.27         \n3       63757  4497807 KCN-POSTROUTING  all  --  *      *       0.0.0.0/0            0.0.0.0/0            /* kcn:masq for eip ingress */\n4           2      120 MASQUERADE  all  --  *      eth0    10.250.200.2         0.0.0.0/0            /* kceg-0910-1142 */\n",
+  "stderr": ""
+}

@@ -1,0 +1,18 @@
+{
+  "at": "2026-09-10T11:48:56.633339+00:00",
+  "argv": [
+    "kubectl",
+    "--context=kind-kc062",
+    "--request-timeout=15s",
+    "wait",
+    "snats/kceg-0910-1142-snat",
+    "--for=jsonpath={.status.phase}=Bound",
+    "--timeout=40s",
+    "-n",
+    "tenant-egress-0910-1142"
+  ],
+  "exit": 0,
+  "elapsed": 1.0,
+  "stdout": "snat.networking.kubercloud.com/kceg-0910-1142-snat condition met\n",
+  "stderr": ""
+}

@@ -39,3 +39,9 @@ NET-05A 使用 `scripts/net05a-remote`（单仓）和 `scripts/net05a-pair`（�
 ANI 完整固定 manifest 用于检查身份，传输时排除 `.claude/settings.local.json`；Git 对象包也不能包含其私有 blob。各快照排除凭据、kubeconfig、私有配置、缓存与本包原始验收输出，排除项随 manifest 记录。生成物由 `scripts/net05a-return-generated` 回传临时位置，逐项审查后 `--apply`，并检查本地期间是否漂移。
 
 固定 kind、kc、节点和已有工作负载只读核验；故障只施加到本 run 的进程、数据库、对象或受限代理。真实业务先经产品 API 释放清理，再撤销本 run 的数据库/角色、进程、RBAC、配置与空 namespace。工具、共享镜像缓存、kind/CNI 和其他任务资源保留；完整恢复与清理证据不能以删除数据库代替。
+
+## VPC SNAT 本轮覆盖约定
+
+本轮 Goal 要求重任务必须在 ubuntu 串行执行，远端不可用时仅继续本地编辑/静态检查，不允许自动回退本地重任务。`scripts/snat-remote` 创建任务独占快照目录，沿用共享重任务 flock，GOMAXPROCS=2、GOFLAGS=-p=2、CPUQuota=200%、MemoryMax=2300M，日志及精确清单保留在 `.work/snat-runs/` 并在正式记录归档。临时 Git 索引仅用于静态门禁，不创建提交。生成物由 `scripts/snat-return-generated` 先回传审查，再检查期间本地哈希后应用。
+
+2026-09-11 本仓分支提交推送另获用户授权。发布时 `scripts/snat-remote --publication` 传递完整显式暂存树，包含本次发布的历史/新增证据，核对 index blob 与文件模式；独占远端目录内建立仅供 SBOM/供应链验证的临时提交。普通实施模式保持原有排除项及不创建验证提交的行为。真实分支与 exact-SHA CI 见 [发布记录](execution/records/VPC-SNAT-PUBLICATION-20260911/README.md)。

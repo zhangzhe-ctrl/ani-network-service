@@ -1,0 +1,80 @@
+{
+  "apiVersion": "v1",
+  "kind": "Pod",
+  "metadata": {
+    "name": "probe-11",
+    "namespace": "tenant-egress-0910-1142",
+    "labels": {
+      "runbook.ani.io/run": "kceg-0910-1142"
+    },
+    "annotations": {
+      "networking.kubercloud.com/subnet": "tenant-egress-0910-1142/kceg-0910-1142-subnet-11"
+    }
+  },
+  "spec": {
+    "nodeName": "kc062-worker2",
+    "automountServiceAccountToken": false,
+    "restartPolicy": "Never",
+    "hostNetwork": false,
+    "dnsPolicy": "None",
+    "dnsConfig": {
+      "nameservers": [
+        "1.1.1.1"
+      ]
+    },
+    "hostAliases": [
+      {
+        "ip": "104.16.124.96",
+        "hostnames": [
+          "www.cloudflare.com"
+        ]
+      }
+    ],
+    "terminationGracePeriodSeconds": 1,
+    "containers": [
+      {
+        "name": "probe",
+        "image": "docker.io/library/net05-1717d354-probe:ffcf0c98acaedd82",
+        "imagePullPolicy": "Never",
+        "command": [
+          "/probe"
+        ],
+        "env": [
+          {
+            "name": "SSL_CERT_FILE",
+            "value": "/etc/test-ca/ca.crt"
+          },
+          {
+            "name": "NET05_ID",
+            "value": "kceg-0910-1142-probe-11"
+          }
+        ],
+        "resources": {
+          "requests": {
+            "cpu": "10m",
+            "memory": "16Mi"
+          },
+          "limits": {
+            "cpu": "100m",
+            "memory": "64Mi"
+          }
+        },
+        "volumeMounts": [
+          {
+            "name": "public-ca",
+            "mountPath": "/etc/test-ca",
+            "readOnly": true
+          }
+        ]
+      }
+    ],
+    "volumes": [
+      {
+        "name": "public-ca",
+        "configMap": {
+          "name": "kceg-0910-1142-public-ca"
+        }
+      }
+    ]
+  }
+}

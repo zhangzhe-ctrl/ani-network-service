@@ -1,0 +1,139 @@
+{
+  "apiVersion": "v1",
+  "items": [
+    {
+      "apiVersion": "networking.kubercloud.com/v1",
+      "kind": "Subnet",
+      "metadata": {
+        "creationTimestamp": "2026-09-10T11:46:55Z",
+        "finalizers": [
+          "networking.kubercloud.com/finalizer"
+        ],
+        "generation": 1,
+        "labels": {
+          "networking.kubercloud.com/gateway": "tenant-egress-0910-1142.kceg-0910-1142-subnet-10",
+          "runbook.ani.io/run": "kceg-0910-1142"
+        },
+        "name": "kceg-0910-1142-subnet-10",
+        "namespace": "tenant-egress-0910-1142",
+        "resourceVersion": "208866",
+        "uid": "0e95a12f-5e11-4354-bd25-17a231d3d530"
+      },
+      "spec": {
+        "allowedNamespaces": {
+          "from": "Same"
+        },
+        "cidrBlock": "10.241.10.0/24",
+        "enableDHCP": false,
+        "gateway": "kceg-0910-1142-vpc",
+        "gatewayIP": "10.241.10.1",
+        "ipVersion": "IPv4",
+        "type": "VPC"
+      },
+      "status": {
+        "boundResources": {
+          "gatewayPort": "vpc.tenant-egress-0910-1142.kceg-0910-1142-vpc-tenant-egress-0910-1142.kceg-0910-1142-subnet-10",
+          "switch": "tenant-egress-0910-1142.kceg-0910-1142-subnet-10"
+        },
+        "conditions": [
+          {
+            "lastTransitionTime": "2026-09-10T11:46:55Z",
+            "message": "",
+            "reason": "Initialized",
+            "status": "True",
+            "type": "Initialized"
+          },
+          {
+            "lastTransitionTime": "2026-09-10T11:46:55Z",
+            "message": "",
+            "reason": "Valid",
+            "status": "True",
+            "type": "Valid"
+          },
+          {
+            "lastTransitionTime": "2026-09-10T11:46:55Z",
+            "message": "",
+            "reason": "Ready",
+            "status": "True",
+            "type": "Ready"
+          }
+        ],
+        "gatewayMac": "fa:00:c3:ee:c8:d4",
+        "observedGeneration": 1,
+        "v4availableIPrange": "10.241.10.3-10.241.10.254",
+        "v4availableIPs": 252,
+        "v4usingIPrange": "10.241.10.2",
+        "v4usingIPs": 1
+      }
+    },
+    {
+      "apiVersion": "networking.kubercloud.com/v1",
+      "kind": "Subnet",
+      "metadata": {
+        "creationTimestamp": "2026-09-10T11:46:56Z",
+        "finalizers": [
+          "networking.kubercloud.com/finalizer"
+        ],
+        "generation": 1,
+        "labels": {
+          "networking.kubercloud.com/gateway": "tenant-egress-0910-1142.kceg-0910-1142-subnet-11",
+          "runbook.ani.io/run": "kceg-0910-1142"
+        },
+        "name": "kceg-0910-1142-subnet-11",
+        "namespace": "tenant-egress-0910-1142",
+        "resourceVersion": "209224",
+        "uid": "8b1fd165-ff90-4e5d-9db8-18467eb699ba"
+      },
+      "spec": {
+        "allowedNamespaces": {
+          "from": "Same"
+        },
+        "cidrBlock": "10.241.11.0/24",
+        "enableDHCP": false,
+        "gateway": "kceg-0910-1142-vpc",
+        "gatewayIP": "10.241.11.1",
+        "ipVersion": "IPv4",
+        "type": "VPC"
+      },
+      "status": {
+        "boundResources": {
+          "gatewayPort": "vpc.tenant-egress-0910-1142.kceg-0910-1142-vpc-tenant-egress-0910-1142.kceg-0910-1142-subnet-11",
+          "switch": "tenant-egress-0910-1142.kceg-0910-1142-subnet-11"
+        },
+        "conditions": [
+          {
+            "lastTransitionTime": "2026-09-10T11:46:56Z",
+            "message": "",
+            "reason": "Initialized",
+            "status": "True",
+            "type": "Initialized"
+          },
+          {
+            "lastTransitionTime": "2026-09-10T11:46:56Z",
+            "message": "",
+            "reason": "Valid",
+            "status": "True",
+            "type": "Valid"
+          },
+          {
+            "lastTransitionTime": "2026-09-10T11:46:56Z",
+            "message": "",
+            "reason": "Ready",
+            "status": "True",
+            "type": "Ready"
+          }
+        ],
+        "gatewayMac": "fa:00:48:f4:b0:d7",
+        "observedGeneration": 1,
+        "v4availableIPrange": "10.241.11.3-10.241.11.254",
+        "v4availableIPs": 252,
+        "v4usingIPrange": "10.241.11.2",
+        "v4usingIPs": 1
+      }
+    }
+  ],
+  "kind": "List",
+  "metadata": {
+    "resourceVersion": ""
+  }
+}

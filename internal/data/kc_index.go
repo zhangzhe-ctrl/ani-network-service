@@ -16,6 +16,7 @@ var observationGVRs = []schema.GroupVersionResource{kcVPCs, kcSubnets, pods,
 	{Group: kcVPCs.Group, Version: "v1", Resource: "vnics"},
 	{Group: kcVPCs.Group, Version: "v1", Resource: "vnicips"},
 	{Group: kcVPCs.Group, Version: "v1", Resource: "eips"},
+	kcSnats, kcNats, kcServices, kcEgressGateways, kcVlans, kcNodes, kcConfigMaps,
 }
 
 const relationshipIndex = "network-relationship"
@@ -52,17 +53,60 @@ func relationshipKeys(value any) ([]string, error) {
 	}
 	switch o.GetKind() {
 	case "VPC":
+		keys = append(keys, "vpc:"+o.GetNamespace()+"/"+o.GetName())
 		keys = append(keys, "gateway:"+o.GetNamespace()+"/"+o.GetName())
 	case "Subnet":
+		if crString(o, "spec", "type") == "Public" {
+			keys = append(keys, "pool:"+o.GetNamespace()+"/"+o.GetName(), "gateway:/"+crString(o, "spec", "gateway"))
+		}
+		if vlan := crString(o, "spec", "underlayConfig", "vlanNetwork"); vlan != "" {
+			keys = append(keys, "vlan:/"+vlan)
+		}
 		keys = append(keys, "subnet:"+o.GetNamespace()+"/"+o.GetName())
 	case "EIP":
+		keys = append(keys, "eip:"+o.GetNamespace()+"/"+o.GetName(), "gateway:/"+crString(o, "status", "gateway"))
+		if pool := crString(o, "spec", "subnet"); pool != "" {
+			keys = append(keys, "pool:"+kcRef(pool, o.GetNamespace()))
+		}
+		if bound := crString(o, "status", "boundResource", "resource"); bound != "" {
+			keys = append(keys, "snat:"+o.GetNamespace()+"/"+bound)
+		}
 		ref, _, _ := unstructured.NestedString(o.Object, "spec", "subnet")
 		if ref != "" {
 			keys = append(keys, "eip-subnet:"+kcRef(ref, o.GetNamespace()))
 		}
+	case "Snat", "Nat":
+		if eip := crString(o, "spec", "eip"); eip != "" {
+			keys = append(keys, "eip:"+kcRef(eip, o.GetNamespace()))
+		}
+		if vpc := crString(o, "spec", "vpc"); vpc != "" {
+			keys = append(keys, "vpc:"+kcRef(vpc, o.GetNamespace()))
+		}
+		if o.GetKind() == "Snat" {
+			keys = append(keys, "snat:"+o.GetNamespace()+"/"+o.GetName())
+		}
+	case "EIPGateway":
+		keys = append(keys, "gateway:/"+o.GetName())
+	case "VlanNetwork":
+		keys = append(keys, "node-facts", "vlan:/"+o.GetName(), "device:"+crString(o, "spec", "devName"))
+	case "Service":
+		for _, eip := range strings.Split(o.GetAnnotations()["networking.kubercloud.com/lb_eips"], ",") {
+			if strings.TrimSpace(eip) != "" {
+				keys = append(keys, "eip:"+kcRef(strings.TrimSpace(eip), o.GetNamespace()))
+			}
+		}
+	case "Node":
+		keys = append(keys, "node-facts", "node:"+o.GetName())
+	case "ConfigMap":
+		if o.GetNamespace() == kcSystemNamespace && (o.GetName() == "kcn-config" || o.GetLabels()[ownerLabel] == "ani-network-node-facts") {
+			keys = append(keys, "node-facts")
+		}
 	case "VNic":
 		keys = append(keys, "vNic:"+o.GetNamespace()+"/"+o.GetName())
 	case "Pod":
+		if o.GetNamespace() == kcSystemNamespace {
+			keys = append(keys, "provider-images")
+		}
 		keys = append(keys, "podname:"+o.GetNamespace()+"/"+o.GetName())
 	}
 	return keys, nil

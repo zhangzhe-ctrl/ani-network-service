@@ -1,0 +1,45 @@
+{
+  "recorded_at": "2026-09-10T21:45:33.667218+00:00",
+  "user_request_date": "2026-09-11",
+  "user_direction": "kc 未修复是事实，先阻塞并处理后续流程吧",
+  "result": "pass",
+  "scope": "Local handoff evidence integrity; no test rerun or live cluster probe.",
+  "runtime_files_matching_both_remote_gates": 140,
+  "design_input_files_preserved": 595,
+  "historical_evidence_files_preserved": 588,
+  "gates": [
+    {
+      "run": "20260910T144842Z-acf48246",
+      "command": [
+        "scripts/integration",
+        "-p",
+        "2",
+        "-race",
+        "./..."
+      ],
+      "manifest_sha256": "c6646abb302e1793f5df2d2e394f4858db42c764a1cc1e72a8b15fa70ab40f01",
+      "log_sha256": "82f284e9355d4ca237feff4a8c59f5ca10a8d22f4872a5a9338f51ad69876ce3",
+      "result": "pass"
+    },
+    {
+      "run": "20260910T145133Z-96a527b1",
+      "command": [
+        "make",
+        "verify"
+      ],
+      "manifest_sha256": "7f42813c2dded9547cbc1d6bfc029ab2ac1dd48f35529fab5ae9a820f3529e57",
+      "log_sha256": "b47418ab578a1bb9a977a32a7a16ccc39d90afe9767ff62e393fa984996b7de9",
+      "result": "pass"
+    }
+  ],
+  "kc_dependency": "blocked, accepted as a known external dependency by the user",
+  "native_overlay": "not_verified",
+  "underlay_physical": "not_verified",
+  "ani_gateway_iam": "not_verified",
+  "git_worktree": "/home/chabking/workspace/.worktrees/network-vpc-snat-implementation",
+  "git_branch": "codex/vpc-snat-implementation",
+  "head": "e481e968d3cc2f17bc4c6a736c438428519b09a0",
+  "committed_or_pushed": false,
+  "prior_payload_manifest": "payload-manifest.json",
+  "prior_evidence_preserved": true
+}

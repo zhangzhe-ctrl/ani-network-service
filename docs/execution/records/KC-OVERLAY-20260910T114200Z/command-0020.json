@@ -1,0 +1,19 @@
+{
+  "at": "2026-09-10T11:46:37.425707+00:00",
+  "argv": [
+    "kubectl",
+    "--context=kind-kc062",
+    "--request-timeout=15s",
+    "get",
+    "configmap",
+    "kcn-config",
+    "-n",
+    "kcn-system",
+    "-o",
+    "json"
+  ],
+  "exit": 0,
+  "elapsed": 0.081,
+  "stdout": "{\n    \"apiVersion\": \"v1\",\n    \"data\": {\n        \"enablePortSecurity\": \"false\",\n        \"encapNetworks\": \"172.18.0.0/16\",\n        \"hasMultusCNI\": \"false\",\n        \"intranetNetworks\": \"- 172.18.0.0/16\\n- 10.140.137.0/24\\n- 172.17.0.0/16\\n- 10.96.0.0/16\\n\",\n        \"isDefaultCNI\": \"true\",\n        \"managedDevices\": \"\",\n        \"nadDefaultNamespace\": \"kube-system\"\n    },\n    \"kind\": \"ConfigMap\",\n    \"metadata\": {\n        \"creationTimestamp\": \"2026-09-09T14:56:39Z\",\n        \"name\": \"kcn-config\",\n        \"namespace\": \"kcn-system\",\n        \"resourceVersion\": \"882\",\n        \"uid\": \"429bcff7-42bd-445f-8f95-b033f227773d\"\n    }\n}\n",
+  "stderr": ""
+}

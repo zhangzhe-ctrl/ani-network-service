@@ -13,6 +13,9 @@ import (
 )
 
 func (p *KCProvider) Observe(ctx context.Context, t biz.ProviderTarget) (biz.ProviderObservation, error) {
+	if egressKind(t.Kind) {
+		return p.observeEgress(ctx, t)
+	}
 	if p.observation != nil && !t.Direct && t.KnownIdentity != "" {
 		b, err := p.binding(ctx, t)
 		if err != nil {

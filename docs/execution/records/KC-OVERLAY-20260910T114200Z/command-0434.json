@@ -1,0 +1,26 @@
+{
+  "at": "2026-09-10T11:56:52.918141+00:00",
+  "argv": [
+    "kubectl",
+    "--context=kind-kc062",
+    "--request-timeout=15s",
+    "exec",
+    "-n",
+    "kcn-system",
+    "kcn-ovn-central-5cfcf4f7b5-dbwnx",
+    "-c",
+    "ovn-central",
+    "--",
+    "ovn-nbctl",
+    "--timeout=5",
+    "--db=tcp:172.18.0.2:6641",
+    "--format=json",
+    "--columns=name",
+    "list",
+    "Logical_Router_Port"
+  ],
+  "exit": 0,
+  "elapsed": 0.137,
+  "stdout": "{\"data\":[[\"er.kc062-worker-kcn-system.sys-service\"],[\"vpc.kcn-system.kcn-cluster-kcn-system.kcn-default\"],[\"vpc.kcn-system.kcn-cluster-kcn-system.sys-service\"]],\"headings\":[\"name\"]}\n",
+  "stderr": ""
+}

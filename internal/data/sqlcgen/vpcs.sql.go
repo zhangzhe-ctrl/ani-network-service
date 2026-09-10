@@ -21,8 +21,24 @@ func (q *Queries) DatabaseTime(ctx context.Context) (time.Time, error) {
 	return now, err
 }
 
+const ensureTenantNamespace = `-- name: EnsureTenantNamespace :exec
+INSERT INTO network_tenant_namespaces(tenant_id,cluster_id,namespace) VALUES ($1,$2,$3)
+ON CONFLICT (tenant_id,cluster_id) DO NOTHING
+`
+
+type EnsureTenantNamespaceParams struct {
+	TenantID  string
+	ClusterID string
+	Namespace string
+}
+
+func (q *Queries) EnsureTenantNamespace(ctx context.Context, arg EnsureTenantNamespaceParams) error {
+	_, err := q.db.Exec(ctx, ensureTenantNamespace, arg.TenantID, arg.ClusterID, arg.Namespace)
+	return err
+}
+
 const getIdempotency = `-- name: GetIdempotency :one
-SELECT tenant_id, operation_kind, idempotency_key, fingerprint, fingerprint_version, vpc_id, operation_id, response, created_at, subnet_id FROM network_idempotency
+SELECT tenant_id, operation_kind, idempotency_key, fingerprint, fingerprint_version, vpc_id, operation_id, response, created_at, subnet_id, eip_id, snat_id FROM network_idempotency
 WHERE tenant_id = $1 AND operation_kind = 'create_vpc' AND idempotency_key = $2
 `
 
@@ -45,12 +61,14 @@ func (q *Queries) GetIdempotency(ctx context.Context, arg GetIdempotencyParams) 
 		&i.Response,
 		&i.CreatedAt,
 		&i.SubnetID,
+		&i.EipID,
+		&i.SnatID,
 	)
 	return i, err
 }
 
 const getOperation = `-- name: GetOperation :one
-SELECT tenant_id, operation_id, vpc_id, kind, state, reason, attempt, execution_epoch, created_at, updated_at, completed_at, next_attempt_at, subnet_id FROM network_operations WHERE tenant_id = $1 AND operation_id = $2
+SELECT tenant_id, operation_id, vpc_id, kind, state, reason, attempt, execution_epoch, created_at, updated_at, completed_at, next_attempt_at, subnet_id, eip_id, snat_id FROM network_operations WHERE tenant_id = $1 AND operation_id = $2
 `
 
 type GetOperationParams struct {
@@ -75,8 +93,26 @@ func (q *Queries) GetOperation(ctx context.Context, arg GetOperationParams) (Net
 		&i.CompletedAt,
 		&i.NextAttemptAt,
 		&i.SubnetID,
+		&i.EipID,
+		&i.SnatID,
 	)
 	return i, err
+}
+
+const getTenantNamespace = `-- name: GetTenantNamespace :one
+SELECT namespace FROM network_tenant_namespaces WHERE tenant_id=$1 AND cluster_id=$2
+`
+
+type GetTenantNamespaceParams struct {
+	TenantID  string
+	ClusterID string
+}
+
+func (q *Queries) GetTenantNamespace(ctx context.Context, arg GetTenantNamespaceParams) (string, error) {
+	row := q.db.QueryRow(ctx, getTenantNamespace, arg.TenantID, arg.ClusterID)
+	var namespace string
+	err := row.Scan(&namespace)
+	return namespace, err
 }
 
 const getVPC = `-- name: GetVPC :one
@@ -115,14 +151,16 @@ func (q *Queries) GetVPC(ctx context.Context, arg GetVPCParams) (GetVPCRow, erro
 }
 
 const insertBinding = `-- name: InsertBinding :exec
-INSERT INTO network_provider_bindings (tenant_id,vpc_id,subnet_id,binding_id,cluster_id,namespace,provider_name,resource_kind)
-VALUES ($1,NULLIF($2::text,''),NULLIF($3::text,''),$4,$5,$6,$7,CASE WHEN $3::text='' THEN 'vpc' ELSE 'subnet' END)
+INSERT INTO network_provider_bindings (tenant_id,vpc_id,subnet_id,eip_id,snat_id,binding_id,cluster_id,namespace,provider_name,resource_kind)
+VALUES ($1,NULLIF($2::text,''),NULLIF($3::text,''),NULLIF($4::text,''),NULLIF($5::text,''),$6,$7,$8,$9,CASE WHEN $4::text<>'' THEN 'eip' WHEN $5::text<>'' THEN 'snat' WHEN $3::text<>'' THEN 'subnet' ELSE 'vpc' END)
 `
 
 type InsertBindingParams struct {
 	TenantID     string
 	VpcID        string
 	SubnetID     string
+	EipID        string
+	SnatID       string
 	BindingID    string
 	ClusterID    string
 	Namespace    string
@@ -134,6 +172,8 @@ func (q *Queries) InsertBinding(ctx context.Context, arg InsertBindingParams) er
 		arg.TenantID,
 		arg.VpcID,
 		arg.SubnetID,
+		arg.EipID,
+		arg.SnatID,
 		arg.BindingID,
 		arg.ClusterID,
 		arg.Namespace,
@@ -144,8 +184,8 @@ func (q *Queries) InsertBinding(ctx context.Context, arg InsertBindingParams) er
 
 const insertHistory = `-- name: InsertHistory :exec
 INSERT INTO network_resource_history
-(tenant_id,history_id,vpc_id,subnet_id,operation_id,event,resource_state,operation_state,reason,actor_ref,caller_ref,correlation_id,created_at)
-VALUES ($1,$2,NULLIF($3::text,''),NULLIF($4::text,''),$5,$6,$7,$8,$9,$10,$11,$12,$13)
+(tenant_id,history_id,vpc_id,subnet_id,eip_id,snat_id,operation_id,event,resource_state,operation_state,reason,actor_ref,caller_ref,correlation_id,created_at)
+VALUES ($1,$2,NULLIF($3::text,''),NULLIF($4::text,''),NULLIF($5::text,''),NULLIF($6::text,''),$7,$8,$9,$10,$11,$12,$13,$14,$15)
 `
 
 type InsertHistoryParams struct {
@@ -153,6 +193,8 @@ type InsertHistoryParams struct {
 	HistoryID      string
 	VpcID          string
 	SubnetID       string
+	EipID          string
+	SnatID         string
 	OperationID    *string
 	Event          string
 	ResourceState  string
@@ -170,6 +212,8 @@ func (q *Queries) InsertHistory(ctx context.Context, arg InsertHistoryParams) er
 		arg.HistoryID,
 		arg.VpcID,
 		arg.SubnetID,
+		arg.EipID,
+		arg.SnatID,
 		arg.OperationID,
 		arg.Event,
 		arg.ResourceState,
@@ -213,8 +257,8 @@ func (q *Queries) InsertIdempotency(ctx context.Context, arg InsertIdempotencyPa
 }
 
 const insertOperation = `-- name: InsertOperation :exec
-INSERT INTO network_operations (tenant_id,operation_id,vpc_id,subnet_id,kind,state,created_at,updated_at,next_attempt_at)
-VALUES ($1,$2,NULLIF($3::text,''),NULLIF($4::text,''),$5,'queued',$6,$6,$6)
+INSERT INTO network_operations (tenant_id,operation_id,vpc_id,subnet_id,eip_id,snat_id,kind,state,created_at,updated_at,next_attempt_at)
+VALUES ($1,$2,NULLIF($3::text,''),NULLIF($4::text,''),NULLIF($5::text,''),NULLIF($6::text,''),$7,'queued',$8,$8,$8)
 `
 
 type InsertOperationParams struct {
@@ -222,6 +266,8 @@ type InsertOperationParams struct {
 	OperationID string
 	VpcID       string
 	SubnetID    string
+	EipID       string
+	SnatID      string
 	Kind        string
 	CreatedAt   time.Time
 }
@@ -232,6 +278,8 @@ func (q *Queries) InsertOperation(ctx context.Context, arg InsertOperationParams
 		arg.OperationID,
 		arg.VpcID,
 		arg.SubnetID,
+		arg.EipID,
+		arg.SnatID,
 		arg.Kind,
 		arg.CreatedAt,
 	)
@@ -239,13 +287,15 @@ func (q *Queries) InsertOperation(ctx context.Context, arg InsertOperationParams
 }
 
 const insertReconciliation = `-- name: InsertReconciliation :exec
-INSERT INTO network_reconciliations (tenant_id,vpc_id,subnet_id,next_run_at) VALUES ($1,NULLIF($2::text,''),NULLIF($3::text,''),$4)
+INSERT INTO network_reconciliations (tenant_id,vpc_id,subnet_id,eip_id,snat_id,next_run_at) VALUES ($1,NULLIF($2::text,''),NULLIF($3::text,''),NULLIF($4::text,''),NULLIF($5::text,''),$6)
 `
 
 type InsertReconciliationParams struct {
 	TenantID  string
 	VpcID     string
 	SubnetID  string
+	EipID     string
+	SnatID    string
 	NextRunAt time.Time
 }
 
@@ -254,6 +304,8 @@ func (q *Queries) InsertReconciliation(ctx context.Context, arg InsertReconcilia
 		arg.TenantID,
 		arg.VpcID,
 		arg.SubnetID,
+		arg.EipID,
+		arg.SnatID,
 		arg.NextRunAt,
 	)
 	return err

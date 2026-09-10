@@ -1,0 +1,27 @@
+{
+  "argv": [
+    "kubectl",
+    "--context=kind-kc062",
+    "--request-timeout=15s",
+    "exec",
+    "-n",
+    "kcn-system",
+    "kcn-cni-ds-pl4ph",
+    "-c",
+    "kcn-cni-server",
+    "--",
+    "timeout",
+    "8",
+    "tcpdump",
+    "-nn",
+    "-l",
+    "-i",
+    "any",
+    "-s",
+    "96",
+    "tcp and host 104.16.124.96 and port 443"
+  ],
+  "exit": 124,
+  "stdout": "11:50:46.141588 c867a8f21e88_h P   IP 10.241.10.2.40800 > 104.16.124.96.443: Flags [S], seq 3453824050, win 65280, options [mss 1360,sackOK,TS val 1312814767 ecr 0,nop,wscale 7], length 0\n11:50:47.149983 c867a8f21e88_h P   IP 10.241.10.2.40800 > 104.16.124.96.443: Flags [S], seq 3453824050, win 65280, options [mss 1360,sackOK,TS val 1312815776 ecr 0,nop,wscale 7], length 0\n11:50:48.174095 c867a8f21e88_h P   IP 10.241.10.2.40800 > 104.16.124.96.443: Flags [S], seq 3453824050, win 65280, options [mss 1360,sackOK,TS val 1312816800 ecr 0,nop,wscale 7], length 0\n\n",
+  "stderr": "tcpdump: data link type LINUX_SLL2\ntcpdump: verbose output suppressed, use -v[v]... for full protocol decode\nlistening on any, link-type LINUX_SLL2 (Linux cooked v2), snapshot length 96 bytes\n3 packets captured\n12 packets received by filter\n0 packets dropped by kernel\ncommand terminated with exit code 124\n"
+}

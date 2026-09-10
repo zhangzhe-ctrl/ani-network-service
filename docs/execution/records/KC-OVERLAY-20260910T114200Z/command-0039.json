@@ -1,0 +1,18 @@
+{
+  "at": "2026-09-10T11:46:55.363810+00:00",
+  "argv": [
+    "kubectl",
+    "--context=kind-kc062",
+    "--request-timeout=15s",
+    "wait",
+    "vpcs/kceg-0910-1142-vpc",
+    "--for=condition=Ready",
+    "--timeout=40s",
+    "-n",
+    "tenant-egress-0910-1142"
+  ],
+  "exit": 0,
+  "elapsed": 0.178,
+  "stdout": "vpc.networking.kubercloud.com/kceg-0910-1142-vpc condition met\n",
+  "stderr": ""
+}

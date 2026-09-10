@@ -1,0 +1,25 @@
+{
+  "apiVersion": "networking.kubercloud.com/v1",
+  "kind": "Subnet",
+  "metadata": {
+    "name": "kceg-0910-1142-public",
+    "labels": {
+      "runbook.ani.io/run": "kceg-0910-1142"
+    },
+    "namespace": "kcn-system"
+  },
+  "spec": {
+    "type": "Public",
+    "ipVersion": "IPv4",
+    "gateway": "kceg-0910-1142-gw",
+    "cidrBlock": "10.250.200.0/28",
+    "gatewayIP": "10.250.200.1",
+    "excludeIPs": [
+      "10.250.200.1"
+    ],
+    "enableDHCP": false,
+    "allowedNamespaces": {
+      "from": "All"
+    }
+  }
+}

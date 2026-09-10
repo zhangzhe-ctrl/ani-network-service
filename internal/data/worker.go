@@ -20,9 +20,16 @@ func (p *Postgres) Claim(ctx context.Context, owner string, duration time.Durati
 	}
 	defer tx.Rollback(ctx)
 	q := p.queries.WithTx(tx)
+	// Alternate platform and tenant admission opportunities within the same
+	// durable executor; due ordering provides fairness inside the tenant lane.
+	if p.workTurn.Add(1)%2 == 0 {
+		if work, found, err := p.claimPlatform(ctx, tx, q, owner, duration); found || err != nil {
+			return work, found, err
+		}
+	}
 	resource, err := claimResource(ctx, q)
 	if errors.Is(err, pgx.ErrNoRows) {
-		return biz.Work{}, false, nil
+		return p.claimPlatform(ctx, tx, q, owner, duration)
 	}
 	if err != nil {
 		return biz.Work{}, false, databaseFailure(err)
@@ -91,6 +98,9 @@ func affected(rows int64, err error) error {
 }
 
 func (p *Postgres) BeginMutation(ctx context.Context, work biz.Work, action, identity string) error {
+	if work.Resource.TenantID == "" {
+		return p.beginPlatformMutation(ctx, work, action, identity)
+	}
 	tx, err := p.pool.Begin(ctx)
 	if err != nil {
 		return databaseFailure(err)
@@ -109,6 +119,9 @@ func (p *Postgres) BeginMutation(ctx context.Context, work biz.Work, action, ide
 }
 
 func (p *Postgres) Finish(ctx context.Context, work biz.Work, progress biz.Progress) error {
+	if work.Resource.TenantID == "" {
+		return p.finishPlatform(ctx, work, progress)
+	}
 	tx, err := p.pool.Begin(ctx)
 	if err != nil {
 		return databaseFailure(err)
@@ -143,7 +156,11 @@ func (p *Postgres) Finish(ctx context.Context, work biz.Work, progress biz.Progr
 	if work.ActiveOperation || work.Resource.State != progress.State || work.Resource.Reason != progress.Reason {
 		entry := sqlcgen.InsertHistoryParams{TenantID: row.TenantID, HistoryID: uuid.NewString(),
 			Event: "reconciled", ResourceState: string(row.State), Reason: string(row.Reason), CreatedAt: row.UpdatedAt}
-		if row.Kind == "subnet" {
+		if row.Kind == "eip" {
+			entry.EipID = row.ID
+		} else if row.Kind == "snat" {
+			entry.SnatID = row.ID
+		} else if row.Kind == "subnet" {
 			entry.SubnetID = row.ID
 		} else {
 			entry.VpcID = row.ID
@@ -178,6 +195,13 @@ func (p *Postgres) DeleteVPC(ctx context.Context, tenant, id string) (biz.VPC, e
 	}
 	if row.State == string(biz.Deleting) || row.State == string(biz.Deleted) {
 		return vpc(row), nil
+	}
+	snatCount, err := q.BlockingSnatForVPC(ctx, sqlcgen.BlockingSnatForVPCParams{TenantID: tenant, VpcID: id})
+	if err != nil {
+		return biz.VPC{}, databaseFailure(err)
+	}
+	if snatCount > 0 {
+		return biz.VPC{}, biz.Fail(biz.VPCSnatExists, "SNAT binding must be deleted before its VPC")
 	}
 	count, err := q.CountBlockingSubnets(ctx, sqlcgen.CountBlockingSubnetsParams{TenantID: tenant, VpcID: id})
 	if err != nil {

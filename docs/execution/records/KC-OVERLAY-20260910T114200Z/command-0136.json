@@ -1,0 +1,20 @@
+{
+  "at": "2026-09-10T11:48:59.890386+00:00",
+  "argv": [
+    "kubectl",
+    "--context=kind-kc062",
+    "--request-timeout=15s",
+    "exec",
+    "-n",
+    "tenant-egress-0910-1142",
+    "probe-10",
+    "--",
+    "/probe",
+    "request",
+    "https://www.cloudflare.com/cdn-cgi/trace?nonce=kceg-0910-1142-bound-probe-10"
+  ],
+  "exit": 2,
+  "elapsed": 3.115,
+  "stdout": "Get \"https://www.cloudflare.com/cdn-cgi/trace?nonce=kceg-0910-1142-bound-probe-10\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)\n",
+  "stderr": "command terminated with exit code 2\n"
+}

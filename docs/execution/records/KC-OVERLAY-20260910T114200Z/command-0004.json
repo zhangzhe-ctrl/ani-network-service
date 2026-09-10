@@ -1,0 +1,18 @@
+{
+  "at": "2026-09-10T11:46:36.313593+00:00",
+  "argv": [
+    "kubectl",
+    "--context=kind-kc062",
+    "--request-timeout=15s",
+    "get",
+    "vpcs",
+    "-A",
+    "-o",
+    "custom-columns=NS:.metadata.namespace,NAME:.metadata.name,UID:.metadata.uid",
+    "--no-headers"
+  ],
+  "exit": 0,
+  "elapsed": 0.071,
+  "stdout": "kcn-system   kcn-cluster   492a7b3d-f741-4cb8-9468-5688f0cb4e53\n",
+  "stderr": ""
+}

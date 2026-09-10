@@ -1,0 +1,20 @@
+{
+  "at": "2026-09-10T11:50:06.026458+00:00",
+  "argv": [
+    "kubectl",
+    "--context=kind-kc062",
+    "--request-timeout=15s",
+    "exec",
+    "-n",
+    "kcn-system",
+    "kcn-cni-ds-pl4ph",
+    "--",
+    "sh",
+    "-c",
+    "command -v tcpdump; command -v ovs-appctl; command -v ovn-trace"
+  ],
+  "exit": 0,
+  "elapsed": 0.146,
+  "stdout": "/usr/bin/tcpdump\n/usr/bin/ovs-appctl\n/usr/bin/ovn-trace\n",
+  "stderr": "Defaulted container \"kcn-cni-server\" out of: kcn-cni-server, hostpath-init (init), install-cni (init)\n"
+}

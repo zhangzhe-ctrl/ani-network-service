@@ -1,0 +1,26 @@
+{
+  "at": "2026-09-10T11:51:07.714340+00:00",
+  "argv": [
+    "kubectl",
+    "--context=kind-kc062",
+    "--request-timeout=15s",
+    "exec",
+    "-n",
+    "kcn-system",
+    "kcn-ovn-central-5cfcf4f7b5-dbwnx",
+    "-c",
+    "ovn-central",
+    "--",
+    "ovn-nbctl",
+    "--timeout=5",
+    "--db=tcp:172.18.0.2:6641",
+    "--columns=ip_prefix,nexthop,output_port,policy,external_ids",
+    "find",
+    "Logical_Router_Static_Route",
+    "ip_prefix=10.250.200.0/28"
+  ],
+  "exit": 0,
+  "elapsed": 0.155,
+  "stdout": "ip_prefix           : \"10.250.200.0/28\"\nnexthop             : \"\"\noutput_port         : []\npolicy              : src-ip\nexternal_ids        : {source=er, vendor=kc-networking}\n",
+  "stderr": ""
+}

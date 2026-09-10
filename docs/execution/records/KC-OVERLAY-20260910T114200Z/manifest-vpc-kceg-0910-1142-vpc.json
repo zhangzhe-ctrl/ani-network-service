@@ -1,0 +1,18 @@
+{
+  "apiVersion": "networking.kubercloud.com/v1",
+  "kind": "VPC",
+  "metadata": {
+    "name": "kceg-0910-1142-vpc",
+    "labels": {
+      "runbook.ani.io/run": "kceg-0910-1142"
+    },
+    "namespace": "tenant-egress-0910-1142"
+  },
+  "spec": {
+    "ipVersion": "IPv4",
+    "cidrBlock": "10.241.0.0/16",
+    "allowedNamespaces": {
+      "from": "Same"
+    }
+  }
+}

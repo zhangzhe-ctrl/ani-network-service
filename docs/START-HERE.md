@@ -11,6 +11,8 @@
 4. [纵向实施计划](plans/vpc-subnet.md)：NET-01 至 NET-06（含新增 NET-05A）与 NET-AUTH 的依赖和退出证据；[NET-05A 专案](plans/cr-observation.md)安排持续观察改造。
 5. [执行状态](execution/status.md)：当前工作包、下一步、验证范围与记录索引。
 
+公网出网增量：[租户 VPC SNAT 方案](specs/vpc-snat.md)定义 Overlay/Underlay、平台与租户接口及生命周期；[实施计划](plans/vpc-snat.md)安排依赖和后续 Underlay 验收；[操作手册](kc-public-egress-manual.md)提供产品 RPC 顺序及 kc CR/YAML 核对参考；[出网部署前置](../deployments/egress/README.md)说明额外 RBAC 和只读节点事实来源。
+
 ## 架构决定
 
 | 记录 | 决定 |
@@ -42,10 +44,13 @@ NET-05A 的观察、时效、调度与增量验收统一见[持续观察规格](
 
 ## 运行与来源
 
+- [VPC SNAT 本仓实现与验证](execution/records/VPC-SNAT-IMPLEMENTATION/README.md)：固定设计输入、接口/事务/worker 落点、远端必要门禁、kc 外部阻塞与清理证据。
+
+- [2026-09-10 kind Overlay EIP/Snat 实测](execution/records/KC-OVERLAY-20260910T114200Z/README.md)：原始流程空下一跳失败、测试路由对照、实际流量与清理差异。
 - [NET-05 普通容器真实网络验收](execution/records/NET-05-implementation.md)：实际 main、数据面、故障、权限与清理证据。
 - [运行说明](runtime.md)
 - [运行验证](runtime-verification.md)：已有通用骨架门禁的范围。
-- [远程执行约定](remote-execution.md)：重任务优先 ubuntu，远程不可用时允许本地回退，并记录实际位置。
+- [远程执行约定](remote-execution.md)：通用规则与本轮 Goal 的更严格边界；本轮重任务必须在 ubuntu，不自动回退本地。
 - [生成溯源](scaffold/provenance.md) 与 [运行依赖 SBOM](scaffold/bom.cdx.json)
 - [2026-09-09 源码评估](execution/records/2026-09-09-source-assessment.md)：ANI、IAM、Notification、kc 的设计输入与快照。
 - [2026-09-09 文档交付检查](execution/records/2026-09-09-design-verification.md)

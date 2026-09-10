@@ -1,0 +1,27 @@
+{
+  "at": "2026-09-10T11:52:32.696404+00:00",
+  "argv": [
+    "kubectl",
+    "--context=kind-kc062",
+    "--request-timeout=15s",
+    "exec",
+    "-n",
+    "kcn-system",
+    "kcn-ovn-central-5cfcf4f7b5-dbwnx",
+    "-c",
+    "ovn-central",
+    "--",
+    "ovn-nbctl",
+    "--timeout=5",
+    "--db=tcp:172.18.0.2:6641",
+    "--format=json",
+    "--columns=_uuid,ip_prefix,nexthop,policy",
+    "find",
+    "Logical_Router_Static_Route",
+    "ip_prefix=10.250.200.0/28"
+  ],
+  "exit": 0,
+  "elapsed": 0.141,
+  "stdout": "{\"data\":[[[\"uuid\",\"daae579f-98bb-4cba-8174-2a8d33622cf6\"],\"10.250.200.0/28\",\"\",\"src-ip\"]],\"headings\":[\"_uuid\",\"ip_prefix\",\"nexthop\",\"policy\"]}\n",
+  "stderr": ""
+}

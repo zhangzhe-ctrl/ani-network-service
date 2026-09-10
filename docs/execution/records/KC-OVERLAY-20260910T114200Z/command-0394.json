@@ -1,0 +1,27 @@
+{
+  "at": "2026-09-10T11:55:06.218209+00:00",
+  "argv": [
+    "docker",
+    "exec",
+    "kc062-worker2",
+    "iptables",
+    "-t",
+    "nat",
+    "-D",
+    "POSTROUTING",
+    "-s",
+    "10.250.200.2/32",
+    "-o",
+    "eth0",
+    "-m",
+    "comment",
+    "--comment",
+    "kceg-0910-1142",
+    "-j",
+    "MASQUERADE"
+  ],
+  "exit": 0,
+  "elapsed": 0.051,
+  "stdout": "",
+  "stderr": ""
+}

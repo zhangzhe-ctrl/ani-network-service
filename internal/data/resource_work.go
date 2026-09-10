@@ -2,6 +2,9 @@ package data
 
 import (
 	"context"
+	"errors"
+	"github.com/jackc/pgx/v5"
+	"github.com/jackc/pgx/v5/pgtype"
 	"github.com/zhangzhe-ctrl/ani-network-service/internal/biz"
 	"github.com/zhangzhe-ctrl/ani-network-service/internal/data/sqlcgen"
 )
@@ -13,18 +16,82 @@ func subnetWork(s sqlcgen.NetworkSubnet) biz.ResourceWork {
 	return biz.ResourceWork{ID: s.SubnetID, TenantID: s.TenantID, Kind: "subnet", VPCID: s.VpcID, CIDR: s.Cidr, Gateway: s.Gateway, State: biz.ResourceState(s.State), Reason: biz.Reason(s.Reason), Version: s.Version, UpdatedAt: s.UpdatedAt, ObservedAt: s.ObservedAt, LastOperationID: s.LastOperationID}
 }
 func claimResource(ctx context.Context, q *sqlcgen.Queries) (biz.ResourceWork, error) {
-	parent, err := q.LockDueResourceParent(ctx)
+	rows, err := q.DueResourceCandidates(ctx)
 	if err != nil {
 		return biz.ResourceWork{}, err
 	}
-	if parent.SubnetID == nil {
-		v, err := q.LockVPC(ctx, sqlcgen.LockVPCParams{TenantID: parent.TenantID, VpcID: parent.VpcID})
-		return vpcWork(v), err
+	for _, c := range rows {
+		var v sqlcgen.NetworkVpc
+		if c.ParentVpcID != "" {
+			v, err = q.TryLockWorkVPC(ctx, sqlcgen.TryLockWorkVPCParams{TenantID: c.TenantID, VpcID: c.ParentVpcID})
+			if errors.Is(err, pgx.ErrNoRows) {
+				continue
+			}
+			if err != nil {
+				return biz.ResourceWork{}, err
+			}
+		}
+		var e sqlcgen.NetworkEip
+		if c.ParentEipID != "" {
+			e, err = q.TryLockWorkEIP(ctx, sqlcgen.TryLockWorkEIPParams{TenantID: c.TenantID, EipID: c.ParentEipID})
+			if errors.Is(err, pgx.ErrNoRows) {
+				continue
+			}
+			if err != nil {
+				return biz.ResourceWork{}, err
+			}
+		}
+		switch c.ResourceKind {
+		case "vpc":
+			return vpcWork(v), nil
+		case "subnet":
+			s, err := q.LockSubnet(ctx, sqlcgen.LockSubnetParams{TenantID: c.TenantID, SubnetID: c.ResourceID})
+			return subnetWork(s), err
+		case "eip":
+			return eipWork(e), nil
+		case "snat":
+			s, err := q.TryLockWorkSnat(ctx, sqlcgen.TryLockWorkSnatParams{TenantID: c.TenantID, SnatID: c.ResourceID})
+			if errors.Is(err, pgx.ErrNoRows) {
+				continue
+			}
+			if err != nil {
+				return biz.ResourceWork{}, err
+			}
+			return snatWork(s), nil
+		default:
+			return biz.ResourceWork{}, biz.ErrLeaseLost
+		}
 	}
-	s, err := q.LockDueSubnet(ctx, sqlcgen.LockDueSubnetParams{TenantID: parent.TenantID, VpcID: parent.VpcID})
-	return subnetWork(s), err
+	return biz.ResourceWork{}, pgx.ErrNoRows
+}
+func eipWork(e sqlcgen.NetworkEip) biz.ResourceWork {
+	return biz.ResourceWork{ID: e.EipID, TenantID: e.TenantID, Kind: "eip", State: biz.ResourceState(e.State), Reason: biz.Reason(e.Reason), Version: e.Version, UpdatedAt: e.UpdatedAt, ObservedAt: e.ObservedAt, LastOperationID: e.LastOperationID, Egress: &biz.EgressWorkSpec{PoolID: e.PoolID}}
+}
+func snatWork(s sqlcgen.NetworkSnatBinding) biz.ResourceWork {
+	return biz.ResourceWork{ID: s.SnatID, TenantID: s.TenantID, Kind: "snat", VPCID: s.VpcID, State: biz.ResourceState(s.State), Reason: biz.Reason(s.Reason), Version: s.Version, UpdatedAt: s.UpdatedAt, ObservedAt: s.ObservedAt, LastOperationID: s.LastOperationID, Egress: &biz.EgressWorkSpec{EIPID: s.EipID, DesiredEnabled: s.DesiredEnabled, TargetGeneration: s.TargetGeneration}}
 }
 func lockResource(ctx context.Context, q *sqlcgen.Queries, r biz.ResourceWork) (biz.ResourceWork, error) {
+	if r.Kind == "eip" {
+		e, err := q.LockEIP(ctx, sqlcgen.LockEIPParams{TenantID: r.TenantID, EipID: r.ID})
+		return eipWork(e), err
+	}
+	if r.Kind == "snat" {
+		if r.Egress == nil {
+			return biz.ResourceWork{}, biz.ErrLeaseLost
+		}
+		if _, err := q.LockVPC(ctx, sqlcgen.LockVPCParams{TenantID: r.TenantID, VpcID: r.VPCID}); err != nil {
+			return biz.ResourceWork{}, err
+		}
+		if _, err := q.LockEIP(ctx, sqlcgen.LockEIPParams{TenantID: r.TenantID, EipID: r.Egress.EIPID}); err != nil {
+			return biz.ResourceWork{}, err
+		}
+		s, err := q.LockSnat(ctx, sqlcgen.LockSnatParams{TenantID: r.TenantID, SnatID: r.ID})
+		if err == nil && (s.VpcID != r.VPCID || s.EipID != r.Egress.EIPID) {
+			return biz.ResourceWork{}, biz.ErrLeaseLost
+		}
+		return snatWork(s), err
+	}
+
 	parent := r.ID
 	if r.Kind == "subnet" {
 		parent = r.VPCID
@@ -46,6 +113,23 @@ func lockResource(ctx context.Context, q *sqlcgen.Queries, r biz.ResourceWork) (
 	return subnetWork(s), err
 }
 func advanceResource(ctx context.Context, q *sqlcgen.Queries, r biz.ResourceWork, p biz.Progress) (biz.ResourceWork, error) {
+	facts := biz.EgressAppliedFacts{}
+	if p.Egress != nil && p.Observed {
+		facts = *p.Egress
+	}
+	if r.Kind == "eip" {
+		e, err := q.AdvanceEIP(ctx, sqlcgen.AdvanceEIPParams{TenantID: r.TenantID, EipID: r.ID, Version: r.Version, State: string(p.State), Reason: string(p.Reason), Observed: p.Observed, ObservedAt: proofTime(p.Observed, p.Proof), Address: facts.Address})
+		return eipWork(e), err
+	}
+	if r.Kind == "snat" {
+		applied := pgtype.Bool{}
+		if facts.AppliedEnabled != nil {
+			applied = pgtype.Bool{Bool: *facts.AppliedEnabled, Valid: true}
+		}
+		s, err := q.AdvanceSnat(ctx, sqlcgen.AdvanceSnatParams{TenantID: r.TenantID, SnatID: r.ID, Version: r.Version, State: string(p.State), Reason: string(p.Reason), Observed: p.Observed, ObservedAt: proofTime(p.Observed, p.Proof), AppliedEnabled: applied, TargetGeneration: facts.TargetGeneration})
+		return snatWork(s), err
+	}
+
 	if r.Kind == "subnet" {
 		s, err := q.AdvanceSubnet(ctx, sqlcgen.AdvanceSubnetParams{TenantID: r.TenantID, SubnetID: r.ID, Version: r.Version, State: string(p.State), Reason: string(p.Reason), Observed: p.Observed, ObservedAt: proofTime(p.Observed, p.Proof)})
 		return subnetWork(s), err

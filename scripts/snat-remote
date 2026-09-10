@@ -1,0 +1,164 @@
+#!/usr/bin/env python3
+"""Run a command on an isolated verified source snapshot on ubuntu.
+
+Usage: scripts/snat-remote -- go test -count=1 ./internal/biz
+Logs and exit codes stay in .work/snat-runs. Lost SSH responses never trigger
+automatic command replay.
+"""
+import argparse
+import hashlib
+import json
+import os
+from pathlib import Path
+import shlex
+import subprocess
+import tarfile
+import time
+import uuid
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--publication", action="store_true",
+                        help="verify the entire explicitly staged publication tree, including evidence")
+    parser.add_argument("command", nargs=argparse.REMAINDER)
+    arguments = parser.parse_args()
+    command = arguments.command
+    if command[:1] == ["--"]:
+        command = command[1:]
+    if not command:
+        parser.error("an explicit command is required")
+    root = Path(__file__).resolve().parents[1]
+    os.chdir(root)
+    run = time.strftime("%Y%m%dT%H%M%SZ", time.gmtime()) + "-" + uuid.uuid4().hex[:8]
+    output = root / ".work/snat-runs" / run
+    output.mkdir(parents=True)
+    remote = "/home/ubuntu/workspace/ani-network-service-runs/snat-" + run
+    names = sorted(set(subprocess.check_output(
+        ["git", "ls-files", "-co", "--exclude-standard", "-z"]
+    ).decode().split("\0")) - {""})
+    excluded = [n for n in names if n.startswith(("docs/execution/records/KC-KIND-20260909T144827Z/", "docs/execution/records/NET-05A/", "docs/execution/records/VPC-SNAT-IMPLEMENTATION/runs/")) or n.startswith(".claude/") or "__pycache__" in Path(n).parts or n.endswith(".pyc")]
+    staged_tree = None
+    if arguments.publication:
+        indexed = subprocess.check_output(["git", "ls-files", "--stage", "-z"], text=True)
+        names = []
+        for item in indexed.split("\0"):
+            if not item:
+                continue
+            header, name = item.split("\t", 1)
+            mode, object_id, stage = header.split()
+            if stage != "0" or mode not in ("100644", "100755"):
+                raise SystemExit("publication index must contain regular, resolved files: " + name)
+            path = Path(name)
+            contents = path.read_bytes()
+            actual = hashlib.sha1(b"blob " + str(len(contents)).encode() + b"\0" + contents).hexdigest()
+            actual_mode = "100755" if path.stat().st_mode & 0o111 else "100644"
+            if actual != object_id or actual_mode != mode:
+                raise SystemExit("unstaged publication source change: " + name)
+            names.append(name)
+        excluded = []
+        staged_tree = subprocess.check_output(["git", "write-tree"], text=True).strip()
+    else:
+        names = [n for n in names if n not in excluded]
+    records = []
+    for name in names:
+        path = Path(name)
+        if (not path.is_file() or path.is_symlink() or path.name.startswith(".env")
+                or path.suffix in (".key", ".pem", ".cert")):
+            raise SystemExit("refusing unexpected/sensitive source: " + name)
+        records.append({
+            "path": name,
+            "mode": "100755" if path.stat().st_mode & 0o111 else "100644",
+            "sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
+        })
+    archive = output / "source.tar.gz"
+    with tarfile.open(archive, "w:gz") as package:
+        for name in names:
+            package.add(name, arcname=name, recursive=False)
+    digest = hashlib.sha256(archive.read_bytes()).hexdigest()
+    metadata = {
+        "remote": remote,
+        "head": subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip(),
+        "publication": arguments.publication,
+        "staged_tree": staged_tree,
+        "archive_sha256": digest,
+        "command": command,
+        "files": records,
+        "excluded_evidence_and_private_paths": excluded,
+        "manifest_sha256": hashlib.sha256(json.dumps(records, sort_keys=True, separators=(",", ":")).encode()).hexdigest(),
+        "dirty_paths": subprocess.check_output(["git", "status", "--porcelain"], text=True).splitlines(),
+    }
+    extras = []
+    (output / "snapshot.json").write_text(json.dumps(metadata, indent=2) + "\n")
+    (root / ".work/snat-runs/latest").write_text(str(output) + "\n")
+    options = ["-F", "/home/chabking/.ssh/config", "-o", "BatchMode=yes",
+               "-o", "ConnectTimeout=12", "-o", "ControlMaster=auto",
+               "-o", "ControlPersist=120", "-o", "ControlPath=" + str(root / ".work/ubuntu.sock")]
+    ssh = ["ssh", *options, "ubuntu"]
+    subprocess.run(ssh + ["source /home/ubuntu/.local/share/ani-network-service/env.sh; mkdir -- " + shlex.quote(remote)], check=True)
+    subprocess.run(["scp", *options,
+                    str(archive), str(output / "snapshot.json"), *extras, "ubuntu:" + remote + "/"], check=True)
+    script = """set -Eeuo pipefail
+source /home/ubuntu/.local/share/ani-network-service/env.sh
+cd {remote}
+printf '%s  source.tar.gz\\n' {digest} | sha256sum -c -
+mkdir source
+tar -xzf source.tar.gz -C source
+python3 - <<'CHECK'
+import hashlib,json,pathlib
+metadata=json.loads(pathlib.Path('snapshot.json').read_text())
+for item in metadata['files']:
+    path=pathlib.Path('source')/item['path']
+    assert hashlib.sha256(path.read_bytes()).hexdigest()==item['sha256'], item['path']
+    assert ('100755' if path.stat().st_mode & 0o111 else '100644')==item['mode'], item['path']
+print('verified source files:',len(metadata['files']))
+CHECK
+cd source
+source /home/ubuntu/.local/share/ani-network-service/env.sh
+git -c init.defaultBranch=verification init -q
+python3 - <<'STAGE'
+import json,pathlib,subprocess
+metadata=json.loads(pathlib.Path('../snapshot.json').read_text())
+# Preserve the exact authorized input, including already-tracked evidence logs
+# which the repository's default ignore patterns would otherwise omit.
+subprocess.run(['git','add','--force','--',*[item['path'] for item in metadata['files']]],check=True)
+STAGE
+{snapshot_commit}
+mkdir -p .tools/bin
+for tool in buf sqlc govulncheck cyclonedx-gomod gitleaks; do
+  if [[ -x /home/ubuntu/.local/share/ani-network-service/bin/$tool ]]; then
+    ln -s /home/ubuntu/.local/share/ani-network-service/bin/$tool .tools/bin/$tool
+  fi
+done
+printf '%s\\n' "$$" > ../shell.pid
+set +e
+flock -n /home/ubuntu/.local/share/ani-network-service/net05a-heavy.lock systemd-run --user --scope --quiet -p CPUQuota=200% -p MemoryMax=2300M -p MemorySwapMax=0 env GOMAXPROCS=2 GOFLAGS=-p=2 GOMEMLIMIT=1500MiB scripts/net05a-resource-guard {command} 2>&1 | tee ../command.log
+result=$?
+set -e
+printf '%s\\n' "$result" > ../command.exit
+printf 'REMOTE_COMMAND_EXIT=%s\\n' "$result"
+exit "$result"
+""".format(remote=shlex.quote(remote), digest=shlex.quote(digest), command=shlex.join(command),
+           snapshot_commit=("git -c user.name='Network Snapshot' -c user.email='snapshot@localhost' -c commit.gpgSign=false commit -qm 'Verification input'"
+                            if arguments.publication else "# No commit: preserve the uncommitted source index."))
+    (output / "run.sh").write_text(script)
+    print("snapshot=" + str(output), flush=True)
+    print("remote=" + remote, flush=True)
+    with (output / "command.log").open("w") as log:
+        process = subprocess.Popen(ssh + ["bash -s"], stdin=subprocess.PIPE,
+                                   stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
+        process.stdin.write(script)
+        process.stdin.close()
+        for line in process.stdout:
+            print(line, end="", flush=True)
+            log.write(line)
+            log.flush()
+        code = process.wait()
+    (output / "ssh.exit").write_text(str(code) + "\n")
+    if code == 255:
+        print("SSH result uncertain; inspect this run's command.exit and shell.pid before deciding next action.")
+    raise SystemExit(code)
+
+
+if __name__ == "__main__":
+    main()

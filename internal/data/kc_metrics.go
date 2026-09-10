@@ -33,13 +33,13 @@ func (t measuredTransport) RoundTrip(r *http.Request) (*http.Response, error) {
 	parts := strings.Split(r.URL.Path, "/")
 	for _, part := range parts {
 		switch part {
-		case "vpcs", "subnets", "pods", "vnics", "vnicips", "eips", "namespaces":
+		case "vpcs", "subnets", "pods", "vnics", "vnicips", "eips", "namespaces", "snats", "nats", "eipgateways", "vlannetworks", "nodes", "configmaps", "services", "servicecidrs":
 			resource = part
 		}
 	}
 	verb := r.Method
 	switch verb {
-	case "GET", "POST", "DELETE":
+	case "GET", "POST", "DELETE", "PATCH":
 	default:
 		verb = "OTHER"
 	}

@@ -1,0 +1,19 @@
+{
+  "at": "2026-09-10T11:46:37.677567+00:00",
+  "argv": [
+    "kubectl",
+    "--context=kind-kc062",
+    "--request-timeout=15s",
+    "get",
+    "vm,vmi",
+    "test-vm-1c1g",
+    "-n",
+    "default",
+    "-o",
+    "custom-columns=KIND:.kind,NAME:.metadata.name,UID:.metadata.uid,READY:.status.ready,PHASE:.status.phase,NODE:.status.nodeName"
+  ],
+  "exit": 0,
+  "elapsed": 0.079,
+  "stdout": "KIND                     NAME           UID                                    READY    PHASE     NODE\nVirtualMachine           test-vm-1c1g   30e72058-ee0d-4338-bcab-9fadff602e4b   true     <none>    <none>\nVirtualMachineInstance   test-vm-1c1g   fc9df538-3239-487b-a7af-800e6dfbf178   <none>   Running   kc062-worker2\n",
+  "stderr": ""
+}

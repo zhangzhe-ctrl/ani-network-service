@@ -1,0 +1,18 @@
+{
+  "at": "2026-09-10T11:55:12.585853+00:00",
+  "argv": [
+    "kubectl",
+    "--context=kind-kc062",
+    "--request-timeout=15s",
+    "get",
+    "vnicips",
+    "-A",
+    "-o",
+    "custom-columns=NS:.metadata.namespace,NAME:.metadata.name,UID:.metadata.uid",
+    "--no-headers"
+  ],
+  "exit": 0,
+  "elapsed": 0.079,
+  "stdout": "default              auto-virt-launcher-test-vm-1c1g-rp26j-vnic-dfd87         d78b2e55-bd27-424b-90a9-cc9652e76c04\nkcn-system           node.kc062-control-plane                                 c7c5a8c4-0beb-46f7-8dde-070072c80cf7\nkcn-system           node.kc062-worker                                        963bbe89-7597-4e04-8d86-90aa9de68bf2\nkcn-system           node.kc062-worker2                                       186c5a24-9781-431b-a513-8e1a0e37a5f8\nkcn-system           service-er.kc062-control-plane                           48989f28-a003-4625-aa7e-2f7fc8c27e93\nkcn-system           service-er.kc062-worker                                  e5dc1d68-7c85-4b65-acf5-b8a5128eece1\nkcn-system           service-er.kc062-worker2                                 7087d140-d850-486f-9f98-c2f6f4b52e88\nkcn-system           uplink-er.kc062-control-plane                            b2a3f0fa-471e-429a-bdc3-e706bf13f6b5\nkcn-system           uplink-er.kc062-worker                                   ce5278ce-8cf5-481f-ab89-30bf083fe9d1\nkcn-system           uplink-er.kc062-worker2                                  b59e86a4-ec67-43ef-b439-2ea8a645438d\nkcn-system           uplink-vpc                                               2526c6f2-57ba-4802-a140-465b67baf053\nkube-system          auto-coredns-589f44dc88-gcd57-vnic-4c5nn                 adf79fca-ef4f-4adb-aa2e-03a54fd2b73f\nkube-system          auto-coredns-589f44dc88-zmkcs-vnic-8cfgp                 0609b46a-5d0b-4981-a357-290f4f637a66\nkubevirt             auto-virt-api-565d88c79d-7fzf9-vnic-lpm5d                151ee67f-e4cd-4147-9886-1d2b7037a3a4\nkubevirt             auto-virt-api-565d88c79d-zh48q-vnic-b6wvz                d689cc30-3bad-40e1-b0b2-953c9290c8f5\nkubevirt             auto-virt-controller-545d9f7b4-s6x5x-vnic-vxsrc          1170eda6-37d3-47a4-8ac2-7a50f4b9abfd\nkubevirt             auto-virt-controller-545d9f7b4-t2llp-vnic-jd2z2          fe98b530-507a-4037-a51b-cd0f4610688a\nkubevirt             auto-virt-exportproxy-7644f96477-8g4fw-vnic-kxcxw        7a48fe31-4f00-4a3a-b8ef-88ffc93ba302\nkubevirt             auto-virt-exportproxy-7644f96477-98rkr-vnic-crds6        d49f3a35-534e-41d9-8b20-b0378a69ecbc\nkubevirt             auto-virt-handler-l75qc-vnic-rn459                       abbfab1a-bf65-44cf-9ca3-1ce33fc8f42b\nkubevirt             auto-virt-handler-xllxd-vnic-sm9zd                       f65d5271-a48a-486a-9168-984ec36d8c30\nkubevirt             auto-virt-operator-79b799c796-5p6w8-vnic-wqhvr           7975c998-36b5-4c5a-9f53-47473166b13e\nkubevirt             auto-virt-operator-79b799c796-nc62p-vnic-tcsnl           75c39383-0af6-4e0f-8c10-ad43403ac9fa\nkubevirt             auto-virt-template-apiserver-5c485dd848-58x-vnic-9cshz   cece41e0-591b-476f-beda-0949d678cba6\nkubevirt             auto-virt-template-controller-59cf8457d9-mg-vnic-g5cjm   9a789f46-1b8c-4fc0-82d6-a54861140935\nlocal-path-storage   auto-local-path-provisioner-56c4685b7c-pdxh-vnic-mp8zt   1fd29021-c937-4c39-88f4-f75d914b7806\n",
+  "stderr": ""
+}

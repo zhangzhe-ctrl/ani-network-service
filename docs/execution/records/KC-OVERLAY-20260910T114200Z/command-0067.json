@@ -1,0 +1,19 @@
+{
+  "at": "2026-09-10T11:48:35.191570+00:00",
+  "argv": [
+    "kubectl",
+    "--context=kind-kc062",
+    "--request-timeout=15s",
+    "exec",
+    "-n",
+    "tenant-egress-0910-1142",
+    "probe-10",
+    "--",
+    "/probe",
+    "inspect"
+  ],
+  "exit": 0,
+  "elapsed": 0.16,
+  "stdout": "{\"addresses\":[{\"IP\":\"127.0.0.1\",\"Mask\":\"/wAAAA==\"},{\"IP\":\"10.241.10.2\",\"Mask\":\"////AA==\"},{\"IP\":\"::1\",\"Mask\":\"/////////////////////w==\"},{\"IP\":\"fe80::f800:f7ff:febe:79fa\",\"Mask\":\"//////////8AAAAAAAAAAA==\"}],\"routes\":\"Iface\\tDestination\\tGateway \\tFlags\\tRefCnt\\tUse\\tMetric\\tMask\\t\\tMTU\\tWindow\\tIRTT                                                       \\neth0\\t00000000\\t010AF10A\\t0003\\t0\\t0\\t0\\t00000000\\t0\\t0\\t0                                                                               \\neth0\\t000AF10A\\t00000000\\t0001\\t0\\t0\\t0\\t00FFFFFF\\t0\\t0\\t0                                                                               \\n\"}\n",
+  "stderr": ""
+}

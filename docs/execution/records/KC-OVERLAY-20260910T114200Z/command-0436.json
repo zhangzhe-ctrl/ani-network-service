@@ -1,0 +1,26 @@
+{
+  "at": "2026-09-10T11:56:53.195044+00:00",
+  "argv": [
+    "kubectl",
+    "--context=kind-kc062",
+    "--request-timeout=15s",
+    "exec",
+    "-n",
+    "kcn-system",
+    "kcn-ovn-central-5cfcf4f7b5-dbwnx",
+    "-c",
+    "ovn-central",
+    "--",
+    "ovn-nbctl",
+    "--timeout=5",
+    "--db=tcp:172.18.0.2:6641",
+    "--format=json",
+    "--columns=name",
+    "list",
+    "Address_Set"
+  ],
+  "exit": 0,
+  "elapsed": 0.14,
+  "stdout": "{\"data\":[[\"gw.kcn.system.kcn.cluster.kc062.control.plane\"],[\"gw.kcn.system.kcn.cluster.kc062.worker\"],[\"gw.kcn.system.kcn.cluster.networks\"],[\"gw.kcn.system.kcn.cluster.kc062.worker2\"]],\"headings\":[\"name\"]}\n",
+  "stderr": ""
+}

@@ -1,0 +1,18 @@
+{
+  "at": "2026-09-10T11:46:37.016681+00:00",
+  "argv": [
+    "kubectl",
+    "--context=kind-kc062",
+    "--request-timeout=15s",
+    "get",
+    "nics",
+    "-A",
+    "-o",
+    "custom-columns=NS:.metadata.namespace,NAME:.metadata.name,UID:.metadata.uid",
+    "--no-headers"
+  ],
+  "exit": 0,
+  "elapsed": 0.082,
+  "stdout": "kcn-system   nic-default-virt-launcher-test-vm-1c1g-rp26j-rsrr4                a0416ae0-c0a0-4da4-99f4-78db50dbfc23\nkcn-system   nic-kube-system-coredns-589f44dc88-gcd57-5kfx5                    fd5ae6e3-079d-4f93-956e-fb6ead734bed\nkcn-system   nic-kube-system-coredns-589f44dc88-zmkcs-7grdw                    0aa5677b-8a01-4914-bc1b-ddb64c9581a5\nkcn-system   nic-kubevirt-virt-api-565d88c79d-7fzf9-wbnxf                      c680f70d-edad-4c24-bc39-9330cc97db6a\nkcn-system   nic-kubevirt-virt-api-565d88c79d-zh48q-94whq                      3d06b444-cb36-4193-bf02-d1c0128682be\nkcn-system   nic-kubevirt-virt-controller-545d9f7b4-s6x5x-pdgsc                847e1543-da30-4041-b5d0-16ce29173e9b\nkcn-system   nic-kubevirt-virt-controller-545d9f7b4-t2llp-zjlw8                cf01a800-e849-412d-a6bd-a8e365afb827\nkcn-system   nic-kubevirt-virt-exportproxy-7644f96477-8g4fw-6dg68              2b12aa48-b73a-4ae1-a6f6-e66fb30af6f4\nkcn-system   nic-kubevirt-virt-exportproxy-7644f96477-98rkr-dwszw              bc24dd5f-7098-4155-9dd4-fd5aa76aa637\nkcn-system   nic-kubevirt-virt-handler-l75qc-klxbw                             8fa42886-1818-4501-9694-1411cbb3ac5f\nkcn-system   nic-kubevirt-virt-handler-xllxd-t5lzk                             f788f8a4-d291-4225-b75f-1d76aa14f8b8\nkcn-system   nic-kubevirt-virt-operator-79b799c796-5p6w8-ht59h                 1d73a8cc-32bb-48f9-ad9d-42a452828fe0\nkcn-system   nic-kubevirt-virt-operator-79b799c796-nc62p-xb67g                 e13a8a1c-96fc-4942-9eb9-f257f7cc6468\nkcn-system   nic-kubevirt-virt-template-apiserver-5c485dd848-58x9n-tx58m       46660fa1-65c1-4abe-a451-beb7c12d8e54\nkcn-system   nic-kubevirt-virt-template-controller-59cf8457d9-mgn4n-kl5s2      e494ae51-449e-4e33-8d48-62ab0d1d9957\nkcn-system   nic-local-path-storage-local-path-provisioner-56c4685b7c--chh2m   3728e520-a866-4880-99a6-db16706efa54\n",
+  "stderr": ""
+}

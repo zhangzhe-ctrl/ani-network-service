@@ -267,6 +267,9 @@ func (p *KCProvider) ensureNamespace(ctx context.Context, binding sqlcgen.Networ
 }
 
 func (p *KCProvider) Delete(ctx context.Context, target biz.ProviderTarget) error {
+	if egressKind(target.Kind) {
+		return p.deleteEgress(ctx, target)
+	}
 	binding, err := p.binding(ctx, target)
 	if err != nil {
 		return err

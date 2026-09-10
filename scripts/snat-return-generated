@@ -1,0 +1,29 @@
+#!/usr/bin/env python3
+"""Fetch pinned generator outputs for review, then apply only without local drift."""
+import argparse,hashlib,json,pathlib,shlex,shutil,subprocess,tarfile
+p=argparse.ArgumentParser(description=__doc__);p.add_argument('run');p.add_argument('--apply',action='store_true');p.add_argument('--modules',action='store_true');args=p.parse_args()
+root=pathlib.Path(__file__).resolve().parents[1];run=root/'.work/snat-runs'/args.run;meta=json.loads((run/'snapshot.json').read_text());items={r['path']:r for r in meta['files']}
+out=run/'generated';out.mkdir(exist_ok=True)
+archive=run/('generated-with-modules.tar' if args.modules else 'generated.tar')
+remote="cd "+shlex.quote(meta['remote']+'/source')+" && tar -cf - api/network/v1/*pb.go internal/conf/v1/conf.pb.go internal/data/sqlcgen/*.go"+(" go.mod go.sum" if args.modules else "")
+if not archive.exists():
+ with archive.open('wb') as f:subprocess.run(['ssh','-F','/home/chabking/.ssh/config','-o','BatchMode=yes','ubuntu',remote],stdout=f,check=True)
+with tarfile.open(archive) as t:
+ for m in t:
+  name=m.name
+  assert m.isfile() and not pathlib.PurePosixPath(name).is_absolute() and '..' not in pathlib.PurePosixPath(name).parts
+  assert (args.modules and name in ('go.mod','go.sum')) or (name.startswith('api/network/v1/') and name.endswith('pb.go')) or name=='internal/conf/v1/conf.pb.go' or (name.startswith('internal/data/sqlcgen/') and name.endswith('.go'))
+  f=out/name;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes(t.extractfile(m).read())
+changes=[]
+for f in sorted(list(out.rglob('*.go'))+([out/'go.mod',out/'go.sum'] if args.modules else [])):
+ name=str(f.relative_to(out));local=root/name
+ before=hashlib.sha256(local.read_bytes()).hexdigest() if local.exists() else None
+ expected=items.get(name,{}).get('sha256')
+ assert before==expected,'intervening local change: '+name
+ if not local.exists() or local.read_bytes()!=f.read_bytes():
+  diff=subprocess.run(['diff','-u',str(local) if local.exists() else '/dev/null',str(f)],capture_output=True,text=True).stdout
+  patch=out/(f.name+'.diff');patch.write_text(diff)
+  changes.append({'path':name,'before':before,'after':hashlib.sha256(f.read_bytes()).hexdigest(),'diff':str(patch)})
+  if args.apply:shutil.copy2(f,local)
+(run/'generated-changes.json').write_text(json.dumps({'applied':args.apply,'changes':changes},indent=2)+'\n')
+print(json.dumps({'applied':args.apply,'changed_paths':[c['path'] for c in changes]},indent=2))

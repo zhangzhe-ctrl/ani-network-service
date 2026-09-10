@@ -126,7 +126,13 @@ func (n *Network) GetOperation(ctx context.Context, tenant, id string) (Operatio
 	if err != nil || len(id) != 36 || parsed == uuid.Nil {
 		return Operation{}, Fail(ResourceNotFound, "operation not found")
 	}
-	return n.repository.GetOperation(ctx, tenant, parsed.String())
+	op, err := n.repository.GetOperation(ctx, tenant, parsed.String())
+	if err == nil && (op.ResourceType == "eip" || op.ResourceType == "snat") {
+		if _, _, err = (ContextEgressAuthorization{}).Tenant(ctx, tenant); err != nil {
+			return Operation{}, err
+		}
+	}
+	return op, err
 }
 
 func (n *Network) DeleteVPC(ctx context.Context, tenant, id string) (VPC, error) {

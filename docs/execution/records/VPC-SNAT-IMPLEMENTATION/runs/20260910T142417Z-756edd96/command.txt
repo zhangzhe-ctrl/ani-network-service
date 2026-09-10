@@ -1,0 +1,11 @@
+source.tar.gz: OK
+verified source files: 1020
+127.0.0.1:5432 - accepting connections
+PostgreSQL image=docker.io/library/postgres@sha256:4ef4dbc939d61acea57712655ddb4b4ab27419c913f94cca0cd57cb3ea3c2280 container=f8ce10add1c1dd93520770842d385b2674641423af58cb94477fb52fa86164fc
+--- FAIL: TestEgressKCAdapterSharedObservationLifecycleAndDrift (0.60s)
+    egress_kc_integration_test.go:107: PUBLIC_EGRESS_NOT_READY: network parents are not ready
+FAIL
+FAIL	github.com/zhangzhe-ctrl/ani-network-service/internal/data	1.155s
+FAIL
+removed task container=f8ce10add1c1dd93520770842d385b2674641423af58cb94477fb52fa86164fc
+REMOTE_COMMAND_EXIT=1

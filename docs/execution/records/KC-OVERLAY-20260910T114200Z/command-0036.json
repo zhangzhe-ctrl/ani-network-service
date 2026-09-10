@@ -1,0 +1,18 @@
+{
+  "at": "2026-09-10T11:46:54.964532+00:00",
+  "argv": [
+    "kubectl",
+    "--context=kind-kc062",
+    "--request-timeout=15s",
+    "wait",
+    "subnets/kceg-0910-1142-public",
+    "--for=condition=Ready",
+    "--timeout=40s",
+    "-n",
+    "kcn-system"
+  ],
+  "exit": 0,
+  "elapsed": 0.198,
+  "stdout": "subnet.networking.kubercloud.com/kceg-0910-1142-public condition met\n",
+  "stderr": ""
+}

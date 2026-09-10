@@ -1,0 +1,19 @@
+{
+  "at": "2026-09-10T11:48:57.920252+00:00",
+  "argv": [
+    "kubectl",
+    "--context=kind-kc062",
+    "--request-timeout=15s",
+    "get",
+    "subnets",
+    "kceg-0910-1142-public",
+    "-n",
+    "kcn-system",
+    "-o",
+    "json"
+  ],
+  "exit": 0,
+  "elapsed": 0.073,
+  "stdout": "{\n    \"apiVersion\": \"networking.kubercloud.com/v1\",\n    \"kind\": \"Subnet\",\n    \"metadata\": {\n        \"creationTimestamp\": \"2026-09-10T11:46:54Z\",\n        \"finalizers\": [\n            \"networking.kubercloud.com/finalizer\"\n        ],\n        \"generation\": 1,\n        \"labels\": {\n            \"networking.kubercloud.com/gateway\": \"kcn-system.kceg-0910-1142-public\",\n            \"runbook.ani.io/run\": \"kceg-0910-1142\"\n        },\n        \"name\": \"kceg-0910-1142-public\",\n        \"namespace\": \"kcn-system\",\n        \"resourceVersion\": \"208808\",\n        \"uid\": \"8fd9fc27-87c7-4843-b35f-bdf2812d461a\"\n    },\n    \"spec\": {\n        \"allowedNamespaces\": {\n            \"from\": \"All\"\n        },\n        \"cidrBlock\": \"10.250.200.0/28\",\n        \"enableDHCP\": false,\n        \"excludeIPs\": [\n            \"10.250.200.1\"\n        ],\n        \"gateway\": \"kceg-0910-1142-gw\",\n        \"gatewayIP\": \"10.250.200.1\",\n        \"ipVersion\": \"IPv4\",\n        \"type\": \"Public\"\n    },\n    \"status\": {\n        \"boundResources\": {\n            \"gatewayPort\": \"gw.kceg-0910-1142-gw-kcn-system.kceg-0910-1142-public\",\n            \"switch\": \"kcn-system.kceg-0910-1142-public\"\n        },\n        \"conditions\": [\n            {\n                \"lastTransitionTime\": \"2026-09-10T11:46:54Z\",\n                \"message\": \"\",\n                \"reason\": \"Initialized\",\n                \"status\": \"True\",\n                \"type\": \"Initialized\"\n            },\n            {\n                \"lastTransitionTime\": \"2026-09-10T11:46:54Z\",\n                \"message\": \"\",\n                \"reason\": \"Valid\",\n                \"status\": \"True\",\n                \"type\": \"Valid\"\n            },\n            {\n                \"lastTransitionTime\": \"2026-09-10T11:46:54Z\",\n                \"message\": \"\",\n                \"reason\": \"Ready\",\n                \"status\": \"True\",\n                \"type\": \"Ready\"\n            }\n        ],\n        \"gatewayMac\": \"fa:00:71:78:09:7e\",\n        \"observedGeneration\": 1,\n        \"v4availableIPrange\": \"10.250.200.3-10.250.200.14\",\n        \"v4availableIPs\": 12,\n        \"v4usingIPrange\": \"10.250.200.2\",\n        \"v4usingIPs\": 1\n    }\n}\n",
+  "stderr": ""
+}

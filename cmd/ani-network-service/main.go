@@ -1,11 +1,15 @@
 package main
 
 import (
+	"context"
 	"flag"
 	"fmt"
+	"github.com/zhangzhe-ctrl/ani-network-service/internal/data"
 	"io"
 	"log/slog"
 	"os"
+	"os/signal"
+	"syscall"
 
 	"github.com/go-kratos/kratos/contrib/otel/v3/tracing"
 	"github.com/go-kratos/kratos/v3/config"
@@ -19,15 +23,17 @@ import (
 
 // Name and Version can be overridden with -ldflags at build time.
 var (
-	Name        = "ani-network-service"
-	Version     = "dev"
-	flagconf    string
-	flagMigrate bool
-	id, _       = os.Hostname()
+	Name          = "ani-network-service"
+	Version       = "dev"
+	flagconf      string
+	flagMigrate   bool
+	flagNodeFacts bool
+	id, _         = os.Hostname()
 )
 
 func init() {
 	flag.StringVar(&flagconf, "conf", "configs", "config path, for example -conf configs/config.yaml")
+	flag.BoolVar(&flagNodeFacts, "node-facts", false, "run the separately authorized read-only node facts collector")
 	flag.BoolVar(&flagMigrate, "migrate", false, "apply Network migrations using explicit owner environment")
 }
 
@@ -36,6 +42,14 @@ func main() {
 	logger := newRuntimeLogger(os.Stdout)
 	log.SetDefault(logger)
 	execute := func() error {
+		if flagNodeFacts {
+			if flagMigrate {
+				return fmt.Errorf("node facts and migration modes are exclusive")
+			}
+			ctx, cancel := signal.NotifyContext(context.Background(), syscall.SIGTERM, syscall.SIGINT)
+			defer cancel()
+			return data.RunNodeFactsCollector(ctx, logger)
+		}
 		if flagMigrate {
 			return runMigration()
 		}

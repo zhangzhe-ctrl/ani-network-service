@@ -1,0 +1,259 @@
+{
+  "time": "2026-09-10T13:34:40.828668+00:00",
+  "network_baseline": "e481e968d3cc2f17bc4c6a736c438428519b09a0",
+  "kc_fixed_source": "a2245883eb2b46a998f041feb3ad0ed3f6cf7c60",
+  "kc_source_files": {
+    "internal/controller/handlers/eip_handler.go": {
+      "sha256": "18da4e13a48bc07784dab9f0b91ecc4538231d5cb1de58d5bab57f5d9669c059"
+    },
+    "internal/controller/networking/eip_controller.go": {
+      "sha256": "4828ac84758cb9e809e0e23181e85a7a8da79508cf8151107a620ddd6a8ec1cf"
+    },
+    "internal/controller/networking/snat_controller.go": {
+      "sha256": "5897ee3787533b5b2f5a594bcbccb8a989fe5e0427f42456ee583efba3924c62"
+    }
+  },
+  "remote_host": "ubuntu",
+  "read_only_cluster_probe": [
+    {
+      "command": [
+        "kubectl",
+        "--context",
+        "kind-kc062",
+        "get",
+        "namespaces",
+        "kube-system",
+        "kcn-system",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0,
+      "items": [
+        {
+          "kind": "Namespace",
+          "name": "kube-system",
+          "namespace": "",
+          "uid": "a05787f7-fd36-482d-97ce-daef70e269c6",
+          "images": []
+        },
+        {
+          "kind": "Namespace",
+          "name": "kcn-system",
+          "namespace": "",
+          "uid": "860f8948-4f34-490c-a5b0-0d378abf4132",
+          "images": []
+        }
+      ]
+    },
+    {
+      "command": [
+        "kubectl",
+        "--context",
+        "kind-kc062",
+        "get",
+        "nodes",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0,
+      "items": [
+        {
+          "kind": "Node",
+          "name": "kc062-control-plane",
+          "namespace": "",
+          "uid": "f70ffcb3-1214-45b3-998e-1fde64ac7567",
+          "images": []
+        },
+        {
+          "kind": "Node",
+          "name": "kc062-worker",
+          "namespace": "",
+          "uid": "bb508026-9c41-4900-bca7-a261e32a8b24",
+          "images": []
+        },
+        {
+          "kind": "Node",
+          "name": "kc062-worker2",
+          "namespace": "",
+          "uid": "d121afa0-13a5-43dd-8deb-cb642ea77107",
+          "images": []
+        }
+      ]
+    },
+    {
+      "command": [
+        "kubectl",
+        "--context",
+        "kind-kc062",
+        "get",
+        "pods",
+        "-n",
+        "kcn-system",
+        "-o",
+        "json"
+      ],
+      "exit_code": 0,
+      "items": [
+        {
+          "kind": "Pod",
+          "name": "kcn-cni-ds-2gvfs",
+          "namespace": "kcn-system",
+          "uid": "f4d2ebcb-62d9-4619-b150-728546720ce5",
+          "images": [
+            {
+              "name": "kcn-cni-server",
+              "image": "docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2",
+              "image_id": "docker.io/library/import-2026-09-09@sha256:e2efcb27fd9b982ad6f49c0dc7b8d7ab9622bfa1172491c187152422cca27749"
+            }
+          ]
+        },
+        {
+          "kind": "Pod",
+          "name": "kcn-cni-ds-pl4ph",
+          "namespace": "kcn-system",
+          "uid": "8be0f629-5a0d-4222-9ad0-8559b062c68f",
+          "images": [
+            {
+              "name": "kcn-cni-server",
+              "image": "docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2",
+              "image_id": "docker.io/library/import-2026-09-09@sha256:e2efcb27fd9b982ad6f49c0dc7b8d7ab9622bfa1172491c187152422cca27749"
+            }
+          ]
+        },
+        {
+          "kind": "Pod",
+          "name": "kcn-cni-ds-wtmns",
+          "namespace": "kcn-system",
+          "uid": "8f0feb6a-552c-40d6-ab99-34383473d87f",
+          "images": [
+            {
+              "name": "kcn-cni-server",
+              "image": "docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2",
+              "image_id": "docker.io/library/import-2026-09-09@sha256:e2efcb27fd9b982ad6f49c0dc7b8d7ab9622bfa1172491c187152422cca27749"
+            }
+          ]
+        },
+        {
+          "kind": "Pod",
+          "name": "kcn-controller-7bdbbb67cb-2jz4k",
+          "namespace": "kcn-system",
+          "uid": "b9490f94-1d63-46be-bad4-9f3952456a18",
+          "images": [
+            {
+              "name": "kcn-controller",
+              "image": "docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2",
+              "image_id": "docker.io/library/import-2026-09-09@sha256:e2efcb27fd9b982ad6f49c0dc7b8d7ab9622bfa1172491c187152422cca27749"
+            }
+          ]
+        },
+        {
+          "kind": "Pod",
+          "name": "kcn-controller-7bdbbb67cb-65lpc",
+          "namespace": "kcn-system",
+          "uid": "c1f32cd1-2f26-460a-96c2-fa3209b2a2df",
+          "images": [
+            {
+              "name": "kcn-controller",
+              "image": "docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2",
+              "image_id": "docker.io/library/import-2026-09-09@sha256:e2efcb27fd9b982ad6f49c0dc7b8d7ab9622bfa1172491c187152422cca27749"
+            }
+          ]
+        },
+        {
+          "kind": "Pod",
+          "name": "kcn-controller-7bdbbb67cb-fvcfq",
+          "namespace": "kcn-system",
+          "uid": "60c5e3e4-3c37-4bc8-b1ad-af11d2a91ec7",
+          "images": [
+            {
+              "name": "kcn-controller",
+              "image": "docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2",
+              "image_id": "docker.io/library/import-2026-09-09@sha256:e2efcb27fd9b982ad6f49c0dc7b8d7ab9622bfa1172491c187152422cca27749"
+            }
+          ]
+        },
+        {
+          "kind": "Pod",
+          "name": "kcn-ovn-central-5cfcf4f7b5-dbwnx",
+          "namespace": "kcn-system",
+          "uid": "7932fdff-3e61-4d3a-9642-fcc2ab5c7862",
+          "images": [
+            {
+              "name": "ovn-central",
+              "image": "docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2",
+              "image_id": "docker.io/library/import-2026-09-09@sha256:e2efcb27fd9b982ad6f49c0dc7b8d7ab9622bfa1172491c187152422cca27749"
+            }
+          ]
+        },
+        {
+          "kind": "Pod",
+          "name": "kcn-ovn-central-5cfcf4f7b5-pp6l9",
+          "namespace": "kcn-system",
+          "uid": "45c1a191-d0b5-49ce-96e1-231bcf76f01b",
+          "images": [
+            {
+              "name": "ovn-central",
+              "image": "docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2",
+              "image_id": "docker.io/library/import-2026-09-09@sha256:e2efcb27fd9b982ad6f49c0dc7b8d7ab9622bfa1172491c187152422cca27749"
+            }
+          ]
+        },
+        {
+          "kind": "Pod",
+          "name": "kcn-ovn-central-5cfcf4f7b5-wz8xz",
+          "namespace": "kcn-system",
+          "uid": "2aa44fc0-5f6c-4162-ab75-8cd18a8353c3",
+          "images": [
+            {
+              "name": "ovn-central",
+              "image": "docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2",
+              "image_id": "docker.io/library/import-2026-09-09@sha256:e2efcb27fd9b982ad6f49c0dc7b8d7ab9622bfa1172491c187152422cca27749"
+            }
+          ]
+        },
+        {
+          "kind": "Pod",
+          "name": "kcn-ovs-ds-jbkdj",
+          "namespace": "kcn-system",
+          "uid": "1fcb2caa-5f20-47b9-91dd-602b2ad7488f",
+          "images": [
+            {
+              "name": "openvswitch",
+              "image": "docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2",
+              "image_id": "docker.io/library/import-2026-09-09@sha256:e2efcb27fd9b982ad6f49c0dc7b8d7ab9622bfa1172491c187152422cca27749"
+            }
+          ]
+        },
+        {
+          "kind": "Pod",
+          "name": "kcn-ovs-ds-pfx5z",
+          "namespace": "kcn-system",
+          "uid": "33bca16d-4570-4445-ad4a-e5b381c76cba",
+          "images": [
+            {
+              "name": "openvswitch",
+              "image": "docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2",
+              "image_id": "docker.io/library/import-2026-09-09@sha256:e2efcb27fd9b982ad6f49c0dc7b8d7ab9622bfa1172491c187152422cca27749"
+            }
+          ]
+        },
+        {
+          "kind": "Pod",
+          "name": "kcn-ovs-ds-xnvp6",
+          "namespace": "kcn-system",
+          "uid": "99b795ba-0f28-4f0a-94dc-b266bc4d7e38",
+          "images": [
+            {
+              "name": "openvswitch",
+              "image": "docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2",
+              "image_id": "docker.io/library/import-2026-09-09@sha256:e2efcb27fd9b982ad6f49c0dc7b8d7ab9622bfa1172491c187152422cca27749"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "provider_repair_acceptance": "not_verified",
+  "source_image_association": "not_verified",
+  "native_overlay": "not_verified"
+}
