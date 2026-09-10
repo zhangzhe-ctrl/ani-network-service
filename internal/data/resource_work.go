@@ -2,8 +2,6 @@ package data
 
 import (
 	"context"
-	"errors"
-	"github.com/jackc/pgx/v5"
 	"github.com/zhangzhe-ctrl/ani-network-service/internal/biz"
 	"github.com/zhangzhe-ctrl/ani-network-service/internal/data/sqlcgen"
 )
@@ -15,16 +13,13 @@ func subnetWork(s sqlcgen.NetworkSubnet) biz.ResourceWork {
 	return biz.ResourceWork{ID: s.SubnetID, TenantID: s.TenantID, Kind: "subnet", VPCID: s.VpcID, CIDR: s.Cidr, Gateway: s.Gateway, State: biz.ResourceState(s.State), Reason: biz.Reason(s.Reason), Version: s.Version, UpdatedAt: s.UpdatedAt, ObservedAt: s.ObservedAt, LastOperationID: s.LastOperationID}
 }
 func claimResource(ctx context.Context, q *sqlcgen.Queries) (biz.ResourceWork, error) {
-	v, err := q.LockDueVPC(ctx)
-	if err == nil {
-		return vpcWork(v), nil
-	}
-	if !errors.Is(err, pgx.ErrNoRows) {
-		return biz.ResourceWork{}, err
-	}
-	parent, err := q.LockDueSubnetParent(ctx)
+	parent, err := q.LockDueResourceParent(ctx)
 	if err != nil {
 		return biz.ResourceWork{}, err
+	}
+	if parent.SubnetID == nil {
+		v, err := q.LockVPC(ctx, sqlcgen.LockVPCParams{TenantID: parent.TenantID, VpcID: parent.VpcID})
+		return vpcWork(v), err
 	}
 	s, err := q.LockDueSubnet(ctx, sqlcgen.LockDueSubnetParams{TenantID: parent.TenantID, VpcID: parent.VpcID})
 	return subnetWork(s), err

@@ -1,0 +1,142 @@
+[
+  {
+    "apiVersion": "v1",
+    "kind": "Namespace",
+    "name": "net05-1717d354-control",
+    "namespace": null,
+    "uid": "5f8a104b-c90b-498c-9933-7bb14507cdbf"
+  },
+  {
+    "apiVersion": "v1",
+    "kind": "ServiceAccount",
+    "name": "network",
+    "namespace": "net05-1717d354-control",
+    "uid": "d65a5948-daa2-47f1-8e51-12344bfe3cf0"
+  },
+  {
+    "apiVersion": "v1",
+    "kind": "ServiceAccount",
+    "name": "ani",
+    "namespace": "net05-1717d354-control",
+    "uid": "cc18d092-8a06-4722-9b1c-1c14763df80b"
+  },
+  {
+    "apiVersion": "v1",
+    "kind": "ServiceAccount",
+    "name": "runner",
+    "namespace": "net05-1717d354-control",
+    "uid": "276c8477-d96e-4d40-8cc9-42d0fba79239"
+  },
+  {
+    "apiVersion": "rbac.authorization.k8s.io/v1",
+    "kind": "ClusterRole",
+    "name": "net05-1717d354-network-read",
+    "namespace": null,
+    "uid": "98d7f6a1-1667-463a-83e8-77663696986f"
+  },
+  {
+    "apiVersion": "rbac.authorization.k8s.io/v1",
+    "kind": "ClusterRoleBinding",
+    "name": "net05-1717d354-network-read",
+    "namespace": null,
+    "uid": "37d80e2b-c4e3-4d54-b825-23f0798e00cb"
+  },
+  {
+    "apiVersion": "v1",
+    "kind": "Namespace",
+    "name": "net05-1717d354-292e225a-1f85-4912-88e0-590dd5fa953d",
+    "namespace": null,
+    "uid": "320a0dea-8272-457c-a641-51fc4006d8b2"
+  },
+  {
+    "apiVersion": "rbac.authorization.k8s.io/v1",
+    "kind": "Role",
+    "name": "network",
+    "namespace": "net05-1717d354-292e225a-1f85-4912-88e0-590dd5fa953d",
+    "uid": "024d6e50-4d0c-44f3-bc34-9bb1e01c6779"
+  },
+  {
+    "apiVersion": "rbac.authorization.k8s.io/v1",
+    "kind": "RoleBinding",
+    "name": "network",
+    "namespace": "net05-1717d354-292e225a-1f85-4912-88e0-590dd5fa953d",
+    "uid": "febdece1-1271-40ff-b47b-5f898c7c2a9a"
+  },
+  {
+    "apiVersion": "rbac.authorization.k8s.io/v1",
+    "kind": "Role",
+    "name": "ani",
+    "namespace": "net05-1717d354-292e225a-1f85-4912-88e0-590dd5fa953d",
+    "uid": "1e84f5c9-c6c8-4ac6-bcd1-ffea701b536c"
+  },
+  {
+    "apiVersion": "rbac.authorization.k8s.io/v1",
+    "kind": "RoleBinding",
+    "name": "ani",
+    "namespace": "net05-1717d354-292e225a-1f85-4912-88e0-590dd5fa953d",
+    "uid": "d938fbd6-6179-4ebb-9a08-2654b2a20d36"
+  },
+  {
+    "apiVersion": "rbac.authorization.k8s.io/v1",
+    "kind": "Role",
+    "name": "runner",
+    "namespace": "net05-1717d354-292e225a-1f85-4912-88e0-590dd5fa953d",
+    "uid": "b7736157-c5d2-422e-ab88-009c6fd31692"
+  },
+  {
+    "apiVersion": "rbac.authorization.k8s.io/v1",
+    "kind": "RoleBinding",
+    "name": "runner",
+    "namespace": "net05-1717d354-292e225a-1f85-4912-88e0-590dd5fa953d",
+    "uid": "8131849a-dab0-412d-b570-585716f28e6c"
+  },
+  {
+    "apiVersion": "v1",
+    "kind": "Namespace",
+    "name": "net05-1717d354-2fc974a1-6930-4c24-b55f-86b2b142b510",
+    "namespace": null,
+    "uid": "ccf2dfca-62c2-4dbe-912d-c959789ba207"
+  },
+  {
+    "apiVersion": "rbac.authorization.k8s.io/v1",
+    "kind": "Role",
+    "name": "network",
+    "namespace": "net05-1717d354-2fc974a1-6930-4c24-b55f-86b2b142b510",
+    "uid": "3e13c8c2-0761-4be6-b7d0-a48e84ccf16c"
+  },
+  {
+    "apiVersion": "rbac.authorization.k8s.io/v1",
+    "kind": "RoleBinding",
+    "name": "network",
+    "namespace": "net05-1717d354-2fc974a1-6930-4c24-b55f-86b2b142b510",
+    "uid": "aecc6762-1369-4906-a667-f67dac680bb2"
+  },
+  {
+    "apiVersion": "rbac.authorization.k8s.io/v1",
+    "kind": "Role",
+    "name": "ani",
+    "namespace": "net05-1717d354-2fc974a1-6930-4c24-b55f-86b2b142b510",
+    "uid": "fda13843-dc50-4549-aa54-8d500e4ab181"
+  },
+  {
+    "apiVersion": "rbac.authorization.k8s.io/v1",
+    "kind": "RoleBinding",
+    "name": "ani",
+    "namespace": "net05-1717d354-2fc974a1-6930-4c24-b55f-86b2b142b510",
+    "uid": "2862477c-f484-4f42-b3df-401f4837b29c"
+  },
+  {
+    "apiVersion": "rbac.authorization.k8s.io/v1",
+    "kind": "Role",
+    "name": "runner",
+    "namespace": "net05-1717d354-2fc974a1-6930-4c24-b55f-86b2b142b510",
+    "uid": "bb1c51a6-074e-4fd7-9818-7935df582576"
+  },
+  {
+    "apiVersion": "rbac.authorization.k8s.io/v1",
+    "kind": "RoleBinding",
+    "name": "runner",
+    "namespace": "net05-1717d354-2fc974a1-6930-4c24-b55f-86b2b142b510",
+    "uid": "0d9e47fb-dfbf-4257-9756-8fa67fc2cf36"
+  }
+]

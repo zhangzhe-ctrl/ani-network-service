@@ -1,0 +1,44 @@
+{
+  "network_foreign_key": {
+    "before": [
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "vpc_id": "vpc_09382a676dde438ab6c8b7255346f2fb",
+        "subnet_id": "subnet_d6cddaceb672474aab25a74a9a197dff"
+      }
+    ],
+    "after": [
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "vpc_id": "vpc_09382a676dde438ab6c8b7255346f2fb",
+        "subnet_id": "subnet_d6cddaceb672474aab25a74a9a197dff"
+      }
+    ],
+    "exit": 3,
+    "stderr": "ERROR:  23503: update or delete on table \"network_subnets\" violates foreign key constraint \"network_operations_subnet_fk\" on table \"network_operations\"\nDETAIL:  Key (tenant_id, subnet_id)=(292e225a-1f85-4912-88e0-590dd5fa953d, subnet_d6cddaceb672474aab25a74a9a197dff) is still referenced from table \"network_operations\".\nSCHEMA NAME:  public\nTABLE NAME:  network_operations\nCONSTRAINT NAME:  network_operations_subnet_fk\nLOCATION:  ri_ReportViolation, ri_triggers.c:2799\n"
+  },
+  "ani_rls": {
+    "current_tenant": "2fc974a1-6930-4c24-b55f-86b2b142b510",
+    "foreign_tenant": "292e225a-1f85-4912-88e0-590dd5fa953d",
+    "select_count": 0,
+    "update_count": 0
+  },
+  "runtime_roles": [
+    {
+      "rolname": "network",
+      "rolsuper": false,
+      "rolbypassrls": false,
+      "rolcreatedb": false,
+      "rolcreaterole": false
+    },
+    {
+      "rolname": "ani",
+      "rolsuper": false,
+      "rolbypassrls": false,
+      "rolcreatedb": false,
+      "rolcreaterole": false
+    }
+  ],
+  "network_rls": false,
+  "network_boundary": "explicit tenant predicates and composite foreign keys, not database RLS"
+}

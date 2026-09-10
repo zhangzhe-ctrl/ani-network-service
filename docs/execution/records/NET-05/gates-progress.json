@@ -1,0 +1,66 @@
+[
+  {
+    "name": "network-verify",
+    "command": [
+      "make",
+      "verify"
+    ],
+    "cwd": "/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T032221Z-af9a3017/network",
+    "started_at": "2026-09-10T03:22:33.415950+00:00",
+    "finished_at": "2026-09-10T03:23:02.845201+00:00",
+    "exit": 0,
+    "expected_exit": 0,
+    "status": "pass",
+    "expectation_met": true,
+    "log": "gates/network-verify.log",
+    "sha256": "1eb1fd5ab7db79f5fa2718b0cb772a660f409ad3deebcaa73c1315ec16c2752f"
+  },
+  {
+    "name": "network-race-postgres",
+    "command": [
+      "make",
+      "race"
+    ],
+    "cwd": "/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T032221Z-af9a3017/network",
+    "started_at": "2026-09-10T03:23:02.845585+00:00",
+    "finished_at": "2026-09-10T03:24:29.483812+00:00",
+    "exit": 0,
+    "expected_exit": 0,
+    "status": "pass",
+    "expectation_met": true,
+    "log": "gates/network-race-postgres.log",
+    "sha256": "a5ef74635efc333b939c7ab6afe1ab99d897334241811a79a431e6316e5df5ae"
+  },
+  {
+    "name": "network-tenant-mutations",
+    "command": [
+      "make",
+      "tenant-mutations"
+    ],
+    "cwd": "/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T032221Z-af9a3017/network",
+    "started_at": "2026-09-10T03:24:29.484338+00:00",
+    "finished_at": "2026-09-10T03:25:00.197785+00:00",
+    "exit": 0,
+    "expected_exit": 0,
+    "status": "pass",
+    "expectation_met": true,
+    "log": "gates/network-tenant-mutations.log",
+    "sha256": "c02beb792510eea8ae4d3de8a7b11729be594ce8559ba86fb74400fa320f2f3d"
+  },
+  {
+    "name": "network-audit",
+    "command": [
+      "make",
+      "audit"
+    ],
+    "cwd": "/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T033054Z-9e052684/network",
+    "started_at": "2026-09-10T03:31:05.887001+00:00",
+    "finished_at": "2026-09-10T03:31:28.000345+00:00",
+    "exit": 0,
+    "expected_exit": 0,
+    "status": "pass",
+    "expectation_met": true,
+    "log": "gates/network-audit.log",
+    "sha256": "aecee19bf9b0a208045fa7894a1518a27a0c67c2ed6fb97a107405f38acbaef7"
+  }
+]

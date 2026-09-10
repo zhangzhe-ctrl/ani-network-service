@@ -1,0 +1,104 @@
+[
+  {
+    "path": "/apis/apps/v1/namespaces/net05-1717d354-292e225a-1f85-4912-88e0-590dd5fa953d/replicasets?limit=500",
+    "list_kind": "ReplicaSetList",
+    "list_api_version": "apps/v1",
+    "items": [
+      {
+        "kind": null,
+        "apiVersion": null,
+        "metadata": {
+          "name": "net05-1717d354-p2-589d567d69",
+          "uid": "d13d1343-4838-4998-96fd-8c9abe9a9a66",
+          "namespace": "net05-1717d354-292e225a-1f85-4912-88e0-590dd5fa953d",
+          "resourceVersion": "87324",
+          "ownerReferences": [
+            {
+              "apiVersion": "apps/v1",
+              "kind": "Deployment",
+              "name": "net05-1717d354-p2",
+              "uid": "35af1362-f291-4553-90f7-f960a56fb421",
+              "controller": true,
+              "blockOwnerDeletion": true
+            }
+          ],
+          "labels": {
+            "ani.kubercloud.io/instance": "net05-1717d354-p2",
+            "ani.kubercloud.io/tenant-id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+            "network.ani.io/attachment-id": "att_73745eb7b72c4b20ad92f375dc2e2d89",
+            "network.ani.io/generation": "1",
+            "network.ani.io/instance-id": "inst_3df45d9a-91ea-49a1-b4c2-e179133533a4",
+            "network.ani.io/submission-id": "8af4833e-6a3c-4b73-8cc9-01a13bd2b82b",
+            "network.ani.io/tenant-id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+            "pod-template-hash": "589d567d69"
+          },
+          "annotations": {
+            "ani.io/demo-description": "",
+            "ani.kubercloud.io/network-planes": "tenant_vpc,foundation_mesh",
+            "ani.kubercloud.io/render-mode": "dry-run",
+            "ani.kubercloud.io/runtime-adapter": "planning",
+            "ani.kubercloud.io/storage-kinds": "",
+            "ani.kubercloud.io/subnet-id": "subnet_d6cddaceb672474aab25a74a9a197dff",
+            "ani.kubercloud.io/vpc-id": "vpc_09382a676dde438ab6c8b7255346f2fb",
+            "ani.kubercloud.io/workload-identity-key-id": "88314431-645a-4389-ba97-0eea7b5797eb",
+            "net05.audit/original-workload-identity-object-name": "ani-wi-88314431-645a-4389-ba97",
+            "deployment.kubernetes.io/desired-replicas": "1",
+            "deployment.kubernetes.io/max-replicas": "1",
+            "deployment.kubernetes.io/revision": "1",
+            "ovn.kubernetes.io/logical_switch": "subnet-subnet-d6cddaceb672474aab25a74a9a197dff"
+          }
+        }
+      }
+    ]
+  },
+  {
+    "path": "/api/v1/namespaces/net05-1717d354-292e225a-1f85-4912-88e0-590dd5fa953d/pods?limit=500",
+    "list_kind": "PodList",
+    "list_api_version": "v1",
+    "items": [
+      {
+        "kind": null,
+        "apiVersion": null,
+        "metadata": {
+          "name": "net05-1717d354-p2-589d567d69-rzxfc",
+          "uid": "13192a08-028d-4ce6-b38d-fd3fb6a8f904",
+          "namespace": "net05-1717d354-292e225a-1f85-4912-88e0-590dd5fa953d",
+          "resourceVersion": "87470",
+          "ownerReferences": [
+            {
+              "apiVersion": "apps/v1",
+              "kind": "ReplicaSet",
+              "name": "net05-1717d354-p2-589d567d69",
+              "uid": "d13d1343-4838-4998-96fd-8c9abe9a9a66",
+              "controller": true,
+              "blockOwnerDeletion": true
+            }
+          ],
+          "labels": {
+            "ani.kubercloud.io/instance": "net05-1717d354-p2",
+            "ani.kubercloud.io/tenant-id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+            "network.ani.io/attachment-id": "att_73745eb7b72c4b20ad92f375dc2e2d89",
+            "network.ani.io/generation": "1",
+            "network.ani.io/instance-id": "inst_3df45d9a-91ea-49a1-b4c2-e179133533a4",
+            "network.ani.io/submission-id": "8af4833e-6a3c-4b73-8cc9-01a13bd2b82b",
+            "network.ani.io/tenant-id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+            "pod-template-hash": "589d567d69"
+          },
+          "annotations": {
+            "ani.io/demo-description": "",
+            "ani.kubercloud.io/network-planes": "tenant_vpc,foundation_mesh",
+            "ani.kubercloud.io/render-mode": "dry-run",
+            "ani.kubercloud.io/runtime-adapter": "planning",
+            "ani.kubercloud.io/storage-kinds": "",
+            "ani.kubercloud.io/subnet-id": "subnet_d6cddaceb672474aab25a74a9a197dff",
+            "ani.kubercloud.io/vpc-id": "vpc_09382a676dde438ab6c8b7255346f2fb",
+            "ani.kubercloud.io/workload-identity-key-id": "88314431-645a-4389-ba97-0eea7b5797eb",
+            "net05.audit/original-workload-identity-object-name": "ani-wi-88314431-645a-4389-ba97",
+            "networking.kubercloud.com/subnet": "net05-1717d354-292e225a-1f85-4912-88e0-590dd5fa953d/subnet-d6cddaceb672474aab25a74a9a197dff",
+            "networking.kubercloud.com/vnic": "auto-net05-1717d354-p2-589d567d69-rzxfc-vnic-gzch6"
+          }
+        }
+      }
+    ]
+  }
+]

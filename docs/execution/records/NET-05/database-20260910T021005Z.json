@@ -1,0 +1,131 @@
+{
+  "at": "20260910T021005Z",
+  "network": {
+    "network_vpcs": [
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "vpc_id": "vpc_09382a676dde438ab6c8b7255346f2fb",
+        "name": "net05-1717d354-a1",
+        "description": "",
+        "cidr": "10.205.0.0/16",
+        "state": "available",
+        "reason": "",
+        "version": 36,
+        "created_at": "2026-09-10T02:04:27.404833+00:00",
+        "updated_at": "2026-09-10T02:10:01.277928+00:00",
+        "observed_at": "2026-09-10T02:10:01.277928+00:00",
+        "last_operation_id": "c894444f-bca9-45a4-a1f8-652ae28dcc70"
+      }
+    ],
+    "network_subnets": [
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "subnet_id": "subnet_d6cddaceb672474aab25a74a9a197dff",
+        "vpc_id": "vpc_09382a676dde438ab6c8b7255346f2fb",
+        "name": "net05-1717d354-a1s1",
+        "description": "",
+        "cidr": "10.205.1.0/24",
+        "gateway": "10.205.1.1",
+        "state": "available",
+        "reason": "",
+        "version": 36,
+        "created_at": "2026-09-10T02:04:29.635151+00:00",
+        "updated_at": "2026-09-10T02:10:03.321596+00:00",
+        "observed_at": "2026-09-10T02:10:03.321596+00:00",
+        "last_operation_id": "437d19ab-b3a3-4d02-ae10-09d3bd03023f"
+      }
+    ],
+    "network_operations": [
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "operation_id": "c894444f-bca9-45a4-a1f8-652ae28dcc70",
+        "vpc_id": "vpc_09382a676dde438ab6c8b7255346f2fb",
+        "kind": "create_vpc",
+        "state": "succeeded",
+        "reason": "",
+        "attempt": 2,
+        "execution_epoch": 2,
+        "created_at": "2026-09-10T02:04:27.404833+00:00",
+        "updated_at": "2026-09-10T02:04:28.677189+00:00",
+        "completed_at": "2026-09-10T02:04:28.677189+00:00",
+        "next_attempt_at": null,
+        "subnet_id": null
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "operation_id": "437d19ab-b3a3-4d02-ae10-09d3bd03023f",
+        "vpc_id": null,
+        "kind": "create_subnet",
+        "state": "succeeded",
+        "reason": "",
+        "attempt": 2,
+        "execution_epoch": 2,
+        "created_at": "2026-09-10T02:04:29.635151+00:00",
+        "updated_at": "2026-09-10T02:04:30.868205+00:00",
+        "completed_at": "2026-09-10T02:04:30.868205+00:00",
+        "next_attempt_at": null,
+        "subnet_id": "subnet_d6cddaceb672474aab25a74a9a197dff"
+      }
+    ],
+    "network_provider_bindings": [
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "vpc_id": "vpc_09382a676dde438ab6c8b7255346f2fb",
+        "binding_id": "60d1828e-7699-4d79-b125-2b43d5a1710b",
+        "cluster_id": "net05-1717d354",
+        "namespace": "net05-1717d354-292e225a-1f85-4912-88e0-590dd5fa953d",
+        "provider_name": "vpc-09382a676dde438ab6c8b7255346f2fb",
+        "provider_uid": "586177a6-1a3f-4ec7-a9da-9262aae2a57d",
+        "pending_action": "",
+        "pending_since": null,
+        "subnet_id": null,
+        "resource_kind": "vpc"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "vpc_id": null,
+        "binding_id": "65c84f88-a28a-4e9b-8ec0-8da0f15ae393",
+        "cluster_id": "net05-1717d354",
+        "namespace": "net05-1717d354-292e225a-1f85-4912-88e0-590dd5fa953d",
+        "provider_name": "subnet-d6cddaceb672474aab25a74a9a197dff",
+        "provider_uid": "2be4d683-e43d-403a-aac2-94c1765fa62c",
+        "pending_action": "",
+        "pending_since": null,
+        "subnet_id": "subnet_d6cddaceb672474aab25a74a9a197dff",
+        "resource_kind": "subnet"
+      }
+    ],
+    "network_reconciliations": [
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "vpc_id": "vpc_09382a676dde438ab6c8b7255346f2fb",
+        "next_run_at": "2026-09-10T02:10:11.278447+00:00",
+        "lease_owner": null,
+        "lease_until": null,
+        "lease_epoch": 35,
+        "subnet_id": null,
+        "reconciliation_id": "9e39d0f7-d42b-43b9-b1ae-5fa6458cb81d"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "vpc_id": null,
+        "next_run_at": "2026-09-10T02:10:13.322173+00:00",
+        "lease_owner": null,
+        "lease_until": null,
+        "lease_epoch": 35,
+        "subnet_id": "subnet_d6cddaceb672474aab25a74a9a197dff",
+        "reconciliation_id": "8967c9f3-ec99-4636-aa04-fb129fe81aab"
+      }
+    ],
+    "network_attachments": [],
+    "network_attachment_history": []
+  },
+  "ani": {
+    "submissions": [],
+    "submission_history": [],
+    "dispatch": [],
+    "instances": [],
+    "identities": [],
+    "audits": []
+  }
+}

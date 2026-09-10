@@ -1,0 +1,3516 @@
+{
+  "at": "20260910T021654Z",
+  "network": {
+    "network_vpcs": [
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "vpc_id": "vpc_09382a676dde438ab6c8b7255346f2fb",
+        "name": "net05-1717d354-a1",
+        "description": "",
+        "cidr": "10.205.0.0/16",
+        "state": "available",
+        "reason": "",
+        "version": 77,
+        "created_at": "2026-09-10T02:04:27.404833+00:00",
+        "updated_at": "2026-09-10T02:16:53.591289+00:00",
+        "observed_at": "2026-09-10T02:16:53.59129+00:00",
+        "last_operation_id": "c894444f-bca9-45a4-a1f8-652ae28dcc70"
+      }
+    ],
+    "network_subnets": [
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "subnet_id": "subnet_d6cddaceb672474aab25a74a9a197dff",
+        "vpc_id": "vpc_09382a676dde438ab6c8b7255346f2fb",
+        "name": "net05-1717d354-a1s1",
+        "description": "",
+        "cidr": "10.205.1.0/24",
+        "gateway": "10.205.1.1",
+        "state": "available",
+        "reason": "",
+        "version": 76,
+        "created_at": "2026-09-10T02:04:29.635151+00:00",
+        "updated_at": "2026-09-10T02:16:45.666343+00:00",
+        "observed_at": "2026-09-10T02:16:45.666344+00:00",
+        "last_operation_id": "437d19ab-b3a3-4d02-ae10-09d3bd03023f"
+      }
+    ],
+    "network_operations": [
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "operation_id": "c894444f-bca9-45a4-a1f8-652ae28dcc70",
+        "vpc_id": "vpc_09382a676dde438ab6c8b7255346f2fb",
+        "kind": "create_vpc",
+        "state": "succeeded",
+        "reason": "",
+        "attempt": 2,
+        "execution_epoch": 2,
+        "created_at": "2026-09-10T02:04:27.404833+00:00",
+        "updated_at": "2026-09-10T02:04:28.677189+00:00",
+        "completed_at": "2026-09-10T02:04:28.677189+00:00",
+        "next_attempt_at": null,
+        "subnet_id": null
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "operation_id": "437d19ab-b3a3-4d02-ae10-09d3bd03023f",
+        "vpc_id": null,
+        "kind": "create_subnet",
+        "state": "succeeded",
+        "reason": "",
+        "attempt": 2,
+        "execution_epoch": 2,
+        "created_at": "2026-09-10T02:04:29.635151+00:00",
+        "updated_at": "2026-09-10T02:04:30.868205+00:00",
+        "completed_at": "2026-09-10T02:04:30.868205+00:00",
+        "next_attempt_at": null,
+        "subnet_id": "subnet_d6cddaceb672474aab25a74a9a197dff"
+      }
+    ],
+    "network_provider_bindings": [
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "vpc_id": null,
+        "binding_id": "65c84f88-a28a-4e9b-8ec0-8da0f15ae393",
+        "cluster_id": "net05-1717d354",
+        "namespace": "net05-1717d354-292e225a-1f85-4912-88e0-590dd5fa953d",
+        "provider_name": "subnet-d6cddaceb672474aab25a74a9a197dff",
+        "provider_uid": "2be4d683-e43d-403a-aac2-94c1765fa62c",
+        "pending_action": "",
+        "pending_since": null,
+        "subnet_id": "subnet_d6cddaceb672474aab25a74a9a197dff",
+        "resource_kind": "subnet"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "vpc_id": "vpc_09382a676dde438ab6c8b7255346f2fb",
+        "binding_id": "60d1828e-7699-4d79-b125-2b43d5a1710b",
+        "cluster_id": "net05-1717d354",
+        "namespace": "net05-1717d354-292e225a-1f85-4912-88e0-590dd5fa953d",
+        "provider_name": "vpc-09382a676dde438ab6c8b7255346f2fb",
+        "provider_uid": "586177a6-1a3f-4ec7-a9da-9262aae2a57d",
+        "pending_action": "",
+        "pending_since": null,
+        "subnet_id": null,
+        "resource_kind": "vpc"
+      }
+    ],
+    "network_reconciliations": [
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "vpc_id": null,
+        "next_run_at": "2026-09-10T02:16:55.667053+00:00",
+        "lease_owner": null,
+        "lease_until": null,
+        "lease_epoch": 75,
+        "subnet_id": "subnet_d6cddaceb672474aab25a74a9a197dff",
+        "reconciliation_id": "8967c9f3-ec99-4636-aa04-fb129fe81aab"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "vpc_id": "vpc_09382a676dde438ab6c8b7255346f2fb",
+        "next_run_at": "2026-09-10T02:17:03.591809+00:00",
+        "lease_owner": null,
+        "lease_until": null,
+        "lease_epoch": 76,
+        "subnet_id": null,
+        "reconciliation_id": "9e39d0f7-d42b-43b9-b1ae-5fa6458cb81d"
+      }
+    ],
+    "network_attachments": [
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "attachment_id": "att_5b0ac6ff1d3f4fb1becdac0bbdb9d0df",
+        "vpc_id": "vpc_09382a676dde438ab6c8b7255346f2fb",
+        "subnet_id": "subnet_d6cddaceb672474aab25a74a9a197dff",
+        "binding_id": "65c84f88-a28a-4e9b-8ec0-8da0f15ae393",
+        "instance_id": "inst_00dc1e64-54db-46d0-a79d-0fee08f826f0",
+        "slot": "primary",
+        "net05_idempotency_request_id": "net05-1717d354-p1-fixed",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "generation": 1,
+        "fingerprint": "d5155a2ddde5679be4b4401b784461675b41aa721534612dfec1ca1f6fff8de2",
+        "cluster_id": "net05-1717d354",
+        "namespace": "net05-1717d354-292e225a-1f85-4912-88e0-590dd5fa953d",
+        "binding_revision": "65c84f88-a28a-4e9b-8ec0-8da0f15ae393:2be4d683-e43d-403a-aac2-94c1765fa62c",
+        "plan": {
+          "TenantID": "292e225a-1f85-4912-88e0-590dd5fa953d",
+          "Namespace": "net05-1717d354-292e225a-1f85-4912-88e0-590dd5fa953d",
+          "Generation": 1,
+          "InstanceID": "inst_00dc1e64-54db-46d0-a79d-0fee08f826f0",
+          "AttachmentID": "att_5b0ac6ff1d3f4fb1becdac0bbdb9d0df",
+          "SubmissionID": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+          "FormatVersion": 1,
+          "PrimaryNetworkRef": "net05-1717d354-292e225a-1f85-4912-88e0-590dd5fa953d/subnet-d6cddaceb672474aab25a74a9a197dff"
+        },
+        "state": "released",
+        "reason": "",
+        "protocol_blocked": false,
+        "version": 34,
+        "pod_name": "",
+        "pod_uid": "",
+        "confirm_uid": "",
+        "finalization_id": "d3537f79-4b1f-457c-817d-6967b4f70392",
+        "provider_relations": [],
+        "created_at": "2026-09-10T02:11:24.729009+00:00",
+        "updated_at": "2026-09-10T02:16:48.666248+00:00",
+        "observed_at": "2026-09-10T02:16:48.666249+00:00",
+        "released_at": "2026-09-10T02:16:48.666249+00:00",
+        "next_check_at": "2026-09-10T02:16:58.666249+00:00",
+        "lease_owner": null,
+        "lease_until": null,
+        "epoch": 33
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "attachment_id": "att_73745eb7b72c4b20ad92f375dc2e2d89",
+        "vpc_id": "vpc_09382a676dde438ab6c8b7255346f2fb",
+        "subnet_id": "subnet_d6cddaceb672474aab25a74a9a197dff",
+        "binding_id": "65c84f88-a28a-4e9b-8ec0-8da0f15ae393",
+        "instance_id": "inst_3df45d9a-91ea-49a1-b4c2-e179133533a4",
+        "slot": "primary",
+        "net05_idempotency_request_id": "net05-1717d354-p2",
+        "submission_id": "8af4833e-6a3c-4b73-8cc9-01a13bd2b82b",
+        "generation": 1,
+        "fingerprint": "b0bff6c47c1fcff61b3b14297d98d5f5fbdfc5001e6b4a2643fa93063c22892f",
+        "cluster_id": "net05-1717d354",
+        "namespace": "net05-1717d354-292e225a-1f85-4912-88e0-590dd5fa953d",
+        "binding_revision": "65c84f88-a28a-4e9b-8ec0-8da0f15ae393:2be4d683-e43d-403a-aac2-94c1765fa62c",
+        "plan": {
+          "TenantID": "292e225a-1f85-4912-88e0-590dd5fa953d",
+          "Namespace": "net05-1717d354-292e225a-1f85-4912-88e0-590dd5fa953d",
+          "Generation": 1,
+          "InstanceID": "inst_3df45d9a-91ea-49a1-b4c2-e179133533a4",
+          "AttachmentID": "att_73745eb7b72c4b20ad92f375dc2e2d89",
+          "SubmissionID": "8af4833e-6a3c-4b73-8cc9-01a13bd2b82b",
+          "FormatVersion": 1,
+          "PrimaryNetworkRef": "net05-1717d354-292e225a-1f85-4912-88e0-590dd5fa953d/subnet-d6cddaceb672474aab25a74a9a197dff"
+        },
+        "state": "attached",
+        "reason": "",
+        "protocol_blocked": false,
+        "version": 3,
+        "pod_name": "net05-1717d354-p2-589d567d69-rzxfc",
+        "pod_uid": "13192a08-028d-4ce6-b38d-fd3fb6a8f904",
+        "confirm_uid": "",
+        "finalization_id": null,
+        "provider_relations": [
+          {
+            "UID": "b534612e-7af4-44c9-97ca-36dd7df0a857",
+            "Kind": "VNic",
+            "Name": "auto-net05-1717d354-p2-589d567d69-rzxfc-vnic-gzch6",
+            "OwnerUID": "13192a08-028d-4ce6-b38d-fd3fb6a8f904",
+            "Namespace": "net05-1717d354-292e225a-1f85-4912-88e0-590dd5fa953d"
+          },
+          {
+            "UID": "edfe346a-2028-4001-bf79-e1bbb19c85dd",
+            "Kind": "VNicIP",
+            "Name": "auto-net05-1717d354-p2-589d567d69-rzxfc-vnic-gzch6",
+            "OwnerUID": "b534612e-7af4-44c9-97ca-36dd7df0a857",
+            "Namespace": "net05-1717d354-292e225a-1f85-4912-88e0-590dd5fa953d"
+          }
+        ],
+        "created_at": "2026-09-10T02:16:44.609955+00:00",
+        "updated_at": "2026-09-10T02:16:54.869971+00:00",
+        "observed_at": "2026-09-10T02:16:54.869971+00:00",
+        "released_at": null,
+        "next_check_at": "2026-09-10T02:17:04.869971+00:00",
+        "lease_owner": null,
+        "lease_until": null,
+        "epoch": 2
+      }
+    ],
+    "network_attachment_history": [
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "history_id": "43bf08fa-1285-4982-ba78-3c1685b44c99",
+        "attachment_id": "att_5b0ac6ff1d3f4fb1becdac0bbdb9d0df",
+        "version": 1,
+        "event": "prepared",
+        "state": "reserved",
+        "reason": "",
+        "pod_uid": "",
+        "finalization_id": null,
+        "created_at": "2026-09-10T02:11:24.730437+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "history_id": "21225970-c966-4321-97cf-18b2fab44dc8",
+        "attachment_id": "att_5b0ac6ff1d3f4fb1becdac0bbdb9d0df",
+        "version": 3,
+        "event": "observed",
+        "state": "releasing",
+        "reason": "CONSUMER_NOT_CLOSED",
+        "pod_uid": "",
+        "finalization_id": "d3537f79-4b1f-457c-817d-6967b4f70392",
+        "created_at": "2026-09-10T02:11:34.976806+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "history_id": "d4bd9107-e59d-40ed-90a3-148cfc648685",
+        "attachment_id": "att_73745eb7b72c4b20ad92f375dc2e2d89",
+        "version": 1,
+        "event": "prepared",
+        "state": "reserved",
+        "reason": "",
+        "pod_uid": "",
+        "finalization_id": null,
+        "created_at": "2026-09-10T02:16:44.610996+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "history_id": "82e09979-a002-4762-b40e-6b9e40ad9959",
+        "attachment_id": "att_5b0ac6ff1d3f4fb1becdac0bbdb9d0df",
+        "version": 34,
+        "event": "observed",
+        "state": "released",
+        "reason": "",
+        "pod_uid": "",
+        "finalization_id": "d3537f79-4b1f-457c-817d-6967b4f70392",
+        "created_at": "2026-09-10T02:16:48.666803+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "history_id": "bf015a79-367b-4465-952e-5dd42810992a",
+        "attachment_id": "att_73745eb7b72c4b20ad92f375dc2e2d89",
+        "version": 3,
+        "event": "observed",
+        "state": "attached",
+        "reason": "",
+        "pod_uid": "13192a08-028d-4ce6-b38d-fd3fb6a8f904",
+        "finalization_id": null,
+        "created_at": "2026-09-10T02:16:54.870376+00:00"
+      }
+    ]
+  },
+  "ani": {
+    "submissions": [
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "instance_id": "inst_3df45d9a-91ea-49a1-b4c2-e179133533a4",
+        "submission_id": "8af4833e-6a3c-4b73-8cc9-01a13bd2b82b",
+        "operation_id": "05f9c183-cec7-41db-af22-febc8217df3c",
+        "state": "open",
+        "version": 16,
+        "phase": "submitting",
+        "reason": "WORKLOAD_OBSERVATION_CONFLICT",
+        "pod_uid": "",
+        "pod_name": "",
+        "pending_confirm": "false",
+        "pending_release": "false",
+        "identity_revoked": "false",
+        "controller_uids": [],
+        "audit_id": "7d46f5f3-bafa-4d6c-bb13-cae419bd6695",
+        "objects": [
+          {
+            "UID": "38a7c7d8-09d6-478d-9cd1-268d3edd713c",
+            "Kind": "Secret",
+            "Name": "ani-wi-88314431-645a-4389-ba97",
+            "Phase": "known",
+            "Namespace": "net05-1717d354-292e225a-1f85-4912-88e0-590dd5fa953d",
+            "ResourceVersion": "87269"
+          },
+          {
+            "UID": "6a6a6171-4700-4efe-a055-bce383815d6c",
+            "Kind": "Service",
+            "Name": "net05-1717d354-p2",
+            "Phase": "known",
+            "Namespace": "net05-1717d354-292e225a-1f85-4912-88e0-590dd5fa953d",
+            "ResourceVersion": "87281"
+          },
+          {
+            "UID": "",
+            "Kind": "Deployment",
+            "Name": "net05-1717d354-p2",
+            "Phase": "pending",
+            "Namespace": "net05-1717d354-292e225a-1f85-4912-88e0-590dd5fa953d",
+            "ResourceVersion": ""
+          }
+        ]
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "instance_id": "inst_00dc1e64-54db-46d0-a79d-0fee08f826f0",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "operation_id": "98addee6-bd94-4ffa-9ca4-aebd95ce3139",
+        "state": "closed",
+        "version": 326,
+        "phase": "closed",
+        "reason": "",
+        "pod_uid": "",
+        "pod_name": "",
+        "pending_confirm": "false",
+        "pending_release": "false",
+        "identity_revoked": "true",
+        "controller_uids": null,
+        "audit_id": "",
+        "objects": null
+      }
+    ],
+    "submission_history": [
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "5943c040-1030-489d-b19a-2f2f51eaa003",
+        "version": 1,
+        "event": "accepted",
+        "reason": "",
+        "created_at": "2026-09-10T02:11:24.597066+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "eea89182-c24a-4646-b7b5-2bed187da57e",
+        "version": 2,
+        "event": "prepare_pending",
+        "reason": "",
+        "created_at": "2026-09-10T02:11:24.725841+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "0c431e9d-2840-451f-87c7-b7c5c9f04cf1",
+        "version": 3,
+        "event": "attachment_persisted",
+        "reason": "",
+        "created_at": "2026-09-10T02:11:24.734168+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "294e4c38-362a-45f5-a5ac-5e7c74c5f060",
+        "version": 4,
+        "event": "render_rejected",
+        "reason": "INSTANCE_RENDER_REJECTED",
+        "created_at": "2026-09-10T02:11:25.760536+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "cf89f992-c1b7-4897-bdaf-2fae82719169",
+        "version": 5,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:11:26.782163+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "3c39766d-3018-439f-be60-5e39370e805a",
+        "version": 6,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:11:27.803621+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "3b7423d6-f215-43dd-a2b2-51f937e6682b",
+        "version": 7,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:11:28.825782+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "f013ed23-7c13-48df-97af-00e737bc8cad",
+        "version": 8,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:11:29.846275+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "481b1809-4492-427f-a043-24ad276780d5",
+        "version": 9,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:11:30.866117+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "55fad080-65ff-4e48-8db7-193b9ec3a29f",
+        "version": 10,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:11:31.887687+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "0644aacb-3796-40e0-bb7b-068ffb65a114",
+        "version": 11,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:11:32.908718+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "4f549ed4-0ac2-4ca1-862a-239e2da9b98c",
+        "version": 12,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:11:33.932318+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "6cbd93b2-a59b-4df5-8bef-21fede4326c8",
+        "version": 13,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:11:34.952248+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "e83e0d2c-141a-4640-849c-aea7bbb8a03e",
+        "version": 14,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:11:35.974372+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "48af65e0-4725-474c-b00d-d4aa01af36cf",
+        "version": 15,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:11:36.994716+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "2403bddd-43bd-42aa-809e-308e92545491",
+        "version": 16,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:11:38.014464+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "ce991222-d2e5-4e65-99e5-1afb34d6cd67",
+        "version": 17,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:11:39.035654+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "777bf98f-b9ea-4817-a3fc-4ce08e7572d4",
+        "version": 18,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:11:40.056059+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "40a0bb03-9063-4a31-849f-92b18fa5cc95",
+        "version": 19,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:11:41.076212+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "515dfeb4-fcd2-40f1-a465-2d2cc4dd8f8d",
+        "version": 20,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:11:42.096873+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "a20572be-8b03-4263-975a-c7b23feca675",
+        "version": 21,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:11:43.116249+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "e931dd04-5f06-4879-bf29-f669f6904c84",
+        "version": 22,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:11:44.134453+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "93a7166b-83c0-4e41-9660-21005dafc1f1",
+        "version": 23,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:11:45.155644+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "191ad567-caca-4777-88d0-579f3195d251",
+        "version": 24,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:11:46.17499+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "8c3dda3c-0aef-4769-be9b-03155fd3da84",
+        "version": 25,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:11:47.196226+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "35d441dd-3b5a-4e01-a060-4971db04049a",
+        "version": 26,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:11:48.220858+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "1224f1c0-0e46-4069-a3e0-b6fbc8ece3c1",
+        "version": 27,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:11:49.242874+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "701265b2-d6d7-45e1-b287-ae58c152961d",
+        "version": 28,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:11:50.264968+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "b9696525-39a6-4699-b589-77b75162d524",
+        "version": 29,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:11:51.284246+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "483050b8-2845-408f-8a93-43acb186a363",
+        "version": 30,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:11:52.303231+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "f66d1195-b09b-401d-9a22-48c979251be5",
+        "version": 31,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:11:53.324035+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "80952d7d-6783-4676-a122-67d35a14c910",
+        "version": 32,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:11:54.34365+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "7efed90b-6680-4adb-860a-181d412031b9",
+        "version": 33,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:11:55.364441+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "8e065593-012d-4a44-973d-d03f063826fb",
+        "version": 34,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:11:56.383535+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "8d48e59c-937a-48fb-8940-0327aa2785ff",
+        "version": 35,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:11:57.402829+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "9979d03c-73d5-4ce3-82b7-6f842692b181",
+        "version": 36,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:11:58.421634+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "aa0f5842-60f6-4492-87cf-147b65d64984",
+        "version": 37,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:11:59.443184+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "1651dc81-5b57-446c-bf37-1e4cc69c907a",
+        "version": 38,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:12:00.462834+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "2df4da92-2cb4-4fe5-bac5-7499e190c6db",
+        "version": 39,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:12:01.481905+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "c0b87751-7449-4ff2-ad2a-bcae47b08c8b",
+        "version": 40,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:12:02.50515+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "8a99ed7e-ff3d-4df5-ae36-f556efb230a8",
+        "version": 41,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:12:03.523825+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "2242007a-3042-4d70-8c73-f4a489c61936",
+        "version": 42,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:12:04.543249+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "edf3f76a-6779-4e53-b04e-172fa70301f8",
+        "version": 43,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:12:05.562506+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "4c904336-2768-486e-aeb1-dd44bbca7b31",
+        "version": 44,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:12:06.582118+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "1618aa30-8c8e-45cd-b205-d9ff29b56c5e",
+        "version": 45,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:12:07.602132+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "f1898bb9-fad0-4393-9769-ad691a56b003",
+        "version": 46,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:12:08.62349+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "a2561cc2-aed1-406b-9265-65768b67e9cf",
+        "version": 47,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:12:09.643373+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "d4f194b6-f004-4e28-8c6b-a5a204d1d532",
+        "version": 48,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:12:10.663199+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "2c327954-93cd-40c7-8866-e2d2d007d668",
+        "version": 49,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:12:11.681657+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "139b6216-48f5-442e-9b43-e0ddde9e15dd",
+        "version": 50,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:12:12.702472+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "008a309a-34ea-42db-942a-9069e832ff02",
+        "version": 51,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:12:13.723453+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "14a2a833-eabb-439a-8a34-49f6433c4cb0",
+        "version": 52,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:12:14.742855+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "44e252aa-32d0-45e5-8e5b-8722e3c842a5",
+        "version": 53,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:12:15.764156+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "7292b44a-4e1d-4a29-8bbc-7c4f845746be",
+        "version": 54,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:12:16.7834+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "abd7f38b-466b-41fe-8466-9b21e9087c06",
+        "version": 55,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:12:17.803261+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "1d92105b-40ea-4543-a0dc-3213defd6b34",
+        "version": 56,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:12:18.824466+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "230d7bc7-fb00-4499-8115-5db7e685a135",
+        "version": 57,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:12:19.844712+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "69133833-c06e-45da-9a6b-a23c72682329",
+        "version": 58,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:12:20.865562+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "3cc08e30-bb2e-4469-9084-3b977caaeb72",
+        "version": 59,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:12:21.886897+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "ab57792f-da18-4c3a-8c95-45d5ea8982dd",
+        "version": 60,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:12:22.906801+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "d10467cd-96d9-4b35-a157-e35b08efb8ee",
+        "version": 61,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:12:23.930402+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "a7561359-d1b5-4459-8273-36b18341bae4",
+        "version": 62,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:12:24.950147+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "f1a4e8a9-38e1-477a-a6d9-f30f2987a8a0",
+        "version": 63,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:12:25.971015+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "3eab5c2b-9e72-4016-8abd-7ee746b82ad3",
+        "version": 64,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:12:26.993867+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "81a99531-9577-4f9a-9d6a-3fa1c992ab40",
+        "version": 65,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:12:28.01326+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "1772cb84-f96d-438f-a536-b77a8eb6fae7",
+        "version": 66,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:12:29.034833+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "663b9702-b796-446c-b314-2b51d735060e",
+        "version": 67,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:12:30.055238+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "608c3d54-d078-4f49-9d4e-b3acf4448db5",
+        "version": 68,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:12:31.074557+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "4637842a-0f7c-4294-88bd-ab66972ad5d7",
+        "version": 69,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:12:32.093313+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "ea0f2c41-4836-4081-973c-5a34b0cba845",
+        "version": 70,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:12:33.11264+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "e86cf75d-f785-428b-bfc5-46c884a59004",
+        "version": 71,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:12:34.13473+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "1cedd640-db8f-46ae-a86f-f94c7953a18d",
+        "version": 72,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:12:35.155817+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "e13774b3-5381-4d50-8e00-2aaef69bcd4d",
+        "version": 73,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:12:36.176451+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "629c9b83-f74a-4a27-8689-623185216b55",
+        "version": 74,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:12:37.196099+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "db59c96b-fb32-42a9-b06c-a821f6b4f63c",
+        "version": 75,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:12:38.216913+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "56a1a011-1c95-4905-a8bd-ebc54ca7e12f",
+        "version": 76,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:12:39.237185+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "aebdb784-bf06-4e42-b54c-a06aa8428ca4",
+        "version": 77,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:12:40.257759+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "fc4d66b3-949e-458c-b3ea-30d71d358d58",
+        "version": 78,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:12:41.278026+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "49180b8f-f8c7-4a3a-bb02-b3b519c3cc15",
+        "version": 79,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:12:42.298827+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "0575a309-7701-4775-88ff-977451c73945",
+        "version": 80,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:12:43.318277+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "09961cfe-eae0-46be-a2b4-231c228b61cf",
+        "version": 81,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:12:44.337348+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "fb9460a2-1dc1-49db-a300-37203b3a5200",
+        "version": 82,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:12:45.357899+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "cff7fd29-7653-46b1-a008-33abc72a8265",
+        "version": 83,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:12:46.377746+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "3827d599-dfdc-425e-8ecd-30a297878149",
+        "version": 84,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:12:47.398123+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "1a556303-2eb8-41ba-b4b1-c224f252106b",
+        "version": 85,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:12:48.416985+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "567e8ac4-fd21-448b-9b3b-5bd8589c5da9",
+        "version": 86,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:12:49.437236+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "7ef3996a-4001-4615-a46f-04ba9e7ac50d",
+        "version": 87,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:12:50.456849+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "6dac440b-07fb-4427-b96c-271146f222a5",
+        "version": 88,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:12:51.476199+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "9ba2242c-160d-4360-b96b-f498b7d2bc54",
+        "version": 89,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:12:52.499434+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "bdd849ae-2cf0-4a64-91b1-1005c2b164e2",
+        "version": 90,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:12:53.518334+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "3aa1e789-6e9e-488b-9f53-5108a39841aa",
+        "version": 91,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:12:54.537322+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "ee33d32a-64c2-4627-8ef7-f66c5817e847",
+        "version": 92,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:12:55.5584+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "0e2ef825-f7fd-45d7-863f-b3227045035a",
+        "version": 93,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:12:56.577477+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "9fd36c3e-3372-4720-8307-ad2ea6c3f4fa",
+        "version": 94,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:12:57.597053+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "2ef5f5b7-420e-4aae-9e31-6d3536a830bf",
+        "version": 95,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:12:58.615904+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "cd5e70e5-7acd-4faf-ac2a-d63ac1f3c8d5",
+        "version": 96,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:12:59.635013+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "5b72df84-1200-49ea-ba59-c0036889f98c",
+        "version": 97,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:13:00.654125+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "eb42946d-5e99-45ff-b032-b0e884246da0",
+        "version": 98,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:13:01.673836+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "25e8af27-45c5-4973-8a7a-d548146ad6ad",
+        "version": 99,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:13:02.693896+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "4d370623-4d7c-4798-8526-f1e099996771",
+        "version": 100,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:13:03.713236+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "695d8705-006e-4c38-b584-d16fa21d8adf",
+        "version": 101,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:13:04.732718+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "19354276-207c-418c-94e0-d8621475cb06",
+        "version": 102,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:13:05.751172+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "888c575b-e59a-4d12-b5da-a4a0baa97fa7",
+        "version": 103,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:13:06.770991+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "c9adfe09-3f43-4837-b33b-90eb21168375",
+        "version": 104,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:13:07.789951+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "8e999026-2c67-4217-8bee-76c9167a4251",
+        "version": 105,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:13:08.815056+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "31a14c90-0486-43f6-9b8c-ee5863c1c4ec",
+        "version": 106,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:13:09.835217+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "7d24cf27-a874-446f-88e9-130d906193ec",
+        "version": 107,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:13:10.857773+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "845c8e0e-3627-45a3-b65b-57fcea21a02e",
+        "version": 108,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:13:11.879901+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "a8094caf-9a80-4cac-8216-d9003249569b",
+        "version": 109,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:13:12.901362+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "e3bbff5a-e9f2-4093-ae73-f621d3804470",
+        "version": 110,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:13:13.922143+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "6331230f-b9ab-4bb1-bed5-902fc3f812be",
+        "version": 111,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:13:14.943236+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "18256e5c-88fa-4f65-a27d-49974c44b640",
+        "version": 112,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:13:15.964353+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "d9081d41-5c50-4971-921f-087e41c41348",
+        "version": 113,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:13:16.988246+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "6da3a811-4566-427b-869a-fcac6da57b39",
+        "version": 114,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:13:18.00915+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "b8f6099c-f7cf-40de-9f99-224806b0e417",
+        "version": 115,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:13:19.029247+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "bc16741b-c5d7-462d-adb0-942f964de388",
+        "version": 116,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:13:20.049961+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "19304f68-e977-4b26-8d8d-6b5fb6d52cd1",
+        "version": 117,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:13:21.068474+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "eca29f7e-f344-44d4-a6a5-e3d1a9b8d978",
+        "version": 118,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:13:22.087961+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "92f7e2cc-9921-422f-870c-b7a7aa8acbfe",
+        "version": 119,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:13:23.107839+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "657e49b6-a197-4f4f-9d98-bc2373c9d580",
+        "version": 120,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:13:24.128678+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "aaabecbf-5294-4812-914e-4f32d8c494cc",
+        "version": 121,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:13:25.149206+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "b478dd8b-58ff-4e5b-aac6-86e0a1c47505",
+        "version": 122,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:13:26.16863+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "aabfe41b-58df-45d6-ba9a-c31eb4ecd899",
+        "version": 123,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:13:27.188037+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "b16fb56e-862f-46db-9eff-6b5a67a69f67",
+        "version": 124,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:13:28.208742+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "01a305ec-6db6-46b3-b069-2aa04cd6a18a",
+        "version": 125,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:13:29.22786+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "ce0d35e9-cf8e-40df-abcf-d9c5de52b3ae",
+        "version": 126,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:13:30.247345+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "c26a06fe-8555-45b6-9853-a9d7d9cb99d6",
+        "version": 127,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:13:31.267349+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "4c25a92e-73c3-4bcf-894d-3b8439e7c765",
+        "version": 128,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:13:32.288104+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "600e246e-ef3f-4a79-84b5-308bce45d3c3",
+        "version": 129,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:13:33.307519+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "a98c46e4-3d35-4860-aee7-ac0345244034",
+        "version": 130,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:13:34.327562+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "e7e75cef-3726-4217-a446-20c2e4944850",
+        "version": 131,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:13:35.34708+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "af6194f9-757f-4d9d-bf79-0c27e60f0452",
+        "version": 132,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:13:36.366557+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "9b19b897-ef47-45ed-9702-03eaa39b1e67",
+        "version": 133,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:13:37.385967+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "75d432bf-4e63-4136-aad9-b3ba28a3b10e",
+        "version": 134,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:13:38.407273+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "276b5402-387a-4b16-921e-957eae60406b",
+        "version": 135,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:13:39.426953+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "3dc67352-857c-462b-89dd-8f7c5cff16a0",
+        "version": 136,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:13:40.44649+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "33f7f6fe-abb0-4322-b0a9-47a00908e6fe",
+        "version": 137,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:13:41.467024+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "112a4985-6a7e-486a-b072-243fb803baa6",
+        "version": 138,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:13:42.489314+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "92635666-e1b1-4106-a0a1-e22321c167bb",
+        "version": 139,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:13:43.511271+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "098b27ed-d04c-4e86-81ec-d0f5acaffa10",
+        "version": 140,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:13:44.532962+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "e4ad56e8-e212-4cf9-ab2f-f379269c54bd",
+        "version": 141,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:13:45.552826+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "a14b6126-ecf7-4047-8ea3-43a084215000",
+        "version": 142,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:13:46.571808+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "36a202a7-56ea-4ddd-8d4b-9dca4631a7a0",
+        "version": 143,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:13:47.591753+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "2dda0bfe-d2fe-4e48-8ec1-68cfaa8ea94a",
+        "version": 144,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:13:48.610261+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "12aced94-8cf4-4f2f-b243-eaa3d7f1d31c",
+        "version": 145,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:13:49.629327+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "d35901da-d5be-46fd-9b96-993ce54ebd56",
+        "version": 146,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:13:50.648945+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "655c9478-190a-4781-b6ad-5565dd9a6c27",
+        "version": 147,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:13:51.668997+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "ac8256aa-2f10-4ed7-a99b-b315ba978ad1",
+        "version": 148,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:13:52.68881+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "c8f97685-a282-4d84-a967-cdbe208292cf",
+        "version": 149,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:13:53.708168+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "6f6d5b33-c646-4c91-baaf-dcd83414e78d",
+        "version": 150,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:13:54.727393+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "833ad489-7f8d-4fbe-96f6-eebf162f3c81",
+        "version": 151,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:13:55.746648+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "2cadacbc-b206-4940-ad9d-82569f101e71",
+        "version": 152,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:13:56.767295+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "271d1a37-cc16-4308-b398-9bae55db8567",
+        "version": 153,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:13:57.796817+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "fcd16da3-567d-46b1-84bc-d0b356314aba",
+        "version": 154,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:13:58.81779+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "629c638b-7047-487c-a1b4-50f00738d6b0",
+        "version": 155,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:13:59.8377+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "98347f37-7542-4a67-a107-52d6e1f25d0d",
+        "version": 156,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:14:00.85837+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "054bf40e-d162-4a66-9aa4-201b5cfa27c9",
+        "version": 157,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:14:01.878158+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "f555513e-608a-48eb-91d2-8fdfc98e428a",
+        "version": 158,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:14:02.899529+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "d8947fa2-9df9-4872-b443-d89f0af12f16",
+        "version": 159,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:14:03.919242+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "1761c4f3-8b4f-461a-8e10-5e71a56eeb49",
+        "version": 160,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:14:04.940174+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "384a9089-ec1d-44cd-8002-32a30b85a276",
+        "version": 161,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:14:05.959602+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "b234d993-4317-4e96-96f9-0888b4f093fe",
+        "version": 162,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:14:06.979963+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "5d70ed89-2509-4f84-95aa-9e1a6c8da48e",
+        "version": 163,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:14:07.999264+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "5aae7bcd-f3c8-4611-9184-d8c8d07fe608",
+        "version": 164,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:14:09.019553+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "9453de00-5b41-415d-97d8-9dca6b4c1481",
+        "version": 165,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:14:10.040903+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "264e756b-0317-4d15-bdcb-092be41a5493",
+        "version": 166,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:14:11.060236+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "da7717bf-e1d7-4cc2-868a-6a22679d9082",
+        "version": 167,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:14:12.079881+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "89886b99-31fa-459a-9aa4-11f9eeb491fb",
+        "version": 168,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:14:13.098581+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "a7b407fb-0152-4a6f-bea2-08a72f80728e",
+        "version": 169,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:14:14.118039+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "4de9e6a8-2957-4c93-9dd8-984a60a5f108",
+        "version": 170,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:14:15.136662+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "355c1f5f-7f8d-4215-988a-05498b273554",
+        "version": 171,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:14:16.156661+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "d7545ea7-bd05-4e97-bc37-fb8d4ab2e8f2",
+        "version": 172,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:14:17.177004+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "4ef5ed56-793e-4af6-8f78-e1405b2c53ec",
+        "version": 173,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:14:18.196522+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "cd3a5bb1-b24d-4351-b9ab-d15b70d2afcb",
+        "version": 174,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:14:19.219879+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "3b4191ee-c030-4238-9be0-171118cea140",
+        "version": 175,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:14:20.240608+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "8c88017e-4ae7-4810-a973-7601d33753b4",
+        "version": 176,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:14:21.261369+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "adb7323f-4ad9-4837-afd6-bc01a016e61f",
+        "version": 177,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:14:22.282263+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "580e4293-5747-440c-a2af-4467ff23282d",
+        "version": 178,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:14:23.30222+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "99266482-59d4-4c8b-b545-d615f999fccb",
+        "version": 179,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:14:24.324198+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "ff959c8c-f96a-4ada-a4fa-758ac5b916f9",
+        "version": 180,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:14:25.342812+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "d2e281a7-28ee-4f18-8b98-d168a7914c40",
+        "version": 181,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:14:26.361686+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "a634f7e3-9dba-4070-93ef-85453eb83156",
+        "version": 182,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:14:27.381937+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "d6bd186c-295b-45f5-8f51-3f1dbf741d82",
+        "version": 183,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:14:28.403624+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "3ff23a4f-80db-4697-8122-ef597d13ec64",
+        "version": 184,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:14:29.432119+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "b6d10a07-95da-4a95-9e72-f78ad234466a",
+        "version": 185,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:14:30.452821+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "2713b7c6-8945-4508-ada4-830270fe376b",
+        "version": 186,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:14:31.472209+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "d7f5ddaa-6d8f-4417-9738-f7909baeff85",
+        "version": 187,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:14:32.501787+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "8fe313ea-3201-4a08-a701-eac42d4ed79b",
+        "version": 188,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:14:33.522473+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "833f21b3-a6a1-4912-9a6f-63d3d6d00765",
+        "version": 218,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:15:04.184896+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "68d3fe9c-dce5-4b8d-8563-7b68c1490867",
+        "version": 219,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:15:05.205896+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "68b27b01-3961-40c8-871d-c6e3b2a2d819",
+        "version": 220,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:15:06.226643+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "731ae61f-1c9f-434f-8a2d-b9c0a868dc60",
+        "version": 221,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:15:07.257765+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "11919141-b28e-4761-a162-7b34b4ecafac",
+        "version": 222,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:15:08.285919+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "9a59ccc9-c59f-4851-b926-7b50d55c96f5",
+        "version": 223,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:15:09.30704+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "497df3ed-8dc0-40b2-afd5-04b4a28199f5",
+        "version": 224,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:15:10.327137+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "70cec55c-eb89-4a1f-919f-d240994d88ac",
+        "version": 225,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:15:11.348108+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "1a1d1b1a-eb2b-440d-b958-e84ad6effa70",
+        "version": 226,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:15:12.36756+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "d1a0555e-bc67-4b1b-976c-0451bb4236e7",
+        "version": 227,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:15:13.387482+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "ba9e4228-b4b3-4de3-b6fe-4dca94442b47",
+        "version": 228,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:15:14.408543+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "dec832a1-758f-467a-8341-7e0936958b70",
+        "version": 229,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:15:15.431742+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "06f8969e-4a78-4706-ad5a-4af618001820",
+        "version": 230,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:15:16.452966+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "d32b0bc1-bc19-4319-a5ce-771d3e84717c",
+        "version": 231,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:15:17.472063+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "4bd7cdbc-92b2-4222-89de-d3866df2d350",
+        "version": 232,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:15:18.491974+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "53e0f182-353c-4967-8dec-b631c069e265",
+        "version": 233,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:15:19.511175+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "aaa23b95-120b-4d8b-8401-08aa9405f8ad",
+        "version": 234,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:15:20.532162+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "49d0f493-8ef0-4bab-8040-2ecf89b423e9",
+        "version": 235,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:15:21.553246+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "cf62f66b-421f-4a6d-92ef-54253a493dee",
+        "version": 236,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:15:22.572611+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "53fc597e-c2ae-4e4a-9bdb-5766646dd4d8",
+        "version": 189,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:14:34.546919+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "02359445-0d89-40ef-8149-a7ecef1432a0",
+        "version": 190,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:14:35.567059+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "226a4daf-8620-4e1e-a700-b877e5e28ba6",
+        "version": 191,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:14:36.58591+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "90800abe-8a13-4832-8276-d48415f4e840",
+        "version": 192,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:14:37.606543+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "a64a31c8-bf20-465a-a8ee-0852cf5fa286",
+        "version": 193,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:14:38.630645+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "28c51c59-dbfc-4536-aad9-a9d9b3588c5e",
+        "version": 194,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:14:39.649832+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "5120873e-7286-4d14-9fc3-4cc790dba2c5",
+        "version": 195,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:14:40.671265+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "4443c6d3-e56a-4417-9cc7-d3ce9e99bbee",
+        "version": 196,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:14:41.69135+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "c77e4ed3-9e7a-4f4a-88e9-5897874c8daf",
+        "version": 197,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:14:42.712736+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "96331e78-c5fa-4835-af3f-848a966a5652",
+        "version": 198,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:14:43.733168+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "989c2a2a-40b2-4703-b7b0-a5da026ead5e",
+        "version": 199,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:14:44.75444+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "c3cfe077-a896-4ebe-8671-d95230794a0a",
+        "version": 200,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:14:45.779049+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "dbb9045a-e6e6-41b5-98d1-6dfabecda02c",
+        "version": 201,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:14:46.800888+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "2ed32118-40c7-45eb-9bd5-9778fc9c282e",
+        "version": 202,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:14:47.822009+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "6cc1ca38-4386-40cb-8c46-4c1c268d4213",
+        "version": 203,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:14:48.846151+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "72fe0f51-70de-456d-b73c-7a90f6610a53",
+        "version": 204,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:14:49.866307+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "47d34b2e-7d79-4216-93d3-5e4d6a580f5c",
+        "version": 205,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:14:50.898192+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "88cc878f-25c0-4a5a-9ce3-e31897ff8cf0",
+        "version": 206,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:14:51.920305+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "39b14271-2aa2-48e7-9101-3e2b6890b1f2",
+        "version": 207,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:14:52.93992+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "de3684af-3ccf-4b1b-8e40-5022af7df6af",
+        "version": 208,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:14:53.959289+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "e36f8cfb-261a-4d79-ae7c-f6f1dfd9c89d",
+        "version": 209,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:14:54.98394+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "239e6546-40b6-42b5-88f6-b428125125cb",
+        "version": 210,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:14:56.008815+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "93f0013c-8af4-43f8-88af-8b92295ab522",
+        "version": 211,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:14:57.03011+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "7eb4fd12-71e3-400f-ad20-5a0c1d8a4428",
+        "version": 212,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:14:58.054861+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "6773b31f-6de4-4374-9bc1-848c7274954d",
+        "version": 213,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:14:59.076429+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "d740373e-dd26-4edc-b789-be8058b7589d",
+        "version": 214,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:15:00.100158+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "409d5a9a-e411-4b5c-909e-45c4bf8cf9f0",
+        "version": 215,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:15:01.12251+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "746d1aa5-896c-469d-816a-fb7e54c2b06a",
+        "version": 216,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:15:02.14263+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "d752b6f9-690b-4554-ab1a-997163e5332b",
+        "version": 217,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:15:03.164221+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "37591243-c998-4348-a850-d033bcc7887f",
+        "version": 237,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:15:23.595582+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "7fb3c3a1-a587-49ed-b66a-fbb6d4f13c90",
+        "version": 238,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:15:24.616857+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "2ee761be-748b-4f29-9215-594bdbfdbcfa",
+        "version": 239,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:15:25.636942+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "7c972b3f-35fa-4763-b930-9aea9cc0bf44",
+        "version": 240,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:15:26.656948+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "16639c44-5c7e-4410-908c-32688b2af342",
+        "version": 241,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:15:27.681051+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "637eea59-3320-43d4-9c5b-507f3eaa6352",
+        "version": 242,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:15:28.703414+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "9459e624-2e81-42aa-ae39-128bcf2c5497",
+        "version": 243,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:15:29.730718+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "adf083a5-fbbe-4d2e-a6b9-baa079de3666",
+        "version": 244,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:15:30.750109+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "642d0d1d-a840-4098-a535-7674c6d9bea7",
+        "version": 245,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:15:31.770337+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "a070a6eb-4367-4744-84ec-3d93a6ccbcc2",
+        "version": 246,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:15:32.793964+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "d42fe9a0-9bb1-4e17-8ddf-0f58ad26791e",
+        "version": 247,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:15:33.819827+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "70786845-b855-457a-81be-53ed8ed0bf2d",
+        "version": 248,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:15:34.842027+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "248fd6df-5958-47a1-9e75-d717309825b1",
+        "version": 249,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:15:35.862379+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "51ddffd9-1760-4e4f-b272-0d755d6a546f",
+        "version": 250,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:15:36.88784+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "4fa9a689-1c37-42c1-bea0-79d99d76b8c5",
+        "version": 251,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:15:37.912548+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "5be96af8-c04f-4a48-a715-6caade89f409",
+        "version": 252,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:15:38.933077+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "f7e2b964-d8c4-4d6b-a58f-e280a76cf68f",
+        "version": 253,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:15:39.953791+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "2622d683-ea5c-4ebe-987c-c9edd9d0195d",
+        "version": 254,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:15:40.974999+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "4199122c-491d-4b3d-8f95-34ea4622b497",
+        "version": 255,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:15:41.997714+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "1a2f2533-d77f-41bc-a4b2-69b56ee80829",
+        "version": 256,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:15:43.017357+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "eec74866-7b84-46c7-a781-3d3642d99056",
+        "version": 257,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:15:44.037944+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "c3a872f1-58a8-4bf7-9d51-b7b31eda23f9",
+        "version": 258,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:15:45.058565+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "a38868d9-d2d4-40d9-a491-8210babe7d3b",
+        "version": 259,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:15:46.079534+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "027679d0-f36d-4b9e-94f8-1119f28381f3",
+        "version": 260,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:15:47.099341+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "34eae39d-7dc8-4b45-bc90-31909c673a43",
+        "version": 261,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:15:48.11867+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "7515ac47-3df7-43f8-9832-281b0e97ae10",
+        "version": 262,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:15:49.140256+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "0a8c2dee-ca84-4987-a9ab-a9bf6e1976fa",
+        "version": 263,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:15:50.161594+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "c2acc6a9-2a86-48c5-a9b1-df1a8825899b",
+        "version": 264,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:15:51.180968+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "c64228fb-a4b6-4b93-9253-4c9de4ac79b3",
+        "version": 265,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:15:52.200668+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "68fa91bf-f791-4476-b7e9-13dce2028852",
+        "version": 266,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:15:53.231696+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "b480341e-9cc5-46fa-aa88-563ba6beeb72",
+        "version": 267,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:15:54.253199+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "70f37c99-a095-4b7b-af70-ab02cab9626c",
+        "version": 268,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:15:55.272151+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "3ff81c51-f8cc-4ced-93e0-1a091062f155",
+        "version": 269,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:15:56.293717+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "6448344d-b6f7-4239-9694-73ee0e24851c",
+        "version": 270,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:15:57.316084+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "abb3fe69-eaa0-4bc7-a25d-d0eb1c821bd3",
+        "version": 271,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:15:58.338762+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "05b1bf35-237e-4599-8474-c303d5c1b8cb",
+        "version": 272,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:15:59.358633+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "1d5b7923-9caf-4998-bed1-77c8dad21ba4",
+        "version": 273,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:16:00.379775+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "168ddbd2-f3bf-4f61-99a0-d07d86ba7274",
+        "version": 274,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:16:01.407127+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "679bffdd-b367-4abd-be4b-32aa0c0d7566",
+        "version": 275,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:16:02.429729+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "022ba3be-102d-49b1-a7cc-c3e20abacb0c",
+        "version": 276,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:16:03.474138+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "5bf5fc4d-5cf9-4ab9-b6d3-9c38dd11402f",
+        "version": 306,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:16:34.23825+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "d7d89b09-4fed-49d0-b413-52eb6ba554eb",
+        "version": 307,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:16:35.260414+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "c4fc1449-4415-425c-b203-b24b94a9dc53",
+        "version": 308,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:16:36.288678+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "f4058406-7475-47e1-90d9-5a4f79da63c0",
+        "version": 309,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:16:37.315716+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "bf8d8537-1248-41d0-aea4-9fb454cc784a",
+        "version": 310,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:16:38.338521+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "cb4527ee-c8f4-424b-b900-f6839dd26b6e",
+        "version": 311,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:16:39.362779+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "7f880538-c8bf-4f22-b83b-6a8cd28e4baf",
+        "version": 312,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:16:40.384833+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "b6ea6f6b-7feb-4fdc-97ea-9cd8768efaff",
+        "version": 313,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:16:41.419669+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "af65bcc9-40d1-48c8-933e-357a980bf22e",
+        "version": 314,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:16:42.439116+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "1fcf416e-131d-43de-b145-93013ed78887",
+        "version": 277,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:16:04.498515+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "fcb926d8-6ce4-4d0f-a93b-1f870b48855a",
+        "version": 278,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:16:05.52558+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "0a7d5210-5e79-4061-b59d-f7ec7582c808",
+        "version": 279,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:16:06.55327+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "e381d704-0b6a-4278-ba0c-caa0ca405025",
+        "version": 280,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:16:07.576463+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "cade0f8b-cc2e-409a-b11a-a1aeed4a730f",
+        "version": 281,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:16:08.619008+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "6f341578-f5b4-4613-858a-ce4baee9146c",
+        "version": 282,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:16:09.648161+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "f290c862-0ccc-447b-a9dc-c4d0d88f3f1c",
+        "version": 283,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:16:10.670686+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "38d4279d-8be2-4a23-8fcc-b42265157a97",
+        "version": 284,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:16:11.690463+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "4a1dde81-6c98-4a87-93f5-5481de8f2061",
+        "version": 285,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:16:12.714329+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "38e8165c-3693-4248-a5db-86325c846b0d",
+        "version": 286,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:16:13.737129+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "a79739c7-5d25-476d-a44f-1af115da5ce4",
+        "version": 287,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:16:14.760388+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "05ace2b4-1714-4457-a944-a61c5a4f0819",
+        "version": 288,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:16:15.785667+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "8a6faca4-ecc9-4693-8e05-c7e2fe943375",
+        "version": 289,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:16:16.808987+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "19c6ee60-4ec5-4731-9c5b-5b48cacb5fd9",
+        "version": 290,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:16:17.829163+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "49faab5c-8b9e-4ec4-aaf3-53e0a2aa8b0d",
+        "version": 291,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:16:18.86064+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "8c710fc3-6db8-4b68-82ee-658200311dba",
+        "version": 292,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:16:19.884177+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "c2cb8274-ec2d-4ddb-a21b-ec82ab547d77",
+        "version": 293,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:16:20.906617+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "199afa11-1a99-4989-8433-60915524468e",
+        "version": 294,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:16:21.929744+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "c588c0ee-a3d8-4e14-8f29-bbb7172719cd",
+        "version": 295,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:16:22.952047+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "d164b336-4763-4dc6-b863-9f094c0f923e",
+        "version": 296,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:16:23.974785+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "fd5aa323-f97b-463a-a050-c423653ade5c",
+        "version": 297,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:16:24.996799+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "e6decd4f-276d-434b-9c1c-f47d5ce76f4f",
+        "version": 298,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:16:26.024288+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "57d83485-30c2-4aea-87c3-8dbe8d58d81f",
+        "version": 299,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:16:27.053458+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "aeff1f99-e732-45e6-8df2-eb3cf157d7df",
+        "version": 300,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:16:28.076291+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "6549835f-9941-45bf-9b02-fbbe8436abe5",
+        "version": 301,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:16:29.103969+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "9b1f996a-4803-44a8-89b4-6d60b91ad6e6",
+        "version": 302,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:16:30.126207+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "89b4ffc2-f3e9-469f-9214-08a83704d1e0",
+        "version": 303,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:16:31.149721+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "9a142600-6791-4cdd-9c54-b7a2a142787f",
+        "version": 304,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:16:32.174599+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "1c59e9a7-a521-4833-ba30-e3beee5a99c5",
+        "version": 305,
+        "event": "finalization_conflict",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:16:33.199597+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "a6d9f693-b1cb-4ef2-9689-5e45313cce73",
+        "version": 315,
+        "event": "identity_revoked",
+        "reason": "WORKLOAD_FINALIZATION_CONFLICT",
+        "created_at": "2026-09-10T02:16:43.591434+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "8af4833e-6a3c-4b73-8cc9-01a13bd2b82b",
+        "history_id": "04cfee25-b3db-4039-a692-904916224aec",
+        "version": 1,
+        "event": "accepted",
+        "reason": "",
+        "created_at": "2026-09-10T02:16:43.995301+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "8af4833e-6a3c-4b73-8cc9-01a13bd2b82b",
+        "history_id": "96a88503-fc33-43d8-a585-592e5c94a3e5",
+        "version": 2,
+        "event": "prepare_pending",
+        "reason": "",
+        "created_at": "2026-09-10T02:16:44.607163+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "8af4833e-6a3c-4b73-8cc9-01a13bd2b82b",
+        "history_id": "4eb6a0b9-4870-44c7-94fc-46860bff288f",
+        "version": 3,
+        "event": "attachment_persisted",
+        "reason": "",
+        "created_at": "2026-09-10T02:16:44.614455+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "4697a2a2-65d6-4066-8cff-96997085522d",
+        "version": 316,
+        "event": "submission_closed",
+        "reason": "",
+        "created_at": "2026-09-10T02:16:44.632499+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "8af4833e-6a3c-4b73-8cc9-01a13bd2b82b",
+        "history_id": "cfed9219-2584-4338-b585-e5ca0594b06c",
+        "version": 4,
+        "event": "rendered",
+        "reason": "",
+        "created_at": "2026-09-10T02:16:45.684103+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "fad71422-3aeb-4bf7-9aaf-dee278271285",
+        "version": 317,
+        "event": "release_registered",
+        "reason": "",
+        "created_at": "2026-09-10T02:16:45.706361+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "8af4833e-6a3c-4b73-8cc9-01a13bd2b82b",
+        "history_id": "58383ec5-c612-466e-800b-67abe8afd0be",
+        "version": 5,
+        "event": "create_pending",
+        "reason": "",
+        "created_at": "2026-09-10T02:16:46.725224+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "8af4833e-6a3c-4b73-8cc9-01a13bd2b82b",
+        "history_id": "162aa75f-1cc5-4885-8317-fa4dd07034b5",
+        "version": 6,
+        "event": "create_registered",
+        "reason": "",
+        "created_at": "2026-09-10T02:16:46.735525+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "9aed2025-ebfd-494d-9b95-7501c4000665",
+        "version": 318,
+        "event": "closed_observed",
+        "reason": "",
+        "created_at": "2026-09-10T02:16:46.754175+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "8af4833e-6a3c-4b73-8cc9-01a13bd2b82b",
+        "history_id": "b9fde123-b18b-42f5-860e-121583eb86f1",
+        "version": 7,
+        "event": "create_pending",
+        "reason": "",
+        "created_at": "2026-09-10T02:16:47.773512+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "8af4833e-6a3c-4b73-8cc9-01a13bd2b82b",
+        "history_id": "8953d3b3-6396-497b-92a6-9e6bbeb1c178",
+        "version": 8,
+        "event": "create_registered",
+        "reason": "",
+        "created_at": "2026-09-10T02:16:47.845959+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "df0c1bc5-1f0b-4574-a491-fcb81385dfa9",
+        "version": 319,
+        "event": "closed_observed",
+        "reason": "",
+        "created_at": "2026-09-10T02:16:47.946855+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "8af4833e-6a3c-4b73-8cc9-01a13bd2b82b",
+        "history_id": "592c4d90-b1ca-498a-9972-0d1d16f0e607",
+        "version": 9,
+        "event": "create_pending",
+        "reason": "",
+        "created_at": "2026-09-10T02:16:48.971863+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "8af4833e-6a3c-4b73-8cc9-01a13bd2b82b",
+        "history_id": "9e31c454-f04d-4d98-a60e-2c0f7088362a",
+        "version": 10,
+        "event": "create_result",
+        "reason": "WORKLOAD_CREATE_RESULT_UNKNOWN",
+        "created_at": "2026-09-10T02:16:48.983247+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "f81826dc-ecf8-42ce-a621-443ced382b4d",
+        "version": 320,
+        "event": "closed_observed",
+        "reason": "",
+        "created_at": "2026-09-10T02:16:49.009256+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "8af4833e-6a3c-4b73-8cc9-01a13bd2b82b",
+        "history_id": "541a2e32-a1dd-4fa7-aa6c-1e8bc789968d",
+        "version": 11,
+        "event": "observation_failed",
+        "reason": "WORKLOAD_OBSERVATION_CONFLICT",
+        "created_at": "2026-09-10T02:16:50.037061+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "0ce5cc98-4653-4563-a025-8805f6c42c9b",
+        "version": 321,
+        "event": "closed_observed",
+        "reason": "",
+        "created_at": "2026-09-10T02:16:50.05724+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "8af4833e-6a3c-4b73-8cc9-01a13bd2b82b",
+        "history_id": "88d4dbe9-5211-4944-8dbc-899e3de6a7a0",
+        "version": 12,
+        "event": "observation_failed",
+        "reason": "WORKLOAD_OBSERVATION_CONFLICT",
+        "created_at": "2026-09-10T02:16:51.08026+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "1b82858e-e4cf-4eac-bc70-eb70ed681a2d",
+        "version": 322,
+        "event": "closed_observed",
+        "reason": "",
+        "created_at": "2026-09-10T02:16:51.098211+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "8af4833e-6a3c-4b73-8cc9-01a13bd2b82b",
+        "history_id": "635e8d53-f178-4747-a0ad-51c525c880d4",
+        "version": 13,
+        "event": "observation_failed",
+        "reason": "WORKLOAD_OBSERVATION_CONFLICT",
+        "created_at": "2026-09-10T02:16:52.121332+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "06062903-ef40-4489-9d97-4e7ac990d762",
+        "version": 323,
+        "event": "closed_observed",
+        "reason": "",
+        "created_at": "2026-09-10T02:16:52.140657+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "8af4833e-6a3c-4b73-8cc9-01a13bd2b82b",
+        "history_id": "f6d38c25-9121-47dd-b62f-f14e761fd55a",
+        "version": 14,
+        "event": "observation_failed",
+        "reason": "WORKLOAD_OBSERVATION_CONFLICT",
+        "created_at": "2026-09-10T02:16:53.170056+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "c5027811-24db-4bdd-b7d3-2a602b82d3a1",
+        "version": 324,
+        "event": "closed_observed",
+        "reason": "",
+        "created_at": "2026-09-10T02:16:53.196022+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "8af4833e-6a3c-4b73-8cc9-01a13bd2b82b",
+        "history_id": "c4b63f1e-c1d7-4d52-b8e4-e16fd488e094",
+        "version": 15,
+        "event": "observation_failed",
+        "reason": "WORKLOAD_OBSERVATION_CONFLICT",
+        "created_at": "2026-09-10T02:16:54.227364+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "e05aeee0-6176-42bc-9aec-0930475f35ad",
+        "version": 325,
+        "event": "closed_observed",
+        "reason": "",
+        "created_at": "2026-09-10T02:16:54.245447+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "8af4833e-6a3c-4b73-8cc9-01a13bd2b82b",
+        "history_id": "8fb6a82b-5999-4971-ae6f-f7f83aeb89e1",
+        "version": 16,
+        "event": "observation_failed",
+        "reason": "WORKLOAD_OBSERVATION_CONFLICT",
+        "created_at": "2026-09-10T02:16:55.272919+00:00"
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "history_id": "aa68feae-53c7-4d86-8f7b-7340e66bd837",
+        "version": 326,
+        "event": "closed_observed",
+        "reason": "",
+        "created_at": "2026-09-10T02:16:55.295866+00:00"
+      }
+    ],
+    "dispatch": [
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "instance_id": "inst_3df45d9a-91ea-49a1-b4c2-e179133533a4",
+        "submission_id": "8af4833e-6a3c-4b73-8cc9-01a13bd2b82b",
+        "next_check_at": "2026-09-10T02:16:56.271723+00:00",
+        "lease_owner": null,
+        "lease_until": null,
+        "epoch": 11
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "instance_id": "inst_00dc1e64-54db-46d0-a79d-0fee08f826f0",
+        "submission_id": "e0acdc3d-b6bc-4245-85c4-c52a05cff759",
+        "next_check_at": "2026-09-10T02:16:56.295339+00:00",
+        "lease_owner": null,
+        "lease_until": null,
+        "epoch": 324
+      }
+    ],
+    "instances": [
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "instance_id": "inst_3df45d9a-91ea-49a1-b4c2-e179133533a4",
+        "name": "net05-1717d354-p2",
+        "workload_kind": "container",
+        "provider": "kubernetes-network-attachment",
+        "state": "provisioning",
+        "reason": "WORKLOAD_OBSERVATION_CONFLICT",
+        "node_name": null,
+        "resource_refs": [
+          "Secret/net05-1717d354-292e225a-1f85-4912-88e0-590dd5fa953d/ani-wi-88314431-645a-4389-ba97",
+          "Service/net05-1717d354-292e225a-1f85-4912-88e0-590dd5fa953d/net05-1717d354-p2"
+        ]
+      },
+      {
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "instance_id": "inst_00dc1e64-54db-46d0-a79d-0fee08f826f0",
+        "name": "net05-1717d354-p1-fixed",
+        "workload_kind": "container",
+        "provider": "kubernetes-network-attachment",
+        "state": "failed",
+        "reason": null,
+        "node_name": null,
+        "resource_refs": null
+      }
+    ],
+    "identities": [
+      {
+        "id": "51bedd14-17e1-41a4-9610-846883c429f6",
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "instance_id": "inst_00dc1e64-54db-46d0-a79d-0fee08f826f0",
+        "created_at": "2026-09-10T02:11:24.592596+00:00",
+        "revoked_at": "2026-09-10T02:16:43.580397+00:00"
+      },
+      {
+        "id": "88314431-645a-4389-ba97-0eea7b5797eb",
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "instance_id": "inst_3df45d9a-91ea-49a1-b4c2-e179133533a4",
+        "created_at": "2026-09-10T02:16:43.9913+00:00",
+        "revoked_at": null
+      }
+    ],
+    "audits": [
+      {
+        "id": "28774c22-ffd6-4838-a828-b303a1309900",
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "instance_id": "inst_00dc1e64-54db-46d0-a79d-0fee08f826f0",
+        "workload_kind": "container",
+        "provider": "kubernetes",
+        "manifest_count": 3,
+        "admission_allowed": true,
+        "admission_reason": "accepted by local admission guard"
+      },
+      {
+        "id": "7d46f5f3-bafa-4d6c-bb13-cae419bd6695",
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "instance_id": "inst_3df45d9a-91ea-49a1-b4c2-e179133533a4",
+        "workload_kind": "container",
+        "provider": "kubernetes",
+        "manifest_count": 3,
+        "admission_allowed": true,
+        "admission_reason": "accepted by local admission guard"
+      }
+    ]
+  }
+}

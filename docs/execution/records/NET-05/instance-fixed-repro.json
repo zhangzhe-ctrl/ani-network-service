@@ -1,0 +1,131 @@
+{
+  "request": {
+    "name": "net05-1717d354-p1-fixed",
+    "kind": "container",
+    "image": "docker.io/library/net05-1717d354-probe:fixed",
+    "cpu": "50m",
+    "memory": "64Mi",
+    "network_config": {
+      "vpc_id": "vpc_09382a676dde438ab6c8b7255346f2fb",
+      "subnet_id": "subnet_d6cddaceb672474aab25a74a9a197dff",
+      "assign_private_ip": true
+    },
+    "container_config": {
+      "replicas": 1,
+      "ports": [
+        {
+          "name": "probe",
+          "container_port": 18080,
+          "protocol": "TCP"
+        }
+      ],
+      "env": [
+        {
+          "name": "NET05_ID",
+          "value": "net05-1717d354-p1"
+        },
+        {
+          "name": "NET05_PORT",
+          "value": "18080"
+        }
+      ],
+      "workload_identity": {
+        "enabled": true,
+        "scopes": [
+          "scope:instances:read"
+        ]
+      }
+    },
+    "net05_instance_intent_id": "net05-1717d354-p1-fixed"
+  },
+  "status": 201,
+  "response": {
+    "instance": {
+      "id": "inst_00dc1e64-54db-46d0-a79d-0fee08f826f0",
+      "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+      "name": "net05-1717d354-p1-fixed",
+      "kind": "container",
+      "instance_type": "container",
+      "state": "provisioning",
+      "status": "provisioning",
+      "provider": "kubernetes-network-attachment",
+      "dev_profile": {
+        "mode": "real",
+        "provider": "kubernetes_rest",
+        "real_provider": true,
+        "reason": "Instance resources are managed through the configured Kubernetes provider"
+      },
+      "resource_refs": null,
+      "endpoint": "",
+      "image": {
+        "ref": "docker.io/library/net05-1717d354-probe:fixed"
+      },
+      "compute": {
+        "cpu": "50m",
+        "memory": "64Mi"
+      },
+      "network": {
+        "vpc_id": "vpc_09382a676dde438ab6c8b7255346f2fb",
+        "subnet_id": "subnet_d6cddaceb672474aab25a74a9a197dff"
+      },
+      "access": {
+        "ssh_available": false,
+        "console_available": false,
+        "exec_available": false,
+        "reason": "instance state does not allow interactive access"
+      },
+      "auto_start": true,
+      "termination_protection": false,
+      "container": {
+        "replicas": 1,
+        "ready_replicas": 0,
+        "revision": "rev-docker-io-library-net05-1717d354-probe-fixed",
+        "rollout_status": "progressing",
+        "history": [
+          {
+            "revision": "rev-docker-io-library-net05-1717d354-probe-fixed",
+            "image": "docker.io/library/net05-1717d354-probe:fixed",
+            "created_at": "2026-09-10T02:11:24Z"
+          }
+        ]
+      },
+      "created_at": "2026-09-10T02:11:24Z",
+      "updated_at": "2026-09-10T02:11:24Z"
+    },
+    "operation_id": "98addee6-bd94-4ffa-9ca4-aebd95ce3139",
+    "audit_id": "",
+    "timeline": [
+      {
+        "name": "\u89c4\u5212",
+        "status": "completed",
+        "detail": "network and storage prerequisites resolved before provider rendering"
+      },
+      {
+        "name": "\u6e32\u67d3",
+        "status": "completed",
+        "detail": "0 provider manifest rendered"
+      },
+      {
+        "name": "\u51c6\u5165",
+        "status": "blocked",
+        "detail": ""
+      },
+      {
+        "name": "Dry-run",
+        "status": "blocked",
+        "detail": ""
+      },
+      {
+        "name": "Apply",
+        "status": "blocked",
+        "detail": ""
+      },
+      {
+        "name": "\u72b6\u6001\u56de\u5199",
+        "status": "provisioning",
+        "detail": ""
+      }
+    ],
+    "demo_notice": "instance profile uses the M1 service; configure the Kubernetes provider for live cluster execution."
+  }
+}

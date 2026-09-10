@@ -1,0 +1,249 @@
+{
+  "status": "pass",
+  "at": "2026-09-10T03:36:16.285136+00:00",
+  "before": "2026-09-10T01:54:03.959007+00:00",
+  "after": "2026-09-10T03:33:57.589809+00:00",
+  "checks": {
+    "fixed_identity": true,
+    "fixed_input_hashes": true,
+    "cni_pod_uids_images_restarts": true,
+    "all_health_checks": true,
+    "unrelated_inventory_preserved": true,
+    "no_task_resources": true
+  },
+  "inventory_before": 250,
+  "inventory_after": 250,
+  "missing": [],
+  "added": [],
+  "changed_identity_or_labels": [],
+  "cni_pods": {
+    "kcn-cni-ds-2gvfs": {
+      "uid": "f4d2ebcb-62d9-4619-b150-728546720ce5",
+      "node": "kc062-control-plane",
+      "phase": "Running",
+      "containers": [
+        {
+          "name": "kcn-cni-server",
+          "ready": true,
+          "restartCount": 1,
+          "image": "docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2",
+          "imageID": "docker.io/library/import-2026-09-09@sha256:e2efcb27fd9b982ad6f49c0dc7b8d7ab9622bfa1172491c187152422cca27749",
+          "state": {
+            "running": {
+              "startedAt": "2026-09-09T14:56:47Z"
+            }
+          }
+        }
+      ]
+    },
+    "kcn-cni-ds-pl4ph": {
+      "uid": "8be0f629-5a0d-4222-9ad0-8559b062c68f",
+      "node": "kc062-worker",
+      "phase": "Running",
+      "containers": [
+        {
+          "name": "kcn-cni-server",
+          "ready": true,
+          "restartCount": 2,
+          "image": "docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2",
+          "imageID": "docker.io/library/import-2026-09-09@sha256:e2efcb27fd9b982ad6f49c0dc7b8d7ab9622bfa1172491c187152422cca27749",
+          "state": {
+            "running": {
+              "startedAt": "2026-09-09T14:56:58Z"
+            }
+          }
+        }
+      ]
+    },
+    "kcn-cni-ds-wtmns": {
+      "uid": "8f0feb6a-552c-40d6-ab99-34383473d87f",
+      "node": "kc062-worker2",
+      "phase": "Running",
+      "containers": [
+        {
+          "name": "kcn-cni-server",
+          "ready": true,
+          "restartCount": 1,
+          "image": "docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2",
+          "imageID": "docker.io/library/import-2026-09-09@sha256:e2efcb27fd9b982ad6f49c0dc7b8d7ab9622bfa1172491c187152422cca27749",
+          "state": {
+            "running": {
+              "startedAt": "2026-09-09T14:56:46Z"
+            }
+          }
+        }
+      ]
+    },
+    "kcn-controller-7bdbbb67cb-2jz4k": {
+      "uid": "b9490f94-1d63-46be-bad4-9f3952456a18",
+      "node": "kc062-worker2",
+      "phase": "Running",
+      "containers": [
+        {
+          "name": "kcn-controller",
+          "ready": true,
+          "restartCount": 0,
+          "image": "docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2",
+          "imageID": "docker.io/library/import-2026-09-09@sha256:e2efcb27fd9b982ad6f49c0dc7b8d7ab9622bfa1172491c187152422cca27749",
+          "state": {
+            "running": {
+              "startedAt": "2026-09-09T14:56:43Z"
+            }
+          }
+        }
+      ]
+    },
+    "kcn-controller-7bdbbb67cb-65lpc": {
+      "uid": "c1f32cd1-2f26-460a-96c2-fa3209b2a2df",
+      "node": "kc062-worker",
+      "phase": "Running",
+      "containers": [
+        {
+          "name": "kcn-controller",
+          "ready": true,
+          "restartCount": 1,
+          "image": "docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2",
+          "imageID": "docker.io/library/import-2026-09-09@sha256:e2efcb27fd9b982ad6f49c0dc7b8d7ab9622bfa1172491c187152422cca27749",
+          "state": {
+            "running": {
+              "startedAt": "2026-09-09T14:56:45Z"
+            }
+          }
+        }
+      ]
+    },
+    "kcn-controller-7bdbbb67cb-fvcfq": {
+      "uid": "60c5e3e4-3c37-4bc8-b1ad-af11d2a91ec7",
+      "node": "kc062-control-plane",
+      "phase": "Running",
+      "containers": [
+        {
+          "name": "kcn-controller",
+          "ready": true,
+          "restartCount": 1,
+          "image": "docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2",
+          "imageID": "docker.io/library/import-2026-09-09@sha256:e2efcb27fd9b982ad6f49c0dc7b8d7ab9622bfa1172491c187152422cca27749",
+          "state": {
+            "running": {
+              "startedAt": "2026-09-09T14:56:45Z"
+            }
+          }
+        }
+      ]
+    },
+    "kcn-ovn-central-5cfcf4f7b5-dbwnx": {
+      "uid": "7932fdff-3e61-4d3a-9642-fcc2ab5c7862",
+      "node": "kc062-worker",
+      "phase": "Running",
+      "containers": [
+        {
+          "name": "ovn-central",
+          "ready": true,
+          "restartCount": 0,
+          "image": "docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2",
+          "imageID": "docker.io/library/import-2026-09-09@sha256:e2efcb27fd9b982ad6f49c0dc7b8d7ab9622bfa1172491c187152422cca27749",
+          "state": {
+            "running": {
+              "startedAt": "2026-09-09T14:56:41Z"
+            }
+          }
+        }
+      ]
+    },
+    "kcn-ovn-central-5cfcf4f7b5-pp6l9": {
+      "uid": "45c1a191-d0b5-49ce-96e1-231bcf76f01b",
+      "node": "kc062-control-plane",
+      "phase": "Running",
+      "containers": [
+        {
+          "name": "ovn-central",
+          "ready": true,
+          "restartCount": 0,
+          "image": "docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2",
+          "imageID": "docker.io/library/import-2026-09-09@sha256:e2efcb27fd9b982ad6f49c0dc7b8d7ab9622bfa1172491c187152422cca27749",
+          "state": {
+            "running": {
+              "startedAt": "2026-09-09T14:56:42Z"
+            }
+          }
+        }
+      ]
+    },
+    "kcn-ovn-central-5cfcf4f7b5-wz8xz": {
+      "uid": "2aa44fc0-5f6c-4162-ab75-8cd18a8353c3",
+      "node": "kc062-worker2",
+      "phase": "Running",
+      "containers": [
+        {
+          "name": "ovn-central",
+          "ready": true,
+          "restartCount": 0,
+          "image": "docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2",
+          "imageID": "docker.io/library/import-2026-09-09@sha256:e2efcb27fd9b982ad6f49c0dc7b8d7ab9622bfa1172491c187152422cca27749",
+          "state": {
+            "running": {
+              "startedAt": "2026-09-09T14:56:43Z"
+            }
+          }
+        }
+      ]
+    },
+    "kcn-ovs-ds-jbkdj": {
+      "uid": "1fcb2caa-5f20-47b9-91dd-602b2ad7488f",
+      "node": "kc062-worker2",
+      "phase": "Running",
+      "containers": [
+        {
+          "name": "openvswitch",
+          "ready": true,
+          "restartCount": 0,
+          "image": "docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2",
+          "imageID": "docker.io/library/import-2026-09-09@sha256:e2efcb27fd9b982ad6f49c0dc7b8d7ab9622bfa1172491c187152422cca27749",
+          "state": {
+            "running": {
+              "startedAt": "2026-09-09T14:56:43Z"
+            }
+          }
+        }
+      ]
+    },
+    "kcn-ovs-ds-pfx5z": {
+      "uid": "33bca16d-4570-4445-ad4a-e5b381c76cba",
+      "node": "kc062-control-plane",
+      "phase": "Running",
+      "containers": [
+        {
+          "name": "openvswitch",
+          "ready": true,
+          "restartCount": 0,
+          "image": "docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2",
+          "imageID": "docker.io/library/import-2026-09-09@sha256:e2efcb27fd9b982ad6f49c0dc7b8d7ab9622bfa1172491c187152422cca27749",
+          "state": {
+            "running": {
+              "startedAt": "2026-09-09T14:56:43Z"
+            }
+          }
+        }
+      ]
+    },
+    "kcn-ovs-ds-xnvp6": {
+      "uid": "99b795ba-0f28-4f0a-94dc-b266bc4d7e38",
+      "node": "kc062-worker",
+      "phase": "Running",
+      "containers": [
+        {
+          "name": "openvswitch",
+          "ready": true,
+          "restartCount": 0,
+          "image": "docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2",
+          "imageID": "docker.io/library/import-2026-09-09@sha256:e2efcb27fd9b982ad6f49c0dc7b8d7ab9622bfa1172491c187152422cca27749",
+          "state": {
+            "running": {
+              "startedAt": "2026-09-09T14:56:43Z"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

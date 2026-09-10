@@ -1,0 +1,60 @@
+{
+  "network": {
+    "internal/biz/worker.go": {
+      "source_sha256": "c0d866a65d7a6967d307035bccd08aa718206eb29033b0289c530d614768bdd5",
+      "overlay_sha256": "986bf7ee5d06bee6230811ab1d9fa8d6bc2c69f59883900b8912d68caa067d8c"
+    },
+    "internal/biz/network.go": {
+      "source_sha256": "29e3cc5fc226e8f17673fbe6b70a9888557a6173829f7d419f47a33ff0b7b03f",
+      "overlay_sha256": "1dfc37e25519315568a835d985b5c88d764678f5af81863bd036661f76d4295e"
+    },
+    "internal/server/worker.go": {
+      "source_sha256": "a22db919bdb890c34dd1f433ae60f89ad84347c5ad3bbdabc3dfdc1e6422392c",
+      "overlay_sha256": "53e1ac7de5c5af2aa40f945d01afacae9bb9d760f849644d5f1444373a7da600"
+    },
+    "build": {
+      "command": [
+        "go",
+        "build",
+        "-trimpath",
+        "-overlay",
+        "/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T030442Z-dd4743cc/fault-build/network-overlay.json",
+        "-o",
+        "/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T030442Z-dd4743cc/fault-build/network-main",
+        "./cmd/ani-network-service"
+      ],
+      "cwd": "/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T030442Z-dd4743cc/network",
+      "binary": "/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T030442Z-dd4743cc/fault-build/network-main",
+      "binary_sha256": "b21d864c6ef9a52459300f18262b070000776b42555ae0fb4fd2b27a5ce7ab85"
+    }
+  },
+  "ani": {
+    "repo/pkg/adapters/runtime/network_submission_owner.go": {
+      "source_sha256": "be3293e53c32afbc2f9e0ab9a78246fa616a2fb75063bf0abc9468add6dbd472",
+      "overlay_sha256": "280f87d3155531a2a5af2dd2e02179060a4b45e7d3cbd3d01e5648b3b6df752b"
+    },
+    "repo/pkg/adapters/runtime/network_submission_finalize.go": {
+      "source_sha256": "bbd3a0dbe309fbe888329f385db7478b7e79bbaeb59736b5767be9ad9a1bd057",
+      "overlay_sha256": "34c42d58b32d9eeec473222c122dda2975b3cb18c9a9fb2557bb0e919f21d7f3"
+    },
+    "repo/pkg/adapters/runtime/network_submission_rpc.go": {
+      "source_sha256": "bada6b27c3284df79f120a4ffb63116ea2323e24a713d816c9af5c64eeb8206f",
+      "overlay_sha256": "269e4ae8c419c9aec8d7f7f5f5f0929f7665ba3710986fddc27b2fcfc3f2880a"
+    },
+    "build": {
+      "command": [
+        "go",
+        "build",
+        "-trimpath",
+        "-overlay",
+        "/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T030442Z-dd4743cc/fault-build/ani-overlay.json",
+        "-o",
+        "/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T030442Z-dd4743cc/fault-build/ani-main",
+        "./services/ani-gateway"
+      ],
+      "cwd": "/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T030442Z-dd4743cc/ani/repo",
+      "binary": "/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T030442Z-dd4743cc/fault-build/ani-main",
+      "binary_sha256": "3d74c0dc6e8e04339a84e8e04b3d41395189e1ad7b9e23f4bb348ac7339468ec"
+    }
+  }
+}

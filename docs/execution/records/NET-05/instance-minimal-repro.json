@@ -1,0 +1,19 @@
+{
+  "request": {
+    "name": "net05-1717d354-minimal",
+    "kind": "container",
+    "cpu": "50m",
+    "memory": "64Mi",
+    "image": "docker.io/library/net05-1717d354-probe:fixed",
+    "idempotency_key": "net05-1717d354-minimal",
+    "network_config": {
+      "subnet_id": "subnet_d6cddaceb672474aab25a74a9a197dff"
+    }
+  },
+  "status": 400,
+  "response": {
+    "code": "INSTANCE_CREATE_FAILED",
+    "message": "capability operation is unsupported by this adapter: explicit Network attachment does not support SG, secondary networks, requested IP or storage resource references",
+    "request_id": "req_1934df21-4d24-4700-9cdf-0b2da7788afd"
+  }
+}

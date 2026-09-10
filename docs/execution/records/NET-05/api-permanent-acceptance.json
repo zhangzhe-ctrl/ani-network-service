@@ -1,0 +1,52 @@
+{
+  "intent": {
+    "name": "net05-1717d354-api-concurrent",
+    "cidr": "10.205.0.0/16",
+    "description": "permanent acceptance",
+    "idempotency_key": "net05-1717d354-api-concurrent"
+  },
+  "responses": [
+    [
+      409,
+      {
+        "code": "IDEMPOTENCY_IN_PROGRESS",
+        "message": "idempotent request is already in progress",
+        "request_id": "req_25c20f57-79ee-48ca-b983-607f9904f1a5"
+      }
+    ],
+    [
+      201,
+      {
+        "cidr": "10.205.0.0/16",
+        "created_at": "2026-09-10T02:40:39.606966Z",
+        "description": "permanent acceptance",
+        "id": "vpc_e4327b39f2bd42478ca285b95950e752",
+        "last_operation_id": "6565115e-11cf-43f2-87c8-522dea1ad37e",
+        "name": "net05-1717d354-api-concurrent",
+        "observation_stale": true,
+        "observed_at": null,
+        "reason": "",
+        "reason_message": "",
+        "state": "provisioning",
+        "subnet_count": 0,
+        "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "updated_at": "2026-09-10T02:40:39.606966Z",
+        "version": 1
+      }
+    ]
+  ],
+  "rows": [
+    {
+      "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+      "operation_kind": "create_vpc",
+      "idempotency_key": "net05-1717d354-api-concurrent",
+      "operation_id": "6565115e-11cf-43f2-87c8-522dea1ad37e"
+    },
+    {
+      "tenant_id": "2fc974a1-6930-4c24-b55f-86b2b142b510",
+      "operation_kind": "create_vpc",
+      "idempotency_key": "net05-1717d354-api-concurrent",
+      "operation_id": "a6a15a4d-6204-472c-a5d5-ba46de6433c6"
+    }
+  ]
+}

@@ -358,36 +358,6 @@ func (q *Queries) LockDueSubnet(ctx context.Context, arg LockDueSubnetParams) (N
 	return i, err
 }
 
-const lockDueSubnetParent = `-- name: LockDueSubnetParent :one
-SELECT v.tenant_id, v.vpc_id, v.name, v.description, v.cidr, v.state, v.reason, v.version, v.created_at, v.updated_at, v.observed_at, v.last_operation_id FROM network_vpcs v WHERE EXISTS (
- SELECT 1 FROM network_subnets s JOIN network_reconciliations r ON r.tenant_id=s.tenant_id AND r.subnet_id=s.subnet_id
- WHERE s.tenant_id=v.tenant_id AND s.vpc_id=v.vpc_id AND r.next_run_at<=clock_timestamp()
- AND (r.lease_until IS NULL OR r.lease_until<=clock_timestamp())
-) ORDER BY v.created_at,v.vpc_id LIMIT 1 FOR UPDATE OF v SKIP LOCKED
-`
-
-// The scheduler locks a parent before selecting/locking its child. SKIP LOCKED
-// applies to the parent, preserving VPC -> Subnet even across worker processes.
-func (q *Queries) LockDueSubnetParent(ctx context.Context) (NetworkVpc, error) {
-	row := q.db.QueryRow(ctx, lockDueSubnetParent)
-	var i NetworkVpc
-	err := row.Scan(
-		&i.TenantID,
-		&i.VpcID,
-		&i.Name,
-		&i.Description,
-		&i.Cidr,
-		&i.State,
-		&i.Reason,
-		&i.Version,
-		&i.CreatedAt,
-		&i.UpdatedAt,
-		&i.ObservedAt,
-		&i.LastOperationID,
-	)
-	return i, err
-}
-
 const lockSubnet = `-- name: LockSubnet :one
 SELECT tenant_id, subnet_id, vpc_id, name, description, cidr, gateway, state, reason, version, created_at, updated_at, observed_at, last_operation_id FROM network_subnets WHERE tenant_id=$1 AND subnet_id=$2 FOR UPDATE
 `

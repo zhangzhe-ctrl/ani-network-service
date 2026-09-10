@@ -1,0 +1,200 @@
+{
+  "status": "pass",
+  "reason": "Gitleaks generic-api-key classified public hook target IDs, idempotency IDs and workload Secret object names as credentials. Actual credential scan already passed. No scanner rules changed.",
+  "kind": "publication metadata-name projection, not a verbatim raw API/DB dump",
+  "field_mappings": {
+    "key -> net05_hook_target_id": 11,
+    "request_key -> net05_idempotency_request_id": 263,
+    "ani.kubercloud.io/workload-identity-secret -> net05.audit/original-workload-identity-object-name": 3,
+    "instance-fixed-repro.idempotency_key -> net05_instance_intent_id": 1
+  },
+  "changed_files": [
+    {
+      "file": "V-07-T3-T4.json",
+      "original_export_sha256": "6ebbc8951edff103c5a2744052d8f1ea16093b71abaa79fbe7176f04ff017695",
+      "published_sha256": "4b0e4305de7b9ec5235bfd3e23ff56157ceb1cd4d12a026ae4742d26be208a57"
+    },
+    {
+      "file": "V-07-delete-unconfirmed.json",
+      "original_export_sha256": "a8927ca3b7982e2b0b8cf8d158665f220c803584e806e3f6f83e69269c57b8a7",
+      "published_sha256": "de5e294588ca8b5f8a4a39fd4ec946fb4b5edd92221c5d0cd5e44544807f4723"
+    },
+    {
+      "file": "V-08-lease-fence.json",
+      "original_export_sha256": "f819bf15be3a213168241476137f703a857843b88e7f253731f7ff487b9c4453",
+      "published_sha256": "0b7d10724cc2eef1aa58330cb7c928c90390c82f7e4212b7c8cd8d1ad2357e3c"
+    },
+    {
+      "file": "V-09-pure-query.json",
+      "original_export_sha256": "ad7228ed1054b62607326355027d6182b14c13510173fe394d0bfb50ed1f5a27",
+      "published_sha256": "53dbb622782747e3b7e03f8b994002f8fc4eb8f173e366258a576705f78b3bfe"
+    },
+    {
+      "file": "V-10-final-owner-recovery.json",
+      "original_export_sha256": "84f16f2a33661959dafd6612610d0d77db12df433259434de4979f913a5dc4b3",
+      "published_sha256": "ac8a9bc28269622cd9e8ac133774a18354c634159659a14e81e1c73ccdc69178"
+    },
+    {
+      "file": "V-10-owner-unknown-confirm.json",
+      "original_export_sha256": "30be6db20020148f4eaa320c4474336f9e11dc869204b2fa074e0deb275b417f",
+      "published_sha256": "93c7278364494a1928f0c36c5bc537f7955475049a64807ffff50721cada99d9"
+    },
+    {
+      "file": "V-10-real-residual-nic-ip.json",
+      "original_export_sha256": "5455f3c5aae97e679464cd42b48e2daaf3d88346272f5034182b7996ee15933e",
+      "published_sha256": "9345e22944b324027b5a9336d71b050b1c133789b4f27094730d744482434e6e"
+    },
+    {
+      "file": "V-10-release-consumer-restarts.json",
+      "original_export_sha256": "7c4d72714c46524049b405c8750dc873795fd8bee11fcd35ca3d7e6ee4a57ba5",
+      "published_sha256": "5e7f9cf28c332d1b800b79bab3adafec3a271e1383b418c160d3605252b81d14"
+    },
+    {
+      "file": "V-10-reserved-restarts.json",
+      "original_export_sha256": "7086d3d595ae8b4285863b4ef57a0a95ba99b907ab329d61d86242eb6ad68e4a",
+      "published_sha256": "0eaefb47e8daae7afa121229c4c735a5363584558478bb20c5e1c1a016a52e28"
+    },
+    {
+      "file": "before-confirm-618a8b70.hit.json",
+      "original_export_sha256": "4472650303efba753b515b5dec15314e32df172874b7c264256b6de0d9d18719",
+      "published_sha256": "dd8296d4b1332bdda036ffbb01b951a53ce80e4a07111880053d2de1919db7a0"
+    },
+    {
+      "file": "before-finish-2e72e422.hit.json",
+      "original_export_sha256": "22d9f594a91696b982eb2665afecd4c7e84e5446ff45c9fd8da8c54f96cbe315",
+      "published_sha256": "b35cb819f1e51841215dc1b0d60af8d13b0a51209caa1f2f8eddda958834bd4c"
+    },
+    {
+      "file": "before-finish-6f931ea8.hit.json",
+      "original_export_sha256": "cb35a3b5a2a7b852d5156900948fe6a18b728031ec17f56e0e7e0239271eeee5",
+      "published_sha256": "dc92432a5443dee68914e50ec4a482816617246f79ef9b911dec924c5c4036f1"
+    },
+    {
+      "file": "before-finish-862a9089.hit.json",
+      "original_export_sha256": "f20a0e7b7c7386a9da81a4c01bb67f5b69335b7f566f831be5cdb6933789a142",
+      "published_sha256": "ec011e6c43d033f535932def5961edd7deaf4964e73c295dcb750ca0b8547bb5"
+    },
+    {
+      "file": "before-release-066d87fe.hit.json",
+      "original_export_sha256": "5d9dcc90cffca97097ef931492023fab883e1e7c6f98ad89b32f1adc5ca070ff",
+      "published_sha256": "2e08adc8116c53fafcb20064df44686e452455d0f07fea68355db7d1c3357360"
+    },
+    {
+      "file": "database-20260910T021654Z.json",
+      "original_export_sha256": "5946adf30c798dc8cc1a5ed74a06ab47a71c47b56a679312c2cb05cc70a5e8b6",
+      "published_sha256": "5b3ca2a7fbf565dfd5b2c49c4a8f7ad5a05adfdb64d27198345e719bdbb7cfd1"
+    },
+    {
+      "file": "database-20260910T022108Z.json",
+      "original_export_sha256": "27cf4b63558b95aebb0232047fa7816f3ab5ee25c353aa1f5c135a309d3dab23",
+      "published_sha256": "1ed2984989b333276f2ae93c828d0786415f1408c8f93f9af462872b508e22d9"
+    },
+    {
+      "file": "database-20260910T022912Z.json.gz",
+      "original_export_sha256": "60771e1998473368c6f6cd26de429d3edaa61a458105474963f83ef5f18c638e",
+      "published_sha256": "2bd8eaf74af28ccfa7a057d8bb27a3c5fef67aa4719c0b9938a5e35be617c6a4"
+    },
+    {
+      "file": "database-20260910T023054Z.json.gz",
+      "original_export_sha256": "e2f8b01605b4978f897964f508c67ce51eb6f461853e18e42a45e769ebf19b17",
+      "published_sha256": "623b230dcfdc51f02aa2a04ab6a67bd4162d1f256018ccd90cfcc97e817adadd"
+    },
+    {
+      "file": "database-20260910T023343Z.json.gz",
+      "original_export_sha256": "ed49b751ecf5bf0f7a0938404f4384efdd44e980bfb32a2d11f6afbbfa128717",
+      "published_sha256": "67c7a225d63a495cf300c838034489dd0e10f23a27efcd4fe1f19e11e7c314bd"
+    },
+    {
+      "file": "database-20260910T023404Z.json.gz",
+      "original_export_sha256": "575ebada64857fc0506789633f7ad4dc6f7806ad84cdb70f66617759c45c46ce",
+      "published_sha256": "21379a7c89a92f959de6a17bdaed054c7f76f96df14d0245a355b1eddd5461df"
+    },
+    {
+      "file": "database-20260910T023612Z.json.gz",
+      "original_export_sha256": "279bfce9c22defe56bc8a0a78efade3cbfafcfc3a4c0de2bc030a59fab2a3846",
+      "published_sha256": "d44346496ac469245d1018153965f0ab720f4ae3fc1c96879a53ed71ab7c2236"
+    },
+    {
+      "file": "database-20260910T024155Z.json.gz",
+      "original_export_sha256": "2f8e91e0156723acc1b88169761e19e5875d00c56e4bd3b636d4a65095d1eea2",
+      "published_sha256": "5f851612f9e3b76a4f21e98e45f23ee9b969dd92d5b90ddc4933452eb5c00b8a"
+    },
+    {
+      "file": "database-20260910T024904Z.json.gz",
+      "original_export_sha256": "e013e1def6f72802f824e0779e6f942d8a2e47f05f23aa51bf2a97f3a5e263b8",
+      "published_sha256": "dd69696957dd2387c7662f22115f437e3a6fe81dabad79c66e31b36669493830"
+    },
+    {
+      "file": "database-20260910T024910Z.json.gz",
+      "original_export_sha256": "5343bacef4184accfff796f15d6a7d4f98b9a376a4362a36428dbb80f3618c7b",
+      "published_sha256": "44ff90bff465db55d9d003d213d5fccb5afd303ea03405475b049cfd791e6890"
+    },
+    {
+      "file": "database-20260910T030503Z.json.gz",
+      "original_export_sha256": "be1a69c4980c757e4ecd41f1e19a0b37645664b1975e9847c9953c2c01a011c3",
+      "published_sha256": "6a69701f39641fb7e8fc30e124479dd48bfef5142a2c06937b3a3a123312e6d5"
+    },
+    {
+      "file": "database-20260910T030510Z.json.gz",
+      "original_export_sha256": "89396654b7a34403acd1ab2bde65860c8fb82bdf0bd565845d920391cacfb12d",
+      "published_sha256": "9a0f1806cd76897a52dba0c54b3e682912b80e74f993a361221653d25629fc55"
+    },
+    {
+      "file": "database-20260910T031849Z.json.gz",
+      "original_export_sha256": "32a898124a5f11cef365005d2dca7b3598edb84e1c23e05ef7f5f77e0ca260a9",
+      "published_sha256": "aba668439751c2d5a5e08c539a5448598cbf6ce1dc1035c14d5a3a2bd15393b2"
+    },
+    {
+      "file": "database-20260910T031851Z.json.gz",
+      "original_export_sha256": "99538451a170099380ba5056a04eb0edef19023416a0f6de82b0d34c7b300e2a",
+      "published_sha256": "1149a6be6a5f773557905914386eaa2e6ed610e03c686e0dfeac46a653865e8d"
+    },
+    {
+      "file": "database-20260910T031945Z.json.gz",
+      "original_export_sha256": "81d153b0f878799cbc07b70f0f07047855669143ea87e38e8404330afe176c3c",
+      "published_sha256": "212ec8ce4c3251114b17a79faf71b5c71507e327f696985b9516b12bd7d88e16"
+    },
+    {
+      "file": "database-20260910T032017Z.json.gz",
+      "original_export_sha256": "1ead5c8899703f910fa3474afafcd3e3bc34b480e346b215dd68684f5bed7935",
+      "published_sha256": "8871ffdd1babd061d06d6da41e1e57e84fc694a3e7c4c9ff138fe3620b0d3c85"
+    },
+    {
+      "file": "owner-advance-acaec4b7.hit.json",
+      "original_export_sha256": "d8a6e5d32fc98113e3e8150f304eb676e9fa924de4f684e74528814c84486978",
+      "published_sha256": "3f6894328bb097b2979ba0e09c89098b0b36ecb842bbde9e602fc18985103f67"
+    },
+    {
+      "file": "raw-list-identity.json",
+      "original_export_sha256": "5570b2363245952a7ccfd8bef92ec7f644cef76e7d6f6f99537877ee3a424a14",
+      "published_sha256": "0f095425297c15066947b94aeea06e3cf9ea7f6f66b01c67d072f79eb5b4b666"
+    },
+    {
+      "file": "instance-fixed-repro.json",
+      "original_export_sha256": "53ece3362bbe0384a544d9201416c1aaa3f7a2d43163e49c7fbe3635554e585b",
+      "published_sha256": "e37cfbbc8b6174ae4286c0507a62cd8c75452c9c3c42e7ffc7dd28633e475bfa"
+    }
+  ],
+  "original_evidence": "/home/chabking/workspace/.worktrees/network-net-05/docs/execution/records/NET-05",
+  "unchanged": "all values, resource/Pod/Attachment/operation UIDs, tenant scope, versions, state, counts and assertions",
+  "packaging": [
+    {
+      "original": "ani-tracked.diff",
+      "original_sha256": "efedb58412dfeb283a538973a17d0e5899528e2610e020fc8e0a091aebaab7b9",
+      "published": false,
+      "reason": "latest user authorizes only Network publication; ANI source patch remains local"
+    },
+    {
+      "original": "network-tracked.diff",
+      "published": "network-tracked.diff.gz",
+      "original_sha256": "ba9f54c88be1a621bb78ddaf7202e4bd9048191c9f629cd6e170f47aa6592ebd",
+      "reason": "lossless archive preserves patch context whitespace"
+    },
+    {
+      "original": "schema/ani-schema.sql",
+      "original_sha256": "73b417aa782a04ff9f2d9d4ab13352887f386e5e47b217b10681244a2facf8f4",
+      "published_sha256": "bb070267363e71a28979870d0054b550dd6e88a7c2d78f0158ba7b3619096013",
+      "reason": "remove extra EOF blank lines from published SQL view; executed source hash preserved"
+    }
+  ]
+}

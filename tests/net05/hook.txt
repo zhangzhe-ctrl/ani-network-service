@@ -1,0 +1,35 @@
+// Compiled only into the explicit NET-05 Go overlay target. No production flag.
+// Payload callers pass only immutable identities, versions and bounded states.
+func net05Hook(ctx context.Context, point, key string, data map[string]any) bool {
+ dir := os.Getenv("NET05_TEST_HOOK_DIR")
+ if dir == "" { return false }
+ paths, _ := filepath.Glob(filepath.Join(dir, "*.rule.json"))
+ for _, path := range paths {
+  body, err := os.ReadFile(path); if err != nil { continue }
+  var rule struct { ID, Point, Key, Action, Phase string }
+  if json.Unmarshal(body, &rule) != nil || rule.Point != point || (rule.Key != "*" && rule.Key != key) { continue }
+  if rule.Phase != "" && data["phase"] != rule.Phase { continue }
+  item := map[string]any{"at":time.Now().UTC(), "point":point, "key":key, "pid":os.Getpid(), "data":data, "action":rule.Action}
+  encoded, _ := json.Marshal(item)
+  hit := filepath.Join(dir, rule.ID+".hit.json")
+  if file, err := os.OpenFile(hit, os.O_WRONLY|os.O_CREATE|os.O_EXCL, 0600); err == nil { _, _ = file.Write(encoded); _ = file.Close() }
+  if rule.Action == "exit" { os.Exit(86) }
+  if rule.Action == "drop" { return true }
+  // Deliberately retain the captured execution after its request deadline.
+  // This permits a real expired epoch DB write attempt in the fencing case.
+  deadline := time.Now().Add(10*time.Minute)
+  for time.Now().Before(deadline) {
+   if _, err := os.Stat(path); os.IsNotExist(err) { return rule.Action == "fence" }
+   time.Sleep(20*time.Millisecond)
+  }
+  panic("NET-05 test hook was not released within ten minutes")
+ }
+ return false
+}
+
+func net05Note(name string, data map[string]any) {
+ dir := os.Getenv("NET05_TEST_HOOK_DIR"); if dir == "" { return }
+ data["at"] = time.Now().UTC()
+ body, _ := json.Marshal(data)
+ _ = os.WriteFile(filepath.Join(dir, name+".note.json"), body, 0600)
+}

@@ -1,0 +1,10 @@
+snapshot=/home/chabking/workspace/.worktrees/network-net-05/.work/net05-runs/20260910T020707Z-4b93665f
+remote=/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T020707Z-4b93665f
+verified network source files= 151 temporary snapshot= 6df4586549ec1d6f23b81c42034718c666883737
+verified ani source files= 2896 temporary snapshot= 3fb4e71d6949800450beacfadd965398cd02f7c4
+--- FAIL: TestNET05PublicContainerReachesOwnerAcceptance (0.00s)
+    instances_net05_test.go:51: public request rejected before owner transaction: capability operation is unsupported by this adapter: explicit Network attachment does not support SG, secondary networks, requested IP or storage resource references; attachments=[{Plane:tenant_vpc NetworkID:tenant-vpc SubnetID:subnet_test IPAddress: Primary:true Required:true PolicyRefs:[] Description:} {Plane:foundation_mesh NetworkID:foundation-mesh SubnetID: IPAddress: Primary:false Required:true PolicyRefs:[] Description:} {Plane:management NetworkID:management SubnetID: IPAddress: Primary:false Required:true PolicyRefs:[] Description:}]
+FAIL
+FAIL	github.com/kubercloud/ani/services/ani-gateway/internal/router	0.022s
+FAIL
+REMOTE_COMMAND_EXIT=1

@@ -86,7 +86,13 @@ CHECK
 cd source
 source /home/ubuntu/.local/share/ani-network-service/env.sh
 git -c init.defaultBranch=verification init -q
-git add .
+python3 - <<'STAGE'
+import json,pathlib,subprocess
+metadata=json.loads(pathlib.Path('../snapshot.json').read_text())
+# Preserve the exact authorized input, including already-tracked evidence logs
+# which the repository's default ignore patterns would otherwise omit.
+subprocess.run(['git','add','--force','--',*[item['path'] for item in metadata['files']]],check=True)
+STAGE
 git -c user.name='Network Snapshot' -c user.email='snapshot@localhost' -c commit.gpgsign=false commit -qm 'Verification input'
 mkdir -p .tools/bin
 for tool in buf sqlc govulncheck cyclonedx-gomod gitleaks; do

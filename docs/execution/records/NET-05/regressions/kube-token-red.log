@@ -1,0 +1,10 @@
+snapshot=/home/chabking/workspace/.worktrees/network-net-05/.work/net05-runs/20260910T021438Z-710ea7fe
+remote=/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T021438Z-710ea7fe
+verified network source files= 151 temporary snapshot= b38a8271dd2397e97133399741f7dfa7f6666edf
+verified ani source files= 2897 temporary snapshot= 0d4f75c7cec8b7bb0526bcd92764e6d3b1d0db8d
+--- FAIL: TestNET05ExplicitAPIHostUsesConfiguredTokenFile (0.00s)
+    kubernetes_rest_client_net05_test.go:33: actual owner observation did not authenticate with configured SA file: capability request is invalid: Kubernetes API GET /apis/apps/v1/namespaces/net05/replicasets returned HTTP 403: {"kind":"Status","reason":"Forbidden"}
+FAIL
+FAIL	github.com/kubercloud/ani/pkg/adapters/runtime	0.008s
+FAIL
+REMOTE_COMMAND_EXIT=1

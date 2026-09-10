@@ -1,10 +1,14 @@
 # Network 执行状态
 
-更新日期：2026-09-09。本文件是唯一当前进度入口；[规格](../specs/vpc-subnet.md)描述目标，[计划](../plans/vpc-subnet.md)描述工作包。
+更新日期：2026-09-10。本文件是唯一当前进度入口；[规格](../specs/vpc-subnet.md)描述目标，[计划](../plans/vpc-subnet.md)描述工作包。
 
 ## 当前工作
 
-当前执行 NET-02–04 Goal：Subnet 生命周期、两端持久 Attachment 协议、Gateway/OpenAPI 接口适配。固定基线和执行证据见 [组合实施记录](records/NET-02-04-implementation.md)。NET-02/03 实施与受控验收、NET-04 接口实现和进程验收均已完成。用户确认将固定 ANI 基线的 8 条既有 compatibility 失败与 Network 成果分开记录；认证 API 和其兼容预期保持不变。完成核对见 [逐项审计](records/NET-02-04/completion-audit.md)。NET-01 历史证据保留。
+NET-05 已按用户调整后的范围完成，复用固定远端 `kind-kc062`，实际普通容器主链、带身份数据面、故障恢复及产品/临时环境清理均通过。独立 Network/ANI worktree、环境身份、用例断言和实际证据见 [NET-05 记录](records/NET-05-implementation.md)。验收完成后的新授权仅将 Network 提交至远端 main；ANI 继续保留本地。NET-06、部署和整体切换不在本次发布范围。
+
+执行中用户将 worker 资源持续观察专项交由并行任务，本包停止扩展/重复该项；此前证据保留并标明源码时点。该调整不取消产品创建/删除、实例 owner 恢复和其他 NET-05 验收。
+
+NET-02/03 实施与受控验收、NET-04 接口实现和进程验收已完成，见 [组合实施记录](records/NET-02-04-implementation.md)和[逐项审计](records/NET-02-04/completion-audit.md)。八条既有 compatibility 失败与全历史 Atlas 漂移仍单独保留，不由 NET-05 修改。
 
 | 工作包 | 执行状态 | 说明 |
 |---|---|---|
@@ -14,7 +18,7 @@
 | NET-02 | `completed` | Subnet CRUD/操作/地址约束/迁移升级/实际 adapter/持久恢复通过 |
 | NET-03 | `completed` | 两端持久提交/封闭/释放与占用保护；真实 PG、十场景独立进程故障验收通过 |
 | NET-04 | `completed` | 九路由/生成契约/HTTP链路与无新增兼容回归通过；8 条既有失败按用户决定单独保留，原门禁仍 fail；仅接口，无前端 |
-| NET-05 | `not_started` | 用户后续提供 VM 中的全新 kind，验证普通容器数据面 |
+| NET-05 | `completed` | 实际 main、V-12 连通/隔离/重叠、V-06–11 适用 live 扩展、V-13 接口、最终门禁和清理通过；持续观察专项按用户调整不再追加 |
 | NET-06 | `not_started` | 普通容器之后的 VM/KubeVirt 接入与验收 |
 | NET-AUTH | `not_started` | 明确延期：IAM 就绪后接入服务间身份验证 |
 
@@ -33,17 +37,18 @@
 | Gateway 九路由与普通容器 owner 接口链 | `pass` | V-13 仅接口范围；真实双页游标、租户、幂等和错误映射；十场景进程故障矩阵 |
 | ANI Core compatibility | `fail` | [固定基线差异与用户决定](records/NET-02-04/baseline-gate-drift.md)：8 条既有路由，不属于本次 Network breaking 预期 |
 | ANI 全历史 Atlas 目录 | `fail` | 固定基线 checksum 漂移及重复版本；本包新迁移 SQL/角色测试 pass，不替代全目录重放 |
-| 真实 kc/OVN 数据面、Console/前端 | `not_verified` | V-12 与前端不在本 Goal；并发 KC-KIND 任务材料不用于本包验收 |
+| NET-05 真实 kc/OVN 数据面、故障及清理 | `pass` | [完整矩阵](records/NET-05-implementation.md)：八 Pod/两 worker、40 个带双域正向控制的隔离负例、真实恢复和产品清理；50 项 fixture 撤销、原环境 250 项 inventory 保留 |
+| Console/前端 | `not_verified` | 不在本 Goal |
 | VM 网络 / IAM 服务间验证 | `not_verified` | V-14、V-15 后续独立验证 |
 | 生产发布、部署或切流 | `not_verified` | 不在本轮范围 |
 
-## 后续分支提交
+## 历史分支提交与当前边界
 
-2026-09-10，用户在 NET-02–04 验收完成后明确授权提交并推送远程。本次仅发布两仓 `codex/net-02-04` 工作分支，保留固定开发基线与既有失败记录；不合并 main、不部署、不启动 NET-05。Goal 完成时的未提交清单仍作为历史验收快照，实际提交及远程身份以 Git 记录为准。并发 KC-KIND 文件和导航差异不纳入本次提交；SBOM 按实际暂存源码重新生成。
+NET-02–04 后续发布记录属于历史输入：Network 固定提交已发布；ANI 固定提交仅保留本地，用户最新决定暂缓推送。NET-05 原 Goal 的验收阶段只允许隔离验收与远端临时验证提交；验收结束后用户明确授权发布 Network 至远端 main，并再次确认 ANI 继续保留本地。KC-KIND 后续记录作为单独环境输入，不混入固定业务源码。
 
 ## 下一步
 
-NET-02–04 按原实现范围和用户确认的既有失败分离决定完成，停止于可审阅的未提交工作区。认证基线提案已撤回且从未应用，实际 Core compatibility fail 如实保留。NET-05 需要另行明确源码、环境、迁移与真实连通验收输入；不自动启动，不提交、推送或部署。
+NET-05 验收完成，按用户后续授权发布 Network main，ANI 成果继续保持本地未提交状态。NET-06、NET-AUTH、Console、生产发布/升级和整体切换等待各自独立授权；不自动继续。
 
 ## 记录索引
 
@@ -52,3 +57,10 @@ NET-02–04 按原实现范围和用户确认的既有失败分离决定完成�
 - [2026-09-09 远程环境准备](records/2026-09-09-remote-readiness.md)
 
 - [NET-01 实施与验证](records/NET-01-implementation.md)
+- [NET-05 实施与真实环境验收](records/NET-05-implementation.md)
+
+## Network main 发布授权
+
+2026-09-10 用户在验收与清理结束后明确要求提交远端 main，并确认仅发布 Network，ANI 继续保留本地。发布从 `87e91de53aff9158a0525950c59de8a338f01ccc` 建立独立 worktree；该提交是 NET-02–04 的等价 squash，其 tree 与固定 `5d4a534` 完全相同。发布范围为已验收 NET-05 成果和本段授权记录，原验收工作树及封存证据保留。提交前校验完整发布树的 verify/audit/SBOM；远端实际提交及 CI 状态以 GitHub main 与对应提交 checks 为准，不将本地门禁冒称云端 CI。
+
+发布快照按已校验清单显式暂存文件，保留本次明确纳入 Git 的脱敏日志，避免默认 `*.log` 忽略规则使远端验证/SBOM 输入少于实际发布树。该修复只影响源码快照传递，不改变业务运行行为。

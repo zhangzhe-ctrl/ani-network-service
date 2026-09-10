@@ -1,0 +1,161 @@
+{
+  "closed_owner": {
+    "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+    "instance_id": "inst_5655e8b1-849b-4929-8819-8347a58fa61f",
+    "submission_id": "f5e302cc-bd1f-49c2-a3c3-c759d9269313",
+    "operation_id": "d04f4edf-e619-44d7-b296-7c7cc450adec",
+    "state": "closed",
+    "version": 48,
+    "phase": "closed",
+    "reason": "NETWORK_RELEASE_PENDING",
+    "pod_uid": "c8190f09-341b-440f-965d-8aa6ed136c33",
+    "pod_name": "net05-1717d354-owner-delete-relay-84d565d8d9-t9vt6",
+    "pending_confirm": "false",
+    "pending_release": "true",
+    "finalization_id": "e47799e8-6268-401a-bdc0-066262232882",
+    "identity_revoked": "true",
+    "objects": [
+      {
+        "UID": "62bfc5d7-16cc-430c-91ef-627aa72e36b5",
+        "Kind": "Secret",
+        "Name": "ani-wi-b441976a-1c0c-4524-9baf",
+        "Phase": "deleted",
+        "Namespace": "net05-1717d354-292e225a-1f85-4912-88e0-590dd5fa953d",
+        "ResourceVersion": "96157"
+      },
+      {
+        "UID": "38dbf65a-4dfd-451a-8dbc-9d853571c997",
+        "Kind": "Service",
+        "Name": "net05-1717d354-owner-delete-relay",
+        "Phase": "deleted",
+        "Namespace": "net05-1717d354-292e225a-1f85-4912-88e0-590dd5fa953d",
+        "ResourceVersion": "96166"
+      },
+      {
+        "UID": "3009c8b7-763b-4015-aaf2-e11ec7fc0b4f",
+        "Kind": "Deployment",
+        "Name": "net05-1717d354-owner-delete-relay",
+        "Phase": "deleted",
+        "Namespace": "net05-1717d354-292e225a-1f85-4912-88e0-590dd5fa953d",
+        "ResourceVersion": "96213"
+      }
+    ]
+  },
+  "consumer_listener_down": true,
+  "after_network_restart": {
+    "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+    "attachment_id": "att_d0b1625ea6004d09bec731f5ea90d997",
+    "vpc_id": "vpc_e8246ef687c14338a381f80463b6cfa7",
+    "subnet_id": "subnet_ea493c822b15449cbbf864f23f92da97",
+    "binding_id": "9b7f21a7-ae10-4ac8-9b3b-3ec97406f3e7",
+    "instance_id": "inst_5655e8b1-849b-4929-8819-8347a58fa61f",
+    "slot": "primary",
+    "net05_idempotency_request_id": "net05-1717d354-owner-delete-relay",
+    "submission_id": "f5e302cc-bd1f-49c2-a3c3-c759d9269313",
+    "generation": 1,
+    "fingerprint": "cc3ca5de5fbc908ab2e6a427b195ed658ec41369d229cf0f7db7ca0ea48347b1",
+    "cluster_id": "net05-1717d354",
+    "namespace": "net05-1717d354-292e225a-1f85-4912-88e0-590dd5fa953d",
+    "binding_revision": "9b7f21a7-ae10-4ac8-9b3b-3ec97406f3e7:1b856917-33be-474b-a837-86bb9f700ee3",
+    "plan": {
+      "TenantID": "292e225a-1f85-4912-88e0-590dd5fa953d",
+      "Namespace": "net05-1717d354-292e225a-1f85-4912-88e0-590dd5fa953d",
+      "Generation": 1,
+      "InstanceID": "inst_5655e8b1-849b-4929-8819-8347a58fa61f",
+      "AttachmentID": "att_d0b1625ea6004d09bec731f5ea90d997",
+      "SubmissionID": "f5e302cc-bd1f-49c2-a3c3-c759d9269313",
+      "FormatVersion": 1,
+      "PrimaryNetworkRef": "net05-1717d354-292e225a-1f85-4912-88e0-590dd5fa953d/subnet-ea493c822b15449cbbf864f23f92da97"
+    },
+    "state": "releasing",
+    "reason": "CONSUMER_UNAVAILABLE",
+    "protocol_blocked": false,
+    "version": 6,
+    "pod_name": "net05-1717d354-owner-delete-relay-84d565d8d9-t9vt6",
+    "pod_uid": "c8190f09-341b-440f-965d-8aa6ed136c33",
+    "confirm_uid": "c8190f09-341b-440f-965d-8aa6ed136c33",
+    "finalization_id": "e47799e8-6268-401a-bdc0-066262232882",
+    "provider_relations": [
+      {
+        "UID": "677a1dae-23b0-4b86-a8f6-b0230e0b5d6a",
+        "Kind": "VNic",
+        "Name": "auto-net05-1717d354-owner-delete-relay-84d5-vnic-qt28q",
+        "OwnerUID": "c8190f09-341b-440f-965d-8aa6ed136c33",
+        "Namespace": "net05-1717d354-292e225a-1f85-4912-88e0-590dd5fa953d"
+      },
+      {
+        "UID": "b28200c1-e314-4c91-8e6b-0368a831d3d2",
+        "Kind": "VNicIP",
+        "Name": "auto-net05-1717d354-owner-delete-relay-84d5-vnic-qt28q",
+        "OwnerUID": "677a1dae-23b0-4b86-a8f6-b0230e0b5d6a",
+        "Namespace": "net05-1717d354-292e225a-1f85-4912-88e0-590dd5fa953d"
+      }
+    ],
+    "created_at": "2026-09-10T03:16:44.077297+00:00",
+    "updated_at": "2026-09-10T03:18:01.19222+00:00",
+    "observed_at": "2026-09-10T03:18:01.19222+00:00",
+    "released_at": null,
+    "next_check_at": "2026-09-10T03:18:31.19222+00:00",
+    "lease_owner": null,
+    "lease_until": null,
+    "epoch": 4
+  },
+  "after_both_restarted": {
+    "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+    "attachment_id": "att_d0b1625ea6004d09bec731f5ea90d997",
+    "vpc_id": "vpc_e8246ef687c14338a381f80463b6cfa7",
+    "subnet_id": "subnet_ea493c822b15449cbbf864f23f92da97",
+    "binding_id": "9b7f21a7-ae10-4ac8-9b3b-3ec97406f3e7",
+    "instance_id": "inst_5655e8b1-849b-4929-8819-8347a58fa61f",
+    "slot": "primary",
+    "net05_idempotency_request_id": "net05-1717d354-owner-delete-relay",
+    "submission_id": "f5e302cc-bd1f-49c2-a3c3-c759d9269313",
+    "generation": 1,
+    "fingerprint": "cc3ca5de5fbc908ab2e6a427b195ed658ec41369d229cf0f7db7ca0ea48347b1",
+    "cluster_id": "net05-1717d354",
+    "namespace": "net05-1717d354-292e225a-1f85-4912-88e0-590dd5fa953d",
+    "binding_revision": "9b7f21a7-ae10-4ac8-9b3b-3ec97406f3e7:1b856917-33be-474b-a837-86bb9f700ee3",
+    "plan": {
+      "TenantID": "292e225a-1f85-4912-88e0-590dd5fa953d",
+      "Namespace": "net05-1717d354-292e225a-1f85-4912-88e0-590dd5fa953d",
+      "Generation": 1,
+      "InstanceID": "inst_5655e8b1-849b-4929-8819-8347a58fa61f",
+      "AttachmentID": "att_d0b1625ea6004d09bec731f5ea90d997",
+      "SubmissionID": "f5e302cc-bd1f-49c2-a3c3-c759d9269313",
+      "FormatVersion": 1,
+      "PrimaryNetworkRef": "net05-1717d354-292e225a-1f85-4912-88e0-590dd5fa953d/subnet-ea493c822b15449cbbf864f23f92da97"
+    },
+    "state": "releasing",
+    "reason": "CONSUMER_UNAVAILABLE",
+    "protocol_blocked": false,
+    "version": 6,
+    "pod_name": "net05-1717d354-owner-delete-relay-84d565d8d9-t9vt6",
+    "pod_uid": "c8190f09-341b-440f-965d-8aa6ed136c33",
+    "confirm_uid": "c8190f09-341b-440f-965d-8aa6ed136c33",
+    "finalization_id": "e47799e8-6268-401a-bdc0-066262232882",
+    "provider_relations": [
+      {
+        "UID": "677a1dae-23b0-4b86-a8f6-b0230e0b5d6a",
+        "Kind": "VNic",
+        "Name": "auto-net05-1717d354-owner-delete-relay-84d5-vnic-qt28q",
+        "OwnerUID": "c8190f09-341b-440f-965d-8aa6ed136c33",
+        "Namespace": "net05-1717d354-292e225a-1f85-4912-88e0-590dd5fa953d"
+      },
+      {
+        "UID": "b28200c1-e314-4c91-8e6b-0368a831d3d2",
+        "Kind": "VNicIP",
+        "Name": "auto-net05-1717d354-owner-delete-relay-84d5-vnic-qt28q",
+        "OwnerUID": "677a1dae-23b0-4b86-a8f6-b0230e0b5d6a",
+        "Namespace": "net05-1717d354-292e225a-1f85-4912-88e0-590dd5fa953d"
+      }
+    ],
+    "created_at": "2026-09-10T03:16:44.077297+00:00",
+    "updated_at": "2026-09-10T03:18:01.19222+00:00",
+    "observed_at": "2026-09-10T03:18:01.19222+00:00",
+    "released_at": null,
+    "next_check_at": "2026-09-10T03:18:31.19222+00:00",
+    "lease_owner": null,
+    "lease_until": null,
+    "epoch": 4
+  }
+}

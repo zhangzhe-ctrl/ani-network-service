@@ -1,0 +1,72 @@
+[
+  {
+    "identity": "network",
+    "verb": "create",
+    "resource": "vpcs.networking.kubercloud.com",
+    "expected": true,
+    "actual": true,
+    "exit": 0
+  },
+  {
+    "identity": "network",
+    "verb": "create",
+    "resource": "pods",
+    "expected": false,
+    "actual": false,
+    "exit": 1
+  },
+  {
+    "identity": "network",
+    "verb": "delete",
+    "resource": "namespaces",
+    "expected": false,
+    "actual": false,
+    "exit": 1
+  },
+  {
+    "identity": "network",
+    "verb": "update",
+    "resource": "vnics.networking.kubercloud.com",
+    "expected": false,
+    "actual": false,
+    "exit": 1
+  },
+  {
+    "identity": "ani",
+    "verb": "create",
+    "resource": "deployments.apps",
+    "expected": true,
+    "actual": true,
+    "exit": 0
+  },
+  {
+    "identity": "ani",
+    "verb": "create",
+    "resource": "vpcs.networking.kubercloud.com",
+    "expected": false,
+    "actual": false,
+    "exit": 1
+  },
+  {
+    "identity": "runner",
+    "verb": "create",
+    "resource": "pods/exec",
+    "expected": true,
+    "actual": true,
+    "exit": 0
+  },
+  {
+    "identity": "network",
+    "verb": "create",
+    "resource": "pods/exec",
+    "expected": false,
+    "actual": false,
+    "exit": 1
+  },
+  {
+    "identity": "network",
+    "actual_write": "create Pod",
+    "exit": 1,
+    "response": "Error from server (Forbidden): error when creating \"STDIN\": pods is forbidden: User \"system:serviceaccount:net05-1717d354-control:network\" cannot create resource \"pods\" in API group \"\" in the namespace \"net05-1717d354-292e225a-1f85-4912-88e0-590dd5fa953d\"\n"
+  }
+]

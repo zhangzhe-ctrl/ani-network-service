@@ -1,0 +1,66 @@
+{
+  "purpose": "NET-02-04 no-new-compatibility-regression evidence, not a replacement gate",
+  "fixed_base": "50aa9fe2099b7ff4c276f883939a8d26c9d9eff8",
+  "actual_full_gate": "fail",
+  "no_new_regressions": "pass",
+  "proposal_status": "withdrawn; never applied; auth API and baseline edits not authorized",
+  "validator_sha256": "db7d7ceaeb43049cb88bf81bd28c14f042cddd34760e5c8c2b59a7f0539a199e",
+  "inputs": {
+    "repo/api/openapi/v1.yaml": {
+      "base_sha256": "c95a43d5767a8f45cc04fa244bcaefe402d57c5b62fc7171601add233bb2def7",
+      "current_sha256": "1ee09765b8a23f113b210ca4627b65b438cf3f501b6d3a2429cc301f643bad7c"
+    },
+    "repo/api/core-v1-compatibility-baseline.yaml": {
+      "base_sha256": "16103641482d68a52e782a9923266bf5ea3d888b41cf8e44fb9cdfb7c80a3965",
+      "current_sha256": "b4993e3a1e6ebc7d1522db4c48b2dc10ef50de1573436fc7521e66f41174cfc7"
+    },
+    "repo/services/ani-gateway/internal/authz/zz_generated_core_policies.go": {
+      "base_sha256": "1ad45bf4b7accfe21e574947866cae083b09bc3d7e15d3c2b857c000fc306b3a",
+      "current_sha256": "991023a3353b907b816f2d0b0f08d3d4691a81b8d55a4106156f0ea9ff96e2c9"
+    }
+  },
+  "fixed_baseline": {
+    "operation_count": 230,
+    "schema_count": 313,
+    "failures": {
+      "GET /auth/api-keys": "core api compatibility invalid: GET /auth/api-keys changed operationId",
+      "POST /auth/api-keys": "core api compatibility invalid: POST /auth/api-keys changed operationId",
+      "DELETE /auth/api-keys/{key_id}": "core api compatibility invalid: DELETE /auth/api-keys/{key_id} changed operationId",
+      "POST /auth/logout": "core api compatibility invalid: POST /auth/logout changed operationId",
+      "POST /auth/oidc/begin": "core api compatibility invalid: POST /auth/oidc/begin changed request schema",
+      "POST /auth/password/login": "core api compatibility invalid: POST /auth/password/login changed request schema",
+      "POST /auth/refresh": "core api compatibility invalid: POST /auth/refresh changed operationId",
+      "GET /branding": "core api compatibility invalid: GET /branding changed operationId"
+    }
+  },
+  "current": {
+    "operation_count": 230,
+    "schema_count": 313,
+    "failures": {
+      "GET /auth/api-keys": "core api compatibility invalid: GET /auth/api-keys changed operationId",
+      "POST /auth/api-keys": "core api compatibility invalid: POST /auth/api-keys changed operationId",
+      "DELETE /auth/api-keys/{key_id}": "core api compatibility invalid: DELETE /auth/api-keys/{key_id} changed operationId",
+      "POST /auth/logout": "core api compatibility invalid: POST /auth/logout changed operationId",
+      "POST /auth/oidc/begin": "core api compatibility invalid: POST /auth/oidc/begin changed request schema",
+      "POST /auth/password/login": "core api compatibility invalid: POST /auth/password/login changed request schema",
+      "POST /auth/refresh": "core api compatibility invalid: POST /auth/refresh changed operationId",
+      "GET /branding": "core api compatibility invalid: GET /branding changed operationId"
+    }
+  },
+  "all_eight_operation_and_baseline_inputs_unchanged": true,
+  "existing_policy_count_unchanged": 302,
+  "approved_baseline_paths": [
+    "/networks/subnets",
+    "/networks/subnets/{subnet_id}",
+    "/networks/vpcs",
+    "/networks/vpcs/{vpc_id}"
+  ],
+  "approved_baseline_schemas": [
+    "CreateNetworkSubnetRequest",
+    "CreateNetworkVPCRequest",
+    "NetworkSubnet",
+    "NetworkSubnetListResponse",
+    "NetworkVPC",
+    "NetworkVPCListResponse"
+  ]
+}

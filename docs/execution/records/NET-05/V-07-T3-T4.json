@@ -1,0 +1,122 @@
+{
+  "window": {
+    "action": "hold",
+    "at": "2026-09-10T02:53:50.040333751Z",
+    "data": {
+      "progress": {
+        "State": "provisioning",
+        "OperationState": "retrying",
+        "Reason": "PROVIDER_NOT_READY",
+        "Observed": true,
+        "Identity": "763f92c9-3b83-44ba-b454-255002f38833",
+        "ClearPending": true,
+        "NextDelay": 803016102
+      },
+      "work": {
+        "Resource": {
+          "ID": "vpc_b458a39429f1444e94f29f5b76fc73f1",
+          "TenantID": "292e225a-1f85-4912-88e0-590dd5fa953d",
+          "Kind": "vpc",
+          "VPCID": "",
+          "CIDR": "10.205.0.0/16",
+          "Gateway": "",
+          "LastOperationID": "872b3928-4ad6-4f63-a279-25171d0cd9c3",
+          "State": "provisioning",
+          "Reason": "",
+          "Version": 1,
+          "UpdatedAt": "2026-09-10T02:53:48.4756Z",
+          "ObservedAt": null
+        },
+        "Operation": {
+          "ID": "872b3928-4ad6-4f63-a279-25171d0cd9c3",
+          "TenantID": "292e225a-1f85-4912-88e0-590dd5fa953d",
+          "ResourceID": "vpc_b458a39429f1444e94f29f5b76fc73f1",
+          "ResourceType": "vpc",
+          "Kind": "create_vpc",
+          "State": "running",
+          "Reason": "",
+          "CreatedAt": "2026-09-10T02:53:48.4756Z",
+          "UpdatedAt": "2026-09-10T02:53:49.043249Z",
+          "CompletedAt": null,
+          "NextAttemptAt": "2026-09-10T02:53:48.4756Z"
+        },
+        "ActiveOperation": true,
+        "BindingID": "bfaca352-a7a2-4ba1-ae4e-4dab04987eb7",
+        "KnownIdentity": "",
+        "PendingAction": "",
+        "Owner": "9a226254-0509-4990-8c03-ad90cd0dc4c1",
+        "Epoch": 1,
+        "Attempt": 1,
+        "Now": "2026-09-10T02:53:49.04357Z"
+      }
+    },
+    "net05_hook_target_id": "vpc_b458a39429f1444e94f29f5b76fc73f1",
+    "pid": 1,
+    "point": "before-finish"
+  },
+  "before": {
+    "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+    "vpc_id": "vpc_b458a39429f1444e94f29f5b76fc73f1",
+    "name": "net05-1717d354-t3-before-t4",
+    "description": "",
+    "cidr": "10.205.0.0/16",
+    "state": "provisioning",
+    "reason": "",
+    "version": 1,
+    "created_at": "2026-09-10T02:53:48.4756+00:00",
+    "updated_at": "2026-09-10T02:53:48.4756+00:00",
+    "observed_at": null,
+    "last_operation_id": "872b3928-4ad6-4f63-a279-25171d0cd9c3",
+    "binding_id": "bfaca352-a7a2-4ba1-ae4e-4dab04987eb7",
+    "namespace": "net05-1717d354-292e225a-1f85-4912-88e0-590dd5fa953d",
+    "provider_name": "vpc-b458a39429f1444e94f29f5b76fc73f1",
+    "provider_uid": "",
+    "pending_action": "create",
+    "lease_owner": "9a226254-0509-4990-8c03-ad90cd0dc4c1",
+    "lease_epoch": 1,
+    "lease_until": "2026-09-10T02:54:09.042785+00:00",
+    "operation_state": "running",
+    "operation_reason": ""
+  },
+  "provider_uid": "763f92c9-3b83-44ba-b454-255002f38833",
+  "after": {
+    "tenant_id": "292e225a-1f85-4912-88e0-590dd5fa953d",
+    "vpc_id": "vpc_b458a39429f1444e94f29f5b76fc73f1",
+    "name": "net05-1717d354-t3-before-t4",
+    "description": "",
+    "cidr": "10.205.0.0/16",
+    "state": "available",
+    "reason": "",
+    "version": 2,
+    "created_at": "2026-09-10T02:53:48.4756+00:00",
+    "updated_at": "2026-09-10T02:54:10.628522+00:00",
+    "observed_at": "2026-09-10T02:54:10.628522+00:00",
+    "last_operation_id": "872b3928-4ad6-4f63-a279-25171d0cd9c3",
+    "binding_id": "bfaca352-a7a2-4ba1-ae4e-4dab04987eb7",
+    "namespace": "net05-1717d354-292e225a-1f85-4912-88e0-590dd5fa953d",
+    "provider_name": "vpc-b458a39429f1444e94f29f5b76fc73f1",
+    "provider_uid": "763f92c9-3b83-44ba-b454-255002f38833",
+    "pending_action": "",
+    "lease_owner": null,
+    "lease_epoch": 2,
+    "lease_until": null,
+    "operation_state": "succeeded",
+    "operation_reason": ""
+  },
+  "posts": [
+    {
+      "id": "98efb291eb8544d58e7a87d61a0fac42",
+      "identity": "network",
+      "method": "POST",
+      "path": "/apis/networking.kubercloud.com/v1/namespaces/net05-1717d354-292e225a-1f85-4912-88e0-590dd5fa953d/vpcs",
+      "name": "vpc-b458a39429f1444e94f29f5b76fc73f1",
+      "dry_run": false,
+      "kind": "VPC",
+      "uid": "763f92c9-3b83-44ba-b454-255002f38833",
+      "reason": null,
+      "event": "upstream",
+      "status": 201,
+      "at": "2026-09-10T02:53:50.039733+00:00"
+    }
+  ]
+}

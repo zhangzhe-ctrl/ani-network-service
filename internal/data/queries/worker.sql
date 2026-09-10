@@ -1,11 +1,14 @@
--- Only this dedicated worker query crosses tenant boundaries. Once claimed,
--- all reads and writes use the tenant and VPC returned by this locked row.
--- name: LockDueVPC :one
-SELECT v.* FROM network_vpcs v
-JOIN network_reconciliations r USING (tenant_id, vpc_id)
+-- Schedule both resource kinds by due time. Always lock the parent VPC first,
+-- including for Subnet work, preserving the common parent -> child lock order.
+-- This worker-only query crosses tenants; subsequent operations use its scope.
+-- name: LockDueResourceParent :one
+SELECT v.tenant_id, v.vpc_id, r.subnet_id
+FROM network_reconciliations r
+LEFT JOIN network_subnets s ON s.tenant_id=r.tenant_id AND s.subnet_id=r.subnet_id
+JOIN network_vpcs v ON v.tenant_id=r.tenant_id AND v.vpc_id=coalesce(r.vpc_id,s.vpc_id)
 WHERE r.next_run_at <= clock_timestamp()
   AND (r.lease_until IS NULL OR r.lease_until <= clock_timestamp())
-ORDER BY r.next_run_at, v.vpc_id
+ORDER BY r.next_run_at, coalesce(r.vpc_id,r.subnet_id)
 LIMIT 1 FOR UPDATE OF v SKIP LOCKED;
 
 -- name: LockVPC :one

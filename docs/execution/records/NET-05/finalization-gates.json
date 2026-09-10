@@ -1,0 +1,84 @@
+{
+  "source_pair": "/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T033825Z-020207da",
+  "source_receipt": "remote-snapshots.json",
+  "status": "pass",
+  "python_syntax": "pass",
+  "checks": [
+    {
+      "name": "network-final-verify",
+      "command": [
+        "make",
+        "verify"
+      ],
+      "cwd": "/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T033825Z-020207da/network",
+      "started_at": "2026-09-10T03:40:20.136018+00:00",
+      "finished_at": "2026-09-10T03:40:35.798113+00:00",
+      "exit": 0,
+      "status": "pass",
+      "log": "network-final-verify.log",
+      "sha256": "c800e3c948688eb1541ee540bbe8cf6e1cc5fedab6455f83a62c876d6d7e21cf"
+    },
+    {
+      "name": "network-final-sbom",
+      "command": [
+        "make",
+        "supply-chain-verify"
+      ],
+      "cwd": "/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T033825Z-020207da/network",
+      "started_at": "2026-09-10T03:40:35.798384+00:00",
+      "finished_at": "2026-09-10T03:40:44.901302+00:00",
+      "exit": 0,
+      "status": "pass",
+      "log": "network-final-sbom.log",
+      "sha256": "8c7ffc6c30d1f094f2e6343f1df870f52238f0b74a2d04c591d0efa02d8cf814"
+    },
+    {
+      "name": "ani-final-doc-entrypoints",
+      "command": [
+        "make",
+        "validate-doc-entrypoints"
+      ],
+      "cwd": "/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T033825Z-020207da/ani/repo",
+      "started_at": "2026-09-10T03:42:06.068673+00:00",
+      "finished_at": "2026-09-10T03:42:07.409443+00:00",
+      "exit": 0,
+      "status": "pass",
+      "log": "ani-final-doc-entrypoints.log",
+      "sha256": "a8689e4ef94c1ef17270c74d58e29428f3091a179e86411b8becea4bf24a1267",
+      "previous_attempt": {
+        "name": "ani-final-doc-entrypoints",
+        "command": [
+          "make",
+          "validate-doc-entrypoints"
+        ],
+        "cwd": "/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T033825Z-020207da/ani/repo",
+        "started_at": "2026-09-10T03:40:44.901452+00:00",
+        "finished_at": "2026-09-10T03:40:44.920277+00:00",
+        "exit": 2,
+        "status": "fail",
+        "log": "ani-final-doc-entrypoints.first-attempt.log",
+        "sha256": "064dec208611acb514e0b3984dd67844da41bd7ad320156db62ff52a13a921fc"
+      }
+    },
+    {
+      "name": "ani-final-whitespace",
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "cwd": "/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T033825Z-020207da/ani/repo",
+      "started_at": "2026-09-10T03:42:07.409587+00:00",
+      "finished_at": "2026-09-10T03:42:07.416014+00:00",
+      "exit": 0,
+      "status": "pass",
+      "log": "ani-final-whitespace.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "sbom_sha256": "a94baebba716ae9dc4068f63411790670432573d22ff5e5817211b4283f82bbe",
+  "execution_notes": [
+    "Initial SSH wrapper terminated with exit 141; no complete receipt, these checks repeated with detached output.",
+    "Detached launcher initially omitted existing net0204-python PATH; only ANI document/whitespace checks resumed with the prescribed environment. Production tests were not repeated."
+  ]
+}

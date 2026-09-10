@@ -1,0 +1,16 @@
+→ 校验开源组件 ports/adapters 边界...
+python scripts/validate_component_imports.py --root .
+component import guard passed
+python scripts/validate_inference_legacy_control_plane.py
+inference legacy control plane retired
+✅ architecture guardrails valid
+→ 校验文档入口职责边界...
+python scripts/validate_doc_entrypoints.py
+document entrypoint boundaries valid
+python scripts/validate_doc_entrypoints_test.py
+.....
+----------------------------------------------------------------------
+Ran 5 tests in 0.004s
+
+OK
+✅ document entrypoints valid

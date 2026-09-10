@@ -1,0 +1,49 @@
+bash scripts/generate_network_integration.sh
+git diff --exit-code -- pkg/generated/pb/network/v1
+→ 校验 Core/Services OpenAPI 结构...
+python scripts/validate_openapi_spec_test.py
+...............
+----------------------------------------------------------------------
+Ran 15 tests in 19.892s
+
+OK
+python scripts/validate_openapi_spec.py
+api/openapi/v1.yaml: OK
+api/openapi/services/v1.yaml: OK
+→ validating api/openapi/v1.yaml
+→ validating api/openapi/services/v1.yaml
+OpenAPI specs valid: 2
+✅ Core/Services OpenAPI specs valid
+→ 校验 Services OpenAPI/Gateway 路由表面...
+python scripts/validate_services_route_contract_test.py
+.......
+----------------------------------------------------------------------
+Ran 7 tests in 0.685s
+
+OK
+python scripts/validate_services_route_contract.py --root .
+WARNING: accepted Services route baseline: spec_not_in_code DELETE /platform-admins/{userId} — OpenAPI 已声明软删除平台运营账号，当前 Gateway 尚未注册对应过渡路由。
+WARNING: accepted Services route baseline: spec_not_in_code GET /integrations — OpenAPI 已声明第三方集成列表，当前 Gateway 尚未注册对应过渡路由。
+WARNING: accepted Services route baseline: spec_not_in_code GET /knowledge-bases/{kb_id}/config — OpenAPI 已声明知识库配置读取（US-002），当前 Gateway 尚未注册对应过渡路由。
+WARNING: accepted Services route baseline: spec_not_in_code GET /knowledge-bases/{kb_id}/models — OpenAPI 已声明知识库可用模型列表（US-002），当前 Gateway 尚未注册对应过渡路由。
+WARNING: accepted Services route baseline: spec_not_in_code GET /model-import-tasks/{task_id} — 模型仓库 P0 contract-only 阶段已声明导入任务查询，Gateway handler 将在后端实现批次注册。
+WARNING: accepted Services route baseline: spec_not_in_code GET /platform-admins — OpenAPI 已声明平台运营账号列表，当前 Gateway 尚未注册对应过渡路由。
+WARNING: accepted Services route baseline: spec_not_in_code GET /platform-admins/roles — OpenAPI 已声明平台运营账号角色列表，当前 Gateway 尚未注册对应过渡路由。
+WARNING: accepted Services route baseline: spec_not_in_code GET /platform-admins/{userId} — OpenAPI 已声明平台运营账号详情，当前 Gateway 尚未注册对应过渡路由。
+WARNING: accepted Services route baseline: spec_not_in_code GET /platform-admins/{userId}/audit-logs — OpenAPI 已声明查询平台运营账号操作历史，当前 Gateway 尚未注册对应过渡路由。
+WARNING: accepted Services route baseline: spec_not_in_code GET /tenant/members/{member_id} — OpenAPI 已声明租户成员详情，当前 Gateway 尚未注册对应过渡路由。
+WARNING: accepted Services route baseline: spec_not_in_code GET /tenant/webhooks/{webhook_id}/deliveries — OpenAPI 已声明 Webhook 投递记录，当前 Gateway 尚未注册对应过渡路由。
+WARNING: accepted Services route baseline: spec_not_in_code POST /inference-services/{service_id}/test — OpenAPI 保留推理服务调用测试兼容路径；产品控制面不实现 /test，避免增加可打到 runtime 的额外入口。
+WARNING: accepted Services route baseline: spec_not_in_code POST /integrations — OpenAPI 已声明第三方集成创建，当前 Gateway 尚未注册对应过渡路由。
+WARNING: accepted Services route baseline: spec_not_in_code POST /integrations/bots — OpenAPI 已声明集成 Bot 创建，当前 Gateway 尚未注册对应过渡路由。
+WARNING: accepted Services route baseline: spec_not_in_code POST /knowledge-bases/{kb_id}/rebuild — OpenAPI 已声明知识库全库重建（US-002），当前 Gateway 尚未注册对应过渡路由。
+WARNING: accepted Services route baseline: spec_not_in_code POST /models/{model_id}/upload-url — 模型仓库 P0 contract-only 阶段已声明预签名上传地址，Gateway handler 将在后端实现批次注册。
+WARNING: accepted Services route baseline: spec_not_in_code POST /platform-admins — OpenAPI 已声明创建平台运营账号，当前 Gateway 尚未注册对应过渡路由。
+WARNING: accepted Services route baseline: spec_not_in_code POST /platform-admins/{userId}/disable — OpenAPI 已声明禁用平台运营账号，当前 Gateway 尚未注册对应过渡路由。
+WARNING: accepted Services route baseline: spec_not_in_code POST /platform-admins/{userId}/enable — OpenAPI 已声明启用平台运营账号，当前 Gateway 尚未注册对应过渡路由。
+WARNING: accepted Services route baseline: spec_not_in_code POST /platform-admins/{userId}/reset-password — OpenAPI 已声明重置平台运营账号密码，当前 Gateway 尚未注册对应过渡路由。
+WARNING: accepted Services route baseline: spec_not_in_code PUT /knowledge-bases/{kb_id}/config — OpenAPI 已声明知识库配置更新（US-002），当前 Gateway 尚未注册对应过渡路由。
+WARNING: accepted Services route baseline: spec_not_in_code PUT /platform-admins/{userId}/role — OpenAPI 已声明修改平台运营账号角色，当前 Gateway 尚未注册对应过渡路由。
+WARNING: accepted Services route baseline: spec_not_in_code PUT /tenant/roles/{role_id} — OpenAPI 已声明租户角色更新，当前 Gateway 尚未注册对应过渡路由。
+Services route contract: 23 accepted baseline warning(s), 0 error(s)
+✅ Services route contract valid

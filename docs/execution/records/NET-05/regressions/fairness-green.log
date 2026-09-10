@@ -1,0 +1,15 @@
+snapshot=/home/chabking/workspace/.worktrees/network-net-05/.work/net05-runs/20260910T030354Z-55d45270
+remote=/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T030354Z-55d45270
+verified network source files= 158 temporary snapshot= fd3460a867d2f4bdb586b4940db2a686fd722be5
+verified ani source files= 2899 temporary snapshot= 69ba42d89ca113419a09482778b4f37728336e26
+test "$(/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T030354Z-55d45270/network/.tools/bin/sqlc version)" = "v1.31.1"
+test "$(go version -m /home/ubuntu/workspace/ani-network-service-runs/net05-20260910T030354Z-55d45270/network/.tools/bin/sqlc | awk '$1 == "mod" {print $2 "@" $3; exit}')" = "github.com/sqlc-dev/sqlc@v1.31.1"
+/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T030354Z-55d45270/network/.tools/bin/sqlc generate
+127.0.0.1:5432 - accepting connections
+PostgreSQL image=docker.io/library/postgres@sha256:4ef4dbc939d61acea57712655ddb4b4ab27419c913f94cca0cd57cb3ea3c2280 container=f01e1e785dbff8937eb80fbcb691c55b75c1abb021b249686e036cb47f756269
+=== RUN   TestNET05OldestSubnetWorkIsNotStarvedByDueVPCObservation
+--- PASS: TestNET05OldestSubnetWorkIsNotStarvedByDueVPCObservation (0.29s)
+PASS
+ok  	github.com/zhangzhe-ctrl/ani-network-service/internal/data	0.302s
+removed task container=f01e1e785dbff8937eb80fbcb691c55b75c1abb021b249686e036cb47f756269
+REMOTE_COMMAND_EXIT=0

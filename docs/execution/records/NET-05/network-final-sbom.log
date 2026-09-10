@@ -1,0 +1,7 @@
+test "$(/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T033825Z-020207da/network/.tools/bin/cyclonedx-gomod version | awk -F '\t' '$1 == "Version:" {print $2}')" = "v1.12.0"
+test "$(go version -m /home/ubuntu/workspace/ani-network-service-runs/net05-20260910T033825Z-020207da/network/.tools/bin/cyclonedx-gomod | awk '$1 == "mod" {print $2 "@" $3; exit}')" = "github.com/CycloneDX/cyclonedx-gomod@v1.12.0"
+./scripts/generate-sbom /home/ubuntu/workspace/ani-network-service-runs/net05-20260910T033825Z-020207da/network/.tools/bin/cyclonedx-gomod
+[90m11:40AM[0m [33mWRN[0m [1mno licenses detected[0m [36mmodule=[0mgithub.com/zhangzhe-ctrl/ani-network-service@v0.0.0-20000101000000-d0f01cb0444e
+generated /home/ubuntu/workspace/ani-network-service-runs/net05-20260910T033825Z-020207da/network/docs/scaffold/bom.cdx.json from repository commit b5dad34fd1200d4f3578a75d0cf6b0e9dfb9f118, source snapshot d0f01cb0444e68ed84697643e57b5863cf587c73, tool SHA-256 dc7031a1f097ffa92660275e360c5a7e8c8511313403b3caa000e7ca0845f653
+./scripts/verify-supply-chain
+supply-chain evidence verified: components=59 notice_sha256=3b44929bdd575a570c42165d4fd4eac57a5055745d2ecf3f121aa6a084cf9230 license_review=not-present

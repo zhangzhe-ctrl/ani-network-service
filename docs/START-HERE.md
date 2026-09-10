@@ -39,6 +39,7 @@ ADR 记录已确认的方向及理由；规格中本轮补齐的数值、字段�
 
 ## 运行与来源
 
+- [NET-05 普通容器真实网络验收](execution/records/NET-05-implementation.md)：实际 main、数据面、故障、权限与清理证据。
 - [运行说明](runtime.md)
 - [运行验证](runtime-verification.md)：已有通用骨架门禁的范围。
 - [远程执行约定](remote-execution.md)：重任务优先 ubuntu，远程不可用时允许本地回退，并记录实际位置。

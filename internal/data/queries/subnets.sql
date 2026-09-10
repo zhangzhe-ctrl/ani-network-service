@@ -38,15 +38,6 @@ SELECT * FROM network_subnets WHERE tenant_id=sqlc.arg(tenant_id)
  AND (sqlc.arg(after_id)::text='' OR (created_at,subnet_id)<(sqlc.arg(after_created_at)::timestamptz,sqlc.arg(after_id)::text))
 ORDER BY created_at DESC,subnet_id DESC LIMIT sqlc.arg(max_results)::integer;
 
--- The scheduler locks a parent before selecting/locking its child. SKIP LOCKED
--- applies to the parent, preserving VPC -> Subnet even across worker processes.
--- name: LockDueSubnetParent :one
-SELECT v.* FROM network_vpcs v WHERE EXISTS (
- SELECT 1 FROM network_subnets s JOIN network_reconciliations r ON r.tenant_id=s.tenant_id AND r.subnet_id=s.subnet_id
- WHERE s.tenant_id=v.tenant_id AND s.vpc_id=v.vpc_id AND r.next_run_at<=clock_timestamp()
- AND (r.lease_until IS NULL OR r.lease_until<=clock_timestamp())
-) ORDER BY v.created_at,v.vpc_id LIMIT 1 FOR UPDATE OF v SKIP LOCKED;
-
 -- name: LockDueSubnet :one
 SELECT s.* FROM network_subnets s JOIN network_reconciliations r ON r.tenant_id=s.tenant_id AND r.subnet_id=s.subnet_id
 WHERE s.tenant_id=$1 AND s.vpc_id=$2 AND r.next_run_at<=clock_timestamp()

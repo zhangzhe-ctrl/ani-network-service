@@ -1,0 +1,55 @@
+{
+  "action": "fence",
+  "at": "2026-09-10T02:54:36.658036514Z",
+  "data": {
+    "progress": {
+      "State": "provisioning",
+      "OperationState": "retrying",
+      "Reason": "PROVIDER_NOT_READY",
+      "Observed": true,
+      "Identity": "9105eea9-76a3-41f9-a425-c7703d5dad0c",
+      "ClearPending": true,
+      "NextDelay": 903408360
+    },
+    "work": {
+      "Resource": {
+        "ID": "vpc_1c6716b6f6a942d08ae218933d45acf6",
+        "TenantID": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "Kind": "vpc",
+        "VPCID": "",
+        "CIDR": "10.205.0.0/16",
+        "Gateway": "",
+        "LastOperationID": "bb646318-e3f8-4153-90ae-a8f6ea4f6ab4",
+        "State": "provisioning",
+        "Reason": "",
+        "Version": 1,
+        "UpdatedAt": "2026-09-10T02:54:35.220286Z",
+        "ObservedAt": null
+      },
+      "Operation": {
+        "ID": "bb646318-e3f8-4153-90ae-a8f6ea4f6ab4",
+        "TenantID": "292e225a-1f85-4912-88e0-590dd5fa953d",
+        "ResourceID": "vpc_1c6716b6f6a942d08ae218933d45acf6",
+        "ResourceType": "vpc",
+        "Kind": "create_vpc",
+        "State": "running",
+        "Reason": "",
+        "CreatedAt": "2026-09-10T02:54:35.220286Z",
+        "UpdatedAt": "2026-09-10T02:54:35.658384Z",
+        "CompletedAt": null,
+        "NextAttemptAt": "2026-09-10T02:54:35.220286Z"
+      },
+      "ActiveOperation": true,
+      "BindingID": "78375b4a-bf03-483b-84ef-dab666ff1554",
+      "KnownIdentity": "",
+      "PendingAction": "",
+      "Owner": "a9fd4944-ae73-4b98-a23c-44ff730c0d03",
+      "Epoch": 1,
+      "Attempt": 1,
+      "Now": "2026-09-10T02:54:35.658644Z"
+    }
+  },
+  "net05_hook_target_id": "vpc_1c6716b6f6a942d08ae218933d45acf6",
+  "pid": 1,
+  "point": "before-finish"
+}

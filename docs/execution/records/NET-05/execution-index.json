@@ -1,0 +1,776 @@
+{
+  "host": "ubuntu / i-8yg2l7u8",
+  "executions": [
+    {
+      "snapshot": "20260910T014222Z-58d0d971",
+      "remote": "/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T014222Z-58d0d971",
+      "command": [
+        "bash",
+        "-c",
+        "cd \"$NETWORK_SOURCE\" && make build && cd \"$ANI_SOURCE/repo/services/ani-gateway\" && go build -trimpath -o ../../../ani-gateway-net05 ."
+      ],
+      "exit": 0,
+      "sources": {
+        "network": {
+          "base": "5d4a53451beca0317bee1f577d8fb9cc189fc035",
+          "tree": "d4b45c908ba334c3c58f99dad0952e34aadfc588",
+          "archive_sha256": "1cac05cac1471a954c478f36caacd97a8fcbfe034193a9edac27886ba130a0b1"
+        },
+        "ani": {
+          "base": "0363b6b5f906886c3ab2748ef68940c562b93382",
+          "tree": "113d664efc7baa96ab1e16bbd9a021ad612c999b",
+          "archive_sha256": "0ea0d676e863bd1b0e9d1c665e3260ca2c7f8e61266d567d10797f725ea76b97"
+        }
+      }
+    },
+    {
+      "snapshot": "20260910T015345Z-665860d8",
+      "remote": "/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T015345Z-665860d8",
+      "command": [
+        "bash",
+        "-c",
+        "cd \"$NETWORK_SOURCE\" && make build && cd \"$ANI_SOURCE/repo/services/ani-gateway\" && go build -trimpath -o ../../../ani-gateway-net05 . && cd \"$NETWORK_SOURCE\" && python3 scripts/net05-kind.py prepare && python3 scripts/net05-kind.py start && python3 scripts/net05-kind.py first-network && python3 scripts/net05-kind.py observe"
+      ],
+      "exit": 1,
+      "sources": {
+        "network": {
+          "base": "5d4a53451beca0317bee1f577d8fb9cc189fc035",
+          "tree": "d4b45c908ba334c3c58f99dad0952e34aadfc588",
+          "archive_sha256": "b7533896af66438af35d5e9c13822b2b84b4f33109292b59b3c50bf7a34f3be5"
+        },
+        "ani": {
+          "base": "0363b6b5f906886c3ab2748ef68940c562b93382",
+          "tree": "113d664efc7baa96ab1e16bbd9a021ad612c999b",
+          "archive_sha256": "d38ac5549ad828732ee3f685293c9488905960946222b83f9ace7de6d14bb01b"
+        }
+      }
+    },
+    {
+      "snapshot": "20260910T015643Z-8711d074",
+      "remote": "/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T015643Z-8711d074",
+      "command": [
+        "bash",
+        "-c",
+        "export NET05_RUN_DIR=/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T015345Z-665860d8; cd \"$NETWORK_SOURCE\" && make build && cd \"$ANI_SOURCE/repo/services/ani-gateway\" && go build -trimpath -o ../../../ani-gateway-net05 . && cd \"$NETWORK_SOURCE\" && python3 scripts/net05-kind.py permissions && python3 scripts/net05-kind.py database && python3 scripts/net05-kind.py start && python3 scripts/net05-kind.py first-network && python3 scripts/net05-kind.py observe"
+      ],
+      "exit": 1,
+      "sources": {
+        "network": {
+          "base": "5d4a53451beca0317bee1f577d8fb9cc189fc035",
+          "tree": "d4b45c908ba334c3c58f99dad0952e34aadfc588",
+          "archive_sha256": "7d73037bb5ec33dca0d3497115f2f6f4fcee79bf97484909130243aa6398be38"
+        },
+        "ani": {
+          "base": "0363b6b5f906886c3ab2748ef68940c562b93382",
+          "tree": "113d664efc7baa96ab1e16bbd9a021ad612c999b",
+          "archive_sha256": "73bd05d570228ba83b35adcb186f44d61f5df6d34dda96775e1b6b0dea378fe7"
+        }
+      }
+    },
+    {
+      "snapshot": "20260910T015820Z-15f45e9e",
+      "remote": "/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T015820Z-15f45e9e",
+      "command": [
+        "bash",
+        "-c",
+        "export NET05_RUN_DIR=/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T015345Z-665860d8; cd \"$NETWORK_SOURCE\" && make build && cd \"$ANI_SOURCE/repo/services/ani-gateway\" && go build -trimpath -o ../../../ani-gateway-net05 . && cd \"$NETWORK_SOURCE\" && python3 scripts/net05-kind.py database && python3 scripts/net05-kind.py start && python3 scripts/net05-kind.py first-network && python3 scripts/net05-kind.py observe"
+      ],
+      "exit": 1,
+      "sources": {
+        "network": {
+          "base": "5d4a53451beca0317bee1f577d8fb9cc189fc035",
+          "tree": "d4b45c908ba334c3c58f99dad0952e34aadfc588",
+          "archive_sha256": "5415fb2d55bcbf2b57e01a63672593c5477adedeb45a46a00fa3941360f4abaf"
+        },
+        "ani": {
+          "base": "0363b6b5f906886c3ab2748ef68940c562b93382",
+          "tree": "113d664efc7baa96ab1e16bbd9a021ad612c999b",
+          "archive_sha256": "13dac72eea346a265bb546dd359c22e704ee7f4dead969ec65cf444494a9666b"
+        }
+      }
+    },
+    {
+      "snapshot": "20260910T020032Z-cc83f5b3",
+      "remote": "/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T020032Z-cc83f5b3",
+      "command": [
+        "bash",
+        "-c",
+        "export NET05_RUN_DIR=/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T015345Z-665860d8; cd \"$NETWORK_SOURCE\" && make build && cd \"$ANI_SOURCE/repo/services/ani-gateway\" && go build -trimpath -o ../../../ani-gateway-net05 . && cd \"$NETWORK_SOURCE\" && python3 scripts/net05-kind.py database && python3 scripts/net05-kind.py start && python3 scripts/net05-kind.py first-network && python3 scripts/net05-kind.py first-subnet; result=$?; python3 scripts/net05-kind.py observe; exit \"$result\""
+      ],
+      "exit": 1,
+      "sources": {
+        "network": {
+          "base": "5d4a53451beca0317bee1f577d8fb9cc189fc035",
+          "tree": "d4b45c908ba334c3c58f99dad0952e34aadfc588",
+          "archive_sha256": "2b5e75cddf329fff5e51b0f392633cb789e768c1d5e91ead8db2a07ded2885b5"
+        },
+        "ani": {
+          "base": "0363b6b5f906886c3ab2748ef68940c562b93382",
+          "tree": "113d664efc7baa96ab1e16bbd9a021ad612c999b",
+          "archive_sha256": "f9de36e2ddcfdce88a39bdccafa8db229246861c52623b913204c5effa3a2259"
+        }
+      }
+    },
+    {
+      "snapshot": "20260910T020154Z-6cdf2340",
+      "remote": "/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T020154Z-6cdf2340",
+      "command": [
+        "bash",
+        "-c",
+        "export NET05_RUN_DIR=/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T015345Z-665860d8; cd \"$NETWORK_SOURCE\" && make build && cd \"$ANI_SOURCE/repo/services/ani-gateway\" && go build -trimpath -o ../../../ani-gateway-net05 . && cd \"$NETWORK_SOURCE\" && python3 scripts/net05-kind.py database && python3 scripts/net05-kind.py start && python3 scripts/net05-kind.py first-network && python3 scripts/net05-kind.py first-subnet; result=$?; python3 scripts/net05-kind.py observe; exit \"$result\""
+      ],
+      "exit": 1,
+      "sources": {
+        "network": {
+          "base": "5d4a53451beca0317bee1f577d8fb9cc189fc035",
+          "tree": "d4b45c908ba334c3c58f99dad0952e34aadfc588",
+          "archive_sha256": "d64a14c981744342e357364db4a2cd9d0e7b1c4d30364c88845e9f8073fda795"
+        },
+        "ani": {
+          "base": "0363b6b5f906886c3ab2748ef68940c562b93382",
+          "tree": "113d664efc7baa96ab1e16bbd9a021ad612c999b",
+          "archive_sha256": "69adcfbd762ce0cf07baa51158dae60d7098bf9beaa158d049022976ab026e67"
+        }
+      }
+    },
+    {
+      "snapshot": "20260910T020408Z-6eafead0",
+      "remote": "/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T020408Z-6eafead0",
+      "command": [
+        "bash",
+        "-c",
+        "export NET05_RUN_DIR=/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T015345Z-665860d8; cd \"$ANI_SOURCE/repo/services/ani-gateway\" && go build -trimpath -o ../../../ani-gateway-net05 . && cd \"$NETWORK_SOURCE\" && python3 scripts/net05-kind.py start-gateway && python3 scripts/net05-kind.py first-network && python3 scripts/net05-kind.py first-subnet; result=$?; python3 scripts/net05-kind.py observe; exit \"$result\""
+      ],
+      "exit": 0,
+      "sources": {
+        "network": {
+          "base": "5d4a53451beca0317bee1f577d8fb9cc189fc035",
+          "tree": "d4b45c908ba334c3c58f99dad0952e34aadfc588",
+          "archive_sha256": "a84be1e14e34aaa333c39c6bd065b98b30f01f74667f2ed1c6696eb53132097b"
+        },
+        "ani": {
+          "base": "0363b6b5f906886c3ab2748ef68940c562b93382",
+          "tree": "113d664efc7baa96ab1e16bbd9a021ad612c999b",
+          "archive_sha256": "01f676f80ca2727858bbb6ddeafbde5103148520fb16cc6b7987dc7fbaf9aaf5"
+        }
+      }
+    },
+    {
+      "snapshot": "20260910T020707Z-4b93665f",
+      "remote": "/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T020707Z-4b93665f",
+      "command": [
+        "bash",
+        "-c",
+        "cd \"$ANI_SOURCE/repo/services/ani-gateway\" && go test ./internal/router -run TestNET05PublicContainerReachesOwnerAcceptance -count=1"
+      ],
+      "exit": 1,
+      "sources": {
+        "network": {
+          "base": "5d4a53451beca0317bee1f577d8fb9cc189fc035",
+          "tree": "d4b45c908ba334c3c58f99dad0952e34aadfc588",
+          "archive_sha256": "12b1881fbecce8902fb66007cbaa4f50144e7aeb330c32f66d32e3318d88383c"
+        },
+        "ani": {
+          "base": "0363b6b5f906886c3ab2748ef68940c562b93382",
+          "tree": "113d664efc7baa96ab1e16bbd9a021ad612c999b",
+          "archive_sha256": "c4d4aed3a2fec43da0c44599eeaa38417c754910908255cfb4fa64cb2faa50f6"
+        }
+      }
+    },
+    {
+      "snapshot": "20260910T020827Z-10ff54b1",
+      "remote": "/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T020827Z-10ff54b1",
+      "command": [
+        "bash",
+        "-c",
+        "cd \"$ANI_SOURCE/repo/services/ani-gateway\" && go test ./internal/router -run \"TestNET05|TestInstanceSpecFromRequest\" -count=1 && go build -trimpath -o ../../../ani-gateway-net05 ."
+      ],
+      "exit": 0,
+      "sources": {
+        "network": {
+          "base": "5d4a53451beca0317bee1f577d8fb9cc189fc035",
+          "tree": "d4b45c908ba334c3c58f99dad0952e34aadfc588",
+          "archive_sha256": "7f4aac0e4461ae8953951c7be49e4feb7e615b1d95814f8ebec45554ce1c9f0b"
+        },
+        "ani": {
+          "base": "0363b6b5f906886c3ab2748ef68940c562b93382",
+          "tree": "113d664efc7baa96ab1e16bbd9a021ad612c999b",
+          "archive_sha256": "fea7d16cb9ad4d238686393a2b43ba08b29713453beb963e0b1329e70fee52ee"
+        }
+      }
+    },
+    {
+      "snapshot": "20260910T020946Z-02ddc8d5",
+      "remote": "/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T020946Z-02ddc8d5",
+      "command": [
+        "bash",
+        "-c",
+        "export NET05_RUN_DIR=/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T015345Z-665860d8; cd \"$ANI_SOURCE/repo/services/ani-gateway\" && go build -trimpath -o ../../../ani-gateway-net05 . && cd \"$NETWORK_SOURCE\" && python3 scripts/net05-kind.py stop-gateway && python3 scripts/net05-kind.py start-gateway && python3 scripts/net05-kind.py first-instance; result=$?; python3 scripts/net05-kind.py observe; python3 scripts/net05-kind.py database-snapshot; exit \"$result\""
+      ],
+      "exit": 1,
+      "sources": {
+        "network": {
+          "base": "5d4a53451beca0317bee1f577d8fb9cc189fc035",
+          "tree": "d4b45c908ba334c3c58f99dad0952e34aadfc588",
+          "archive_sha256": "bd0431a6e02a3021569401170c60eb4ae937aae696f8cd88d93bedbeb3241a72"
+        },
+        "ani": {
+          "base": "0363b6b5f906886c3ab2748ef68940c562b93382",
+          "tree": "113d664efc7baa96ab1e16bbd9a021ad612c999b",
+          "archive_sha256": "06c19fda879880ea64b79f7ddda6c4d7c9ed130c2c1433ceea141c0ea24c1a07"
+        }
+      }
+    },
+    {
+      "snapshot": "20260910T021438Z-710ea7fe",
+      "remote": "/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T021438Z-710ea7fe",
+      "command": [
+        "bash",
+        "-c",
+        "cd \"$ANI_SOURCE/repo\" && go test ./pkg/adapters/runtime -run TestNET05ExplicitAPIHostUsesConfiguredTokenFile -count=1"
+      ],
+      "exit": 1,
+      "sources": {
+        "network": {
+          "base": "5d4a53451beca0317bee1f577d8fb9cc189fc035",
+          "tree": "d4b45c908ba334c3c58f99dad0952e34aadfc588",
+          "archive_sha256": "7e3d0a457745af98a96cf4e462134b6e7cfa933cdce3eb4f7839bbffe8edc651"
+        },
+        "ani": {
+          "base": "0363b6b5f906886c3ab2748ef68940c562b93382",
+          "tree": "113d664efc7baa96ab1e16bbd9a021ad612c999b",
+          "archive_sha256": "693d108f3163ef9ab3aa8b167c09fb168adf08da643fefd1ae0af83300547d16"
+        }
+      }
+    },
+    {
+      "snapshot": "20260910T021553Z-566dc108",
+      "remote": "/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T021553Z-566dc108",
+      "command": [
+        "bash",
+        "-c",
+        "export NET05_RUN_DIR=/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T015345Z-665860d8; cd \"$ANI_SOURCE/repo\" && go test ./pkg/adapters/runtime -run \"TestNET05ExplicitAPIHost|TestKubernetesRESTClient\" -count=1 && cd services/ani-gateway && go test ./internal/router -run \"TestNET05|TestInstanceSpecFromRequest\" -count=1 && go build -trimpath -o ../../../ani-gateway-net05 . && cd \"$NETWORK_SOURCE\" && python3 scripts/net05-kind.py stop-gateway && python3 scripts/net05-kind.py start-gateway && python3 scripts/net05-kind.py first-instance --probe p2; result=$?; python3 scripts/net05-kind.py observe; python3 scripts/net05-kind.py database-snapshot; exit \"$result\""
+      ],
+      "exit": 0,
+      "sources": {
+        "network": {
+          "base": "5d4a53451beca0317bee1f577d8fb9cc189fc035",
+          "tree": "d4b45c908ba334c3c58f99dad0952e34aadfc588",
+          "archive_sha256": "8a8ff63c25918580c4a71e3ad92c82c81175efadeff064a19195144a4031ea82"
+        },
+        "ani": {
+          "base": "0363b6b5f906886c3ab2748ef68940c562b93382",
+          "tree": "113d664efc7baa96ab1e16bbd9a021ad612c999b",
+          "archive_sha256": "2fe2bf336ce858019fe6f32cff82d571af38ceec7d7603f650ece33c1bce6180"
+        }
+      }
+    },
+    {
+      "snapshot": "20260910T021849Z-0096b131",
+      "remote": "/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T021849Z-0096b131",
+      "command": [
+        "bash",
+        "-c",
+        "cd \"$ANI_SOURCE/repo\" && go test ./pkg/adapters/runtime -run TestNET05OwnerAcceptsAPIOmissionOfEmptyVolumeLists -count=1"
+      ],
+      "exit": 1,
+      "sources": {
+        "network": {
+          "base": "5d4a53451beca0317bee1f577d8fb9cc189fc035",
+          "tree": "d4b45c908ba334c3c58f99dad0952e34aadfc588",
+          "archive_sha256": "1309930bcc3a30269be2113c065f706030dd3026a3777b8fb24267997af81998"
+        },
+        "ani": {
+          "base": "0363b6b5f906886c3ab2748ef68940c562b93382",
+          "tree": "113d664efc7baa96ab1e16bbd9a021ad612c999b",
+          "archive_sha256": "8089afcfbab21e31b291da5925b410739329004002f4bc03677aa3e36bfdccb9"
+        }
+      }
+    },
+    {
+      "snapshot": "20260910T022031Z-66c41398",
+      "remote": "/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T022031Z-66c41398",
+      "command": [
+        "bash",
+        "-c",
+        "export NET05_RUN_DIR=/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T015345Z-665860d8; cd \"$ANI_SOURCE/repo\" && go test ./pkg/adapters/runtime -run \"TestNET05|TestNetworkPodPlan\" -count=1 && cd services/ani-gateway && go build -trimpath -o ../../../ani-gateway-net05 . && cd \"$NETWORK_SOURCE\" && python3 scripts/net05-kind.py stop-gateway && python3 scripts/net05-kind.py start-gateway && python3 scripts/net05-kind.py observe && python3 scripts/net05-kind.py database-snapshot"
+      ],
+      "exit": 0,
+      "sources": {
+        "network": {
+          "base": "5d4a53451beca0317bee1f577d8fb9cc189fc035",
+          "tree": "d4b45c908ba334c3c58f99dad0952e34aadfc588",
+          "archive_sha256": "9564de88cf6f8c589e4b56cd67f51492701d4938da274ba3791ee1dbea9d2789"
+        },
+        "ani": {
+          "base": "0363b6b5f906886c3ab2748ef68940c562b93382",
+          "tree": "113d664efc7baa96ab1e16bbd9a021ad612c999b",
+          "archive_sha256": "53b7a1b604d791a558a0326720f57ae1a22e39004b3ddc002a7e80ab076bcf9b"
+        }
+      }
+    },
+    {
+      "snapshot": "20260910T022431Z-26bb276e",
+      "remote": "/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T022431Z-26bb276e",
+      "command": [
+        "bash",
+        "-c",
+        "cd \"$ANI_SOURCE/repo\" && go test ./pkg/adapters/runtime -run TestNET05OwnerObservesTypedListItemsWithoutTypeMeta -count=1"
+      ],
+      "exit": 1,
+      "sources": {
+        "network": {
+          "base": "5d4a53451beca0317bee1f577d8fb9cc189fc035",
+          "tree": "d4b45c908ba334c3c58f99dad0952e34aadfc588",
+          "archive_sha256": "0437517cd582fa141c6bb260a747e3b66641a8417cfada70d8bc220310cb5211"
+        },
+        "ani": {
+          "base": "0363b6b5f906886c3ab2748ef68940c562b93382",
+          "tree": "113d664efc7baa96ab1e16bbd9a021ad612c999b",
+          "archive_sha256": "1fa9e5cdaa526198e796df999d4fe11279f63d2afc76d046e10a8474d7bac1f6"
+        }
+      }
+    },
+    {
+      "snapshot": "20260910T022703Z-18807611",
+      "remote": "/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T022703Z-18807611",
+      "command": [
+        "bash",
+        "-c",
+        "export NET05_RUN_DIR=/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T015345Z-665860d8; cd \"$ANI_SOURCE/repo\" && go test ./pkg/adapters/runtime -run \"TestNET05|TestNetworkPodPlan\" -count=1 && cd services/ani-gateway && go build -trimpath -o ../../../ani-gateway-net05 . && cd \"$NETWORK_SOURCE\" && python3 scripts/net05-kind.py stop-gateway && python3 scripts/net05-kind.py start-gateway && python3 scripts/net05-kind.py topology; result=$?; python3 scripts/net05-kind.py observe; python3 scripts/net05-kind.py database-snapshot; exit \"$result\""
+      ],
+      "exit": 0,
+      "sources": {
+        "network": {
+          "base": "5d4a53451beca0317bee1f577d8fb9cc189fc035",
+          "tree": "d4b45c908ba334c3c58f99dad0952e34aadfc588",
+          "archive_sha256": "b3f56ca387638587c7700bc6bec92f14de011d01f72264ac61c51bbbfbee86cc"
+        },
+        "ani": {
+          "base": "0363b6b5f906886c3ab2748ef68940c562b93382",
+          "tree": "113d664efc7baa96ab1e16bbd9a021ad612c999b",
+          "archive_sha256": "0c693a011d7c07ce2d4baafcc9850d9a9e3e187d68b3e54983b00ae622a5d81c"
+        }
+      }
+    },
+    {
+      "snapshot": "20260910T023041Z-85527f14",
+      "remote": "/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T023041Z-85527f14",
+      "command": [
+        "bash",
+        "-c",
+        "export NET05_RUN_DIR=/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T015345Z-665860d8; cd \"$NETWORK_SOURCE\"; python3 scripts/net05-kind.py traffic; result=$?; python3 scripts/net05-kind.py observe; python3 scripts/net05-kind.py database-snapshot; exit \"$result\""
+      ],
+      "exit": 1,
+      "sources": {
+        "network": {
+          "base": "5d4a53451beca0317bee1f577d8fb9cc189fc035",
+          "tree": "d4b45c908ba334c3c58f99dad0952e34aadfc588",
+          "archive_sha256": "661130c9d7dfb3e106d56abfac63146eb7e8a1e5a32fe6d8dc0642043ee4c6c5"
+        },
+        "ani": {
+          "base": "0363b6b5f906886c3ab2748ef68940c562b93382",
+          "tree": "113d664efc7baa96ab1e16bbd9a021ad612c999b",
+          "archive_sha256": "a3f8835d0aaa4910cb418cbc02dc932b2c432ed89968f1c9e50af72fbfec8b96"
+        }
+      }
+    },
+    {
+      "snapshot": "20260910T023332Z-1c80c116",
+      "remote": "/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T023332Z-1c80c116",
+      "command": [
+        "bash",
+        "-c",
+        "export NET05_RUN_DIR=/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T015345Z-665860d8; cd \"$NETWORK_SOURCE\"; python3 scripts/net05-kind.py delete-probes && python3 scripts/net05-kind.py image && python3 scripts/net05-kind.py topology --wave v2 && python3 scripts/net05-kind.py traffic; result=$?; python3 scripts/net05-kind.py observe; python3 scripts/net05-kind.py database-snapshot; exit \"$result\""
+      ],
+      "exit": 1,
+      "sources": {
+        "network": {
+          "base": "5d4a53451beca0317bee1f577d8fb9cc189fc035",
+          "tree": "d4b45c908ba334c3c58f99dad0952e34aadfc588",
+          "archive_sha256": "160f90c0e3f34f5bf44c9ebe83500f0fe2cc32fa07aa21231626f443066c6c8b"
+        },
+        "ani": {
+          "base": "0363b6b5f906886c3ab2748ef68940c562b93382",
+          "tree": "113d664efc7baa96ab1e16bbd9a021ad612c999b",
+          "archive_sha256": "1214bbf152ba2c134432a5bc83be93b123b8521efd60cf047ca9a82a57559f00"
+        }
+      }
+    },
+    {
+      "snapshot": "20260910T023735Z-fd01a1a9",
+      "remote": "/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T023735Z-fd01a1a9",
+      "command": [
+        "bash",
+        "-c",
+        "export NET05_RUN_DIR=/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T015345Z-665860d8; cd \"$NETWORK_SOURCE\"; python3 scripts/net05-kind.py traffic"
+      ],
+      "exit": 0,
+      "sources": {
+        "network": {
+          "base": "5d4a53451beca0317bee1f577d8fb9cc189fc035",
+          "tree": "d4b45c908ba334c3c58f99dad0952e34aadfc588",
+          "archive_sha256": "8ec01d212768eb352017c120345d419d5cbc5a9a7a1a9cc0ea467ec7dc4c8bc0"
+        },
+        "ani": {
+          "base": "0363b6b5f906886c3ab2748ef68940c562b93382",
+          "tree": "113d664efc7baa96ab1e16bbd9a021ad612c999b",
+          "archive_sha256": "2f2d79908ac29f60a2ec27b1d541d113e806be3676de2daab0fe1242ed29dcc8"
+        }
+      }
+    },
+    {
+      "snapshot": "20260910T024027Z-920f2d2f",
+      "remote": "/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T024027Z-920f2d2f",
+      "command": [
+        "bash",
+        "-c",
+        "export NET05_RUN_DIR=/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T015345Z-665860d8; cd \"$NETWORK_SOURCE\"; python3 scripts/net05-api.py"
+      ],
+      "exit": 1,
+      "sources": {
+        "network": {
+          "base": "5d4a53451beca0317bee1f577d8fb9cc189fc035",
+          "tree": "d4b45c908ba334c3c58f99dad0952e34aadfc588",
+          "archive_sha256": "38c816fe3eaf970b480453387a27468ed27f0bec071d4391d2c182342eb380e1"
+        },
+        "ani": {
+          "base": "0363b6b5f906886c3ab2748ef68940c562b93382",
+          "tree": "113d664efc7baa96ab1e16bbd9a021ad612c999b",
+          "archive_sha256": "962b3e5a0c9536743cab005ddd0a502086c2f3f0854fdc7c99bed610becd722c"
+        }
+      }
+    },
+    {
+      "snapshot": "20260910T024142Z-9a6bb605",
+      "remote": "/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T024142Z-9a6bb605",
+      "command": [
+        "bash",
+        "-c",
+        "export NET05_RUN_DIR=/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T015345Z-665860d8; cd \"$NETWORK_SOURCE\"; python3 scripts/net05-api.py --finish"
+      ],
+      "exit": 0,
+      "sources": {
+        "network": {
+          "base": "5d4a53451beca0317bee1f577d8fb9cc189fc035",
+          "tree": "d4b45c908ba334c3c58f99dad0952e34aadfc588",
+          "archive_sha256": "e7c05736c2d567d40cd8cd4f62052d843249753a7426d58ce58a762b84a235df"
+        },
+        "ani": {
+          "base": "0363b6b5f906886c3ab2748ef68940c562b93382",
+          "tree": "113d664efc7baa96ab1e16bbd9a021ad612c999b",
+          "archive_sha256": "40b9a32455be7620ff03d9e5dc7833de8746852288781c627536cfd31ad7a262"
+        }
+      }
+    },
+    {
+      "snapshot": "20260910T024533Z-fa10c7c6",
+      "remote": "/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T024533Z-fa10c7c6",
+      "command": [
+        "bash",
+        "-c",
+        "cd \"$NETWORK_SOURCE\"; python3 scripts/net05-build-faults.py && CGO_ENABLED=0 go build -trimpath -o ../fault-build/rpc ./tests/net05/rpc"
+      ],
+      "exit": 1,
+      "sources": {
+        "network": {
+          "base": "5d4a53451beca0317bee1f577d8fb9cc189fc035",
+          "tree": "d4b45c908ba334c3c58f99dad0952e34aadfc588",
+          "archive_sha256": "ff93c52ef92c2c37a50703972bc7608d54e1a955558f88a2f6c9e89af3277df2"
+        },
+        "ani": {
+          "base": "0363b6b5f906886c3ab2748ef68940c562b93382",
+          "tree": "113d664efc7baa96ab1e16bbd9a021ad612c999b",
+          "archive_sha256": "1eed0cc3ad251bd287c1d13506e199090d3a4f64203f4ebe9dbc397413c4336c"
+        }
+      }
+    },
+    {
+      "snapshot": "20260910T024802Z-fdb90a97",
+      "remote": "/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T024802Z-fdb90a97",
+      "command": [
+        "bash",
+        "-c",
+        "cd \"$NETWORK_SOURCE\"; python3 scripts/net05-build-faults.py && CGO_ENABLED=0 go build -trimpath -o ../fault-build/rpc ./tests/net05/rpc && NET05_RUN_DIR=/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T015345Z-665860d8 python3 scripts/net05-faults.py setup --build \"$NETWORK_SOURCE/../fault-build\" && NET05_RUN_DIR=/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T015345Z-665860d8 python3 scripts/net05-faults.py queries"
+      ],
+      "exit": 1,
+      "sources": {
+        "network": {
+          "base": "5d4a53451beca0317bee1f577d8fb9cc189fc035",
+          "tree": "d4b45c908ba334c3c58f99dad0952e34aadfc588",
+          "archive_sha256": "70f5725f7037cec0e75c3b76ac377b7e3f814e210fa14d0cbbd5843b231cb0a4"
+        },
+        "ani": {
+          "base": "0363b6b5f906886c3ab2748ef68940c562b93382",
+          "tree": "113d664efc7baa96ab1e16bbd9a021ad612c999b",
+          "archive_sha256": "3443e50768b7def1dc94efe2af76ec292cb73357e267c5624b267dfa303191ee"
+        }
+      }
+    },
+    {
+      "snapshot": "20260910T025111Z-f0f64349",
+      "remote": "/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T025111Z-f0f64349",
+      "command": [
+        "bash",
+        "-c",
+        "export NET05_RUN_DIR=/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T015345Z-665860d8; cd \"$NETWORK_SOURCE\"; python3 scripts/net05-faults.py queries && python3 scripts/net05-faults.py transactions && python3 scripts/net05-faults.py lease && python3 scripts/net05-faults.py unknown && python3 scripts/net05-faults.py provider"
+      ],
+      "exit": 1,
+      "sources": {
+        "network": {
+          "base": "5d4a53451beca0317bee1f577d8fb9cc189fc035",
+          "tree": "d4b45c908ba334c3c58f99dad0952e34aadfc588",
+          "archive_sha256": "6c38395baf8b3ec22fb739a7a219f63899690e7a30595048592add0f47347c17"
+        },
+        "ani": {
+          "base": "0363b6b5f906886c3ab2748ef68940c562b93382",
+          "tree": "113d664efc7baa96ab1e16bbd9a021ad612c999b",
+          "archive_sha256": "f6c95440fa54c0130f80c8eeb465793537ac1077e41d1a1c83815abb9c4ad33f"
+        }
+      }
+    },
+    {
+      "snapshot": "20260910T025315Z-08c66b53",
+      "remote": "/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T025315Z-08c66b53",
+      "command": [
+        "bash",
+        "-c",
+        "export NET05_RUN_DIR=/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T015345Z-665860d8; cd \"$NETWORK_SOURCE\"; python3 scripts/net05-faults.py queries && python3 scripts/net05-faults.py transactions && python3 scripts/net05-faults.py lease && python3 scripts/net05-faults.py unknown && python3 scripts/net05-faults.py provider"
+      ],
+      "exit": 0,
+      "sources": {
+        "network": {
+          "base": "5d4a53451beca0317bee1f577d8fb9cc189fc035",
+          "tree": "d4b45c908ba334c3c58f99dad0952e34aadfc588",
+          "archive_sha256": "9c9f94b9a5264f51d95a84e28825c355354d58734dd09e34dc78dbf536dd874f"
+        },
+        "ani": {
+          "base": "0363b6b5f906886c3ab2748ef68940c562b93382",
+          "tree": "113d664efc7baa96ab1e16bbd9a021ad612c999b",
+          "archive_sha256": "3b7fe7d02201d0762ed5fa98c47dcf1887fe6dc34fc729eaf68c90a0673a2dda"
+        }
+      }
+    },
+    {
+      "snapshot": "20260910T025831Z-fd0297fc",
+      "remote": "/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T025831Z-fd0297fc",
+      "command": [
+        "bash",
+        "-c",
+        "export NET05_RUN_DIR=/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T015345Z-665860d8; cd \"$NETWORK_SOURCE\"; python3 scripts/net05-kind.py image && python3 scripts/net05-faults.py owner"
+      ],
+      "exit": 1,
+      "sources": {
+        "network": {
+          "base": "5d4a53451beca0317bee1f577d8fb9cc189fc035",
+          "tree": "d4b45c908ba334c3c58f99dad0952e34aadfc588",
+          "archive_sha256": "61cce15cf1b1bb226b0b37254bded865610ea065d034133d66a1463e642f3de2"
+        },
+        "ani": {
+          "base": "0363b6b5f906886c3ab2748ef68940c562b93382",
+          "tree": "113d664efc7baa96ab1e16bbd9a021ad612c999b",
+          "archive_sha256": "7f7928cef304bb06f9f5ebf723ede3a6f28c745ed88003ffe27203184cf567ee"
+        }
+      }
+    },
+    {
+      "snapshot": "20260910T030223Z-1d1dae8f",
+      "remote": "/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T030223Z-1d1dae8f",
+      "command": [
+        "bash",
+        "-c",
+        "cd \"$NETWORK_SOURCE\"; scripts/integration -run TestNET05OldestSubnetWorkIsNotStarvedByDueVPCObservation -v ./internal/data"
+      ],
+      "exit": 1,
+      "sources": {
+        "network": {
+          "base": "5d4a53451beca0317bee1f577d8fb9cc189fc035",
+          "tree": "d4b45c908ba334c3c58f99dad0952e34aadfc588",
+          "archive_sha256": "f46656ce859524030862350abd7846883cd0ce027cff21575f207737a6300377"
+        },
+        "ani": {
+          "base": "0363b6b5f906886c3ab2748ef68940c562b93382",
+          "tree": "113d664efc7baa96ab1e16bbd9a021ad612c999b",
+          "archive_sha256": "17b2f8c8fb0c12dbb011ae701aa9085b41b5f1fcc5c7d7bffccd45483cceafb2"
+        }
+      }
+    },
+    {
+      "snapshot": "20260910T030354Z-55d45270",
+      "remote": "/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T030354Z-55d45270",
+      "command": [
+        "bash",
+        "-c",
+        "cd \"$NETWORK_SOURCE\"; make sql && scripts/integration -run TestNET05OldestSubnetWorkIsNotStarvedByDueVPCObservation -v ./internal/data"
+      ],
+      "exit": 0,
+      "sources": {
+        "network": {
+          "base": "5d4a53451beca0317bee1f577d8fb9cc189fc035",
+          "tree": "d4b45c908ba334c3c58f99dad0952e34aadfc588",
+          "archive_sha256": "5136211b184f1ef2b152389f2b0345dab1737f9515f87e964f9ce9377e33bda0"
+        },
+        "ani": {
+          "base": "0363b6b5f906886c3ab2748ef68940c562b93382",
+          "tree": "113d664efc7baa96ab1e16bbd9a021ad612c999b",
+          "archive_sha256": "adee141ddaa9f3126f88497dd60f25766e0f4a2d9ec67d60d22782854460e114"
+        }
+      }
+    },
+    {
+      "snapshot": "20260910T030442Z-dd4743cc",
+      "remote": "/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T030442Z-dd4743cc",
+      "command": [
+        "bash",
+        "-c",
+        "export NET05_RUN_DIR=/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T015345Z-665860d8; cd \"$NETWORK_SOURCE\"; python3 scripts/net05-build-faults.py && CGO_ENABLED=0 go build -trimpath -o ../fault-build/rpc ./tests/net05/rpc && python3 scripts/net05-faults.py setup --build \"$NETWORK_SOURCE/../fault-build\" && python3 scripts/net05-faults.py owner"
+      ],
+      "exit": 1,
+      "sources": {
+        "network": {
+          "base": "5d4a53451beca0317bee1f577d8fb9cc189fc035",
+          "tree": "d4b45c908ba334c3c58f99dad0952e34aadfc588",
+          "archive_sha256": "8be2184e57a8d8e7ab87b5e0fdf7456d112211dec03840e785b61b1d6530049b"
+        },
+        "ani": {
+          "base": "0363b6b5f906886c3ab2748ef68940c562b93382",
+          "tree": "113d664efc7baa96ab1e16bbd9a021ad612c999b",
+          "archive_sha256": "b630567f0ba8e9223d92e526164f6ef7fe823c9042a15eb5e94a070bef665180"
+        }
+      }
+    },
+    {
+      "snapshot": "20260910T030943Z-13caae85",
+      "remote": "/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T030943Z-13caae85",
+      "command": [
+        "bash",
+        "-c",
+        "export NET05_RUN_DIR=/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T015345Z-665860d8; cd \"$NETWORK_SOURCE\"; python3 scripts/net05-faults.py restart-network"
+      ],
+      "exit": 0,
+      "sources": {
+        "network": {
+          "base": "5d4a53451beca0317bee1f577d8fb9cc189fc035",
+          "tree": "d4b45c908ba334c3c58f99dad0952e34aadfc588",
+          "archive_sha256": "8c0f953e0355a1b34cd1f7fc82eb1f4fe628b1ff24cdc604c1cb602cfd15962f"
+        },
+        "ani": {
+          "base": "0363b6b5f906886c3ab2748ef68940c562b93382",
+          "tree": "113d664efc7baa96ab1e16bbd9a021ad612c999b",
+          "archive_sha256": "707c61ade14a42bfbe0c8bb18ae59e422a683328e31205f0451649bec4e2efb7"
+        }
+      }
+    },
+    {
+      "snapshot": "20260910T031035Z-8419d6c9",
+      "remote": "/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T031035Z-8419d6c9",
+      "command": [
+        "bash",
+        "-c",
+        "export NET05_RUN_DIR=/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T015345Z-665860d8; cd \"$NETWORK_SOURCE\"; python3 scripts/net05-faults.py owner-resume"
+      ],
+      "exit": 1,
+      "sources": {
+        "network": {
+          "base": "5d4a53451beca0317bee1f577d8fb9cc189fc035",
+          "tree": "d4b45c908ba334c3c58f99dad0952e34aadfc588",
+          "archive_sha256": "9ccc871fba964d2e5e21e8797df9f3ba737e3fda7346ee7efb6b54b3d7457def"
+        },
+        "ani": {
+          "base": "0363b6b5f906886c3ab2748ef68940c562b93382",
+          "tree": "113d664efc7baa96ab1e16bbd9a021ad612c999b",
+          "archive_sha256": "f4dd0e3472f48b0aec11e92eed47327d1644f18827d08165a9ab38e49d133855"
+        }
+      }
+    },
+    {
+      "snapshot": "20260910T031322Z-e1457894",
+      "remote": "/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T031322Z-e1457894",
+      "command": [
+        "bash",
+        "-c",
+        "export NET05_RUN_DIR=/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T015345Z-665860d8; cd \"$NETWORK_SOURCE\"; python3 scripts/net05-faults.py retry-owner-delete && python3 scripts/net05-cleanup.py permissions && python3 scripts/net05-cleanup.py products"
+      ],
+      "exit": 1,
+      "sources": {
+        "network": {
+          "base": "5d4a53451beca0317bee1f577d8fb9cc189fc035",
+          "tree": "d4b45c908ba334c3c58f99dad0952e34aadfc588",
+          "archive_sha256": "033b418d7b1d351a6c51b56623f145bca9703577f8d0dd0383560cf5c2345c01"
+        },
+        "ani": {
+          "base": "0363b6b5f906886c3ab2748ef68940c562b93382",
+          "tree": "113d664efc7baa96ab1e16bbd9a021ad612c999b",
+          "archive_sha256": "7519cf764875ee035cbbd544197b6da325e63e9c2bfcda8cae64e42a0d476e42"
+        }
+      }
+    },
+    {
+      "snapshot": "20260910T031629Z-a14df856",
+      "remote": "/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T031629Z-a14df856",
+      "command": [
+        "bash",
+        "-c",
+        "export NET05_RUN_DIR=/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T015345Z-665860d8; cd \"$NETWORK_SOURCE\"; python3 scripts/net05-faults.py retry-owner-delete && python3 scripts/net05-cleanup.py permissions && python3 scripts/net05-cleanup.py products"
+      ],
+      "exit": 0,
+      "sources": {
+        "network": {
+          "base": "5d4a53451beca0317bee1f577d8fb9cc189fc035",
+          "tree": "d4b45c908ba334c3c58f99dad0952e34aadfc588",
+          "archive_sha256": "75801eede7e5e15f17e5eec9c8996a981bbc4baf156805bf98271823e4d17657"
+        },
+        "ani": {
+          "base": "0363b6b5f906886c3ab2748ef68940c562b93382",
+          "tree": "113d664efc7baa96ab1e16bbd9a021ad612c999b",
+          "archive_sha256": "a76efdd3fc05f0a571b00e44e5836df8115702047619918fbc49950968d2460d"
+        }
+      }
+    },
+    {
+      "snapshot": "20260910T032221Z-af9a3017",
+      "remote": "/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T032221Z-af9a3017",
+      "command": [
+        "bash",
+        "-c",
+        "export NET05_RUN_DIR=/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T015345Z-665860d8; cd \"$NETWORK_SOURCE\"; python3 scripts/net05-gates.py"
+      ],
+      "exit": 1,
+      "sources": {
+        "network": {
+          "base": "5d4a53451beca0317bee1f577d8fb9cc189fc035",
+          "tree": "d4b45c908ba334c3c58f99dad0952e34aadfc588",
+          "archive_sha256": "0fe88e1bd752176c4ea7990344fef3119ea1ac010bfb374c35a0b1127d820515"
+        },
+        "ani": {
+          "base": "0363b6b5f906886c3ab2748ef68940c562b93382",
+          "tree": "113d664efc7baa96ab1e16bbd9a021ad612c999b",
+          "archive_sha256": "0c8130a28d491f507d45a15eacf2c5aeed90ae736479d89d7d8538cc29e4771a"
+        }
+      }
+    },
+    {
+      "snapshot": "20260910T033054Z-9e052684",
+      "remote": "/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T033054Z-9e052684",
+      "command": [
+        "bash",
+        "-c",
+        "export NET05_RUN_DIR=/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T015345Z-665860d8; cd \"$NETWORK_SOURCE\"; python3 -B scripts/net05-gates.py --retry-failed"
+      ],
+      "exit": 0,
+      "sources": {
+        "network": {
+          "base": "5d4a53451beca0317bee1f577d8fb9cc189fc035",
+          "tree": "d4b45c908ba334c3c58f99dad0952e34aadfc588",
+          "archive_sha256": "171d2d8fb3d50f18004dea7873ee3c5a362aa857a8318d3bd1298725d56c04b4"
+        },
+        "ani": {
+          "base": "0363b6b5f906886c3ab2748ef68940c562b93382",
+          "tree": "113d664efc7baa96ab1e16bbd9a021ad612c999b",
+          "archive_sha256": "9b22d1fdfe76ba211f9a94ab5b0d6c398e4f033071acdea7d960f780e626a8e6"
+        }
+      }
+    }
+  ],
+  "policy": "nonzero attempts retained; passed cases and stages determined by actual event/gate records"
+}

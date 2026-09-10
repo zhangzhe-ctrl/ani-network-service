@@ -1,0 +1,14 @@
+snapshot=/home/chabking/workspace/.worktrees/network-net-05/.work/net05-runs/20260910T030223Z-1d1dae8f
+remote=/home/ubuntu/workspace/ani-network-service-runs/net05-20260910T030223Z-1d1dae8f
+verified network source files= 158 temporary snapshot= 225fe54ba79a2b8c65a4ec345291e6bb20b9229e
+verified ani source files= 2899 temporary snapshot= 0705efa1239566cc373af942698d93681a3b7aab
+127.0.0.1:5432 - accepting connections
+PostgreSQL image=docker.io/library/postgres@sha256:4ef4dbc939d61acea57712655ddb4b4ab27419c913f94cca0cd57cb3ea3c2280 container=4e53a7428d0ad4d1e7e8acabdf9c4f31c3b62ec3ddc99a1d8b4fd6c26cb8b9b8
+=== RUN   TestNET05OldestSubnetWorkIsNotStarvedByDueVPCObservation
+    resource_work_net05_integration_test.go:32: older subnet starved: resource={ID:vpc_c6f2573cc39d4032a6e06097494d5ced TenantID:e6c34530-a779-4c5b-a066-e6a8febea1fa Kind:vpc VPCID: CIDR:10.42.0.0/16 Gateway: LastOperationID:c61bee67-a7fa-44b6-b747-75638b4e7472 State:available Reason: Version:2 UpdatedAt:2026-09-10 11:02:41.769269 +0800 CST ObservedAt:2026-09-10 11:02:41.769269 +0800 CST} found=true err=<nil>
+--- FAIL: TestNET05OldestSubnetWorkIsNotStarvedByDueVPCObservation (0.22s)
+FAIL
+FAIL	github.com/zhangzhe-ctrl/ani-network-service/internal/data	0.226s
+FAIL
+removed task container=4e53a7428d0ad4d1e7e8acabdf9c4f31c3b62ec3ddc99a1d8b4fd6c26cb8b9b8
+REMOTE_COMMAND_EXIT=1
