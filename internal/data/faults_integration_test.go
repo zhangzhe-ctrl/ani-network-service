@@ -144,7 +144,7 @@ func TestLeaseExpiryRejectsOldEpochWritesAndRecoversPendingIdentity(t *testing.T
 	if err := repository.BeginMutation(ctx, first, "create", ""); !errors.Is(err, biz.ErrLeaseLost) {
 		t.Fatalf("old epoch started mutation: %v", err)
 	}
-	if second.PendingAction != "create" || second.VPC.ID != v.ID {
+	if second.PendingAction != "create" || second.Resource.ID != v.ID {
 		t.Fatalf("pending request identity lost: %+v", second)
 	}
 	if err := repository.Finish(ctx, second, biz.Progress{State: biz.Provisioning, OperationState: biz.Blocked, Reason: biz.ProviderUnknown, NextDelay: time.Second}); err != nil {

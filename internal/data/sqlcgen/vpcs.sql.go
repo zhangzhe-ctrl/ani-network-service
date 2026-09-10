@@ -22,7 +22,7 @@ func (q *Queries) DatabaseTime(ctx context.Context) (time.Time, error) {
 }
 
 const getIdempotency = `-- name: GetIdempotency :one
-SELECT tenant_id, operation_kind, idempotency_key, fingerprint, fingerprint_version, vpc_id, operation_id, response, created_at FROM network_idempotency
+SELECT tenant_id, operation_kind, idempotency_key, fingerprint, fingerprint_version, vpc_id, operation_id, response, created_at, subnet_id FROM network_idempotency
 WHERE tenant_id = $1 AND operation_kind = 'create_vpc' AND idempotency_key = $2
 `
 
@@ -44,12 +44,13 @@ func (q *Queries) GetIdempotency(ctx context.Context, arg GetIdempotencyParams) 
 		&i.OperationID,
 		&i.Response,
 		&i.CreatedAt,
+		&i.SubnetID,
 	)
 	return i, err
 }
 
 const getOperation = `-- name: GetOperation :one
-SELECT tenant_id, operation_id, vpc_id, kind, state, reason, attempt, execution_epoch, created_at, updated_at, completed_at, next_attempt_at FROM network_operations WHERE tenant_id = $1 AND operation_id = $2
+SELECT tenant_id, operation_id, vpc_id, kind, state, reason, attempt, execution_epoch, created_at, updated_at, completed_at, next_attempt_at, subnet_id FROM network_operations WHERE tenant_id = $1 AND operation_id = $2
 `
 
 type GetOperationParams struct {
@@ -73,12 +74,13 @@ func (q *Queries) GetOperation(ctx context.Context, arg GetOperationParams) (Net
 		&i.UpdatedAt,
 		&i.CompletedAt,
 		&i.NextAttemptAt,
+		&i.SubnetID,
 	)
 	return i, err
 }
 
 const getVPC = `-- name: GetVPC :one
-SELECT tenant_id, vpc_id, name, description, cidr, state, reason, version, created_at, updated_at, observed_at, last_operation_id FROM network_vpcs WHERE tenant_id = $1 AND vpc_id = $2
+SELECT v.tenant_id, v.vpc_id, v.name, v.description, v.cidr, v.state, v.reason, v.version, v.created_at, v.updated_at, v.observed_at, v.last_operation_id, (SELECT count(*) FROM network_subnets s WHERE s.tenant_id=v.tenant_id AND s.vpc_id=v.vpc_id AND s.state<>'deleted')::bigint AS subnet_count FROM network_vpcs v WHERE v.tenant_id=$1 AND v.vpc_id=$2
 `
 
 type GetVPCParams struct {
@@ -86,34 +88,41 @@ type GetVPCParams struct {
 	VpcID    string
 }
 
-func (q *Queries) GetVPC(ctx context.Context, arg GetVPCParams) (NetworkVpc, error) {
+type GetVPCRow struct {
+	NetworkVpc  NetworkVpc
+	SubnetCount int64
+}
+
+func (q *Queries) GetVPC(ctx context.Context, arg GetVPCParams) (GetVPCRow, error) {
 	row := q.db.QueryRow(ctx, getVPC, arg.TenantID, arg.VpcID)
-	var i NetworkVpc
+	var i GetVPCRow
 	err := row.Scan(
-		&i.TenantID,
-		&i.VpcID,
-		&i.Name,
-		&i.Description,
-		&i.Cidr,
-		&i.State,
-		&i.Reason,
-		&i.Version,
-		&i.CreatedAt,
-		&i.UpdatedAt,
-		&i.ObservedAt,
-		&i.LastOperationID,
+		&i.NetworkVpc.TenantID,
+		&i.NetworkVpc.VpcID,
+		&i.NetworkVpc.Name,
+		&i.NetworkVpc.Description,
+		&i.NetworkVpc.Cidr,
+		&i.NetworkVpc.State,
+		&i.NetworkVpc.Reason,
+		&i.NetworkVpc.Version,
+		&i.NetworkVpc.CreatedAt,
+		&i.NetworkVpc.UpdatedAt,
+		&i.NetworkVpc.ObservedAt,
+		&i.NetworkVpc.LastOperationID,
+		&i.SubnetCount,
 	)
 	return i, err
 }
 
 const insertBinding = `-- name: InsertBinding :exec
-INSERT INTO network_provider_bindings (tenant_id,vpc_id,binding_id,cluster_id,namespace,provider_name)
-VALUES ($1,$2,$3,$4,$5,$6)
+INSERT INTO network_provider_bindings (tenant_id,vpc_id,subnet_id,binding_id,cluster_id,namespace,provider_name,resource_kind)
+VALUES ($1,NULLIF($2::text,''),NULLIF($3::text,''),$4,$5,$6,$7,CASE WHEN $3::text='' THEN 'vpc' ELSE 'subnet' END)
 `
 
 type InsertBindingParams struct {
 	TenantID     string
 	VpcID        string
+	SubnetID     string
 	BindingID    string
 	ClusterID    string
 	Namespace    string
@@ -124,6 +133,7 @@ func (q *Queries) InsertBinding(ctx context.Context, arg InsertBindingParams) er
 	_, err := q.db.Exec(ctx, insertBinding,
 		arg.TenantID,
 		arg.VpcID,
+		arg.SubnetID,
 		arg.BindingID,
 		arg.ClusterID,
 		arg.Namespace,
@@ -134,14 +144,15 @@ func (q *Queries) InsertBinding(ctx context.Context, arg InsertBindingParams) er
 
 const insertHistory = `-- name: InsertHistory :exec
 INSERT INTO network_resource_history
-(tenant_id,history_id,vpc_id,operation_id,event,resource_state,operation_state,reason,actor_ref,caller_ref,correlation_id,created_at)
-VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12)
+(tenant_id,history_id,vpc_id,subnet_id,operation_id,event,resource_state,operation_state,reason,actor_ref,caller_ref,correlation_id,created_at)
+VALUES ($1,$2,NULLIF($3::text,''),NULLIF($4::text,''),$5,$6,$7,$8,$9,$10,$11,$12,$13)
 `
 
 type InsertHistoryParams struct {
 	TenantID       string
 	HistoryID      string
 	VpcID          string
+	SubnetID       string
 	OperationID    *string
 	Event          string
 	ResourceState  string
@@ -158,6 +169,7 @@ func (q *Queries) InsertHistory(ctx context.Context, arg InsertHistoryParams) er
 		arg.TenantID,
 		arg.HistoryID,
 		arg.VpcID,
+		arg.SubnetID,
 		arg.OperationID,
 		arg.Event,
 		arg.ResourceState,
@@ -174,7 +186,7 @@ func (q *Queries) InsertHistory(ctx context.Context, arg InsertHistoryParams) er
 const insertIdempotency = `-- name: InsertIdempotency :exec
 INSERT INTO network_idempotency
 (tenant_id,operation_kind,idempotency_key,fingerprint,fingerprint_version,vpc_id,operation_id,response,created_at)
-VALUES ($1,'create_vpc',$2,$3,1,$4,$5,$6,$7)
+VALUES ($1,'create_vpc',$2,$3,1,$4::text,$5,$6,$7)
 `
 
 type InsertIdempotencyParams struct {
@@ -201,14 +213,15 @@ func (q *Queries) InsertIdempotency(ctx context.Context, arg InsertIdempotencyPa
 }
 
 const insertOperation = `-- name: InsertOperation :exec
-INSERT INTO network_operations (tenant_id,operation_id,vpc_id,kind,state,created_at,updated_at,next_attempt_at)
-VALUES ($1,$2,$3,$4,'queued',$5,$5,$5)
+INSERT INTO network_operations (tenant_id,operation_id,vpc_id,subnet_id,kind,state,created_at,updated_at,next_attempt_at)
+VALUES ($1,$2,NULLIF($3::text,''),NULLIF($4::text,''),$5,'queued',$6,$6,$6)
 `
 
 type InsertOperationParams struct {
 	TenantID    string
 	OperationID string
 	VpcID       string
+	SubnetID    string
 	Kind        string
 	CreatedAt   time.Time
 }
@@ -218,6 +231,7 @@ func (q *Queries) InsertOperation(ctx context.Context, arg InsertOperationParams
 		arg.TenantID,
 		arg.OperationID,
 		arg.VpcID,
+		arg.SubnetID,
 		arg.Kind,
 		arg.CreatedAt,
 	)
@@ -225,17 +239,23 @@ func (q *Queries) InsertOperation(ctx context.Context, arg InsertOperationParams
 }
 
 const insertReconciliation = `-- name: InsertReconciliation :exec
-INSERT INTO network_reconciliations (tenant_id,vpc_id,next_run_at) VALUES ($1,$2,$3)
+INSERT INTO network_reconciliations (tenant_id,vpc_id,subnet_id,next_run_at) VALUES ($1,NULLIF($2::text,''),NULLIF($3::text,''),$4)
 `
 
 type InsertReconciliationParams struct {
 	TenantID  string
 	VpcID     string
+	SubnetID  string
 	NextRunAt time.Time
 }
 
 func (q *Queries) InsertReconciliation(ctx context.Context, arg InsertReconciliationParams) error {
-	_, err := q.db.Exec(ctx, insertReconciliation, arg.TenantID, arg.VpcID, arg.NextRunAt)
+	_, err := q.db.Exec(ctx, insertReconciliation,
+		arg.TenantID,
+		arg.VpcID,
+		arg.SubnetID,
+		arg.NextRunAt,
+	)
 	return err
 }
 
@@ -284,12 +304,12 @@ func (q *Queries) InsertVPC(ctx context.Context, arg InsertVPCParams) (NetworkVp
 }
 
 const listVPCs = `-- name: ListVPCs :many
-SELECT tenant_id, vpc_id, name, description, cidr, state, reason, version, created_at, updated_at, observed_at, last_operation_id FROM network_vpcs
-WHERE tenant_id = $1
-  AND ($2::text = '' OR name = $2)
-  AND (($3::text = '' AND state <> 'deleted') OR state = $3)
-  AND ($4::text = '' OR (created_at, vpc_id) < ($5::timestamptz, $4::text))
-ORDER BY created_at DESC, vpc_id DESC
+SELECT v.tenant_id, v.vpc_id, v.name, v.description, v.cidr, v.state, v.reason, v.version, v.created_at, v.updated_at, v.observed_at, v.last_operation_id, (SELECT count(*) FROM network_subnets s WHERE s.tenant_id=v.tenant_id AND s.vpc_id=v.vpc_id AND s.state<>'deleted')::bigint AS subnet_count FROM network_vpcs v
+WHERE v.tenant_id = $1
+  AND ($2::text = '' OR v.name = $2)
+  AND (($3::text = '' AND v.state <> 'deleted') OR v.state = $3)
+  AND ($4::text = '' OR (v.created_at, v.vpc_id) < ($5::timestamptz, $4::text))
+ORDER BY v.created_at DESC, v.vpc_id DESC
 LIMIT $6::integer
 `
 
@@ -302,7 +322,12 @@ type ListVPCsParams struct {
 	MaxResults     int32
 }
 
-func (q *Queries) ListVPCs(ctx context.Context, arg ListVPCsParams) ([]NetworkVpc, error) {
+type ListVPCsRow struct {
+	NetworkVpc  NetworkVpc
+	SubnetCount int64
+}
+
+func (q *Queries) ListVPCs(ctx context.Context, arg ListVPCsParams) ([]ListVPCsRow, error) {
 	rows, err := q.db.Query(ctx, listVPCs,
 		arg.TenantID,
 		arg.NameFilter,
@@ -315,22 +340,23 @@ func (q *Queries) ListVPCs(ctx context.Context, arg ListVPCsParams) ([]NetworkVp
 		return nil, err
 	}
 	defer rows.Close()
-	items := []NetworkVpc{}
+	items := []ListVPCsRow{}
 	for rows.Next() {
-		var i NetworkVpc
+		var i ListVPCsRow
 		if err := rows.Scan(
-			&i.TenantID,
-			&i.VpcID,
-			&i.Name,
-			&i.Description,
-			&i.Cidr,
-			&i.State,
-			&i.Reason,
-			&i.Version,
-			&i.CreatedAt,
-			&i.UpdatedAt,
-			&i.ObservedAt,
-			&i.LastOperationID,
+			&i.NetworkVpc.TenantID,
+			&i.NetworkVpc.VpcID,
+			&i.NetworkVpc.Name,
+			&i.NetworkVpc.Description,
+			&i.NetworkVpc.Cidr,
+			&i.NetworkVpc.State,
+			&i.NetworkVpc.Reason,
+			&i.NetworkVpc.Version,
+			&i.NetworkVpc.CreatedAt,
+			&i.NetworkVpc.UpdatedAt,
+			&i.NetworkVpc.ObservedAt,
+			&i.NetworkVpc.LastOperationID,
+			&i.SubnetCount,
 		); err != nil {
 			return nil, err
 		}

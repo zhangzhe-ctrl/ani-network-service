@@ -84,8 +84,10 @@ type Network struct {
 	// Base64 encoded secret, at least 32 bytes, shared by service replicas.
 	CursorSigningKey string  `protobuf:"bytes,5,opt,name=cursor_signing_key,json=cursorSigningKey,proto3" json:"cursor_signing_key,omitempty"`
 	Worker           *Worker `protobuf:"bytes,6,opt,name=worker,proto3" json:"worker,omitempty"`
-	unknownFields    protoimpl.UnknownFields
-	sizeCache        protoimpl.SizeCache
+	// Fixed instance owner RPC target. Empty keeps attachments conservatively occupied.
+	InstanceConsumerEndpoint string `protobuf:"bytes,7,opt,name=instance_consumer_endpoint,json=instanceConsumerEndpoint,proto3" json:"instance_consumer_endpoint,omitempty"`
+	unknownFields            protoimpl.UnknownFields
+	sizeCache                protoimpl.SizeCache
 }
 
 func (x *Network) Reset() {
@@ -158,6 +160,13 @@ func (x *Network) GetWorker() *Worker {
 		return x.Worker
 	}
 	return nil
+}
+
+func (x *Network) GetInstanceConsumerEndpoint() string {
+	if x != nil {
+		return x.InstanceConsumerEndpoint
+	}
+	return ""
 }
 
 type Worker struct {
@@ -439,7 +448,7 @@ const file_conf_v1_conf_proto_rawDesc = "" +
 	"\x12conf/v1/conf.proto\x12\aconf.v1\x1a\x1egoogle/protobuf/duration.proto\"`\n" +
 	"\tBootstrap\x12'\n" +
 	"\x06server\x18\x01 \x01(\v2\x0f.conf.v1.ServerR\x06server\x12*\n" +
-	"\anetwork\x18\x02 \x01(\v2\x10.conf.v1.NetworkR\anetwork\"\xed\x01\n" +
+	"\anetwork\x18\x02 \x01(\v2\x10.conf.v1.NetworkR\anetwork\"\xab\x02\n" +
 	"\aNetwork\x12!\n" +
 	"\fdatabase_dsn\x18\x01 \x01(\tR\vdatabaseDsn\x12\x1e\n" +
 	"\n" +
@@ -449,7 +458,8 @@ const file_conf_v1_conf_proto_rawDesc = "" +
 	"cluster_id\x18\x03 \x01(\tR\tclusterId\x12)\n" +
 	"\x10namespace_prefix\x18\x04 \x01(\tR\x0fnamespacePrefix\x12,\n" +
 	"\x12cursor_signing_key\x18\x05 \x01(\tR\x10cursorSigningKey\x12'\n" +
-	"\x06worker\x18\x06 \x01(\v2\x0f.conf.v1.WorkerR\x06worker\"\xa9\x03\n" +
+	"\x06worker\x18\x06 \x01(\v2\x0f.conf.v1.WorkerR\x06worker\x12<\n" +
+	"\x1ainstance_consumer_endpoint\x18\a \x01(\tR\x18instanceConsumerEndpoint\"\xa9\x03\n" +
 	"\x06Worker\x12/\n" +
 	"\x05lease\x18\x01 \x01(\v2\x19.google.protobuf.DurationR\x05lease\x12B\n" +
 	"\x0frequest_timeout\x18\x02 \x01(\v2\x19.google.protobuf.DurationR\x0erequestTimeout\x12>\n" +

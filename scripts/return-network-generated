@@ -1,0 +1,40 @@
+#!/usr/bin/env python3
+"""Return generated Network files from one isolated remote run after a source check."""
+import hashlib
+import json
+from pathlib import Path
+import shlex
+import subprocess
+import sys
+import tarfile
+
+root = Path(__file__).resolve().parents[1]
+run = Path(sys.argv[1]).resolve()
+meta = json.loads((run / 'snapshot.json').read_text())
+records = {r['path']: r for r in meta['files']}
+paths = ['api/network/v1/network.pb.go', 'api/network/v1/network_grpc.pb.go',
+         'internal/conf/v1/conf.pb.go', 'internal/data/sqlcgen']
+archive = run / 'generated.tar.gz'
+with archive.open('wb') as output:
+    subprocess.run(['ssh', '-F', '/home/chabking/.ssh/config', '-o', 'BatchMode=yes',
+                    'ubuntu', 'tar -czf - -C ' + shlex.quote(meta['remote'] + '/source')
+                    + ' ' + shlex.join(paths)], stdout=output, check=True)
+returned = run / 'returned'
+returned.mkdir(exist_ok=True)
+with tarfile.open(archive) as package:
+    package.extractall(returned, filter='data')
+updates = []
+for path in sorted(returned.rglob('*.go')):
+    name = path.relative_to(returned).as_posix()
+    local = root / name
+    prior = records.get(name)
+    if prior:
+        if not local.is_file() or hashlib.sha256(local.read_bytes()).hexdigest() != prior['sha256']:
+            raise SystemExit('concurrent local change; refusing: ' + name)
+    elif local.exists():
+        raise SystemExit('unexpected new local file; refusing: ' + name)
+    updates.append((local,path))
+for local,path in updates:
+    local.parent.mkdir(parents=True,exist_ok=True)
+    local.write_bytes(path.read_bytes())
+print('returned and source-checked generated files:',len(updates))

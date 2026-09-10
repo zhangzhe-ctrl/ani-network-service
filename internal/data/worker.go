@@ -20,32 +20,32 @@ func (p *Postgres) Claim(ctx context.Context, owner string, duration time.Durati
 	}
 	defer tx.Rollback(ctx)
 	q := p.queries.WithTx(tx)
-	row, err := q.LockDueVPC(ctx)
+	resource, err := claimResource(ctx, q)
 	if errors.Is(err, pgx.ErrNoRows) {
 		return biz.Work{}, false, nil
 	}
 	if err != nil {
 		return biz.Work{}, false, databaseFailure(err)
 	}
-	lease, err := q.AcquireLease(ctx, sqlcgen.AcquireLeaseParams{TenantID: row.TenantID, VpcID: row.VpcID, Owner: owner, LeaseMicros: duration.Microseconds()})
+	lease, err := q.AcquireLease(ctx, sqlcgen.AcquireLeaseParams{TenantID: resource.TenantID, ResourceID: resource.ID, Owner: owner, LeaseMicros: duration.Microseconds()})
 	if errors.Is(err, pgx.ErrNoRows) {
 		return biz.Work{}, false, nil
 	}
 	if err != nil {
 		return biz.Work{}, false, databaseFailure(err)
 	}
-	op, err := q.GetOperation(ctx, sqlcgen.GetOperationParams{TenantID: row.TenantID, OperationID: row.LastOperationID})
+	op, err := q.GetOperation(ctx, sqlcgen.GetOperationParams{TenantID: resource.TenantID, OperationID: resource.LastOperationID})
 	if err != nil {
 		return biz.Work{}, false, databaseFailure(err)
 	}
 	active := op.CompletedAt == nil
 	if active {
-		op, err = q.RunOperation(ctx, sqlcgen.RunOperationParams{TenantID: row.TenantID, VpcID: row.VpcID, OperationID: op.OperationID, Epoch: lease.LeaseEpoch})
+		op, err = q.RunOperation(ctx, sqlcgen.RunOperationParams{TenantID: resource.TenantID, ResourceID: resource.ID, OperationID: op.OperationID, Epoch: lease.LeaseEpoch})
 		if err != nil {
 			return biz.Work{}, false, databaseFailure(err)
 		}
 	}
-	binding, err := q.GetBinding(ctx, sqlcgen.GetBindingParams{TenantID: row.TenantID, VpcID: row.VpcID})
+	binding, err := q.GetBinding(ctx, sqlcgen.GetBindingParams{TenantID: resource.TenantID, ResourceID: resource.ID})
 	if err != nil {
 		return biz.Work{}, false, databaseFailure(err)
 	}
@@ -56,24 +56,24 @@ func (p *Postgres) Claim(ctx context.Context, owner string, duration time.Durati
 	if err := tx.Commit(ctx); err != nil {
 		return biz.Work{}, false, databaseFailure(err)
 	}
-	return biz.Work{VPC: vpc(row), Operation: operation(op), ActiveOperation: active, BindingID: binding.BindingID,
+	return biz.Work{Resource: resource, Operation: operation(op), ActiveOperation: active, BindingID: binding.BindingID,
 		KnownIdentity: binding.ProviderUid, PendingAction: binding.PendingAction, Owner: owner, Epoch: lease.LeaseEpoch, Attempt: op.Attempt, Now: now}, true, nil
 }
 
 // lockedWork fences every write with tenant, resource version, owner and epoch.
 // The final ReleaseLease rechecks time so expiry during T4 rolls the entire T4 back.
 func lockedWork(ctx context.Context, q *sqlcgen.Queries, work biz.Work) error {
-	row, err := q.LockVPC(ctx, sqlcgen.LockVPCParams{TenantID: work.VPC.TenantID, VpcID: work.VPC.ID})
+	row, err := lockResource(ctx, q, work.Resource)
 	if errors.Is(err, pgx.ErrNoRows) {
 		return biz.ErrLeaseLost
 	}
 	if err != nil {
 		return databaseFailure(err)
 	}
-	if row.Version != work.VPC.Version {
+	if row.Version != work.Resource.Version {
 		return biz.ErrLeaseLost
 	}
-	_, err = q.CheckLease(ctx, sqlcgen.CheckLeaseParams{TenantID: row.TenantID, VpcID: row.VpcID, LeaseOwner: &work.Owner, LeaseEpoch: work.Epoch})
+	_, err = q.CheckLease(ctx, sqlcgen.CheckLeaseParams{TenantID: row.TenantID, ResourceID: row.ID, LeaseOwner: &work.Owner, LeaseEpoch: work.Epoch})
 	if errors.Is(err, pgx.ErrNoRows) {
 		return biz.ErrLeaseLost
 	}
@@ -101,7 +101,7 @@ func (p *Postgres) BeginMutation(ctx context.Context, work biz.Work, action, ide
 		return err
 	}
 	if err := affected(q.BeginProviderMutation(ctx, sqlcgen.BeginProviderMutationParams{
-		TenantID: work.VPC.TenantID, VpcID: work.VPC.ID, BindingID: work.BindingID, Action: action, Identity: identity,
+		TenantID: work.Resource.TenantID, ResourceID: work.Resource.ID, BindingID: work.BindingID, Action: action, Identity: identity,
 	})); err != nil {
 		return err
 	}
@@ -118,31 +118,33 @@ func (p *Postgres) Finish(ctx context.Context, work biz.Work, progress biz.Progr
 	if err := lockedWork(ctx, q, work); err != nil {
 		return err
 	}
-	row, err := q.AdvanceVPC(ctx, sqlcgen.AdvanceVPCParams{
-		TenantID: work.VPC.TenantID, VpcID: work.VPC.ID, Version: work.VPC.Version,
-		State: string(progress.State), Reason: string(progress.Reason), Observed: progress.Observed,
-	})
+	row, err := advanceResource(ctx, q, work.Resource, progress)
 	if err != nil {
 		return databaseFailure(err)
 	}
 	if work.ActiveOperation {
 		if err := affected(q.CompleteAttempt(ctx, sqlcgen.CompleteAttemptParams{
-			TenantID: row.TenantID, VpcID: row.VpcID, OperationID: work.Operation.ID, Epoch: work.Epoch,
+			TenantID: row.TenantID, ResourceID: row.ID, OperationID: work.Operation.ID, Epoch: work.Epoch,
 			State: string(progress.OperationState), Reason: string(progress.Reason), DelayMicros: progress.NextDelay.Microseconds(),
 		})); err != nil {
 			return err
 		}
 	}
 	if err := affected(q.SaveBindingObservation(ctx, sqlcgen.SaveBindingObservationParams{
-		TenantID: row.TenantID, VpcID: row.VpcID, BindingID: work.BindingID, Identity: progress.Identity, ClearPending: progress.ClearPending,
+		TenantID: row.TenantID, ResourceID: row.ID, BindingID: work.BindingID, Identity: progress.Identity, ClearPending: progress.ClearPending,
 	})); err != nil {
 		return err
 	}
 	// Continuous observations only append history for a material state/reason
 	// change. They never reopen or rewrite the historical operation.
-	if work.ActiveOperation || work.VPC.State != progress.State || work.VPC.Reason != progress.Reason {
-		entry := sqlcgen.InsertHistoryParams{TenantID: row.TenantID, VpcID: row.VpcID, HistoryID: uuid.NewString(),
-			Event: "reconciled", ResourceState: row.State, Reason: row.Reason, CreatedAt: row.UpdatedAt}
+	if work.ActiveOperation || work.Resource.State != progress.State || work.Resource.Reason != progress.Reason {
+		entry := sqlcgen.InsertHistoryParams{TenantID: row.TenantID, HistoryID: uuid.NewString(),
+			Event: "reconciled", ResourceState: string(row.State), Reason: string(row.Reason), CreatedAt: row.UpdatedAt}
+		if row.Kind == "subnet" {
+			entry.SubnetID = row.ID
+		} else {
+			entry.VpcID = row.ID
+		}
 		if work.ActiveOperation {
 			entry.OperationID = &work.Operation.ID
 			entry.OperationState = string(progress.OperationState)
@@ -152,7 +154,7 @@ func (p *Postgres) Finish(ctx context.Context, work biz.Work, progress biz.Progr
 		}
 	}
 	if err := affected(q.ReleaseLease(ctx, sqlcgen.ReleaseLeaseParams{
-		TenantID: row.TenantID, VpcID: row.VpcID, Owner: &work.Owner, Epoch: work.Epoch, DelayMicros: progress.NextDelay.Microseconds(),
+		TenantID: row.TenantID, ResourceID: row.ID, Owner: &work.Owner, Epoch: work.Epoch, DelayMicros: progress.NextDelay.Microseconds(),
 	})); err != nil {
 		return err
 	}
@@ -173,6 +175,13 @@ func (p *Postgres) DeleteVPC(ctx context.Context, tenant, id string) (biz.VPC, e
 	if row.State == string(biz.Deleting) || row.State == string(biz.Deleted) {
 		return vpc(row), nil
 	}
+	count, err := q.CountBlockingSubnets(ctx, sqlcgen.CountBlockingSubnetsParams{TenantID: tenant, VpcID: id})
+	if err != nil {
+		return biz.VPC{}, databaseFailure(err)
+	}
+	if count > 0 {
+		return biz.VPC{}, biz.Fail(biz.ResourceInUse, "subnets must be deleted before their VPC")
+	}
 	op, err := q.GetOperation(ctx, sqlcgen.GetOperationParams{TenantID: tenant, OperationID: row.LastOperationID})
 	if err != nil {
 		return biz.VPC{}, databaseFailure(err)
@@ -192,7 +201,7 @@ func (p *Postgres) DeleteVPC(ctx context.Context, tenant, id string) (biz.VPC, e
 	if err != nil {
 		return biz.VPC{}, databaseFailure(err)
 	}
-	if err := affected(q.ScheduleDeletion(ctx, sqlcgen.ScheduleDeletionParams{TenantID: tenant, VpcID: id})); err != nil {
+	if err := affected(q.ScheduleDeletion(ctx, sqlcgen.ScheduleDeletionParams{TenantID: tenant, ResourceID: id})); err != nil {
 		return biz.VPC{}, err
 	}
 	if err := q.InsertHistory(ctx, sqlcgen.InsertHistoryParams{TenantID: tenant, VpcID: id, OperationID: &opID, HistoryID: uuid.NewString(), Event: "delete_accepted", ResourceState: row.State, OperationState: string(biz.Queued), CreatedAt: now}); err != nil {

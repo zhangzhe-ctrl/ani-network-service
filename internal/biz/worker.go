@@ -42,6 +42,7 @@ func (e *ProviderError) Unwrap() error { return e.Cause }
 // identity. The adapter resolves namespace/name/cluster from its persisted map.
 type ProviderTarget struct {
 	TenantID, ResourceID, BindingID, KnownIdentity, CIDR string
+	Kind, VPCID, Gateway                                 string
 }
 
 type ProviderObservation struct {
@@ -49,16 +50,28 @@ type ProviderObservation struct {
 	Identity                       string
 }
 
-type VPCProvider interface {
+type ResourceProvider interface {
 	Observe(context.Context, ProviderTarget) (ProviderObservation, error)
 	EnsureVPC(context.Context, ProviderTarget) (ProviderObservation, error)
+	EnsureSubnet(context.Context, ProviderTarget) (ProviderObservation, error)
 	Delete(context.Context, ProviderTarget) error
 }
 
 var ErrLeaseLost = errors.New("resource execution lease lost")
 
+// ResourceWork is the immutable resource snapshot used by the shared lifecycle
+// worker. Kind is closed to VPC or Subnet at the repository boundary.
+type ResourceWork struct {
+	ID, TenantID, Kind, VPCID, CIDR, Gateway, LastOperationID string
+	State                                                     ResourceState
+	Reason                                                    Reason
+	Version                                                   int64
+	UpdatedAt                                                 time.Time
+	ObservedAt                                                *time.Time
+}
+
 type Work struct {
-	VPC             VPC
+	Resource        ResourceWork
 	Operation       Operation
 	ActiveOperation bool
 	BindingID       string
@@ -100,13 +113,13 @@ func DefaultWorkerPolicy() WorkerPolicy {
 
 type Worker struct {
 	repository WorkRepository
-	provider   VPCProvider
+	provider   ResourceProvider
 	owner      string
 	policy     WorkerPolicy
 	observer   func(context.Context, Work, Progress, error)
 }
 
-func NewWorker(repository WorkRepository, provider VPCProvider, owner string, policy WorkerPolicy, observers ...func(context.Context, Work, Progress, error)) (*Worker, error) {
+func NewWorker(repository WorkRepository, provider ResourceProvider, owner string, policy WorkerPolicy, observers ...func(context.Context, Work, Progress, error)) (*Worker, error) {
 	if len(observers) > 1 || repository == nil || provider == nil || policy.RequestTimeout <= 0 || policy.Lease < 3*policy.RequestTimeout ||
 		policy.ObserveEvery <= 0 || policy.StaleAfter <= policy.ObserveEvery || policy.RetryMin <= 0 || policy.RetryMax < policy.RetryMin {
 		return nil, fmt.Errorf("invalid worker dependencies or bounded timing policy")
@@ -131,14 +144,15 @@ func (w *Worker) Step(ctx context.Context) (bool, error) {
 	if err != nil || !found {
 		return found, err
 	}
-	progress := Progress{State: work.VPC.State, Identity: work.KnownIdentity, NextDelay: w.policy.ObserveEvery}
+	progress := Progress{State: work.Resource.State, Identity: work.KnownIdentity, NextDelay: w.policy.ObserveEvery}
 	if work.ActiveOperation {
 		progress.OperationState = Retrying
 		progress.NextDelay = w.retryDelay(work.Attempt)
 	}
 	target := ProviderTarget{
-		TenantID: work.VPC.TenantID, ResourceID: work.VPC.ID, BindingID: work.BindingID,
-		KnownIdentity: work.KnownIdentity, CIDR: work.VPC.CIDR,
+		TenantID: work.Resource.TenantID, ResourceID: work.Resource.ID, BindingID: work.BindingID,
+		KnownIdentity: work.KnownIdentity, CIDR: work.Resource.CIDR,
+		Kind: work.Resource.Kind, VPCID: work.Resource.VPCID, Gateway: work.Resource.Gateway,
 	}
 	callCtx, cancel := context.WithTimeout(ctx, w.policy.RequestTimeout)
 	observation, observeErr := w.provider.Observe(callCtx, target)
@@ -148,12 +162,12 @@ func (w *Worker) Step(ctx context.Context) (bool, error) {
 		if work.ActiveOperation && progress.Reason == ProviderOwnership {
 			progress.OperationState = Blocked
 		}
-		if work.VPC.State == Available && (progress.Reason == ProviderOwnership || work.VPC.ObservedAt == nil || work.Now.Sub(*work.VPC.ObservedAt) > w.policy.StaleAfter) {
+		if work.Resource.State == Available && (progress.Reason == ProviderOwnership || work.Resource.ObservedAt == nil || work.Now.Sub(*work.Resource.ObservedAt) > w.policy.StaleAfter) {
 			progress.State = Degraded
 		}
 	} else if observation.Exists && (observation.Identity == "" || (work.KnownIdentity != "" && observation.Identity != work.KnownIdentity)) {
 		progress.Reason, progress.OperationState = ProviderOwnership, Blocked
-		if work.VPC.State == Available {
+		if work.Resource.State == Available {
 			progress.State = Degraded
 		}
 	} else {
@@ -165,7 +179,7 @@ func (w *Worker) Step(ctx context.Context) (bool, error) {
 		if observation.Exists && work.PendingAction == "create" {
 			progress.ClearPending = true
 		}
-		switch work.VPC.State {
+		switch work.Resource.State {
 		case Deleting, Deleted:
 			progress, err = w.delete(ctx, work, target, observation, progress)
 		case Failed:
@@ -198,7 +212,7 @@ func (w *Worker) ensure(ctx context.Context, work Work, target ProviderTarget, o
 			return progress, nil
 		case work.KnownIdentity != "" || !work.ActiveOperation:
 			progress.Reason, progress.OperationState = ProviderMissing, Blocked
-			if work.VPC.State == Available || work.VPC.State == Degraded {
+			if work.Resource.State == Available || work.Resource.State == Degraded {
 				progress.State = Degraded
 			}
 			return progress, nil
@@ -207,7 +221,14 @@ func (w *Worker) ensure(ctx context.Context, work Work, target ProviderTarget, o
 			return progress, err
 		}
 		callCtx, cancel := context.WithTimeout(ctx, w.policy.RequestTimeout)
-		value, err := w.provider.EnsureVPC(callCtx, target)
+		var value ProviderObservation
+		var err error
+		if target.Kind == "subnet" {
+			value, err = w.provider.EnsureSubnet(callCtx, target)
+		} else {
+			value, err = w.provider.EnsureVPC(callCtx, target)
+		}
+
 		cancel()
 		if err != nil {
 			progress.Observed = false
@@ -238,7 +259,7 @@ func (w *Worker) ensure(ctx context.Context, work Work, target ProviderTarget, o
 		progress.NextDelay = w.policy.ObserveEvery
 	} else {
 		progress.Reason = ProviderNotReady
-		if work.VPC.State == Available || work.VPC.State == Degraded {
+		if work.Resource.State == Available || work.Resource.State == Degraded {
 			progress.State = Degraded
 		}
 	}
@@ -246,6 +267,10 @@ func (w *Worker) ensure(ctx context.Context, work Work, target ProviderTarget, o
 }
 
 func (w *Worker) delete(ctx context.Context, work Work, target ProviderTarget, observed ProviderObservation, progress Progress) (Progress, error) {
+	if observed.HasDependencies {
+		progress.Reason, progress.OperationState = ResourceInUse, Blocked
+		return progress, nil
+	}
 	if !observed.Exists {
 		if work.PendingAction == "create" {
 			progress.Reason, progress.OperationState = ProviderUnknown, Blocked
@@ -253,10 +278,6 @@ func (w *Worker) delete(ctx context.Context, work Work, target ProviderTarget, o
 		}
 		progress.State, progress.OperationState, progress.Reason = Deleted, Succeeded, ""
 		progress.ClearPending = true
-		return progress, nil
-	}
-	if observed.HasDependencies {
-		progress.Reason, progress.OperationState = ResourceInUse, Blocked
 		return progress, nil
 	}
 	target.KnownIdentity = observed.Identity

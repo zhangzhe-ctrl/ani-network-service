@@ -20,6 +20,8 @@ message Network {
   // Base64 encoded secret, at least 32 bytes, shared by service replicas.
   string cursor_signing_key = 5;
   Worker worker = 6;
+  // Fixed instance owner RPC target. Empty keeps attachments conservatively occupied.
+  string instance_consumer_endpoint = 7;
 }
 
 message Worker {

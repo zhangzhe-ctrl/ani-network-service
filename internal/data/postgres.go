@@ -7,7 +7,9 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"io/fs"
 	"regexp"
+	"sort"
 	"strings"
 
 	"github.com/google/uuid"
@@ -77,25 +79,30 @@ func (p *Postgres) CheckReady(ctx context.Context) error {
 	if count != len(networkTables) || unsafeTables != 0 {
 		return fmt.Errorf("Network schema missing, RLS enabled, or runtime role owns a table")
 	}
-	var versionCount int
-	var checksum string
-	err = p.pool.QueryRow(ctx, "SELECT count(*), coalesce(max(checksum),'') FROM network_schema_version WHERE version=1").Scan(&versionCount, &checksum)
-	if err != nil {
-		return databaseFailure(err)
-	}
-	body, err := migrations.Files.ReadFile("0001_vpc.sql")
+	files, err := fs.Glob(migrations.Files, "*.sql")
 	if err != nil {
 		return err
 	}
-	digest := sha256.Sum256(body)
-	if versionCount != 1 || checksum != hex.EncodeToString(digest[:]) {
-		return fmt.Errorf("Network schema version/checksum does not match this executable")
+	sort.Strings(files)
+	for index, name := range files {
+		var checksum string
+		if err := p.pool.QueryRow(ctx, "SELECT checksum FROM network_schema_version WHERE version=$1", index+1).Scan(&checksum); err != nil {
+			return databaseFailure(err)
+		}
+		body, err := migrations.Files.ReadFile(name)
+		if err != nil {
+			return err
+		}
+		digest := sha256.Sum256(body)
+		if checksum != hex.EncodeToString(digest[:]) {
+			return fmt.Errorf("Network schema checksum differs for %s", name)
+		}
 	}
 	var versions int
 	if err := p.pool.QueryRow(ctx, "SELECT count(*) FROM network_schema_version").Scan(&versions); err != nil {
 		return databaseFailure(err)
 	}
-	if versions != 1 {
+	if versions != len(files) {
 		return fmt.Errorf("unsupported Network schema version")
 	}
 	return nil
@@ -120,7 +127,7 @@ func (p *Postgres) AcceptVPC(ctx context.Context, intent biz.VPCIntent, attribut
 		if err := json.Unmarshal(previous.Response, &value); err != nil {
 			return biz.VPC{}, databaseFailure(err)
 		}
-		if value.ID != previous.VpcID || value.TenantID != intent.TenantID || value.LastOperationID != previous.OperationID {
+		if value.ID != textValue(previous.VpcID) || value.TenantID != intent.TenantID || value.LastOperationID != previous.OperationID {
 			return biz.VPC{}, databaseFailure(fmt.Errorf("invalid acceptance snapshot"))
 		}
 		return value, nil
@@ -182,7 +189,9 @@ func (p *Postgres) AcceptVPC(ctx context.Context, intent biz.VPCIntent, attribut
 
 func (p *Postgres) GetVPC(ctx context.Context, tenant, id string) (biz.VPC, error) {
 	row, err := p.queries.GetVPC(ctx, sqlcgen.GetVPCParams{TenantID: tenant, VpcID: id})
-	return vpc(row), databaseFailure(err)
+	value := vpc(row.NetworkVpc)
+	value.SubnetCount = row.SubnetCount
+	return value, databaseFailure(err)
 }
 
 func (p *Postgres) GetOperation(ctx context.Context, tenant, id string) (biz.Operation, error) {
@@ -200,7 +209,9 @@ func (p *Postgres) ListVPCs(ctx context.Context, tenant string, filter biz.VPCFi
 	}
 	result := make([]biz.VPC, 0, len(rows))
 	for _, row := range rows {
-		result = append(result, vpc(row))
+		value := vpc(row.NetworkVpc)
+		value.SubnetCount = row.SubnetCount
+		result = append(result, value)
 	}
 	return result, nil
 }
@@ -214,8 +225,12 @@ func vpc(row sqlcgen.NetworkVpc) biz.VPC {
 }
 
 func operation(row sqlcgen.NetworkOperation) biz.Operation {
+	resourceID, kind := textValue(row.VpcID), "vpc"
+	if row.SubnetID != nil {
+		resourceID, kind = *row.SubnetID, "subnet"
+	}
 	return biz.Operation{
-		ID: row.OperationID, TenantID: row.TenantID, ResourceID: row.VpcID, Kind: row.Kind,
+		ID: row.OperationID, TenantID: row.TenantID, ResourceID: resourceID, ResourceType: kind, Kind: row.Kind,
 		State: biz.OperationState(row.State), Reason: biz.Reason(row.Reason), CreatedAt: row.CreatedAt,
 		UpdatedAt: row.UpdatedAt, CompletedAt: row.CompletedAt, NextAttemptAt: row.NextAttemptAt,
 	}
@@ -232,4 +247,11 @@ func databaseFailure(err error) error {
 		return err
 	}
 	return &biz.Error{Reason: biz.DependencyUnavailable, Message: "Network database unavailable", Cause: err}
+}
+
+func textValue(value *string) string {
+	if value == nil {
+		return ""
+	}
+	return *value
 }

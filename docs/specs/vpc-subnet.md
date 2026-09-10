@@ -80,7 +80,7 @@ CIDR、父 VPC 和网关首片不可修改；不提供 PATCH、在线换网或 V
 
 ## 4. 外部 REST 与内部 RPC
 
-REST 前缀继续为 `/api/v1`。下面路径保留现有产品形式；新增/变化行为必须在 ANI OpenAPI、Gateway 和 Console 接线包同步落实。
+REST 前缀继续为 `/api/v1`。下面路径保留现有产品形式；新增/变化行为在 NET-04 同步 ANI OpenAPI、Gateway 和接口测试；Console 后续独立接线，不在 NET-02–04 Goal。
 本文是设计来源；本轮不生成 Proto、OpenAPI 或客户端。实现时按仓库固定生成流程建立 `network.v1`，生成文件不手写。
 
 ### 4.1 命令与查询
@@ -270,7 +270,28 @@ Attachment 的重放语义与资源 Create 的固定 201 快照语义分别定�
 `pod_primary` 是版本化、受限的内部交付格式，只允许网络适配需要的目标 namespace、网络注解和 attachment 关联标签；不是任意 Pod spec patch。
 序列化和 Provider 字符串只存在于 Network 的基础设施/传输适配与实例出站适配，不进入产品 API 或领域规则。
 实例适配按闭合格式合并网络片段，不自行从产品 ID 拼 CR/NAD，不接受用户覆盖这些字段，也不允许该片段修改容器镜像、命令、权限或其他 owner 字段。
-具体字段白名单及生成 DTO 在 NET-03 针对固定 kc 契约落实并验证，不能以开放 map 替代检查。
+`PodPrimaryPlan` v1 是生成 DTO：`format_version=1,namespace,subnet_annotation,labels`。
+`subnet_annotation` 是已持久映射的 `namespace/provider-subnet-name`；其唯一输出键为
+`networking.kubercloud.com/subnet`。`labels` 封闭为 tenant/instance/attachment/submission/generation，
+输出键分别为 `network.ani.io/{tenant-id,instance-id,attachment-id,submission-id,generation}`。
+DTO 不含开放 map。实例 adapter 在 renderer 的最终 Deployment metadata 与 Pod template 写入关联，
+校验 namespace、主网及全部关联字段；用户提供 kc 网络选择、Multus 网络、上述关联字段或旧 OVN 网络注解时拒绝。
+实际 Pod 上由 kc controller 追加的 vnic/vnicip 选择必须沿 Pod UID 的 ownerReference 验证，不能当作用户输入接受。
+
+Prepare 的规范化意图额外固定 `submission_id,generation,cluster_id,namespace`（以及可选显式 VPC 引用）；
+`slot` 首片只允许 `primary`。实例 owner 先在 ANI 本地租户事务建立稳定 instance/operation/submission，
+完整保存可恢复的容器意图，再进行 Prepare。相同接受键永久重放这组身份；实例 operation 不再是临时占位 ID。
+网络方案、binding revision、部署发送标记、Deployment UID、Pod UID、pending Confirm/Release 与 finalization ID
+均属于实例 owner 持久记录。该记录与实例状态在 ANI 本地事务中提交；没有跨服务 FK 或跨库事务。
+
+`InstanceNetworkConsumer.GetSubmission` v1 是 Network 所需的消费者只读协议，由 ANI 实例 owner 实现。
+查询固定 tenant/instance/submission/generation/attachment；可携带预期 finalization ID。
+响应重复完整身份、cluster/namespace，返回 `open,closing,closed` 枚举、稳定 finalization ID、Pod UID 集合、
+controller UID 集合及 closed_at。它不是由 Release 请求携带的布尔声明。
+只有 owner 持久禁止未来发送、查明全部已发创建结果，并通过 UID 条件停止/删除 Deployment、ReplicaSet 和 Pod 后，
+才能在本地事务写入 closed。未知发送即使 GET 404 仍为 closing；永久保留可恢复的占用。
+Network 的后台查询也能发现 owner 已持久化但未成功送达的 Release，不依赖原请求进程。
+接口不可用、身份不符、多 Pod、错 UID 或派生关系不符均保留占用；IAM S2S 仍按 ADR-0003 延期。
 实例若尚无与目标网络相同的集群/namespace 放置能力，返回 `PLACEMENT_MISMATCH`，由实例适配完成该放置能力后接线，不自动改用默认网络。
 
 ### 7.2 释放与竞争
@@ -296,7 +317,12 @@ worker 从 Attachment 持久记录领取到期核验，以数据库时钟维护�
 reserved 持续查找匹配消费者，attached 持续核验实际占用，releasing 重试提交封闭及残留释放核验；released 的墓碑核验继续发现迟到对象，不重新激活接入。
 状态变化与历史、下一次核验时间同事务保存；两端重启或暂时失联时从持久记录恢复，不能依赖 Confirm/Release 重发、GET 副作用或内存定时器恢复工作。
 接入核验不使用 VPC/Subnet 的 mutation operation，也不与其共用一个数据库长事务；涉及删除准入的写事务仍遵守第 5.4 节的父资源加锁顺序。
-实例 owner 的封闭查询必须提供明确结果与稳定 finalization 身份；无法查询或结果未知时保留占用并记录原因，具体协议在 NET-03 与实例恢复接口一并落实。
+接入表通过 `(tenant_id,vpc_id,subnet_id)` 外键指向唯一父子关系，绑定通过
+`(tenant_id,subnet_id,binding_id)` 外键指向同一 Subnet；接入历史与派生关系快照以同租户 Attachment 外键闭合。
+Prepare 的 key/active-slot 数据库互斥位于 VPC、Subnet 行锁之后；Confirm、Release、claim、finish 均先锁 VPC，
+再锁 Subnet，最后锁 Attachment。调度扫描可跨租户选到期项，之后所有实体读写均以 tenant_id 定界。
+版本/lease owner/epoch/数据库时钟有效期共同栅栏回写。released 的迟到对象只登记协议异常并保护父清理，
+不重新启用接入方案。Provider 的已见 UID/关联持久保存，避免 VNic 消失后遗留 VNicIP 被误当作无关。
 
 ## 8. Provider 契约与接线
 
@@ -316,9 +342,9 @@ kc 是外部团队依赖。使用中若发现契约不满足，在执行记录�
 
 ### NET-01 的落地边界
 
-NET-01 的具体 SQL 只建立 VPC 及其 operation/reconciliation/idempotency/provider binding/history 六张租户表；目标以 `vpc_id` 闭合。Subnet/Attachment 表及跨资源扩展由后续迁移加入。当前 `subnet_count` 为 0，未实现 NET-02 的真实子网计数和父子并发删除准入。检测到非预期 kc 子资源时，已受理的删除保持 blocked，不执行盲目级联。
+NET-01 的具体 SQL 只建立 VPC 及其 operation/reconciliation/idempotency/provider binding/history 六张租户表；目标以 `vpc_id` 闭合。Subnet/Attachment 表及跨资源扩展由后续迁移加入。该历史切片的 `subnet_count` 为 0；NET-02 通过后续迁移、同快照子网计数和父子锁准入扩展它。检测到非预期 kc 子资源时，已受理的删除保持 blocked，不执行盲目级联。
 
-内部契约见 [network.v1](../../api/network/v1/network.proto)。RPC enum 和字段校验已落地；JSON null、未知/已移除字段和 HTTP 状态码仍由 NET-04 的 REST 适配验收。当前创建归因字段为未经验证的可选信息，不用于选择租户或鉴权。
+内部契约见 [network.v1](../../api/network/v1/network.proto)。RPC enum 和字段校验已落地；JSON null、未知/已移除字段和 HTTP 状态码由 NET-04 的 REST 适配落实与验收。当前创建归因字段为未经验证的可选信息，不用于选择租户或鉴权。
 
 实际 kc adapter 固定读取 `networking.kubercloud.com/v1`（基线见实施记录）：`spec.cidrBlock` 对应产品 CIDR，`ipVersion=IPv4`，`allowedNamespaces.from=Same`。以受理时的映射验证 namespace、name、管理者/租户/资源/binding 标签、UID 和不可变意图；不会 PATCH 认领外部对象或修改其路由。就绪要求正确对象、非删除中、正 generation、相等的 `status.observedGeneration`、Valid/Initialized/Ready 均 True 且已报告 router。固定 kc helper 未填 condition 的 observedGeneration，允许其为 0；非零且与对象版本矛盾时拒绝就绪。API 注释中的 Applied 在该版本条件常量中未实现，适配器不虚构这一信号。
 
@@ -330,13 +356,13 @@ DELETE 每次重新检查归属、status 中子资源和实际 Subnet 引用列�
 
 已记录 UID 的对象若意外消失，资源 degraded 并报告 `PROVIDER_OBJECT_MISSING`，不会自动创建另一 UID；明确删除可以完成缺失对象清理。墓碑继续观察原映射，清理迟到的同一归属/UID 对象并报告原因；同名换 UID 只报告冲突、不误删。历史 succeeded operation 在这些观察中保持原终态与完成时间。
 
-### 8.1 ANI / Console 最小适配
+### 8.1 ANI 接口适配与后续 Console
 
 - Gateway VPC/Subnet/operation 路由调用 Network gRPC client；移除这些路径的 LocalNetworkService、Network DB/Provider 装配；未知/失败不回退旧 owner。
 - 实例 resolver 的网络查询与 Prepare/Confirm/Release 都指向 Network；保留实例自己的生命周期与 Pod 权限。
 - renderer 消费上述受限接入方案，移除对应路径的 Kube-OVN 名称推导；未支持的 SG/LB/Route/Storage 关联明确拒绝，不写旧表补齐。
 - 当前旧 `NetworkService` 包含多个网络产品；适配只依赖本片的小接口，不迫使新服务实现整个旧接口。
-- Console 更新生成类型、创建参数、异步状态和轮询；不通过用户刷新触发执行。
+- Console 后续独立更新生成类型、创建参数、异步状态和轮询；不通过用户刷新触发执行。NET-04 本次只验收接口，前端保持 not_verified。
 - ANI OpenAPI 的 owner/operation/authz registry 标注在接线包与该仓库生成门禁一起更新；本轮只定义责任，不复制正在重构的 IAM security metadata。
 
 ## 9. 可观测性与验收
@@ -360,7 +386,7 @@ worker 异常退出必须体现为不健康，不能继续只有进程存活就 
 | V-10 | Prepare/删除互斥，提交后 Confirm 丢失可恢复；未封闭的 reserved 不被 TTL 释放；确认 Pod/网卡释放后才可删子网 |
 | V-11 | Provider 失联/明确拒绝/未知结果分别呈现；恢复后继续；对象归属不匹配不认领、不误删；删除不以业务软标记代替 |
 | V-12 | 新 kind 中普通容器同子网同节点及跨节点连通、同 VPC 跨子网连通、不同 VPC/跨租户隔离；重叠 CIDR 使用独立带身份响应的端点验证，避免 ping 自己造成假通过 |
-| V-13 | Gateway/Console 端到端创建、分页、状态及稳定幂等键；不打开页面时仍推进；无旧表或旧 Provider fallback |
+| V-13 | 本次只验收 Gateway 接口创建、分页、状态及稳定幂等键；无查询时仍推进；无旧表或旧 Provider fallback。Console 后续独立验收 |
 | V-14 | 后续 VM 单独验证实际 KubeVirt 网络路径与网关/地址行为，不从普通 Pod 通过推导 VM 通过 |
 | V-15 | 后续 IAM 验证调用身份、目标租户与委托语义；本期未经验证测试输入不可被作为此项 pass |
 

@@ -1,0 +1,112 @@
+#!/usr/bin/env python3
+"""Read-only NET-02-04 baseline comparison; does not replace ANI's failing gate.
+
+Usage: python3 -B scripts/check-net0204-compatibility ANI_WORKTREE OUTPUT_JSON
+Runs the unchanged ANI validator on each protected operation/schema and proves
+that the eight pre-existing failures and their complete inputs are unchanged.
+"""
+import hashlib
+import importlib.util
+import json
+from pathlib import Path
+import re
+import subprocess
+import sys
+
+import yaml
+
+sys.dont_write_bytecode = True
+root = Path(sys.argv[1]).resolve()
+output = Path(sys.argv[2])
+base = "50aa9fe2099b7ff4c276f883939a8d26c9d9eff8"
+spec_path = "repo/api/openapi/v1.yaml"
+baseline_path = "repo/api/core-v1-compatibility-baseline.yaml"
+validator_path = "repo/scripts/validate_core_api_compatibility.py"
+
+
+def original(path):
+    return subprocess.check_output(["git", "-C", str(root), "show", base + ":" + path])
+
+
+def digest(data):
+    return hashlib.sha256(data).hexdigest()
+
+
+assert (root / validator_path).read_bytes() == original(validator_path)
+module_spec = importlib.util.spec_from_file_location("compat", root / validator_path)
+validator = importlib.util.module_from_spec(module_spec)
+module_spec.loader.exec_module(validator)
+old_spec, old_baseline = [yaml.safe_load(original(p)) for p in (spec_path, baseline_path)]
+spec, baseline = [yaml.safe_load((root / p).read_bytes()) for p in (spec_path, baseline_path)]
+network_paths = {"/networks/vpcs", "/networks/vpcs/{vpc_id}",
+                 "/networks/subnets", "/networks/subnets/{subnet_id}"}
+network_schemas = {"NetworkVPC", "NetworkSubnet", "NetworkVPCListResponse",
+                   "NetworkSubnetListResponse", "CreateNetworkVPCRequest", "CreateNetworkSubnetRequest"}
+expected = {"GET /auth/api-keys", "POST /auth/api-keys", "DELETE /auth/api-keys/{key_id}",
+            "POST /auth/logout", "POST /auth/oidc/begin", "POST /auth/password/login",
+            "POST /auth/refresh", "GET /branding"}
+
+
+def changed(a, b):
+    return {k for k in a.keys() | b.keys() if a.get(k) != b.get(k)}
+
+
+assert changed(old_baseline, baseline) == {"paths", "schemas"}
+assert changed(old_baseline["paths"], baseline["paths"]) == network_paths
+assert changed(old_baseline["schemas"], baseline["schemas"]) == network_schemas
+assert changed(old_spec, spec) == {"paths", "components"}
+assert changed(old_spec["paths"], spec["paths"]) == network_paths | {"/networks/operations/{operation_id}"}
+assert changed(old_spec["components"], spec["components"]) == {"schemas"}
+assert changed(old_spec["components"]["schemas"], spec["components"]["schemas"]) == network_schemas | {"NetworkOperation", "NetworkLifecycleState"}
+
+
+def audit(document, protected):
+    failures, operations, schemas = {}, 0, 0
+    for path, item in protected["paths"].items():
+        for method, operation in item.items():
+            operations += 1
+            try:
+                validator.validate_operations(document, {"paths": {path: {method: operation}}})
+            except SystemExit as error:
+                failures[method.upper() + " " + path] = str(error)
+    for name, schema in protected["schemas"].items():
+        schemas += 1
+        # Preserve all paths so the existing required-request-field rule applies.
+        validator.validate_schemas(document, {"paths": protected["paths"], "schemas": {name: schema}})
+    return {"operation_count": operations, "schema_count": schemas, "failures": failures}
+
+
+before = audit(old_spec, old_baseline)
+after = audit(spec, baseline)
+assert set(before["failures"]) == expected
+assert after == before
+for route in sorted(expected):
+    method, path = route.split(" ", 1)
+    # Whole input equality also proves latent differences behind the first error
+    # are pre-existing; this is stronger than comparing only error messages.
+    assert old_spec["paths"][path][method.lower()] == spec["paths"][path][method.lower()]
+    assert old_baseline["paths"][path][method.lower()] == baseline["paths"][path][method.lower()]
+
+policy_path = "repo/services/ani-gateway/internal/authz/zz_generated_core_policies.go"
+pattern = r'^\t"([^"\n]+)": \{\n(.*?)^\t\},$'
+old_policies = dict(re.findall(pattern, original(policy_path).decode(), re.M | re.S))
+policies = dict(re.findall(pattern, (root / policy_path).read_text(), re.M | re.S))
+assert len(old_policies) == 302 and len(policies) == 303
+assert all(policies[k] == v for k, v in old_policies.items())
+assert set(policies) - set(old_policies) == {"GET /api/v1/networks/operations/{operation_id}"}
+result = {
+    "purpose": "NET-02-04 no-new-compatibility-regression evidence, not a replacement gate",
+    "fixed_base": base, "actual_full_gate": "fail", "no_new_regressions": "pass",
+    "proposal_status": "withdrawn; never applied; auth API and baseline edits not authorized",
+    "validator_sha256": digest(original(validator_path)),
+    "inputs": {p: {"base_sha256": digest(original(p)), "current_sha256": digest((root / p).read_bytes())}
+               for p in (spec_path, baseline_path, policy_path)},
+    "fixed_baseline": before, "current": after,
+    "all_eight_operation_and_baseline_inputs_unchanged": True,
+    "existing_policy_count_unchanged": len(old_policies),
+    "approved_baseline_paths": sorted(network_paths), "approved_baseline_schemas": sorted(network_schemas),
+}
+output.write_text(json.dumps(result, ensure_ascii=False, indent=2) + "\n")
+print(f"No new compatibility regressions: {after['operation_count']} protected operations, "
+      f"{after['schema_count']} schemas, exactly eight unchanged pre-existing operation failures; "
+      "all 302 existing policies unchanged. Actual full gate remains FAIL.")

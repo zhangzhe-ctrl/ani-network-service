@@ -1,6 +1,6 @@
 # Network 运行契约
 
-本文接替初始化时的通用运行骨架说明，描述 NET-01 的实际装配。业务规则以 [VPC/Subnet 规格](specs/vpc-subnet.md) 为准，实际检查结果以 [执行状态](execution/status.md) 为准。
+本文接替初始化时的通用运行骨架说明，描述 NET-01–03 的实际装配。业务规则以 [VPC/Subnet 规格](specs/vpc-subnet.md) 为准，实际检查结果以 [执行状态](execution/status.md) 为准。
 
 ## 启动和迁移
 
@@ -27,13 +27,14 @@
 | `ANI_NETWORK_CURSOR_SIGNING_KEY` | 32–128 字节 secret 的标准 Base64，必填；同一服务的副本共享，重启保持稳定 |
 | `ANI_NETWORK_KUBECONFIG` | 管理员提供的 kc 集群 kubeconfig 路径；空值使用 Kubernetes in-cluster 凭据 |
 | `ANI_NETWORK_CLUSTER_ID` | 固定的内部集群标识，默认 `primary`；须与已保存映射一致 |
+| `ANI_NETWORK_INSTANCE_CONSUMER_ENDPOINT` | ANI 实例 owner 的 InstanceNetworkConsumer gRPC 地址；未配置/不可用时保留 Attachment 占用，不猜测封闭 |
 | `ANI_NETWORK_NAMESPACE_PREFIX` | 默认 `tenant-`；DNS 前缀，长度受限，末尾为 `-` |
 
 ```bash
 ./bin/ani-network-service -conf ./configs
 ```
 
-不要把默认前缀/集群标识变更当作已有资源迁移。产品 ID 与 Provider 位置、对象名、UID 的映射在受理时持久化。kc 凭据需允许管理专用租户 namespace、GET/CREATE/DELETE VPC、跨 namespace LIST Subnet；NET-01 不删除 namespace，不删除或修改 Subnet，不移除 kc finalizer。namespace 首次由 Network 创建并验证管理者/租户标签，同租户多个 VPC 共享该 namespace。实际 Kubernetes RBAC、kc 部署和租户隔离的集群验收属于 NET-05。
+不要把默认前缀/集群标识变更当作已有资源迁移。产品 ID 与 Provider 位置、对象名、UID 的映射在受理时持久化。kc 凭据需允许管理专用租户 namespace、GET/CREATE/DELETE VPC 与 Subnet、跨 namespace LIST VPC/Subnet/Pod/VNic/VNicIP/EIP；Network 不写 Pod/VNic/VNicIP、不删除 namespace，不移除 kc finalizer。namespace 首次由 Network 创建并验证管理者/租户标签，同租户多个 VPC 共享该 namespace。实际 Kubernetes RBAC、kc 部署和租户隔离的集群验收属于 NET-05。
 
 ## 类型化配置
 
@@ -45,7 +46,7 @@ worker 默认：lease 20s、单次 Provider 调用 5s、观察 10s、观测有�
 
 ## 进程生命周期与健康
 
-Kratos 同时启动 gRPC、admin 和 worker。请求方退出不终止持久任务；worker 的内存状态仅用于运行，不是待执行队列。停止时取消外部调用、等待 worker 和监听器退出，未完成记录留在数据库，之后由新的租约持有者恢复。
+Kratos 同时启动 gRPC、admin 和 worker。请求方退出不终止持久任务；worker 的内存状态仅用于运行，不是待执行队列。Subnet 沿用 VPC 的持久 T1–T4 worker；Attachment 使用自己的 next_check/lease/epoch 和历史，由同一 WorkerServer 调度。Attachment worker 对四种状态持续核验，实例 owner 查询不可用和外部结果未知都保留可恢复占用。停止时取消外部调用、等待 worker 和监听器退出，未完成记录留在数据库，之后由新的租约持有者恢复。
 
 | 接口 | 实际含义 |
 |---|---|

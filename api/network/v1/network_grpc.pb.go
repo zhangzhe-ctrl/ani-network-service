@@ -19,11 +19,19 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	NetworkService_CreateVPC_FullMethodName    = "/network.v1.NetworkService/CreateVPC"
-	NetworkService_GetVPC_FullMethodName       = "/network.v1.NetworkService/GetVPC"
-	NetworkService_ListVPCs_FullMethodName     = "/network.v1.NetworkService/ListVPCs"
-	NetworkService_DeleteVPC_FullMethodName    = "/network.v1.NetworkService/DeleteVPC"
-	NetworkService_GetOperation_FullMethodName = "/network.v1.NetworkService/GetOperation"
+	NetworkService_CreateVPC_FullMethodName         = "/network.v1.NetworkService/CreateVPC"
+	NetworkService_GetVPC_FullMethodName            = "/network.v1.NetworkService/GetVPC"
+	NetworkService_ListVPCs_FullMethodName          = "/network.v1.NetworkService/ListVPCs"
+	NetworkService_DeleteVPC_FullMethodName         = "/network.v1.NetworkService/DeleteVPC"
+	NetworkService_CreateSubnet_FullMethodName      = "/network.v1.NetworkService/CreateSubnet"
+	NetworkService_GetSubnet_FullMethodName         = "/network.v1.NetworkService/GetSubnet"
+	NetworkService_ListSubnets_FullMethodName       = "/network.v1.NetworkService/ListSubnets"
+	NetworkService_DeleteSubnet_FullMethodName      = "/network.v1.NetworkService/DeleteSubnet"
+	NetworkService_GetOperation_FullMethodName      = "/network.v1.NetworkService/GetOperation"
+	NetworkService_PrepareAttachment_FullMethodName = "/network.v1.NetworkService/PrepareAttachment"
+	NetworkService_GetAttachment_FullMethodName     = "/network.v1.NetworkService/GetAttachment"
+	NetworkService_ConfirmAttachment_FullMethodName = "/network.v1.NetworkService/ConfirmAttachment"
+	NetworkService_ReleaseAttachment_FullMethodName = "/network.v1.NetworkService/ReleaseAttachment"
 )
 
 // NetworkServiceClient is the client API for NetworkService service.
@@ -37,7 +45,15 @@ type NetworkServiceClient interface {
 	GetVPC(ctx context.Context, in *GetVPCRequest, opts ...grpc.CallOption) (*GetVPCResponse, error)
 	ListVPCs(ctx context.Context, in *ListVPCsRequest, opts ...grpc.CallOption) (*ListVPCsResponse, error)
 	DeleteVPC(ctx context.Context, in *DeleteVPCRequest, opts ...grpc.CallOption) (*DeleteVPCResponse, error)
+	CreateSubnet(ctx context.Context, in *CreateSubnetRequest, opts ...grpc.CallOption) (*CreateSubnetResponse, error)
+	GetSubnet(ctx context.Context, in *GetSubnetRequest, opts ...grpc.CallOption) (*GetSubnetResponse, error)
+	ListSubnets(ctx context.Context, in *ListSubnetsRequest, opts ...grpc.CallOption) (*ListSubnetsResponse, error)
+	DeleteSubnet(ctx context.Context, in *DeleteSubnetRequest, opts ...grpc.CallOption) (*DeleteSubnetResponse, error)
 	GetOperation(ctx context.Context, in *GetOperationRequest, opts ...grpc.CallOption) (*GetOperationResponse, error)
+	PrepareAttachment(ctx context.Context, in *PrepareAttachmentRequest, opts ...grpc.CallOption) (*PrepareAttachmentResponse, error)
+	GetAttachment(ctx context.Context, in *GetAttachmentRequest, opts ...grpc.CallOption) (*GetAttachmentResponse, error)
+	ConfirmAttachment(ctx context.Context, in *ConfirmAttachmentRequest, opts ...grpc.CallOption) (*ConfirmAttachmentResponse, error)
+	ReleaseAttachment(ctx context.Context, in *ReleaseAttachmentRequest, opts ...grpc.CallOption) (*ReleaseAttachmentResponse, error)
 }
 
 type networkServiceClient struct {
@@ -88,10 +104,90 @@ func (c *networkServiceClient) DeleteVPC(ctx context.Context, in *DeleteVPCReque
 	return out, nil
 }
 
+func (c *networkServiceClient) CreateSubnet(ctx context.Context, in *CreateSubnetRequest, opts ...grpc.CallOption) (*CreateSubnetResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CreateSubnetResponse)
+	err := c.cc.Invoke(ctx, NetworkService_CreateSubnet_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *networkServiceClient) GetSubnet(ctx context.Context, in *GetSubnetRequest, opts ...grpc.CallOption) (*GetSubnetResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetSubnetResponse)
+	err := c.cc.Invoke(ctx, NetworkService_GetSubnet_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *networkServiceClient) ListSubnets(ctx context.Context, in *ListSubnetsRequest, opts ...grpc.CallOption) (*ListSubnetsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ListSubnetsResponse)
+	err := c.cc.Invoke(ctx, NetworkService_ListSubnets_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *networkServiceClient) DeleteSubnet(ctx context.Context, in *DeleteSubnetRequest, opts ...grpc.CallOption) (*DeleteSubnetResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(DeleteSubnetResponse)
+	err := c.cc.Invoke(ctx, NetworkService_DeleteSubnet_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *networkServiceClient) GetOperation(ctx context.Context, in *GetOperationRequest, opts ...grpc.CallOption) (*GetOperationResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetOperationResponse)
 	err := c.cc.Invoke(ctx, NetworkService_GetOperation_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *networkServiceClient) PrepareAttachment(ctx context.Context, in *PrepareAttachmentRequest, opts ...grpc.CallOption) (*PrepareAttachmentResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PrepareAttachmentResponse)
+	err := c.cc.Invoke(ctx, NetworkService_PrepareAttachment_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *networkServiceClient) GetAttachment(ctx context.Context, in *GetAttachmentRequest, opts ...grpc.CallOption) (*GetAttachmentResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetAttachmentResponse)
+	err := c.cc.Invoke(ctx, NetworkService_GetAttachment_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *networkServiceClient) ConfirmAttachment(ctx context.Context, in *ConfirmAttachmentRequest, opts ...grpc.CallOption) (*ConfirmAttachmentResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ConfirmAttachmentResponse)
+	err := c.cc.Invoke(ctx, NetworkService_ConfirmAttachment_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *networkServiceClient) ReleaseAttachment(ctx context.Context, in *ReleaseAttachmentRequest, opts ...grpc.CallOption) (*ReleaseAttachmentResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ReleaseAttachmentResponse)
+	err := c.cc.Invoke(ctx, NetworkService_ReleaseAttachment_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -109,7 +205,15 @@ type NetworkServiceServer interface {
 	GetVPC(context.Context, *GetVPCRequest) (*GetVPCResponse, error)
 	ListVPCs(context.Context, *ListVPCsRequest) (*ListVPCsResponse, error)
 	DeleteVPC(context.Context, *DeleteVPCRequest) (*DeleteVPCResponse, error)
+	CreateSubnet(context.Context, *CreateSubnetRequest) (*CreateSubnetResponse, error)
+	GetSubnet(context.Context, *GetSubnetRequest) (*GetSubnetResponse, error)
+	ListSubnets(context.Context, *ListSubnetsRequest) (*ListSubnetsResponse, error)
+	DeleteSubnet(context.Context, *DeleteSubnetRequest) (*DeleteSubnetResponse, error)
 	GetOperation(context.Context, *GetOperationRequest) (*GetOperationResponse, error)
+	PrepareAttachment(context.Context, *PrepareAttachmentRequest) (*PrepareAttachmentResponse, error)
+	GetAttachment(context.Context, *GetAttachmentRequest) (*GetAttachmentResponse, error)
+	ConfirmAttachment(context.Context, *ConfirmAttachmentRequest) (*ConfirmAttachmentResponse, error)
+	ReleaseAttachment(context.Context, *ReleaseAttachmentRequest) (*ReleaseAttachmentResponse, error)
 	mustEmbedUnimplementedNetworkServiceServer()
 }
 
@@ -132,8 +236,32 @@ func (UnimplementedNetworkServiceServer) ListVPCs(context.Context, *ListVPCsRequ
 func (UnimplementedNetworkServiceServer) DeleteVPC(context.Context, *DeleteVPCRequest) (*DeleteVPCResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteVPC not implemented")
 }
+func (UnimplementedNetworkServiceServer) CreateSubnet(context.Context, *CreateSubnetRequest) (*CreateSubnetResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateSubnet not implemented")
+}
+func (UnimplementedNetworkServiceServer) GetSubnet(context.Context, *GetSubnetRequest) (*GetSubnetResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetSubnet not implemented")
+}
+func (UnimplementedNetworkServiceServer) ListSubnets(context.Context, *ListSubnetsRequest) (*ListSubnetsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListSubnets not implemented")
+}
+func (UnimplementedNetworkServiceServer) DeleteSubnet(context.Context, *DeleteSubnetRequest) (*DeleteSubnetResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteSubnet not implemented")
+}
 func (UnimplementedNetworkServiceServer) GetOperation(context.Context, *GetOperationRequest) (*GetOperationResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetOperation not implemented")
+}
+func (UnimplementedNetworkServiceServer) PrepareAttachment(context.Context, *PrepareAttachmentRequest) (*PrepareAttachmentResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method PrepareAttachment not implemented")
+}
+func (UnimplementedNetworkServiceServer) GetAttachment(context.Context, *GetAttachmentRequest) (*GetAttachmentResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetAttachment not implemented")
+}
+func (UnimplementedNetworkServiceServer) ConfirmAttachment(context.Context, *ConfirmAttachmentRequest) (*ConfirmAttachmentResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ConfirmAttachment not implemented")
+}
+func (UnimplementedNetworkServiceServer) ReleaseAttachment(context.Context, *ReleaseAttachmentRequest) (*ReleaseAttachmentResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ReleaseAttachment not implemented")
 }
 func (UnimplementedNetworkServiceServer) mustEmbedUnimplementedNetworkServiceServer() {}
 func (UnimplementedNetworkServiceServer) testEmbeddedByValue()                        {}
@@ -228,6 +356,78 @@ func _NetworkService_DeleteVPC_Handler(srv interface{}, ctx context.Context, dec
 	return interceptor(ctx, in, info, handler)
 }
 
+func _NetworkService_CreateSubnet_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateSubnetRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NetworkServiceServer).CreateSubnet(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: NetworkService_CreateSubnet_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NetworkServiceServer).CreateSubnet(ctx, req.(*CreateSubnetRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _NetworkService_GetSubnet_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetSubnetRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NetworkServiceServer).GetSubnet(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: NetworkService_GetSubnet_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NetworkServiceServer).GetSubnet(ctx, req.(*GetSubnetRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _NetworkService_ListSubnets_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListSubnetsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NetworkServiceServer).ListSubnets(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: NetworkService_ListSubnets_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NetworkServiceServer).ListSubnets(ctx, req.(*ListSubnetsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _NetworkService_DeleteSubnet_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteSubnetRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NetworkServiceServer).DeleteSubnet(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: NetworkService_DeleteSubnet_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NetworkServiceServer).DeleteSubnet(ctx, req.(*DeleteSubnetRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _NetworkService_GetOperation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GetOperationRequest)
 	if err := dec(in); err != nil {
@@ -242,6 +442,78 @@ func _NetworkService_GetOperation_Handler(srv interface{}, ctx context.Context, 
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(NetworkServiceServer).GetOperation(ctx, req.(*GetOperationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _NetworkService_PrepareAttachment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PrepareAttachmentRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NetworkServiceServer).PrepareAttachment(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: NetworkService_PrepareAttachment_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NetworkServiceServer).PrepareAttachment(ctx, req.(*PrepareAttachmentRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _NetworkService_GetAttachment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetAttachmentRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NetworkServiceServer).GetAttachment(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: NetworkService_GetAttachment_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NetworkServiceServer).GetAttachment(ctx, req.(*GetAttachmentRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _NetworkService_ConfirmAttachment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ConfirmAttachmentRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NetworkServiceServer).ConfirmAttachment(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: NetworkService_ConfirmAttachment_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NetworkServiceServer).ConfirmAttachment(ctx, req.(*ConfirmAttachmentRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _NetworkService_ReleaseAttachment_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ReleaseAttachmentRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(NetworkServiceServer).ReleaseAttachment(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: NetworkService_ReleaseAttachment_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(NetworkServiceServer).ReleaseAttachment(ctx, req.(*ReleaseAttachmentRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -270,8 +542,149 @@ var NetworkService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _NetworkService_DeleteVPC_Handler,
 		},
 		{
+			MethodName: "CreateSubnet",
+			Handler:    _NetworkService_CreateSubnet_Handler,
+		},
+		{
+			MethodName: "GetSubnet",
+			Handler:    _NetworkService_GetSubnet_Handler,
+		},
+		{
+			MethodName: "ListSubnets",
+			Handler:    _NetworkService_ListSubnets_Handler,
+		},
+		{
+			MethodName: "DeleteSubnet",
+			Handler:    _NetworkService_DeleteSubnet_Handler,
+		},
+		{
 			MethodName: "GetOperation",
 			Handler:    _NetworkService_GetOperation_Handler,
+		},
+		{
+			MethodName: "PrepareAttachment",
+			Handler:    _NetworkService_PrepareAttachment_Handler,
+		},
+		{
+			MethodName: "GetAttachment",
+			Handler:    _NetworkService_GetAttachment_Handler,
+		},
+		{
+			MethodName: "ConfirmAttachment",
+			Handler:    _NetworkService_ConfirmAttachment_Handler,
+		},
+		{
+			MethodName: "ReleaseAttachment",
+			Handler:    _NetworkService_ReleaseAttachment_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "network/v1/network.proto",
+}
+
+const (
+	InstanceNetworkConsumerService_GetSubmission_FullMethodName = "/network.v1.InstanceNetworkConsumerService/GetSubmission"
+)
+
+// InstanceNetworkConsumerServiceClient is the client API for InstanceNetworkConsumerService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+//
+// Required outbound consumer contract. ANI instance owner implements this
+// read-only service from this pinned descriptor; Network never writes workloads.
+type InstanceNetworkConsumerServiceClient interface {
+	GetSubmission(ctx context.Context, in *GetSubmissionRequest, opts ...grpc.CallOption) (*GetSubmissionResponse, error)
+}
+
+type instanceNetworkConsumerServiceClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewInstanceNetworkConsumerServiceClient(cc grpc.ClientConnInterface) InstanceNetworkConsumerServiceClient {
+	return &instanceNetworkConsumerServiceClient{cc}
+}
+
+func (c *instanceNetworkConsumerServiceClient) GetSubmission(ctx context.Context, in *GetSubmissionRequest, opts ...grpc.CallOption) (*GetSubmissionResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetSubmissionResponse)
+	err := c.cc.Invoke(ctx, InstanceNetworkConsumerService_GetSubmission_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// InstanceNetworkConsumerServiceServer is the server API for InstanceNetworkConsumerService service.
+// All implementations must embed UnimplementedInstanceNetworkConsumerServiceServer
+// for forward compatibility.
+//
+// Required outbound consumer contract. ANI instance owner implements this
+// read-only service from this pinned descriptor; Network never writes workloads.
+type InstanceNetworkConsumerServiceServer interface {
+	GetSubmission(context.Context, *GetSubmissionRequest) (*GetSubmissionResponse, error)
+	mustEmbedUnimplementedInstanceNetworkConsumerServiceServer()
+}
+
+// UnimplementedInstanceNetworkConsumerServiceServer must be embedded to have
+// forward compatible implementations.
+//
+// NOTE: this should be embedded by value instead of pointer to avoid a nil
+// pointer dereference when methods are called.
+type UnimplementedInstanceNetworkConsumerServiceServer struct{}
+
+func (UnimplementedInstanceNetworkConsumerServiceServer) GetSubmission(context.Context, *GetSubmissionRequest) (*GetSubmissionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetSubmission not implemented")
+}
+func (UnimplementedInstanceNetworkConsumerServiceServer) mustEmbedUnimplementedInstanceNetworkConsumerServiceServer() {
+}
+func (UnimplementedInstanceNetworkConsumerServiceServer) testEmbeddedByValue() {}
+
+// UnsafeInstanceNetworkConsumerServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to InstanceNetworkConsumerServiceServer will
+// result in compilation errors.
+type UnsafeInstanceNetworkConsumerServiceServer interface {
+	mustEmbedUnimplementedInstanceNetworkConsumerServiceServer()
+}
+
+func RegisterInstanceNetworkConsumerServiceServer(s grpc.ServiceRegistrar, srv InstanceNetworkConsumerServiceServer) {
+	// If the following call pancis, it indicates UnimplementedInstanceNetworkConsumerServiceServer was
+	// embedded by pointer and is nil.  This will cause panics if an
+	// unimplemented method is ever invoked, so we test this at initialization
+	// time to prevent it from happening at runtime later due to I/O.
+	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
+		t.testEmbeddedByValue()
+	}
+	s.RegisterService(&InstanceNetworkConsumerService_ServiceDesc, srv)
+}
+
+func _InstanceNetworkConsumerService_GetSubmission_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetSubmissionRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(InstanceNetworkConsumerServiceServer).GetSubmission(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: InstanceNetworkConsumerService_GetSubmission_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(InstanceNetworkConsumerServiceServer).GetSubmission(ctx, req.(*GetSubmissionRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// InstanceNetworkConsumerService_ServiceDesc is the grpc.ServiceDesc for InstanceNetworkConsumerService service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var InstanceNetworkConsumerService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "network.v1.InstanceNetworkConsumerService",
+	HandlerType: (*InstanceNetworkConsumerServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "GetSubmission",
+			Handler:    _InstanceNetworkConsumerService_GetSubmission_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

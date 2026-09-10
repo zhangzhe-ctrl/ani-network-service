@@ -1,0 +1,520 @@
+{
+  "baseline_commit": "50aa9fe2099b7ff4c276f883939a8d26c9d9eff8",
+  "operation_changes": [
+    {
+      "path": "/auth/api-keys",
+      "method": "get",
+      "first_error": "core api compatibility invalid: GET /auth/api-keys changed operationId",
+      "fields": {
+        "operation_id": {
+          "old": "listAPIKeys",
+          "proposed": "listIAMAPIKeys"
+        },
+        "parameters": {
+          "old": [
+            {
+              "in": "query",
+              "name": "user_id",
+              "required": false,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "proposed": [
+            {
+              "in": "query",
+              "name": "service_principal_id",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid"
+              }
+            },
+            {
+              "in": null,
+              "name": null,
+              "required": false,
+              "schema": {}
+            },
+            {
+              "in": null,
+              "name": null,
+              "required": false,
+              "schema": {}
+            }
+          ]
+        },
+        "responses": {
+          "old": {
+            "200": {
+              "schema": "ListAPIKeysResponse"
+            },
+            "401": {
+              "schema": "{}"
+            },
+            "403": {
+              "schema": "{}"
+            }
+          },
+          "proposed": {
+            "200": {
+              "schema": "IAMAPIKeyListResponse"
+            },
+            "401": {
+              "schema": "{}"
+            },
+            "403": {
+              "schema": "{}"
+            },
+            "503": {
+              "schema": "{}"
+            },
+            "504": {
+              "schema": "{}"
+            }
+          }
+        }
+      }
+    },
+    {
+      "path": "/auth/api-keys",
+      "method": "post",
+      "first_error": "core api compatibility invalid: POST /auth/api-keys changed operationId",
+      "fields": {
+        "operation_id": {
+          "old": "createAPIKey",
+          "proposed": "createIAMAPIKey"
+        },
+        "parameters": {
+          "old": [],
+          "proposed": [
+            {
+              "in": null,
+              "name": null,
+              "required": false,
+              "schema": {}
+            }
+          ]
+        },
+        "request_schema": {
+          "old": "CreateAPIKeyRequest",
+          "proposed": "IAMAPIKeyCreateRequest"
+        },
+        "responses": {
+          "old": {
+            "201": {
+              "schema": "CreateAPIKeyResponse"
+            },
+            "400": {
+              "schema": "{}"
+            },
+            "401": {
+              "schema": "{}"
+            },
+            "403": {
+              "schema": "{}"
+            }
+          },
+          "proposed": {
+            "201": {
+              "schema": "IAMAPIKeyCreateResponse"
+            },
+            "400": {
+              "schema": "{}"
+            },
+            "401": {
+              "schema": "{}"
+            },
+            "403": {
+              "schema": "{}"
+            },
+            "409": {
+              "schema": "{}"
+            },
+            "429": {
+              "schema": "{}"
+            },
+            "503": {
+              "schema": "{}"
+            },
+            "504": {
+              "schema": "{}"
+            }
+          }
+        }
+      }
+    },
+    {
+      "path": "/auth/api-keys/{key_id}",
+      "method": "delete",
+      "first_error": "core api compatibility invalid: DELETE /auth/api-keys/{key_id} changed operationId",
+      "fields": {
+        "operation_id": {
+          "old": "revokeAPIKey",
+          "proposed": "revokeIAMAPIKey"
+        },
+        "parameters": {
+          "old": [
+            {
+              "in": "path",
+              "name": "key_id",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "proposed": [
+            {
+              "in": "path",
+              "name": "key_id",
+              "required": true,
+              "schema": {
+                "type": "string",
+                "format": "uuid"
+              }
+            },
+            {
+              "in": null,
+              "name": null,
+              "required": false,
+              "schema": {}
+            }
+          ]
+        },
+        "responses": {
+          "old": {
+            "200": {
+              "schema": "type: object"
+            },
+            "400": {
+              "schema": "{}"
+            },
+            "401": {
+              "schema": "{}"
+            },
+            "403": {
+              "schema": "{}"
+            },
+            "404": {
+              "schema": "{}"
+            }
+          },
+          "proposed": {
+            "204": {
+              "schema": "{}"
+            },
+            "400": {
+              "schema": "{}"
+            },
+            "401": {
+              "schema": "{}"
+            },
+            "403": {
+              "schema": "{}"
+            },
+            "404": {
+              "schema": "{}"
+            },
+            "409": {
+              "schema": "{}"
+            },
+            "429": {
+              "schema": "{}"
+            },
+            "503": {
+              "schema": "{}"
+            },
+            "504": {
+              "schema": "{}"
+            }
+          }
+        }
+      }
+    },
+    {
+      "path": "/auth/logout",
+      "method": "post",
+      "first_error": "core api compatibility invalid: POST /auth/logout changed operationId",
+      "fields": {
+        "operation_id": {
+          "old": "logout",
+          "proposed": "logoutSession"
+        },
+        "parameters": {
+          "old": [],
+          "proposed": [
+            {
+              "in": null,
+              "name": null,
+              "required": false,
+              "schema": {}
+            },
+            {
+              "in": "header",
+              "name": "X-CSRF-Token",
+              "required": false,
+              "schema": {
+                "type": "string",
+                "minLength": 16,
+                "maxLength": 512
+              }
+            }
+          ]
+        },
+        "request_body_required": {
+          "old": true,
+          "proposed": false
+        },
+        "request_schema": {
+          "old": "LogoutRequest",
+          "proposed": "{}"
+        },
+        "responses": {
+          "old": {
+            "200": {
+              "schema": "RevokeStatusResponse"
+            },
+            "400": {
+              "schema": "{}"
+            },
+            "401": {
+              "schema": "{}"
+            },
+            "403": {
+              "schema": "{}"
+            }
+          },
+          "proposed": {
+            "204": {
+              "schema": "{}"
+            },
+            "400": {
+              "schema": "{}"
+            },
+            "401": {
+              "schema": "{}"
+            },
+            "409": {
+              "schema": "{}"
+            },
+            "429": {
+              "schema": "{}"
+            },
+            "503": {
+              "schema": "{}"
+            },
+            "504": {
+              "schema": "{}"
+            }
+          }
+        }
+      }
+    },
+    {
+      "path": "/auth/oidc/begin",
+      "method": "post",
+      "first_error": "core api compatibility invalid: POST /auth/oidc/begin changed request schema",
+      "fields": {
+        "parameters": {
+          "old": [],
+          "proposed": [
+            {
+              "in": null,
+              "name": null,
+              "required": false,
+              "schema": {}
+            }
+          ]
+        },
+        "request_schema": {
+          "old": "BeginOIDCLoginRequest",
+          "proposed": "IAMOIDCBeginRequest"
+        },
+        "responses": {
+          "old": {
+            "200": {
+              "schema": "BeginOIDCLoginResponse"
+            },
+            "400": {
+              "schema": "{}"
+            }
+          },
+          "proposed": {
+            "200": {
+              "schema": "IAMOIDCBeginResponse"
+            },
+            "400": {
+              "schema": "{}"
+            },
+            "409": {
+              "schema": "{}"
+            },
+            "429": {
+              "schema": "{}"
+            },
+            "503": {
+              "schema": "{}"
+            },
+            "504": {
+              "schema": "{}"
+            }
+          }
+        }
+      }
+    },
+    {
+      "path": "/auth/password/login",
+      "method": "post",
+      "first_error": "core api compatibility invalid: POST /auth/password/login changed request schema",
+      "fields": {
+        "parameters": {
+          "old": [],
+          "proposed": [
+            {
+              "in": null,
+              "name": null,
+              "required": false,
+              "schema": {}
+            }
+          ]
+        },
+        "request_schema": {
+          "old": "PasswordLoginRequest",
+          "proposed": "IAMPasswordLoginRequest"
+        },
+        "responses": {
+          "old": {
+            "200": {
+              "schema": "TokenPairResponse"
+            },
+            "400": {
+              "schema": "{}"
+            },
+            "401": {
+              "schema": "ErrorResponse"
+            },
+            "404": {
+              "schema": "ErrorResponse"
+            },
+            "429": {
+              "schema": "{}"
+            }
+          },
+          "proposed": {
+            "200": {
+              "schema": "IAMAccessTokenResponse"
+            },
+            "400": {
+              "schema": "{}"
+            },
+            "401": {
+              "schema": "{}"
+            },
+            "409": {
+              "schema": "{}"
+            },
+            "429": {
+              "schema": "{}"
+            },
+            "503": {
+              "schema": "{}"
+            },
+            "504": {
+              "schema": "{}"
+            }
+          }
+        }
+      }
+    },
+    {
+      "path": "/auth/refresh",
+      "method": "post",
+      "first_error": "core api compatibility invalid: POST /auth/refresh changed operationId",
+      "fields": {
+        "operation_id": {
+          "old": "",
+          "proposed": "refreshSession"
+        },
+        "parameters": {
+          "old": [],
+          "proposed": [
+            {
+              "in": null,
+              "name": null,
+              "required": false,
+              "schema": {}
+            },
+            {
+              "in": null,
+              "name": null,
+              "required": false,
+              "schema": {}
+            }
+          ]
+        },
+        "request_body_required": {
+          "old": true,
+          "proposed": false
+        },
+        "request_schema": {
+          "old": "RefreshAccessTokenRequest",
+          "proposed": "{}"
+        },
+        "responses": {
+          "old": {
+            "200": {
+              "schema": "RefreshAccessTokenResponse"
+            },
+            "400": {
+              "schema": "{}"
+            },
+            "401": {
+              "schema": "{}"
+            }
+          },
+          "proposed": {
+            "200": {
+              "schema": "IAMAccessTokenResponse"
+            },
+            "400": {
+              "schema": "{}"
+            },
+            "401": {
+              "schema": "{}"
+            },
+            "409": {
+              "schema": "{}"
+            },
+            "429": {
+              "schema": "{}"
+            },
+            "503": {
+              "schema": "{}"
+            },
+            "504": {
+              "schema": "{}"
+            }
+          }
+        }
+      }
+    },
+    {
+      "path": "/branding",
+      "method": "get",
+      "first_error": "core api compatibility invalid: GET /branding changed operationId",
+      "fields": {
+        "operation_id": {
+          "old": "",
+          "proposed": "getBranding"
+        }
+      }
+    }
+  ],
+  "proposal_only": true,
+  "proposal_validator_errors": [],
+  "actual_gate": "fail",
+  "proposal_status": "withdrawn; never applied; retained as historical proposal only",
+  "user_decision": "2026-09-09: retain eight pre-existing failures separately from Network completion; do not change authentication APIs or their compatibility expectations"
+}

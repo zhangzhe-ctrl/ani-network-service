@@ -1,0 +1,506 @@
+[
+  {
+    "id": "20260909T144848Z-a71c4c72",
+    "local": "/home/chabking/workspace/ani-network-service/.work/net02-04-runs/20260909T144848Z-a71c4c72",
+    "remote": "/home/ubuntu/workspace/ani-network-service-runs/net02-04-20260909T144848Z-a71c4c72",
+    "host": "ubuntu / i-8yg2l7u8",
+    "command": [
+      "bash",
+      "-c",
+      "make verify && make integration && make race && make tenant-mutations && make audit"
+    ],
+    "ssh_exit": "2",
+    "snapshot_sha256": "64659586fb50f65e20e9e21effd1197d21d37fa35baefcf06575a78fd19bc567",
+    "log_sha256": "abdcd6b92ac564f31c226f90dd7ccdf2ac3b941096bbee16f21c4f58d025d703",
+    "sources": {
+      "network": {
+        "base": null,
+        "head": "40ab0cf64246da13b43296dff8175f16738c12c4",
+        "tree": null,
+        "archive_sha256": "0844559729300d1868cfd0c3b272c59433da01a91a04824347f703be0691e6d5",
+        "file_count": 134
+      }
+    }
+  },
+  {
+    "id": "20260909T145500Z-fd3459a0",
+    "local": "/home/chabking/workspace/ani-network-service/.work/net02-04-runs/20260909T145500Z-fd3459a0",
+    "remote": "/home/ubuntu/workspace/ani-network-service-runs/net02-04-20260909T145500Z-fd3459a0",
+    "host": "ubuntu / i-8yg2l7u8",
+    "command": [
+      "bash",
+      "-c",
+      "make tenant-mutations && make audit"
+    ],
+    "ssh_exit": "0",
+    "snapshot_sha256": "4f09beab19e59391b35b62e4566d7edb816bbb5e40febd15e3be115f8fd394e0",
+    "log_sha256": "2b82a17f6c49ce91a0863d13e36328c2127f4cba6f891c2edea4dc89c2af50d2",
+    "sources": {
+      "network": {
+        "base": null,
+        "head": "40ab0cf64246da13b43296dff8175f16738c12c4",
+        "tree": null,
+        "archive_sha256": "44ca009628757f601e87bea1fd87df5b3072f022581103e64c6b04f829f59f55",
+        "file_count": 148
+      }
+    }
+  },
+  {
+    "id": "20260909T150842Z-a3fa05a2",
+    "local": "/home/chabking/workspace/ani-network-service/.work/net02-04-pairs/20260909T150842Z-a3fa05a2",
+    "remote": "/home/ubuntu/workspace/ani-network-service-runs/net02-04-pair-20260909T150842Z-a3fa05a2",
+    "host": "ubuntu / i-8yg2l7u8",
+    "command": [
+      "bash",
+      "-c",
+      "cd \"$ANI_SOURCE/repo\" && make gen-core-sdk gen-api-docs gen-gateway-authz && python services/ani-gateway/tools/dp2_operation_registry.py && make validate-gateway-authz validate-network-alpha && \"$NETWORK_SOURCE/scripts/integration-pair\" go test -race -count=1 ./pkg/adapters/runtime -run \"TestNetworkSubmission|TestNetworkPod\" -v"
+    ],
+    "ssh_exit": "0",
+    "snapshot_sha256": "d1fa8a0a567ad590faeee67ddae353f1fbb4272ba380309816b0a9d6e9f1d52b",
+    "log_sha256": "1aa781220b9ea440408d9592b11378541d9beaaf3e6740fbbe8cef6ee8e60bd0",
+    "sources": {
+      "network": {
+        "base": "40ab0cf64246da13b43296dff8175f16738c12c4",
+        "head": null,
+        "tree": "ecaad9721934f4e5aeef5a93fd71b2cc32bb0cea",
+        "archive_sha256": "514a6cdb2de2ae0371749a69c31eaf431fd13bf399ec828f5394fec3170b1335",
+        "file_count": 135
+      },
+      "ani": {
+        "base": "50aa9fe2099b7ff4c276f883939a8d26c9d9eff8",
+        "head": null,
+        "tree": "e13564198e9a80082f8a46a5fc7c682b5eba239c",
+        "archive_sha256": "4649e04e294cb59c7fa09d3794903ab52511efc74d08a65e58bca162fd0690aa",
+        "file_count": 2892
+      }
+    }
+  },
+  {
+    "id": "20260909T151153Z-78ca3861",
+    "local": "/home/chabking/workspace/ani-network-service/.work/net02-04-pairs/20260909T151153Z-78ca3861",
+    "remote": "/home/ubuntu/workspace/ani-network-service-runs/net02-04-pair-20260909T151153Z-78ca3861",
+    "host": "ubuntu / i-8yg2l7u8",
+    "command": [
+      "bash",
+      "-c",
+      "gofmt -w \"$ANI_SOURCE/repo/pkg/adapters/runtime/network_wire_process_integration_test.go\" \"$ANI_SOURCE/repo/pkg/adapters/runtime/network_wire_provider_test.go\" && \"$NETWORK_SOURCE/scripts/integration-pair\" \"$NETWORK_SOURCE/scripts/test-net0204-wire\""
+    ],
+    "ssh_exit": "0",
+    "snapshot_sha256": "d3931fb920f3eaf067cb4592b7f0bbbe82ac77580bc372a9ef896c94f94243f8",
+    "log_sha256": "794fc3ce84f78c1187c750c69c5b2747b84ccd7bcd6588b002baead9877700e8",
+    "sources": {
+      "network": {
+        "base": "40ab0cf64246da13b43296dff8175f16738c12c4",
+        "head": null,
+        "tree": "ecaad9721934f4e5aeef5a93fd71b2cc32bb0cea",
+        "archive_sha256": "c4223b51277de78d74db2021216fa922af484d37a86d5bcd4d189dc0c88b093c",
+        "file_count": 135
+      },
+      "ani": {
+        "base": "50aa9fe2099b7ff4c276f883939a8d26c9d9eff8",
+        "head": null,
+        "tree": "e13564198e9a80082f8a46a5fc7c682b5eba239c",
+        "archive_sha256": "831a5c6c4e97de03c260be1ab34a6872e620490a5d7b1df1ced409b6ac8bdaa4",
+        "file_count": 2892
+      }
+    }
+  },
+  {
+    "id": "20260909T151501Z-c0973f35",
+    "local": "/home/chabking/workspace/ani-network-service/.work/net02-04-pairs/20260909T151501Z-c0973f35",
+    "remote": "/home/ubuntu/workspace/ani-network-service-runs/net02-04-pair-20260909T151501Z-c0973f35",
+    "host": "ubuntu / i-8yg2l7u8",
+    "command": [
+      "bash",
+      "-c",
+      "cd \"$ANI_SOURCE/repo\" && make GO_CACHE_ENV=\"GOCACHE=$GOCACHE GOMODCACHE=$GOMODCACHE\" -k test validate-openapi-spec validate-network-alpha validate-gateway-authz validate-core-api-compatibility validate-doc-entrypoints validate-network-integration"
+    ],
+    "ssh_exit": "2",
+    "snapshot_sha256": "36ec8256c22ec98ca89c0c9088ee5e1a819094b7d7e560ea0e3fc29eb810bf10",
+    "log_sha256": "d836fc1e552f50fe4e0edb1d88768cdb1c94080183660ce6a8c1d9c87d96b1ff",
+    "sources": {
+      "network": {
+        "base": "40ab0cf64246da13b43296dff8175f16738c12c4",
+        "head": null,
+        "tree": "ecaad9721934f4e5aeef5a93fd71b2cc32bb0cea",
+        "archive_sha256": "7723c4307c60e577544e8c8d5dc1dd8bcd6a1ab11700bc151c9067fcfc6140cc",
+        "file_count": 135
+      },
+      "ani": {
+        "base": "50aa9fe2099b7ff4c276f883939a8d26c9d9eff8",
+        "head": null,
+        "tree": "e13564198e9a80082f8a46a5fc7c682b5eba239c",
+        "archive_sha256": "83e4f2168188651571b7c557a4437bcf1b396ea4af633cc9e69d7e34df74c4f8",
+        "file_count": 2893
+      }
+    }
+  },
+  {
+    "id": "20260909T151625Z-0bcbd825",
+    "local": "/home/chabking/workspace/ani-network-service/.work/net02-04-pairs/20260909T151625Z-0bcbd825",
+    "remote": "/home/ubuntu/workspace/ani-network-service-runs/net02-04-pair-20260909T151625Z-0bcbd825",
+    "host": "ubuntu / i-8yg2l7u8",
+    "command": [
+      "bash",
+      "-c",
+      "cd \"$ANI_SOURCE/repo\" && /home/ubuntu/.local/share/ani-network-service/bin/atlas-v1.3.0 migrate hash --dir file://deploy/migrations && /home/ubuntu/.local/share/ani-network-service/bin/atlas-v1.3.0 migrate validate --dir file://deploy/migrations"
+    ],
+    "ssh_exit": "1",
+    "snapshot_sha256": "6f86ae19f576477e50a9ebcbadd07f3f474c094aaacbf44188a52c9fb79675c5",
+    "log_sha256": "661e919dde727a06f6e155f1f3bb71f05e9bdcf83617feda454e4324dd48a59a",
+    "sources": {
+      "network": {
+        "base": "40ab0cf64246da13b43296dff8175f16738c12c4",
+        "head": null,
+        "tree": "ecaad9721934f4e5aeef5a93fd71b2cc32bb0cea",
+        "archive_sha256": "606501d7cf724e1b5f12e14598de42550633b470447da528e5c01bac945dd7ae",
+        "file_count": 135
+      },
+      "ani": {
+        "base": "50aa9fe2099b7ff4c276f883939a8d26c9d9eff8",
+        "head": null,
+        "tree": "e13564198e9a80082f8a46a5fc7c682b5eba239c",
+        "archive_sha256": "3dadd725228a2eddab5f1a781b07f62345eb882f08b79962f1b713f9783a3747",
+        "file_count": 2893
+      }
+    }
+  },
+  {
+    "id": "20260909T151843Z-05f17540",
+    "local": "/home/chabking/workspace/ani-network-service/.work/net02-04-pairs/20260909T151843Z-05f17540",
+    "remote": "/home/ubuntu/workspace/ani-network-service-runs/net02-04-pair-20260909T151843Z-05f17540",
+    "host": "ubuntu / i-8yg2l7u8",
+    "command": [
+      "bash",
+      "-c",
+      "cd \"$ANI_SOURCE/repo\" && make GO_CACHE_ENV=\"GOCACHE=$GOCACHE GOMODCACHE=$GOMODCACHE\" -k test validate-network-alpha validate-instance-renderer validate-instance-orchestrator validate-instance-service validate-kubernetes-bootstrap-wiring validate-services"
+    ],
+    "ssh_exit": "0",
+    "snapshot_sha256": "c596f884e40bf3ad39e3ea8f6200e62c945aa1bd9d3676fcc577b4ff1cedd28b",
+    "log_sha256": "57052548cb87b217deb21d6aebc02f7b6aeb346c2e96e68ccd58e2ba8b0a1ffb",
+    "sources": {
+      "network": {
+        "base": "40ab0cf64246da13b43296dff8175f16738c12c4",
+        "head": null,
+        "tree": "ecaad9721934f4e5aeef5a93fd71b2cc32bb0cea",
+        "archive_sha256": "3770ee35c28677645dea5877a8370c48e8d401330d17aea9315bbfbf5733d134",
+        "file_count": 135
+      },
+      "ani": {
+        "base": "50aa9fe2099b7ff4c276f883939a8d26c9d9eff8",
+        "head": null,
+        "tree": "e13564198e9a80082f8a46a5fc7c682b5eba239c",
+        "archive_sha256": "3e895f4971bf944490cfab288c5b583cc2e4735eae24e93c95d41a65c6f4e691",
+        "file_count": 2893
+      }
+    }
+  },
+  {
+    "id": "20260909T131719Z-93ee8ccd",
+    "local": "/home/chabking/workspace/ani-network-service/.work/net02-04-runs/20260909T131719Z-93ee8ccd",
+    "remote": "/home/ubuntu/workspace/ani-network-service-runs/net02-04-20260909T131719Z-93ee8ccd",
+    "host": "ubuntu / i-8yg2l7u8",
+    "command": [
+      "bash",
+      "-c",
+      "make verify && make integration && make tenant-mutations"
+    ],
+    "ssh_exit": "0",
+    "snapshot_sha256": "7207f25531bff9c370937ffc1cb73a41d55162bf1884518e0cdbd51a416be549",
+    "log_sha256": "b33d8991374e3f979a47b4a24bdd1ef6aa2f0008e8242638a236f5f89ac6586e",
+    "sources": {
+      "network": {
+        "base": null,
+        "head": "40ab0cf64246da13b43296dff8175f16738c12c4",
+        "tree": null,
+        "archive_sha256": "9d882371a645ef99d61bf8a40dd3cae307cea07e620d5e272c86b408d0ad9f42",
+        "file_count": 117
+      }
+    }
+  },
+  {
+    "id": "20260909T131853Z-5d810036",
+    "local": "/home/chabking/workspace/ani-network-service/.work/net02-04-runs/20260909T131853Z-5d810036",
+    "remote": "/home/ubuntu/workspace/ani-network-service-runs/net02-04-20260909T131853Z-5d810036",
+    "host": "ubuntu / i-8yg2l7u8",
+    "command": [
+      "scripts/integration",
+      "-v",
+      "-run",
+      "TestSubnetProcesses|TestSubnetMigration",
+      "./internal/data"
+    ],
+    "ssh_exit": "0",
+    "snapshot_sha256": "8341b3acf1333af1b193391d062cdf2b719e4273642fd9c940d1300d1b5c7126",
+    "log_sha256": "1b18690892254bf5739fdc0648e5db6b593f843574149c21194e757013705f72",
+    "sources": {
+      "network": {
+        "base": null,
+        "head": "40ab0cf64246da13b43296dff8175f16738c12c4",
+        "tree": null,
+        "archive_sha256": "98fed2ac3b7779e6ef3dd94f5f865bf64f82e61447d3c9d456aafdda273fc935",
+        "file_count": 118
+      }
+    }
+  },
+  {
+    "id": "20260909T132128Z-e8bd5f81",
+    "local": "/home/chabking/workspace/ani-network-service/.work/net02-04-runs/20260909T132128Z-e8bd5f81",
+    "remote": "/home/ubuntu/workspace/ani-network-service-runs/net02-04-20260909T132128Z-e8bd5f81",
+    "host": "ubuntu / i-8yg2l7u8",
+    "command": [
+      "scripts/integration",
+      "-run",
+      "TestSubnetUnknown|TestSubnetStale|TestWorker",
+      "./internal/data",
+      "./internal/server"
+    ],
+    "ssh_exit": "0",
+    "snapshot_sha256": "f16a83b28ca720c0773706b4a83fd743ca98c7a451246eaa04f3016288bb46fe",
+    "log_sha256": "a2c022fd4762b6d3ef1eb588f117f38fc98865d76534d3418e6e351d5018e0be",
+    "sources": {
+      "network": {
+        "base": null,
+        "head": "40ab0cf64246da13b43296dff8175f16738c12c4",
+        "tree": null,
+        "archive_sha256": "6771ad9d214045d874c6c47f7a8fc2c843ae80dc0eb122309085b4cd43cf321f",
+        "file_count": 118
+      }
+    }
+  },
+  {
+    "id": "20260909T134107Z-efc55ffc",
+    "local": "/home/chabking/workspace/ani-network-service/.work/net02-04-runs/20260909T134107Z-efc55ffc",
+    "remote": "/home/ubuntu/workspace/ani-network-service-runs/net02-04-20260909T134107Z-efc55ffc",
+    "host": "ubuntu / i-8yg2l7u8",
+    "command": [
+      "scripts/integration",
+      "./internal/data",
+      "-run",
+      "TestAttachment|TestSubnetMigration",
+      "-v"
+    ],
+    "ssh_exit": "0",
+    "snapshot_sha256": "1a92e417c49f68179c4933a4e08641ee6a8292d1ab372da6e8b121bacddbd415",
+    "log_sha256": "92808221690cc53ee454674f68e413171cc1492e2a45d247c606ac4582c7e018",
+    "sources": {
+      "network": {
+        "base": null,
+        "head": "40ab0cf64246da13b43296dff8175f16738c12c4",
+        "tree": null,
+        "archive_sha256": "8f48c14a2f469affe02d6ebdc954b21b9530507fac2dffccd7ebacfbe5f48ecf",
+        "file_count": 129
+      }
+    }
+  },
+  {
+    "id": "20260909T140123Z-62002dfc",
+    "local": "/home/chabking/workspace/ani-network-service/.work/net02-04-pairs/20260909T140123Z-62002dfc",
+    "remote": "/home/ubuntu/workspace/ani-network-service-runs/net02-04-pair-20260909T140123Z-62002dfc",
+    "host": "ubuntu / i-8yg2l7u8",
+    "command": [
+      "bash",
+      "-c",
+      "cd \"$ANI_SOURCE/repo/pkg\" && go test ./adapters/runtime ./bootstrap -run \"^$\""
+    ],
+    "ssh_exit": "0",
+    "snapshot_sha256": "b88e9814acb2eea3fd86c3ed34c7be4139757592c5c13bd55842c2b6b4c2699d",
+    "log_sha256": "75a89a79b5c756522165b4258e45235a7d91ef3728e395f9359a59cbf1bd3f22",
+    "sources": {
+      "network": {
+        "base": "40ab0cf64246da13b43296dff8175f16738c12c4",
+        "head": null,
+        "tree": "ecaad9721934f4e5aeef5a93fd71b2cc32bb0cea",
+        "archive_sha256": "a5168064ceca74e1bc38ed27d26dc635e08c817a1b8b191a4c20c3c279d4c603",
+        "file_count": 132
+      },
+      "ani": {
+        "base": "50aa9fe2099b7ff4c276f883939a8d26c9d9eff8",
+        "head": null,
+        "tree": "e13564198e9a80082f8a46a5fc7c682b5eba239c",
+        "archive_sha256": "b77c0adc83d9a73912ffd740b1c111069c4f0d8f704084b34f0042cc90fa12ec",
+        "file_count": 2883
+      }
+    }
+  },
+  {
+    "id": "20260909T140338Z-7d632335",
+    "local": "/home/chabking/workspace/ani-network-service/.work/net02-04-pairs/20260909T140338Z-7d632335",
+    "remote": "/home/ubuntu/workspace/ani-network-service-runs/net02-04-pair-20260909T140338Z-7d632335",
+    "host": "ubuntu / i-8yg2l7u8",
+    "command": [
+      "bash",
+      "-c",
+      "cd \"$ANI_SOURCE/repo/pkg\" && go test ./adapters/runtime ./bootstrap"
+    ],
+    "ssh_exit": "1",
+    "snapshot_sha256": "f14649b4e7fd59410233e4c8e86b0f5f4f4b824ec806a369fe2762723fd44f7e",
+    "log_sha256": "78a761310a241a46f5a372ac23d66f37d29957b2e5e71f020461f19fbfff2e97",
+    "sources": {
+      "network": {
+        "base": "40ab0cf64246da13b43296dff8175f16738c12c4",
+        "head": null,
+        "tree": "ecaad9721934f4e5aeef5a93fd71b2cc32bb0cea",
+        "archive_sha256": "9b7d21aa9bff6bf2f4e89e95be9198f76f81d8cd87f504268a0f99e8d88ddc4f",
+        "file_count": 132
+      },
+      "ani": {
+        "base": "50aa9fe2099b7ff4c276f883939a8d26c9d9eff8",
+        "head": null,
+        "tree": "e13564198e9a80082f8a46a5fc7c682b5eba239c",
+        "archive_sha256": "a7136f119b963e3f40bd6b3cb1f322579e448180dc19e688ab348c3a8c857877",
+        "file_count": 2883
+      }
+    }
+  },
+  {
+    "id": "20260909T140901Z-79de0a7c",
+    "local": "/home/chabking/workspace/ani-network-service/.work/net02-04-pairs/20260909T140901Z-79de0a7c",
+    "remote": "/home/ubuntu/workspace/ani-network-service-runs/net02-04-pair-20260909T140901Z-79de0a7c",
+    "host": "ubuntu / i-8yg2l7u8",
+    "command": [
+      "bash",
+      "-c",
+      "\"$NETWORK_SOURCE/scripts/integration-pair\" bash -c 'cd \"$ANI_SOURCE/repo/pkg\" && go test -count=1 ./adapters/runtime -run \"TestNetworkSubmission|TestNetworkPodPlan\" -v'"
+    ],
+    "ssh_exit": "0",
+    "snapshot_sha256": "2d7baaf8b78a1b00f40ab0acedd9d31a0ebb1fab0ca3b683fcdade66e0d5b629",
+    "log_sha256": "21018821317a5ea108cecee4a2d2b86afcf75233befa6a4582ca37d1902137d5",
+    "sources": {
+      "network": {
+        "base": "40ab0cf64246da13b43296dff8175f16738c12c4",
+        "head": null,
+        "tree": "ecaad9721934f4e5aeef5a93fd71b2cc32bb0cea",
+        "archive_sha256": "82e692b2e149e4cb8975381a8c54d696c22b5e0f0a0c6cec8a8e84c9253482aa",
+        "file_count": 133
+      },
+      "ani": {
+        "base": "50aa9fe2099b7ff4c276f883939a8d26c9d9eff8",
+        "head": null,
+        "tree": "e13564198e9a80082f8a46a5fc7c682b5eba239c",
+        "archive_sha256": "cc2cee204a499ca96378841c10f1eaebb725fedc0b426d1e592e965623205eaf",
+        "file_count": 2885
+      }
+    }
+  },
+  {
+    "id": "20260909T144606Z-8661fa57",
+    "local": "/home/chabking/workspace/ani-network-service/.work/net02-04-runs/20260909T144606Z-8661fa57",
+    "remote": "/home/ubuntu/workspace/ani-network-service-runs/net02-04-20260909T144606Z-8661fa57",
+    "host": "ubuntu / i-8yg2l7u8",
+    "command": [
+      "make",
+      "generate"
+    ],
+    "ssh_exit": "0",
+    "snapshot_sha256": "29ad25b1b819f0abf1160d506fcb44a49e4302b55bcefcbe91aa2e83921f7d74",
+    "log_sha256": "79691ceb51f5b538979066d5c9c28f25309a7a06e1d897442987d0e27c6daa54",
+    "sources": {
+      "network": {
+        "base": null,
+        "head": "40ab0cf64246da13b43296dff8175f16738c12c4",
+        "tree": null,
+        "archive_sha256": "8ce9badeeff5054a71a5ed992561c46e9da884f7243ade34d13ba06daf130a2d",
+        "file_count": 134
+      }
+    }
+  },
+  {
+    "id": "20260909T144750Z-5fc1fee5",
+    "local": "/home/chabking/workspace/ani-network-service/.work/net02-04-pairs/20260909T144750Z-5fc1fee5",
+    "remote": "/home/ubuntu/workspace/ani-network-service-runs/net02-04-pair-20260909T144750Z-5fc1fee5",
+    "host": "ubuntu / i-8yg2l7u8",
+    "command": [
+      "bash",
+      "-c",
+      "\"$NETWORK_SOURCE/scripts/integration-pair\" \"$NETWORK_SOURCE/scripts/test-net0204-wire\""
+    ],
+    "ssh_exit": "0",
+    "snapshot_sha256": "405891a39fe12ae117dbf80d9cd785126dd8f8f7b4a51b8c1f81ba3926dfa487",
+    "log_sha256": "dc4ea0a1a5fb50cfd674eb1b5ab12e80d98b0bb9ae2badee17213b65068bcf02",
+    "sources": {
+      "network": {
+        "base": "40ab0cf64246da13b43296dff8175f16738c12c4",
+        "head": null,
+        "tree": "ecaad9721934f4e5aeef5a93fd71b2cc32bb0cea",
+        "archive_sha256": "7c167b066430638935ee640c3261c51c1669875ee1ddd72613ae4ca2b4d01d51",
+        "file_count": 134
+      },
+      "ani": {
+        "base": "50aa9fe2099b7ff4c276f883939a8d26c9d9eff8",
+        "head": null,
+        "tree": "e13564198e9a80082f8a46a5fc7c682b5eba239c",
+        "archive_sha256": "84a800ee8b5d066192a7dc25d2d189581c7311e46fdb690cf58b83059819f8c1",
+        "file_count": 2891
+      }
+    }
+  },
+  {
+    "id": "20260909T152648Z-0a98c6ae",
+    "local": "/home/chabking/workspace/ani-network-service/.work/net02-04-pairs/20260909T152648Z-0a98c6ae",
+    "remote": "/home/ubuntu/workspace/ani-network-service-runs/net02-04-pair-20260909T152648Z-0a98c6ae",
+    "host": "ubuntu / i-8yg2l7u8",
+    "command": [
+      "bash",
+      "-c",
+      "cd \"$NETWORK_SOURCE\" && make verify && make audit && cp docs/scaffold/bom.cdx.json ../first-bom.cdx.json && make sbom && cmp docs/scaffold/bom.cdx.json ../first-bom.cdx.json && cd \"$ANI_SOURCE/repo\" && make validate-doc-entrypoints validate-network-integration && python scripts/gen_sdk_alpha.py && python scripts/generate_api_docs.py && python scripts/generate_gateway_authz.py && python services/ani-gateway/tools/dp2_operation_registry.py && git diff --exit-code -- sdks/core sdks/services docs/api api/openapi/operation-registry.v1.json services/ani-gateway/internal/authz/zz_generated_core_policies.go services/ani-gateway/internal/authz/zz_generated_target_operation_registry.go"
+    ],
+    "ssh_exit": "1",
+    "snapshot_sha256": "900e18d4f94d1ac19b26d53c931fd0e7a05b1f619805076eeefd5cc7805672f1",
+    "log_sha256": "7278367d276dfa0667b7eb13a1cf7d9d46705b9c8ef7451b8427528e865c3e9d",
+    "sources": {
+      "network": {
+        "base": "40ab0cf64246da13b43296dff8175f16738c12c4",
+        "tree": "ecaad9721934f4e5aeef5a93fd71b2cc32bb0cea",
+        "archive_sha256": "3a95197cafc448ca93f4cc9d7c52baadea78da82321488d53eff21e715efac63",
+        "file_count": 145
+      },
+      "ani": {
+        "base": "50aa9fe2099b7ff4c276f883939a8d26c9d9eff8",
+        "tree": "e13564198e9a80082f8a46a5fc7c682b5eba239c",
+        "archive_sha256": "830a3f4a4b7f0837c1dfc576c0599adfb35e18ed5a338278382ac8f64791f131",
+        "file_count": 2893
+      }
+    },
+    "partial_results": "Network verify/audit/SBOM reproducibility pass; initial direct authz Python generation omitted required gofmt and caused drift failure; fixed Make entrypoints follow-up exit0",
+    "generation_followup": {
+      "generation-followup.sh": "5ecb5d67cd303a13c373339b1eae8b4c38d4f121b404765a9a7248ff421d72ba",
+      "generation-followup.log": "54d89677f65bfb03de04f2787565d2551aa1c95095e120c1124da836bb809578",
+      "generation-followup.exit": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    }
+  },
+  {
+    "id": "20260909T154851Z-e259ccad",
+    "local": "/home/chabking/workspace/ani-network-service/.work/net02-04-pairs/20260909T154851Z-e259ccad",
+    "remote": "/home/ubuntu/workspace/ani-network-service-runs/net02-04-pair-20260909T154851Z-e259ccad",
+    "host": "ubuntu / i-8yg2l7u8",
+    "command": [
+      "bash",
+      "-c",
+      "set -Eeuo pipefail; python3 -B \"$NETWORK_SOURCE/scripts/check-net0204-compatibility\" \"$ANI_SOURCE\" \"$PWD/compatibility-audit.json\"; cd \"$ANI_SOURCE/repo\"; set +e; make validate-core-api-compatibility; compatibility_exit=$?; set -e; printf \"%s\\n\" \"$compatibility_exit\" > ../../compatibility.exit; test \"$compatibility_exit\" -eq 2; cd ../..; \"$NETWORK_SOURCE/scripts/integration-pair\" \"$NETWORK_SOURCE/scripts/test-net0204-wire\""
+    ],
+    "ssh_exit": "0",
+    "snapshot_sha256": "626686e13328388d4275d6eb9948ffce693140298c0e80c2bb43903638fd3417",
+    "log_sha256": "7a1a899f1156a541114c1d905963f471cdc72162ad331f6acbf7d7d9125d958a",
+    "sources": {
+      "network": {
+        "base": "40ab0cf64246da13b43296dff8175f16738c12c4",
+        "tree": "ecaad9721934f4e5aeef5a93fd71b2cc32bb0cea",
+        "archive_sha256": "e0bac97fcde473d6d59fcd1aab221c40c91eccba2dd2f2aa7142a76389b16510",
+        "file_count": 142
+      },
+      "ani": {
+        "base": "50aa9fe2099b7ff4c276f883939a8d26c9d9eff8",
+        "tree": "e13564198e9a80082f8a46a5fc7c682b5eba239c",
+        "archive_sha256": "77c23008a4348a0e5dc3270434ae819c50c7ebc3c97abdb738698c31e8bd8c5c",
+        "file_count": 2893
+      }
+    },
+    "results": {
+      "original_full_compatibility": "fail (make exit2)",
+      "no_new_compatibility_regressions": "pass",
+      "ten_wire_scenarios_with_race": "pass (177.43s)",
+      "temporary_postgres_cleanup": "pass"
+    }
+  }
+]

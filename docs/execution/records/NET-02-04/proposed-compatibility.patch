@@ -1,0 +1,287 @@
+--- a/repo/api/core-v1-compatibility-baseline.yaml
++++ b/repo/api/core-v1-compatibility-baseline.yaml
+@@ -893,41 +893,67 @@
+           schema: '{}'
+   /auth/api-keys:
+     get:
+-      operation_id: listAPIKeys
++      operation_id: listIAMAPIKeys
+       rbac_scope: ''
+       parameters:
+       - in: query
+-        name: user_id
+-        required: false
+-        schema:
+-          type: string
++        name: service_principal_id
++        required: true
++        schema:
++          type: string
++          format: uuid
++      - in: null
++        name: null
++        required: false
++        schema: {}
++      - in: null
++        name: null
++        required: false
++        schema: {}
+       request_body_required: false
+       request_schema: '{}'
+       responses:
+         '200':
+-          schema: ListAPIKeysResponse
+-        '401':
+-          schema: '{}'
+-        '403':
++          schema: IAMAPIKeyListResponse
++        '401':
++          schema: '{}'
++        '403':
++          schema: '{}'
++        '503':
++          schema: '{}'
++        '504':
+           schema: '{}'
+     post:
+-      operation_id: createAPIKey
++      operation_id: createIAMAPIKey
+       rbac_scope: ''
+-      parameters: []
++      parameters:
++      - in: null
++        name: null
++        required: false
++        schema: {}
+       request_body_required: true
+-      request_schema: CreateAPIKeyRequest
++      request_schema: IAMAPIKeyCreateRequest
+       responses:
+         '201':
+-          schema: CreateAPIKeyResponse
++          schema: IAMAPIKeyCreateResponse
+         '400':
+           schema: '{}'
+         '401':
+           schema: '{}'
+         '403':
+           schema: '{}'
++        '409':
++          schema: '{}'
++        '429':
++          schema: '{}'
++        '503':
++          schema: '{}'
++        '504':
++          schema: '{}'
++
+   /auth/api-keys/{key_id}:
+     delete:
+-      operation_id: revokeAPIKey
++      operation_id: revokeIAMAPIKey
+       rbac_scope: ''
+       parameters:
+       - in: path
+@@ -935,11 +961,16 @@
+         required: true
+         schema:
+           type: string
++          format: uuid
++      - in: null
++        name: null
++        required: false
++        schema: {}
+       request_body_required: false
+       request_schema: '{}'
+       responses:
+-        '200':
+-          schema: 'type: object'
++        '204':
++          schema: '{}'
+         '400':
+           schema: '{}'
+         '401':
+@@ -948,52 +979,101 @@
+           schema: '{}'
+         '404':
+           schema: '{}'
++        '409':
++          schema: '{}'
++        '429':
++          schema: '{}'
++        '503':
++          schema: '{}'
++        '504':
++          schema: '{}'
++
+   /auth/logout:
+     post:
+-      operation_id: logout
++      operation_id: logoutSession
+       rbac_scope: ''
+-      parameters: []
+-      request_body_required: true
+-      request_schema: LogoutRequest
+-      responses:
+-        '200':
+-          schema: RevokeStatusResponse
++      parameters:
++      - in: null
++        name: null
++        required: false
++        schema: {}
++      - in: header
++        name: X-CSRF-Token
++        required: false
++        schema:
++          type: string
++          minLength: 16
++          maxLength: 512
++      request_body_required: false
++      request_schema: '{}'
++      responses:
++        '204':
++          schema: '{}'
+         '400':
+           schema: '{}'
+         '401':
+           schema: '{}'
+-        '403':
+-          schema: '{}'
++        '409':
++          schema: '{}'
++        '429':
++          schema: '{}'
++        '503':
++          schema: '{}'
++        '504':
++          schema: '{}'
++
+   /auth/oidc/begin:
+     post:
+       operation_id: beginOIDCLogin
+       rbac_scope: ''
+-      parameters: []
++      parameters:
++      - in: null
++        name: null
++        required: false
++        schema: {}
+       request_body_required: true
+-      request_schema: BeginOIDCLoginRequest
+-      responses:
+-        '200':
+-          schema: BeginOIDCLoginResponse
++      request_schema: IAMOIDCBeginRequest
++      responses:
++        '200':
++          schema: IAMOIDCBeginResponse
+         '400':
+           schema: '{}'
++        '409':
++          schema: '{}'
++        '429':
++          schema: '{}'
++        '503':
++          schema: '{}'
++        '504':
++          schema: '{}'
++
+   /auth/password/login:
+     post:
+       operation_id: passwordLogin
+       rbac_scope: ''
+-      parameters: []
++      parameters:
++      - in: null
++        name: null
++        required: false
++        schema: {}
+       request_body_required: true
+-      request_schema: PasswordLoginRequest
+-      responses:
+-        '200':
+-          schema: TokenPairResponse
++      request_schema: IAMPasswordLoginRequest
++      responses:
++        '200':
++          schema: IAMAccessTokenResponse
+         '400':
+           schema: '{}'
+         '401':
+-          schema: ErrorResponse
+-        '404':
+-          schema: ErrorResponse
++          schema: '{}'
++        '409':
++          schema: '{}'
+         '429':
+           schema: '{}'
++        '503':
++          schema: '{}'
++        '504':
++          schema: '{}'
++
+   /auth/platform/password/login:
+     post:
+       operation_id: platformPasswordLogin
+@@ -1012,18 +1092,35 @@
+           schema: '{}'
+   /auth/refresh:
+     post:
+-      operation_id: ''
++      operation_id: refreshSession
+       rbac_scope: ''
+-      parameters: []
+-      request_body_required: true
+-      request_schema: RefreshAccessTokenRequest
+-      responses:
+-        '200':
+-          schema: RefreshAccessTokenResponse
++      parameters:
++      - in: null
++        name: null
++        required: false
++        schema: {}
++      - in: null
++        name: null
++        required: false
++        schema: {}
++      request_body_required: false
++      request_schema: '{}'
++      responses:
++        '200':
++          schema: IAMAccessTokenResponse
+         '400':
+           schema: '{}'
+         '401':
+           schema: '{}'
++        '409':
++          schema: '{}'
++        '429':
++          schema: '{}'
++        '503':
++          schema: '{}'
++        '504':
++          schema: '{}'
++
+   /auth/token:
+     post:
+       operation_id: completeOIDCLogin
+@@ -1040,7 +1137,7 @@
+           schema: '{}'
+   /branding:
+     get:
+-      operation_id: ''
++      operation_id: getBranding
+       rbac_scope: ''
+       parameters: []
+       request_body_required: false
+@@ -1048,6 +1145,7 @@
+       responses:
+         '200':
+           schema: 'type: object'
++
+   /buckets:
+     get:
+       operation_id: listStorageBuckets

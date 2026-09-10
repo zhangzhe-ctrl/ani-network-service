@@ -8,22 +8,71 @@ import (
 	"time"
 )
 
+type NetworkAttachment struct {
+	TenantID          string
+	AttachmentID      string
+	VpcID             string
+	SubnetID          string
+	BindingID         string
+	InstanceID        string
+	Slot              string
+	RequestKey        string
+	SubmissionID      string
+	Generation        int64
+	Fingerprint       string
+	ClusterID         string
+	Namespace         string
+	BindingRevision   string
+	Plan              []byte
+	State             string
+	Reason            string
+	ProtocolBlocked   bool
+	Version           int64
+	PodName           string
+	PodUid            string
+	ConfirmUid        string
+	FinalizationID    *string
+	ProviderRelations []byte
+	CreatedAt         time.Time
+	UpdatedAt         time.Time
+	ObservedAt        *time.Time
+	ReleasedAt        *time.Time
+	NextCheckAt       time.Time
+	LeaseOwner        *string
+	LeaseUntil        *time.Time
+	Epoch             int64
+}
+
+type NetworkAttachmentHistory struct {
+	TenantID       string
+	HistoryID      string
+	AttachmentID   string
+	Version        int64
+	Event          string
+	State          string
+	Reason         string
+	PodUid         string
+	FinalizationID *string
+	CreatedAt      time.Time
+}
+
 type NetworkIdempotency struct {
 	TenantID           string
 	OperationKind      string
 	IdempotencyKey     string
 	Fingerprint        string
 	FingerprintVersion int32
-	VpcID              string
+	VpcID              *string
 	OperationID        string
 	Response           []byte
 	CreatedAt          time.Time
+	SubnetID           *string
 }
 
 type NetworkOperation struct {
 	TenantID       string
 	OperationID    string
-	VpcID          string
+	VpcID          *string
 	Kind           string
 	State          string
 	Reason         string
@@ -33,11 +82,12 @@ type NetworkOperation struct {
 	UpdatedAt      time.Time
 	CompletedAt    *time.Time
 	NextAttemptAt  *time.Time
+	SubnetID       *string
 }
 
 type NetworkProviderBinding struct {
 	TenantID      string
-	VpcID         string
+	VpcID         *string
 	BindingID     string
 	ClusterID     string
 	Namespace     string
@@ -45,21 +95,25 @@ type NetworkProviderBinding struct {
 	ProviderUid   string
 	PendingAction string
 	PendingSince  *time.Time
+	SubnetID      *string
+	ResourceKind  string
 }
 
 type NetworkReconciliation struct {
-	TenantID   string
-	VpcID      string
-	NextRunAt  time.Time
-	LeaseOwner *string
-	LeaseUntil *time.Time
-	LeaseEpoch int64
+	TenantID         string
+	VpcID            *string
+	NextRunAt        time.Time
+	LeaseOwner       *string
+	LeaseUntil       *time.Time
+	LeaseEpoch       int64
+	SubnetID         *string
+	ReconciliationID string
 }
 
 type NetworkResourceHistory struct {
 	TenantID         string
 	HistoryID        string
-	VpcID            string
+	VpcID            *string
 	OperationID      *string
 	Event            string
 	ResourceState    string
@@ -70,6 +124,24 @@ type NetworkResourceHistory struct {
 	CorrelationID    string
 	IdentityVerified bool
 	CreatedAt        time.Time
+	SubnetID         *string
+}
+
+type NetworkSubnet struct {
+	TenantID        string
+	SubnetID        string
+	VpcID           string
+	Name            string
+	Description     string
+	Cidr            string
+	Gateway         string
+	State           string
+	Reason          string
+	Version         int64
+	CreatedAt       time.Time
+	UpdatedAt       time.Time
+	ObservedAt      *time.Time
+	LastOperationID string
 }
 
 type NetworkVpc struct {

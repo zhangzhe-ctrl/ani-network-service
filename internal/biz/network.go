@@ -43,13 +43,13 @@ type VPC struct {
 }
 
 type Operation struct {
-	ID, TenantID, ResourceID string
-	Kind                     string
-	State                    OperationState
-	Reason                   Reason
-	CreatedAt, UpdatedAt     time.Time
-	CompletedAt              *time.Time
-	NextAttemptAt            *time.Time
+	ID, TenantID, ResourceID, ResourceType string
+	Kind                                   string
+	State                                  OperationState
+	Reason                                 Reason
+	CreatedAt, UpdatedAt                   time.Time
+	CompletedAt                            *time.Time
+	NextAttemptAt                          *time.Time
 }
 
 // Attribution is unverified caller-supplied attribution during the agreed IAM
@@ -63,7 +63,11 @@ type CreateVPC struct {
 	Attribution                                       Attribution
 }
 
-type VPCRepository interface {
+type NetworkRepository interface {
+	AcceptSubnet(context.Context, SubnetIntent, Attribution, time.Duration) (Subnet, error)
+	GetSubnet(context.Context, string, string) (Subnet, error)
+	ListSubnets(context.Context, string, SubnetFilter) ([]Subnet, error)
+	DeleteSubnet(context.Context, string, string) (Subnet, error)
 	AcceptVPC(context.Context, VPCIntent, Attribution) (VPC, error)
 	GetVPC(context.Context, string, string) (VPC, error)
 	GetOperation(context.Context, string, string) (Operation, error)
@@ -74,13 +78,13 @@ type VPCRepository interface {
 // Network owns the caller-facing use cases. Repositories never see unvalidated
 // tenant scope; neither the transport nor the caller orchestrates persistence.
 type Network struct {
-	repository VPCRepository
+	repository NetworkRepository
 	cursorKey  []byte
 	freshness  time.Duration
 	now        func() time.Time
 }
 
-func NewNetwork(repository VPCRepository, cursorKey []byte, freshness time.Duration, now func() time.Time) (*Network, error) {
+func NewNetwork(repository NetworkRepository, cursorKey []byte, freshness time.Duration, now func() time.Time) (*Network, error) {
 	if repository == nil || len(cursorKey) < 32 || freshness <= 0 || now == nil {
 		return nil, fmt.Errorf("repository, >=32 byte cursor key, freshness and clock are required")
 	}
@@ -92,15 +96,8 @@ func (n *Network) CreateVPC(ctx context.Context, request CreateVPC) (VPC, error)
 	if err != nil {
 		return VPC{}, err
 	}
-	for _, value := range []string{request.Attribution.Actor, request.Attribution.DirectCaller, request.Attribution.CorrelationID} {
-		if !utf8.ValidString(value) || utf8.RuneCountInString(value) > 256 {
-			return VPC{}, Fail(InvalidArgument, "attribution exceeds 256 characters")
-		}
-		for _, character := range value {
-			if unicode.IsControl(character) {
-				return VPC{}, Fail(InvalidArgument, "attribution contains a control character")
-			}
-		}
+	if err := validateAttribution(request.Attribution); err != nil {
+		return VPC{}, err
 	}
 	return n.repository.AcceptVPC(ctx, intent, request.Attribution)
 }
@@ -162,4 +159,18 @@ func validVPCID(id string) bool {
 		}
 	}
 	return true
+}
+
+func validateAttribution(attribution Attribution) error {
+	for _, value := range []string{attribution.Actor, attribution.DirectCaller, attribution.CorrelationID} {
+		if !utf8.ValidString(value) || utf8.RuneCountInString(value) > 256 {
+			return Fail(InvalidArgument, "attribution exceeds 256 characters")
+		}
+		for _, character := range value {
+			if unicode.IsControl(character) {
+				return Fail(InvalidArgument, "attribution contains a control character")
+			}
+		}
+	}
+	return nil
 }

@@ -1,0 +1,657 @@
+{
+  "remote": "/home/ubuntu/workspace/ani-network-service-runs/net02-04-20260909T134207Z-c464f447",
+  "head": "40ab0cf64246da13b43296dff8175f16738c12c4",
+  "archive_sha256": "6742fbc7c16b8009ebfcb36273c567cb0542dab8bd9b177a2977751fcd08100b",
+  "command": [
+    "bash",
+    "-c",
+    ".tools/bin/buf build --path api/network/v1 -o ../network_descriptor.pb"
+  ],
+  "files": [
+    {
+      "path": ".gitattributes",
+      "mode": "100644",
+      "sha256": "3fa2d0d1d131df9809094e3415de0a722e4f17b292834d9097815de5a4031da9"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "mode": "100644",
+      "sha256": "25de6fae52be4d968c09607623f30c71ee6658818873eb70491e2d0a3ad63380"
+    },
+    {
+      "path": ".gitignore",
+      "mode": "100644",
+      "sha256": "0eaaf17489d50398429558e570c8e378ec50e2479057fa2bad92183c3d7cf3a2"
+    },
+    {
+      "path": "AGENTS.md",
+      "mode": "100644",
+      "sha256": "6dee5eaf09dd5784eb1fd1d6e38445616955c17580ea9906440199aa96b7f37d"
+    },
+    {
+      "path": "CONTEXT.md",
+      "mode": "100644",
+      "sha256": "732a5d34896dd1cb5809a41b9f05c6913d0460223f8bb0f28b3337f46751ac85"
+    },
+    {
+      "path": "Makefile",
+      "mode": "100644",
+      "sha256": "e64cb9abc04d64b8b3c56693697a43bd01edd80360e74d360654cfb8ab5bf634"
+    },
+    {
+      "path": "README.md",
+      "mode": "100644",
+      "sha256": "10ab08a970ddd1a1048eb1b305343f9c3b2f8cfdb1ba53065e43b0678489f05a"
+    },
+    {
+      "path": "THIRD_PARTY_NOTICES.go-kratos-layout.txt",
+      "mode": "100644",
+      "sha256": "3b44929bdd575a570c42165d4fd4eac57a5055745d2ecf3f121aa6a084cf9230"
+    },
+    {
+      "path": "api/network/v1/network.pb.go",
+      "mode": "100644",
+      "sha256": "39d97b044025037b5188357d40302445df38965e51dafcdcf2fbfbe565c9ff2f"
+    },
+    {
+      "path": "api/network/v1/network.proto",
+      "mode": "100644",
+      "sha256": "b5324f6517c286c10fb5e8ad6c0bbd31f0fff333600839458fea8972c8c6f811"
+    },
+    {
+      "path": "api/network/v1/network_grpc.pb.go",
+      "mode": "100644",
+      "sha256": "ff896e43e3fbd710f504bc066d84293568a007965f863c780750b6fae91bb6b5"
+    },
+    {
+      "path": "buf.gen.yaml",
+      "mode": "100644",
+      "sha256": "a5b51f8141d08bc0ffdcf2925e1ffbc48eab3792d0bbe64bf0f7cb60bff60212"
+    },
+    {
+      "path": "buf.yaml",
+      "mode": "100644",
+      "sha256": "fc26102bf3d244ea32c685b64d09965a7b0cc2bb0cf760b9758d9779c02a6861"
+    },
+    {
+      "path": "cmd/ani-network-service/app.go",
+      "mode": "100644",
+      "sha256": "9ac5daed055e02bc4abe5b13ec013484c2b556971fa327d42710bb066e41afdb"
+    },
+    {
+      "path": "cmd/ani-network-service/app_test.go",
+      "mode": "100644",
+      "sha256": "517648fa6eda356e4c275dac96f2643de9a8d6c40a883013d969f776d579ffb6"
+    },
+    {
+      "path": "cmd/ani-network-service/main.go",
+      "mode": "100644",
+      "sha256": "e640818407e57e565e0731a97d5b5796306df1e556fcebcd520f4e55f0ede5ee"
+    },
+    {
+      "path": "cmd/ani-network-service/main_test.go",
+      "mode": "100644",
+      "sha256": "94022bcd677b2a1550dfe10a8967909d9ae232633ca87f92536c9ca3d1ebf773"
+    },
+    {
+      "path": "cmd/ani-network-service/migrate.go",
+      "mode": "100644",
+      "sha256": "7a17dc99fd4e99b7dfeb8e216936f3f395d54b2acdff868d8b400d8c72c3523b"
+    },
+    {
+      "path": "configs/config.yaml",
+      "mode": "100644",
+      "sha256": "32947e24c5fef98dcb5521059656cab311d879e9e3a291ccc076d6f1db3ef8d5"
+    },
+    {
+      "path": "docs/START-HERE.md",
+      "mode": "100644",
+      "sha256": "d62c3e02ea328cd0c5be1d218034a7ee4107314fb4eadf0c38325b85661dd379"
+    },
+    {
+      "path": "docs/adr/0001-own-network-lifecycle.md",
+      "mode": "100644",
+      "sha256": "3be6302e8386e4fd6e137384164a1ec2cf9ddf74e61acb0da0e5034a6f9cb9da"
+    },
+    {
+      "path": "docs/adr/0002-use-tenant-owned-data-without-rls.md",
+      "mode": "100644",
+      "sha256": "40d07b2b86b7b31686d4f4cd0a26262d7b87dea209fafda572a23e13e2d7b7a6"
+    },
+    {
+      "path": "docs/adr/0003-defer-workload-authentication.md",
+      "mode": "100644",
+      "sha256": "807054a8ec8dff3a25347e54c1c037ec8dfdea4e2581300b2b17f44aaaab927a"
+    },
+    {
+      "path": "docs/execution/records/2026-09-09-design-verification.md",
+      "mode": "100644",
+      "sha256": "e935e8c324a91266b5ee4bd6f00256fcb7ec62a9a173b19e3ba578e8130435c4"
+    },
+    {
+      "path": "docs/execution/records/2026-09-09-remote-readiness.md",
+      "mode": "100644",
+      "sha256": "26f2ef1ab026bb73673cc40c991edea3e7851850a76eb6b57f1ea25f51e23365"
+    },
+    {
+      "path": "docs/execution/records/2026-09-09-source-assessment.md",
+      "mode": "100644",
+      "sha256": "3c0add1f09d03fa1e2d4ab6c1920a05d63b17c25814d92bc9e3bcf478a2f0d28"
+    },
+    {
+      "path": "docs/execution/records/NET-01-implementation.md",
+      "mode": "100644",
+      "sha256": "c97af8b65dc8640f858bc7c92e595b98560744b76316231b37399074010fca28"
+    },
+    {
+      "path": "docs/execution/records/NET-01/local-history-secrets.txt",
+      "mode": "100644",
+      "sha256": "28d648455115c319b22fe11b41c97ed38066142b51ecb8ad6ee141f17212fa54"
+    },
+    {
+      "path": "docs/execution/records/NET-01/remote-tools.txt",
+      "mode": "100644",
+      "sha256": "ca7e008d6aedb9dbcb34b7cca1e73dd448965153ba439c9d3072a11f81687758"
+    },
+    {
+      "path": "docs/execution/records/NET-01/run-ledger.json",
+      "mode": "100644",
+      "sha256": "5bed4285beb543152c3c0280c9cad5bb7eef27be113cb7b9caf6f98ac08105a4"
+    },
+    {
+      "path": "docs/execution/records/NET-01/verification.txt",
+      "mode": "100644",
+      "sha256": "851ecfb4bcac6efb5da9a097660a7af181240b3b89704dc08165db4f067889b0"
+    },
+    {
+      "path": "docs/execution/records/NET-02-04-implementation.md",
+      "mode": "100644",
+      "sha256": "13492df06681538ce5c53967936f453d420792a3b1459e530db4d33334946dcd"
+    },
+    {
+      "path": "docs/execution/records/NET-02-04/ani-initial.diff",
+      "mode": "100644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/execution/records/NET-02-04/ani-initial.json",
+      "mode": "100644",
+      "sha256": "7106e51a4168888197d9b42b3947ae9546b28a678d4b9ced46355f2974132198"
+    },
+    {
+      "path": "docs/execution/records/NET-02-04/ani-initial.status",
+      "mode": "100644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/execution/records/NET-02-04/network-initial.diff",
+      "mode": "100644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/execution/records/NET-02-04/network-initial.json",
+      "mode": "100644",
+      "sha256": "267e471c7be05d6747cfaf5eb6ed3c54308d5c6a04a95aa53689b2a7273fe9a0"
+    },
+    {
+      "path": "docs/execution/records/NET-02-04/network-initial.status",
+      "mode": "100644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/execution/status.md",
+      "mode": "100644",
+      "sha256": "59025cc5033fb86189705e6f57f68cdfe75cd0b547bd9aee75b25e1b5264dbcc"
+    },
+    {
+      "path": "docs/plans/vpc-subnet.md",
+      "mode": "100644",
+      "sha256": "95b30c1be1d8fc231ba8306a0ba222291d2aaf6c676dd03ac36c0f1c68df0387"
+    },
+    {
+      "path": "docs/remote-execution.md",
+      "mode": "100644",
+      "sha256": "768237a4404d42aeef94b1dcba84eac7f1eed5417a072e4594353cc3a65984bd"
+    },
+    {
+      "path": "docs/runtime-verification.md",
+      "mode": "100644",
+      "sha256": "e748d6036923ef7c8f1d62beb101fb69dd815f894dce0c1eccdd0d730563ef8c"
+    },
+    {
+      "path": "docs/runtime.md",
+      "mode": "100644",
+      "sha256": "ece3f2edbd96cbffc6e2d610d7d37af9e57acefd063ca459038d17c6d2209d43"
+    },
+    {
+      "path": "docs/scaffold/bom.cdx.json",
+      "mode": "100644",
+      "sha256": "3d8d95ffcaec644f996d53c6859ca4a0f4cd82c7e79648eafd4e59910e2ae62b"
+    },
+    {
+      "path": "docs/scaffold/provenance.md",
+      "mode": "100644",
+      "sha256": "3e0d8540c24e187b2d472fc2bcb8b018c92c1c0ddc15f62177a2e50345e93b99"
+    },
+    {
+      "path": "docs/specs/vpc-subnet.md",
+      "mode": "100644",
+      "sha256": "f9555dc954c6714132cd1523cde5f50622199e33ec7f82e55dcf301ced1d18ee"
+    },
+    {
+      "path": "go.mod",
+      "mode": "100644",
+      "sha256": "c606c6f09c2a3e83cd85635f6a710975d09e6d55f5fdd4c1c9a5797c4bff8296"
+    },
+    {
+      "path": "go.sum",
+      "mode": "100644",
+      "sha256": "cdf76314ea83fbc94534ea9b29a22c7ae3a73fb3e00115486d0c9e8e7c036dc3"
+    },
+    {
+      "path": "internal/biz/README.md",
+      "mode": "100644",
+      "sha256": "b112fe146738abbc9277593578fbaaddbdcc8e9119d8dd59f3c1320114f53a8d"
+    },
+    {
+      "path": "internal/biz/attachment.go",
+      "mode": "100644",
+      "sha256": "ddf56417db09388fe1376b1cfcb7dc89bfc7e4f0497cf632af724f90d8d0978c"
+    },
+    {
+      "path": "internal/biz/attachment_worker.go",
+      "mode": "100644",
+      "sha256": "9d9988e181b88b073c149c76e20a8f535222213f9357db09036530a0f7be600d"
+    },
+    {
+      "path": "internal/biz/doc.go",
+      "mode": "100644",
+      "sha256": "90dc96bab69aec3bfb1144593f2ee18d0600ba2522179f970e2ba6e6c27383eb"
+    },
+    {
+      "path": "internal/biz/list.go",
+      "mode": "100644",
+      "sha256": "c95e1a6d10ad5d16f5256ef50a56945e6e8f0131117739dac1feea1f0ec872f1"
+    },
+    {
+      "path": "internal/biz/network.go",
+      "mode": "100644",
+      "sha256": "29e3cc5fc226e8f17673fbe6b70a9888557a6173829f7d419f47a33ff0b7b03f"
+    },
+    {
+      "path": "internal/biz/subnet.go",
+      "mode": "100644",
+      "sha256": "923b715f5a0e972e30252050f7cb574dcb3cbb7610fce05bb482db618911c4c4"
+    },
+    {
+      "path": "internal/biz/subnet_test.go",
+      "mode": "100644",
+      "sha256": "bdebe0a83967aceb9cead402898eb87475cf0da7f79097639e6e9f8322b99ecb"
+    },
+    {
+      "path": "internal/biz/vpc.go",
+      "mode": "100644",
+      "sha256": "15329163eaa303ea8dd4d2d352cf11863e80496bcfea0434fb1196e674896bda"
+    },
+    {
+      "path": "internal/biz/vpc_test.go",
+      "mode": "100644",
+      "sha256": "896ee535d48572b6aa5cadf1525a2394c9007b6db8c5dfbfb4ab74b19ceb3bcb"
+    },
+    {
+      "path": "internal/biz/worker.go",
+      "mode": "100644",
+      "sha256": "c0d866a65d7a6967d307035bccd08aa718206eb29033b0289c530d614768bdd5"
+    },
+    {
+      "path": "internal/conf/v1/conf.pb.go",
+      "mode": "100644",
+      "sha256": "c4eba7ba836733dbc5c1e4175212b4d89f2498dfbed8cec9070f8e5f24ee020e"
+    },
+    {
+      "path": "internal/conf/v1/conf.proto",
+      "mode": "100644",
+      "sha256": "dd2c4aabbdc9d9819025d1b1c6f61e848deb492a84130b5fa5b85dea06df57a4"
+    },
+    {
+      "path": "internal/conf/v1/validate.go",
+      "mode": "100644",
+      "sha256": "a7d186f1431dcc7b9588d1015da425b92272d2484b9722cbdd2f51855b6725f2"
+    },
+    {
+      "path": "internal/conf/v1/validate_test.go",
+      "mode": "100644",
+      "sha256": "c1cd4af1332c4dfd6a15e539c0bbfbb2a655f0d155b78cb45e9b107064fc0024"
+    },
+    {
+      "path": "internal/data/README.md",
+      "mode": "100644",
+      "sha256": "72f4a46fb9627152e5abcaf87f7e41fb1b142183e4d7aa7d6ee53f1f89d12452"
+    },
+    {
+      "path": "internal/data/attachment.go",
+      "mode": "100644",
+      "sha256": "4718aabc94a0110005d96a31c9719acd285d59cc287d71bc541146cf24722d4d"
+    },
+    {
+      "path": "internal/data/attachment_integration_test.go",
+      "mode": "100644",
+      "sha256": "09634a2cb5c28ffdb7f82109d3e7e4790ef15c6828d9022afff37aecf4fb0a0a"
+    },
+    {
+      "path": "internal/data/attachment_worker.go",
+      "mode": "100644",
+      "sha256": "3704426d25f03375cdd72188d2dda24db75915e886e38258367d37e119f1ac15"
+    },
+    {
+      "path": "internal/data/doc.go",
+      "mode": "100644",
+      "sha256": "50978525ad3fa635c857f9b62af37e5898ab9ff02e847654eb1b831d236d74fa"
+    },
+    {
+      "path": "internal/data/faults_integration_test.go",
+      "mode": "100644",
+      "sha256": "17c27ff4f2c6d2b268162e25081d13a4552b32dc316b5d02ff32c3122c3d649b"
+    },
+    {
+      "path": "internal/data/grpc_integration_test.go",
+      "mode": "100644",
+      "sha256": "9d7c92237ba53053c8de0e7b35e931a739eeb0cac5ba269ff9230d27bd178df1"
+    },
+    {
+      "path": "internal/data/instance_consumer.go",
+      "mode": "100644",
+      "sha256": "c17e209e37f5eb081a005238caa22eb58f0be638361318b3d315d4550b8fdeda"
+    },
+    {
+      "path": "internal/data/kc.go",
+      "mode": "100644",
+      "sha256": "931af87c0e91ed659721d5938729dc244c0f760bedde33d35d61a68a3e83e3bc"
+    },
+    {
+      "path": "internal/data/kc_attachment.go",
+      "mode": "100644",
+      "sha256": "82bb4b6346c6b42651a8a8b12900998d2edd1490709787e07f50695d1985c1d9"
+    },
+    {
+      "path": "internal/data/kc_integration_test.go",
+      "mode": "100644",
+      "sha256": "2d6e5a03661507e4d1bc61d312ef2ae52a2ba6150d15ff47e91249c5be366817"
+    },
+    {
+      "path": "internal/data/migrate.go",
+      "mode": "100644",
+      "sha256": "1c6200022b6e63e160ad19432f10d563a288b98a70f8581c4a164796402ecb06"
+    },
+    {
+      "path": "internal/data/postgres.go",
+      "mode": "100644",
+      "sha256": "465d6cfc96a5433e17c772419c1353a6da43c4c2a2cba825abe75fbea40dbb12"
+    },
+    {
+      "path": "internal/data/postgres_integration_test.go",
+      "mode": "100644",
+      "sha256": "f27972c130d530c8a7b71651c1a37a58779d1708073d6a3033cf0de792fc6d71"
+    },
+    {
+      "path": "internal/data/process_integration_test.go",
+      "mode": "100644",
+      "sha256": "d62196ab6ddd6fb20abf4c7a6475b2d407a5c135a840ba31dd1707f680815c5c"
+    },
+    {
+      "path": "internal/data/provider_faults_integration_test.go",
+      "mode": "100644",
+      "sha256": "cd91a99fcf2fe6e971052db418bfbd51f3952fbf07cf055d597f9ae8d4ebe237"
+    },
+    {
+      "path": "internal/data/queries/attachments.sql",
+      "mode": "100644",
+      "sha256": "7c4fb2ccc25d3b48fbfc282758a48e523f687348c1a007d0bd0750e466e9e65b"
+    },
+    {
+      "path": "internal/data/queries/subnets.sql",
+      "mode": "100644",
+      "sha256": "7dc70876a0a8b825d5090eed1f475c930eb6887a44661d2ecd97160efd8bfd53"
+    },
+    {
+      "path": "internal/data/queries/vpcs.sql",
+      "mode": "100644",
+      "sha256": "e6f3a8d28a4e77c9b1141eb8dc8b215b1fd77fbdc4aee8cc2ef5ce20c3f36022"
+    },
+    {
+      "path": "internal/data/queries/worker.sql",
+      "mode": "100644",
+      "sha256": "6c5e34de0d4bb2d76d93b28f264b518f0b8626065063af3ca7222eecee74f791"
+    },
+    {
+      "path": "internal/data/resource_work.go",
+      "mode": "100644",
+      "sha256": "8d63b09007d5a2b0d7363356e8a7fe37c0665c387e82b2817bcc24faed26d2f5"
+    },
+    {
+      "path": "internal/data/sqlcgen/attachments.sql.go",
+      "mode": "100644",
+      "sha256": "625d24a30a952f02db9f769deca5a8b7350d5a3e6336721941c2786132dc8bdb"
+    },
+    {
+      "path": "internal/data/sqlcgen/db.go",
+      "mode": "100644",
+      "sha256": "c40f70c9870c43ddc88f743ec63627bc9af2d57fab48fdb0c055981d090b0cf8"
+    },
+    {
+      "path": "internal/data/sqlcgen/models.go",
+      "mode": "100644",
+      "sha256": "a750b0af9cd016457900f75c822149143e826eb9a9b33d5d4b75f7348a1cfd8f"
+    },
+    {
+      "path": "internal/data/sqlcgen/subnets.sql.go",
+      "mode": "100644",
+      "sha256": "9a13eb41715277228c57abafda198f9eedfbb86e6b5fd6fd1d8a831764659da2"
+    },
+    {
+      "path": "internal/data/sqlcgen/vpcs.sql.go",
+      "mode": "100644",
+      "sha256": "7573860ed8bb96d2db618686b6c9601efcfa32c90a81f9f2ed05e57e52939788"
+    },
+    {
+      "path": "internal/data/sqlcgen/worker.sql.go",
+      "mode": "100644",
+      "sha256": "534faf7ec67d163a979cec3159691d4fafb45db6f27825a691622da865ab62dd"
+    },
+    {
+      "path": "internal/data/subnet.go",
+      "mode": "100644",
+      "sha256": "a700692a6a5d9b48cd85ddb702750e56669903516bd006fe959f074a6e2e2b5c"
+    },
+    {
+      "path": "internal/data/subnet_integration_test.go",
+      "mode": "100644",
+      "sha256": "e0b8bea0e3acb420e712a4c79412f4033eb703dad26bdb2c185b3d2498f4246e"
+    },
+    {
+      "path": "internal/data/subnet_kc_integration_test.go",
+      "mode": "100644",
+      "sha256": "de1f354bbaf5c4874dc83800861202843047509320e4309dde16577c9e9ed073"
+    },
+    {
+      "path": "internal/data/subnet_process_integration_test.go",
+      "mode": "100644",
+      "sha256": "737a95e765a95ae26121eb0064c28b7e4685411b8520422f9323c5ed727c8487"
+    },
+    {
+      "path": "internal/data/subnet_upgrade_integration_test.go",
+      "mode": "100644",
+      "sha256": "7f163fbbf65c85af646946561c90473600e4e96a302722bf5b45bd9a081564af"
+    },
+    {
+      "path": "internal/data/worker.go",
+      "mode": "100644",
+      "sha256": "05e8e0d9bf6086739f706bfdc9f279032529780242416bc05f4102739b2223f9"
+    },
+    {
+      "path": "internal/data/worker_integration_test.go",
+      "mode": "100644",
+      "sha256": "806c277ebc8e159812e549142f54cb509d2ec4212cfe6dda9d6b83381897093d"
+    },
+    {
+      "path": "internal/server/admin.go",
+      "mode": "100644",
+      "sha256": "0746d987a940b5ef83bfef756b79143cdfb42143f1104effdb78d90bfacd78fc"
+    },
+    {
+      "path": "internal/server/admin_test.go",
+      "mode": "100644",
+      "sha256": "979c2932f4909524b44658bdb25e28d46b85425fb6ee16db75148c308929c5ed"
+    },
+    {
+      "path": "internal/server/grpc.go",
+      "mode": "100644",
+      "sha256": "738d9935e358a52aa80ff96db1625b166e7600f8af88e9e15b099b07239f0e8e"
+    },
+    {
+      "path": "internal/server/health.go",
+      "mode": "100644",
+      "sha256": "7a861fa8ceb20fef5e7f5b872b859eb6d07e7d05b4c2f8b50af1a8c59caecb11"
+    },
+    {
+      "path": "internal/server/observability.go",
+      "mode": "100644",
+      "sha256": "36a269818c9366eb31b6eb82256c187839d25ff0bf1d49e7df3ae1a8e84f1373"
+    },
+    {
+      "path": "internal/server/readiness.go",
+      "mode": "100644",
+      "sha256": "fdf40b6c4f438e7b40e40b5b1f1d0d55187240f19fdedddea1219f42e4971ba0"
+    },
+    {
+      "path": "internal/server/server.go",
+      "mode": "100644",
+      "sha256": "b28ebf0a522c2ba3265e6d9a6317ea8a08069268eb73a36950913c6bde7a70c5"
+    },
+    {
+      "path": "internal/server/worker.go",
+      "mode": "100644",
+      "sha256": "a22db919bdb890c34dd1f433ae60f89ad84347c5ad3bbdabc3dfdc1e6422392c"
+    },
+    {
+      "path": "internal/server/worker_test.go",
+      "mode": "100644",
+      "sha256": "fedc121643b17d8b1a7cc90e43fdb11e1362555f6aa2b09e610ed4805dff7736"
+    },
+    {
+      "path": "internal/service/README.md",
+      "mode": "100644",
+      "sha256": "c1a9aa4ff15984caa1119553751943d230e26951d7273dc7cbb1a3d3b077f303"
+    },
+    {
+      "path": "internal/service/attachment.go",
+      "mode": "100644",
+      "sha256": "1c01211903096e61b3d82775834564b5a644ee8411a3e38ea37e80343100a484"
+    },
+    {
+      "path": "internal/service/doc.go",
+      "mode": "100644",
+      "sha256": "e55ae12ceb943c6be84e31540c839d606ffd319bfdf9ab92312ae2066137f5f7"
+    },
+    {
+      "path": "internal/service/network.go",
+      "mode": "100644",
+      "sha256": "86504293d62114cefa6a99f7c8d1b6d12fb8eb64be9e72d85e97561a38bb8689"
+    },
+    {
+      "path": "internal/service/subnet.go",
+      "mode": "100644",
+      "sha256": "6b412d89e00264be67901c9855b9c5527f291ab00e3e3ff6af3bbdf1573d548c"
+    },
+    {
+      "path": "migrations/0001_vpc.sql",
+      "mode": "100644",
+      "sha256": "c9c99dd3cfba59f5a6fcf8025e7d0d433a8bd322df1088c58912a44d1e32736a"
+    },
+    {
+      "path": "migrations/0002_subnet.sql",
+      "mode": "100644",
+      "sha256": "ab5dfbc25cc9f2323d2fbee2dbb109d28115597a6f8322e1242f4484dc6a5fdb"
+    },
+    {
+      "path": "migrations/0003_attachment.sql",
+      "mode": "100644",
+      "sha256": "9617a45668d6f0a4c0590f07f36889acbd56c4b966dcd0c9f2b3d1f093ee69dd"
+    },
+    {
+      "path": "migrations/embed.go",
+      "mode": "100644",
+      "sha256": "7a3dfefa1f2cdf9678a5bb1a041ae8f46bb6ad869845c336146b72b6dc18f592"
+    },
+    {
+      "path": "scripts/check-tenant-mutations",
+      "mode": "100755",
+      "sha256": "dd7badb8424275fcb1d3c7557a12057a9e2300fbf1fc2409b20feefda895450c"
+    },
+    {
+      "path": "scripts/generate-sbom",
+      "mode": "100755",
+      "sha256": "5b42c7984a0a42c2ecef6da9af593c5a7472f13d07dc3dd0af36f1009537fac0"
+    },
+    {
+      "path": "scripts/integration",
+      "mode": "100755",
+      "sha256": "47cde736f6efd1ba5d4c749a7ba60b612ccd6635e114faff3af8728cee2bdc6f"
+    },
+    {
+      "path": "scripts/remote-run",
+      "mode": "100755",
+      "sha256": "fa2ffdec1f6d3bd0641400133ae88044faa87a8404677fb0b51c3886e8287c4a"
+    },
+    {
+      "path": "scripts/return-network-generated",
+      "mode": "100755",
+      "sha256": "07f8d4e30ebb3f6dd758653f7cea6bf904f5a51c043d635ec771ed7ad5a0f80b"
+    },
+    {
+      "path": "scripts/verify-boundaries",
+      "mode": "100755",
+      "sha256": "0cc63b116be74dd4edfe0980b485e0a2e56d077060708e0c5ff6050992ade7d5"
+    },
+    {
+      "path": "scripts/verify-source",
+      "mode": "100755",
+      "sha256": "e86c4c98eb29d7e699a9383e16c6f88cb8b93843b25ec0518a0bee825101deba"
+    },
+    {
+      "path": "scripts/verify-supply-chain",
+      "mode": "100755",
+      "sha256": "63b22190a52eab5ef7d2f87fc18d48a69ed439a21901553dc23a7e913f0f0ec1"
+    },
+    {
+      "path": "sqlc.yaml",
+      "mode": "100644",
+      "sha256": "f33fad80eb771e942c4d21426b9957ce7a68da6c81ea6dcb5f05e54241a17428"
+    },
+    {
+      "path": "tests/runtime/runtime_test.go",
+      "mode": "100644",
+      "sha256": "64c337e5eaf8aefe384316ab7a2b003e8c49bb81f6f566716a60956eeda39de8"
+    },
+    {
+      "path": "tests/testenv/kc.go",
+      "mode": "100644",
+      "sha256": "fc0239b0a86001b49c4abe8a4cc9873910d69ad6833d0b4234c01f2529ce7b19"
+    },
+    {
+      "path": "tests/testenv/kubeconfig.go",
+      "mode": "100644",
+      "sha256": "ee97cf9efba643c7fc1980479dff213c6fc6884c1b6a0cb3234d0acadf7ca6c0"
+    },
+    {
+      "path": "tests/testenv/postgres.go",
+      "mode": "100644",
+      "sha256": "bc6a46e5e777ff37317f11861c38d65febfb8c1e19c185e54b404798631ed0ba"
+    },
+    {
+      "path": "tests/testenv/secret.go",
+      "mode": "100644",
+      "sha256": "58db3dce5dbecbbe2e9a7770f9147dc2514c4722e568a88574036e9a14fe58d0"
+    }
+  ]
+}

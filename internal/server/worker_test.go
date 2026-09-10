@@ -95,3 +95,7 @@ func TestWorkerLifecycleReadinessDetectsDependencyLossAndUnexpectedExit(t *testi
 		t.Fatal(err)
 	}
 }
+
+func (unusedProvider) EnsureSubnet(context.Context, biz.ProviderTarget) (biz.ProviderObservation, error) {
+	return biz.ProviderObservation{}, nil
+}

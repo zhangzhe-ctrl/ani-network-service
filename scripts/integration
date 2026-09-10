@@ -10,14 +10,14 @@ cleanup() {
 trap cleanup EXIT
 password=$(python3 -c 'import secrets; print(secrets.token_hex(24))')
 docker image inspect "$image" >/dev/null 2>&1 || docker pull "$image"
-container=$(docker run -d --label ani.network.task=net01-integration \
+container=$(docker run -d --label ani.network.task=net02-04-integration \
   --memory=768m --cpus=1 --mount type=tmpfs,destination=/var/lib/postgresql \
   -e POSTGRES_PASSWORD="$password" -p 127.0.0.1::5432 "$image")
 for attempt in $(seq 1 45); do
-  if docker exec "$container" pg_isready -U postgres >/dev/null 2>&1; then break; fi
+  if docker exec "$container" pg_isready -h 127.0.0.1 -U postgres >/dev/null 2>&1; then break; fi
   sleep 1
 done
-docker exec "$container" pg_isready -U postgres
+docker exec "$container" pg_isready -h 127.0.0.1 -U postgres
 
 port=$(docker port "$container" 5432/tcp | awk -F: '$1 == "127.0.0.1" {print $2}')
 [[ $port =~ ^[0-9]+$ ]]

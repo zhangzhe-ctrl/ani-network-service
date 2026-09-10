@@ -205,7 +205,7 @@ func freeAddress(t *testing.T) string {
 	_ = listener.Close()
 	return address
 }
-func startNetworkProcess(t *testing.T, root, binary, dsn, kubeconfig, signingKey string) *networkProcess {
+func startNetworkProcess(t *testing.T, root, binary, dsn, kubeconfig, signingKey string, resourceKinds ...string) *networkProcess {
 	t.Helper()
 	grpcAddress := freeAddress(t)
 	adminAddress := freeAddress(t)
@@ -232,6 +232,25 @@ func startNetworkProcess(t *testing.T, root, binary, dsn, kubeconfig, signingKey
 		"ANI_NETWORK_CURSOR_SIGNING_KEY="+signingKey, "ANI_SERVER_GRPC_ADDR="+grpcAddress, "ANI_SERVER_ADMIN_ADDR="+adminAddress,
 		"ANI_WORKER_LEASE=3s", "ANI_WORKER_REQUEST_TIMEOUT=1s", "ANI_WORKER_OBSERVE_EVERY=0.1s", "ANI_WORKER_STALE_AFTER=2s",
 		"ANI_WORKER_RETRY_MIN=0.02s", "ANI_WORKER_RETRY_MAX=0.05s", "ANI_WORKER_POLL_INTERVAL=0.01s", "ANI_SERVER_SHUTDOWN_TIMEOUT=3s")
+	if len(resourceKinds) > 0 {
+		// The Subnet adapter reads multiple dependent resource lists per deletion.
+		// This fixture budgets for client-go's default rate limiter without changing
+		// production QPS, bypassing checks, or removing dependency assertions.
+		for i, entry := range command.Env {
+			if strings.HasPrefix(entry, "ANI_WORKER_LEASE=") {
+				command.Env[i] = "ANI_WORKER_LEASE=6s"
+			}
+			if strings.HasPrefix(entry, "ANI_WORKER_REQUEST_TIMEOUT=") {
+				command.Env[i] = "ANI_WORKER_REQUEST_TIMEOUT=2s"
+			}
+			if strings.HasPrefix(entry, "ANI_WORKER_OBSERVE_EVERY=") {
+				command.Env[i] = "ANI_WORKER_OBSERVE_EVERY=0.5s"
+			}
+			if strings.HasPrefix(entry, "ANI_WORKER_STALE_AFTER=") {
+				command.Env[i] = "ANI_WORKER_STALE_AFTER=10s"
+			}
+		}
+	}
 	if err := command.Start(); err != nil {
 		t.Fatal(err)
 	}

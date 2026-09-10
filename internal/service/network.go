@@ -17,11 +17,16 @@ import (
 // transactions remain behind Network's use cases.
 type NetworkService struct {
 	networkv1.UnimplementedNetworkServiceServer
-	network *biz.Network
+	network     *biz.Network
+	attachments *biz.Attachments
 }
 
-func NewNetworkService(network *biz.Network) *NetworkService {
-	return &NetworkService{network: network}
+func NewNetworkService(network *biz.Network, attachments ...*biz.Attachments) *NetworkService {
+	s := &NetworkService{network: network}
+	if len(attachments) > 0 {
+		s.attachments = attachments[0]
+	}
+	return s
 }
 
 func (s *NetworkService) CreateVPC(ctx context.Context, r *networkv1.CreateVPCRequest) (*networkv1.CreateVPCResponse, error) {
@@ -67,7 +72,7 @@ func (s *NetworkService) GetOperation(ctx context.Context, r *networkv1.GetOpera
 	if err != nil {
 		return nil, rpcError(err)
 	}
-	return &networkv1.GetOperationResponse{Operation: &networkv1.Operation{Id: v.ID, TenantId: v.TenantID, ResourceId: v.ResourceID, ResourceType: networkv1.ResourceType_RESOURCE_TYPE_VPC, Kind: kindsToWire[v.Kind], State: operationsToWire[v.State], Reason: string(v.Reason), ReasonMessage: v.Reason.Message(), CreatedAt: timestamppb.New(v.CreatedAt), UpdatedAt: timestamppb.New(v.UpdatedAt), CompletedAt: optionalTime(v.CompletedAt), NextAttemptAt: optionalTime(v.NextAttemptAt)}}, nil
+	return &networkv1.GetOperationResponse{Operation: &networkv1.Operation{Id: v.ID, TenantId: v.TenantID, ResourceId: v.ResourceID, ResourceType: resourceTypesToWire[v.ResourceType], Kind: kindsToWire[v.Kind], State: operationsToWire[v.State], Reason: string(v.Reason), ReasonMessage: v.Reason.Message(), CreatedAt: timestamppb.New(v.CreatedAt), UpdatedAt: timestamppb.New(v.UpdatedAt), CompletedAt: optionalTime(v.CompletedAt), NextAttemptAt: optionalTime(v.NextAttemptAt)}}, nil
 }
 func wireVPC(v biz.VPC) *networkv1.VPC {
 	return &networkv1.VPC{Id: v.ID, TenantId: v.TenantID, Name: v.Name, Description: v.Description, Cidr: v.CIDR, State: statesToWire[v.State], Reason: string(v.Reason), ReasonMessage: v.Reason.Message(), CreatedAt: timestamppb.New(v.CreatedAt), UpdatedAt: timestamppb.New(v.UpdatedAt), Version: v.Version, ObservedAt: optionalTime(v.ObservedAt), ObservationStale: v.ObservationStale, LastOperationId: v.LastOperationID, SubnetCount: v.SubnetCount}
@@ -94,7 +99,7 @@ var operationsToWire = map[biz.OperationState]networkv1.OperationState{
 	biz.Retrying: networkv1.OperationState_OPERATION_STATE_RETRYING, biz.Blocked: networkv1.OperationState_OPERATION_STATE_BLOCKED,
 	biz.Succeeded: networkv1.OperationState_OPERATION_STATE_SUCCEEDED, biz.OpFailed: networkv1.OperationState_OPERATION_STATE_FAILED,
 }
-var kindsToWire = map[string]networkv1.OperationKind{"create_vpc": networkv1.OperationKind_OPERATION_KIND_CREATE_VPC, "delete_vpc": networkv1.OperationKind_OPERATION_KIND_DELETE_VPC}
+var kindsToWire = map[string]networkv1.OperationKind{"create_subnet": networkv1.OperationKind_OPERATION_KIND_CREATE_SUBNET, "delete_subnet": networkv1.OperationKind_OPERATION_KIND_DELETE_SUBNET, "create_vpc": networkv1.OperationKind_OPERATION_KIND_CREATE_VPC, "delete_vpc": networkv1.OperationKind_OPERATION_KIND_DELETE_VPC}
 
 func rpcError(err error) error {
 	if errors.Is(err, context.Canceled) {
@@ -115,9 +120,9 @@ func rpcError(err error) error {
 		code = codes.InvalidArgument
 	case biz.ResourceNotFound:
 		code = codes.NotFound
-	case biz.IdempotencyConflict:
+	case biz.IdempotencyConflict, biz.CIDROverlap, biz.AttachmentConflict:
 		code = codes.AlreadyExists
-	case biz.ResourceInUse, biz.ResourceBusy:
+	case biz.ResourceInUse, biz.ResourceBusy, biz.ParentNotReady, biz.NetworkNotReady, biz.PlacementMismatch, biz.VersionConflict:
 		code = codes.FailedPrecondition
 	case biz.DependencyUnavailable:
 		code = codes.Unavailable
@@ -132,3 +137,5 @@ func rpcError(err error) error {
 	}
 	return value.Err()
 }
+
+var resourceTypesToWire = map[string]networkv1.ResourceType{"vpc": networkv1.ResourceType_RESOURCE_TYPE_VPC, "subnet": networkv1.ResourceType_RESOURCE_TYPE_SUBNET}
