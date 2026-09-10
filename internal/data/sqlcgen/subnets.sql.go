@@ -52,17 +52,18 @@ func (q *Queries) AdmitSubnetDeletion(ctx context.Context, arg AdmitSubnetDeleti
 
 const advanceSubnet = `-- name: AdvanceSubnet :one
 UPDATE network_subnets SET state=$1,reason=$2,version=version+1,updated_at=clock_timestamp(),
- observed_at=CASE WHEN $3::boolean THEN clock_timestamp() ELSE observed_at END
-WHERE tenant_id=$4 AND subnet_id=$5 AND version=$6 RETURNING tenant_id, subnet_id, vpc_id, name, description, cidr, gateway, state, reason, version, created_at, updated_at, observed_at, last_operation_id
+ observed_at=CASE WHEN $3::boolean THEN $4::timestamptz ELSE observed_at END
+WHERE tenant_id=$5 AND subnet_id=$6 AND version=$7 RETURNING tenant_id, subnet_id, vpc_id, name, description, cidr, gateway, state, reason, version, created_at, updated_at, observed_at, last_operation_id
 `
 
 type AdvanceSubnetParams struct {
-	State    string
-	Reason   string
-	Observed bool
-	TenantID string
-	SubnetID string
-	Version  int64
+	State      string
+	Reason     string
+	Observed   bool
+	ObservedAt *time.Time
+	TenantID   string
+	SubnetID   string
+	Version    int64
 }
 
 func (q *Queries) AdvanceSubnet(ctx context.Context, arg AdvanceSubnetParams) (NetworkSubnet, error) {
@@ -70,6 +71,7 @@ func (q *Queries) AdvanceSubnet(ctx context.Context, arg AdvanceSubnetParams) (N
 		arg.State,
 		arg.Reason,
 		arg.Observed,
+		arg.ObservedAt,
 		arg.TenantID,
 		arg.SubnetID,
 		arg.Version,

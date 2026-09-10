@@ -1,0 +1,12 @@
+package data_test
+import (
+ "context"
+ "testing"
+ "github.com/zhangzhe-ctrl/ani-network-service/internal/data"
+ "github.com/zhangzhe-ctrl/ani-network-service/internal/server"
+)
+const capacityVariant="net05"
+type capacityMetrics interface {Snapshot()map[string]float64}
+func configureCapacity(t *testing.T,p *data.KCProvider,execution *server.WorkerServer)(capacityMetrics,func(context.Context)) {
+ return nil,func(ctx context.Context){if err:=execution.Start(ctx);err!=nil {t.Error(err)}}
+}

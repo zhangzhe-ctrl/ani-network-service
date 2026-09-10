@@ -1,0 +1,134 @@
+{
+  "window": {
+    "action": "hold",
+    "at": "2026-09-10T07:52:55.538790741Z",
+    "data": {
+      "progress": {
+        "Proof": {
+          "CollectedAt": "2026-09-10T07:52:53.056098Z",
+          "Hash": "a4c3d414e6955cf8bf42f2cc9d3f4928801d1af06095555ea1dd974ff3778d53",
+          "CoveredGeneration": 1
+        },
+        "Backoff": true,
+        "State": "provisioning",
+        "OperationState": "retrying",
+        "Reason": "PROVIDER_NOT_READY",
+        "Observed": true,
+        "Identity": "a5ca3c1a-6a48-49dc-a097-a919d9b5c21e",
+        "ClearPending": true,
+        "NextDelay": 870901661
+      },
+      "work": {
+        "Requirement": {
+          "RequestedGeneration": 1,
+          "AppliedAt": "1970-01-01T00:00:00Z",
+          "Hash": ""
+        },
+        "Resource": {
+          "ID": "vpc_ae61aaf508aa4ef6897deea2eedbe9fb",
+          "TenantID": "18648eba-1f32-4ddd-9029-c0b84ae0f875",
+          "Kind": "vpc",
+          "VPCID": "",
+          "CIDR": "10.205.0.0/16",
+          "Gateway": "",
+          "LastOperationID": "8971f59c-35d2-42a7-b4ef-cff822a6e324",
+          "State": "provisioning",
+          "Reason": "",
+          "Version": 1,
+          "UpdatedAt": "2026-09-10T07:52:53.037101Z",
+          "ObservedAt": null
+        },
+        "Operation": {
+          "ID": "8971f59c-35d2-42a7-b4ef-cff822a6e324",
+          "TenantID": "18648eba-1f32-4ddd-9029-c0b84ae0f875",
+          "ResourceID": "vpc_ae61aaf508aa4ef6897deea2eedbe9fb",
+          "ResourceType": "vpc",
+          "Kind": "create_vpc",
+          "State": "running",
+          "Reason": "",
+          "CreatedAt": "2026-09-10T07:52:53.037101Z",
+          "UpdatedAt": "2026-09-10T07:52:53.055485Z",
+          "CompletedAt": null,
+          "NextAttemptAt": "2026-09-10T07:52:53.037101Z"
+        },
+        "ActiveOperation": true,
+        "BindingID": "a47b3cfd-8a57-4fa7-820e-ebbfd551520e",
+        "KnownIdentity": "",
+        "PendingAction": "",
+        "Owner": "911251b0-396a-4490-9627-dff0268e4f5e",
+        "Epoch": 1,
+        "Attempt": 1,
+        "Now": "2026-09-10T07:52:53.055895Z"
+      }
+    },
+    "key": "vpc_ae61aaf508aa4ef6897deea2eedbe9fb",
+    "pid": 1,
+    "point": "before-finish"
+  },
+  "before": {
+    "tenant_id": "18648eba-1f32-4ddd-9029-c0b84ae0f875",
+    "vpc_id": "vpc_ae61aaf508aa4ef6897deea2eedbe9fb",
+    "name": "net05a-1fae0bbf-auditfix-t3-before-t4",
+    "description": "",
+    "cidr": "10.205.0.0/16",
+    "state": "provisioning",
+    "reason": "",
+    "version": 1,
+    "created_at": "2026-09-10T07:52:53.037101+00:00",
+    "updated_at": "2026-09-10T07:52:53.037101+00:00",
+    "observed_at": null,
+    "last_operation_id": "8971f59c-35d2-42a7-b4ef-cff822a6e324",
+    "binding_id": "a47b3cfd-8a57-4fa7-820e-ebbfd551520e",
+    "namespace": "net05a-1fae0bbf-18648eba-1f32-4ddd-9029-c0b84ae0f875",
+    "provider_name": "vpc-ae61aaf508aa4ef6897deea2eedbe9fb",
+    "provider_uid": "",
+    "pending_action": "create",
+    "lease_owner": "911251b0-396a-4490-9627-dff0268e4f5e",
+    "lease_epoch": 1,
+    "lease_until": "2026-09-10T07:53:13.054738+00:00",
+    "operation_state": "running",
+    "operation_reason": ""
+  },
+  "provider_uid": "a5ca3c1a-6a48-49dc-a097-a919d9b5c21e",
+  "after": {
+    "tenant_id": "18648eba-1f32-4ddd-9029-c0b84ae0f875",
+    "vpc_id": "vpc_ae61aaf508aa4ef6897deea2eedbe9fb",
+    "name": "net05a-1fae0bbf-auditfix-t3-before-t4",
+    "description": "",
+    "cidr": "10.205.0.0/16",
+    "state": "available",
+    "reason": "",
+    "version": 2,
+    "created_at": "2026-09-10T07:52:53.037101+00:00",
+    "updated_at": "2026-09-10T07:53:14.324632+00:00",
+    "observed_at": "2026-09-10T07:53:13.959939+00:00",
+    "last_operation_id": "8971f59c-35d2-42a7-b4ef-cff822a6e324",
+    "binding_id": "a47b3cfd-8a57-4fa7-820e-ebbfd551520e",
+    "namespace": "net05a-1fae0bbf-18648eba-1f32-4ddd-9029-c0b84ae0f875",
+    "provider_name": "vpc-ae61aaf508aa4ef6897deea2eedbe9fb",
+    "provider_uid": "a5ca3c1a-6a48-49dc-a097-a919d9b5c21e",
+    "pending_action": "",
+    "lease_owner": null,
+    "lease_epoch": 2,
+    "lease_until": null,
+    "operation_state": "succeeded",
+    "operation_reason": ""
+  },
+  "posts": [
+    {
+      "id": "b5ef6852e1aa48929da7c9f0e7f69cdc",
+      "identity": "network",
+      "method": "POST",
+      "path": "/apis/networking.kubercloud.com/v1/namespaces/net05a-1fae0bbf-18648eba-1f32-4ddd-9029-c0b84ae0f875/vpcs",
+      "name": "vpc-ae61aaf508aa4ef6897deea2eedbe9fb",
+      "dry_run": false,
+      "watch": false,
+      "kind": "VPC",
+      "uid": "a5ca3c1a-6a48-49dc-a097-a919d9b5c21e",
+      "reason": null,
+      "event": "upstream",
+      "status": 201,
+      "at": "2026-09-10T07:52:55.538013+00:00"
+    }
+  ]
+}

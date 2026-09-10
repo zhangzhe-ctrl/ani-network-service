@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+set -Eeuo pipefail
+go mod tidy
+make generate
+go test -count=1 ./internal/biz ./internal/server ./internal/conf/v1
+./scripts/integration -run 'NET05A|NET05Oldest|NetworkWorker' ./internal/data

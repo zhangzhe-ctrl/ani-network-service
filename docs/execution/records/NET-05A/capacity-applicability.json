@@ -1,0 +1,27 @@
+{
+  "capacity_source": "20260910T061111Z-61193648",
+  "runtime_source": "20260910T065725Z-b7958dfc",
+  "production_file_count": 67,
+  "differences": [
+    {
+      "path": "internal/data/kc_observed_provider.go",
+      "capacity_sha256": "7c6497d0ec40444ad05449937cfb179385a6471edde0f3a35270a9787869d32b",
+      "live_sha256": "e89c7c4f505c0eeabca6720949169c6f90a75d461b53158997ad13417b3cb906"
+    }
+  ],
+  "diff": "--- capacity\n+++ live\n@@ -67,7 +67,15 @@\n \t}\n \tafter := time.Time{}\n \tif w.RequireFreshRelations {\n-\t\tafter = w.Now\n+\t\t// The owner response is obtained after Claim. A collection started before\n+\t\t// that response can miss relations created by the owner's last in-flight\n+\t\t// submission. Require a complete collection begun after durable closure\n+\t\t// was observed, using the same database clock as the audit timestamp.\n+\t\tvar err error\n+\t\tafter, err = p.repository.queries.DatabaseTime(ctx)\n+\t\tif err != nil {\n+\t\t\treturn biz.AttachmentObservation{}, readFailure(err)\n+\t\t}\n \t}\n \tfor attempt := 0; attempt < 2; attempt++ {\n \t\tv, err := p.observation.snapshot(ctx, after)\n",
+  "applicability": "100 attachment capacity evidence predates release-closure fix. The only production diff is inside RequireFreshRelations. CapacityConsumer always returns open, so this branch is never exercised by the fixed benchmark. No claim that the benchmark used the final live binary.",
+  "supplemental_verification": {
+    "source_pair": "20260910T065152Z-62c793a0",
+    "gates": [
+      "make verify",
+      "make integration",
+      "make race"
+    ],
+    "result": "pass",
+    "tests": "TestNET05AReleaseAuditMustStartAfterOwnerClosureResponse completed and in-flight variants"
+  },
+  "large_capacity": "not_verified and deferred by user after machine resource guard stop",
+  "superseded_for_final_runtime": "Shared audit waiter changed after this record; final 100 Attachment / 1 and 2 replica measurements must be rerun against the final runtime source. Earlier measurements and applicability remain point-in-time evidence.",
+  "final_resolution": "Actual final-runtime 100 Attachment single/dual replica supplement passed; see final-capacity-source-match.json and stages/20260910T083645Z-6386a4b5/capacity-evaluation.json"
+}

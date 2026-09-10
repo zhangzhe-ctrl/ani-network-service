@@ -1,0 +1,67 @@
+{
+  "base": "72cdd974d0d25dfd3d65051ac91a03e0e92da0d2",
+  "scope": "fixed base diff plus untracked implementation files in dedicated Network worktree; no commit",
+  "manifest": "review/manifest.json",
+  "standards": {
+    "reviewer": "net05a_standards_review",
+    "result": "pass",
+    "important_findings": [],
+    "checked": [
+      "layering and ownership",
+      "tenant boundaries",
+      "historical migrations unchanged",
+      "fixed ANI input and source exclusion",
+      "remote isolation and resource limit",
+      "UID and ownership-fenced cleanup"
+    ],
+    "runtime_verification": "not_verified; static read-only review only"
+  },
+  "spec": {
+    "reviewer": "net05a_spec_review",
+    "initial_result": "fail",
+    "findings": [
+      {
+        "priority": "P1",
+        "title": "released could reuse an empty relation audit started before owner closure",
+        "path": "internal/data/kc_observed_provider.go",
+        "cause": "critical audit lower bound used Claim time; owner response happened afterward",
+        "fix": "DatabaseTime sampled after valid closed owner response; complete collection must start at or after that database time",
+        "regression": "TestNET05AReleaseAuditMustStartAfterOwnerClosureResponse, completed and in-flight audit variants",
+        "static_followup": "pass; reviewer confirmed original P1 fixed",
+        "runtime_verification": {
+          "status": "pass",
+          "source_pair": "20260910T065152Z-62c793a0",
+          "gates": [
+            "make verify",
+            "make integration",
+            "make race"
+          ],
+          "regression_variants": [
+            "completed pre-closure audit",
+            "in-flight pre-closure audit"
+          ]
+        }
+      }
+    ]
+  },
+  "limits": [
+    "Both reviewers were read-only; no compilation, testing, SSH or source changes.",
+    "Findings are retained by review axis; static review is not V-16 through V-19 acceptance."
+  ],
+  "live_audit_waiter_followup": {
+    "scope": [
+      "internal/data/kc_observation.go",
+      "internal/data/kc_observation_integration_test.go"
+    ],
+    "reviewer": "net05a_spec_review",
+    "static": "pass: no important findings; per-collection completion synchronizes result; fixed lower bound resolves starvation; errors and cancellation retained",
+    "red_run": "20260910T072515Z-a533c6f8",
+    "red_result": "fail in all three attempts",
+    "green_run": "20260910T072631Z-292113e9",
+    "green_result": "pass: critical waiter and both owner-closure variants, count=3",
+    "hashes": {
+      "internal/data/kc_observation.go": "3b6b6cf5f458aceadc80440cd6e915476955520f0beb48e6557e2595944fa33e",
+      "internal/data/kc_observation_integration_test.go": "79d3801029553ff45229e018382d41bdd0f951123b8c1eb818d1f74431395c6a"
+    }
+  }
+}

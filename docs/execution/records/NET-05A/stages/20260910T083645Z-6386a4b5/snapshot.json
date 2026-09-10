@@ -1,0 +1,2998 @@
+{
+  "remote": "/home/ubuntu/workspace/ani-network-service-runs/net05a-20260910T083645Z-6386a4b5",
+  "head": "72cdd974d0d25dfd3d65051ac91a03e0e92da0d2",
+  "archive_sha256": "9cce2f5c882d0b56b975d3870878c454c600fb8e5b90b4f1bd0e30bb97459934",
+  "command": [
+    "scripts/net05a-capacity",
+    "--small-matrix",
+    "--variants",
+    "net05a"
+  ],
+  "files": [
+    {
+      "path": ".gitattributes",
+      "mode": "100644",
+      "sha256": "3fa2d0d1d131df9809094e3415de0a722e4f17b292834d9097815de5a4031da9"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "mode": "100644",
+      "sha256": "25de6fae52be4d968c09607623f30c71ee6658818873eb70491e2d0a3ad63380"
+    },
+    {
+      "path": ".gitignore",
+      "mode": "100644",
+      "sha256": "0eaaf17489d50398429558e570c8e378ec50e2479057fa2bad92183c3d7cf3a2"
+    },
+    {
+      "path": "AGENTS.md",
+      "mode": "100644",
+      "sha256": "6dee5eaf09dd5784eb1fd1d6e38445616955c17580ea9906440199aa96b7f37d"
+    },
+    {
+      "path": "CONTEXT.md",
+      "mode": "100644",
+      "sha256": "732a5d34896dd1cb5809a41b9f05c6913d0460223f8bb0f28b3337f46751ac85"
+    },
+    {
+      "path": "Makefile",
+      "mode": "100644",
+      "sha256": "e64cb9abc04d64b8b3c56693697a43bd01edd80360e74d360654cfb8ab5bf634"
+    },
+    {
+      "path": "README.md",
+      "mode": "100644",
+      "sha256": "402eda9fd77baea611c3faea3aa83af60ad9a93086850d8fbd999c49f6cf687c"
+    },
+    {
+      "path": "THIRD_PARTY_NOTICES.go-kratos-layout.txt",
+      "mode": "100644",
+      "sha256": "3b44929bdd575a570c42165d4fd4eac57a5055745d2ecf3f121aa6a084cf9230"
+    },
+    {
+      "path": "api/network/v1/network.pb.go",
+      "mode": "100644",
+      "sha256": "39d97b044025037b5188357d40302445df38965e51dafcdcf2fbfbe565c9ff2f"
+    },
+    {
+      "path": "api/network/v1/network.proto",
+      "mode": "100644",
+      "sha256": "b5324f6517c286c10fb5e8ad6c0bbd31f0fff333600839458fea8972c8c6f811"
+    },
+    {
+      "path": "api/network/v1/network_grpc.pb.go",
+      "mode": "100644",
+      "sha256": "ff896e43e3fbd710f504bc066d84293568a007965f863c780750b6fae91bb6b5"
+    },
+    {
+      "path": "buf.gen.yaml",
+      "mode": "100644",
+      "sha256": "a5b51f8141d08bc0ffdcf2925e1ffbc48eab3792d0bbe64bf0f7cb60bff60212"
+    },
+    {
+      "path": "buf.yaml",
+      "mode": "100644",
+      "sha256": "fc26102bf3d244ea32c685b64d09965a7b0cc2bb0cf760b9758d9779c02a6861"
+    },
+    {
+      "path": "cmd/ani-network-service/app.go",
+      "mode": "100644",
+      "sha256": "b4cfa77124dbadabadb31d005c1bd664ecc945ce4de097bb7586814a945c3702"
+    },
+    {
+      "path": "cmd/ani-network-service/app_test.go",
+      "mode": "100644",
+      "sha256": "517648fa6eda356e4c275dac96f2643de9a8d6c40a883013d969f776d579ffb6"
+    },
+    {
+      "path": "cmd/ani-network-service/main.go",
+      "mode": "100644",
+      "sha256": "e640818407e57e565e0731a97d5b5796306df1e556fcebcd520f4e55f0ede5ee"
+    },
+    {
+      "path": "cmd/ani-network-service/main_test.go",
+      "mode": "100644",
+      "sha256": "94022bcd677b2a1550dfe10a8967909d9ae232633ca87f92536c9ca3d1ebf773"
+    },
+    {
+      "path": "cmd/ani-network-service/migrate.go",
+      "mode": "100644",
+      "sha256": "7a17dc99fd4e99b7dfeb8e216936f3f395d54b2acdff868d8b400d8c72c3523b"
+    },
+    {
+      "path": "configs/config.yaml",
+      "mode": "100644",
+      "sha256": "c35fbaae6832fe47d1a1f9dec0edeb49d4e4f37d8ef05d8dbcfd56d7482f7558"
+    },
+    {
+      "path": "docs/START-HERE.md",
+      "mode": "100644",
+      "sha256": "05ef02c574b081db76389e3451cfd284efebf17f1cbc0fa5facc56ae80de423f"
+    },
+    {
+      "path": "docs/adr/0001-own-network-lifecycle.md",
+      "mode": "100644",
+      "sha256": "3be6302e8386e4fd6e137384164a1ec2cf9ddf74e61acb0da0e5034a6f9cb9da"
+    },
+    {
+      "path": "docs/adr/0002-use-tenant-owned-data-without-rls.md",
+      "mode": "100644",
+      "sha256": "40d07b2b86b7b31686d4f4cd0a26262d7b87dea209fafda572a23e13e2d7b7a6"
+    },
+    {
+      "path": "docs/adr/0003-defer-workload-authentication.md",
+      "mode": "100644",
+      "sha256": "807054a8ec8dff3a25347e54c1c037ec8dfdea4e2581300b2b17f44aaaab927a"
+    },
+    {
+      "path": "docs/adr/0004-observe-cr-with-durable-reconciliation.md",
+      "mode": "100644",
+      "sha256": "4a97a664fe7a08b641bad0d0e07a62fe0b2684a51054f68e4eb26327a0b88884"
+    },
+    {
+      "path": "docs/execution/records/2026-09-09-design-verification.md",
+      "mode": "100644",
+      "sha256": "e935e8c324a91266b5ee4bd6f00256fcb7ec62a9a173b19e3ba578e8130435c4"
+    },
+    {
+      "path": "docs/execution/records/2026-09-09-remote-readiness.md",
+      "mode": "100644",
+      "sha256": "26f2ef1ab026bb73673cc40c991edea3e7851850a76eb6b57f1ea25f51e23365"
+    },
+    {
+      "path": "docs/execution/records/2026-09-09-source-assessment.md",
+      "mode": "100644",
+      "sha256": "3c0add1f09d03fa1e2d4ab6c1920a05d63b17c25814d92bc9e3bcf478a2f0d28"
+    },
+    {
+      "path": "docs/execution/records/2026-09-10-cr-observation-plan.md",
+      "mode": "100644",
+      "sha256": "1246d5abd6184b3460764186dccf7d53cf1ea34731ed78452b764bc5c6056166"
+    },
+    {
+      "path": "docs/execution/records/2026-09-10-cr-observation-selection.md",
+      "mode": "100644",
+      "sha256": "ad2babec5659004067255e4afee70429f0e77f716c6b6fcfaa8adb34982154a0"
+    },
+    {
+      "path": "docs/execution/records/NET-01-implementation.md",
+      "mode": "100644",
+      "sha256": "c97af8b65dc8640f858bc7c92e595b98560744b76316231b37399074010fca28"
+    },
+    {
+      "path": "docs/execution/records/NET-01/local-history-secrets.txt",
+      "mode": "100644",
+      "sha256": "28d648455115c319b22fe11b41c97ed38066142b51ecb8ad6ee141f17212fa54"
+    },
+    {
+      "path": "docs/execution/records/NET-01/remote-tools.txt",
+      "mode": "100644",
+      "sha256": "ca7e008d6aedb9dbcb34b7cca1e73dd448965153ba439c9d3072a11f81687758"
+    },
+    {
+      "path": "docs/execution/records/NET-01/run-ledger.json",
+      "mode": "100644",
+      "sha256": "5bed4285beb543152c3c0280c9cad5bb7eef27be113cb7b9caf6f98ac08105a4"
+    },
+    {
+      "path": "docs/execution/records/NET-01/verification.txt",
+      "mode": "100644",
+      "sha256": "851ecfb4bcac6efb5da9a097660a7af181240b3b89704dc08165db4f067889b0"
+    },
+    {
+      "path": "docs/execution/records/NET-02-04-implementation.md",
+      "mode": "100644",
+      "sha256": "2fcea62375220fa4f37bce200f7bc33fc609a6780d9e78b09fcf438147552753"
+    },
+    {
+      "path": "docs/execution/records/NET-02-04/ani-initial.diff",
+      "mode": "100644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/execution/records/NET-02-04/ani-initial.json",
+      "mode": "100644",
+      "sha256": "7106e51a4168888197d9b42b3947ae9546b28a678d4b9ced46355f2974132198"
+    },
+    {
+      "path": "docs/execution/records/NET-02-04/ani-initial.status",
+      "mode": "100644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/execution/records/NET-02-04/baseline-gate-drift.md",
+      "mode": "100644",
+      "sha256": "3e9c017c8816a08d82daa19636e04dbe9a1aad64d05a380d9ae7aa906699bd12"
+    },
+    {
+      "path": "docs/execution/records/NET-02-04/compatibility-audit.json",
+      "mode": "100644",
+      "sha256": "9cf7eab8d82b9695ad274b0b6d42113452e1004a188bad7cc1a1c4b61ab9100a"
+    },
+    {
+      "path": "docs/execution/records/NET-02-04/completion-audit.md",
+      "mode": "100644",
+      "sha256": "f3e0c4cb64c914c1c848a433ad2ed15a532e249332dea16c21fdac3a25499a36"
+    },
+    {
+      "path": "docs/execution/records/NET-02-04/concurrent-inputs.md",
+      "mode": "100644",
+      "sha256": "6de37dead6caf407778036f0948687ac0c2f4a1a21bc49ff28616875f04c2a57"
+    },
+    {
+      "path": "docs/execution/records/NET-02-04/final-sources.json",
+      "mode": "100644",
+      "sha256": "f1baa21755dc01ea3127b8f0926013d6a3ecb1bc7333e4311373733b21385c98"
+    },
+    {
+      "path": "docs/execution/records/NET-02-04/network-contract-source.json",
+      "mode": "100644",
+      "sha256": "c1833b2db2aac5b4e6b0cf576f545a8bfe8447c5978193364e823dc698c5033d"
+    },
+    {
+      "path": "docs/execution/records/NET-02-04/network-initial.diff",
+      "mode": "100644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/execution/records/NET-02-04/network-initial.json",
+      "mode": "100644",
+      "sha256": "267e471c7be05d6747cfaf5eb6ed3c54308d5c6a04a95aa53689b2a7273fe9a0"
+    },
+    {
+      "path": "docs/execution/records/NET-02-04/network-initial.status",
+      "mode": "100644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/execution/records/NET-02-04/preexisting-compatibility.json",
+      "mode": "100644",
+      "sha256": "3b972c928f6ced84f4aed12c3aefe2a0597d79fdd1e5a59fced5dfe9d62efd94"
+    },
+    {
+      "path": "docs/execution/records/NET-02-04/proposed-compatibility.patch",
+      "mode": "100644",
+      "sha256": "8ea7257754dcaedce225678f38c5f13e155dd0252222a472d3bc91dd0cf6f328"
+    },
+    {
+      "path": "docs/execution/records/NET-02-04/runs.json",
+      "mode": "100644",
+      "sha256": "846fa561308e447f42c70da848472455bdc4980a0d770eddfd5b060d038655d6"
+    },
+    {
+      "path": "docs/execution/records/NET-02-04/wire-results.txt",
+      "mode": "100644",
+      "sha256": "096de5a09030a532247bee407590277c5615130619784ff5ed9d1aee9fb805c2"
+    },
+    {
+      "path": "docs/execution/records/NET-05-implementation.md",
+      "mode": "100644",
+      "sha256": "e49ab8fbe8f32e2f63e99cdec1917dcb76f91042f9c4a14856d5998296cd88b8"
+    },
+    {
+      "path": "docs/execution/records/NET-05/README.md",
+      "mode": "100644",
+      "sha256": "d707df290481da1543354001d4849d779ff87b5c61590026d3641faa29d9156a"
+    },
+    {
+      "path": "docs/execution/records/NET-05/SHA256SUMS",
+      "mode": "100644",
+      "sha256": "dadb204b94073ae95a3a7e3be2c4715bae8361b1f1476e9559763544f705ecdb"
+    },
+    {
+      "path": "docs/execution/records/NET-05/V-02-03-runtime-database-boundaries.json",
+      "mode": "100644",
+      "sha256": "324c53aef895e96cebcca222c87dfa740eaea12d88f82119b6edfdba851cdda7"
+    },
+    {
+      "path": "docs/execution/records/NET-05/V-06-07-T1.json",
+      "mode": "100644",
+      "sha256": "cb627aafac0af1b636003757bb1d943dda624d4851cc760713f335a36daea6a2"
+    },
+    {
+      "path": "docs/execution/records/NET-05/V-06-subnet-starvation-before.json",
+      "mode": "100644",
+      "sha256": "87834d0f67b28f48bac33024fa07224c0e9bce79e49fd417f3ef4f959614d097"
+    },
+    {
+      "path": "docs/execution/records/NET-05/V-07-T3-T4.json",
+      "mode": "100644",
+      "sha256": "4b0e4305de7b9ec5235bfd3e23ff56157ceb1cd4d12a026ae4742d26be208a57"
+    },
+    {
+      "path": "docs/execution/records/NET-05/V-07-delete-unconfirmed.json",
+      "mode": "100644",
+      "sha256": "de5e294588ca8b5f8a4a39fd4ec946fb4b5edd92221c5d0cd5e44544807f4723"
+    },
+    {
+      "path": "docs/execution/records/NET-05/V-08-11-late-real-requests.json",
+      "mode": "100644",
+      "sha256": "dd3572943fa8e257591ca4dbfb887931a855036033aabfc59830c5dda6f58cec"
+    },
+    {
+      "path": "docs/execution/records/NET-05/V-08-lease-fence.json",
+      "mode": "100644",
+      "sha256": "0b7d10724cc2eef1aa58330cb7c928c90390c82f7e4212b7c8cd8d1ad2357e3c"
+    },
+    {
+      "path": "docs/execution/records/NET-05/V-09-pure-query.json",
+      "mode": "100644",
+      "sha256": "53dbb622782747e3b7e03f8b994002f8fc4eb8f173e366258a576705f78b3bfe"
+    },
+    {
+      "path": "docs/execution/records/NET-05/V-10-final-owner-recovery.json",
+      "mode": "100644",
+      "sha256": "ac8a9bc28269622cd9e8ac133774a18354c634159659a14e81e1c73ccdc69178"
+    },
+    {
+      "path": "docs/execution/records/NET-05/V-10-owner-unknown-confirm.json",
+      "mode": "100644",
+      "sha256": "93c7278364494a1928f0c36c5bc537f7955475049a64807ffff50721cada99d9"
+    },
+    {
+      "path": "docs/execution/records/NET-05/V-10-real-residual-nic-ip.json",
+      "mode": "100644",
+      "sha256": "9345e22944b324027b5a9336d71b050b1c133789b4f27094730d744482434e6e"
+    },
+    {
+      "path": "docs/execution/records/NET-05/V-10-release-consumer-restarts.json",
+      "mode": "100644",
+      "sha256": "5e7f9cf28c332d1b800b79bab3adafec3a271e1383b418c160d3605252b81d14"
+    },
+    {
+      "path": "docs/execution/records/NET-05/V-10-reserved-restarts.json",
+      "mode": "100644",
+      "sha256": "0eaefb47e8daae7afa121229c4c735a5363584558478bb20c5e1c1a016a52e28"
+    },
+    {
+      "path": "docs/execution/records/NET-05/V-11-real-rbac-denial.json",
+      "mode": "100644",
+      "sha256": "028e3cece207caf99e75595a5f7aebf4582e4d2e2308193c7295012ef38737e8"
+    },
+    {
+      "path": "docs/execution/records/NET-05/V-11-unreachable.json",
+      "mode": "100644",
+      "sha256": "53477ff4e6b00994cc0f8789005bf3da3240a7799013b254482bf94275f1a776"
+    },
+    {
+      "path": "docs/execution/records/NET-05/ani-final-doc-entrypoints.first-attempt.log",
+      "mode": "100644",
+      "sha256": "064dec208611acb514e0b3984dd67844da41bd7ad320156db62ff52a13a921fc"
+    },
+    {
+      "path": "docs/execution/records/NET-05/ani-final-doc-entrypoints.log",
+      "mode": "100644",
+      "sha256": "a8689e4ef94c1ef17270c74d58e29428f3091a179e86411b8becea4bf24a1267"
+    },
+    {
+      "path": "docs/execution/records/NET-05/ani-final-whitespace.log",
+      "mode": "100644",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/execution/records/NET-05/ani-net-05-initial.json",
+      "mode": "100644",
+      "sha256": "e488a0fe8aab7062afc105f2a8ab33717564b3c80b616479c655161a590ebd1c"
+    },
+    {
+      "path": "docs/execution/records/NET-05/ani-tables.json",
+      "mode": "100644",
+      "sha256": "8aaa5db8d8f0ac1f5768944aad54ab843d213802b88990f0afa7ba97ecc4600c"
+    },
+    {
+      "path": "docs/execution/records/NET-05/api-pagination.json",
+      "mode": "100644",
+      "sha256": "11e9f9634faecd12ebfef009309b12208e6fb1dfb6d797b7b40086435096302b"
+    },
+    {
+      "path": "docs/execution/records/NET-05/api-permanent-acceptance.json",
+      "mode": "100644",
+      "sha256": "04c4e2471ead86d401fee8a85dc852433a47883b2cb94c248e4acff23a0623d8"
+    },
+    {
+      "path": "docs/execution/records/NET-05/before-confirm-618a8b70.hit.json",
+      "mode": "100644",
+      "sha256": "dd8296d4b1332bdda036ffbb01b951a53ce80e4a07111880053d2de1919db7a0"
+    },
+    {
+      "path": "docs/execution/records/NET-05/before-finish-2e72e422.hit.json",
+      "mode": "100644",
+      "sha256": "b35cb819f1e51841215dc1b0d60af8d13b0a51209caa1f2f8eddda958834bd4c"
+    },
+    {
+      "path": "docs/execution/records/NET-05/before-finish-6f931ea8.hit.json",
+      "mode": "100644",
+      "sha256": "dc92432a5443dee68914e50ec4a482816617246f79ef9b911dec924c5c4036f1"
+    },
+    {
+      "path": "docs/execution/records/NET-05/before-finish-862a9089.hit.json",
+      "mode": "100644",
+      "sha256": "ec011e6c43d033f535932def5961edd7deaf4964e73c295dcb750ca0b8547bb5"
+    },
+    {
+      "path": "docs/execution/records/NET-05/before-release-066d87fe.hit.json",
+      "mode": "100644",
+      "sha256": "2e08adc8116c53fafcb20064df44686e452455d0f07fea68355db7d1c3357360"
+    },
+    {
+      "path": "docs/execution/records/NET-05/code-gate-source-equivalence.json",
+      "mode": "100644",
+      "sha256": "943420935f4a9946398cdbe2e95678c8200213449914c2403c9e3563686e76cb"
+    },
+    {
+      "path": "docs/execution/records/NET-05/compatibility.json",
+      "mode": "100644",
+      "sha256": "9cf7eab8d82b9695ad274b0b6d42113452e1004a188bad7cc1a1c4b61ab9100a"
+    },
+    {
+      "path": "docs/execution/records/NET-05/crd-contract.json",
+      "mode": "100644",
+      "sha256": "cc4a74a54ff922ce295b427bcc5d13b2d27fe71af26ca8c98e2412c0007f86e6"
+    },
+    {
+      "path": "docs/execution/records/NET-05/database-20260910T021005Z.json",
+      "mode": "100644",
+      "sha256": "257367c359ed6396d3a3cf526e7a09aab03547375d958cb5b798b1d7ed371ca5"
+    },
+    {
+      "path": "docs/execution/records/NET-05/database-20260910T021654Z.json",
+      "mode": "100644",
+      "sha256": "5b3ca2a7fbf565dfd5b2c49c4a8f7ad5a05adfdb64d27198345e719bdbb7cfd1"
+    },
+    {
+      "path": "docs/execution/records/NET-05/database-20260910T022108Z.json",
+      "mode": "100644",
+      "sha256": "1ed2984989b333276f2ae93c828d0786415f1408c8f93f9af462872b508e22d9"
+    },
+    {
+      "path": "docs/execution/records/NET-05/database-20260910T022912Z.json.gz",
+      "mode": "100644",
+      "sha256": "2bd8eaf74af28ccfa7a057d8bb27a3c5fef67aa4719c0b9938a5e35be617c6a4"
+    },
+    {
+      "path": "docs/execution/records/NET-05/database-20260910T023054Z.json.gz",
+      "mode": "100644",
+      "sha256": "623b230dcfdc51f02aa2a04ab6a67bd4162d1f256018ccd90cfcc97e817adadd"
+    },
+    {
+      "path": "docs/execution/records/NET-05/database-20260910T023343Z.json.gz",
+      "mode": "100644",
+      "sha256": "67c7a225d63a495cf300c838034489dd0e10f23a27efcd4fe1f19e11e7c314bd"
+    },
+    {
+      "path": "docs/execution/records/NET-05/database-20260910T023404Z.json.gz",
+      "mode": "100644",
+      "sha256": "21379a7c89a92f959de6a17bdaed054c7f76f96df14d0245a355b1eddd5461df"
+    },
+    {
+      "path": "docs/execution/records/NET-05/database-20260910T023612Z.json.gz",
+      "mode": "100644",
+      "sha256": "d44346496ac469245d1018153965f0ab720f4ae3fc1c96879a53ed71ab7c2236"
+    },
+    {
+      "path": "docs/execution/records/NET-05/database-20260910T024155Z.json.gz",
+      "mode": "100644",
+      "sha256": "5f851612f9e3b76a4f21e98e45f23ee9b969dd92d5b90ddc4933452eb5c00b8a"
+    },
+    {
+      "path": "docs/execution/records/NET-05/database-20260910T024904Z.json.gz",
+      "mode": "100644",
+      "sha256": "dd69696957dd2387c7662f22115f437e3a6fe81dabad79c66e31b36669493830"
+    },
+    {
+      "path": "docs/execution/records/NET-05/database-20260910T024910Z.json.gz",
+      "mode": "100644",
+      "sha256": "44ff90bff465db55d9d003d213d5fccb5afd303ea03405475b049cfd791e6890"
+    },
+    {
+      "path": "docs/execution/records/NET-05/database-20260910T030503Z.json.gz",
+      "mode": "100644",
+      "sha256": "6a69701f39641fb7e8fc30e124479dd48bfef5142a2c06937b3a3a123312e6d5"
+    },
+    {
+      "path": "docs/execution/records/NET-05/database-20260910T030510Z.json.gz",
+      "mode": "100644",
+      "sha256": "9a0f1806cd76897a52dba0c54b3e682912b80e74f993a361221653d25629fc55"
+    },
+    {
+      "path": "docs/execution/records/NET-05/database-20260910T031849Z.json.gz",
+      "mode": "100644",
+      "sha256": "aba668439751c2d5a5e08c539a5448598cbf6ce1dc1035c14d5a3a2bd15393b2"
+    },
+    {
+      "path": "docs/execution/records/NET-05/database-20260910T031851Z.json.gz",
+      "mode": "100644",
+      "sha256": "1149a6be6a5f773557905914386eaa2e6ed610e03c686e0dfeac46a653865e8d"
+    },
+    {
+      "path": "docs/execution/records/NET-05/database-20260910T031945Z.json.gz",
+      "mode": "100644",
+      "sha256": "212ec8ce4c3251114b17a79faf71b5c71507e327f696985b9516b12bd7d88e16"
+    },
+    {
+      "path": "docs/execution/records/NET-05/database-20260910T032017Z.json.gz",
+      "mode": "100644",
+      "sha256": "8871ffdd1babd061d06d6da41e1e57e84fc694a3e7c4c9ff138fe3620b0d3c85"
+    },
+    {
+      "path": "docs/execution/records/NET-05/database-permissions.json",
+      "mode": "100644",
+      "sha256": "fa69a8cc0b4c786c0f9e40c3ed1a64bce606104a3ba1f7df8695414cd322fc53"
+    },
+    {
+      "path": "docs/execution/records/NET-05/deployment-observation-diff.json",
+      "mode": "100644",
+      "sha256": "c5c93175e4277c89cf7f773ee12c35dc327cb8135eefdab85749016a59d6912f"
+    },
+    {
+      "path": "docs/execution/records/NET-05/disconnect-9fd2febb.hit.json",
+      "mode": "100644",
+      "sha256": "76e6dae8259417b0d0e4ce9e61d1435add08647a455e6d909c69a935a3c2abee"
+    },
+    {
+      "path": "docs/execution/records/NET-05/environment-comparison.json",
+      "mode": "100644",
+      "sha256": "c2fa4be2c0b15c7852fcb46f2884fefa4ea2314ca81b8875fae125bfb6fc5c2f"
+    },
+    {
+      "path": "docs/execution/records/NET-05/events.jsonl.gz",
+      "mode": "100644",
+      "sha256": "472304e7c1a26d19179d865e7736f7cc32aa7e9a8c3e48ad0635d12ba41f2de0"
+    },
+    {
+      "path": "docs/execution/records/NET-05/execution-index-supplement.json",
+      "mode": "100644",
+      "sha256": "475e1c1039a7d29612b2798cb4d71b9e081f7c16493b13f6f7df2412ac848dbd"
+    },
+    {
+      "path": "docs/execution/records/NET-05/execution-index.json",
+      "mode": "100644",
+      "sha256": "45b8fbbb8532e3d70abf3002c5ce4b25964e08218db5e7370da6041fd78b7dc3"
+    },
+    {
+      "path": "docs/execution/records/NET-05/export-index.json",
+      "mode": "100644",
+      "sha256": "4c4e020bc9da8c3a58b6e611504215e333a7dbb7013fd595f4256edcefe739f3"
+    },
+    {
+      "path": "docs/execution/records/NET-05/export-scan.json",
+      "mode": "100644",
+      "sha256": "72d3b1e1e681ddbc15be5c923df78e02c99a19c28c2917667a7036bf0db15800"
+    },
+    {
+      "path": "docs/execution/records/NET-05/fault-build-manifest.json",
+      "mode": "100644",
+      "sha256": "41e8c250616a19c3a27d17da0819b26e8bfb696ff0dcd85870cfcb47be880446"
+    },
+    {
+      "path": "docs/execution/records/NET-05/final-gates-with-atlas-boundary.json",
+      "mode": "100644",
+      "sha256": "3ccfbe3aef9434ac7c867a87b7f02a7fa210716fcc3ce026c442544f4d274b9b"
+    },
+    {
+      "path": "docs/execution/records/NET-05/final-gates.json",
+      "mode": "100644",
+      "sha256": "b721fdc838b93eacaa9636d24556b5f7f06bb18397cb9b8b64d0b8c3e48989ce"
+    },
+    {
+      "path": "docs/execution/records/NET-05/final-source-audit.json",
+      "mode": "100644",
+      "sha256": "02f843a6cc9c3f272676635add5bd4ca08024681fbc970ab19ea20ee8fc0544b"
+    },
+    {
+      "path": "docs/execution/records/NET-05/finalization-gates.json",
+      "mode": "100644",
+      "sha256": "b7eb6b006dc1cb7ac6bb45395eb5068b9250484daa5d1e79d0c2693584616763"
+    },
+    {
+      "path": "docs/execution/records/NET-05/first-admission-audit.json",
+      "mode": "100644",
+      "sha256": "47d8328bd021839d591e436bf7f0c98e84465dddb7801d14647e9c38681c571a"
+    },
+    {
+      "path": "docs/execution/records/NET-05/fixture-cleanup.json",
+      "mode": "100644",
+      "sha256": "d8fd9db343c0a82adc1744f40141c4cc5f34a8ed040dcb36729ea84b25771e0f"
+    },
+    {
+      "path": "docs/execution/records/NET-05/fixtures.json",
+      "mode": "100644",
+      "sha256": "b728d13dc432b897cbe602ddf9147b779fbb53e590784f5891b6db16cfe395e6"
+    },
+    {
+      "path": "docs/execution/records/NET-05/gates-progress.json",
+      "mode": "100644",
+      "sha256": "81a48bbb4b151bb0a04e24324b160e86f25655d317c7cea52e9201ef2b65e676"
+    },
+    {
+      "path": "docs/execution/records/NET-05/gates/ani-architecture-docs.log",
+      "mode": "100644",
+      "sha256": "0d6e04cfa91ba9d54b48614f7e3dc9c9eb1996d5cc08cf63d08fd4a6207aa5b1"
+    },
+    {
+      "path": "docs/execution/records/NET-05/gates/ani-existing-compatibility.log",
+      "mode": "100644",
+      "sha256": "9ec7678bf387dbfe30150e1c9300430f9ba4a1236b1e9dd4eb798bc465ff24f9"
+    },
+    {
+      "path": "docs/execution/records/NET-05/gates/ani-net05-regressions.log",
+      "mode": "100644",
+      "sha256": "9af528aa0d1d16a92aeced2a9358778808a6dd8c3de421d3477227d72a3c7ee5"
+    },
+    {
+      "path": "docs/execution/records/NET-05/gates/ani-network-openapi-contract.log",
+      "mode": "100644",
+      "sha256": "9852bef871e10ddddff88f49bf7c3b3f5ab79061c941cc309d4bc29ead8ff2f1"
+    },
+    {
+      "path": "docs/execution/records/NET-05/gates/ani-no-new-compatibility.log",
+      "mode": "100644",
+      "sha256": "ab5bcf23717a59b20b90585ad7d1bf3b0ce9c29455e2a0a814428ed0d1a1c1b9"
+    },
+    {
+      "path": "docs/execution/records/NET-05/gates/ani-test.log.gz",
+      "mode": "100644",
+      "sha256": "c6fb2200d1f3f1befc21970b858be7d58f7daf6be398b09ae6c54197d959a7cd"
+    },
+    {
+      "path": "docs/execution/records/NET-05/gates/network-audit.first-attempt.log",
+      "mode": "100644",
+      "sha256": "941437f8aac69fb14b311bb56e9fcfc59c4919e102dc22f945dd33ae80b38cb2"
+    },
+    {
+      "path": "docs/execution/records/NET-05/gates/network-audit.log",
+      "mode": "100644",
+      "sha256": "aecee19bf9b0a208045fa7894a1518a27a0c67c2ed6fb97a107405f38acbaef7"
+    },
+    {
+      "path": "docs/execution/records/NET-05/gates/network-race-postgres.log",
+      "mode": "100644",
+      "sha256": "a5ef74635efc333b939c7ab6afe1ab99d897334241811a79a431e6316e5df5ae"
+    },
+    {
+      "path": "docs/execution/records/NET-05/gates/network-tenant-mutations.log",
+      "mode": "100644",
+      "sha256": "c02beb792510eea8ae4d3de8a7b11729be594ce8559ba86fb74400fa320f2f3d"
+    },
+    {
+      "path": "docs/execution/records/NET-05/gates/network-verify.log",
+      "mode": "100644",
+      "sha256": "1eb1fd5ab7db79f5fa2718b0cb772a660f409ad3deebcaa73c1315ec16c2752f"
+    },
+    {
+      "path": "docs/execution/records/NET-05/gateway.log",
+      "mode": "100644",
+      "sha256": "515d71a41f38a35b7b2418196f3441524d45374beff1a7091cb09fc62073bafb"
+    },
+    {
+      "path": "docs/execution/records/NET-05/hold_after-9eeb289a.hit.json",
+      "mode": "100644",
+      "sha256": "fb061da1735570de7e7102a8d9430b1d5f111b40be2182df1e4a35ae1dea6071"
+    },
+    {
+      "path": "docs/execution/records/NET-05/hold_before-0acb5fad.hit.json",
+      "mode": "100644",
+      "sha256": "81996815cbd77482c07f3058781ac108c5da9c26b42b0ccac3aef01ff126ebb4"
+    },
+    {
+      "path": "docs/execution/records/NET-05/hold_before-83d1056d.hit.json",
+      "mode": "100644",
+      "sha256": "72b8f70a203ba4df62aa7f6decfd282660db943e968e14ef4ac53189da35b7f2"
+    },
+    {
+      "path": "docs/execution/records/NET-05/hold_before-b619e547.hit.json",
+      "mode": "100644",
+      "sha256": "1d214c3bc022e8772fc6e82e76ad8c6f8c00d6099bf815b06202e33753cb02f5"
+    },
+    {
+      "path": "docs/execution/records/NET-05/initial-preflight.json",
+      "mode": "100644",
+      "sha256": "b7bd4016a0d3da0d4f3e84fb96eefdf9b0053247feaa7eebe88a113cbd78912c"
+    },
+    {
+      "path": "docs/execution/records/NET-05/initial-state.json",
+      "mode": "100644",
+      "sha256": "65041e7bfb7a2269a0ae5a14257c6e9eecc497d6adc4bf3aff9f007b19dbe82d"
+    },
+    {
+      "path": "docs/execution/records/NET-05/instance-fixed-repro.json",
+      "mode": "100644",
+      "sha256": "e37cfbbc8b6174ae4286c0507a62cd8c75452c9c3c42e7ffc7dd28633e475bfa"
+    },
+    {
+      "path": "docs/execution/records/NET-05/instance-minimal-repro.json",
+      "mode": "100644",
+      "sha256": "b906dcca99b3486435d5a3feae732ef1ccaa200a0094626e6f3f0b9a97317ff4"
+    },
+    {
+      "path": "docs/execution/records/NET-05/kube-relay.jsonl.gz",
+      "mode": "100644",
+      "sha256": "597911abcd73369ad64335ccd6d3a765043ada95f25a70795fd62bd946d96179"
+    },
+    {
+      "path": "docs/execution/records/NET-05/network-final-sbom.log",
+      "mode": "100644",
+      "sha256": "8c7ffc6c30d1f094f2e6343f1df870f52238f0b74a2d04c591d0efa02d8cf814"
+    },
+    {
+      "path": "docs/execution/records/NET-05/network-final-sbom.ssh-interrupted.log",
+      "mode": "100644",
+      "sha256": "3969b6b2bce21e9a6a94163f33e1650185e3644e9ded24f4fceacc554046404f"
+    },
+    {
+      "path": "docs/execution/records/NET-05/network-final-verify.log",
+      "mode": "100644",
+      "sha256": "c800e3c948688eb1541ee540bbe8cf6e1cc5fedab6455f83a62c876d6d7e21cf"
+    },
+    {
+      "path": "docs/execution/records/NET-05/network-final-verify.ssh-interrupted.log",
+      "mode": "100644",
+      "sha256": "1a525b821a2c3bc55334ca4028cec506a07f82ed078dad1a734d612b616d4152"
+    },
+    {
+      "path": "docs/execution/records/NET-05/network-migrate.json",
+      "mode": "100644",
+      "sha256": "732883d74fff105b6916110dd67928d04765fdfa4fce96791f3d3be410b4440f"
+    },
+    {
+      "path": "docs/execution/records/NET-05/network-net-05-initial.json",
+      "mode": "100644",
+      "sha256": "bdd9613c914261d036f12b70bf9413841da08fab8497fc7a2c22e795b4b88d75"
+    },
+    {
+      "path": "docs/execution/records/NET-05/network-tables.json",
+      "mode": "100644",
+      "sha256": "52ca999c9509d9707ccc8ce761ffd852f93c898d89bc42aa9ca90ffe76cd8d08"
+    },
+    {
+      "path": "docs/execution/records/NET-05/network-tracked.diff.gz",
+      "mode": "100644",
+      "sha256": "2d8b60975cc85a28d5ec3aebf5385a4f126020459abd96abd62786e2aec04b76"
+    },
+    {
+      "path": "docs/execution/records/NET-05/network.log",
+      "mode": "100644",
+      "sha256": "529db9e9975c94532da287f8f6b0b872efd923ab9607101f1969d8b42f69f87a"
+    },
+    {
+      "path": "docs/execution/records/NET-05/original-worktrees-preserved.json",
+      "mode": "100644",
+      "sha256": "38193c6cedea096fb8b62273d9d8fa2ba539dbfca89dff34a0a1965c13ca0db2"
+    },
+    {
+      "path": "docs/execution/records/NET-05/owner-advance-acaec4b7.hit.json",
+      "mode": "100644",
+      "sha256": "3f6894328bb097b2979ba0e09c89098b0b36ecb842bbde9e602fc18985103f67"
+    },
+    {
+      "path": "docs/execution/records/NET-05/pause-worker-20db0895.hit.json",
+      "mode": "100644",
+      "sha256": "13512800cf6aca0668f1c4d81d6d8b77b87828bc211b920ad2deaa7c08b1c77f"
+    },
+    {
+      "path": "docs/execution/records/NET-05/pause-worker-3f20254d.hit.json",
+      "mode": "100644",
+      "sha256": "d6f589fe6cf4b56bc663f8e375fdb176a8c5516fee6128be21191493a044298a"
+    },
+    {
+      "path": "docs/execution/records/NET-05/pause-worker-579d2a3c.hit.json",
+      "mode": "100644",
+      "sha256": "2602b7cf6d2d78067804f354eadcf04045084a06b1127f017850043f51c114f8"
+    },
+    {
+      "path": "docs/execution/records/NET-05/pause-worker-5ffa1141.hit.json",
+      "mode": "100644",
+      "sha256": "2d38eaca6a2b47aa0963f49090de90f6278839b8d54954540674b971dd3de552"
+    },
+    {
+      "path": "docs/execution/records/NET-05/pause-worker-665d1c3b.hit.json",
+      "mode": "100644",
+      "sha256": "ba06a68e0bf3dc5c0d494e7467db04074639acdeb3b7b3e34cc6b44f1941b578"
+    },
+    {
+      "path": "docs/execution/records/NET-05/pause-worker-6f4cdbc1.hit.json",
+      "mode": "100644",
+      "sha256": "0688e61fe06a80d5847fa7743d5098673e44c74d71378aa53a3192ca7ffed09a"
+    },
+    {
+      "path": "docs/execution/records/NET-05/pause-worker-b4853856.hit.json",
+      "mode": "100644",
+      "sha256": "00a66e089bd96333d24ae0b6dac5194a6f9597786177eae206e07f03b1d53d98"
+    },
+    {
+      "path": "docs/execution/records/NET-05/pause-worker-ec772314.hit.json",
+      "mode": "100644",
+      "sha256": "79077e09068da903c0ad512a1f9d3756885d4d3bbd66f7d689795b916a7213eb"
+    },
+    {
+      "path": "docs/execution/records/NET-05/pod-routes.json",
+      "mode": "100644",
+      "sha256": "be1e06da104b071794efc0122665df954d99d1b211c2831ffdc6b79a9de668ee"
+    },
+    {
+      "path": "docs/execution/records/NET-05/postflight.json",
+      "mode": "100644",
+      "sha256": "9f03dd56134d1eb9ca5977b062f4ea6fe1f239c40bd7dd03f1b5d8830d63004e"
+    },
+    {
+      "path": "docs/execution/records/NET-05/preflight.json",
+      "mode": "100644",
+      "sha256": "9d4b1151b280b7b0780ca06f30e0807e445577b9f1655a0cc07e8776f994349f"
+    },
+    {
+      "path": "docs/execution/records/NET-05/probe-image-b97b9f5889fe2977.json",
+      "mode": "100644",
+      "sha256": "dd8b30e6a6fec0afcdbe4af190f0b0e5c6a22675e81b600c956100f4785dcd5f"
+    },
+    {
+      "path": "docs/execution/records/NET-05/probe-image-ffcf0c98acaedd82.json",
+      "mode": "100644",
+      "sha256": "477ae7ca76a141a48e64d8c96b5aa39703f719c6c1e96d28d16bb762c536d198"
+    },
+    {
+      "path": "docs/execution/records/NET-05/probe-image.json",
+      "mode": "100644",
+      "sha256": "2b00062d1321e0401c926d0e1345a1a735ce0c986e0fa84078fac689cb868cc3"
+    },
+    {
+      "path": "docs/execution/records/NET-05/product-cleanup-20260910T023406Z.json",
+      "mode": "100644",
+      "sha256": "a974eb4ff243aa1971d2a90951c2e243876f532655bcbda1ef96b432bd0a7d12"
+    },
+    {
+      "path": "docs/execution/records/NET-05/product-cleanup-20260910T031947Z.json",
+      "mode": "100644",
+      "sha256": "60995bc4ca912511c88b67d0256fdfd753b2d9d235703bac2875a481c04a9c87"
+    },
+    {
+      "path": "docs/execution/records/NET-05/product-resource-ownership-and-cleanup.json",
+      "mode": "100644",
+      "sha256": "14e541d9fac41c395eeb20c114fe95c8ec1318e634ea7a3bbfda0431687dc741"
+    },
+    {
+      "path": "docs/execution/records/NET-05/publication-projection.json",
+      "mode": "100644",
+      "sha256": "9b6ce2349041c6cf4413eb3b671b570e55c32f2eb919d8864695eb773ebb271f"
+    },
+    {
+      "path": "docs/execution/records/NET-05/raw-list-identity.json",
+      "mode": "100644",
+      "sha256": "0f095425297c15066947b94aeea06e3cf9ea7f6f66b01c67d072f79eb5b4b666"
+    },
+    {
+      "path": "docs/execution/records/NET-05/rbac.json",
+      "mode": "100644",
+      "sha256": "567aa0cbbe3b2e1463dad88f3e4eab58513a1dfadf67a2d6e1717d6bd411cfa0"
+    },
+    {
+      "path": "docs/execution/records/NET-05/regressions/fairness-green.log",
+      "mode": "100644",
+      "sha256": "f61c9fb4eac7a826183a000a5afe1854ec084926fc3702d3f6244b405714b0bf"
+    },
+    {
+      "path": "docs/execution/records/NET-05/regressions/fairness-red.log",
+      "mode": "100644",
+      "sha256": "c8e13b699009bcae551f8dcdb7510bd0ed89fcac33277d9275b9c94512159015"
+    },
+    {
+      "path": "docs/execution/records/NET-05/regressions/kube-token-red.log",
+      "mode": "100644",
+      "sha256": "496b4752ea13e3d6d0d236a31c4c344592bd974c20fad28b989aaa9068a2e4c7"
+    },
+    {
+      "path": "docs/execution/records/NET-05/regressions/list-red.log",
+      "mode": "100644",
+      "sha256": "8f9cec7c4721a3324325224078dac5db5d146dd6cf4025ff0140bbf6857e5b5e"
+    },
+    {
+      "path": "docs/execution/records/NET-05/regressions/observation-red.log",
+      "mode": "100644",
+      "sha256": "05e61b0b1a68c75889374d5ea64cb2d303b41461568277ad78ac8c742c4f9728"
+    },
+    {
+      "path": "docs/execution/records/NET-05/regressions/router-green.log",
+      "mode": "100644",
+      "sha256": "adba68c02d44d022bc14ad25a0ce7b5a39ad2cb99c933cc8efa9b1af6ecd9583"
+    },
+    {
+      "path": "docs/execution/records/NET-05/regressions/router-red.log",
+      "mode": "100644",
+      "sha256": "69737f38021b8fb79688bd05446e0ad10574ae31a62153402ccfdf2be852320f"
+    },
+    {
+      "path": "docs/execution/records/NET-05/run-contract.json",
+      "mode": "100644",
+      "sha256": "86f003cf293f36b9da4a8bed3d221b23e34e15109756f0c70bf618dcdd862412"
+    },
+    {
+      "path": "docs/execution/records/NET-05/runtime-build-identities.json",
+      "mode": "100644",
+      "sha256": "01218ab1c09142e43070d30dba497e0bd08af045454338459be5a0866c90b103"
+    },
+    {
+      "path": "docs/execution/records/NET-05/schema/ani-schema-sources.json",
+      "mode": "100644",
+      "sha256": "20103996f3ae4252fa1795443bb78d74a36b49f28ab8f9b05cc32af85d34ec82"
+    },
+    {
+      "path": "docs/execution/records/NET-05/schema/ani-schema.sql",
+      "mode": "100644",
+      "sha256": "bb070267363e71a28979870d0054b550dd6e88a7c2d78f0158ba7b3619096013"
+    },
+    {
+      "path": "docs/execution/records/NET-05/sources/net05-20260910T014222Z-58d0d971.json.gz",
+      "mode": "100644",
+      "sha256": "3e5564e18a562811c9bf79e72a493bf8be90f5f5e78cb346cf81683a7004ce4a"
+    },
+    {
+      "path": "docs/execution/records/NET-05/sources/net05-20260910T015345Z-665860d8.json.gz",
+      "mode": "100644",
+      "sha256": "c1cee8e384d051498cb184e5f1f19ef26ad64cb8c5f3cf9d35bf0ae85d1e0bb7"
+    },
+    {
+      "path": "docs/execution/records/NET-05/sources/net05-20260910T015643Z-8711d074.json.gz",
+      "mode": "100644",
+      "sha256": "d5fab9bedd71bffdaeabd7ea2444cb09dfddc4109c3979754dd4678cd4d6a58e"
+    },
+    {
+      "path": "docs/execution/records/NET-05/sources/net05-20260910T015820Z-15f45e9e.json.gz",
+      "mode": "100644",
+      "sha256": "07e1b6c630b4ed4fd1da0b7616a28301c1d6ecb371f08b6aa024e75ff620c945"
+    },
+    {
+      "path": "docs/execution/records/NET-05/sources/net05-20260910T020032Z-cc83f5b3.json.gz",
+      "mode": "100644",
+      "sha256": "27f31eb152321287efa0410724af46fc63ff904304ecbc8d04529d42f596433d"
+    },
+    {
+      "path": "docs/execution/records/NET-05/sources/net05-20260910T020154Z-6cdf2340.json.gz",
+      "mode": "100644",
+      "sha256": "04153f6889ebdaadc03e30da9146b360abb34d02e1ca0035531c5bef6bb88261"
+    },
+    {
+      "path": "docs/execution/records/NET-05/sources/net05-20260910T020408Z-6eafead0.json.gz",
+      "mode": "100644",
+      "sha256": "2629c7b9df5ea4ff8827109a36675eb031651ac41299e76167e633ee26f96313"
+    },
+    {
+      "path": "docs/execution/records/NET-05/sources/net05-20260910T020707Z-4b93665f.json.gz",
+      "mode": "100644",
+      "sha256": "f41c5f30b7e192e48228e380e5943d3c9b508f5b0eaceded0800127ae6761538"
+    },
+    {
+      "path": "docs/execution/records/NET-05/sources/net05-20260910T020827Z-10ff54b1.json.gz",
+      "mode": "100644",
+      "sha256": "206ba40b461e1896bd846835b22b8c4650a01abc89150d7a33f9c2f8f9fe8214"
+    },
+    {
+      "path": "docs/execution/records/NET-05/sources/net05-20260910T020946Z-02ddc8d5.json.gz",
+      "mode": "100644",
+      "sha256": "64a09552b1b5c2c8eb89d2d05f0238a85996319a736a11608d7a6c5679e13b48"
+    },
+    {
+      "path": "docs/execution/records/NET-05/sources/net05-20260910T021438Z-710ea7fe.json.gz",
+      "mode": "100644",
+      "sha256": "880bad51830671dea131c16f4a4d7cddd53b6bbe48aba621212390850965e8c3"
+    },
+    {
+      "path": "docs/execution/records/NET-05/sources/net05-20260910T021553Z-566dc108.json.gz",
+      "mode": "100644",
+      "sha256": "76c42e6dbaefd86db27de3d846f5513175d7f9efe70b58e9ee962bf978910825"
+    },
+    {
+      "path": "docs/execution/records/NET-05/sources/net05-20260910T021849Z-0096b131.json.gz",
+      "mode": "100644",
+      "sha256": "610d3fce920f0b7c2ec513b4cf890df227deba476d39552b9d123fc756146d3a"
+    },
+    {
+      "path": "docs/execution/records/NET-05/sources/net05-20260910T022031Z-66c41398.json.gz",
+      "mode": "100644",
+      "sha256": "4f45663433812ee4fddcf5d723760364f7e1fe1c596dad727ee08d8bd85a6c4c"
+    },
+    {
+      "path": "docs/execution/records/NET-05/sources/net05-20260910T022431Z-26bb276e.json.gz",
+      "mode": "100644",
+      "sha256": "ba6dde9e5fbefc683d3de54f4cdf927b57cb0f49e05d3917bf6d87c41dd5c201"
+    },
+    {
+      "path": "docs/execution/records/NET-05/sources/net05-20260910T022703Z-18807611.json.gz",
+      "mode": "100644",
+      "sha256": "269a1db2fa97269b8440d45e0fc43b512c90c446357196158dc5bb623960c926"
+    },
+    {
+      "path": "docs/execution/records/NET-05/sources/net05-20260910T023041Z-85527f14.json.gz",
+      "mode": "100644",
+      "sha256": "1c3cd3abb49789dac30f67d7e69bc242138d28a96fb3de0f35b907eaab1ced13"
+    },
+    {
+      "path": "docs/execution/records/NET-05/sources/net05-20260910T023332Z-1c80c116.json.gz",
+      "mode": "100644",
+      "sha256": "1d9ebef80bf51896d9944d7dd5ab091535b5811ca3abc09aea5301da1add84dc"
+    },
+    {
+      "path": "docs/execution/records/NET-05/sources/net05-20260910T023735Z-fd01a1a9.json.gz",
+      "mode": "100644",
+      "sha256": "2a2171568f3b39ab295f821bfd23c673bb504e8e4246a2f2451493e1a7777f0e"
+    },
+    {
+      "path": "docs/execution/records/NET-05/sources/net05-20260910T024027Z-920f2d2f.json.gz",
+      "mode": "100644",
+      "sha256": "127a182a1c06db9114c8343e7969709cb9733f9169226134030ba97725ae9d65"
+    },
+    {
+      "path": "docs/execution/records/NET-05/sources/net05-20260910T024142Z-9a6bb605.json.gz",
+      "mode": "100644",
+      "sha256": "4ce3da4702d88e517776573bc68359ac03882943032a60a408dcd0c7f50a913f"
+    },
+    {
+      "path": "docs/execution/records/NET-05/sources/net05-20260910T024533Z-fa10c7c6.json.gz",
+      "mode": "100644",
+      "sha256": "c33d0652d1377091a746a85c79f13b5ccf6ffb7b9ca820a473e3250259a62566"
+    },
+    {
+      "path": "docs/execution/records/NET-05/sources/net05-20260910T024802Z-fdb90a97.json.gz",
+      "mode": "100644",
+      "sha256": "2d0181d43f6be08cc32bd07ea5c5ef1e55f6b827706656056f3b08e802bdfe8f"
+    },
+    {
+      "path": "docs/execution/records/NET-05/sources/net05-20260910T025111Z-f0f64349.json.gz",
+      "mode": "100644",
+      "sha256": "e787dcdaf0bc95c663938702424d4a61b483d7027940eda379265708c9627c70"
+    },
+    {
+      "path": "docs/execution/records/NET-05/sources/net05-20260910T025315Z-08c66b53.json.gz",
+      "mode": "100644",
+      "sha256": "f272596066cd72e09144d71d32b235844064973e6e4c08b720adec74d0e944b8"
+    },
+    {
+      "path": "docs/execution/records/NET-05/sources/net05-20260910T025831Z-fd0297fc.json.gz",
+      "mode": "100644",
+      "sha256": "c844d6bbb2ba77fa1725f22e954aab30fc807f451f98022a17bb9e964468b227"
+    },
+    {
+      "path": "docs/execution/records/NET-05/sources/net05-20260910T030223Z-1d1dae8f.json.gz",
+      "mode": "100644",
+      "sha256": "6de4ddca7fb52908bdf23f0ae9e48aad51fab70f29bc5aa847b26f1174a97515"
+    },
+    {
+      "path": "docs/execution/records/NET-05/sources/net05-20260910T030354Z-55d45270.json.gz",
+      "mode": "100644",
+      "sha256": "c668d0abd0c66515412f791fe1e347841e4eed26d89cbf81c9de303721f2b17e"
+    },
+    {
+      "path": "docs/execution/records/NET-05/sources/net05-20260910T030442Z-dd4743cc.json.gz",
+      "mode": "100644",
+      "sha256": "5d0c5922f2888ffacd703a11babe034f15d9ca3d8a27bbad454232d2b89bd27f"
+    },
+    {
+      "path": "docs/execution/records/NET-05/sources/net05-20260910T030943Z-13caae85.json.gz",
+      "mode": "100644",
+      "sha256": "c5d42bb5377f1c6940f1e5cbadbc07890e9c41b327633361a3c650f29003c68a"
+    },
+    {
+      "path": "docs/execution/records/NET-05/sources/net05-20260910T031035Z-8419d6c9.json.gz",
+      "mode": "100644",
+      "sha256": "af53e5577bb33d427eadc20795fd5d1982823efc560a988634c9e679adb8ec2a"
+    },
+    {
+      "path": "docs/execution/records/NET-05/sources/net05-20260910T031322Z-e1457894.json.gz",
+      "mode": "100644",
+      "sha256": "613d978bd4579013e1a1a7760591b6b690d9844a29e2e75fb624a2a8b7cae636"
+    },
+    {
+      "path": "docs/execution/records/NET-05/sources/net05-20260910T031629Z-a14df856.json.gz",
+      "mode": "100644",
+      "sha256": "6183a5c6a08f61198bb82eaff1d8618a6d46cb335d5cf0e6e4574ed78ee0441d"
+    },
+    {
+      "path": "docs/execution/records/NET-05/sources/net05-20260910T032221Z-af9a3017.json.gz",
+      "mode": "100644",
+      "sha256": "81e23a9f48d3d695918762d87ae21eb57d25c921e9e15e3f307cf7b46145ab4c"
+    },
+    {
+      "path": "docs/execution/records/NET-05/sources/net05-20260910T033054Z-9e052684.json.gz",
+      "mode": "100644",
+      "sha256": "8e34477d995bcb913ec8bc57a45cab3928ea6eaed45af9415eb3bdbc0cea661a"
+    },
+    {
+      "path": "docs/execution/records/NET-05/sources/net05-20260910T033231Z-30dd19c2.json.gz",
+      "mode": "100644",
+      "sha256": "94f8222d313146e010e1a651f497c5843e887d5e2145a9eff1ecb324a4ffe70b"
+    },
+    {
+      "path": "docs/execution/records/NET-05/sources/net05-20260910T033825Z-020207da.json.gz",
+      "mode": "100644",
+      "sha256": "6e5ff8dac71fc4cc5e2551e75b5b0f91e56a7d8a41c57f52f3c77966c0799fec"
+    },
+    {
+      "path": "docs/execution/records/NET-05/tenant-0-deployments.json",
+      "mode": "100644",
+      "sha256": "90fc342f098745bb50dfae4c6eda65e986fd5a807cf01abdf668d8dd03bca0d6"
+    },
+    {
+      "path": "docs/execution/records/NET-05/tenant-0-eips.json",
+      "mode": "100644",
+      "sha256": "90fc342f098745bb50dfae4c6eda65e986fd5a807cf01abdf668d8dd03bca0d6"
+    },
+    {
+      "path": "docs/execution/records/NET-05/tenant-0-pods.json",
+      "mode": "100644",
+      "sha256": "90fc342f098745bb50dfae4c6eda65e986fd5a807cf01abdf668d8dd03bca0d6"
+    },
+    {
+      "path": "docs/execution/records/NET-05/tenant-0-replicasets.json",
+      "mode": "100644",
+      "sha256": "90fc342f098745bb50dfae4c6eda65e986fd5a807cf01abdf668d8dd03bca0d6"
+    },
+    {
+      "path": "docs/execution/records/NET-05/tenant-0-services.json",
+      "mode": "100644",
+      "sha256": "90fc342f098745bb50dfae4c6eda65e986fd5a807cf01abdf668d8dd03bca0d6"
+    },
+    {
+      "path": "docs/execution/records/NET-05/tenant-0-subnets.json",
+      "mode": "100644",
+      "sha256": "90fc342f098745bb50dfae4c6eda65e986fd5a807cf01abdf668d8dd03bca0d6"
+    },
+    {
+      "path": "docs/execution/records/NET-05/tenant-0-vnicips.json",
+      "mode": "100644",
+      "sha256": "90fc342f098745bb50dfae4c6eda65e986fd5a807cf01abdf668d8dd03bca0d6"
+    },
+    {
+      "path": "docs/execution/records/NET-05/tenant-0-vnics.json",
+      "mode": "100644",
+      "sha256": "90fc342f098745bb50dfae4c6eda65e986fd5a807cf01abdf668d8dd03bca0d6"
+    },
+    {
+      "path": "docs/execution/records/NET-05/tenant-0-vpcs.json",
+      "mode": "100644",
+      "sha256": "90fc342f098745bb50dfae4c6eda65e986fd5a807cf01abdf668d8dd03bca0d6"
+    },
+    {
+      "path": "docs/execution/records/NET-05/tenant-1-deployments.json",
+      "mode": "100644",
+      "sha256": "90fc342f098745bb50dfae4c6eda65e986fd5a807cf01abdf668d8dd03bca0d6"
+    },
+    {
+      "path": "docs/execution/records/NET-05/tenant-1-eips.json",
+      "mode": "100644",
+      "sha256": "90fc342f098745bb50dfae4c6eda65e986fd5a807cf01abdf668d8dd03bca0d6"
+    },
+    {
+      "path": "docs/execution/records/NET-05/tenant-1-pods.json",
+      "mode": "100644",
+      "sha256": "90fc342f098745bb50dfae4c6eda65e986fd5a807cf01abdf668d8dd03bca0d6"
+    },
+    {
+      "path": "docs/execution/records/NET-05/tenant-1-replicasets.json",
+      "mode": "100644",
+      "sha256": "90fc342f098745bb50dfae4c6eda65e986fd5a807cf01abdf668d8dd03bca0d6"
+    },
+    {
+      "path": "docs/execution/records/NET-05/tenant-1-services.json",
+      "mode": "100644",
+      "sha256": "90fc342f098745bb50dfae4c6eda65e986fd5a807cf01abdf668d8dd03bca0d6"
+    },
+    {
+      "path": "docs/execution/records/NET-05/tenant-1-subnets.json",
+      "mode": "100644",
+      "sha256": "90fc342f098745bb50dfae4c6eda65e986fd5a807cf01abdf668d8dd03bca0d6"
+    },
+    {
+      "path": "docs/execution/records/NET-05/tenant-1-vnicips.json",
+      "mode": "100644",
+      "sha256": "90fc342f098745bb50dfae4c6eda65e986fd5a807cf01abdf668d8dd03bca0d6"
+    },
+    {
+      "path": "docs/execution/records/NET-05/tenant-1-vnics.json",
+      "mode": "100644",
+      "sha256": "90fc342f098745bb50dfae4c6eda65e986fd5a807cf01abdf668d8dd03bca0d6"
+    },
+    {
+      "path": "docs/execution/records/NET-05/tenant-1-vpcs.json",
+      "mode": "100644",
+      "sha256": "90fc342f098745bb50dfae4c6eda65e986fd5a807cf01abdf668d8dd03bca0d6"
+    },
+    {
+      "path": "docs/execution/records/NET-05/topology.json",
+      "mode": "100644",
+      "sha256": "d0a38dbd65d563a75b68d07c810273a626430ad925229ee7fd4fa603ee3f23b8"
+    },
+    {
+      "path": "docs/execution/records/NET-05/traffic.jsonl",
+      "mode": "100644",
+      "sha256": "a428e6501e1713c9368dd3986df542eb0a91e51a3ac569d13a4169940564c455"
+    },
+    {
+      "path": "docs/execution/records/NET-05/unused-relay-cleanup.json",
+      "mode": "100644",
+      "sha256": "db9608da998790757e1596aea7087ee872a80ed413b9fefe0da2800a3dc2cad3"
+    },
+    {
+      "path": "docs/execution/records/NET-05A-implementation.md",
+      "mode": "100644",
+      "sha256": "d16aa4158483b92e09e58732b5d5cf2938675cd966830bb22201e007d9d2e830"
+    },
+    {
+      "path": "docs/execution/status.md",
+      "mode": "100644",
+      "sha256": "73b601c94f67067e6016bcb0b1e2400d7fbdd027fa4ee0eb0be999ae99865188"
+    },
+    {
+      "path": "docs/plans/cr-observation.md",
+      "mode": "100644",
+      "sha256": "29df9d061be19d937df041aa0bac25a2c6598d88ac4355dfbf896a34f488769f"
+    },
+    {
+      "path": "docs/plans/vpc-subnet.md",
+      "mode": "100644",
+      "sha256": "9d96c0c55bb6ee9a11abbdfb4e21d1f94482dd5572b1ee5cac7271aaffd70758"
+    },
+    {
+      "path": "docs/remote-execution.md",
+      "mode": "100644",
+      "sha256": "6efe2b1a002a8424c516f70207310d71a1d704d09dece7ff4cb7592519741664"
+    },
+    {
+      "path": "docs/runtime-verification.md",
+      "mode": "100644",
+      "sha256": "6ef7ee5da241a8d602c9ea724a2bd66e2069de685c3bda7d15618afd6e530424"
+    },
+    {
+      "path": "docs/runtime.md",
+      "mode": "100644",
+      "sha256": "31aa6a6139142f8320b6bf69c9332d847337cde9466d0f4ea0695c4203d82ed7"
+    },
+    {
+      "path": "docs/scaffold/bom.cdx.json",
+      "mode": "100644",
+      "sha256": "bd7fbe51d3756b2119a224027b0d1cd824b86782e0fd763fd65facfcbdf9820f"
+    },
+    {
+      "path": "docs/scaffold/provenance.md",
+      "mode": "100644",
+      "sha256": "3e0d8540c24e187b2d472fc2bcb8b018c92c1c0ddc15f62177a2e50345e93b99"
+    },
+    {
+      "path": "docs/specs/cr-observation.md",
+      "mode": "100644",
+      "sha256": "8742b9576de5960c14d0461e7db6d5f827ba6cdeba521803277b08a41a50861e"
+    },
+    {
+      "path": "docs/specs/vpc-subnet.md",
+      "mode": "100644",
+      "sha256": "5a92e235166a0b15d05c90947ab03604eeec98d9c80a68e8b22b3699805b5bbd"
+    },
+    {
+      "path": "go.mod",
+      "mode": "100644",
+      "sha256": "cfbc4b18b630152d57ec9bf1218ccb2d6a9f946289a6b9871f37aaa1821e81f5"
+    },
+    {
+      "path": "go.sum",
+      "mode": "100644",
+      "sha256": "cdf76314ea83fbc94534ea9b29a22c7ae3a73fb3e00115486d0c9e8e7c036dc3"
+    },
+    {
+      "path": "internal/biz/README.md",
+      "mode": "100644",
+      "sha256": "b112fe146738abbc9277593578fbaaddbdcc8e9119d8dd59f3c1320114f53a8d"
+    },
+    {
+      "path": "internal/biz/attachment.go",
+      "mode": "100644",
+      "sha256": "ddf56417db09388fe1376b1cfcb7dc89bfc7e4f0497cf632af724f90d8d0978c"
+    },
+    {
+      "path": "internal/biz/attachment_worker.go",
+      "mode": "100644",
+      "sha256": "a30da0aa157a24104133b05248abd395efbf79aa02054f104dc8000eeeee6636"
+    },
+    {
+      "path": "internal/biz/doc.go",
+      "mode": "100644",
+      "sha256": "90dc96bab69aec3bfb1144593f2ee18d0600ba2522179f970e2ba6e6c27383eb"
+    },
+    {
+      "path": "internal/biz/list.go",
+      "mode": "100644",
+      "sha256": "c95e1a6d10ad5d16f5256ef50a56945e6e8f0131117739dac1feea1f0ec872f1"
+    },
+    {
+      "path": "internal/biz/network.go",
+      "mode": "100644",
+      "sha256": "29e3cc5fc226e8f17673fbe6b70a9888557a6173829f7d419f47a33ff0b7b03f"
+    },
+    {
+      "path": "internal/biz/observation.go",
+      "mode": "100644",
+      "sha256": "91e4edc4ceaba1c234aa37c5fe6ff887e027f825e68058f38737601860768538"
+    },
+    {
+      "path": "internal/biz/subnet.go",
+      "mode": "100644",
+      "sha256": "923b715f5a0e972e30252050f7cb574dcb3cbb7610fce05bb482db618911c4c4"
+    },
+    {
+      "path": "internal/biz/subnet_test.go",
+      "mode": "100644",
+      "sha256": "bdebe0a83967aceb9cead402898eb87475cf0da7f79097639e6e9f8322b99ecb"
+    },
+    {
+      "path": "internal/biz/vpc.go",
+      "mode": "100644",
+      "sha256": "15329163eaa303ea8dd4d2d352cf11863e80496bcfea0434fb1196e674896bda"
+    },
+    {
+      "path": "internal/biz/vpc_test.go",
+      "mode": "100644",
+      "sha256": "896ee535d48572b6aa5cadf1525a2394c9007b6db8c5dfbfb4ab74b19ceb3bcb"
+    },
+    {
+      "path": "internal/biz/worker.go",
+      "mode": "100644",
+      "sha256": "ef1c3058e6e0cc2150d80c34a1862c4cdb0dde40826190bd261f9b667e6df8f5"
+    },
+    {
+      "path": "internal/conf/v1/conf.pb.go",
+      "mode": "100644",
+      "sha256": "f9baca3ad1d2630cc11ebf398072bee7f3b442f70938fa4339c331927c6104f5"
+    },
+    {
+      "path": "internal/conf/v1/conf.proto",
+      "mode": "100644",
+      "sha256": "3d138f0408021aa75a9e6bfa8dbafda137de165ee1e9c0293844759de55debaa"
+    },
+    {
+      "path": "internal/conf/v1/validate.go",
+      "mode": "100644",
+      "sha256": "76500c01b00e9306dddeb22e40f2b260a48b0c54a9e9b6b43dc77dcf54457bc8"
+    },
+    {
+      "path": "internal/conf/v1/validate_test.go",
+      "mode": "100644",
+      "sha256": "d243df7df1c047ecd9fcc4d4a494daea893addbe76f60233e93211c4256f4530"
+    },
+    {
+      "path": "internal/data/README.md",
+      "mode": "100644",
+      "sha256": "72f4a46fb9627152e5abcaf87f7e41fb1b142183e4d7aa7d6ee53f1f89d12452"
+    },
+    {
+      "path": "internal/data/attachment.go",
+      "mode": "100644",
+      "sha256": "4718aabc94a0110005d96a31c9719acd285d59cc287d71bc541146cf24722d4d"
+    },
+    {
+      "path": "internal/data/attachment_integration_test.go",
+      "mode": "100644",
+      "sha256": "d87175d663f6a0132784f0e00b9b4c6edec503fa511bc550bd7913842fbca30a"
+    },
+    {
+      "path": "internal/data/attachment_worker.go",
+      "mode": "100644",
+      "sha256": "525e079d19003002dbbcd6e4fffc491fd1c4c5e4673325b170a403865a8cdd22"
+    },
+    {
+      "path": "internal/data/doc.go",
+      "mode": "100644",
+      "sha256": "50978525ad3fa635c857f9b62af37e5898ab9ff02e847654eb1b831d236d74fa"
+    },
+    {
+      "path": "internal/data/faults_integration_test.go",
+      "mode": "100644",
+      "sha256": "17c27ff4f2c6d2b268162e25081d13a4552b32dc316b5d02ff32c3122c3d649b"
+    },
+    {
+      "path": "internal/data/grpc_integration_test.go",
+      "mode": "100644",
+      "sha256": "9d7c92237ba53053c8de0e7b35e931a739eeb0cac5ba269ff9230d27bd178df1"
+    },
+    {
+      "path": "internal/data/instance_consumer.go",
+      "mode": "100644",
+      "sha256": "c17e209e37f5eb081a005238caa22eb58f0be638361318b3d315d4550b8fdeda"
+    },
+    {
+      "path": "internal/data/kc.go",
+      "mode": "100644",
+      "sha256": "2b92f11a4943d9fabcb656482e74b434c6fb992f1e2e3aff2171eb5a2ccbaa56"
+    },
+    {
+      "path": "internal/data/kc_attachment.go",
+      "mode": "100644",
+      "sha256": "a8596f00374e760c6ab913b7c4d901e2664b76b6c13e190c887e1ea109d7a8c1"
+    },
+    {
+      "path": "internal/data/kc_index.go",
+      "mode": "100644",
+      "sha256": "87994fed2d067c9c30f66282e6353f845237f7d58593cdcf05d09ec930dfc6d0"
+    },
+    {
+      "path": "internal/data/kc_index_test.go",
+      "mode": "100644",
+      "sha256": "a8bfb7d28e0ea4dc9badba732f257f958d0d928207a8fcd56a06435a61916d3f"
+    },
+    {
+      "path": "internal/data/kc_integration_test.go",
+      "mode": "100644",
+      "sha256": "a7c9705ac84ee0bf08f2e456e2eb892983b8646e60371b047b04ef6349759b8f"
+    },
+    {
+      "path": "internal/data/kc_metrics.go",
+      "mode": "100644",
+      "sha256": "a8791abd56d5410c66c6efbf947508ca960e1340fb47a3105bca1649e611e44c"
+    },
+    {
+      "path": "internal/data/kc_observation.go",
+      "mode": "100644",
+      "sha256": "3b6b6cf5f458aceadc80440cd6e915476955520f0beb48e6557e2595944fa33e"
+    },
+    {
+      "path": "internal/data/kc_observation_integration_test.go",
+      "mode": "100644",
+      "sha256": "79d3801029553ff45229e018382d41bdd0f951123b8c1eb818d1f74431395c6a"
+    },
+    {
+      "path": "internal/data/kc_observed_provider.go",
+      "mode": "100644",
+      "sha256": "e89c7c4f505c0eeabca6720949169c6f90a75d461b53158997ad13417b3cb906"
+    },
+    {
+      "path": "internal/data/migrate.go",
+      "mode": "100644",
+      "sha256": "1c6200022b6e63e160ad19432f10d563a288b98a70f8581c4a164796402ecb06"
+    },
+    {
+      "path": "internal/data/net05a_capacity_current_test.go",
+      "mode": "100644",
+      "sha256": "971bf0a9fa39e479c31fc3fdf304e13bb2977a9932315e726dc436b9d17f1036"
+    },
+    {
+      "path": "internal/data/net05a_capacity_test.go",
+      "mode": "100644",
+      "sha256": "54f38877afed6fd1f32bc8265b37969266ef073652bb6a2d0ec451323e7626e4"
+    },
+    {
+      "path": "internal/data/observation.go",
+      "mode": "100644",
+      "sha256": "5495da7e3f5006a6dcb83cf959f65105b63227f5cbb1b20524469765008d9138"
+    },
+    {
+      "path": "internal/data/observation_integration_test.go",
+      "mode": "100644",
+      "sha256": "7b35065e817ff89f8e0f57c786a694daf1bf2d5b5fd96789f19aecebe93f24bf"
+    },
+    {
+      "path": "internal/data/observation_telemetry.go",
+      "mode": "100644",
+      "sha256": "af749330e81172ecb6822e78b073e964f381bb9031091c3ad88fd3142af96dd4"
+    },
+    {
+      "path": "internal/data/observation_upgrade_integration_test.go",
+      "mode": "100644",
+      "sha256": "d81dec9ca3d9832d3e34ff900e9ba9528e1e1354b0c728eb04ae5e73bb68e382"
+    },
+    {
+      "path": "internal/data/postgres.go",
+      "mode": "100644",
+      "sha256": "465d6cfc96a5433e17c772419c1353a6da43c4c2a2cba825abe75fbea40dbb12"
+    },
+    {
+      "path": "internal/data/postgres_integration_test.go",
+      "mode": "100644",
+      "sha256": "f27972c130d530c8a7b71651c1a37a58779d1708073d6a3033cf0de792fc6d71"
+    },
+    {
+      "path": "internal/data/process_integration_test.go",
+      "mode": "100644",
+      "sha256": "d7dd3c5dacac0b66c128610bd3e1132777a08db8769bb01dfec7ea822357b963"
+    },
+    {
+      "path": "internal/data/provider_faults_integration_test.go",
+      "mode": "100644",
+      "sha256": "cd91a99fcf2fe6e971052db418bfbd51f3952fbf07cf055d597f9ae8d4ebe237"
+    },
+    {
+      "path": "internal/data/queries/attachments.sql",
+      "mode": "100644",
+      "sha256": "c1094004c94f565e09f1bb8fe25ccda8f5c8f387550aa2200d2304221cad7b0b"
+    },
+    {
+      "path": "internal/data/queries/observation.sql",
+      "mode": "100644",
+      "sha256": "47c43d18d5bbbd794fb7055912df23855eb296f7c0b2a61204e9b3def7c14d8b"
+    },
+    {
+      "path": "internal/data/queries/subnets.sql",
+      "mode": "100644",
+      "sha256": "d5f4dab9726c64ba04537edc719f8e8974a731491831a629ed4195b7fb45f3c7"
+    },
+    {
+      "path": "internal/data/queries/vpcs.sql",
+      "mode": "100644",
+      "sha256": "e6f3a8d28a4e77c9b1141eb8dc8b215b1fd77fbdc4aee8cc2ef5ce20c3f36022"
+    },
+    {
+      "path": "internal/data/queries/worker.sql",
+      "mode": "100644",
+      "sha256": "ab785df8d000c23c92a10c551a084172dd83dc32b68140a33ab9301c4364933d"
+    },
+    {
+      "path": "internal/data/resource_work.go",
+      "mode": "100644",
+      "sha256": "b231fe19a976e03170a3562f0963fca5d0503cb4ed1876e949c383d33af613c0"
+    },
+    {
+      "path": "internal/data/resource_work_net05_integration_test.go",
+      "mode": "100644",
+      "sha256": "669aebb59f1721679bbb8f83f695d082dbc7b9c5fbac722b3b614ae19e68ca4e"
+    },
+    {
+      "path": "internal/data/sqlcgen/attachments.sql.go",
+      "mode": "100644",
+      "sha256": "ec14c4a54f07f18e902757e7c401ed1e62bebe041cb8161a7ab84caa2bb47f12"
+    },
+    {
+      "path": "internal/data/sqlcgen/db.go",
+      "mode": "100644",
+      "sha256": "c40f70c9870c43ddc88f743ec63627bc9af2d57fab48fdb0c055981d090b0cf8"
+    },
+    {
+      "path": "internal/data/sqlcgen/models.go",
+      "mode": "100644",
+      "sha256": "3db6deb1d24c52a4f8d8bdeff5546d5f1316770c1ed72295742707d5f6166459"
+    },
+    {
+      "path": "internal/data/sqlcgen/observation.sql.go",
+      "mode": "100644",
+      "sha256": "51cf9ce03cdbc231a48573e35ee70e884b142828b90dae371a7de25804441362"
+    },
+    {
+      "path": "internal/data/sqlcgen/subnets.sql.go",
+      "mode": "100644",
+      "sha256": "9b57c83d382603016eb75d33077f5b60e4cbce4b8174e4b9cb3146e66d409725"
+    },
+    {
+      "path": "internal/data/sqlcgen/vpcs.sql.go",
+      "mode": "100644",
+      "sha256": "7573860ed8bb96d2db618686b6c9601efcfa32c90a81f9f2ed05e57e52939788"
+    },
+    {
+      "path": "internal/data/sqlcgen/worker.sql.go",
+      "mode": "100644",
+      "sha256": "494fa14d1ad37932159a209de8231584232ea7ad688a8c6fccbc2f0d6e2addc2"
+    },
+    {
+      "path": "internal/data/subnet.go",
+      "mode": "100644",
+      "sha256": "a700692a6a5d9b48cd85ddb702750e56669903516bd006fe959f074a6e2e2b5c"
+    },
+    {
+      "path": "internal/data/subnet_integration_test.go",
+      "mode": "100644",
+      "sha256": "e0b8bea0e3acb420e712a4c79412f4033eb703dad26bdb2c185b3d2498f4246e"
+    },
+    {
+      "path": "internal/data/subnet_kc_integration_test.go",
+      "mode": "100644",
+      "sha256": "de1f354bbaf5c4874dc83800861202843047509320e4309dde16577c9e9ed073"
+    },
+    {
+      "path": "internal/data/subnet_process_integration_test.go",
+      "mode": "100644",
+      "sha256": "61174fef4fac27de2108dd35141bd33f304180b6d58ef5b7bca4a20451138ebe"
+    },
+    {
+      "path": "internal/data/subnet_upgrade_integration_test.go",
+      "mode": "100644",
+      "sha256": "92cc69dae2f2d6465c681712eced9593199aac1948c6f1238445ff9c428ec9dd"
+    },
+    {
+      "path": "internal/data/worker.go",
+      "mode": "100644",
+      "sha256": "8b95c59980d215a918c1871a67324ffbd1c76b98c04e48be642b19eded2036a5"
+    },
+    {
+      "path": "internal/data/worker_integration_test.go",
+      "mode": "100644",
+      "sha256": "806c277ebc8e159812e549142f54cb509d2ec4212cfe6dda9d6b83381897093d"
+    },
+    {
+      "path": "internal/server/admin.go",
+      "mode": "100644",
+      "sha256": "0746d987a940b5ef83bfef756b79143cdfb42143f1104effdb78d90bfacd78fc"
+    },
+    {
+      "path": "internal/server/admin_test.go",
+      "mode": "100644",
+      "sha256": "979c2932f4909524b44658bdb25e28d46b85425fb6ee16db75148c308929c5ed"
+    },
+    {
+      "path": "internal/server/grpc.go",
+      "mode": "100644",
+      "sha256": "738d9935e358a52aa80ff96db1625b166e7600f8af88e9e15b099b07239f0e8e"
+    },
+    {
+      "path": "internal/server/health.go",
+      "mode": "100644",
+      "sha256": "7a861fa8ceb20fef5e7f5b872b859eb6d07e7d05b4c2f8b50af1a8c59caecb11"
+    },
+    {
+      "path": "internal/server/observability.go",
+      "mode": "100644",
+      "sha256": "a6f129a84ff3c0ceed60fb008482f6e3cd72d5a42d4c1e5cc0cfe88b255fd36f"
+    },
+    {
+      "path": "internal/server/observation.go",
+      "mode": "100644",
+      "sha256": "a8c25b9f2b9aa70def01f6794dd8eb8c6f7c9d54a3ab42eab54de77f3a7f8187"
+    },
+    {
+      "path": "internal/server/readiness.go",
+      "mode": "100644",
+      "sha256": "fdf40b6c4f438e7b40e40b5b1f1d0d55187240f19fdedddea1219f42e4971ba0"
+    },
+    {
+      "path": "internal/server/server.go",
+      "mode": "100644",
+      "sha256": "b28ebf0a522c2ba3265e6d9a6317ea8a08069268eb73a36950913c6bde7a70c5"
+    },
+    {
+      "path": "internal/server/worker.go",
+      "mode": "100644",
+      "sha256": "ab2f944bca097fdaa9cfb2dfc8f3d59cdb47102302d4cd0d4ba961b250e048f0"
+    },
+    {
+      "path": "internal/server/worker_test.go",
+      "mode": "100644",
+      "sha256": "38c7976d0e2773010ce118399b7c102a312eb06becd1b432b4522af4f24fda39"
+    },
+    {
+      "path": "internal/service/README.md",
+      "mode": "100644",
+      "sha256": "c1a9aa4ff15984caa1119553751943d230e26951d7273dc7cbb1a3d3b077f303"
+    },
+    {
+      "path": "internal/service/attachment.go",
+      "mode": "100644",
+      "sha256": "1c01211903096e61b3d82775834564b5a644ee8411a3e38ea37e80343100a484"
+    },
+    {
+      "path": "internal/service/doc.go",
+      "mode": "100644",
+      "sha256": "e55ae12ceb943c6be84e31540c839d606ffd319bfdf9ab92312ae2066137f5f7"
+    },
+    {
+      "path": "internal/service/network.go",
+      "mode": "100644",
+      "sha256": "86504293d62114cefa6a99f7c8d1b6d12fb8eb64be9e72d85e97561a38bb8689"
+    },
+    {
+      "path": "internal/service/subnet.go",
+      "mode": "100644",
+      "sha256": "6b412d89e00264be67901c9855b9c5527f291ab00e3e3ff6af3bbdf1573d548c"
+    },
+    {
+      "path": "migrations/0001_vpc.sql",
+      "mode": "100644",
+      "sha256": "c9c99dd3cfba59f5a6fcf8025e7d0d433a8bd322df1088c58912a44d1e32736a"
+    },
+    {
+      "path": "migrations/0002_subnet.sql",
+      "mode": "100644",
+      "sha256": "ab5dfbc25cc9f2323d2fbee2dbb109d28115597a6f8322e1242f4484dc6a5fdb"
+    },
+    {
+      "path": "migrations/0003_attachment.sql",
+      "mode": "100644",
+      "sha256": "9617a45668d6f0a4c0590f07f36889acbd56c4b966dcd0c9f2b3d1f093ee69dd"
+    },
+    {
+      "path": "migrations/0004_observation.sql",
+      "mode": "100644",
+      "sha256": "6ff6142ba197f3a8e62e6433daf2deb672c3f125d634d4f63441f3b11e9c58b6"
+    },
+    {
+      "path": "migrations/embed.go",
+      "mode": "100644",
+      "sha256": "7a3dfefa1f2cdf9678a5bb1a041ae8f46bb6ad869845c336146b72b6dc18f592"
+    },
+    {
+      "path": "scripts/check-net0204-compatibility",
+      "mode": "100644",
+      "sha256": "02fc3d08d01aa8d034b05820985534c6b4587f6d50c7bdb72e5fef88c303988d"
+    },
+    {
+      "path": "scripts/check-tenant-mutations",
+      "mode": "100755",
+      "sha256": "86001dd289a752f921dd3688aa1d5b89bde3d0f0d01fa7ec4f3e39cc8fd5345b"
+    },
+    {
+      "path": "scripts/generate-sbom",
+      "mode": "100755",
+      "sha256": "5b42c7984a0a42c2ecef6da9af593c5a7472f13d07dc3dd0af36f1009537fac0"
+    },
+    {
+      "path": "scripts/integration",
+      "mode": "100755",
+      "sha256": "b2cb9e3b91105f059519fd9170fe71cd6526bddb4dce313a1d1db10dde01ba8e"
+    },
+    {
+      "path": "scripts/integration-pair",
+      "mode": "100755",
+      "sha256": "a205befc6eadd59a0ab256ea824de5b21fe6ea17119b2427bf33709dc8bb9273"
+    },
+    {
+      "path": "scripts/net05-api.py",
+      "mode": "100644",
+      "sha256": "3034bf0255d1b4d3632a9be6bec4f4a7a7802bcc672c5739748929c455850efa"
+    },
+    {
+      "path": "scripts/net05-build-faults.py",
+      "mode": "100644",
+      "sha256": "3a4b97479b041da645a08d71ac0dfbb44d186b4aab73726727c92a0474ec8280"
+    },
+    {
+      "path": "scripts/net05-cleanup.py",
+      "mode": "100644",
+      "sha256": "0a1fbceb44bc5a3c9db90f615534da600341060e681747076d89ce0456627a83"
+    },
+    {
+      "path": "scripts/net05-export.py",
+      "mode": "100644",
+      "sha256": "cd96d11bfc15b261c1454e424260251c5e65b89d9f718e52922b6c4af1b0408d"
+    },
+    {
+      "path": "scripts/net05-faults.py",
+      "mode": "100644",
+      "sha256": "6a39e57f8fb65e49fa3e8e48bf9d78e5a5531819d0cb3adc805d0c5ed7c0a298"
+    },
+    {
+      "path": "scripts/net05-gates.py",
+      "mode": "100644",
+      "sha256": "60ad89b0c8f45642cad4c0e16f8b5397d0759aabc880d41d4c21c97c6390621a"
+    },
+    {
+      "path": "scripts/net05-kind.py",
+      "mode": "100644",
+      "sha256": "0ff3b60b0a4e0549cde830ef01a013df5058dc076cebd61547c5e29e2d494159"
+    },
+    {
+      "path": "scripts/net05-preflight.py",
+      "mode": "100644",
+      "sha256": "095edc31025cf9a7da6985c769415bf96f296da1383db6eb736fd2d84131b430"
+    },
+    {
+      "path": "scripts/net05-remote",
+      "mode": "100755",
+      "sha256": "c501fd6e6e5604daec1aa6eb53630bf94f62e3912d9f965d29035e30f2945d51"
+    },
+    {
+      "path": "scripts/net05a-adapt.py",
+      "mode": "100644",
+      "sha256": "dbc4e5f7f3149a9dfe1f30c6836acded1dc1d5e25a7c5de742b63200b4387d78"
+    },
+    {
+      "path": "scripts/net05a-api.py",
+      "mode": "100755",
+      "sha256": "8933e0af4cafc7f5b35015024536e33d85e39785aa1ce144f67dc76f74efc799"
+    },
+    {
+      "path": "scripts/net05a-build-faults.py",
+      "mode": "100755",
+      "sha256": "c8e36000cea30bafc0e1ae249d1693f0c575d04de02cfabc8eb25df28936b2a2"
+    },
+    {
+      "path": "scripts/net05a-capacity",
+      "mode": "100755",
+      "sha256": "458f046aa8cc8e9ccb483164200c8cae7b10fc7ccbfecad72b15f8501841f239"
+    },
+    {
+      "path": "scripts/net05a-capacity-report",
+      "mode": "100755",
+      "sha256": "2ee88835083b03dbb0be43fa650d9c67e9ae9be339c7cdaa876bfb9a648368e5"
+    },
+    {
+      "path": "scripts/net05a-cleanup.py",
+      "mode": "100755",
+      "sha256": "f07ccd2ba6e4f007c766c9708930b96c5f5588402197f5fbdd54a84aacaeaab1"
+    },
+    {
+      "path": "scripts/net05a-collect",
+      "mode": "100755",
+      "sha256": "e1dc14c410db3853e875812f9edff0f484b84413521cde89f6e095a0caefd434"
+    },
+    {
+      "path": "scripts/net05a-export.py",
+      "mode": "100755",
+      "sha256": "3454db04e824c8603b750adaf9d5bfb8e87178943322b38072f3ed03ee9f598d"
+    },
+    {
+      "path": "scripts/net05a-faults.py",
+      "mode": "100755",
+      "sha256": "62c17a995bb1eb652db0d7ed4ca5bd8aff82b459fb1899279d14ed9010bd1021"
+    },
+    {
+      "path": "scripts/net05a-gates",
+      "mode": "100755",
+      "sha256": "03f0f5442c844476675386e9b07d1bec0ab440b98da8bb19673a7971dd948932"
+    },
+    {
+      "path": "scripts/net05a-gates.py",
+      "mode": "100755",
+      "sha256": "f6e51c8f36bbaa8d5f963531d5c49af6c4a16233865f1b4dac4dd9c048c4f557"
+    },
+    {
+      "path": "scripts/net05a-kind.py",
+      "mode": "100755",
+      "sha256": "e756baea130c4f5beb19f3ec708484f043a9bff5b321937e9df85a3d0b13e5c9"
+    },
+    {
+      "path": "scripts/net05a-live.py",
+      "mode": "100755",
+      "sha256": "e21833c733feb51c8178e3d80e001378cb16370ef7fe65bd74bde902306712ad"
+    },
+    {
+      "path": "scripts/net05a-pair",
+      "mode": "100755",
+      "sha256": "b9a624b421a90880e7e18db81912c149e8bfd74b8192fc4840c84421a449f05f"
+    },
+    {
+      "path": "scripts/net05a-remote",
+      "mode": "100755",
+      "sha256": "09aa95c9907e15520d2b2f301070fc7a088f213c7aeaf73dcd2097adb9afd0be"
+    },
+    {
+      "path": "scripts/net05a-resource-guard",
+      "mode": "100755",
+      "sha256": "31745d175c8d93df0f5b60458b25450d54f88d5353e75c624260b44d24f387d0"
+    },
+    {
+      "path": "scripts/net05a-return-generated",
+      "mode": "100755",
+      "sha256": "82ecec63cd8a052921f24a6895e3722efe00af234959dab845e1df252688a1ec"
+    },
+    {
+      "path": "scripts/net05a-stage",
+      "mode": "100755",
+      "sha256": "ba105f3d7a3188aad2f05f3fa6076a94d3f1602f1df967fe6276e733afecc690"
+    },
+    {
+      "path": "scripts/remote-pair",
+      "mode": "100755",
+      "sha256": "9d5516818f738c52757e54c61bc92c20e893c791534d446e4080632828a3343d"
+    },
+    {
+      "path": "scripts/remote-run",
+      "mode": "100755",
+      "sha256": "f23e6b5c5493c0bbdfe5f7f412ac837f5d341adb74530a253e56accf5d5f2671"
+    },
+    {
+      "path": "scripts/return-network-generated",
+      "mode": "100755",
+      "sha256": "07f8d4e30ebb3f6dd758653f7cea6bf904f5a51c043d635ec771ed7ad5a0f80b"
+    },
+    {
+      "path": "scripts/return-pair-generated",
+      "mode": "100755",
+      "sha256": "f57246b9eceb6e436b850d490ea785f82a555b66b37600172d57f2c43988c550"
+    },
+    {
+      "path": "scripts/test-net0204-wire",
+      "mode": "100755",
+      "sha256": "bfe6f5bc1e52623b38540058b90e2c5d671ec46182944ac64499db4a47e6f38c"
+    },
+    {
+      "path": "scripts/verify-boundaries",
+      "mode": "100755",
+      "sha256": "0cc63b116be74dd4edfe0980b485e0a2e56d077060708e0c5ff6050992ade7d5"
+    },
+    {
+      "path": "scripts/verify-source",
+      "mode": "100755",
+      "sha256": "e86c4c98eb29d7e699a9383e16c6f88cb8b93843b25ec0518a0bee825101deba"
+    },
+    {
+      "path": "scripts/verify-supply-chain",
+      "mode": "100755",
+      "sha256": "63b22190a52eab5ef7d2f87fc18d48a69ed439a21901553dc23a7e913f0f0ec1"
+    },
+    {
+      "path": "sqlc.yaml",
+      "mode": "100644",
+      "sha256": "f33fad80eb771e942c4d21426b9957ce7a68da6c81ea6dcb5f05e54241a17428"
+    },
+    {
+      "path": "tests/net05/Dockerfile",
+      "mode": "100644",
+      "sha256": "33288678038fb267831b37d44055742838429cdc04a7bb0735763364136e6092"
+    },
+    {
+      "path": "tests/net05/hook.txt",
+      "mode": "100644",
+      "sha256": "d90eeff793c90e200a972e8c9e3f43506d64606d6b908015c4fa85daacc100ee"
+    },
+    {
+      "path": "tests/net05/kube-relay.py",
+      "mode": "100644",
+      "sha256": "9f4dc003f232d28057b3b7d5910e99dc365c3abbaefbc7529cab171b08f5589f"
+    },
+    {
+      "path": "tests/net05/probe.go",
+      "mode": "100644",
+      "sha256": "fbbdc2e8a4bf4841e58699ea8b7b20822ea5be2907bcccde478c096fafad8439"
+    },
+    {
+      "path": "tests/net05/relay/main.go",
+      "mode": "100644",
+      "sha256": "db5e6c5e3036e70a504468b963b9761bab3c8c1cd112a8ff5db7dc35825aed00"
+    },
+    {
+      "path": "tests/net05/rpc/main.go",
+      "mode": "100644",
+      "sha256": "7195b254af32f9c66050e0d6e1c0a75671368745dcea2a3cc24ae7b6d82c3f81"
+    },
+    {
+      "path": "tests/net05a/Network.Dockerfile",
+      "mode": "100644",
+      "sha256": "79adc18c943e9f9928926491ac68ded83b64f651de3a2e8b82ebd6d0a0e85d17"
+    },
+    {
+      "path": "tests/net05a/capacity-baseline.txt",
+      "mode": "100644",
+      "sha256": "2a662469671324b7597ceb3180e1f2480509fa417da904ee640166227720c80e"
+    },
+    {
+      "path": "tests/net05a/kube-relay.py",
+      "mode": "100644",
+      "sha256": "fe50196d80ac873927bbe8b73d3f0fbafd4c0dd336a342fa4e00775534fa62d1"
+    },
+    {
+      "path": "tests/net05a/placement.py",
+      "mode": "100644",
+      "sha256": "710e8870e87d50bfd32050d8f970119335fbb711eafe9b827dd59a398295d542"
+    },
+    {
+      "path": "tests/net05a/provider/server.go",
+      "mode": "100644",
+      "sha256": "5196c2feb038b908dcb6eae4d27e9ec2583e82fca5180dff697b95d89909a00c"
+    },
+    {
+      "path": "tests/net05a/provider/server_test.go",
+      "mode": "100644",
+      "sha256": "2ac37afa9793310daae865fa3ef9d43a58774e529ca757d5d2690eef62bdcb2e"
+    },
+    {
+      "path": "tests/runtime/runtime_test.go",
+      "mode": "100644",
+      "sha256": "64c337e5eaf8aefe384316ab7a2b003e8c49bb81f6f566716a60956eeda39de8"
+    },
+    {
+      "path": "tests/testenv/kc.go",
+      "mode": "100644",
+      "sha256": "fc0239b0a86001b49c4abe8a4cc9873910d69ad6833d0b4234c01f2529ce7b19"
+    },
+    {
+      "path": "tests/testenv/kubeconfig.go",
+      "mode": "100644",
+      "sha256": "ee97cf9efba643c7fc1980479dff213c6fc6884c1b6a0cb3234d0acadf7ca6c0"
+    },
+    {
+      "path": "tests/testenv/postgres.go",
+      "mode": "100644",
+      "sha256": "bc6a46e5e777ff37317f11861c38d65febfb8c1e19c185e54b404798631ed0ba"
+    },
+    {
+      "path": "tests/testenv/secret.go",
+      "mode": "100644",
+      "sha256": "58db3dce5dbecbbe2e9a7770f9147dc2514c4722e568a88574036e9a14fe58d0"
+    }
+  ],
+  "excluded_evidence_and_private_paths": [
+    "docs/execution/records/NET-05A/capacity-applicability.json",
+    "docs/execution/records/NET-05A/capacity-contract.json",
+    "docs/execution/records/NET-05A/capacity-deferral.json",
+    "docs/execution/records/NET-05A/design-import.diff",
+    "docs/execution/records/NET-05A/independent-review.json",
+    "docs/execution/records/NET-05A/initial-worktrees.json",
+    "docs/execution/records/NET-05A/input-verification.json",
+    "docs/execution/records/NET-05A/inputs.json",
+    "docs/execution/records/NET-05A/live-interruptions.json",
+    "docs/execution/records/NET-05A/new-runtime-dataplane-receipt.json",
+    "docs/execution/records/NET-05A/original-worktree-preservation.json",
+    "docs/execution/records/NET-05A/review/manifest.json",
+    "docs/execution/records/NET-05A/review/tracked.diff",
+    "docs/execution/records/NET-05A/stage-index.json",
+    "docs/execution/records/NET-05A/stages/20260910T050249Z-b717cb8f/snapshot.json",
+    "docs/execution/records/NET-05A/stages/20260910T050249Z-b717cb8f/ssh.exit",
+    "docs/execution/records/NET-05A/stages/20260910T050434Z-f3fd8332/snapshot.json",
+    "docs/execution/records/NET-05A/stages/20260910T050434Z-f3fd8332/ssh.exit",
+    "docs/execution/records/NET-05A/stages/20260910T050917Z-99c40c06/snapshot.json",
+    "docs/execution/records/NET-05A/stages/20260910T050917Z-99c40c06/ssh.exit",
+    "docs/execution/records/NET-05A/stages/20260910T051021Z-2311f90f/snapshot.json",
+    "docs/execution/records/NET-05A/stages/20260910T051021Z-2311f90f/ssh.exit",
+    "docs/execution/records/NET-05A/stages/20260910T051235Z-3e6ce611/snapshot.json",
+    "docs/execution/records/NET-05A/stages/20260910T051235Z-3e6ce611/ssh.exit",
+    "docs/execution/records/NET-05A/stages/20260910T051340Z-1b5f0403/snapshot.json",
+    "docs/execution/records/NET-05A/stages/20260910T051340Z-1b5f0403/ssh.exit",
+    "docs/execution/records/NET-05A/stages/20260910T051511Z-c134b650/snapshot.json",
+    "docs/execution/records/NET-05A/stages/20260910T051511Z-c134b650/ssh.exit",
+    "docs/execution/records/NET-05A/stages/20260910T051621Z-8c69f4a4/snapshot.json",
+    "docs/execution/records/NET-05A/stages/20260910T051621Z-8c69f4a4/ssh.exit",
+    "docs/execution/records/NET-05A/stages/20260910T051831Z-b1331d06/snapshot.json",
+    "docs/execution/records/NET-05A/stages/20260910T051831Z-b1331d06/ssh.exit",
+    "docs/execution/records/NET-05A/stages/20260910T052000Z-41a50688/snapshot.json",
+    "docs/execution/records/NET-05A/stages/20260910T052000Z-41a50688/ssh.exit",
+    "docs/execution/records/NET-05A/stages/20260910T052121Z-3dd0eda0/command.exit",
+    "docs/execution/records/NET-05A/stages/20260910T052121Z-3dd0eda0/export-manifest.json",
+    "docs/execution/records/NET-05A/stages/20260910T052121Z-3dd0eda0/resources.jsonl",
+    "docs/execution/records/NET-05A/stages/20260910T052121Z-3dd0eda0/snapshot.json",
+    "docs/execution/records/NET-05A/stages/20260910T052259Z-39957239/command.exit",
+    "docs/execution/records/NET-05A/stages/20260910T052259Z-39957239/export-manifest.json",
+    "docs/execution/records/NET-05A/stages/20260910T052259Z-39957239/gates/results.json",
+    "docs/execution/records/NET-05A/stages/20260910T052259Z-39957239/resources.jsonl",
+    "docs/execution/records/NET-05A/stages/20260910T052259Z-39957239/snapshot.json",
+    "docs/execution/records/NET-05A/stages/20260910T052543Z-7f71f900/command.exit",
+    "docs/execution/records/NET-05A/stages/20260910T052543Z-7f71f900/export-manifest.json",
+    "docs/execution/records/NET-05A/stages/20260910T052543Z-7f71f900/resources.jsonl",
+    "docs/execution/records/NET-05A/stages/20260910T052543Z-7f71f900/snapshot.json",
+    "docs/execution/records/NET-05A/stages/20260910T052837Z-d16d3399/command.exit",
+    "docs/execution/records/NET-05A/stages/20260910T052837Z-d16d3399/export-manifest.json",
+    "docs/execution/records/NET-05A/stages/20260910T052837Z-d16d3399/gates/results.json",
+    "docs/execution/records/NET-05A/stages/20260910T052837Z-d16d3399/resources.jsonl",
+    "docs/execution/records/NET-05A/stages/20260910T052837Z-d16d3399/snapshot.json",
+    "docs/execution/records/NET-05A/stages/20260910T053836Z-734c0afa/capacity-baseline-harness.json",
+    "docs/execution/records/NET-05A/stages/20260910T053836Z-734c0afa/capacity-comparison.md",
+    "docs/execution/records/NET-05A/stages/20260910T053836Z-734c0afa/capacity-evaluation.json",
+    "docs/execution/records/NET-05A/stages/20260910T053836Z-734c0afa/capacity-results.json",
+    "docs/execution/records/NET-05A/stages/20260910T053836Z-734c0afa/capacity/net05-100-1/samples.jsonl",
+    "docs/execution/records/NET-05A/stages/20260910T053836Z-734c0afa/capacity/net05-100-1/summary.json",
+    "docs/execution/records/NET-05A/stages/20260910T053836Z-734c0afa/capacity/net05a-100-1/samples.jsonl",
+    "docs/execution/records/NET-05A/stages/20260910T053836Z-734c0afa/capacity/net05a-100-1/summary.json",
+    "docs/execution/records/NET-05A/stages/20260910T053836Z-734c0afa/command.exit",
+    "docs/execution/records/NET-05A/stages/20260910T053836Z-734c0afa/export-manifest.json",
+    "docs/execution/records/NET-05A/stages/20260910T053836Z-734c0afa/resources.jsonl",
+    "docs/execution/records/NET-05A/stages/20260910T053836Z-734c0afa/snapshot.json",
+    "docs/execution/records/NET-05A/stages/20260910T055417Z-e5853046/command.exit",
+    "docs/execution/records/NET-05A/stages/20260910T055417Z-e5853046/export-manifest.json",
+    "docs/execution/records/NET-05A/stages/20260910T055417Z-e5853046/resources.jsonl",
+    "docs/execution/records/NET-05A/stages/20260910T055417Z-e5853046/snapshot.json",
+    "docs/execution/records/NET-05A/stages/20260910T055521Z-fabaada9/command.exit",
+    "docs/execution/records/NET-05A/stages/20260910T055521Z-fabaada9/export-manifest.json",
+    "docs/execution/records/NET-05A/stages/20260910T055521Z-fabaada9/gates/results.json",
+    "docs/execution/records/NET-05A/stages/20260910T055521Z-fabaada9/resources.jsonl",
+    "docs/execution/records/NET-05A/stages/20260910T055521Z-fabaada9/snapshot.json",
+    "docs/execution/records/NET-05A/stages/20260910T060249Z-c08a0efc/command.exit",
+    "docs/execution/records/NET-05A/stages/20260910T060249Z-c08a0efc/export-manifest.json",
+    "docs/execution/records/NET-05A/stages/20260910T060249Z-c08a0efc/resources.jsonl",
+    "docs/execution/records/NET-05A/stages/20260910T060249Z-c08a0efc/snapshot.json",
+    "docs/execution/records/NET-05A/stages/20260910T061111Z-61193648/capacity-baseline-harness.json",
+    "docs/execution/records/NET-05A/stages/20260910T061111Z-61193648/capacity-comparison.md",
+    "docs/execution/records/NET-05A/stages/20260910T061111Z-61193648/capacity-evaluation.json",
+    "docs/execution/records/NET-05A/stages/20260910T061111Z-61193648/capacity-results.json",
+    "docs/execution/records/NET-05A/stages/20260910T061111Z-61193648/capacity/net05-100-1/samples.jsonl",
+    "docs/execution/records/NET-05A/stages/20260910T061111Z-61193648/capacity/net05-100-1/summary.json",
+    "docs/execution/records/NET-05A/stages/20260910T061111Z-61193648/capacity/net05-100-2/samples.jsonl",
+    "docs/execution/records/NET-05A/stages/20260910T061111Z-61193648/capacity/net05-100-2/summary.json",
+    "docs/execution/records/NET-05A/stages/20260910T061111Z-61193648/capacity/net05-1000-1/samples.jsonl",
+    "docs/execution/records/NET-05A/stages/20260910T061111Z-61193648/capacity/net05-1000-1/summary.json",
+    "docs/execution/records/NET-05A/stages/20260910T061111Z-61193648/capacity/net05a-100-1/samples.jsonl",
+    "docs/execution/records/NET-05A/stages/20260910T061111Z-61193648/capacity/net05a-100-1/summary.json",
+    "docs/execution/records/NET-05A/stages/20260910T061111Z-61193648/capacity/net05a-100-2/samples.jsonl",
+    "docs/execution/records/NET-05A/stages/20260910T061111Z-61193648/capacity/net05a-100-2/summary.json",
+    "docs/execution/records/NET-05A/stages/20260910T061111Z-61193648/command.exit",
+    "docs/execution/records/NET-05A/stages/20260910T061111Z-61193648/export-manifest.json",
+    "docs/execution/records/NET-05A/stages/20260910T061111Z-61193648/gates/results.json",
+    "docs/execution/records/NET-05A/stages/20260910T061111Z-61193648/resources.jsonl",
+    "docs/execution/records/NET-05A/stages/20260910T061111Z-61193648/snapshot.json",
+    "docs/execution/records/NET-05A/stages/20260910T065152Z-62c793a0/command.exit",
+    "docs/execution/records/NET-05A/stages/20260910T065152Z-62c793a0/gates/results.json",
+    "docs/execution/records/NET-05A/stages/20260910T065152Z-62c793a0/remote-snapshots.json",
+    "docs/execution/records/NET-05A/stages/20260910T065152Z-62c793a0/resources.jsonl",
+    "docs/execution/records/NET-05A/stages/20260910T065152Z-62c793a0/runtime-build-identities.json",
+    "docs/execution/records/NET-05A/stages/20260910T065152Z-62c793a0/snapshot.json",
+    "docs/execution/records/NET-05A/stages/20260910T072515Z-a533c6f8/command.exit",
+    "docs/execution/records/NET-05A/stages/20260910T072515Z-a533c6f8/export-manifest.json",
+    "docs/execution/records/NET-05A/stages/20260910T072515Z-a533c6f8/resources.jsonl",
+    "docs/execution/records/NET-05A/stages/20260910T072515Z-a533c6f8/snapshot.json",
+    "docs/execution/records/NET-05A/stages/20260910T072631Z-292113e9/command.exit",
+    "docs/execution/records/NET-05A/stages/20260910T072631Z-292113e9/export-manifest.json",
+    "docs/execution/records/NET-05A/stages/20260910T072631Z-292113e9/resources.jsonl",
+    "docs/execution/records/NET-05A/stages/20260910T072631Z-292113e9/snapshot.json"
+  ],
+  "manifest_sha256": "ad8e894f6e85cb7ec67def434952d78403443a8b3c4b10b6be7905dd531c602b",
+  "dirty_paths": [
+    " M README.md",
+    " M cmd/ani-network-service/app.go",
+    " M configs/config.yaml",
+    " M docs/START-HERE.md",
+    " M docs/execution/status.md",
+    " M docs/plans/vpc-subnet.md",
+    " M docs/remote-execution.md",
+    " M docs/runtime-verification.md",
+    " M docs/runtime.md",
+    " M docs/specs/vpc-subnet.md",
+    " M go.mod",
+    " M internal/biz/attachment_worker.go",
+    " M internal/biz/worker.go",
+    " M internal/conf/v1/conf.pb.go",
+    " M internal/conf/v1/conf.proto",
+    " M internal/conf/v1/validate.go",
+    " M internal/conf/v1/validate_test.go",
+    " M internal/data/attachment_worker.go",
+    " M internal/data/kc.go",
+    " M internal/data/kc_attachment.go",
+    " M internal/data/kc_integration_test.go",
+    " M internal/data/process_integration_test.go",
+    " M internal/data/queries/attachments.sql",
+    " M internal/data/queries/subnets.sql",
+    " M internal/data/queries/worker.sql",
+    " M internal/data/resource_work.go",
+    " M internal/data/sqlcgen/attachments.sql.go",
+    " M internal/data/sqlcgen/models.go",
+    " M internal/data/sqlcgen/subnets.sql.go",
+    " M internal/data/sqlcgen/worker.sql.go",
+    " M internal/data/subnet_process_integration_test.go",
+    " M internal/data/subnet_upgrade_integration_test.go",
+    " M internal/data/worker.go",
+    " M internal/server/observability.go",
+    " M internal/server/worker.go",
+    " M internal/server/worker_test.go",
+    "?? docs/adr/0004-observe-cr-with-durable-reconciliation.md",
+    "?? docs/execution/records/2026-09-10-cr-observation-plan.md",
+    "?? docs/execution/records/2026-09-10-cr-observation-selection.md",
+    "?? docs/execution/records/NET-05A-implementation.md",
+    "?? docs/execution/records/NET-05A/",
+    "?? docs/plans/cr-observation.md",
+    "?? docs/specs/cr-observation.md",
+    "?? internal/biz/observation.go",
+    "?? internal/data/kc_index.go",
+    "?? internal/data/kc_index_test.go",
+    "?? internal/data/kc_metrics.go",
+    "?? internal/data/kc_observation.go",
+    "?? internal/data/kc_observation_integration_test.go",
+    "?? internal/data/kc_observed_provider.go",
+    "?? internal/data/net05a_capacity_current_test.go",
+    "?? internal/data/net05a_capacity_test.go",
+    "?? internal/data/observation.go",
+    "?? internal/data/observation_integration_test.go",
+    "?? internal/data/observation_telemetry.go",
+    "?? internal/data/observation_upgrade_integration_test.go",
+    "?? internal/data/queries/observation.sql",
+    "?? internal/data/sqlcgen/observation.sql.go",
+    "?? internal/server/observation.go",
+    "?? migrations/0004_observation.sql",
+    "?? scripts/net05a-adapt.py",
+    "?? scripts/net05a-api.py",
+    "?? scripts/net05a-build-faults.py",
+    "?? scripts/net05a-capacity",
+    "?? scripts/net05a-capacity-report",
+    "?? scripts/net05a-cleanup.py",
+    "?? scripts/net05a-collect",
+    "?? scripts/net05a-export.py",
+    "?? scripts/net05a-faults.py",
+    "?? scripts/net05a-gates",
+    "?? scripts/net05a-gates.py",
+    "?? scripts/net05a-kind.py",
+    "?? scripts/net05a-live.py",
+    "?? scripts/net05a-pair",
+    "?? scripts/net05a-remote",
+    "?? scripts/net05a-resource-guard",
+    "?? scripts/net05a-return-generated",
+    "?? scripts/net05a-stage",
+    "?? tests/net05a/"
+  ],
+  "capacity_baseline": {
+    "commit": "72cdd974d0d25dfd3d65051ac91a03e0e92da0d2",
+    "archive_sha256": "6e5879d0c0a6d865e04e4864cde9a2ca693439341def17fb2466d4c03ff73711",
+    "files": [
+      {
+        "path": ".gitattributes",
+        "mode": "100644",
+        "sha256": "3fa2d0d1d131df9809094e3415de0a722e4f17b292834d9097815de5a4031da9"
+      },
+      {
+        "path": ".github/workflows/ci.yml",
+        "mode": "100644",
+        "sha256": "25de6fae52be4d968c09607623f30c71ee6658818873eb70491e2d0a3ad63380"
+      },
+      {
+        "path": ".gitignore",
+        "mode": "100644",
+        "sha256": "0eaaf17489d50398429558e570c8e378ec50e2479057fa2bad92183c3d7cf3a2"
+      },
+      {
+        "path": "AGENTS.md",
+        "mode": "100644",
+        "sha256": "6dee5eaf09dd5784eb1fd1d6e38445616955c17580ea9906440199aa96b7f37d"
+      },
+      {
+        "path": "CONTEXT.md",
+        "mode": "100644",
+        "sha256": "732a5d34896dd1cb5809a41b9f05c6913d0460223f8bb0f28b3337f46751ac85"
+      },
+      {
+        "path": "Makefile",
+        "mode": "100644",
+        "sha256": "e64cb9abc04d64b8b3c56693697a43bd01edd80360e74d360654cfb8ab5bf634"
+      },
+      {
+        "path": "README.md",
+        "mode": "100644",
+        "sha256": "c25acabc3792cc54e592f529d2ab6e0306d15498731e7a532b57b0c3c9415aa5"
+      },
+      {
+        "path": "THIRD_PARTY_NOTICES.go-kratos-layout.txt",
+        "mode": "100644",
+        "sha256": "3b44929bdd575a570c42165d4fd4eac57a5055745d2ecf3f121aa6a084cf9230"
+      },
+      {
+        "path": "api/network/v1/network.pb.go",
+        "mode": "100644",
+        "sha256": "39d97b044025037b5188357d40302445df38965e51dafcdcf2fbfbe565c9ff2f"
+      },
+      {
+        "path": "api/network/v1/network.proto",
+        "mode": "100644",
+        "sha256": "b5324f6517c286c10fb5e8ad6c0bbd31f0fff333600839458fea8972c8c6f811"
+      },
+      {
+        "path": "api/network/v1/network_grpc.pb.go",
+        "mode": "100644",
+        "sha256": "ff896e43e3fbd710f504bc066d84293568a007965f863c780750b6fae91bb6b5"
+      },
+      {
+        "path": "buf.gen.yaml",
+        "mode": "100644",
+        "sha256": "a5b51f8141d08bc0ffdcf2925e1ffbc48eab3792d0bbe64bf0f7cb60bff60212"
+      },
+      {
+        "path": "buf.yaml",
+        "mode": "100644",
+        "sha256": "fc26102bf3d244ea32c685b64d09965a7b0cc2bb0cf760b9758d9779c02a6861"
+      },
+      {
+        "path": "cmd/ani-network-service/app.go",
+        "mode": "100644",
+        "sha256": "9ac5daed055e02bc4abe5b13ec013484c2b556971fa327d42710bb066e41afdb"
+      },
+      {
+        "path": "cmd/ani-network-service/app_test.go",
+        "mode": "100644",
+        "sha256": "517648fa6eda356e4c275dac96f2643de9a8d6c40a883013d969f776d579ffb6"
+      },
+      {
+        "path": "cmd/ani-network-service/main.go",
+        "mode": "100644",
+        "sha256": "e640818407e57e565e0731a97d5b5796306df1e556fcebcd520f4e55f0ede5ee"
+      },
+      {
+        "path": "cmd/ani-network-service/main_test.go",
+        "mode": "100644",
+        "sha256": "94022bcd677b2a1550dfe10a8967909d9ae232633ca87f92536c9ca3d1ebf773"
+      },
+      {
+        "path": "cmd/ani-network-service/migrate.go",
+        "mode": "100644",
+        "sha256": "7a17dc99fd4e99b7dfeb8e216936f3f395d54b2acdff868d8b400d8c72c3523b"
+      },
+      {
+        "path": "configs/config.yaml",
+        "mode": "100644",
+        "sha256": "0183652c851021fda16e4a60f37a7dc8a66c5acc9bc2eff9e205deae94c54a97"
+      },
+      {
+        "path": "docs/START-HERE.md",
+        "mode": "100644",
+        "sha256": "e5b7b6ad8759f640bcc51fff0777ebfa1209a5f7b183deaba6a08e89c8f842f5"
+      },
+      {
+        "path": "docs/adr/0001-own-network-lifecycle.md",
+        "mode": "100644",
+        "sha256": "3be6302e8386e4fd6e137384164a1ec2cf9ddf74e61acb0da0e5034a6f9cb9da"
+      },
+      {
+        "path": "docs/adr/0002-use-tenant-owned-data-without-rls.md",
+        "mode": "100644",
+        "sha256": "40d07b2b86b7b31686d4f4cd0a26262d7b87dea209fafda572a23e13e2d7b7a6"
+      },
+      {
+        "path": "docs/adr/0003-defer-workload-authentication.md",
+        "mode": "100644",
+        "sha256": "807054a8ec8dff3a25347e54c1c037ec8dfdea4e2581300b2b17f44aaaab927a"
+      },
+      {
+        "path": "docs/execution/records/2026-09-09-design-verification.md",
+        "mode": "100644",
+        "sha256": "e935e8c324a91266b5ee4bd6f00256fcb7ec62a9a173b19e3ba578e8130435c4"
+      },
+      {
+        "path": "docs/execution/records/2026-09-09-remote-readiness.md",
+        "mode": "100644",
+        "sha256": "26f2ef1ab026bb73673cc40c991edea3e7851850a76eb6b57f1ea25f51e23365"
+      },
+      {
+        "path": "docs/execution/records/2026-09-09-source-assessment.md",
+        "mode": "100644",
+        "sha256": "3c0add1f09d03fa1e2d4ab6c1920a05d63b17c25814d92bc9e3bcf478a2f0d28"
+      },
+      {
+        "path": "docs/execution/records/NET-01-implementation.md",
+        "mode": "100644",
+        "sha256": "c97af8b65dc8640f858bc7c92e595b98560744b76316231b37399074010fca28"
+      },
+      {
+        "path": "docs/execution/records/NET-01/local-history-secrets.txt",
+        "mode": "100644",
+        "sha256": "28d648455115c319b22fe11b41c97ed38066142b51ecb8ad6ee141f17212fa54"
+      },
+      {
+        "path": "docs/execution/records/NET-01/remote-tools.txt",
+        "mode": "100644",
+        "sha256": "ca7e008d6aedb9dbcb34b7cca1e73dd448965153ba439c9d3072a11f81687758"
+      },
+      {
+        "path": "docs/execution/records/NET-01/run-ledger.json",
+        "mode": "100644",
+        "sha256": "5bed4285beb543152c3c0280c9cad5bb7eef27be113cb7b9caf6f98ac08105a4"
+      },
+      {
+        "path": "docs/execution/records/NET-01/verification.txt",
+        "mode": "100644",
+        "sha256": "851ecfb4bcac6efb5da9a097660a7af181240b3b89704dc08165db4f067889b0"
+      },
+      {
+        "path": "docs/execution/records/NET-02-04-implementation.md",
+        "mode": "100644",
+        "sha256": "2fcea62375220fa4f37bce200f7bc33fc609a6780d9e78b09fcf438147552753"
+      },
+      {
+        "path": "docs/execution/records/NET-02-04/ani-initial.diff",
+        "mode": "100644",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "docs/execution/records/NET-02-04/ani-initial.json",
+        "mode": "100644",
+        "sha256": "7106e51a4168888197d9b42b3947ae9546b28a678d4b9ced46355f2974132198"
+      },
+      {
+        "path": "docs/execution/records/NET-02-04/ani-initial.status",
+        "mode": "100644",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "docs/execution/records/NET-02-04/baseline-gate-drift.md",
+        "mode": "100644",
+        "sha256": "3e9c017c8816a08d82daa19636e04dbe9a1aad64d05a380d9ae7aa906699bd12"
+      },
+      {
+        "path": "docs/execution/records/NET-02-04/compatibility-audit.json",
+        "mode": "100644",
+        "sha256": "9cf7eab8d82b9695ad274b0b6d42113452e1004a188bad7cc1a1c4b61ab9100a"
+      },
+      {
+        "path": "docs/execution/records/NET-02-04/completion-audit.md",
+        "mode": "100644",
+        "sha256": "f3e0c4cb64c914c1c848a433ad2ed15a532e249332dea16c21fdac3a25499a36"
+      },
+      {
+        "path": "docs/execution/records/NET-02-04/concurrent-inputs.md",
+        "mode": "100644",
+        "sha256": "6de37dead6caf407778036f0948687ac0c2f4a1a21bc49ff28616875f04c2a57"
+      },
+      {
+        "path": "docs/execution/records/NET-02-04/final-sources.json",
+        "mode": "100644",
+        "sha256": "f1baa21755dc01ea3127b8f0926013d6a3ecb1bc7333e4311373733b21385c98"
+      },
+      {
+        "path": "docs/execution/records/NET-02-04/network-contract-source.json",
+        "mode": "100644",
+        "sha256": "c1833b2db2aac5b4e6b0cf576f545a8bfe8447c5978193364e823dc698c5033d"
+      },
+      {
+        "path": "docs/execution/records/NET-02-04/network-initial.diff",
+        "mode": "100644",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "docs/execution/records/NET-02-04/network-initial.json",
+        "mode": "100644",
+        "sha256": "267e471c7be05d6747cfaf5eb6ed3c54308d5c6a04a95aa53689b2a7273fe9a0"
+      },
+      {
+        "path": "docs/execution/records/NET-02-04/network-initial.status",
+        "mode": "100644",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "path": "docs/execution/records/NET-02-04/preexisting-compatibility.json",
+        "mode": "100644",
+        "sha256": "3b972c928f6ced84f4aed12c3aefe2a0597d79fdd1e5a59fced5dfe9d62efd94"
+      },
+      {
+        "path": "docs/execution/records/NET-02-04/proposed-compatibility.patch",
+        "mode": "100644",
+        "sha256": "8ea7257754dcaedce225678f38c5f13e155dd0252222a472d3bc91dd0cf6f328"
+      },
+      {
+        "path": "docs/execution/records/NET-02-04/runs.json",
+        "mode": "100644",
+        "sha256": "846fa561308e447f42c70da848472455bdc4980a0d770eddfd5b060d038655d6"
+      },
+      {
+        "path": "docs/execution/records/NET-02-04/wire-results.txt",
+        "mode": "100644",
+        "sha256": "096de5a09030a532247bee407590277c5615130619784ff5ed9d1aee9fb805c2"
+      },
+      {
+        "path": "docs/execution/records/NET-05-implementation.md",
+        "mode": "100644",
+        "sha256": "e49ab8fbe8f32e2f63e99cdec1917dcb76f91042f9c4a14856d5998296cd88b8"
+      },
+      {
+        "path": "docs/execution/status.md",
+        "mode": "100644",
+        "sha256": "7478146273a840d6d98bd13135b5c8fa3963608ada333c4ca3579b2af26f3e11"
+      },
+      {
+        "path": "docs/plans/vpc-subnet.md",
+        "mode": "100644",
+        "sha256": "95b30c1be1d8fc231ba8306a0ba222291d2aaf6c676dd03ac36c0f1c68df0387"
+      },
+      {
+        "path": "docs/remote-execution.md",
+        "mode": "100644",
+        "sha256": "768237a4404d42aeef94b1dcba84eac7f1eed5417a072e4594353cc3a65984bd"
+      },
+      {
+        "path": "docs/runtime-verification.md",
+        "mode": "100644",
+        "sha256": "6875698f31618827dba34d90d6cd550a9c15a46419a8f0c307aeff1e1a4b6ae1"
+      },
+      {
+        "path": "docs/runtime.md",
+        "mode": "100644",
+        "sha256": "3fd07042835501e6f7f8e02460f64d9fe95a36f5676742d244b7a307fe6e883c"
+      },
+      {
+        "path": "docs/scaffold/bom.cdx.json",
+        "mode": "100644",
+        "sha256": "bd7fbe51d3756b2119a224027b0d1cd824b86782e0fd763fd65facfcbdf9820f"
+      },
+      {
+        "path": "docs/scaffold/provenance.md",
+        "mode": "100644",
+        "sha256": "3e0d8540c24e187b2d472fc2bcb8b018c92c1c0ddc15f62177a2e50345e93b99"
+      },
+      {
+        "path": "docs/specs/vpc-subnet.md",
+        "mode": "100644",
+        "sha256": "118b990a567ee7e4e5847e4adf704e33f18cce5175e12d2fc39ffb06be6874f6"
+      },
+      {
+        "path": "go.mod",
+        "mode": "100644",
+        "sha256": "c606c6f09c2a3e83cd85635f6a710975d09e6d55f5fdd4c1c9a5797c4bff8296"
+      },
+      {
+        "path": "go.sum",
+        "mode": "100644",
+        "sha256": "cdf76314ea83fbc94534ea9b29a22c7ae3a73fb3e00115486d0c9e8e7c036dc3"
+      },
+      {
+        "path": "internal/biz/README.md",
+        "mode": "100644",
+        "sha256": "b112fe146738abbc9277593578fbaaddbdcc8e9119d8dd59f3c1320114f53a8d"
+      },
+      {
+        "path": "internal/biz/attachment.go",
+        "mode": "100644",
+        "sha256": "ddf56417db09388fe1376b1cfcb7dc89bfc7e4f0497cf632af724f90d8d0978c"
+      },
+      {
+        "path": "internal/biz/attachment_worker.go",
+        "mode": "100644",
+        "sha256": "9d9988e181b88b073c149c76e20a8f535222213f9357db09036530a0f7be600d"
+      },
+      {
+        "path": "internal/biz/doc.go",
+        "mode": "100644",
+        "sha256": "90dc96bab69aec3bfb1144593f2ee18d0600ba2522179f970e2ba6e6c27383eb"
+      },
+      {
+        "path": "internal/biz/list.go",
+        "mode": "100644",
+        "sha256": "c95e1a6d10ad5d16f5256ef50a56945e6e8f0131117739dac1feea1f0ec872f1"
+      },
+      {
+        "path": "internal/biz/network.go",
+        "mode": "100644",
+        "sha256": "29e3cc5fc226e8f17673fbe6b70a9888557a6173829f7d419f47a33ff0b7b03f"
+      },
+      {
+        "path": "internal/biz/subnet.go",
+        "mode": "100644",
+        "sha256": "923b715f5a0e972e30252050f7cb574dcb3cbb7610fce05bb482db618911c4c4"
+      },
+      {
+        "path": "internal/biz/subnet_test.go",
+        "mode": "100644",
+        "sha256": "bdebe0a83967aceb9cead402898eb87475cf0da7f79097639e6e9f8322b99ecb"
+      },
+      {
+        "path": "internal/biz/vpc.go",
+        "mode": "100644",
+        "sha256": "15329163eaa303ea8dd4d2d352cf11863e80496bcfea0434fb1196e674896bda"
+      },
+      {
+        "path": "internal/biz/vpc_test.go",
+        "mode": "100644",
+        "sha256": "896ee535d48572b6aa5cadf1525a2394c9007b6db8c5dfbfb4ab74b19ceb3bcb"
+      },
+      {
+        "path": "internal/biz/worker.go",
+        "mode": "100644",
+        "sha256": "c0d866a65d7a6967d307035bccd08aa718206eb29033b0289c530d614768bdd5"
+      },
+      {
+        "path": "internal/conf/v1/conf.pb.go",
+        "mode": "100644",
+        "sha256": "c4eba7ba836733dbc5c1e4175212b4d89f2498dfbed8cec9070f8e5f24ee020e"
+      },
+      {
+        "path": "internal/conf/v1/conf.proto",
+        "mode": "100644",
+        "sha256": "dd2c4aabbdc9d9819025d1b1c6f61e848deb492a84130b5fa5b85dea06df57a4"
+      },
+      {
+        "path": "internal/conf/v1/validate.go",
+        "mode": "100644",
+        "sha256": "a7d186f1431dcc7b9588d1015da425b92272d2484b9722cbdd2f51855b6725f2"
+      },
+      {
+        "path": "internal/conf/v1/validate_test.go",
+        "mode": "100644",
+        "sha256": "c1cd4af1332c4dfd6a15e539c0bbfbb2a655f0d155b78cb45e9b107064fc0024"
+      },
+      {
+        "path": "internal/data/README.md",
+        "mode": "100644",
+        "sha256": "72f4a46fb9627152e5abcaf87f7e41fb1b142183e4d7aa7d6ee53f1f89d12452"
+      },
+      {
+        "path": "internal/data/attachment.go",
+        "mode": "100644",
+        "sha256": "4718aabc94a0110005d96a31c9719acd285d59cc287d71bc541146cf24722d4d"
+      },
+      {
+        "path": "internal/data/attachment_integration_test.go",
+        "mode": "100644",
+        "sha256": "d87175d663f6a0132784f0e00b9b4c6edec503fa511bc550bd7913842fbca30a"
+      },
+      {
+        "path": "internal/data/attachment_worker.go",
+        "mode": "100644",
+        "sha256": "3704426d25f03375cdd72188d2dda24db75915e886e38258367d37e119f1ac15"
+      },
+      {
+        "path": "internal/data/doc.go",
+        "mode": "100644",
+        "sha256": "50978525ad3fa635c857f9b62af37e5898ab9ff02e847654eb1b831d236d74fa"
+      },
+      {
+        "path": "internal/data/faults_integration_test.go",
+        "mode": "100644",
+        "sha256": "17c27ff4f2c6d2b268162e25081d13a4552b32dc316b5d02ff32c3122c3d649b"
+      },
+      {
+        "path": "internal/data/grpc_integration_test.go",
+        "mode": "100644",
+        "sha256": "9d7c92237ba53053c8de0e7b35e931a739eeb0cac5ba269ff9230d27bd178df1"
+      },
+      {
+        "path": "internal/data/instance_consumer.go",
+        "mode": "100644",
+        "sha256": "c17e209e37f5eb081a005238caa22eb58f0be638361318b3d315d4550b8fdeda"
+      },
+      {
+        "path": "internal/data/kc.go",
+        "mode": "100644",
+        "sha256": "e682748739c052ef4f2cefa28a965ddcc6c7258fa47859b8a44f596201b6ad01"
+      },
+      {
+        "path": "internal/data/kc_attachment.go",
+        "mode": "100644",
+        "sha256": "82bb4b6346c6b42651a8a8b12900998d2edd1490709787e07f50695d1985c1d9"
+      },
+      {
+        "path": "internal/data/kc_integration_test.go",
+        "mode": "100644",
+        "sha256": "2d6e5a03661507e4d1bc61d312ef2ae52a2ba6150d15ff47e91249c5be366817"
+      },
+      {
+        "path": "internal/data/migrate.go",
+        "mode": "100644",
+        "sha256": "1c6200022b6e63e160ad19432f10d563a288b98a70f8581c4a164796402ecb06"
+      },
+      {
+        "path": "internal/data/postgres.go",
+        "mode": "100644",
+        "sha256": "465d6cfc96a5433e17c772419c1353a6da43c4c2a2cba825abe75fbea40dbb12"
+      },
+      {
+        "path": "internal/data/postgres_integration_test.go",
+        "mode": "100644",
+        "sha256": "f27972c130d530c8a7b71651c1a37a58779d1708073d6a3033cf0de792fc6d71"
+      },
+      {
+        "path": "internal/data/process_integration_test.go",
+        "mode": "100644",
+        "sha256": "d62196ab6ddd6fb20abf4c7a6475b2d407a5c135a840ba31dd1707f680815c5c"
+      },
+      {
+        "path": "internal/data/provider_faults_integration_test.go",
+        "mode": "100644",
+        "sha256": "cd91a99fcf2fe6e971052db418bfbd51f3952fbf07cf055d597f9ae8d4ebe237"
+      },
+      {
+        "path": "internal/data/queries/attachments.sql",
+        "mode": "100644",
+        "sha256": "7c4fb2ccc25d3b48fbfc282758a48e523f687348c1a007d0bd0750e466e9e65b"
+      },
+      {
+        "path": "internal/data/queries/subnets.sql",
+        "mode": "100644",
+        "sha256": "bf8167e2f8a0c75287d88bed626e0c27fe27e6727fa764094e67b54d496f5089"
+      },
+      {
+        "path": "internal/data/queries/vpcs.sql",
+        "mode": "100644",
+        "sha256": "e6f3a8d28a4e77c9b1141eb8dc8b215b1fd77fbdc4aee8cc2ef5ce20c3f36022"
+      },
+      {
+        "path": "internal/data/queries/worker.sql",
+        "mode": "100644",
+        "sha256": "d596a36334fafe96ccb306a2a6de85d2fcdfdf37904d1fc0f9c7e68ffc29fe43"
+      },
+      {
+        "path": "internal/data/resource_work.go",
+        "mode": "100644",
+        "sha256": "020f6442ed03646bc374b0b2a015bffa7aabde09b43afd8139d6a630a09d2526"
+      },
+      {
+        "path": "internal/data/resource_work_net05_integration_test.go",
+        "mode": "100644",
+        "sha256": "669aebb59f1721679bbb8f83f695d082dbc7b9c5fbac722b3b614ae19e68ca4e"
+      },
+      {
+        "path": "internal/data/sqlcgen/attachments.sql.go",
+        "mode": "100644",
+        "sha256": "625d24a30a952f02db9f769deca5a8b7350d5a3e6336721941c2786132dc8bdb"
+      },
+      {
+        "path": "internal/data/sqlcgen/db.go",
+        "mode": "100644",
+        "sha256": "c40f70c9870c43ddc88f743ec63627bc9af2d57fab48fdb0c055981d090b0cf8"
+      },
+      {
+        "path": "internal/data/sqlcgen/models.go",
+        "mode": "100644",
+        "sha256": "a750b0af9cd016457900f75c822149143e826eb9a9b33d5d4b75f7348a1cfd8f"
+      },
+      {
+        "path": "internal/data/sqlcgen/subnets.sql.go",
+        "mode": "100644",
+        "sha256": "75d2914b7268b14627c6e7b6220b57a14f93b279414fcdca0ae7fcc6ff8cd206"
+      },
+      {
+        "path": "internal/data/sqlcgen/vpcs.sql.go",
+        "mode": "100644",
+        "sha256": "7573860ed8bb96d2db618686b6c9601efcfa32c90a81f9f2ed05e57e52939788"
+      },
+      {
+        "path": "internal/data/sqlcgen/worker.sql.go",
+        "mode": "100644",
+        "sha256": "3a6d6010d83275fdac864e8aa3f23aaf8b88967ad7c874e1498c44f5b888844a"
+      },
+      {
+        "path": "internal/data/subnet.go",
+        "mode": "100644",
+        "sha256": "a700692a6a5d9b48cd85ddb702750e56669903516bd006fe959f074a6e2e2b5c"
+      },
+      {
+        "path": "internal/data/subnet_integration_test.go",
+        "mode": "100644",
+        "sha256": "e0b8bea0e3acb420e712a4c79412f4033eb703dad26bdb2c185b3d2498f4246e"
+      },
+      {
+        "path": "internal/data/subnet_kc_integration_test.go",
+        "mode": "100644",
+        "sha256": "de1f354bbaf5c4874dc83800861202843047509320e4309dde16577c9e9ed073"
+      },
+      {
+        "path": "internal/data/subnet_process_integration_test.go",
+        "mode": "100644",
+        "sha256": "737a95e765a95ae26121eb0064c28b7e4685411b8520422f9323c5ed727c8487"
+      },
+      {
+        "path": "internal/data/subnet_upgrade_integration_test.go",
+        "mode": "100644",
+        "sha256": "7f163fbbf65c85af646946561c90473600e4e96a302722bf5b45bd9a081564af"
+      },
+      {
+        "path": "internal/data/worker.go",
+        "mode": "100644",
+        "sha256": "c202949acaadaffed125b37dcd34c6bc4cf7245817ad9169d07b98e55eb397d7"
+      },
+      {
+        "path": "internal/data/worker_integration_test.go",
+        "mode": "100644",
+        "sha256": "806c277ebc8e159812e549142f54cb509d2ec4212cfe6dda9d6b83381897093d"
+      },
+      {
+        "path": "internal/server/admin.go",
+        "mode": "100644",
+        "sha256": "0746d987a940b5ef83bfef756b79143cdfb42143f1104effdb78d90bfacd78fc"
+      },
+      {
+        "path": "internal/server/admin_test.go",
+        "mode": "100644",
+        "sha256": "979c2932f4909524b44658bdb25e28d46b85425fb6ee16db75148c308929c5ed"
+      },
+      {
+        "path": "internal/server/grpc.go",
+        "mode": "100644",
+        "sha256": "738d9935e358a52aa80ff96db1625b166e7600f8af88e9e15b099b07239f0e8e"
+      },
+      {
+        "path": "internal/server/health.go",
+        "mode": "100644",
+        "sha256": "7a861fa8ceb20fef5e7f5b872b859eb6d07e7d05b4c2f8b50af1a8c59caecb11"
+      },
+      {
+        "path": "internal/server/observability.go",
+        "mode": "100644",
+        "sha256": "36a269818c9366eb31b6eb82256c187839d25ff0bf1d49e7df3ae1a8e84f1373"
+      },
+      {
+        "path": "internal/server/readiness.go",
+        "mode": "100644",
+        "sha256": "fdf40b6c4f438e7b40e40b5b1f1d0d55187240f19fdedddea1219f42e4971ba0"
+      },
+      {
+        "path": "internal/server/server.go",
+        "mode": "100644",
+        "sha256": "b28ebf0a522c2ba3265e6d9a6317ea8a08069268eb73a36950913c6bde7a70c5"
+      },
+      {
+        "path": "internal/server/worker.go",
+        "mode": "100644",
+        "sha256": "a22db919bdb890c34dd1f433ae60f89ad84347c5ad3bbdabc3dfdc1e6422392c"
+      },
+      {
+        "path": "internal/server/worker_test.go",
+        "mode": "100644",
+        "sha256": "fedc121643b17d8b1a7cc90e43fdb11e1362555f6aa2b09e610ed4805dff7736"
+      },
+      {
+        "path": "internal/service/README.md",
+        "mode": "100644",
+        "sha256": "c1a9aa4ff15984caa1119553751943d230e26951d7273dc7cbb1a3d3b077f303"
+      },
+      {
+        "path": "internal/service/attachment.go",
+        "mode": "100644",
+        "sha256": "1c01211903096e61b3d82775834564b5a644ee8411a3e38ea37e80343100a484"
+      },
+      {
+        "path": "internal/service/doc.go",
+        "mode": "100644",
+        "sha256": "e55ae12ceb943c6be84e31540c839d606ffd319bfdf9ab92312ae2066137f5f7"
+      },
+      {
+        "path": "internal/service/network.go",
+        "mode": "100644",
+        "sha256": "86504293d62114cefa6a99f7c8d1b6d12fb8eb64be9e72d85e97561a38bb8689"
+      },
+      {
+        "path": "internal/service/subnet.go",
+        "mode": "100644",
+        "sha256": "6b412d89e00264be67901c9855b9c5527f291ab00e3e3ff6af3bbdf1573d548c"
+      },
+      {
+        "path": "migrations/0001_vpc.sql",
+        "mode": "100644",
+        "sha256": "c9c99dd3cfba59f5a6fcf8025e7d0d433a8bd322df1088c58912a44d1e32736a"
+      },
+      {
+        "path": "migrations/0002_subnet.sql",
+        "mode": "100644",
+        "sha256": "ab5dfbc25cc9f2323d2fbee2dbb109d28115597a6f8322e1242f4484dc6a5fdb"
+      },
+      {
+        "path": "migrations/0003_attachment.sql",
+        "mode": "100644",
+        "sha256": "9617a45668d6f0a4c0590f07f36889acbd56c4b966dcd0c9f2b3d1f093ee69dd"
+      },
+      {
+        "path": "migrations/embed.go",
+        "mode": "100644",
+        "sha256": "7a3dfefa1f2cdf9678a5bb1a041ae8f46bb6ad869845c336146b72b6dc18f592"
+      },
+      {
+        "path": "scripts/check-net0204-compatibility",
+        "mode": "100644",
+        "sha256": "02fc3d08d01aa8d034b05820985534c6b4587f6d50c7bdb72e5fef88c303988d"
+      },
+      {
+        "path": "scripts/check-tenant-mutations",
+        "mode": "100755",
+        "sha256": "86001dd289a752f921dd3688aa1d5b89bde3d0f0d01fa7ec4f3e39cc8fd5345b"
+      },
+      {
+        "path": "scripts/generate-sbom",
+        "mode": "100755",
+        "sha256": "5b42c7984a0a42c2ecef6da9af593c5a7472f13d07dc3dd0af36f1009537fac0"
+      },
+      {
+        "path": "scripts/integration",
+        "mode": "100755",
+        "sha256": "b2cb9e3b91105f059519fd9170fe71cd6526bddb4dce313a1d1db10dde01ba8e"
+      },
+      {
+        "path": "scripts/integration-pair",
+        "mode": "100755",
+        "sha256": "a205befc6eadd59a0ab256ea824de5b21fe6ea17119b2427bf33709dc8bb9273"
+      },
+      {
+        "path": "scripts/net05-api.py",
+        "mode": "100644",
+        "sha256": "3034bf0255d1b4d3632a9be6bec4f4a7a7802bcc672c5739748929c455850efa"
+      },
+      {
+        "path": "scripts/net05-build-faults.py",
+        "mode": "100644",
+        "sha256": "3a4b97479b041da645a08d71ac0dfbb44d186b4aab73726727c92a0474ec8280"
+      },
+      {
+        "path": "scripts/net05-cleanup.py",
+        "mode": "100644",
+        "sha256": "0a1fbceb44bc5a3c9db90f615534da600341060e681747076d89ce0456627a83"
+      },
+      {
+        "path": "scripts/net05-export.py",
+        "mode": "100644",
+        "sha256": "cd96d11bfc15b261c1454e424260251c5e65b89d9f718e52922b6c4af1b0408d"
+      },
+      {
+        "path": "scripts/net05-faults.py",
+        "mode": "100644",
+        "sha256": "6a39e57f8fb65e49fa3e8e48bf9d78e5a5531819d0cb3adc805d0c5ed7c0a298"
+      },
+      {
+        "path": "scripts/net05-gates.py",
+        "mode": "100644",
+        "sha256": "60ad89b0c8f45642cad4c0e16f8b5397d0759aabc880d41d4c21c97c6390621a"
+      },
+      {
+        "path": "scripts/net05-kind.py",
+        "mode": "100644",
+        "sha256": "0ff3b60b0a4e0549cde830ef01a013df5058dc076cebd61547c5e29e2d494159"
+      },
+      {
+        "path": "scripts/net05-preflight.py",
+        "mode": "100644",
+        "sha256": "095edc31025cf9a7da6985c769415bf96f296da1383db6eb736fd2d84131b430"
+      },
+      {
+        "path": "scripts/net05-remote",
+        "mode": "100755",
+        "sha256": "c501fd6e6e5604daec1aa6eb53630bf94f62e3912d9f965d29035e30f2945d51"
+      },
+      {
+        "path": "scripts/remote-pair",
+        "mode": "100755",
+        "sha256": "9d5516818f738c52757e54c61bc92c20e893c791534d446e4080632828a3343d"
+      },
+      {
+        "path": "scripts/remote-run",
+        "mode": "100755",
+        "sha256": "f23e6b5c5493c0bbdfe5f7f412ac837f5d341adb74530a253e56accf5d5f2671"
+      },
+      {
+        "path": "scripts/return-network-generated",
+        "mode": "100755",
+        "sha256": "07f8d4e30ebb3f6dd758653f7cea6bf904f5a51c043d635ec771ed7ad5a0f80b"
+      },
+      {
+        "path": "scripts/return-pair-generated",
+        "mode": "100755",
+        "sha256": "f57246b9eceb6e436b850d490ea785f82a555b66b37600172d57f2c43988c550"
+      },
+      {
+        "path": "scripts/test-net0204-wire",
+        "mode": "100755",
+        "sha256": "bfe6f5bc1e52623b38540058b90e2c5d671ec46182944ac64499db4a47e6f38c"
+      },
+      {
+        "path": "scripts/verify-boundaries",
+        "mode": "100755",
+        "sha256": "0cc63b116be74dd4edfe0980b485e0a2e56d077060708e0c5ff6050992ade7d5"
+      },
+      {
+        "path": "scripts/verify-source",
+        "mode": "100755",
+        "sha256": "e86c4c98eb29d7e699a9383e16c6f88cb8b93843b25ec0518a0bee825101deba"
+      },
+      {
+        "path": "scripts/verify-supply-chain",
+        "mode": "100755",
+        "sha256": "63b22190a52eab5ef7d2f87fc18d48a69ed439a21901553dc23a7e913f0f0ec1"
+      },
+      {
+        "path": "sqlc.yaml",
+        "mode": "100644",
+        "sha256": "f33fad80eb771e942c4d21426b9957ce7a68da6c81ea6dcb5f05e54241a17428"
+      },
+      {
+        "path": "tests/net05/Dockerfile",
+        "mode": "100644",
+        "sha256": "33288678038fb267831b37d44055742838429cdc04a7bb0735763364136e6092"
+      },
+      {
+        "path": "tests/net05/hook.txt",
+        "mode": "100644",
+        "sha256": "d90eeff793c90e200a972e8c9e3f43506d64606d6b908015c4fa85daacc100ee"
+      },
+      {
+        "path": "tests/net05/kube-relay.py",
+        "mode": "100644",
+        "sha256": "9f4dc003f232d28057b3b7d5910e99dc365c3abbaefbc7529cab171b08f5589f"
+      },
+      {
+        "path": "tests/net05/probe.go",
+        "mode": "100644",
+        "sha256": "fbbdc2e8a4bf4841e58699ea8b7b20822ea5be2907bcccde478c096fafad8439"
+      },
+      {
+        "path": "tests/net05/relay/main.go",
+        "mode": "100644",
+        "sha256": "db5e6c5e3036e70a504468b963b9761bab3c8c1cd112a8ff5db7dc35825aed00"
+      },
+      {
+        "path": "tests/net05/rpc/main.go",
+        "mode": "100644",
+        "sha256": "7195b254af32f9c66050e0d6e1c0a75671368745dcea2a3cc24ae7b6d82c3f81"
+      },
+      {
+        "path": "tests/runtime/runtime_test.go",
+        "mode": "100644",
+        "sha256": "64c337e5eaf8aefe384316ab7a2b003e8c49bb81f6f566716a60956eeda39de8"
+      },
+      {
+        "path": "tests/testenv/kc.go",
+        "mode": "100644",
+        "sha256": "fc0239b0a86001b49c4abe8a4cc9873910d69ad6833d0b4234c01f2529ce7b19"
+      },
+      {
+        "path": "tests/testenv/kubeconfig.go",
+        "mode": "100644",
+        "sha256": "ee97cf9efba643c7fc1980479dff213c6fc6884c1b6a0cb3234d0acadf7ca6c0"
+      },
+      {
+        "path": "tests/testenv/postgres.go",
+        "mode": "100644",
+        "sha256": "bc6a46e5e777ff37317f11861c38d65febfb8c1e19c185e54b404798631ed0ba"
+      },
+      {
+        "path": "tests/testenv/secret.go",
+        "mode": "100644",
+        "sha256": "58db3dce5dbecbbe2e9a7770f9147dc2514c4722e568a88574036e9a14fe58d0"
+      }
+    ]
+  }
+}

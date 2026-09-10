@@ -1,0 +1,98 @@
+{
+  "at": "2026-09-10T08:56:39.788295+00:00",
+  "goal": "NET-05A",
+  "status": "completed_with_deferred_capacity",
+  "authorization_adjustment": "用户明确允许机器配置/资源限制下的大负载标记未完成，以后再做。",
+  "completed": [
+    "continuous observation and durable reconciliation implementation",
+    "all applicable new gates and V-01 through V-13 regressions",
+    "V-16 and V-17",
+    "V-18 functional behavior and fixed 100 Attachment single/dual replica comparisons",
+    "V-19 exact new main/image, real List/Watch/RBAC and ordinary-container dataplane",
+    "product and fixture cleanup, resource preservation",
+    "bounded independent review, final allowed-path/document checks and pinned SBOM"
+  ],
+  "deferred": [
+    {
+      "attachments": 1000,
+      "replicas": 1,
+      "status": "not_verified"
+    },
+    {
+      "attachments": 1000,
+      "replicas": 2,
+      "status": "not_verified"
+    },
+    {
+      "attachments": 2000,
+      "replicas": 1,
+      "status": "not_verified"
+    },
+    {
+      "attachments": 2000,
+      "replicas": 2,
+      "status": "not_verified"
+    }
+  ],
+  "unchanged_historical_failures": [
+    "ANI eight authentication/branding compatibility operations: fail, exit 2",
+    "ANI full historical Atlas directory: fail, exit 1"
+  ],
+  "unstarted": [
+    "NET-06",
+    "quota integration pending Core refactor",
+    "IAM S2S",
+    "production deployment/cutover",
+    "commit/push/PR/tag/registry publication"
+  ],
+  "worktree": "/home/chabking/workspace/.worktrees/network-net-05a",
+  "branch": "codex/net-05a",
+  "local_head": "72cdd974d0d25dfd3d65051ac91a03e0e92da0d2",
+  "final_source_manifest_sha256": "2deafb0a439b7189ded9e8c1787116681380f842d674b505437f9ea0c728a4f2",
+  "evidence_index": [
+    {
+      "path": "functional-acceptance.json",
+      "sha256": "d8bc8a3cccdf04f026ca0937d8f249d692045618768c2ea95858a83ce4b65da5"
+    },
+    {
+      "path": "final-source-audit.json",
+      "sha256": "abe792e5ba2cd49aab078333c1af29b0715487aaca63609932d1944fcb41e312"
+    },
+    {
+      "path": "final-input-audit.json",
+      "sha256": "bafe16f8093f7e7582b4de96a6ca1d7e27250188ea2e7244c0a33e9f4697c0c3"
+    },
+    {
+      "path": "final-supply-chain.json",
+      "sha256": "3be8f5be5c15995a50c7d2fb1f42d046e74eb9c30a306f96b3c2e5d013ee90d2"
+    },
+    {
+      "path": "final-capacity-source-match.json",
+      "sha256": "65d6f8283af5ccf5f3d643c796394aa6e95790cd66861d5dd37bc62615128fe1"
+    },
+    {
+      "path": "final-capacity-cleanup.json",
+      "sha256": "ce33e7f5ef1f2fa024fefb5fd774af204cce022ee0f4c32358e5b59576364992"
+    },
+    {
+      "path": "capacity-deferral.json",
+      "sha256": "03751026b1e234c1b1c67abd863bad7621507f5ba4dcf76c8b4fe4669da57939"
+    },
+    {
+      "path": "live/collection-receipt.json",
+      "sha256": "749f4213770f5f9a16bf4201f2baa05cd15d1b3b15ef58911fbe4974aff2fc18"
+    },
+    {
+      "path": "live/post-export/cleanup-verification.json",
+      "sha256": "5f15c3cfacb87bbbd56a0d120fee96988fd87ede49de5c26d2e8673f3bdbecd6"
+    },
+    {
+      "path": "independent-review.json",
+      "sha256": "10c0ee9b34e9cab49e7bafca0deda9bd2bb62e8597edef5c4b93327e7d92f2cc"
+    },
+    {
+      "path": "stages/20260910T083645Z-6386a4b5/capacity-evaluation.json",
+      "sha256": "34b0085b837b7986f6274b4af66a0079b09ea0e79fb7136b2ca672e67619ff2d"
+    }
+  ]
+}

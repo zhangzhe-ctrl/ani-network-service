@@ -1,0 +1,2019 @@
+diff --git a/cmd/ani-network-service/app.go b/cmd/ani-network-service/app.go
+index 6b7507c..88e583c 100644
+--- a/cmd/ani-network-service/app.go
++++ b/cmd/ani-network-service/app.go
+@@ -32,7 +32,19 @@ func buildApp(bc *conf.Bootstrap, logger *slog.Logger) (*kratos.App, error) {
+ 			repository.Close()
+ 		}
+ 	}()
+-	provider, err := data.OpenKCProvider(repository, bc.Network.Kubeconfig)
++	clientPolicy := data.KCClientPolicy{QPS: 5, Burst: 10}
++	if o := bc.Network.Observation; o != nil {
++		clientPolicy = data.KCClientPolicy{QPS: float32(o.RequestQps), Burst: int(o.RequestBurst)}
++	}
++	provider, err := data.OpenKCProvider(repository, bc.Network.Kubeconfig, clientPolicy)
++	if err != nil {
++		return nil, err
++	}
++	options := data.DefaultObservationOptions()
++	if o := bc.Network.Observation; o != nil {
++		options = data.ObservationOptions{AuditInterval: o.AuditInterval.AsDuration(), AuditJitter: o.AuditJitter.AsDuration(), AuditTimeout: o.AuditTimeout.AsDuration(), FlushInterval: o.FlushInterval.AsDuration(), QueueCapacity: int(o.QueueCapacity)}
++	}
++	observation, err := provider.EnableObservation(options)
+ 	if err != nil {
+ 		return nil, err
+ 	}
+@@ -49,6 +61,9 @@ func buildApp(bc *conf.Bootstrap, logger *slog.Logger) (*kratos.App, error) {
+ 	if err != nil {
+ 		return nil, err
+ 	}
++	if err = observability.RegisterObservation(observation); err != nil {
++		return nil, err
++	}
+ 	worker, err := biz.NewWorker(repository, provider, uuid.NewString(), policy, func(ctx context.Context, work biz.Work, progress biz.Progress, err error) {
+ 		observability.ObserveWork(ctx, logger, work, progress, err)
+ 	})
+@@ -61,7 +76,7 @@ func buildApp(bc *conf.Bootstrap, logger *slog.Logger) (*kratos.App, error) {
+ 		_ = observability.Shutdown(ctx)
+ 		return nil, err
+ 	}
+-	attachmentWorker, err := biz.NewAttachmentWorker(repository, provider, consumer, uuid.NewString(), policy)
++	attachmentWorker, err := biz.NewAttachmentWorker(repository, provider, consumer, uuid.NewString(), policy, observability.ObserveAttachmentWork)
+ 	if err != nil {
+ 		consumer.Close()
+ 		_ = observability.Shutdown(ctx)
+@@ -73,13 +88,18 @@ func buildApp(bc *conf.Bootstrap, logger *slog.Logger) (*kratos.App, error) {
+ 		}
+ 	}()
+ 	execution = server.NewWorkerServer(worker, repository, logger, w.PollInterval.AsDuration(), attachmentWorker)
++	if o := bc.Network.Observation; o != nil {
++		if err = execution.SetConcurrency(int(o.WorkersPerKind)); err != nil {
++			return nil, err
++		}
++	}
+ 	middlewares := observability.ServerMiddleware(logger)
+ 	grpcServer := server.NewGRPCServer(bc.Server.Grpc, readiness, middlewares...)
+ 	networkv1.RegisterNetworkServiceServer(grpcServer, service.NewNetworkService(network, biz.NewAttachments(repository, policy.StaleAfter)))
+ 	adminServer := server.NewAdminServer(bc.Server.Admin, readiness, observability.Gatherer(), middlewares...)
+ 	app := kratos.New(
+ 		kratos.ID(id), kratos.Name(Name), kratos.Version(Version), kratos.Logger(logger),
+-		kratos.Server(grpcServer, adminServer, execution),
++		kratos.Server(grpcServer, adminServer, observation, execution),
+ 		kratos.AfterStart(func(context.Context) error { readiness.Set(true); return nil }),
+ 		kratos.BeforeStop(func(context.Context) error { readiness.Set(false); return nil }),
+ 		kratos.AfterStop(func(ctx context.Context) error {
+diff --git a/configs/config.yaml b/configs/config.yaml
+index b62bf00..2284fed 100644
+--- a/configs/config.yaml
++++ b/configs/config.yaml
+@@ -23,3 +23,12 @@ network:
+     retry_min: "${WORKER_RETRY_MIN:1s}"
+     retry_max: "${WORKER_RETRY_MAX:60s}"
+     poll_interval: "${WORKER_POLL_INTERVAL:0.1s}"
++  observation:
++    audit_interval: "${OBSERVATION_AUDIT_INTERVAL:30s}"
++    audit_jitter: "${OBSERVATION_AUDIT_JITTER:2s}"
++    audit_timeout: "${OBSERVATION_AUDIT_TIMEOUT:10s}"
++    flush_interval: "${OBSERVATION_FLUSH_INTERVAL:0.1s}"
++    queue_capacity: ${OBSERVATION_QUEUE_CAPACITY:4096}
++    workers_per_kind: ${OBSERVATION_WORKERS_PER_KIND:2}
++    request_qps: ${OBSERVATION_REQUEST_QPS:5}
++    request_burst: ${OBSERVATION_REQUEST_BURST:10}
+diff --git a/docs/START-HERE.md b/docs/START-HERE.md
+index de58052..c8adbff 100644
+--- a/docs/START-HERE.md
++++ b/docs/START-HERE.md
+@@ -8,7 +8,7 @@
+ 1. [领域词汇](../CONTEXT.md)：网络资源、消费者、操作、资源状态与身份角色。
+ 2. [首片规格：VPC/Subnet](specs/vpc-subnet.md)：产品规则、REST/RPC、数据、状态、恢复、接入和验收。
+ 3. [架构决定](#架构决定)：已由用户确认的所有权、数据和身份接入取舍。
+-4. [纵向实施计划](plans/vpc-subnet.md)：NET-01 至 NET-06 与 NET-AUTH 的依赖和退出证据。
++4. [纵向实施计划](plans/vpc-subnet.md)：NET-01 至 NET-06（含新增 NET-05A）与 NET-AUTH 的依赖和退出证据；[NET-05A 专案](plans/cr-observation.md)安排持续观察改造。
+ 5. [执行状态](execution/status.md)：当前工作包、下一步、验证范围与记录索引。
+ 
+ ## 架构决定
+@@ -18,10 +18,13 @@
+ | [ADR-0001](adr/0001-own-network-lifecycle.md) | Network 自己拥有资源、operation、worker、状态、恢复和真实删除，Core 不兜底；实例 owner 仍拥有 Pod/VM。 |
+ | [ADR-0002](adr/0002-use-tenant-owned-data-without-rls.md) | 独立 PostgreSQL + sqlc/pgx；租户资源显式 tenant 约束，无 RLS、共享写表或跨服务 FK。 |
+ | [ADR-0003](adr/0003-defer-workload-authentication.md) | 本期暂缓服务间身份验证，IAM 就绪后单独接入；租户业务边界继续实现和测试。 |
++| [ADR-0004](adr/0004-observe-cr-with-durable-reconciliation.md) | 共享 CR 观察与 Network 持久执行，NET-05A 位于 NET-06 前；兄弟服务框架自主选择，配额延后到 Core 重构之后。 |
+ 
+ ADR 记录已确认的方向及理由；规格中本轮补齐的数值、字段和协议细节是工程设计，不冒充已经逐项人工批准或实际验收。
+ 当前用户明确决定优先。规格、ADR、代码或证据出现差异时，标明是待实现目标、过期材料还是需要变更的决定，并更新对应权威材料，不能静默挑选有利版本。
+ 
++NET-05A 的观察、时效、调度与增量验收统一见[持续观察规格](specs/cr-observation.md)。它是待实现目标；既有资源与 Attachment 协议仍以首片规格为准，当前结果只看执行状态。
++
+ ## 文档职责
+ 
+ | 位置 | 唯一职责 |
+@@ -46,6 +49,8 @@ ADR 记录已确认的方向及理由；规格中本轮补齐的数值、字段
+ - [生成溯源](scaffold/provenance.md) 与 [运行依赖 SBOM](scaffold/bom.cdx.json)
+ - [2026-09-09 源码评估](execution/records/2026-09-09-source-assessment.md)：ANI、IAM、Notification、kc 的设计输入与快照。
+ - [2026-09-09 文档交付检查](execution/records/2026-09-09-design-verification.md)
++- [2026-09-10 CR 持续观察选型](execution/records/2026-09-10-cr-observation-selection.md)：选型研究与社区主源；已由 ADR-0004 和持续观察规格承接设计，配额讨论仅保留为后续输入。
++- [2026-09-10 NET-05A 方案检查](execution/records/2026-09-10-cr-observation-plan.md)：文档交付、编排与静态检查，不代表实施验收。
+ 
+ 本仓库独立拥有生成源码，不在构建或运行时依赖 layout 或 ANI 内部目录。
+ 旧版 START-HERE 中的初始化交接及待讨论问题由上述词汇、ADR、规格和来源记录取代；历史版本仍可从 Git 查询。
+diff --git a/docs/execution/status.md b/docs/execution/status.md
+index a3c9398..3b2302c 100644
+--- a/docs/execution/status.md
++++ b/docs/execution/status.md
+@@ -4,6 +4,8 @@
+ 
+ ## 当前工作
+ 
++NET-05A 已由用户启动，正在独立 `codex/net-05a` worktree 实施与验证；固定输入及证据见 [NET-05A 记录](records/NET-05A-implementation.md)。配额等待 Core 重构后独立接入。NET-05 历史验收及发布事实保留，持续观察豁免不适用于 NET-05A。
++
+ NET-05 已按用户调整后的范围完成，复用固定远端 `kind-kc062`，实际普通容器主链、带身份数据面、故障恢复及产品/临时环境清理均通过。独立 Network/ANI worktree、环境身份、用例断言和实际证据见 [NET-05 记录](records/NET-05-implementation.md)。验收完成后的新授权仅将 Network 提交至远端 main；ANI 继续保留本地。NET-06、部署和整体切换不在本次发布范围。
+ 
+ 执行中用户将 worker 资源持续观察专项交由并行任务，本包停止扩展/重复该项；此前证据保留并标明源码时点。该调整不取消产品创建/删除、实例 owner 恢复和其他 NET-05 验收。
+@@ -19,7 +21,8 @@ NET-02/03 实施与受控验收、NET-04 接口实现和进程验收已完成，
+ | NET-03 | `completed` | 两端持久提交/封闭/释放与占用保护；真实 PG、十场景独立进程故障验收通过 |
+ | NET-04 | `completed` | 九路由/生成契约/HTTP链路与无新增兼容回归通过；8 条既有失败按用户决定单独保留，原门禁仍 fail；仅接口，无前端 |
+ | NET-05 | `completed` | 实际 main、V-12 连通/隔离/重叠、V-06–11 适用 live 扩展、V-13 接口、最终门禁和清理通过；持续观察专项按用户调整不再追加 |
+-| NET-06 | `not_started` | 普通容器之后的 VM/KubeVirt 接入与验收 |
++| NET-05A | `in_progress` | 持续观察、持久通知、共享关系、容量对照与新版本普通容器复验；尚无运行通过结论 |
++| NET-06 | `not_started` | NET-05A 新版本验收通过后再独立启动 VM/KubeVirt 接入与验收 |
+ | NET-AUTH | `not_started` | 明确延期：IAM 就绪后接入服务间身份验证 |
+ 
+ ## 验证状态
+@@ -48,6 +51,8 @@ NET-02–04 后续发布记录属于历史输入：Network 固定提交已发布
+ 
+ ## 下一步
+ 
++完成 NET-05A 的实施、门禁、V-16～19、容量对照和真实清理；成果保持未提交，完成后停止。以下 NET-05 发布说明为历史安排。
++
+ NET-05 验收完成，按用户后续授权发布 Network main，ANI 成果继续保持本地未提交状态。NET-06、NET-AUTH、Console、生产发布/升级和整体切换等待各自独立授权；不自动继续。
+ 
+ ## 记录索引
+diff --git a/docs/plans/vpc-subnet.md b/docs/plans/vpc-subnet.md
+index 1de5110..df5ca89 100644
+--- a/docs/plans/vpc-subnet.md
++++ b/docs/plans/vpc-subnet.md
+@@ -12,6 +12,8 @@
+ - 单元/契约测试、真实 PostgreSQL 测试和真实 kc 数据面证据分别记录。模拟 Provider 只能证明 Network 的边界行为，不能替代真实网络连通和隔离。
+ - 所有真实环境工作使用 fresh、隔离资源，不关联旧 Storage/LB/Route，不迁移存量资源。发现 kc 实现缺口时记录最小复现、需要的 Provider 契约与阻断证据，交由 kc 团队处理；不在本计划中新增 kc 改代码包。
+ 
++2026-09-10 按用户要求插入独立 NET-05A，不重排原编号：`NET-01～04 → NET-05 → NET-05A → NET-06`。配额接入等待 Core 重构及治理契约就绪后独立编排，不作为上述链路的前置条件。
++
+ ## NET-01：VPC 生命周期与真实 PostgreSQL
+ 
+ **目标。** 实现 VPC 创建、Get/List、真实删除意图、持久幂等、操作执行与失败恢复的第一条纵向路径。资源和操作以 Network 数据库为权威来源，进程重启后继续处理；Provider Adapter 承接 kc 的创建、观测和删除语义。
+@@ -72,11 +74,21 @@
+ 
+ **退出证据。** 记录各仓库 commit、镜像/Provider 版本、测试资源身份、可复现命令、实际流量结果、失败路径和最终清理结果。每项写明 `pass`、`fail` 或 `not_verified`；普通容器闭环通过不等于 VM、IAM 服务间验证或生产部署完成。
+ 
++## NET-05A：CR 持续观察与执行扩展
++
++**目标。** 将当前逐资源轮询和重复关系扫描改造为共享观察、持久唤醒、统一领域执行及有时效预算的真实校验。此包是独立实现与验收，不是给 NET-05 补记结果。范围、步骤、计划路径及退出证据统一见[NET-05A 方案](cr-observation.md)，行为和 V-16～19 以[持续观察规格](../specs/cr-observation.md)为准。
++
++**依赖。** NET-05 已验收的普通容器路径及其固定源码、镜像、Provider 和环境作为基线；新实现需要取得自己的真实 PG、故障、多副本、容量及真实 kc 证据，并在新版本上复验普通容器链路。
++
++**范围边界。** Network 当前使用 client-go + PG 持久执行；向兄弟服务推广职责与恢复规则，允许其自行选择 controller-runtime。本包不改兄弟仓库，不实现配额，也不以 Core 重构、配额接线或 IAM 就绪为启动条件。
++
++**退出证据。** 依专案完成适用门禁及 V-16～19，交付精确新版本与运行配置给 NET-06。只有 VPC/Subnet Watch、仍保留每 Attachment 全集群扫描，或沿用 NET-05 的旧版本结果，均不足以完成本包。
++
+ ## NET-06：VM 后续接入与验证
+ 
+ **目标。** 普通容器闭环后，验证现有 VM 实例路径消费同一 Network Attachment 产品协议，并按 kc 的 VM 能力完成绑定、连通、隔离、释放和恢复。
+ 
+-**依赖。** NET-05 已形成普通容器证据；用户提供的是运行 kind 的宿主虚拟机，KubeVirt 运行条件、是否可复用该宿主以及业务 VM fixture 届时另行核定，不预写为用户已经提供或承诺。kc 团队提供可用的 VM 接入能力。不能从普通容器结果推定 bridge、地址配置或 VM 数据面已经支持。
++**依赖。** NET-05 普通容器证据，以及 NET-05A 新观察实现及新版本普通容器复验通过；使用 NET-05A 交付的固定版本。用户提供的是运行 kind 的宿主虚拟机，KubeVirt 运行条件、是否可复用该宿主以及业务 VM fixture 届时另行核定，不预写为用户已经提供或承诺。kc 团队提供可用的 VM 接入能力。不能从普通容器结果推定 bridge、地址配置或 VM 数据面已经支持。Core 重构与配额接入不是 NET-06 依赖。
+ 
+ **仓库路径角色。** 计划在 ANI 实例 resolver/renderer 的现有 Adapter 调整 VM 消费方式；Network 仅在固定契约确有需求时扩展接入结果。kc 源码变更继续由 kc 团队负责，本包不包含该仓库开发任务。
+ 
+@@ -96,6 +108,10 @@
+ 
+ **退出证据。** 固定 IAM 契约与实现版本、真实服务间正反向结果、受影响仓库的实际检查命令、Network `make verify` 和业务回归结果。只在对应证据取得后更新执行状态，不把前序数据隔离测试记为 IAM 接入完成。
+ 
++## Core 重构后的配额接入
++
++按用户要求延期，待 Core 重构完成且治理权威/版本化契约明确后独立编排。输入与范围见[NET-05A 方案的后续安排](cr-observation.md#6-core-重构后的配额接入)；当前不设配额实施编号，不预建临时账本或结算接口，不把配额纳入 NET-05A/06 的退出证据。
++
+ ## 验收责任映射
+ 
+ 以下引用规格 V 编号，不复制断言或测试结果；当前结果仍只维护在执行状态及记录中。
+@@ -115,3 +131,6 @@
+ | V-13 | NET-04 | NET-05 产品入口端到端证据 |
+ | V-14 | NET-06 | 不由普通容器结果替代 |
+ | V-15 | NET-AUTH | 不由无验证的联调结果替代 |
++| V-16～19 | NET-05A | 新实现的观察、调度、索引、容量及真实普通容器复验；详细断言只在持续观察规格 |
++
++NET-05A 还需回归受影响的 V-01～13；历史编号与原包证据保持不变，新版本结果另行记录。V-09 按当前规格区分查询副作用与独立后台 Watch，不能沿用单 worker 假设误判。
+diff --git a/docs/specs/vpc-subnet.md b/docs/specs/vpc-subnet.md
+index 57c1f9e..a7c88a5 100644
+--- a/docs/specs/vpc-subnet.md
++++ b/docs/specs/vpc-subnet.md
+@@ -1,6 +1,6 @@
+ # 租户 VPC / Subnet 首片规格
+ 
+-日期：2026-09-09。文档版本：1。
++日期：2026-09-09；更新：2026-09-10。文档版本：2。新增 NET-05A 观察目标及后续依赖，未改变当前实施状态。
+ 
+ 本规格是本轮形成的实施设计；用户已接受的架构方向见 [ADR](../START-HERE.md#架构决定)。
+ 字段限制、状态枚举、分页和接入协议等细节是本轮补齐的工程设计，不宣称已经逐项获得人工验收。
+@@ -19,6 +19,7 @@ VPC/Subnet 的持久操作、后台推进、状态判定、失败恢复、占用
+ - 首片是 IPv4 私有 VPC 网络：同子网、同 VPC 跨子网连通；不同 VPC 默认隔离，跨租户隔离。
+ - 自定义路由、SG、LB、NAT/EIP、公网访问、Storage 挂载、IPv6、多集群调度不在本片；同 VPC 的系统连接路由由 Provider 实现。
+ - 服务间身份验证延期到 IAM 契约就绪；这不阻断本期本地功能及指定测试环境联调，不得将其记为认证/授权验收通过。
++- 配额接入延期到 Core 重构及治理契约就绪之后独立编排，不作为 NET-05A 或 NET-06 的前置条件；现有引用占用和删除保护继续生效。
+ - 用户在设计理清后提供虚拟机，再准备 kind；本轮文档工作不创建集群或访问 live 环境。
+ 
+ ## 2. 所有权与模块接口
+@@ -174,7 +175,7 @@ succeeded/failed 是不可重写的历史结果。创建 succeeded 后资源发
+ Provider 超时、失联、执行结果未知不能直接映射为业务 failed 或 deleted。
+ 创建确证失败后可由 DELETE 清理；不增加“重试同一失败创建变成另一意图”的隐式接口。
+ 
+-初版默认后台观察间隔 10 秒、观测有效期 60 秒，均为有界运行配置。
++NET-05A 前的初版轮询默认后台观察间隔 10 秒、观测有效期 60 秒，均为有界运行配置。NET-05A 保留有效期与准入语义，观察方式及各类时钟改由[持续观察规格](cr-observation.md#4-事实时效与真实校验)定义；该增量是待实现目标。
+ 过期状态由 worker 持久推进为 degraded；查询可以纯计算 `observation_stale`，不能触发写入。
+ 接入必须同时满足 state=available 和 observation_stale=false，防止 worker 停止后凭旧快照继续绑定。
+ available 表示配置就绪，不替代端到端连通验收。
+@@ -221,6 +222,10 @@ deleting 资源拒绝新子资源/接入；删除调用采用已记录 Provider
+ 明确 NotFound 可作为删除完成的必要观测之一，但不能忽略仍在执行/结果未知的旧请求。
+ 未 deleted 的失败/删除中子网仍占用 CIDR，避免与残留数据面重叠。
+ 
++### 5.5 NET-05A 持续观察增量
++
++NET-05A 的观察范围、共享索引、持久通知代次、公平调度、真实校验及多副本规则统一见[持续观察规格](cr-observation.md)。上述 T1～T4、状态和删除规则继续适用，通知进入同一执行路径。公开版本与内部观察控制字段的边界见该规格的[查询与版本约束](cr-observation.md#5-查询版本与数据库成本)，不在本文件另建一套调度 schema。
++
+ ## 6. 持久化设计
+ 
+ 以下是表与约束设计，不是已执行 DDL。关系型权威字段使用 typed columns；JSON 只用于不可变响应快照或有限的事件/审计快照。
+@@ -316,6 +321,7 @@ Prepare、Confirm 和 Release 在各自 Network 本地事务内提交接入事
+ worker 从 Attachment 持久记录领取到期核验，以数据库时钟维护该 attachment 的执行 lease/epoch；外部只读观察在事务外进行，回写必须同时匹配 tenant、version、epoch 与允许的状态迁移。
+ reserved 持续查找匹配消费者，attached 持续核验实际占用，releasing 重试提交封闭及残留释放核验；released 的墓碑核验继续发现迟到对象，不重新激活接入。
+ 状态变化与历史、下一次核验时间同事务保存；两端重启或暂时失联时从持久记录恢复，不能依赖 Confirm/Release 重发、GET 副作用或内存定时器恢复工作。
++NET-05A 对本段的调度与共享关系观察增量同样由[持续观察规格](cr-observation.md)约束，不改变本节的接入/封闭/释放协议。
+ 接入核验不使用 VPC/Subnet 的 mutation operation，也不与其共用一个数据库长事务；涉及删除准入的写事务仍遵守第 5.4 节的父资源加锁顺序。
+ 接入表通过 `(tenant_id,vpc_id,subnet_id)` 外键指向唯一父子关系，绑定通过
+ `(tenant_id,subnet_id,binding_id)` 外键指向同一 Subnet；接入历史与派生关系快照以同租户 Attachment 外键闭合。
+@@ -382,13 +388,17 @@ worker 异常退出必须体现为不健康，不能继续只有进程存活就
+ | V-06 | T1 后停止 Gateway，Network 自己完成；Core/Gateway 无 Network 表及 VPC/Subnet CR 写权限仍闭环，实例 Pod 权限保留 |
+ | V-07 | T1 后、Provider 成功但 T4 前、删除未确认时终止 Network；重启无重复身份、无丢任务、无伪终态 |
+ | V-08 | 多副本 lease/version/fencing 竞争，旧回写拒绝；验证外部迟到请求不会破坏当前意图，不能只测 mutex |
+-| V-09 | 停 worker 后反复 GET/LIST/GetOperation，DB version 与 Provider 调用计数不变；stale 可见，接入拒绝；恢复 worker 才推进 |
++| V-09 | 停止相关后台观察/校验/执行后反复 GET/LIST/GetOperation，DB version 与 Provider 调用计数不变，证明查询纯读；另测只暂停状态应用、保留 Watch 健康时，未应用事实不能续鲜，stale 可见且接入拒绝；恢复应用后才推进 |
+ | V-10 | Prepare/删除互斥，提交后 Confirm 丢失可恢复；未封闭的 reserved 不被 TTL 释放；确认 Pod/网卡释放后才可删子网 |
+ | V-11 | Provider 失联/明确拒绝/未知结果分别呈现；恢复后继续；对象归属不匹配不认领、不误删；删除不以业务软标记代替 |
+ | V-12 | 新 kind 中普通容器同子网同节点及跨节点连通、同 VPC 跨子网连通、不同 VPC/跨租户隔离；重叠 CIDR 使用独立带身份响应的端点验证，避免 ping 自己造成假通过 |
+ | V-13 | 本次只验收 Gateway 接口创建、分页、状态及稳定幂等键；无查询时仍推进；无旧表或旧 Provider fallback。Console 后续独立验收 |
+ | V-14 | 后续 VM 单独验证实际 KubeVirt 网络路径与网关/地址行为，不从普通 Pod 通过推导 VM 通过 |
+ | V-15 | 后续 IAM 验证调用身份、目标租户与委托语义；本期未经验证测试输入不可被作为此项 pass |
++| V-16 | NET-05A Watch、快照与时效故障，断言见[观察验收合同](cr-observation.md#8-验收合同) |
++| V-17 | NET-05A 持久通知竞争、多副本与公平性，同上 |
++| V-18 | NET-05A 共享关系索引、容量对照与兼容，同上 |
++| V-19 | NET-05A 精确新版本真实观察及普通容器复验，同上 |
+ 
+ 每条记录固定源身份、环境、实际命令、结果及限制，使用 `pass / fail / not_verified`。
+ 本地 fake/provider 合同测试只证明对应层；真实 PostgreSQL、真实 kc、容器、VM、IAM 分别记证据。
+@@ -405,7 +415,9 @@ Kind 多节点跨节点测试是多个 kind node 的验证，不外推物理多
+ | 实例提交封闭/恢复协议、放置与 Pod 绑定 | NET-03 | 同步改实例接入适配；没有释放证据时保留占用，不猜测 |
+ | Gateway OpenAPI/错误 envelope/生成门禁的准确实现 | NET-04 | 按该仓库当前源码固定基线并更新消费者，不照搬旧 drift |
+ | 用户提供 VM / kind 环境参数 | NET-05 | 后续提供，不阻塞文档/本地实现 |
+-| KubeVirt 可用接入方式 | NET-06 | 后续单独契约和真实验收 |
++| 共享观察及持久调度实现、真实 Watch 权限和新版本复验 | NET-05A，NET-06 前 | [观察方案](../plans/cr-observation.md)；不复用旧 NET-05 结果冒充新实现验收 |
++| KubeVirt 可用接入方式 | NET-06 | NET-05A 通过后，单独契约和真实验收 |
+ | IAM Workload 调用契约 | NET-AUTH | 暂缓 S2S 验证；保留入站适配，不在 Network 实现临时 IAM |
++| Core 重构后的配额治理契约 | 后续独立工作包，尚未编排 | 明确延期；不预建配额表/RPC/结算，不阻断 NET-05A/06 |
+ 
+ 生产切流、存量迁移、全平台配额/计量/任务中心改造不作为本片隐含交付。
+diff --git a/go.mod b/go.mod
+index 3a082e7..fcca789 100644
+--- a/go.mod
++++ b/go.mod
+@@ -39,6 +39,7 @@ require (
+ 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
+ 	github.com/modern-go/reflect2 v1.0.3-0.20250322232337-35a7c28c31ee // indirect
+ 	github.com/munnerz/goautoneg v0.0.0-20191010083416-a7dc8b61c822 // indirect
++	github.com/pmezard/go-difflib v1.0.1-0.20181226105442-5d4384ee4fb2 // indirect
+ 	github.com/prometheus/client_model v0.6.2 // indirect
+ 	github.com/prometheus/common v0.70.1 // indirect
+ 	github.com/prometheus/otlptranslator v1.0.0 // indirect
+diff --git a/internal/biz/attachment_worker.go b/internal/biz/attachment_worker.go
+index 5b91357..190001f 100644
+--- a/internal/biz/attachment_worker.go
++++ b/internal/biz/attachment_worker.go
+@@ -10,15 +10,20 @@ import (
+ )
+ 
+ type AttachmentWork struct {
+-	Attachment      Attachment
+-	Plan            PodPrimaryPlan
+-	Relations       []byte
+-	ConsumerPodUIDs []string
+-	ProtocolBlocked bool
+-	Owner           string
+-	Epoch           int64
++	Requirement           ObservationRequirement
++	Now                   time.Time
++	RequireFreshRelations bool
++	Attachment            Attachment
++	Plan                  PodPrimaryPlan
++	Relations             []byte
++	ConsumerPodUIDs       []string
++	ProtocolBlocked       bool
++	Owner                 string
++	Epoch                 int64
+ }
+ type AttachmentProgress struct {
++	Proof                           ObservationProof
++	Backoff                         bool
+ 	State                           AttachmentState
+ 	Reason                          Reason
+ 	PodName, PodUID, FinalizationID string
+@@ -31,6 +36,7 @@ type AttachmentWorkRepository interface {
+ 	FinishAttachment(context.Context, AttachmentWork, AttachmentProgress) error
+ }
+ type AttachmentObservation struct {
++	Proof                   ObservationProof
+ 	Exists, HasDependencies bool
+ 	PodName, PodUID         string
+ 	Relations               []byte
+@@ -55,14 +61,19 @@ type AttachmentWorker struct {
+ 	consumer   InstanceConsumer
+ 	owner      string
+ 	policy     WorkerPolicy
++	observer   func(context.Context, AttachmentWork, AttachmentProgress, error)
+ }
+ 
+-func NewAttachmentWorker(r AttachmentWorkRepository, p AttachmentProvider, c InstanceConsumer, owner string, policy WorkerPolicy) (*AttachmentWorker, error) {
++func NewAttachmentWorker(r AttachmentWorkRepository, p AttachmentProvider, c InstanceConsumer, owner string, policy WorkerPolicy, observers ...func(context.Context, AttachmentWork, AttachmentProgress, error)) (*AttachmentWorker, error) {
+ 	id, e := uuid.Parse(owner)
+-	if e != nil || id == uuid.Nil || r == nil || p == nil || c == nil || policy.RequestTimeout <= 0 || policy.Lease < 3*policy.RequestTimeout || policy.ObserveEvery <= 0 {
++	if len(observers) > 1 || e != nil || id == uuid.Nil || r == nil || p == nil || c == nil || policy.RequestTimeout <= 0 || policy.Lease < 3*policy.RequestTimeout || policy.ObserveEvery <= 0 {
+ 		return nil, fmt.Errorf("invalid attachment worker dependencies")
+ 	}
+-	return &AttachmentWorker{r, p, c, owner, policy}, nil
++	worker := &AttachmentWorker{repository: r, provider: p, consumer: c, owner: owner, policy: policy}
++	if len(observers) == 1 {
++		worker.observer = observers[0]
++	}
++	return worker, nil
+ }
+ func (w *AttachmentWorker) Step(ctx context.Context) (bool, error) {
+ 	ctx, cancel := context.WithTimeout(ctx, w.policy.Lease)
+@@ -78,6 +89,7 @@ func (w *AttachmentWorker) Step(ctx context.Context) (bool, error) {
+ 	cancel()
+ 	if consumerErr == nil && validConsumer(a, consumer) {
+ 		work.ConsumerPodUIDs = consumer.PodUIDs
++		work.RequireFreshRelations = consumer.State == "closed" && a.State != Released
+ 	}
+ 	call, cancel = context.WithTimeout(ctx, w.policy.RequestTimeout)
+ 	o, observeErr := w.provider.ObserveAttachment(call, work)
+@@ -90,6 +102,10 @@ func (w *AttachmentWorker) Step(ctx context.Context) (bool, error) {
+ 		}
+ 	} else {
+ 		p.Observed = true
++		p.Proof = o.Proof
++		if p.Proof.CollectedAt.IsZero() {
++			p.Proof = ObservationProof{CollectedAt: work.Now, CoveredGeneration: work.Requirement.RequestedGeneration}
++		}
+ 		p.Relations = o.Relations
+ 		if o.Exists && (o.PodUID == "" || (a.PodUID != "" && a.PodUID != o.PodUID) || (a.ConfirmUID != "" && a.ConfirmUID != o.PodUID)) {
+ 			p.Reason = AttachmentProtocol
+@@ -142,7 +158,11 @@ func (w *AttachmentWorker) Step(ctx context.Context) (bool, error) {
+ 	if p.ProtocolBlocked {
+ 		p.Reason = AttachmentProtocol
+ 	}
++	p.Backoff = observeErr != nil || consumerErr != nil
+ 	err = w.repository.FinishAttachment(ctx, work, p)
++	if w.observer != nil {
++		w.observer(ctx, work, p, err)
++	}
+ 	if errors.Is(err, ErrLeaseLost) {
+ 		err = nil
+ 	}
+diff --git a/internal/biz/worker.go b/internal/biz/worker.go
+index d866a0b..6450d8e 100644
+--- a/internal/biz/worker.go
++++ b/internal/biz/worker.go
+@@ -41,11 +41,14 @@ func (e *ProviderError) Unwrap() error { return e.Cause }
+ // ProviderTarget contains only domain references and an opaque provider object
+ // identity. The adapter resolves namespace/name/cluster from its persisted map.
+ type ProviderTarget struct {
++	Requirement                                          ObservationRequirement
++	Direct                                               bool
+ 	TenantID, ResourceID, BindingID, KnownIdentity, CIDR string
+ 	Kind, VPCID, Gateway                                 string
+ }
+ 
+ type ProviderObservation struct {
++	Proof                          ObservationProof
+ 	Exists, Ready, HasDependencies bool
+ 	Identity                       string
+ }
+@@ -71,6 +74,7 @@ type ResourceWork struct {
+ }
+ 
+ type Work struct {
++	Requirement     ObservationRequirement
+ 	Resource        ResourceWork
+ 	Operation       Operation
+ 	ActiveOperation bool
+@@ -84,6 +88,8 @@ type Work struct {
+ }
+ 
+ type Progress struct {
++	Proof          ObservationProof
++	Backoff        bool
+ 	State          ResourceState
+ 	OperationState OperationState
+ 	Reason         Reason
+@@ -152,6 +158,7 @@ func (w *Worker) Step(ctx context.Context) (bool, error) {
+ 	target := ProviderTarget{
+ 		TenantID: work.Resource.TenantID, ResourceID: work.Resource.ID, BindingID: work.BindingID,
+ 		KnownIdentity: work.KnownIdentity, CIDR: work.Resource.CIDR,
++		Requirement: work.Requirement, Direct: work.ActiveOperation || work.PendingAction != "" || work.Resource.State == Deleted,
+ 		Kind: work.Resource.Kind, VPCID: work.Resource.VPCID, Gateway: work.Resource.Gateway,
+ 	}
+ 	callCtx, cancel := context.WithTimeout(ctx, w.policy.RequestTimeout)
+@@ -172,6 +179,10 @@ func (w *Worker) Step(ctx context.Context) (bool, error) {
+ 		}
+ 	} else {
+ 		progress.Observed = true
++		progress.Proof = observation.Proof
++		if progress.Proof.CollectedAt.IsZero() {
++			progress.Proof = ObservationProof{CollectedAt: work.Now, CoveredGeneration: work.Requirement.RequestedGeneration}
++		}
+ 		progress.Identity = observation.Identity
+ 		if progress.Identity == "" {
+ 			progress.Identity = work.KnownIdentity
+@@ -190,6 +201,10 @@ func (w *Worker) Step(ctx context.Context) (bool, error) {
+ 			progress, err = w.ensure(ctx, work, target, observation, progress)
+ 		}
+ 	}
++	progress.Backoff = observeErr != nil || (work.ActiveOperation && progress.OperationState != Succeeded && progress.OperationState != OpFailed)
++	if progress.Backoff {
++		progress.NextDelay = w.retryDelay(work.Attempt)
++	}
+ 	if err == nil {
+ 		err = w.repository.Finish(ctx, work, progress)
+ 	}
+@@ -248,6 +263,9 @@ func (w *Worker) ensure(ctx context.Context, work Work, target ProviderTarget, o
+ 			return progress, nil
+ 		}
+ 		observed = value
++		if !value.Proof.CollectedAt.IsZero() {
++			progress.Proof = value.Proof
++		}
+ 		progress.Identity = observed.Identity
+ 		progress.ClearPending = true
+ 	}
+diff --git a/internal/conf/v1/conf.pb.go b/internal/conf/v1/conf.pb.go
+index 8dc82b3..9b15222 100644
+--- a/internal/conf/v1/conf.pb.go
++++ b/internal/conf/v1/conf.pb.go
+@@ -85,7 +85,8 @@ type Network struct {
+ 	CursorSigningKey string  `protobuf:"bytes,5,opt,name=cursor_signing_key,json=cursorSigningKey,proto3" json:"cursor_signing_key,omitempty"`
+ 	Worker           *Worker `protobuf:"bytes,6,opt,name=worker,proto3" json:"worker,omitempty"`
+ 	// Fixed instance owner RPC target. Empty keeps attachments conservatively occupied.
+-	InstanceConsumerEndpoint string `protobuf:"bytes,7,opt,name=instance_consumer_endpoint,json=instanceConsumerEndpoint,proto3" json:"instance_consumer_endpoint,omitempty"`
++	InstanceConsumerEndpoint string       `protobuf:"bytes,7,opt,name=instance_consumer_endpoint,json=instanceConsumerEndpoint,proto3" json:"instance_consumer_endpoint,omitempty"`
++	Observation              *Observation `protobuf:"bytes,8,opt,name=observation,proto3" json:"observation,omitempty"`
+ 	unknownFields            protoimpl.UnknownFields
+ 	sizeCache                protoimpl.SizeCache
+ }
+@@ -169,6 +170,113 @@ func (x *Network) GetInstanceConsumerEndpoint() string {
+ 	return ""
+ }
+ 
++func (x *Network) GetObservation() *Observation {
++	if x != nil {
++		return x.Observation
++	}
++	return nil
++}
++
++type Observation struct {
++	state          protoimpl.MessageState `protogen:"open.v1"`
++	AuditInterval  *durationpb.Duration   `protobuf:"bytes,1,opt,name=audit_interval,json=auditInterval,proto3" json:"audit_interval,omitempty"`
++	AuditJitter    *durationpb.Duration   `protobuf:"bytes,2,opt,name=audit_jitter,json=auditJitter,proto3" json:"audit_jitter,omitempty"`
++	AuditTimeout   *durationpb.Duration   `protobuf:"bytes,3,opt,name=audit_timeout,json=auditTimeout,proto3" json:"audit_timeout,omitempty"`
++	FlushInterval  *durationpb.Duration   `protobuf:"bytes,4,opt,name=flush_interval,json=flushInterval,proto3" json:"flush_interval,omitempty"`
++	QueueCapacity  uint32                 `protobuf:"varint,5,opt,name=queue_capacity,json=queueCapacity,proto3" json:"queue_capacity,omitempty"`
++	WorkersPerKind uint32                 `protobuf:"varint,6,opt,name=workers_per_kind,json=workersPerKind,proto3" json:"workers_per_kind,omitempty"`
++	RequestQps     uint32                 `protobuf:"varint,7,opt,name=request_qps,json=requestQps,proto3" json:"request_qps,omitempty"`
++	RequestBurst   uint32                 `protobuf:"varint,8,opt,name=request_burst,json=requestBurst,proto3" json:"request_burst,omitempty"`
++	unknownFields  protoimpl.UnknownFields
++	sizeCache      protoimpl.SizeCache
++}
++
++func (x *Observation) Reset() {
++	*x = Observation{}
++	mi := &file_conf_v1_conf_proto_msgTypes[2]
++	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
++	ms.StoreMessageInfo(mi)
++}
++
++func (x *Observation) String() string {
++	return protoimpl.X.MessageStringOf(x)
++}
++
++func (*Observation) ProtoMessage() {}
++
++func (x *Observation) ProtoReflect() protoreflect.Message {
++	mi := &file_conf_v1_conf_proto_msgTypes[2]
++	if x != nil {
++		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
++		if ms.LoadMessageInfo() == nil {
++			ms.StoreMessageInfo(mi)
++		}
++		return ms
++	}
++	return mi.MessageOf(x)
++}
++
++// Deprecated: Use Observation.ProtoReflect.Descriptor instead.
++func (*Observation) Descriptor() ([]byte, []int) {
++	return file_conf_v1_conf_proto_rawDescGZIP(), []int{2}
++}
++
++func (x *Observation) GetAuditInterval() *durationpb.Duration {
++	if x != nil {
++		return x.AuditInterval
++	}
++	return nil
++}
++
++func (x *Observation) GetAuditJitter() *durationpb.Duration {
++	if x != nil {
++		return x.AuditJitter
++	}
++	return nil
++}
++
++func (x *Observation) GetAuditTimeout() *durationpb.Duration {
++	if x != nil {
++		return x.AuditTimeout
++	}
++	return nil
++}
++
++func (x *Observation) GetFlushInterval() *durationpb.Duration {
++	if x != nil {
++		return x.FlushInterval
++	}
++	return nil
++}
++
++func (x *Observation) GetQueueCapacity() uint32 {
++	if x != nil {
++		return x.QueueCapacity
++	}
++	return 0
++}
++
++func (x *Observation) GetWorkersPerKind() uint32 {
++	if x != nil {
++		return x.WorkersPerKind
++	}
++	return 0
++}
++
++func (x *Observation) GetRequestQps() uint32 {
++	if x != nil {
++		return x.RequestQps
++	}
++	return 0
++}
++
++func (x *Observation) GetRequestBurst() uint32 {
++	if x != nil {
++		return x.RequestBurst
++	}
++	return 0
++}
++
+ type Worker struct {
+ 	state          protoimpl.MessageState `protogen:"open.v1"`
+ 	Lease          *durationpb.Duration   `protobuf:"bytes,1,opt,name=lease,proto3" json:"lease,omitempty"`
+@@ -184,7 +292,7 @@ type Worker struct {
+ 
+ func (x *Worker) Reset() {
+ 	*x = Worker{}
+-	mi := &file_conf_v1_conf_proto_msgTypes[2]
++	mi := &file_conf_v1_conf_proto_msgTypes[3]
+ 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+ 	ms.StoreMessageInfo(mi)
+ }
+@@ -196,7 +304,7 @@ func (x *Worker) String() string {
+ func (*Worker) ProtoMessage() {}
+ 
+ func (x *Worker) ProtoReflect() protoreflect.Message {
+-	mi := &file_conf_v1_conf_proto_msgTypes[2]
++	mi := &file_conf_v1_conf_proto_msgTypes[3]
+ 	if x != nil {
+ 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+ 		if ms.LoadMessageInfo() == nil {
+@@ -209,7 +317,7 @@ func (x *Worker) ProtoReflect() protoreflect.Message {
+ 
+ // Deprecated: Use Worker.ProtoReflect.Descriptor instead.
+ func (*Worker) Descriptor() ([]byte, []int) {
+-	return file_conf_v1_conf_proto_rawDescGZIP(), []int{2}
++	return file_conf_v1_conf_proto_rawDescGZIP(), []int{3}
+ }
+ 
+ func (x *Worker) GetLease() *durationpb.Duration {
+@@ -272,7 +380,7 @@ type Server struct {
+ 
+ func (x *Server) Reset() {
+ 	*x = Server{}
+-	mi := &file_conf_v1_conf_proto_msgTypes[3]
++	mi := &file_conf_v1_conf_proto_msgTypes[4]
+ 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+ 	ms.StoreMessageInfo(mi)
+ }
+@@ -284,7 +392,7 @@ func (x *Server) String() string {
+ func (*Server) ProtoMessage() {}
+ 
+ func (x *Server) ProtoReflect() protoreflect.Message {
+-	mi := &file_conf_v1_conf_proto_msgTypes[3]
++	mi := &file_conf_v1_conf_proto_msgTypes[4]
+ 	if x != nil {
+ 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+ 		if ms.LoadMessageInfo() == nil {
+@@ -297,7 +405,7 @@ func (x *Server) ProtoReflect() protoreflect.Message {
+ 
+ // Deprecated: Use Server.ProtoReflect.Descriptor instead.
+ func (*Server) Descriptor() ([]byte, []int) {
+-	return file_conf_v1_conf_proto_rawDescGZIP(), []int{3}
++	return file_conf_v1_conf_proto_rawDescGZIP(), []int{4}
+ }
+ 
+ func (x *Server) GetGrpc() *Server_GRPC {
+@@ -332,7 +440,7 @@ type Server_GRPC struct {
+ 
+ func (x *Server_GRPC) Reset() {
+ 	*x = Server_GRPC{}
+-	mi := &file_conf_v1_conf_proto_msgTypes[4]
++	mi := &file_conf_v1_conf_proto_msgTypes[5]
+ 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+ 	ms.StoreMessageInfo(mi)
+ }
+@@ -344,7 +452,7 @@ func (x *Server_GRPC) String() string {
+ func (*Server_GRPC) ProtoMessage() {}
+ 
+ func (x *Server_GRPC) ProtoReflect() protoreflect.Message {
+-	mi := &file_conf_v1_conf_proto_msgTypes[4]
++	mi := &file_conf_v1_conf_proto_msgTypes[5]
+ 	if x != nil {
+ 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+ 		if ms.LoadMessageInfo() == nil {
+@@ -357,7 +465,7 @@ func (x *Server_GRPC) ProtoReflect() protoreflect.Message {
+ 
+ // Deprecated: Use Server_GRPC.ProtoReflect.Descriptor instead.
+ func (*Server_GRPC) Descriptor() ([]byte, []int) {
+-	return file_conf_v1_conf_proto_rawDescGZIP(), []int{3, 0}
++	return file_conf_v1_conf_proto_rawDescGZIP(), []int{4, 0}
+ }
+ 
+ func (x *Server_GRPC) GetNetwork() string {
+@@ -392,7 +500,7 @@ type Server_Admin struct {
+ 
+ func (x *Server_Admin) Reset() {
+ 	*x = Server_Admin{}
+-	mi := &file_conf_v1_conf_proto_msgTypes[5]
++	mi := &file_conf_v1_conf_proto_msgTypes[6]
+ 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+ 	ms.StoreMessageInfo(mi)
+ }
+@@ -404,7 +512,7 @@ func (x *Server_Admin) String() string {
+ func (*Server_Admin) ProtoMessage() {}
+ 
+ func (x *Server_Admin) ProtoReflect() protoreflect.Message {
+-	mi := &file_conf_v1_conf_proto_msgTypes[5]
++	mi := &file_conf_v1_conf_proto_msgTypes[6]
+ 	if x != nil {
+ 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+ 		if ms.LoadMessageInfo() == nil {
+@@ -417,7 +525,7 @@ func (x *Server_Admin) ProtoReflect() protoreflect.Message {
+ 
+ // Deprecated: Use Server_Admin.ProtoReflect.Descriptor instead.
+ func (*Server_Admin) Descriptor() ([]byte, []int) {
+-	return file_conf_v1_conf_proto_rawDescGZIP(), []int{3, 1}
++	return file_conf_v1_conf_proto_rawDescGZIP(), []int{4, 1}
+ }
+ 
+ func (x *Server_Admin) GetNetwork() string {
+@@ -448,7 +556,7 @@ const file_conf_v1_conf_proto_rawDesc = "" +
+ 	"\x12conf/v1/conf.proto\x12\aconf.v1\x1a\x1egoogle/protobuf/duration.proto\"`\n" +
+ 	"\tBootstrap\x12'\n" +
+ 	"\x06server\x18\x01 \x01(\v2\x0f.conf.v1.ServerR\x06server\x12*\n" +
+-	"\anetwork\x18\x02 \x01(\v2\x10.conf.v1.NetworkR\anetwork\"\xab\x02\n" +
++	"\anetwork\x18\x02 \x01(\v2\x10.conf.v1.NetworkR\anetwork\"\xe3\x02\n" +
+ 	"\aNetwork\x12!\n" +
+ 	"\fdatabase_dsn\x18\x01 \x01(\tR\vdatabaseDsn\x12\x1e\n" +
+ 	"\n" +
+@@ -459,7 +567,18 @@ const file_conf_v1_conf_proto_rawDesc = "" +
+ 	"\x10namespace_prefix\x18\x04 \x01(\tR\x0fnamespacePrefix\x12,\n" +
+ 	"\x12cursor_signing_key\x18\x05 \x01(\tR\x10cursorSigningKey\x12'\n" +
+ 	"\x06worker\x18\x06 \x01(\v2\x0f.conf.v1.WorkerR\x06worker\x12<\n" +
+-	"\x1ainstance_consumer_endpoint\x18\a \x01(\tR\x18instanceConsumerEndpoint\"\xa9\x03\n" +
++	"\x1ainstance_consumer_endpoint\x18\a \x01(\tR\x18instanceConsumerEndpoint\x126\n" +
++	"\vobservation\x18\b \x01(\v2\x14.conf.v1.ObservationR\vobservation\"\xa6\x03\n" +
++	"\vObservation\x12@\n" +
++	"\x0eaudit_interval\x18\x01 \x01(\v2\x19.google.protobuf.DurationR\rauditInterval\x12<\n" +
++	"\faudit_jitter\x18\x02 \x01(\v2\x19.google.protobuf.DurationR\vauditJitter\x12>\n" +
++	"\raudit_timeout\x18\x03 \x01(\v2\x19.google.protobuf.DurationR\fauditTimeout\x12@\n" +
++	"\x0eflush_interval\x18\x04 \x01(\v2\x19.google.protobuf.DurationR\rflushInterval\x12%\n" +
++	"\x0equeue_capacity\x18\x05 \x01(\rR\rqueueCapacity\x12(\n" +
++	"\x10workers_per_kind\x18\x06 \x01(\rR\x0eworkersPerKind\x12\x1f\n" +
++	"\vrequest_qps\x18\a \x01(\rR\n" +
++	"requestQps\x12#\n" +
++	"\rrequest_burst\x18\b \x01(\rR\frequestBurst\"\xa9\x03\n" +
+ 	"\x06Worker\x12/\n" +
+ 	"\x05lease\x18\x01 \x01(\v2\x19.google.protobuf.DurationR\x05lease\x12B\n" +
+ 	"\x0frequest_timeout\x18\x02 \x01(\v2\x19.google.protobuf.DurationR\x0erequestTimeout\x12>\n" +
+@@ -494,37 +613,43 @@ func file_conf_v1_conf_proto_rawDescGZIP() []byte {
+ 	return file_conf_v1_conf_proto_rawDescData
+ }
+ 
+-var file_conf_v1_conf_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
++var file_conf_v1_conf_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
+ var file_conf_v1_conf_proto_goTypes = []any{
+ 	(*Bootstrap)(nil),           // 0: conf.v1.Bootstrap
+ 	(*Network)(nil),             // 1: conf.v1.Network
+-	(*Worker)(nil),              // 2: conf.v1.Worker
+-	(*Server)(nil),              // 3: conf.v1.Server
+-	(*Server_GRPC)(nil),         // 4: conf.v1.Server.GRPC
+-	(*Server_Admin)(nil),        // 5: conf.v1.Server.Admin
+-	(*durationpb.Duration)(nil), // 6: google.protobuf.Duration
++	(*Observation)(nil),         // 2: conf.v1.Observation
++	(*Worker)(nil),              // 3: conf.v1.Worker
++	(*Server)(nil),              // 4: conf.v1.Server
++	(*Server_GRPC)(nil),         // 5: conf.v1.Server.GRPC
++	(*Server_Admin)(nil),        // 6: conf.v1.Server.Admin
++	(*durationpb.Duration)(nil), // 7: google.protobuf.Duration
+ }
+ var file_conf_v1_conf_proto_depIdxs = []int32{
+-	3,  // 0: conf.v1.Bootstrap.server:type_name -> conf.v1.Server
++	4,  // 0: conf.v1.Bootstrap.server:type_name -> conf.v1.Server
+ 	1,  // 1: conf.v1.Bootstrap.network:type_name -> conf.v1.Network
+-	2,  // 2: conf.v1.Network.worker:type_name -> conf.v1.Worker
+-	6,  // 3: conf.v1.Worker.lease:type_name -> google.protobuf.Duration
+-	6,  // 4: conf.v1.Worker.request_timeout:type_name -> google.protobuf.Duration
+-	6,  // 5: conf.v1.Worker.observe_every:type_name -> google.protobuf.Duration
+-	6,  // 6: conf.v1.Worker.stale_after:type_name -> google.protobuf.Duration
+-	6,  // 7: conf.v1.Worker.retry_min:type_name -> google.protobuf.Duration
+-	6,  // 8: conf.v1.Worker.retry_max:type_name -> google.protobuf.Duration
+-	6,  // 9: conf.v1.Worker.poll_interval:type_name -> google.protobuf.Duration
+-	4,  // 10: conf.v1.Server.grpc:type_name -> conf.v1.Server.GRPC
+-	5,  // 11: conf.v1.Server.admin:type_name -> conf.v1.Server.Admin
+-	6,  // 12: conf.v1.Server.shutdown_timeout:type_name -> google.protobuf.Duration
+-	6,  // 13: conf.v1.Server.GRPC.timeout:type_name -> google.protobuf.Duration
+-	6,  // 14: conf.v1.Server.Admin.timeout:type_name -> google.protobuf.Duration
+-	15, // [15:15] is the sub-list for method output_type
+-	15, // [15:15] is the sub-list for method input_type
+-	15, // [15:15] is the sub-list for extension type_name
+-	15, // [15:15] is the sub-list for extension extendee
+-	0,  // [0:15] is the sub-list for field type_name
++	3,  // 2: conf.v1.Network.worker:type_name -> conf.v1.Worker
++	2,  // 3: conf.v1.Network.observation:type_name -> conf.v1.Observation
++	7,  // 4: conf.v1.Observation.audit_interval:type_name -> google.protobuf.Duration
++	7,  // 5: conf.v1.Observation.audit_jitter:type_name -> google.protobuf.Duration
++	7,  // 6: conf.v1.Observation.audit_timeout:type_name -> google.protobuf.Duration
++	7,  // 7: conf.v1.Observation.flush_interval:type_name -> google.protobuf.Duration
++	7,  // 8: conf.v1.Worker.lease:type_name -> google.protobuf.Duration
++	7,  // 9: conf.v1.Worker.request_timeout:type_name -> google.protobuf.Duration
++	7,  // 10: conf.v1.Worker.observe_every:type_name -> google.protobuf.Duration
++	7,  // 11: conf.v1.Worker.stale_after:type_name -> google.protobuf.Duration
++	7,  // 12: conf.v1.Worker.retry_min:type_name -> google.protobuf.Duration
++	7,  // 13: conf.v1.Worker.retry_max:type_name -> google.protobuf.Duration
++	7,  // 14: conf.v1.Worker.poll_interval:type_name -> google.protobuf.Duration
++	5,  // 15: conf.v1.Server.grpc:type_name -> conf.v1.Server.GRPC
++	6,  // 16: conf.v1.Server.admin:type_name -> conf.v1.Server.Admin
++	7,  // 17: conf.v1.Server.shutdown_timeout:type_name -> google.protobuf.Duration
++	7,  // 18: conf.v1.Server.GRPC.timeout:type_name -> google.protobuf.Duration
++	7,  // 19: conf.v1.Server.Admin.timeout:type_name -> google.protobuf.Duration
++	20, // [20:20] is the sub-list for method output_type
++	20, // [20:20] is the sub-list for method input_type
++	20, // [20:20] is the sub-list for extension type_name
++	20, // [20:20] is the sub-list for extension extendee
++	0,  // [0:20] is the sub-list for field type_name
+ }
+ 
+ func init() { file_conf_v1_conf_proto_init() }
+@@ -538,7 +663,7 @@ func file_conf_v1_conf_proto_init() {
+ 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
+ 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_conf_v1_conf_proto_rawDesc), len(file_conf_v1_conf_proto_rawDesc)),
+ 			NumEnums:      0,
+-			NumMessages:   6,
++			NumMessages:   7,
+ 			NumExtensions: 0,
+ 			NumServices:   0,
+ 		},
+diff --git a/internal/conf/v1/conf.proto b/internal/conf/v1/conf.proto
+index 5b55d10..724c617 100644
+--- a/internal/conf/v1/conf.proto
++++ b/internal/conf/v1/conf.proto
+@@ -22,6 +22,18 @@ message Network {
+   Worker worker = 6;
+   // Fixed instance owner RPC target. Empty keeps attachments conservatively occupied.
+   string instance_consumer_endpoint = 7;
++  Observation observation = 8;
++}
++
++message Observation {
++  google.protobuf.Duration audit_interval = 1;
++  google.protobuf.Duration audit_jitter = 2;
++  google.protobuf.Duration audit_timeout = 3;
++  google.protobuf.Duration flush_interval = 4;
++  uint32 queue_capacity = 5;
++  uint32 workers_per_kind = 6;
++  uint32 request_qps = 7;
++  uint32 request_burst = 8;
+ }
+ 
+ message Worker {
+diff --git a/internal/conf/v1/validate.go b/internal/conf/v1/validate.go
+index ddf0acb..783476a 100644
+--- a/internal/conf/v1/validate.go
++++ b/internal/conf/v1/validate.go
+@@ -66,6 +66,23 @@ func (c *Bootstrap) Validate() error {
+ 	if w.Lease.AsDuration() < 3*w.RequestTimeout.AsDuration() || w.StaleAfter.AsDuration() <= w.ObserveEvery.AsDuration() || w.RetryMax.AsDuration() < w.RetryMin.AsDuration() {
+ 		return fmt.Errorf("worker lease, observation and retry timing are inconsistent")
+ 	}
++	if o := c.Network.Observation; o != nil {
++		for _, v := range []struct {
++			name  string
++			value *durationpb.Duration
++			max   time.Duration
++		}{{"audit interval", o.AuditInterval, 40 * time.Second}, {"audit jitter", o.AuditJitter, 5 * time.Second}, {"audit timeout", o.AuditTimeout, 15 * time.Second}, {"notification flush", o.FlushInterval, time.Second}} {
++			if err := validateDuration(v.name, v.value, v.max); err != nil {
++				return err
++			}
++		}
++		if o.RequestQps < 1 || o.RequestQps > 100 || o.RequestBurst < o.RequestQps || o.RequestBurst > 200 {
++			return fmt.Errorf("invalid Kubernetes request budget")
++		}
++		if o.QueueCapacity < 16 || o.QueueCapacity > 65536 || o.WorkersPerKind < 1 || o.WorkersPerKind > 4 || o.AuditInterval.AsDuration()+o.AuditJitter.AsDuration()+o.AuditTimeout.AsDuration() >= w.StaleAfter.AsDuration() {
++			return fmt.Errorf("invalid observation capacity or freshness budget")
++		}
++	}
+ 	return nil
+ }
+ 
+diff --git a/internal/conf/v1/validate_test.go b/internal/conf/v1/validate_test.go
+index 50b4bad..9837f2e 100644
+--- a/internal/conf/v1/validate_test.go
++++ b/internal/conf/v1/validate_test.go
+@@ -125,3 +125,33 @@ func TestBootstrapRequiresVPCDependenciesAndBoundedWorkerTiming(t *testing.T) {
+ 		t.Fatal("missing business dependencies accepted")
+ 	}
+ }
++
++func TestNET05AObservationBudgetsAreBounded(t *testing.T) {
++	baseline := validConfig()
++	baseline.Network.Observation = &Observation{AuditInterval: durationpb.New(30 * time.Second), AuditJitter: durationpb.New(2 * time.Second), AuditTimeout: durationpb.New(10 * time.Second), FlushInterval: durationpb.New(100 * time.Millisecond), QueueCapacity: 4096, WorkersPerKind: 2, RequestQps: 5, RequestBurst: 10}
++	if e := baseline.Validate(); e != nil {
++		t.Fatal(e)
++	}
++	for name, mutate := range map[string]func(*Observation){
++		"missing interval": func(o *Observation) { o.AuditInterval = nil },
++		"zero flush":       func(o *Observation) { o.FlushInterval = durationpb.New(0) },
++		"unbounded jitter": func(o *Observation) { o.AuditJitter = durationpb.New(6 * time.Second) },
++		"no freshness headroom": func(o *Observation) {
++			o.AuditInterval = durationpb.New(40 * time.Second)
++			o.AuditJitter = durationpb.New(5 * time.Second)
++			o.AuditTimeout = durationpb.New(15 * time.Second)
++		},
++		"unbounded memory":  func(o *Observation) { o.QueueCapacity = 65537 },
++		"unbounded workers": func(o *Observation) { o.WorkersPerKind = 5 },
++		"zero qps":          func(o *Observation) { o.RequestQps = 0 },
++		"unbounded burst":   func(o *Observation) { o.RequestBurst = 201 },
++	} {
++		t.Run(name, func(t *testing.T) {
++			c := proto.Clone(baseline).(*Bootstrap)
++			mutate(c.Network.Observation)
++			if e := c.Validate(); e == nil {
++				t.Fatal("unsafe observation budget accepted")
++			}
++		})
++	}
++}
+diff --git a/internal/data/attachment_worker.go b/internal/data/attachment_worker.go
+index 32217bc..2315a47 100644
+--- a/internal/data/attachment_worker.go
++++ b/internal/data/attachment_worker.go
+@@ -46,7 +46,11 @@ func (p *Postgres) ClaimAttachment(ctx context.Context, owner string, lease time
+ 	if e != nil {
+ 		return biz.AttachmentWork{}, false, e
+ 	}
+-	work := biz.AttachmentWork{Attachment: value, Owner: owner, Epoch: a.Epoch, Relations: a.ProviderRelations, ProtocolBlocked: a.ProtocolBlocked}
++	now, e := q.DatabaseTime(ctx)
++	if e != nil {
++		return biz.AttachmentWork{}, false, databaseFailure(e)
++	}
++	work := biz.AttachmentWork{Now: now, Requirement: biz.ObservationRequirement{RequestedGeneration: a.RequestedGeneration, AppliedAt: a.EvidenceAppliedAt, Hash: a.EvidenceHash}, Attachment: value, Owner: owner, Epoch: a.Epoch, Relations: a.ProviderRelations, ProtocolBlocked: a.ProtocolBlocked}
+ 	if e = json.Unmarshal(a.Plan, &work.Plan); e != nil {
+ 		return biz.AttachmentWork{}, false, databaseFailure(e)
+ 	}
+@@ -69,6 +73,9 @@ func (p *Postgres) FinishAttachment(ctx context.Context, w biz.AttachmentWork, p
+ 	if a.Version != w.Attachment.Version || a.Epoch != w.Epoch || textValue(a.LeaseOwner) != w.Owner {
+ 		return biz.ErrLeaseLost
+ 	}
++	if progress.Observed && !progress.Proof.Covers(w.Requirement) {
++		return biz.ErrLeaseLost
++	}
+ 	old := biz.AttachmentState(a.State)
+ 	valid := old == progress.State || (old == biz.Reserved && (progress.State == biz.Attached || progress.State == biz.Releasing || progress.State == biz.Released)) || (old == biz.Attached && (progress.State == biz.Releasing || progress.State == biz.Released)) || (old == biz.Releasing && progress.State == biz.Released)
+ 	if !valid || (a.PodUid != "" && a.PodUid != progress.PodUID) || (a.FinalizationID != nil && *a.FinalizationID != progress.FinalizationID) {
+@@ -78,7 +85,7 @@ func (p *Postgres) FinishAttachment(ctx context.Context, w biz.AttachmentWork, p
+ 	if progress.FinalizationID != "" {
+ 		finalization = &progress.FinalizationID
+ 	}
+-	row, e := q.FinishAttachment(ctx, sqlcgen.FinishAttachmentParams{TenantID: a.TenantID, AttachmentID: a.AttachmentID, Version: a.Version, Epoch: w.Epoch, Owner: w.Owner, State: string(progress.State), Reason: string(progress.Reason), ProtocolBlocked: a.ProtocolBlocked || progress.ProtocolBlocked, PodName: progress.PodName, PodUid: progress.PodUID, FinalizationID: finalization, ProviderRelations: progress.Relations, Observed: progress.Observed, DelayMicros: progress.NextDelay.Microseconds()})
++	row, e := q.FinishAttachment(ctx, sqlcgen.FinishAttachmentParams{TenantID: a.TenantID, AttachmentID: a.AttachmentID, Version: a.Version, Epoch: w.Epoch, Owner: w.Owner, State: string(progress.State), Reason: string(progress.Reason), ProtocolBlocked: a.ProtocolBlocked || progress.ProtocolBlocked, PodName: progress.PodName, PodUid: progress.PodUID, FinalizationID: finalization, ProviderRelations: progress.Relations, Observed: progress.Observed, ObservedAt: proofTime(progress.Observed, progress.Proof), CoveredGeneration: coveredGeneration(progress.Observed, progress.Proof, w.Requirement), EvidenceHash: progress.Proof.Hash, Backoff: progress.Backoff, DelayMicros: progress.NextDelay.Microseconds()})
+ 	if errors.Is(e, pgx.ErrNoRows) {
+ 		return biz.ErrLeaseLost
+ 	}
+diff --git a/internal/data/kc.go b/internal/data/kc.go
+index 8ed1e74..c27dbbe 100644
+--- a/internal/data/kc.go
++++ b/internal/data/kc.go
+@@ -32,11 +32,19 @@ const bindingLabel = "network.ani.io/binding-id"
+ // KCProvider implements only the fixed networking.kubercloud.com/v1 VPC
+ // contract. It does not import the kc repository or operate on OVN.
+ type KCProvider struct {
+-	repository *Postgres
+-	client     dynamic.Interface
++	repository  *Postgres
++	client      dynamic.Interface
++	watchClient dynamic.Interface
++	observation *KCObservation
++	io          *providerIO
+ }
+ 
+-func OpenKCProvider(repository *Postgres, kubeconfig string) (*KCProvider, error) {
++type KCClientPolicy struct {
++	QPS   float32
++	Burst int
++}
++
++func OpenKCProvider(repository *Postgres, kubeconfig string, policy ...KCClientPolicy) (*KCProvider, error) {
+ 	var config *rest.Config
+ 	var err error
+ 	if kubeconfig == "" {
+@@ -47,6 +55,13 @@ func OpenKCProvider(repository *Postgres, kubeconfig string) (*KCProvider, error
+ 	if err != nil {
+ 		return nil, fmt.Errorf("Kubernetes credentials/configuration could not be loaded")
+ 	}
++	if len(policy) > 1 {
++		return nil, fmt.Errorf("invalid Kubernetes request budget")
++	}
++	if len(policy) == 1 {
++		config.QPS = policy[0].QPS
++		config.Burst = policy[0].Burst
++	}
+ 	return NewKCProvider(repository, config)
+ }
+ 
+@@ -56,12 +71,26 @@ func NewKCProvider(repository *Postgres, config *rest.Config) (*KCProvider, erro
+ 	}
+ 	copy := rest.CopyConfig(config)
+ 	copy.Timeout = 10 * time.Second
+-	copy.UserAgent = "ani-network-service/net-02-04"
++	copy.UserAgent = "ani-network-service/net-05a"
++	stats := &providerIO{values: map[string]float64{}}
++	previousWrap := copy.WrapTransport
++	copy.WrapTransport = func(rt http.RoundTripper) http.RoundTripper {
++		if previousWrap != nil {
++			rt = previousWrap(rt)
++		}
++		return measuredTransport{rt, stats}
++	}
+ 	client, err := dynamic.NewForConfig(copy)
+ 	if err != nil {
+ 		return nil, fmt.Errorf("Kubernetes client configuration invalid")
+ 	}
+-	return &KCProvider{repository: repository, client: client}, nil
++	watchConfig := rest.CopyConfig(copy)
++	watchConfig.Timeout = 0
++	watchClient, err := dynamic.NewForConfig(watchConfig)
++	if err != nil {
++		return nil, fmt.Errorf("Kubernetes watch configuration invalid")
++	}
++	return &KCProvider{repository: repository, client: client, watchClient: watchClient, io: stats}, nil
+ }
+ 
+ func (p *KCProvider) binding(ctx context.Context, target biz.ProviderTarget) (sqlcgen.NetworkProviderBinding, error) {
+@@ -76,7 +105,7 @@ func (p *KCProvider) binding(ctx context.Context, target biz.ProviderTarget) (sq
+ 	return value, nil
+ }
+ 
+-func (p *KCProvider) Observe(ctx context.Context, target biz.ProviderTarget) (biz.ProviderObservation, error) {
++func (p *KCProvider) observeDirect(ctx context.Context, target biz.ProviderTarget) (biz.ProviderObservation, error) {
+ 	binding, err := p.binding(ctx, target)
+ 	if err != nil {
+ 		return biz.ProviderObservation{}, err
+@@ -348,6 +377,9 @@ func (p *KCProvider) hasDependencies(ctx context.Context, b sqlcgen.NetworkProvi
+ 			return true, nil
+ 		}
+ 	}
++	if p.observation != nil {
++		return p.completeDependencies(ctx, b)
++	}
+ 	resources := []string{"subnets"}
+ 	field := "gateway"
+ 	if b.ResourceKind == "subnet" {
+diff --git a/internal/data/kc_attachment.go b/internal/data/kc_attachment.go
+index c106d96..28f5df9 100644
+--- a/internal/data/kc_attachment.go
++++ b/internal/data/kc_attachment.go
+@@ -3,6 +3,7 @@ package data
+ import (
+ 	"context"
+ 	"encoding/json"
++	"fmt"
+ 	"github.com/zhangzhe-ctrl/ani-network-service/internal/biz"
+ 	"github.com/zhangzhe-ctrl/ani-network-service/internal/data/sqlcgen"
+ 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+@@ -26,13 +27,26 @@ type attachmentRelation struct{ Kind, Namespace, Name, UID, OwnerUID string }
+ func (p *KCProvider) listAll(ctx context.Context, resource schema.GroupVersionResource) ([]unstructured.Unstructured, error) {
+ 	var values []unstructured.Unstructured
+ 	next := ""
++	revision := ""
++	seen := map[string]bool{}
+ 	for {
+ 		page, e := p.client.Resource(resource).List(ctx, metav1.ListOptions{Limit: 500, Continue: next})
+ 		if e != nil {
+ 			return nil, readFailure(e)
+ 		}
++		if p.observation != nil && page.GetResourceVersion() == "" {
++			return nil, readFailure(fmt.Errorf("audit LIST has no collection revision"))
++		}
++		if revision != "" && page.GetResourceVersion() != revision {
++			return nil, readFailure(fmt.Errorf("audit pagination revision changed"))
++		}
++		revision = page.GetResourceVersion()
+ 		values = append(values, page.Items...)
+ 		next = page.GetContinue()
++		if next != "" && seen[next] {
++			return nil, readFailure(fmt.Errorf("audit pagination repeated token"))
++		}
++		seen[next] = true
+ 		if next == "" {
+ 			return values, nil
+ 		}
+@@ -53,7 +67,7 @@ func ownerUID(o unstructured.Unstructured, kind string, ids map[string]bool) (st
+ 	}
+ 	return "", false
+ }
+-func (p *KCProvider) ObserveAttachment(ctx context.Context, w biz.AttachmentWork) (biz.AttachmentObservation, error) {
++func (p *KCProvider) observeAttachment(ctx context.Context, w biz.AttachmentWork, list func(context.Context, schema.GroupVersionResource) ([]unstructured.Unstructured, error)) (biz.AttachmentObservation, error) {
+ 	a, plan := w.Attachment, w.Plan
+ 	conflict := func() (biz.AttachmentObservation, error) {
+ 		return biz.AttachmentObservation{}, &biz.ProviderError{Kind: biz.ProviderConflict}
+@@ -86,7 +100,7 @@ func (p *KCProvider) ObserveAttachment(ctx context.Context, w biz.AttachmentWork
+ 			vnicNames[r.Namespace+"/"+r.Name] = r.UID
+ 		}
+ 	}
+-	allPods, e := p.listAll(ctx, pods)
++	allPods, e := list(ctx, pods)
+ 	if e != nil {
+ 		return biz.AttachmentObservation{}, e
+ 	}
+@@ -113,7 +127,7 @@ func (p *KCProvider) ObserveAttachment(ctx context.Context, w biz.AttachmentWork
+ 		result.PodUID = string(o.GetUID())
+ 		podUIDs[result.PodUID] = true
+ 	}
+-	vnics, e := p.listAll(ctx, schema.GroupVersionResource{Group: kcVPCs.Group, Version: kcVPCs.Version, Resource: "vnics"})
++	vnics, e := list(ctx, schema.GroupVersionResource{Group: kcVPCs.Group, Version: kcVPCs.Version, Resource: "vnics"})
+ 	if e != nil {
+ 		return result, e
+ 	}
+@@ -145,7 +159,7 @@ func (p *KCProvider) ObserveAttachment(ctx context.Context, w biz.AttachmentWork
+ 		liveVNics[o.GetNamespace()+"/"+o.GetName()] = uid
+ 		result.HasDependencies = true
+ 	}
+-	ips, e := p.listAll(ctx, schema.GroupVersionResource{Group: kcVPCs.Group, Version: kcVPCs.Version, Resource: "vnicips"})
++	ips, e := list(ctx, schema.GroupVersionResource{Group: kcVPCs.Group, Version: kcVPCs.Version, Resource: "vnicips"})
+ 	if e != nil {
+ 		return result, e
+ 	}
+diff --git a/internal/data/kc_integration_test.go b/internal/data/kc_integration_test.go
+index a581842..dba033c 100644
+--- a/internal/data/kc_integration_test.go
++++ b/internal/data/kc_integration_test.go
+@@ -30,6 +30,27 @@ func (s *controlledKC) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+ 	s.mu.Lock()
+ 	defer s.mu.Unlock()
+ 	w.Header().Set("Content-Type", "application/json")
++	if r.URL.Query().Get("watch") == "true" {
++		w.WriteHeader(403)
++		_, _ = w.Write([]byte(`{"apiVersion":"v1","kind":"Status","code":403,"reason":"Forbidden","status":"Failure"}`))
++		return
++	}
++	for plural, kind := range map[string]string{"vpcs": "VPC", "subnets": "Subnet", "vnics": "VNic", "vnicips": "VNicIP", "eips": "EIP", "pods": "Pod"} {
++		base := "/apis/networking.kubercloud.com/v1/"
++		version := "networking.kubercloud.com/v1"
++		if plural == "pods" {
++			base = "/api/v1/"
++			version = "v1"
++		}
++		if r.Method == "GET" && r.URL.Path == base+plural {
++			items := []any{}
++			if plural == "vpcs" && s.object != nil {
++				items = append(items, s.object)
++			}
++			_ = json.NewEncoder(w).Encode(map[string]any{"apiVersion": version, "kind": kind + "List", "metadata": map[string]any{"resourceVersion": "1"}, "items": items})
++			return
++		}
++	}
+ 	missing := func() {
+ 		w.WriteHeader(404)
+ 		_, _ = w.Write([]byte(`{"kind":"Status","apiVersion":"v1","status":"Failure","reason":"NotFound","code":404}`))
+diff --git a/internal/data/process_integration_test.go b/internal/data/process_integration_test.go
+index fd7586d..a07ed57 100644
+--- a/internal/data/process_integration_test.go
++++ b/internal/data/process_integration_test.go
+@@ -231,6 +231,7 @@ func startNetworkProcess(t *testing.T, root, binary, dsn, kubeconfig, signingKey
+ 	command.Env = append(command.Env, "ANI_NETWORK_DATABASE_DSN="+dsn, "ANI_NETWORK_KUBECONFIG="+kubeconfig, "ANI_NETWORK_CLUSTER_ID=test-cluster",
+ 		"ANI_NETWORK_CURSOR_SIGNING_KEY="+signingKey, "ANI_SERVER_GRPC_ADDR="+grpcAddress, "ANI_SERVER_ADMIN_ADDR="+adminAddress,
+ 		"ANI_WORKER_LEASE=3s", "ANI_WORKER_REQUEST_TIMEOUT=1s", "ANI_WORKER_OBSERVE_EVERY=0.1s", "ANI_WORKER_STALE_AFTER=2s",
++		"ANI_OBSERVATION_AUDIT_INTERVAL=0.2s", "ANI_OBSERVATION_AUDIT_JITTER=0.1s", "ANI_OBSERVATION_AUDIT_TIMEOUT=1s", "ANI_OBSERVATION_FLUSH_INTERVAL=0.02s", "ANI_OBSERVATION_REQUEST_QPS=40", "ANI_OBSERVATION_REQUEST_BURST=80",
+ 		"ANI_WORKER_RETRY_MIN=0.02s", "ANI_WORKER_RETRY_MAX=0.05s", "ANI_WORKER_POLL_INTERVAL=0.01s", "ANI_SERVER_SHUTDOWN_TIMEOUT=3s")
+ 	if len(resourceKinds) > 0 {
+ 		// The Subnet adapter reads multiple dependent resource lists per deletion.
+diff --git a/internal/data/queries/attachments.sql b/internal/data/queries/attachments.sql
+index 453b2a1..8a9bbe4 100644
+--- a/internal/data/queries/attachments.sql
++++ b/internal/data/queries/attachments.sql
+@@ -24,10 +24,10 @@ INSERT INTO network_attachment_history(tenant_id,history_id,attachment_id,versio
+ VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9);
+ -- name: LockDueAttachmentParent :one
+ SELECT v.* FROM network_vpcs v WHERE EXISTS(SELECT 1 FROM network_attachments a WHERE a.tenant_id=v.tenant_id AND a.vpc_id=v.vpc_id AND a.next_check_at<=clock_timestamp() AND (a.lease_until IS NULL OR a.lease_until<=clock_timestamp()))
+-ORDER BY v.created_at,v.vpc_id LIMIT 1 FOR UPDATE OF v SKIP LOCKED;
++ORDER BY (SELECT min(a.next_check_at) FROM network_attachments a WHERE a.tenant_id=v.tenant_id AND a.vpc_id=v.vpc_id AND (a.lease_until IS NULL OR a.lease_until<=clock_timestamp())),v.vpc_id LIMIT 1 FOR UPDATE OF v SKIP LOCKED;
+ -- name: LockDueAttachmentSubnet :one
+ SELECT s.* FROM network_subnets s WHERE s.tenant_id=$1 AND s.vpc_id=$2 AND EXISTS(SELECT 1 FROM network_attachments a WHERE a.tenant_id=s.tenant_id AND a.subnet_id=s.subnet_id AND a.next_check_at<=clock_timestamp() AND (a.lease_until IS NULL OR a.lease_until<=clock_timestamp()))
+-ORDER BY s.created_at,s.subnet_id LIMIT 1 FOR UPDATE OF s SKIP LOCKED;
++ORDER BY (SELECT min(a.next_check_at) FROM network_attachments a WHERE a.tenant_id=s.tenant_id AND a.subnet_id=s.subnet_id AND (a.lease_until IS NULL OR a.lease_until<=clock_timestamp())),s.subnet_id LIMIT 1 FOR UPDATE OF s SKIP LOCKED;
+ -- name: LockDueAttachment :one
+ SELECT * FROM network_attachments WHERE tenant_id=$1 AND subnet_id=$2 AND next_check_at<=clock_timestamp() AND (lease_until IS NULL OR lease_until<=clock_timestamp())
+ ORDER BY next_check_at,attachment_id LIMIT 1 FOR UPDATE SKIP LOCKED;
+@@ -37,7 +37,11 @@ WHERE tenant_id=sqlc.arg(tenant_id) AND attachment_id=sqlc.arg(attachment_id) RE
+ -- name: FinishAttachment :one
+ UPDATE network_attachments SET state=sqlc.arg(state),reason=sqlc.arg(reason),protocol_blocked=sqlc.arg(protocol_blocked),pod_name=sqlc.arg(pod_name),pod_uid=sqlc.arg(pod_uid),finalization_id=sqlc.narg(finalization_id),
+  provider_relations=sqlc.arg(provider_relations),version=version+1,updated_at=clock_timestamp(),
+- observed_at=CASE WHEN sqlc.arg(observed)::boolean THEN clock_timestamp() ELSE observed_at END,
++ observed_at=CASE WHEN sqlc.arg(observed)::boolean THEN sqlc.narg(observed_at)::timestamptz ELSE observed_at END,
+  released_at=CASE WHEN sqlc.arg(state)::text='released' THEN coalesce(released_at,clock_timestamp()) ELSE NULL END,
+- next_check_at=clock_timestamp()+sqlc.arg(delay_micros)::bigint*interval '1 microsecond',lease_owner=NULL,lease_until=NULL
++ processed_generation=greatest(processed_generation,sqlc.arg(covered_generation)::bigint),
++ evidence_hash=CASE WHEN sqlc.arg(observed)::boolean THEN sqlc.arg(evidence_hash)::text ELSE evidence_hash END,
++ evidence_applied_at=CASE WHEN sqlc.arg(observed)::boolean THEN clock_timestamp() ELSE evidence_applied_at END,
++ retry_not_before=CASE WHEN sqlc.arg(backoff)::boolean THEN clock_timestamp()+sqlc.arg(delay_micros)::bigint*interval '1 microsecond' ELSE '1970-01-01 UTC'::timestamptz END,
++ next_check_at=CASE WHEN requested_generation>sqlc.arg(covered_generation)::bigint AND NOT sqlc.arg(backoff)::boolean THEN clock_timestamp() ELSE clock_timestamp()+sqlc.arg(delay_micros)::bigint*interval '1 microsecond' END,lease_owner=NULL,lease_until=NULL
+ WHERE tenant_id=sqlc.arg(tenant_id) AND attachment_id=sqlc.arg(attachment_id) AND version=sqlc.arg(version) AND epoch=sqlc.arg(epoch) AND lease_owner=sqlc.arg(owner)::uuid AND lease_until>clock_timestamp() RETURNING *;
+diff --git a/internal/data/queries/subnets.sql b/internal/data/queries/subnets.sql
+index 210a44f..ec97c4c 100644
+--- a/internal/data/queries/subnets.sql
++++ b/internal/data/queries/subnets.sql
+@@ -46,7 +46,7 @@ ORDER BY r.next_run_at,s.subnet_id LIMIT 1 FOR UPDATE OF s SKIP LOCKED;
+ 
+ -- name: AdvanceSubnet :one
+ UPDATE network_subnets SET state=sqlc.arg(state),reason=sqlc.arg(reason),version=version+1,updated_at=clock_timestamp(),
+- observed_at=CASE WHEN sqlc.arg(observed)::boolean THEN clock_timestamp() ELSE observed_at END
++ observed_at=CASE WHEN sqlc.arg(observed)::boolean THEN sqlc.narg(observed_at)::timestamptz ELSE observed_at END
+ WHERE tenant_id=sqlc.arg(tenant_id) AND subnet_id=sqlc.arg(subnet_id) AND version=sqlc.arg(version) RETURNING *;
+ 
+ -- name: AdmitSubnetDeletion :one
+diff --git a/internal/data/queries/worker.sql b/internal/data/queries/worker.sql
+index 579f4fe..9fb685f 100644
+--- a/internal/data/queries/worker.sql
++++ b/internal/data/queries/worker.sql
+@@ -58,7 +58,7 @@ WHERE tenant_id=sqlc.arg(tenant_id) AND coalesce(vpc_id,subnet_id)=sqlc.arg(reso
+ -- name: AdvanceVPC :one
+ UPDATE network_vpcs
+ SET state=sqlc.arg(state), reason=sqlc.arg(reason), version=version+1, updated_at=clock_timestamp(),
+-    observed_at=CASE WHEN sqlc.arg(observed)::boolean THEN clock_timestamp() ELSE observed_at END
++    observed_at=CASE WHEN sqlc.arg(observed)::boolean THEN sqlc.narg(observed_at)::timestamptz ELSE observed_at END
+ WHERE tenant_id=sqlc.arg(tenant_id) AND vpc_id=sqlc.arg(vpc_id) AND version=sqlc.arg(version)
+ RETURNING *;
+ 
+@@ -75,7 +75,11 @@ WHERE tenant_id=sqlc.arg(tenant_id) AND coalesce(vpc_id,subnet_id)=sqlc.arg(reso
+ -- name: ReleaseLease :execrows
+ UPDATE network_reconciliations
+ SET lease_owner=NULL, lease_until=NULL,
+-    next_run_at=clock_timestamp()+sqlc.arg(delay_micros)::bigint*interval '1 microsecond'
++    processed_generation=greatest(processed_generation,sqlc.arg(covered_generation)::bigint),
++    evidence_hash=CASE WHEN sqlc.arg(observed)::boolean THEN sqlc.arg(evidence_hash)::text ELSE evidence_hash END,
++    evidence_applied_at=CASE WHEN sqlc.arg(observed)::boolean THEN clock_timestamp() ELSE evidence_applied_at END,
++    retry_not_before=CASE WHEN sqlc.arg(backoff)::boolean THEN clock_timestamp()+sqlc.arg(delay_micros)::bigint*interval '1 microsecond' ELSE '1970-01-01 UTC'::timestamptz END,
++    next_run_at=CASE WHEN requested_generation>sqlc.arg(covered_generation)::bigint AND NOT sqlc.arg(backoff)::boolean THEN clock_timestamp() ELSE clock_timestamp()+sqlc.arg(delay_micros)::bigint*interval '1 microsecond' END
+ WHERE tenant_id=sqlc.arg(tenant_id) AND coalesce(vpc_id,subnet_id)=sqlc.arg(resource_id)::text
+   AND lease_owner=sqlc.arg(owner) AND lease_epoch=sqlc.arg(epoch) AND lease_until>clock_timestamp();
+ 
+diff --git a/internal/data/resource_work.go b/internal/data/resource_work.go
+index ee895e5..91adcc6 100644
+--- a/internal/data/resource_work.go
++++ b/internal/data/resource_work.go
+@@ -47,9 +47,9 @@ func lockResource(ctx context.Context, q *sqlcgen.Queries, r biz.ResourceWork) (
+ }
+ func advanceResource(ctx context.Context, q *sqlcgen.Queries, r biz.ResourceWork, p biz.Progress) (biz.ResourceWork, error) {
+ 	if r.Kind == "subnet" {
+-		s, err := q.AdvanceSubnet(ctx, sqlcgen.AdvanceSubnetParams{TenantID: r.TenantID, SubnetID: r.ID, Version: r.Version, State: string(p.State), Reason: string(p.Reason), Observed: p.Observed})
++		s, err := q.AdvanceSubnet(ctx, sqlcgen.AdvanceSubnetParams{TenantID: r.TenantID, SubnetID: r.ID, Version: r.Version, State: string(p.State), Reason: string(p.Reason), Observed: p.Observed, ObservedAt: proofTime(p.Observed, p.Proof)})
+ 		return subnetWork(s), err
+ 	}
+-	v, err := q.AdvanceVPC(ctx, sqlcgen.AdvanceVPCParams{TenantID: r.TenantID, VpcID: r.ID, Version: r.Version, State: string(p.State), Reason: string(p.Reason), Observed: p.Observed})
++	v, err := q.AdvanceVPC(ctx, sqlcgen.AdvanceVPCParams{TenantID: r.TenantID, VpcID: r.ID, Version: r.Version, State: string(p.State), Reason: string(p.Reason), Observed: p.Observed, ObservedAt: proofTime(p.Observed, p.Proof)})
+ 	return vpcWork(v), err
+ }
+diff --git a/internal/data/sqlcgen/attachments.sql.go b/internal/data/sqlcgen/attachments.sql.go
+index 33c15dc..18a6a19 100644
+--- a/internal/data/sqlcgen/attachments.sql.go
++++ b/internal/data/sqlcgen/attachments.sql.go
+@@ -7,11 +7,12 @@ package sqlcgen
+ 
+ import (
+ 	"context"
++	"time"
+ )
+ 
+ const claimAttachment = `-- name: ClaimAttachment :one
+ UPDATE network_attachments SET lease_owner=$1::uuid,lease_until=clock_timestamp()+$2::bigint*interval '1 microsecond',epoch=epoch+1
+-WHERE tenant_id=$3 AND attachment_id=$4 RETURNING tenant_id, attachment_id, vpc_id, subnet_id, binding_id, instance_id, slot, request_key, submission_id, generation, fingerprint, cluster_id, namespace, binding_revision, plan, state, reason, protocol_blocked, version, pod_name, pod_uid, confirm_uid, finalization_id, provider_relations, created_at, updated_at, observed_at, released_at, next_check_at, lease_owner, lease_until, epoch
++WHERE tenant_id=$3 AND attachment_id=$4 RETURNING tenant_id, attachment_id, vpc_id, subnet_id, binding_id, instance_id, slot, request_key, submission_id, generation, fingerprint, cluster_id, namespace, binding_revision, plan, state, reason, protocol_blocked, version, pod_name, pod_uid, confirm_uid, finalization_id, provider_relations, created_at, updated_at, observed_at, released_at, next_check_at, lease_owner, lease_until, epoch, requested_generation, processed_generation, retry_not_before, evidence_hash, evidence_applied_at
+ `
+ 
+ type ClaimAttachmentParams struct {
+@@ -62,13 +63,18 @@ func (q *Queries) ClaimAttachment(ctx context.Context, arg ClaimAttachmentParams
+ 		&i.LeaseOwner,
+ 		&i.LeaseUntil,
+ 		&i.Epoch,
++		&i.RequestedGeneration,
++		&i.ProcessedGeneration,
++		&i.RetryNotBefore,
++		&i.EvidenceHash,
++		&i.EvidenceAppliedAt,
+ 	)
+ 	return i, err
+ }
+ 
+ const confirmAttachment = `-- name: ConfirmAttachment :one
+ UPDATE network_attachments SET pod_name=$3,pod_uid=$4,confirm_uid=$4,version=version+1,updated_at=clock_timestamp(),next_check_at=clock_timestamp(),lease_owner=NULL,lease_until=NULL
+-WHERE tenant_id=$1 AND attachment_id=$2 RETURNING tenant_id, attachment_id, vpc_id, subnet_id, binding_id, instance_id, slot, request_key, submission_id, generation, fingerprint, cluster_id, namespace, binding_revision, plan, state, reason, protocol_blocked, version, pod_name, pod_uid, confirm_uid, finalization_id, provider_relations, created_at, updated_at, observed_at, released_at, next_check_at, lease_owner, lease_until, epoch
++WHERE tenant_id=$1 AND attachment_id=$2 RETURNING tenant_id, attachment_id, vpc_id, subnet_id, binding_id, instance_id, slot, request_key, submission_id, generation, fingerprint, cluster_id, namespace, binding_revision, plan, state, reason, protocol_blocked, version, pod_name, pod_uid, confirm_uid, finalization_id, provider_relations, created_at, updated_at, observed_at, released_at, next_check_at, lease_owner, lease_until, epoch, requested_generation, processed_generation, retry_not_before, evidence_hash, evidence_applied_at
+ `
+ 
+ type ConfirmAttachmentParams struct {
+@@ -119,6 +125,11 @@ func (q *Queries) ConfirmAttachment(ctx context.Context, arg ConfirmAttachmentPa
+ 		&i.LeaseOwner,
+ 		&i.LeaseUntil,
+ 		&i.Epoch,
++		&i.RequestedGeneration,
++		&i.ProcessedGeneration,
++		&i.RetryNotBefore,
++		&i.EvidenceHash,
++		&i.EvidenceAppliedAt,
+ 	)
+ 	return i, err
+ }
+@@ -142,10 +153,14 @@ func (q *Queries) CountAttachments(ctx context.Context, arg CountAttachmentsPara
+ const finishAttachment = `-- name: FinishAttachment :one
+ UPDATE network_attachments SET state=$1,reason=$2,protocol_blocked=$3,pod_name=$4,pod_uid=$5,finalization_id=$6,
+  provider_relations=$7,version=version+1,updated_at=clock_timestamp(),
+- observed_at=CASE WHEN $8::boolean THEN clock_timestamp() ELSE observed_at END,
++ observed_at=CASE WHEN $8::boolean THEN $9::timestamptz ELSE observed_at END,
+  released_at=CASE WHEN $1::text='released' THEN coalesce(released_at,clock_timestamp()) ELSE NULL END,
+- next_check_at=clock_timestamp()+$9::bigint*interval '1 microsecond',lease_owner=NULL,lease_until=NULL
+-WHERE tenant_id=$10 AND attachment_id=$11 AND version=$12 AND epoch=$13 AND lease_owner=$14::uuid AND lease_until>clock_timestamp() RETURNING tenant_id, attachment_id, vpc_id, subnet_id, binding_id, instance_id, slot, request_key, submission_id, generation, fingerprint, cluster_id, namespace, binding_revision, plan, state, reason, protocol_blocked, version, pod_name, pod_uid, confirm_uid, finalization_id, provider_relations, created_at, updated_at, observed_at, released_at, next_check_at, lease_owner, lease_until, epoch
++ processed_generation=greatest(processed_generation,$10::bigint),
++ evidence_hash=CASE WHEN $8::boolean THEN $11::text ELSE evidence_hash END,
++ evidence_applied_at=CASE WHEN $8::boolean THEN clock_timestamp() ELSE evidence_applied_at END,
++ retry_not_before=CASE WHEN $12::boolean THEN clock_timestamp()+$13::bigint*interval '1 microsecond' ELSE '1970-01-01 UTC'::timestamptz END,
++ next_check_at=CASE WHEN requested_generation>$10::bigint AND NOT $12::boolean THEN clock_timestamp() ELSE clock_timestamp()+$13::bigint*interval '1 microsecond' END,lease_owner=NULL,lease_until=NULL
++WHERE tenant_id=$14 AND attachment_id=$15 AND version=$16 AND epoch=$17 AND lease_owner=$18::uuid AND lease_until>clock_timestamp() RETURNING tenant_id, attachment_id, vpc_id, subnet_id, binding_id, instance_id, slot, request_key, submission_id, generation, fingerprint, cluster_id, namespace, binding_revision, plan, state, reason, protocol_blocked, version, pod_name, pod_uid, confirm_uid, finalization_id, provider_relations, created_at, updated_at, observed_at, released_at, next_check_at, lease_owner, lease_until, epoch, requested_generation, processed_generation, retry_not_before, evidence_hash, evidence_applied_at
+ `
+ 
+ type FinishAttachmentParams struct {
+@@ -157,6 +172,10 @@ type FinishAttachmentParams struct {
+ 	FinalizationID    *string
+ 	ProviderRelations []byte
+ 	Observed          bool
++	ObservedAt        *time.Time
++	CoveredGeneration int64
++	EvidenceHash      string
++	Backoff           bool
+ 	DelayMicros       int64
+ 	TenantID          string
+ 	AttachmentID      string
+@@ -175,6 +194,10 @@ func (q *Queries) FinishAttachment(ctx context.Context, arg FinishAttachmentPara
+ 		arg.FinalizationID,
+ 		arg.ProviderRelations,
+ 		arg.Observed,
++		arg.ObservedAt,
++		arg.CoveredGeneration,
++		arg.EvidenceHash,
++		arg.Backoff,
+ 		arg.DelayMicros,
+ 		arg.TenantID,
+ 		arg.AttachmentID,
+@@ -216,12 +239,17 @@ func (q *Queries) FinishAttachment(ctx context.Context, arg FinishAttachmentPara
+ 		&i.LeaseOwner,
+ 		&i.LeaseUntil,
+ 		&i.Epoch,
++		&i.RequestedGeneration,
++		&i.ProcessedGeneration,
++		&i.RetryNotBefore,
++		&i.EvidenceHash,
++		&i.EvidenceAppliedAt,
+ 	)
+ 	return i, err
+ }
+ 
+ const getAttachment = `-- name: GetAttachment :one
+-SELECT tenant_id, attachment_id, vpc_id, subnet_id, binding_id, instance_id, slot, request_key, submission_id, generation, fingerprint, cluster_id, namespace, binding_revision, plan, state, reason, protocol_blocked, version, pod_name, pod_uid, confirm_uid, finalization_id, provider_relations, created_at, updated_at, observed_at, released_at, next_check_at, lease_owner, lease_until, epoch FROM network_attachments WHERE tenant_id=$1 AND attachment_id=$2
++SELECT tenant_id, attachment_id, vpc_id, subnet_id, binding_id, instance_id, slot, request_key, submission_id, generation, fingerprint, cluster_id, namespace, binding_revision, plan, state, reason, protocol_blocked, version, pod_name, pod_uid, confirm_uid, finalization_id, provider_relations, created_at, updated_at, observed_at, released_at, next_check_at, lease_owner, lease_until, epoch, requested_generation, processed_generation, retry_not_before, evidence_hash, evidence_applied_at FROM network_attachments WHERE tenant_id=$1 AND attachment_id=$2
+ `
+ 
+ type GetAttachmentParams struct {
+@@ -265,12 +293,17 @@ func (q *Queries) GetAttachment(ctx context.Context, arg GetAttachmentParams) (N
+ 		&i.LeaseOwner,
+ 		&i.LeaseUntil,
+ 		&i.Epoch,
++		&i.RequestedGeneration,
++		&i.ProcessedGeneration,
++		&i.RetryNotBefore,
++		&i.EvidenceHash,
++		&i.EvidenceAppliedAt,
+ 	)
+ 	return i, err
+ }
+ 
+ const getAttachmentReplay = `-- name: GetAttachmentReplay :one
+-SELECT tenant_id, attachment_id, vpc_id, subnet_id, binding_id, instance_id, slot, request_key, submission_id, generation, fingerprint, cluster_id, namespace, binding_revision, plan, state, reason, protocol_blocked, version, pod_name, pod_uid, confirm_uid, finalization_id, provider_relations, created_at, updated_at, observed_at, released_at, next_check_at, lease_owner, lease_until, epoch FROM network_attachments WHERE tenant_id=$1 AND instance_id=$2 AND slot=$3 AND request_key=$4
++SELECT tenant_id, attachment_id, vpc_id, subnet_id, binding_id, instance_id, slot, request_key, submission_id, generation, fingerprint, cluster_id, namespace, binding_revision, plan, state, reason, protocol_blocked, version, pod_name, pod_uid, confirm_uid, finalization_id, provider_relations, created_at, updated_at, observed_at, released_at, next_check_at, lease_owner, lease_until, epoch, requested_generation, processed_generation, retry_not_before, evidence_hash, evidence_applied_at FROM network_attachments WHERE tenant_id=$1 AND instance_id=$2 AND slot=$3 AND request_key=$4
+ `
+ 
+ type GetAttachmentReplayParams struct {
+@@ -321,6 +354,11 @@ func (q *Queries) GetAttachmentReplay(ctx context.Context, arg GetAttachmentRepl
+ 		&i.LeaseOwner,
+ 		&i.LeaseUntil,
+ 		&i.Epoch,
++		&i.RequestedGeneration,
++		&i.ProcessedGeneration,
++		&i.RetryNotBefore,
++		&i.EvidenceHash,
++		&i.EvidenceAppliedAt,
+ 	)
+ 	return i, err
+ }
+@@ -344,7 +382,7 @@ func (q *Queries) HasAttachmentSlot(ctx context.Context, arg HasAttachmentSlotPa
+ 
+ const insertAttachment = `-- name: InsertAttachment :one
+ INSERT INTO network_attachments(tenant_id,attachment_id,vpc_id,subnet_id,binding_id,instance_id,slot,request_key,submission_id,generation,fingerprint,cluster_id,namespace,binding_revision,plan,state)
+-VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,'reserved') RETURNING tenant_id, attachment_id, vpc_id, subnet_id, binding_id, instance_id, slot, request_key, submission_id, generation, fingerprint, cluster_id, namespace, binding_revision, plan, state, reason, protocol_blocked, version, pod_name, pod_uid, confirm_uid, finalization_id, provider_relations, created_at, updated_at, observed_at, released_at, next_check_at, lease_owner, lease_until, epoch
++VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,'reserved') RETURNING tenant_id, attachment_id, vpc_id, subnet_id, binding_id, instance_id, slot, request_key, submission_id, generation, fingerprint, cluster_id, namespace, binding_revision, plan, state, reason, protocol_blocked, version, pod_name, pod_uid, confirm_uid, finalization_id, provider_relations, created_at, updated_at, observed_at, released_at, next_check_at, lease_owner, lease_until, epoch, requested_generation, processed_generation, retry_not_before, evidence_hash, evidence_applied_at
+ `
+ 
+ type InsertAttachmentParams struct {
+@@ -417,6 +455,11 @@ func (q *Queries) InsertAttachment(ctx context.Context, arg InsertAttachmentPara
+ 		&i.LeaseOwner,
+ 		&i.LeaseUntil,
+ 		&i.Epoch,
++		&i.RequestedGeneration,
++		&i.ProcessedGeneration,
++		&i.RetryNotBefore,
++		&i.EvidenceHash,
++		&i.EvidenceAppliedAt,
+ 	)
+ 	return i, err
+ }
+@@ -454,7 +497,7 @@ func (q *Queries) InsertAttachmentHistory(ctx context.Context, arg InsertAttachm
+ }
+ 
+ const lockAttachment = `-- name: LockAttachment :one
+-SELECT tenant_id, attachment_id, vpc_id, subnet_id, binding_id, instance_id, slot, request_key, submission_id, generation, fingerprint, cluster_id, namespace, binding_revision, plan, state, reason, protocol_blocked, version, pod_name, pod_uid, confirm_uid, finalization_id, provider_relations, created_at, updated_at, observed_at, released_at, next_check_at, lease_owner, lease_until, epoch FROM network_attachments WHERE tenant_id=$1 AND attachment_id=$2 FOR UPDATE
++SELECT tenant_id, attachment_id, vpc_id, subnet_id, binding_id, instance_id, slot, request_key, submission_id, generation, fingerprint, cluster_id, namespace, binding_revision, plan, state, reason, protocol_blocked, version, pod_name, pod_uid, confirm_uid, finalization_id, provider_relations, created_at, updated_at, observed_at, released_at, next_check_at, lease_owner, lease_until, epoch, requested_generation, processed_generation, retry_not_before, evidence_hash, evidence_applied_at FROM network_attachments WHERE tenant_id=$1 AND attachment_id=$2 FOR UPDATE
+ `
+ 
+ type LockAttachmentParams struct {
+@@ -498,6 +541,11 @@ func (q *Queries) LockAttachment(ctx context.Context, arg LockAttachmentParams)
+ 		&i.LeaseOwner,
+ 		&i.LeaseUntil,
+ 		&i.Epoch,
++		&i.RequestedGeneration,
++		&i.ProcessedGeneration,
++		&i.RetryNotBefore,
++		&i.EvidenceHash,
++		&i.EvidenceAppliedAt,
+ 	)
+ 	return i, err
+ }
+@@ -518,7 +566,7 @@ func (q *Queries) LockAttachmentSlot(ctx context.Context, arg LockAttachmentSlot
+ }
+ 
+ const lockDueAttachment = `-- name: LockDueAttachment :one
+-SELECT tenant_id, attachment_id, vpc_id, subnet_id, binding_id, instance_id, slot, request_key, submission_id, generation, fingerprint, cluster_id, namespace, binding_revision, plan, state, reason, protocol_blocked, version, pod_name, pod_uid, confirm_uid, finalization_id, provider_relations, created_at, updated_at, observed_at, released_at, next_check_at, lease_owner, lease_until, epoch FROM network_attachments WHERE tenant_id=$1 AND subnet_id=$2 AND next_check_at<=clock_timestamp() AND (lease_until IS NULL OR lease_until<=clock_timestamp())
++SELECT tenant_id, attachment_id, vpc_id, subnet_id, binding_id, instance_id, slot, request_key, submission_id, generation, fingerprint, cluster_id, namespace, binding_revision, plan, state, reason, protocol_blocked, version, pod_name, pod_uid, confirm_uid, finalization_id, provider_relations, created_at, updated_at, observed_at, released_at, next_check_at, lease_owner, lease_until, epoch, requested_generation, processed_generation, retry_not_before, evidence_hash, evidence_applied_at FROM network_attachments WHERE tenant_id=$1 AND subnet_id=$2 AND next_check_at<=clock_timestamp() AND (lease_until IS NULL OR lease_until<=clock_timestamp())
+ ORDER BY next_check_at,attachment_id LIMIT 1 FOR UPDATE SKIP LOCKED
+ `
+ 
+@@ -563,13 +611,18 @@ func (q *Queries) LockDueAttachment(ctx context.Context, arg LockDueAttachmentPa
+ 		&i.LeaseOwner,
+ 		&i.LeaseUntil,
+ 		&i.Epoch,
++		&i.RequestedGeneration,
++		&i.ProcessedGeneration,
++		&i.RetryNotBefore,
++		&i.EvidenceHash,
++		&i.EvidenceAppliedAt,
+ 	)
+ 	return i, err
+ }
+ 
+ const lockDueAttachmentParent = `-- name: LockDueAttachmentParent :one
+ SELECT v.tenant_id, v.vpc_id, v.name, v.description, v.cidr, v.state, v.reason, v.version, v.created_at, v.updated_at, v.observed_at, v.last_operation_id FROM network_vpcs v WHERE EXISTS(SELECT 1 FROM network_attachments a WHERE a.tenant_id=v.tenant_id AND a.vpc_id=v.vpc_id AND a.next_check_at<=clock_timestamp() AND (a.lease_until IS NULL OR a.lease_until<=clock_timestamp()))
+-ORDER BY v.created_at,v.vpc_id LIMIT 1 FOR UPDATE OF v SKIP LOCKED
++ORDER BY (SELECT min(a.next_check_at) FROM network_attachments a WHERE a.tenant_id=v.tenant_id AND a.vpc_id=v.vpc_id AND (a.lease_until IS NULL OR a.lease_until<=clock_timestamp())),v.vpc_id LIMIT 1 FOR UPDATE OF v SKIP LOCKED
+ `
+ 
+ func (q *Queries) LockDueAttachmentParent(ctx context.Context) (NetworkVpc, error) {
+@@ -594,7 +647,7 @@ func (q *Queries) LockDueAttachmentParent(ctx context.Context) (NetworkVpc, erro
+ 
+ const lockDueAttachmentSubnet = `-- name: LockDueAttachmentSubnet :one
+ SELECT s.tenant_id, s.subnet_id, s.vpc_id, s.name, s.description, s.cidr, s.gateway, s.state, s.reason, s.version, s.created_at, s.updated_at, s.observed_at, s.last_operation_id FROM network_subnets s WHERE s.tenant_id=$1 AND s.vpc_id=$2 AND EXISTS(SELECT 1 FROM network_attachments a WHERE a.tenant_id=s.tenant_id AND a.subnet_id=s.subnet_id AND a.next_check_at<=clock_timestamp() AND (a.lease_until IS NULL OR a.lease_until<=clock_timestamp()))
+-ORDER BY s.created_at,s.subnet_id LIMIT 1 FOR UPDATE OF s SKIP LOCKED
++ORDER BY (SELECT min(a.next_check_at) FROM network_attachments a WHERE a.tenant_id=s.tenant_id AND a.subnet_id=s.subnet_id AND (a.lease_until IS NULL OR a.lease_until<=clock_timestamp())),s.subnet_id LIMIT 1 FOR UPDATE OF s SKIP LOCKED
+ `
+ 
+ type LockDueAttachmentSubnetParams struct {
+@@ -626,7 +679,7 @@ func (q *Queries) LockDueAttachmentSubnet(ctx context.Context, arg LockDueAttach
+ 
+ const releaseAttachment = `-- name: ReleaseAttachment :one
+ UPDATE network_attachments SET finalization_id=$3,state='releasing',version=version+1,updated_at=clock_timestamp(),next_check_at=clock_timestamp(),lease_owner=NULL,lease_until=NULL
+-WHERE tenant_id=$1 AND attachment_id=$2 RETURNING tenant_id, attachment_id, vpc_id, subnet_id, binding_id, instance_id, slot, request_key, submission_id, generation, fingerprint, cluster_id, namespace, binding_revision, plan, state, reason, protocol_blocked, version, pod_name, pod_uid, confirm_uid, finalization_id, provider_relations, created_at, updated_at, observed_at, released_at, next_check_at, lease_owner, lease_until, epoch
++WHERE tenant_id=$1 AND attachment_id=$2 RETURNING tenant_id, attachment_id, vpc_id, subnet_id, binding_id, instance_id, slot, request_key, submission_id, generation, fingerprint, cluster_id, namespace, binding_revision, plan, state, reason, protocol_blocked, version, pod_name, pod_uid, confirm_uid, finalization_id, provider_relations, created_at, updated_at, observed_at, released_at, next_check_at, lease_owner, lease_until, epoch, requested_generation, processed_generation, retry_not_before, evidence_hash, evidence_applied_at
+ `
+ 
+ type ReleaseAttachmentParams struct {
+@@ -671,6 +724,11 @@ func (q *Queries) ReleaseAttachment(ctx context.Context, arg ReleaseAttachmentPa
+ 		&i.LeaseOwner,
+ 		&i.LeaseUntil,
+ 		&i.Epoch,
++		&i.RequestedGeneration,
++		&i.ProcessedGeneration,
++		&i.RetryNotBefore,
++		&i.EvidenceHash,
++		&i.EvidenceAppliedAt,
+ 	)
+ 	return i, err
+ }
+diff --git a/internal/data/sqlcgen/models.go b/internal/data/sqlcgen/models.go
+index de7cde4..85314d2 100644
+--- a/internal/data/sqlcgen/models.go
++++ b/internal/data/sqlcgen/models.go
+@@ -9,38 +9,43 @@ import (
+ )
+ 
+ type NetworkAttachment struct {
+-	TenantID          string
+-	AttachmentID      string
+-	VpcID             string
+-	SubnetID          string
+-	BindingID         string
+-	InstanceID        string
+-	Slot              string
+-	RequestKey        string
+-	SubmissionID      string
+-	Generation        int64
+-	Fingerprint       string
+-	ClusterID         string
+-	Namespace         string
+-	BindingRevision   string
+-	Plan              []byte
+-	State             string
+-	Reason            string
+-	ProtocolBlocked   bool
+-	Version           int64
+-	PodName           string
+-	PodUid            string
+-	ConfirmUid        string
+-	FinalizationID    *string
+-	ProviderRelations []byte
+-	CreatedAt         time.Time
+-	UpdatedAt         time.Time
+-	ObservedAt        *time.Time
+-	ReleasedAt        *time.Time
+-	NextCheckAt       time.Time
+-	LeaseOwner        *string
+-	LeaseUntil        *time.Time
+-	Epoch             int64
++	TenantID            string
++	AttachmentID        string
++	VpcID               string
++	SubnetID            string
++	BindingID           string
++	InstanceID          string
++	Slot                string
++	RequestKey          string
++	SubmissionID        string
++	Generation          int64
++	Fingerprint         string
++	ClusterID           string
++	Namespace           string
++	BindingRevision     string
++	Plan                []byte
++	State               string
++	Reason              string
++	ProtocolBlocked     bool
++	Version             int64
++	PodName             string
++	PodUid              string
++	ConfirmUid          string
++	FinalizationID      *string
++	ProviderRelations   []byte
++	CreatedAt           time.Time
++	UpdatedAt           time.Time
++	ObservedAt          *time.Time
++	ReleasedAt          *time.Time
++	NextCheckAt         time.Time
++	LeaseOwner          *string
++	LeaseUntil          *time.Time
++	Epoch               int64
++	RequestedGeneration int64
++	ProcessedGeneration int64
++	RetryNotBefore      time.Time
++	EvidenceHash        string
++	EvidenceAppliedAt   time.Time
+ }
+ 
+ type NetworkAttachmentHistory struct {
+@@ -100,14 +105,19 @@ type NetworkProviderBinding struct {
+ }
+ 
+ type NetworkReconciliation struct {
+-	TenantID         string
+-	VpcID            *string
+-	NextRunAt        time.Time
+-	LeaseOwner       *string
+-	LeaseUntil       *time.Time
+-	LeaseEpoch       int64
+-	SubnetID         *string
+-	ReconciliationID string
++	TenantID            string
++	VpcID               *string
++	NextRunAt           time.Time
++	LeaseOwner          *string
++	LeaseUntil          *time.Time
++	LeaseEpoch          int64
++	SubnetID            *string
++	ReconciliationID    string
++	RequestedGeneration int64
++	ProcessedGeneration int64
++	RetryNotBefore      time.Time
++	EvidenceHash        string
++	EvidenceAppliedAt   time.Time
+ }
+ 
+ type NetworkResourceHistory struct {
+diff --git a/internal/data/sqlcgen/subnets.sql.go b/internal/data/sqlcgen/subnets.sql.go
+index 5047f51..1c241e6 100644
+--- a/internal/data/sqlcgen/subnets.sql.go
++++ b/internal/data/sqlcgen/subnets.sql.go
+@@ -52,17 +52,18 @@ func (q *Queries) AdmitSubnetDeletion(ctx context.Context, arg AdmitSubnetDeleti
+ 
+ const advanceSubnet = `-- name: AdvanceSubnet :one
+ UPDATE network_subnets SET state=$1,reason=$2,version=version+1,updated_at=clock_timestamp(),
+- observed_at=CASE WHEN $3::boolean THEN clock_timestamp() ELSE observed_at END
+-WHERE tenant_id=$4 AND subnet_id=$5 AND version=$6 RETURNING tenant_id, subnet_id, vpc_id, name, description, cidr, gateway, state, reason, version, created_at, updated_at, observed_at, last_operation_id
++ observed_at=CASE WHEN $3::boolean THEN $4::timestamptz ELSE observed_at END
++WHERE tenant_id=$5 AND subnet_id=$6 AND version=$7 RETURNING tenant_id, subnet_id, vpc_id, name, description, cidr, gateway, state, reason, version, created_at, updated_at, observed_at, last_operation_id
+ `
+ 
+ type AdvanceSubnetParams struct {
+-	State    string
+-	Reason   string
+-	Observed bool
+-	TenantID string
+-	SubnetID string
+-	Version  int64
++	State      string
++	Reason     string
++	Observed   bool
++	ObservedAt *time.Time
++	TenantID   string
++	SubnetID   string
++	Version    int64
+ }
+ 
+ func (q *Queries) AdvanceSubnet(ctx context.Context, arg AdvanceSubnetParams) (NetworkSubnet, error) {
+@@ -70,6 +71,7 @@ func (q *Queries) AdvanceSubnet(ctx context.Context, arg AdvanceSubnetParams) (N
+ 		arg.State,
+ 		arg.Reason,
+ 		arg.Observed,
++		arg.ObservedAt,
+ 		arg.TenantID,
+ 		arg.SubnetID,
+ 		arg.Version,
+diff --git a/internal/data/sqlcgen/worker.sql.go b/internal/data/sqlcgen/worker.sql.go
+index 9161d4e..11bfb58 100644
+--- a/internal/data/sqlcgen/worker.sql.go
++++ b/internal/data/sqlcgen/worker.sql.go
+@@ -7,6 +7,7 @@ package sqlcgen
+ 
+ import (
+ 	"context"
++	"time"
+ )
+ 
+ const acquireLease = `-- name: AcquireLease :one
+@@ -15,7 +16,7 @@ SET lease_owner=$1::uuid, lease_epoch=lease_epoch+1,
+     lease_until=clock_timestamp()+$2::bigint*interval '1 microsecond'
+ WHERE tenant_id=$3 AND coalesce(vpc_id,subnet_id)=$4::text
+   AND (lease_until IS NULL OR lease_until <= clock_timestamp())
+-RETURNING tenant_id, vpc_id, next_run_at, lease_owner, lease_until, lease_epoch, subnet_id, reconciliation_id
++RETURNING tenant_id, vpc_id, next_run_at, lease_owner, lease_until, lease_epoch, subnet_id, reconciliation_id, requested_generation, processed_generation, retry_not_before, evidence_hash, evidence_applied_at
+ `
+ 
+ type AcquireLeaseParams struct {
+@@ -42,6 +43,11 @@ func (q *Queries) AcquireLease(ctx context.Context, arg AcquireLeaseParams) (Net
+ 		&i.LeaseEpoch,
+ 		&i.SubnetID,
+ 		&i.ReconciliationID,
++		&i.RequestedGeneration,
++		&i.ProcessedGeneration,
++		&i.RetryNotBefore,
++		&i.EvidenceHash,
++		&i.EvidenceAppliedAt,
+ 	)
+ 	return i, err
+ }
+@@ -88,18 +94,19 @@ func (q *Queries) AdmitDeletion(ctx context.Context, arg AdmitDeletionParams) (N
+ const advanceVPC = `-- name: AdvanceVPC :one
+ UPDATE network_vpcs
+ SET state=$1, reason=$2, version=version+1, updated_at=clock_timestamp(),
+-    observed_at=CASE WHEN $3::boolean THEN clock_timestamp() ELSE observed_at END
+-WHERE tenant_id=$4 AND vpc_id=$5 AND version=$6
++    observed_at=CASE WHEN $3::boolean THEN $4::timestamptz ELSE observed_at END
++WHERE tenant_id=$5 AND vpc_id=$6 AND version=$7
+ RETURNING tenant_id, vpc_id, name, description, cidr, state, reason, version, created_at, updated_at, observed_at, last_operation_id
+ `
+ 
+ type AdvanceVPCParams struct {
+-	State    string
+-	Reason   string
+-	Observed bool
+-	TenantID string
+-	VpcID    string
+-	Version  int64
++	State      string
++	Reason     string
++	Observed   bool
++	ObservedAt *time.Time
++	TenantID   string
++	VpcID      string
++	Version    int64
+ }
+ 
+ func (q *Queries) AdvanceVPC(ctx context.Context, arg AdvanceVPCParams) (NetworkVpc, error) {
+@@ -107,6 +114,7 @@ func (q *Queries) AdvanceVPC(ctx context.Context, arg AdvanceVPCParams) (Network
+ 		arg.State,
+ 		arg.Reason,
+ 		arg.Observed,
++		arg.ObservedAt,
+ 		arg.TenantID,
+ 		arg.VpcID,
+ 		arg.Version,
+@@ -162,7 +170,7 @@ func (q *Queries) BeginProviderMutation(ctx context.Context, arg BeginProviderMu
+ }
+ 
+ const checkLease = `-- name: CheckLease :one
+-SELECT tenant_id, vpc_id, next_run_at, lease_owner, lease_until, lease_epoch, subnet_id, reconciliation_id FROM network_reconciliations
++SELECT tenant_id, vpc_id, next_run_at, lease_owner, lease_until, lease_epoch, subnet_id, reconciliation_id, requested_generation, processed_generation, retry_not_before, evidence_hash, evidence_applied_at FROM network_reconciliations
+ WHERE tenant_id=$1 AND coalesce(vpc_id,subnet_id)=$2::text AND lease_owner=$3 AND lease_epoch=$4
+   AND lease_until > clock_timestamp()
+ FOR UPDATE
+@@ -192,6 +200,11 @@ func (q *Queries) CheckLease(ctx context.Context, arg CheckLeaseParams) (Network
+ 		&i.LeaseEpoch,
+ 		&i.SubnetID,
+ 		&i.ReconciliationID,
++		&i.RequestedGeneration,
++		&i.ProcessedGeneration,
++		&i.RetryNotBefore,
++		&i.EvidenceHash,
++		&i.EvidenceAppliedAt,
+ 	)
+ 	return i, err
+ }
+@@ -320,21 +333,33 @@ func (q *Queries) LockVPC(ctx context.Context, arg LockVPCParams) (NetworkVpc, e
+ const releaseLease = `-- name: ReleaseLease :execrows
+ UPDATE network_reconciliations
+ SET lease_owner=NULL, lease_until=NULL,
+-    next_run_at=clock_timestamp()+$1::bigint*interval '1 microsecond'
+-WHERE tenant_id=$2 AND coalesce(vpc_id,subnet_id)=$3::text
+-  AND lease_owner=$4 AND lease_epoch=$5 AND lease_until>clock_timestamp()
++    processed_generation=greatest(processed_generation,$1::bigint),
++    evidence_hash=CASE WHEN $2::boolean THEN $3::text ELSE evidence_hash END,
++    evidence_applied_at=CASE WHEN $2::boolean THEN clock_timestamp() ELSE evidence_applied_at END,
++    retry_not_before=CASE WHEN $4::boolean THEN clock_timestamp()+$5::bigint*interval '1 microsecond' ELSE '1970-01-01 UTC'::timestamptz END,
++    next_run_at=CASE WHEN requested_generation>$1::bigint AND NOT $4::boolean THEN clock_timestamp() ELSE clock_timestamp()+$5::bigint*interval '1 microsecond' END
++WHERE tenant_id=$6 AND coalesce(vpc_id,subnet_id)=$7::text
++  AND lease_owner=$8 AND lease_epoch=$9 AND lease_until>clock_timestamp()
+ `
+ 
+ type ReleaseLeaseParams struct {
+-	DelayMicros int64
+-	TenantID    string
+-	ResourceID  string
+-	Owner       *string
+-	Epoch       int64
++	CoveredGeneration int64
++	Observed          bool
++	EvidenceHash      string
++	Backoff           bool
++	DelayMicros       int64
++	TenantID          string
++	ResourceID        string
++	Owner             *string
++	Epoch             int64
+ }
+ 
+ func (q *Queries) ReleaseLease(ctx context.Context, arg ReleaseLeaseParams) (int64, error) {
+ 	result, err := q.db.Exec(ctx, releaseLease,
++		arg.CoveredGeneration,
++		arg.Observed,
++		arg.EvidenceHash,
++		arg.Backoff,
+ 		arg.DelayMicros,
+ 		arg.TenantID,
+ 		arg.ResourceID,
+diff --git a/internal/data/subnet_process_integration_test.go b/internal/data/subnet_process_integration_test.go
+index 7c75574..f70f85a 100644
+--- a/internal/data/subnet_process_integration_test.go
++++ b/internal/data/subnet_process_integration_test.go
+@@ -6,6 +6,7 @@ import (
+ 	"fmt"
+ 	"github.com/google/uuid"
+ 	networkv1 "github.com/zhangzhe-ctrl/ani-network-service/api/network/v1"
++	controlled "github.com/zhangzhe-ctrl/ani-network-service/tests/net05a/provider"
+ 	"github.com/zhangzhe-ctrl/ani-network-service/tests/testenv"
+ 	"net/http"
+ 	"net/http/httptest"
+@@ -41,7 +42,8 @@ func TestSubnetProcessesRecoverT1ProviderSuccessAndUnknownDeletion(t *testing.T)
+ 			if output, err := migration.CombinedOutput(); err != nil {
+ 				t.Fatalf("explicit migration replay failed: %v %s", err, output)
+ 			}
+-			api := &testenv.KC{}
++			protocol := controlled.New()
++			api := protocol.Backend
+ 			reached := make(chan struct{})
+ 			release := make(chan struct{})
+ 			var captured atomic.Bool
+@@ -75,7 +77,7 @@ func TestSubnetProcessesRecoverT1ProviderSuccessAndUnknownDeletion(t *testing.T)
+ 					_, _ = w.Write(recorder.Body.Bytes())
+ 					return
+ 				}
+-				api.ServeHTTP(w, r)
++				protocol.ServeHTTP(w, r)
+ 			}))
+ 			defer host.Close()
+ 			defer close(release)
+diff --git a/internal/data/subnet_upgrade_integration_test.go b/internal/data/subnet_upgrade_integration_test.go
+index 1ba1c7d..d5f85b8 100644
+--- a/internal/data/subnet_upgrade_integration_test.go
++++ b/internal/data/subnet_upgrade_integration_test.go
+@@ -79,7 +79,7 @@ func TestSubnetMigrationUpgradesNET01WithoutChangingDurableFacts(t *testing.T) {
+ 	})
+ 	for _, table := range tables {
+ 		var row string
+-		if err := fixture.Owner.QueryRow(ctx, "SELECT (to_jsonb(t)-'subnet_id'-'resource_kind'-'reconciliation_id')::text FROM "+table+" t WHERE tenant_id=$1", tenant).Scan(&row); err != nil {
++		if err := fixture.Owner.QueryRow(ctx, "SELECT (to_jsonb(t)-'subnet_id'-'resource_kind'-'reconciliation_id'-'requested_generation'-'processed_generation'-'retry_not_before'-'evidence_hash'-'evidence_applied_at')::text FROM "+table+" t WHERE tenant_id=$1", tenant).Scan(&row); err != nil {
+ 			t.Fatal(err)
+ 		}
+ 		if row != before[table] {
+diff --git a/internal/data/worker.go b/internal/data/worker.go
+index b6d2e6d..397272b 100644
+--- a/internal/data/worker.go
++++ b/internal/data/worker.go
+@@ -56,7 +56,7 @@ func (p *Postgres) Claim(ctx context.Context, owner string, duration time.Durati
+ 	if err := tx.Commit(ctx); err != nil {
+ 		return biz.Work{}, false, databaseFailure(err)
+ 	}
+-	return biz.Work{Resource: resource, Operation: operation(op), ActiveOperation: active, BindingID: binding.BindingID,
++	return biz.Work{Requirement: biz.ObservationRequirement{RequestedGeneration: lease.RequestedGeneration, AppliedAt: lease.EvidenceAppliedAt, Hash: lease.EvidenceHash}, Resource: resource, Operation: operation(op), ActiveOperation: active, BindingID: binding.BindingID,
+ 		KnownIdentity: binding.ProviderUid, PendingAction: binding.PendingAction, Owner: owner, Epoch: lease.LeaseEpoch, Attempt: op.Attempt, Now: now}, true, nil
+ }
+ 
+@@ -118,6 +118,9 @@ func (p *Postgres) Finish(ctx context.Context, work biz.Work, progress biz.Progr
+ 	if err := lockedWork(ctx, q, work); err != nil {
+ 		return err
+ 	}
++	if progress.Observed && !progress.Proof.Covers(work.Requirement) {
++		return biz.ErrLeaseLost
++	}
+ 	row, err := advanceResource(ctx, q, work.Resource, progress)
+ 	if err != nil {
+ 		return databaseFailure(err)
+@@ -155,6 +158,7 @@ func (p *Postgres) Finish(ctx context.Context, work biz.Work, progress biz.Progr
+ 	}
+ 	if err := affected(q.ReleaseLease(ctx, sqlcgen.ReleaseLeaseParams{
+ 		TenantID: row.TenantID, ResourceID: row.ID, Owner: &work.Owner, Epoch: work.Epoch, DelayMicros: progress.NextDelay.Microseconds(),
++		CoveredGeneration: coveredGeneration(progress.Observed, progress.Proof, work.Requirement), Observed: progress.Observed, EvidenceHash: progress.Proof.Hash, Backoff: progress.Backoff,
+ 	})); err != nil {
+ 		return err
+ 	}
+diff --git a/internal/server/observability.go b/internal/server/observability.go
+index 42240ad..a049092 100644
+--- a/internal/server/observability.go
++++ b/internal/server/observability.go
+@@ -7,6 +7,7 @@ import (
+ 	"github.com/zhangzhe-ctrl/ani-network-service/internal/biz"
+ 	"go.opentelemetry.io/otel/attribute"
+ 	"log/slog"
++	"time"
+ 
+ 	kratosmetrics "github.com/go-kratos/kratos/contrib/otel/v3/metrics"
+ 	kratostracing "github.com/go-kratos/kratos/contrib/otel/v3/tracing"
+@@ -33,6 +34,7 @@ type Observability struct {
+ 	requests          metric.Int64Counter
+ 	seconds           metric.Float64Histogram
+ 	workerAttempts    metric.Int64Counter
++	evidenceAge       metric.Float64Gauge
+ 	providerReachable metric.Int64Gauge
+ }
+ 
+@@ -109,7 +111,12 @@ func NewObservability(name, version string, readiness *Readiness) (*Observabilit
+ 	if err != nil {
+ 		return nil, err
+ 	}
++	evidenceAge, err := meter.Float64Gauge("ani_network_applied_evidence_age_seconds")
++	if err != nil {
++		return nil, err
++	}
+ 	return &Observability{
++		evidenceAge:    evidenceAge,
+ 		registry:       registry,
+ 		workerAttempts: workerAttempts, providerReachable: providerReachable,
+ 		meterProvider:  meterProvider,
+@@ -154,7 +161,10 @@ func (o *Observability) ObserveWork(ctx context.Context, logger *slog.Logger, wo
+ 	} else if err != nil {
+ 		result = "database_error"
+ 	}
+-	o.workerAttempts.Add(ctx, 1, metric.WithAttributes(attribute.String("result", result)))
++	o.workerAttempts.Add(ctx, 1, metric.WithAttributes(attribute.String("result", result), attribute.String("kind", work.Resource.Kind)))
++	if err == nil && progress.Observed {
++		o.evidenceAge.Record(ctx, time.Since(progress.Proof.CollectedAt).Seconds(), metric.WithAttributes(attribute.String("kind", work.Resource.Kind)))
++	}
+ 	if err == nil {
+ 		reachable := int64(1)
+ 		if progress.Reason == biz.ProviderUnavailable || progress.Reason == biz.ProviderUnknown {
+@@ -166,3 +176,16 @@ func (o *Observability) ObserveWork(ctx context.Context, logger *slog.Logger, wo
+ 		logger.InfoContext(ctx, "network reconciliation", "tenant_id", work.Resource.TenantID, "resource_type", work.Resource.Kind, "resource_id", work.Resource.ID, "operation_id", work.Operation.ID, "epoch", work.Epoch, "resource_state", progress.State, "result", result, "reason", progress.Reason)
+ 	}
+ }
++
++func (o *Observability) ObserveAttachmentWork(ctx context.Context, work biz.AttachmentWork, p biz.AttachmentProgress, err error) {
++	result := "observed"
++	if errors.Is(err, biz.ErrLeaseLost) {
++		result = "lease_lost"
++	} else if err != nil {
++		result = "database_error"
++	}
++	o.workerAttempts.Add(ctx, 1, metric.WithAttributes(attribute.String("kind", "attachment"), attribute.String("result", result)))
++	if err == nil && p.Observed {
++		o.evidenceAge.Record(ctx, time.Since(p.Proof.CollectedAt).Seconds(), metric.WithAttributes(attribute.String("kind", "attachment")))
++	}
++}
+diff --git a/internal/server/worker.go b/internal/server/worker.go
+index 4b36719..47ec75b 100644
+--- a/internal/server/worker.go
++++ b/internal/server/worker.go
+@@ -22,6 +22,7 @@ type WorkerServer struct {
+ 	database         DatabaseReadiness
+ 	logger           *slog.Logger
+ 	poll             time.Duration
++	concurrency      int
+ 	mu               sync.Mutex
+ 	started, stopped bool
+ 	cancel           context.CancelFunc
+@@ -36,7 +37,7 @@ type Stepper interface {
+ }
+ 
+ func NewWorkerServer(worker Stepper, database DatabaseReadiness, logger *slog.Logger, poll time.Duration, additional ...Stepper) *WorkerServer {
+-	return &WorkerServer{worker: worker, database: database, logger: logger, poll: poll, additional: additional, done: make(chan struct{})}
++	return &WorkerServer{worker: worker, database: database, logger: logger, poll: poll, concurrency: 1, additional: additional, done: make(chan struct{})}
+ }
+ func (s *WorkerServer) Ready() bool {
+ 	return s.alive.Load() && s.databaseReady.Load() && time.Since(time.Unix(0, s.databaseChecked.Load())) < 3*time.Second
+@@ -66,6 +67,41 @@ func (s *WorkerServer) Start(parent context.Context) (err error) {
+ 	go func() { defer close(healthDone); s.monitorDatabase(ctx) }()
+ 	defer func() { cancel(); <-healthDone }()
+ 	s.alive.Store(true)
++	// Each resource lane has reserved capacity; owner RPCs cannot consume it.
++	lanes := append([]Stepper{s.worker}, s.additional...)
++	results := make(chan error, len(lanes)*s.concurrency)
++	var group sync.WaitGroup
++	for _, stepper := range lanes {
++		for i := 0; i < s.concurrency; i++ {
++			group.Add(1)
++			go func() { defer group.Done(); results <- s.runLane(ctx, stepper) }()
++		}
++	}
++	select {
++	case <-ctx.Done():
++	case err = <-results:
++	}
++	cancel()
++	group.Wait()
++	return err
++}
++
++// SetConcurrency is only valid before Start. It bounds each kind separately.
++func (s *WorkerServer) SetConcurrency(n int) error {
++	s.mu.Lock()
++	defer s.mu.Unlock()
++	if s.started || n < 1 || n > 4 {
++		return fmt.Errorf("invalid worker concurrency")
++	}
++	s.concurrency = n
++	return nil
++}
++func (s *WorkerServer) runLane(ctx context.Context, stepper Stepper) (err error) {
++	defer func() {
++		if recover() != nil {
++			err = fmt.Errorf("network worker terminated unexpectedly")
++		}
++	}()
+ 	timer := time.NewTimer(0)
+ 	defer timer.Stop()
+ 	for {
+@@ -74,15 +110,7 @@ func (s *WorkerServer) Start(parent context.Context) (err error) {
+ 			return nil
+ 		case <-timer.C:
+ 		}
+-		worked, stepErr := s.worker.Step(ctx)
+-		for _, additional := range s.additional {
+-			if stepErr != nil || ctx.Err() != nil {
+-				break
+-			}
+-			ran, err := additional.Step(ctx)
+-			worked = worked || ran
+-			stepErr = err
+-		}
++		worked, stepErr := stepper.Step(ctx)
+ 		if ctx.Err() != nil {
+ 			return nil
+ 		}
+@@ -100,6 +128,7 @@ func (s *WorkerServer) Start(parent context.Context) (err error) {
+ 		timer.Reset(delay)
+ 	}
+ }
++
+ func (s *WorkerServer) monitorDatabase(ctx context.Context) {
+ 	ticker := time.NewTicker(time.Second)
+ 	defer ticker.Stop()
+diff --git a/internal/server/worker_test.go b/internal/server/worker_test.go
+index 0d8b08f..667c252 100644
+--- a/internal/server/worker_test.go
++++ b/internal/server/worker_test.go
+@@ -99,3 +99,44 @@ func TestWorkerLifecycleReadinessDetectsDependencyLossAndUnexpectedExit(t *testi
+ func (unusedProvider) EnsureSubnet(context.Context, biz.ProviderTarget) (biz.ProviderObservation, error) {
+ 	return biz.ProviderObservation{}, nil
+ }
++
++type channelStepper struct {
++	entered chan struct{}
++	wait    bool
++}
++
++func (s channelStepper) Step(ctx context.Context) (bool, error) {
++	select {
++	case s.entered <- struct{}{}:
++	default:
++	}
++	if s.wait {
++		<-ctx.Done()
++	}
++	return false, nil
++}
++func TestNET05ASlowAttachmentCannotOccupyResourceExecution(t *testing.T) {
++	resource, attachment := make(chan struct{}, 10), make(chan struct{}, 10)
++	s := server.NewWorkerServer(channelStepper{resource, false}, &lifecycleRepository{}, slog.New(slog.NewTextHandler(io.Discard, nil)), 5*time.Millisecond, channelStepper{attachment, true})
++	if e := s.SetConcurrency(2); e != nil {
++		t.Fatal(e)
++	}
++	ctx, cancel := context.WithCancel(context.Background())
++	done := make(chan error, 1)
++	go func() { done <- s.Start(ctx) }()
++	defer func() { cancel(); <-done }()
++	for i := 0; i < 2; i++ {
++		select {
++		case <-attachment:
++		case <-time.After(time.Second):
++			t.Fatal("attachment capacity missing")
++		}
++	}
++	for i := 0; i < 5; i++ {
++		select {
++		case <-resource:
++		case <-time.After(time.Second):
++			t.Fatal("slow owner blocked resource lane")
++		}
++	}
++}

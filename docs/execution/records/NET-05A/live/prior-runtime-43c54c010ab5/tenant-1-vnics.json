@@ -1,0 +1,147 @@
+{
+  "apiVersion": "v1",
+  "items": [
+    {
+      "apiVersion": "networking.kubercloud.com/v1",
+      "kind": "VNic",
+      "metadata": {
+        "annotations": {
+          "networking.kubercloud.com/allocate_ip_with_dhcp": "false",
+          "networking.kubercloud.com/allocated_vnicip": "auto-net05a-1fae0bbf-relocated-b1-p1-84c664-vnic-ckp2n",
+          "pod.networking.kubercloud.com/net05a-1fae0bbf-relocated-b1-p1-84c664ff8b-984dr": "kc062-worker2/eth0"
+        },
+        "creationTimestamp": "2026-09-10T07:08:06Z",
+        "finalizers": [
+          "networking.kubercloud.com/finalizer"
+        ],
+        "generation": 2,
+        "labels": {
+          "node.networking.kubercloud.com/kc062-worker2": ""
+        },
+        "name": "auto-net05a-1fae0bbf-relocated-b1-p1-84c664-vnic-ckp2n",
+        "namespace": "net05a-1fae0bbf-fd39ecf7-ac0c-4540-9fbd-4ba08486f30f",
+        "ownerReferences": [
+          {
+            "apiVersion": "v1",
+            "kind": "Pod",
+            "name": "net05a-1fae0bbf-relocated-b1-p1-84c664ff8b-984dr",
+            "uid": "243413ba-a029-4f41-be62-5aa99cc10b62"
+          }
+        ],
+        "resourceVersion": "146631",
+        "uid": "f314b2bd-315d-4528-9647-7e20903019bd"
+      },
+      "spec": {
+        "macAddress": "fa:00:ae:eb:de:3f",
+        "subnet": "net05a-1fae0bbf-fd39ecf7-ac0c-4540-9fbd-4ba08486f30f/subnet-9e1b5884d6a64182806baf56964e0e85",
+        "type": "VETH"
+      },
+      "status": {
+        "conditions": [
+          {
+            "lastTransitionTime": "2026-09-10T07:08:06Z",
+            "message": "",
+            "reason": "Ready",
+            "status": "True",
+            "type": "Ready"
+          },
+          {
+            "lastTransitionTime": "2026-09-10T07:08:06Z",
+            "message": "",
+            "reason": "Initialized",
+            "status": "True",
+            "type": "Initialized"
+          },
+          {
+            "lastTransitionTime": "2026-09-10T07:08:06Z",
+            "message": "",
+            "reason": "Valid",
+            "status": "True",
+            "type": "Valid"
+          }
+        ],
+        "dstNic": "",
+        "gateway": "",
+        "ips": {
+          "auto-net05a-1fae0bbf-relocated-b1-p1-84c664-vnic-ckp2n": "10.205.1.4"
+        },
+        "nic": "kcn-system/nic-net05a-1fae0bbf-fd39ecf7-ac0c-4540-9fbd-4ba08486f30f--69t46",
+        "nodeName": "kc062-worker2",
+        "primaryIP": "10.205.1.4"
+      }
+    },
+    {
+      "apiVersion": "networking.kubercloud.com/v1",
+      "kind": "VNic",
+      "metadata": {
+        "annotations": {
+          "networking.kubercloud.com/allocate_ip_with_dhcp": "false",
+          "networking.kubercloud.com/allocated_vnicip": "auto-net05a-1fae0bbf-relocated-b1-p2-58c4c6-vnic-jjvxt",
+          "pod.networking.kubercloud.com/net05a-1fae0bbf-relocated-b1-p2-58c4c6f986-df79d": "kc062-worker/eth0"
+        },
+        "creationTimestamp": "2026-09-10T07:08:22Z",
+        "finalizers": [
+          "networking.kubercloud.com/finalizer"
+        ],
+        "generation": 2,
+        "labels": {
+          "node.networking.kubercloud.com/kc062-worker": ""
+        },
+        "name": "auto-net05a-1fae0bbf-relocated-b1-p2-58c4c6-vnic-jjvxt",
+        "namespace": "net05a-1fae0bbf-fd39ecf7-ac0c-4540-9fbd-4ba08486f30f",
+        "ownerReferences": [
+          {
+            "apiVersion": "v1",
+            "kind": "Pod",
+            "name": "net05a-1fae0bbf-relocated-b1-p2-58c4c6f986-df79d",
+            "uid": "82507b2c-1b75-448a-8f4d-4c294df89fa4"
+          }
+        ],
+        "resourceVersion": "146740",
+        "uid": "43dd45c9-1d6b-4392-80f5-d5952525b3b0"
+      },
+      "spec": {
+        "macAddress": "fa:00:1f:80:08:82",
+        "subnet": "net05a-1fae0bbf-fd39ecf7-ac0c-4540-9fbd-4ba08486f30f/subnet-9e1b5884d6a64182806baf56964e0e85",
+        "type": "VETH"
+      },
+      "status": {
+        "conditions": [
+          {
+            "lastTransitionTime": "2026-09-10T07:08:22Z",
+            "message": "",
+            "reason": "Ready",
+            "status": "True",
+            "type": "Ready"
+          },
+          {
+            "lastTransitionTime": "2026-09-10T07:08:22Z",
+            "message": "",
+            "reason": "Initialized",
+            "status": "True",
+            "type": "Initialized"
+          },
+          {
+            "lastTransitionTime": "2026-09-10T07:08:22Z",
+            "message": "",
+            "reason": "Valid",
+            "status": "True",
+            "type": "Valid"
+          }
+        ],
+        "dstNic": "",
+        "gateway": "",
+        "ips": {
+          "auto-net05a-1fae0bbf-relocated-b1-p2-58c4c6-vnic-jjvxt": "10.205.1.5"
+        },
+        "nic": "kcn-system/nic-net05a-1fae0bbf-fd39ecf7-ac0c-4540-9fbd-4ba08486f30f--xdpfk",
+        "nodeName": "kc062-worker",
+        "primaryIP": "10.205.1.5"
+      }
+    }
+  ],
+  "kind": "List",
+  "metadata": {
+    "resourceVersion": ""
+  }
+}

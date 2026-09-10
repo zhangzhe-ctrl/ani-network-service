@@ -32,11 +32,19 @@ const bindingLabel = "network.ani.io/binding-id"
 // KCProvider implements only the fixed networking.kubercloud.com/v1 VPC
 // contract. It does not import the kc repository or operate on OVN.
 type KCProvider struct {
-	repository *Postgres
-	client     dynamic.Interface
+	repository  *Postgres
+	client      dynamic.Interface
+	watchClient dynamic.Interface
+	observation *KCObservation
+	io          *providerIO
 }
 
-func OpenKCProvider(repository *Postgres, kubeconfig string) (*KCProvider, error) {
+type KCClientPolicy struct {
+	QPS   float32
+	Burst int
+}
+
+func OpenKCProvider(repository *Postgres, kubeconfig string, policy ...KCClientPolicy) (*KCProvider, error) {
 	var config *rest.Config
 	var err error
 	if kubeconfig == "" {
@@ -47,6 +55,13 @@ func OpenKCProvider(repository *Postgres, kubeconfig string) (*KCProvider, error
 	if err != nil {
 		return nil, fmt.Errorf("Kubernetes credentials/configuration could not be loaded")
 	}
+	if len(policy) > 1 {
+		return nil, fmt.Errorf("invalid Kubernetes request budget")
+	}
+	if len(policy) == 1 {
+		config.QPS = policy[0].QPS
+		config.Burst = policy[0].Burst
+	}
 	return NewKCProvider(repository, config)
 }
 
@@ -56,12 +71,26 @@ func NewKCProvider(repository *Postgres, config *rest.Config) (*KCProvider, erro
 	}
 	copy := rest.CopyConfig(config)
 	copy.Timeout = 10 * time.Second
-	copy.UserAgent = "ani-network-service/net-02-04"
+	copy.UserAgent = "ani-network-service/net-05a"
+	stats := &providerIO{values: map[string]float64{}}
+	previousWrap := copy.WrapTransport
+	copy.WrapTransport = func(rt http.RoundTripper) http.RoundTripper {
+		if previousWrap != nil {
+			rt = previousWrap(rt)
+		}
+		return measuredTransport{rt, stats}
+	}
 	client, err := dynamic.NewForConfig(copy)
 	if err != nil {
 		return nil, fmt.Errorf("Kubernetes client configuration invalid")
 	}
-	return &KCProvider{repository: repository, client: client}, nil
+	watchConfig := rest.CopyConfig(copy)
+	watchConfig.Timeout = 0
+	watchClient, err := dynamic.NewForConfig(watchConfig)
+	if err != nil {
+		return nil, fmt.Errorf("Kubernetes watch configuration invalid")
+	}
+	return &KCProvider{repository: repository, client: client, watchClient: watchClient, io: stats}, nil
 }
 
 func (p *KCProvider) binding(ctx context.Context, target biz.ProviderTarget) (sqlcgen.NetworkProviderBinding, error) {
@@ -76,7 +105,7 @@ func (p *KCProvider) binding(ctx context.Context, target biz.ProviderTarget) (sq
 	return value, nil
 }
 
-func (p *KCProvider) Observe(ctx context.Context, target biz.ProviderTarget) (biz.ProviderObservation, error) {
+func (p *KCProvider) observeDirect(ctx context.Context, target biz.ProviderTarget) (biz.ProviderObservation, error) {
 	binding, err := p.binding(ctx, target)
 	if err != nil {
 		return biz.ProviderObservation{}, err
@@ -347,6 +376,9 @@ func (p *KCProvider) hasDependencies(ctx context.Context, b sqlcgen.NetworkProvi
 		if count != 0 {
 			return true, nil
 		}
+	}
+	if p.observation != nil {
+		return p.completeDependencies(ctx, b)
 	}
 	resources := []string{"subnets"}
 	field := "gateway"

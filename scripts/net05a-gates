@@ -1,0 +1,18 @@
+#!/usr/bin/env python3
+"""Run bounded Network gates, retaining failures and exact source receipts."""
+import datetime,hashlib,json,pathlib,subprocess,sys
+root=pathlib.Path(__file__).resolve().parents[1]
+out=root.parent/'gates';out.mkdir(exist_ok=True)
+gates=sys.argv[1:] or ['verify','integration','race','tenant-mutations','audit']
+results=[]
+for name in gates:
+    assert name in ['verify','integration','race','tenant-mutations','audit']
+    log=out/(name+'.log');start=datetime.datetime.now(datetime.timezone.utc).isoformat()
+    print('NET05A gate start '+name,flush=True)
+    with log.open('w') as f:p=subprocess.run(['make',name],cwd=root,stdout=f,stderr=subprocess.STDOUT)
+    row={'gate':name,'command':['make',name],'started':start,'finished':datetime.datetime.now(datetime.timezone.utc).isoformat(),'exit':p.returncode,'status':'pass' if p.returncode==0 else 'fail','log':str(log),'sha256':hashlib.sha256(log.read_bytes()).hexdigest()};results.append(row)
+    (out/'results.json').write_text(json.dumps(results,indent=2)+'\n');print(json.dumps(row),flush=True)
+    if p.returncode:
+        print(log.read_text()[-5000:],flush=True)
+        break
+raise SystemExit(0 if all(r['exit']==0 for r in results) else 1)

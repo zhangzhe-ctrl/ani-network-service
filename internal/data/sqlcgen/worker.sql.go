@@ -7,6 +7,7 @@ package sqlcgen
 
 import (
 	"context"
+	"time"
 )
 
 const acquireLease = `-- name: AcquireLease :one
@@ -15,7 +16,7 @@ SET lease_owner=$1::uuid, lease_epoch=lease_epoch+1,
     lease_until=clock_timestamp()+$2::bigint*interval '1 microsecond'
 WHERE tenant_id=$3 AND coalesce(vpc_id,subnet_id)=$4::text
   AND (lease_until IS NULL OR lease_until <= clock_timestamp())
-RETURNING tenant_id, vpc_id, next_run_at, lease_owner, lease_until, lease_epoch, subnet_id, reconciliation_id
+RETURNING tenant_id, vpc_id, next_run_at, lease_owner, lease_until, lease_epoch, subnet_id, reconciliation_id, requested_generation, processed_generation, retry_not_before, evidence_hash, evidence_applied_at
 `
 
 type AcquireLeaseParams struct {
@@ -42,6 +43,11 @@ func (q *Queries) AcquireLease(ctx context.Context, arg AcquireLeaseParams) (Net
 		&i.LeaseEpoch,
 		&i.SubnetID,
 		&i.ReconciliationID,
+		&i.RequestedGeneration,
+		&i.ProcessedGeneration,
+		&i.RetryNotBefore,
+		&i.EvidenceHash,
+		&i.EvidenceAppliedAt,
 	)
 	return i, err
 }
@@ -88,18 +94,19 @@ func (q *Queries) AdmitDeletion(ctx context.Context, arg AdmitDeletionParams) (N
 const advanceVPC = `-- name: AdvanceVPC :one
 UPDATE network_vpcs
 SET state=$1, reason=$2, version=version+1, updated_at=clock_timestamp(),
-    observed_at=CASE WHEN $3::boolean THEN clock_timestamp() ELSE observed_at END
-WHERE tenant_id=$4 AND vpc_id=$5 AND version=$6
+    observed_at=CASE WHEN $3::boolean THEN $4::timestamptz ELSE observed_at END
+WHERE tenant_id=$5 AND vpc_id=$6 AND version=$7
 RETURNING tenant_id, vpc_id, name, description, cidr, state, reason, version, created_at, updated_at, observed_at, last_operation_id
 `
 
 type AdvanceVPCParams struct {
-	State    string
-	Reason   string
-	Observed bool
-	TenantID string
-	VpcID    string
-	Version  int64
+	State      string
+	Reason     string
+	Observed   bool
+	ObservedAt *time.Time
+	TenantID   string
+	VpcID      string
+	Version    int64
 }
 
 func (q *Queries) AdvanceVPC(ctx context.Context, arg AdvanceVPCParams) (NetworkVpc, error) {
@@ -107,6 +114,7 @@ func (q *Queries) AdvanceVPC(ctx context.Context, arg AdvanceVPCParams) (Network
 		arg.State,
 		arg.Reason,
 		arg.Observed,
+		arg.ObservedAt,
 		arg.TenantID,
 		arg.VpcID,
 		arg.Version,
@@ -162,7 +170,7 @@ func (q *Queries) BeginProviderMutation(ctx context.Context, arg BeginProviderMu
 }
 
 const checkLease = `-- name: CheckLease :one
-SELECT tenant_id, vpc_id, next_run_at, lease_owner, lease_until, lease_epoch, subnet_id, reconciliation_id FROM network_reconciliations
+SELECT tenant_id, vpc_id, next_run_at, lease_owner, lease_until, lease_epoch, subnet_id, reconciliation_id, requested_generation, processed_generation, retry_not_before, evidence_hash, evidence_applied_at FROM network_reconciliations
 WHERE tenant_id=$1 AND coalesce(vpc_id,subnet_id)=$2::text AND lease_owner=$3 AND lease_epoch=$4
   AND lease_until > clock_timestamp()
 FOR UPDATE
@@ -192,6 +200,11 @@ func (q *Queries) CheckLease(ctx context.Context, arg CheckLeaseParams) (Network
 		&i.LeaseEpoch,
 		&i.SubnetID,
 		&i.ReconciliationID,
+		&i.RequestedGeneration,
+		&i.ProcessedGeneration,
+		&i.RetryNotBefore,
+		&i.EvidenceHash,
+		&i.EvidenceAppliedAt,
 	)
 	return i, err
 }
@@ -320,21 +333,33 @@ func (q *Queries) LockVPC(ctx context.Context, arg LockVPCParams) (NetworkVpc, e
 const releaseLease = `-- name: ReleaseLease :execrows
 UPDATE network_reconciliations
 SET lease_owner=NULL, lease_until=NULL,
-    next_run_at=clock_timestamp()+$1::bigint*interval '1 microsecond'
-WHERE tenant_id=$2 AND coalesce(vpc_id,subnet_id)=$3::text
-  AND lease_owner=$4 AND lease_epoch=$5 AND lease_until>clock_timestamp()
+    processed_generation=greatest(processed_generation,$1::bigint),
+    evidence_hash=CASE WHEN $2::boolean THEN $3::text ELSE evidence_hash END,
+    evidence_applied_at=CASE WHEN $2::boolean THEN clock_timestamp() ELSE evidence_applied_at END,
+    retry_not_before=CASE WHEN $4::boolean THEN clock_timestamp()+$5::bigint*interval '1 microsecond' ELSE '1970-01-01 UTC'::timestamptz END,
+    next_run_at=CASE WHEN requested_generation>$1::bigint AND NOT $4::boolean THEN clock_timestamp() ELSE clock_timestamp()+$5::bigint*interval '1 microsecond' END
+WHERE tenant_id=$6 AND coalesce(vpc_id,subnet_id)=$7::text
+  AND lease_owner=$8 AND lease_epoch=$9 AND lease_until>clock_timestamp()
 `
 
 type ReleaseLeaseParams struct {
-	DelayMicros int64
-	TenantID    string
-	ResourceID  string
-	Owner       *string
-	Epoch       int64
+	CoveredGeneration int64
+	Observed          bool
+	EvidenceHash      string
+	Backoff           bool
+	DelayMicros       int64
+	TenantID          string
+	ResourceID        string
+	Owner             *string
+	Epoch             int64
 }
 
 func (q *Queries) ReleaseLease(ctx context.Context, arg ReleaseLeaseParams) (int64, error) {
 	result, err := q.db.Exec(ctx, releaseLease,
+		arg.CoveredGeneration,
+		arg.Observed,
+		arg.EvidenceHash,
+		arg.Backoff,
 		arg.DelayMicros,
 		arg.TenantID,
 		arg.ResourceID,

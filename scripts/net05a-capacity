@@ -1,0 +1,50 @@
+#!/usr/bin/env python3
+"""Fixed baseline/current real-PG capacity comparison, serial and resource guarded."""
+import argparse,hashlib,json,os,pathlib,shutil,subprocess,tarfile,time
+p=argparse.ArgumentParser(description=__doc__)
+p.add_argument('--attachments',type=int,choices=[100,1000,2000])
+p.add_argument('--replicas',type=int,choices=[1,2])
+p.add_argument('--variants',choices=['both','net05','net05a'],default='both')
+p.add_argument('--matrix',action='store_true')
+p.add_argument('--small-matrix',action='store_true',help='only the fixed 100 Attachment / 1 and 2 replica cases; never substitutes for the full matrix')
+p.add_argument('--verify-first',action='store_true')
+a=p.parse_args()
+if a.matrix and a.small_matrix:p.error('choose one matrix')
+if not a.matrix and not a.small_matrix and (a.attachments is None or a.replicas is None):p.error('attachments and replicas or a matrix required')
+root=pathlib.Path.cwd(); run=root.parent
+meta=json.loads((run/'snapshot.json').read_text());base=meta['capacity_baseline']
+archive=run/'capacity-baseline.tar.gz'
+assert hashlib.sha256(archive.read_bytes()).hexdigest()==base['archive_sha256']
+baseline=run/'baseline';baseline.mkdir()
+with tarfile.open(archive) as t:t.extractall(baseline,filter='data')
+for item in base['files']:
+ path=baseline/item['path']
+ assert hashlib.sha256(path.read_bytes()).hexdigest()==item['sha256'],item['path']
+ assert ('100755' if path.stat().st_mode&0o111 else '100644')==item['mode']
+# Only the shared measuring harness and controlled HTTP fixture augment baseline.
+shutil.copytree(root/'tests/net05a/provider',baseline/'tests/net05a/provider')
+shutil.copy2(root/'internal/data/net05a_capacity_test.go',baseline/'internal/data/net05a_capacity_test.go')
+shutil.copy2(root/'tests/net05a/capacity-baseline.txt',baseline/'internal/data/net05a_capacity_current_test.go')
+augmented=[{'path':str(f.relative_to(baseline)),'sha256':hashlib.sha256(f.read_bytes()).hexdigest()} for f in [*sorted((baseline/'tests/net05a/provider').glob('*.go')),baseline/'internal/data/net05a_capacity_test.go',baseline/'internal/data/net05a_capacity_current_test.go']]
+(run/'capacity-baseline-harness.json').write_text(json.dumps(augmented,indent=2)+'\n')
+if a.verify_first:
+ subprocess.run(['scripts/net05a-gates','verify','integration','race'],cwd=root,check=True)
+results=[]
+cases=[(n,r) for n in [100,1000,2000] for r in [1,2]] if a.matrix else [(100,1),(100,2)] if a.small_matrix else [(a.attachments,a.replicas)]
+for attachment_count,replica_count in cases:
+ for variant in (['net05','net05a'] if a.variants=='both' else [a.variants]):
+  source=baseline if variant=='net05' else root
+  output=run/'capacity'/f'{variant}-{attachment_count}-{replica_count}';output.mkdir(parents=True)
+  env=os.environ.copy();env.update(NET05A_CAPACITY_ATTACHMENTS=str(attachment_count),NET05A_CAPACITY_REPLICAS=str(replica_count),NET05A_CAPACITY_OUTPUT=str(output))
+  command=['scripts/integration','-run','^TestNET05ACapacity$','-timeout','18m','-v','./internal/data']
+  print(f'capacity start {variant} attachments={attachment_count} replicas={replica_count}',flush=True)
+  with (output/'command.log').open('w') as log:
+   started=time.time();proc=subprocess.Popen(command,cwd=source,env=env,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,text=True)
+   for line in proc.stdout:
+    log.write(line);log.flush()
+    if 'capacity ' in line or 'FAIL' in line or 'PASS' in line:print(line,end='',flush=True)
+   code=proc.wait()
+  result={'attachments':attachment_count,'replicas':replica_count,'variant':variant,'exit':code,'elapsed_seconds':time.time()-started,'command':command,'log_sha256':hashlib.sha256((output/'command.log').read_bytes()).hexdigest()}
+  results.append(result);(run/'capacity-results.json').write_text(json.dumps(results,indent=2)+'\n')
+  print(json.dumps(result),flush=True)
+  if code:raise SystemExit(code)

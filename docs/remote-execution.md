@@ -31,3 +31,11 @@ Go、Buf 和后续 sqlc 等工具使用明确版本，不因远程默认版本�
 远程生成的源码先取回到临时位置、审查差异，再并入本地，不能覆盖期间新增的本地修改。镜像构建不等于镜像发布或环境部署。
 
 首次环境探测与准备结果见 [2026-09-09 远程环境记录](execution/records/2026-09-09-remote-readiness.md)。
+
+## NET-05A 隔离流水线
+
+NET-05A 使用 `scripts/net05a-remote`（单仓）和 `scripts/net05a-pair`（固定 Network/ANI 输入），远端目录为 `net05a-<run-id>`。两者共享本包重任务 flock；实际资源预算与停止记录见 [NET-05A 实施记录](execution/records/NET-05A-implementation.md)。当前采用 GOMAXPROCS=1、GOFLAGS=-p=1、CPUQuota=100%、MemoryMax=2300MiB、MemorySwapMax=0，PG 单独 768MiB/1CPU；一次一条重流水线。本地不运行容量压力。
+
+ANI 完整固定 manifest 用于检查身份，传输时排除 `.claude/settings.local.json`；Git 对象包也不能包含其私有 blob。各快照排除凭据、kubeconfig、私有配置、缓存与本包原始验收输出，排除项随 manifest 记录。生成物由 `scripts/net05a-return-generated` 回传临时位置，逐项审查后 `--apply`，并检查本地期间是否漂移。
+
+固定 kind、kc、节点和已有工作负载只读核验；故障只施加到本 run 的进程、数据库、对象或受限代理。真实业务先经产品 API 释放清理，再撤销本 run 的数据库/角色、进程、RBAC、配置与空 namespace。工具、共享镜像缓存、kind/CNI 和其他任务资源保留；完整恢复与清理证据不能以删除数据库代替。

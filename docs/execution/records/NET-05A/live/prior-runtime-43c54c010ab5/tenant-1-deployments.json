@@ -1,0 +1,339 @@
+{
+  "apiVersion": "v1",
+  "items": [
+    {
+      "apiVersion": "apps/v1",
+      "kind": "Deployment",
+      "metadata": {
+        "annotations": {
+          "ani.io/demo-description": "",
+          "ani.kubercloud.io/network-planes": "tenant_vpc,foundation_mesh",
+          "ani.kubercloud.io/render-mode": "dry-run",
+          "ani.kubercloud.io/runtime-adapter": "planning",
+          "ani.kubercloud.io/storage-kinds": "",
+          "ani.kubercloud.io/subnet-id": "subnet_9e1b5884d6a64182806baf56964e0e85",
+          "ani.kubercloud.io/vpc-id": "vpc_9e3d6b035c674a2a9a6eab4d515d61e7",
+          "ani.kubercloud.io/workload-identity-key-id": "61096668-259e-47d0-a65a-a3c6427fa7b1",
+          "ani.kubercloud.io/workload-identity-secret": "ani-wi-61096668-259e-47d0-a65a",
+          "deployment.kubernetes.io/revision": "1",
+          "ovn.kubernetes.io/logical_switch": "subnet-subnet-9e1b5884d6a64182806baf56964e0e85"
+        },
+        "creationTimestamp": "2026-09-10T07:08:06Z",
+        "generation": 1,
+        "labels": {
+          "ani.kubercloud.io/instance": "net05a-1fae0bbf-relocated-b1-p1",
+          "ani.kubercloud.io/instance-kind": "container",
+          "ani.kubercloud.io/tenant-id": "fd39ecf7-ac0c-4540-9fbd-4ba08486f30f",
+          "app.kubernetes.io/component": "workload",
+          "app.kubernetes.io/part-of": "ani-platform",
+          "network.ani.io/attachment-id": "att_a9f43ba1dc054c5f9bbfa8b9485512e1",
+          "network.ani.io/generation": "1",
+          "network.ani.io/instance-id": "inst_4ec7fee8-3bd6-4954-aff3-7f078b705b58",
+          "network.ani.io/submission-id": "354bf6df-3ee2-4b94-bb67-cdd85a777aa0",
+          "network.ani.io/tenant-id": "fd39ecf7-ac0c-4540-9fbd-4ba08486f30f"
+        },
+        "name": "net05a-1fae0bbf-relocated-b1-p1",
+        "namespace": "net05a-1fae0bbf-fd39ecf7-ac0c-4540-9fbd-4ba08486f30f",
+        "resourceVersion": "146647",
+        "uid": "72179039-c4e2-4084-a6dd-073ec0e6f17f"
+      },
+      "spec": {
+        "progressDeadlineSeconds": 600,
+        "replicas": 1,
+        "revisionHistoryLimit": 10,
+        "selector": {
+          "matchLabels": {
+            "network.ani.io/attachment-id": "att_a9f43ba1dc054c5f9bbfa8b9485512e1",
+            "network.ani.io/generation": "1",
+            "network.ani.io/instance-id": "inst_4ec7fee8-3bd6-4954-aff3-7f078b705b58",
+            "network.ani.io/submission-id": "354bf6df-3ee2-4b94-bb67-cdd85a777aa0",
+            "network.ani.io/tenant-id": "fd39ecf7-ac0c-4540-9fbd-4ba08486f30f"
+          }
+        },
+        "strategy": {
+          "type": "Recreate"
+        },
+        "template": {
+          "metadata": {
+            "annotations": {
+              "ani.io/demo-description": "",
+              "ani.kubercloud.io/network-planes": "tenant_vpc,foundation_mesh",
+              "ani.kubercloud.io/render-mode": "dry-run",
+              "ani.kubercloud.io/runtime-adapter": "planning",
+              "ani.kubercloud.io/storage-kinds": "",
+              "ani.kubercloud.io/subnet-id": "subnet_9e1b5884d6a64182806baf56964e0e85",
+              "ani.kubercloud.io/vpc-id": "vpc_9e3d6b035c674a2a9a6eab4d515d61e7",
+              "ani.kubercloud.io/workload-identity-key-id": "61096668-259e-47d0-a65a-a3c6427fa7b1",
+              "ani.kubercloud.io/workload-identity-secret": "ani-wi-61096668-259e-47d0-a65a",
+              "networking.kubercloud.com/subnet": "net05a-1fae0bbf-fd39ecf7-ac0c-4540-9fbd-4ba08486f30f/subnet-9e1b5884d6a64182806baf56964e0e85"
+            },
+            "labels": {
+              "ani.kubercloud.io/instance": "net05a-1fae0bbf-relocated-b1-p1",
+              "ani.kubercloud.io/tenant-id": "fd39ecf7-ac0c-4540-9fbd-4ba08486f30f",
+              "network.ani.io/attachment-id": "att_a9f43ba1dc054c5f9bbfa8b9485512e1",
+              "network.ani.io/generation": "1",
+              "network.ani.io/instance-id": "inst_4ec7fee8-3bd6-4954-aff3-7f078b705b58",
+              "network.ani.io/submission-id": "354bf6df-3ee2-4b94-bb67-cdd85a777aa0",
+              "network.ani.io/tenant-id": "fd39ecf7-ac0c-4540-9fbd-4ba08486f30f"
+            }
+          },
+          "spec": {
+            "containers": [
+              {
+                "env": [
+                  {
+                    "name": "ANI_WORKLOAD_TOKEN",
+                    "valueFrom": {
+                      "secretKeyRef": {
+                        "key": "token",
+                        "name": "ani-wi-61096668-259e-47d0-a65a"
+                      }
+                    }
+                  },
+                  {
+                    "name": "ANI_WORKLOAD_ID",
+                    "value": "inst_4ec7fee8-3bd6-4954-aff3-7f078b705b58"
+                  },
+                  {
+                    "name": "NET05_ID",
+                    "value": "net05a-1fae0bbf-relocated-b1-p1"
+                  },
+                  {
+                    "name": "NET05_PORT",
+                    "value": "18082"
+                  },
+                  {
+                    "name": "NET05_TERMINATION_DELAY",
+                    "value": "0"
+                  }
+                ],
+                "image": "docker.io/library/net05a-1fae0bbf-probe:ffcf0c98acaedd82",
+                "imagePullPolicy": "IfNotPresent",
+                "name": "net05a-1fae0bbf-relocated-b1-p1",
+                "ports": [
+                  {
+                    "containerPort": 18082,
+                    "name": "probe",
+                    "protocol": "TCP"
+                  }
+                ],
+                "resources": {
+                  "limits": {
+                    "cpu": "250m",
+                    "memory": "64Mi"
+                  },
+                  "requests": {
+                    "cpu": "250m",
+                    "memory": "64Mi"
+                  }
+                },
+                "terminationMessagePath": "/dev/termination-log",
+                "terminationMessagePolicy": "File"
+              }
+            ],
+            "dnsPolicy": "ClusterFirst",
+            "restartPolicy": "Always",
+            "schedulerName": "default-scheduler",
+            "securityContext": {},
+            "terminationGracePeriodSeconds": 30
+          }
+        }
+      },
+      "status": {
+        "availableReplicas": 1,
+        "conditions": [
+          {
+            "lastTransitionTime": "2026-09-10T07:08:07Z",
+            "lastUpdateTime": "2026-09-10T07:08:07Z",
+            "message": "Deployment has minimum availability.",
+            "reason": "MinimumReplicasAvailable",
+            "status": "True",
+            "type": "Available"
+          },
+          {
+            "lastTransitionTime": "2026-09-10T07:08:06Z",
+            "lastUpdateTime": "2026-09-10T07:08:07Z",
+            "message": "ReplicaSet \"net05a-1fae0bbf-relocated-b1-p1-84c664ff8b\" has successfully progressed.",
+            "reason": "NewReplicaSetAvailable",
+            "status": "True",
+            "type": "Progressing"
+          }
+        ],
+        "observedGeneration": 1,
+        "readyReplicas": 1,
+        "replicas": 1,
+        "terminatingReplicas": 0,
+        "updatedReplicas": 1
+      }
+    },
+    {
+      "apiVersion": "apps/v1",
+      "kind": "Deployment",
+      "metadata": {
+        "annotations": {
+          "ani.io/demo-description": "",
+          "ani.kubercloud.io/network-planes": "tenant_vpc,foundation_mesh",
+          "ani.kubercloud.io/render-mode": "dry-run",
+          "ani.kubercloud.io/runtime-adapter": "planning",
+          "ani.kubercloud.io/storage-kinds": "",
+          "ani.kubercloud.io/subnet-id": "subnet_9e1b5884d6a64182806baf56964e0e85",
+          "ani.kubercloud.io/vpc-id": "vpc_9e3d6b035c674a2a9a6eab4d515d61e7",
+          "ani.kubercloud.io/workload-identity-key-id": "b97aee99-7eba-44e6-81ea-9c4384e31d01",
+          "ani.kubercloud.io/workload-identity-secret": "ani-wi-b97aee99-7eba-44e6-81ea",
+          "deployment.kubernetes.io/revision": "1",
+          "ovn.kubernetes.io/logical_switch": "subnet-subnet-9e1b5884d6a64182806baf56964e0e85"
+        },
+        "creationTimestamp": "2026-09-10T07:08:22Z",
+        "generation": 1,
+        "labels": {
+          "ani.kubercloud.io/instance": "net05a-1fae0bbf-relocated-b1-p2",
+          "ani.kubercloud.io/instance-kind": "container",
+          "ani.kubercloud.io/tenant-id": "fd39ecf7-ac0c-4540-9fbd-4ba08486f30f",
+          "app.kubernetes.io/component": "workload",
+          "app.kubernetes.io/part-of": "ani-platform",
+          "network.ani.io/attachment-id": "att_43006102d417473dbf83bd1837b37a4b",
+          "network.ani.io/generation": "1",
+          "network.ani.io/instance-id": "inst_7b5f0dda-c323-4ecd-bbd8-5637327a458b",
+          "network.ani.io/submission-id": "f8ee126e-b41e-4de0-aa23-58d9178061ce",
+          "network.ani.io/tenant-id": "fd39ecf7-ac0c-4540-9fbd-4ba08486f30f"
+        },
+        "name": "net05a-1fae0bbf-relocated-b1-p2",
+        "namespace": "net05a-1fae0bbf-fd39ecf7-ac0c-4540-9fbd-4ba08486f30f",
+        "resourceVersion": "146750",
+        "uid": "7d2a82a2-324d-4fe5-b06e-3cb244e53370"
+      },
+      "spec": {
+        "progressDeadlineSeconds": 600,
+        "replicas": 1,
+        "revisionHistoryLimit": 10,
+        "selector": {
+          "matchLabels": {
+            "network.ani.io/attachment-id": "att_43006102d417473dbf83bd1837b37a4b",
+            "network.ani.io/generation": "1",
+            "network.ani.io/instance-id": "inst_7b5f0dda-c323-4ecd-bbd8-5637327a458b",
+            "network.ani.io/submission-id": "f8ee126e-b41e-4de0-aa23-58d9178061ce",
+            "network.ani.io/tenant-id": "fd39ecf7-ac0c-4540-9fbd-4ba08486f30f"
+          }
+        },
+        "strategy": {
+          "type": "Recreate"
+        },
+        "template": {
+          "metadata": {
+            "annotations": {
+              "ani.io/demo-description": "",
+              "ani.kubercloud.io/network-planes": "tenant_vpc,foundation_mesh",
+              "ani.kubercloud.io/render-mode": "dry-run",
+              "ani.kubercloud.io/runtime-adapter": "planning",
+              "ani.kubercloud.io/storage-kinds": "",
+              "ani.kubercloud.io/subnet-id": "subnet_9e1b5884d6a64182806baf56964e0e85",
+              "ani.kubercloud.io/vpc-id": "vpc_9e3d6b035c674a2a9a6eab4d515d61e7",
+              "ani.kubercloud.io/workload-identity-key-id": "b97aee99-7eba-44e6-81ea-9c4384e31d01",
+              "ani.kubercloud.io/workload-identity-secret": "ani-wi-b97aee99-7eba-44e6-81ea",
+              "networking.kubercloud.com/subnet": "net05a-1fae0bbf-fd39ecf7-ac0c-4540-9fbd-4ba08486f30f/subnet-9e1b5884d6a64182806baf56964e0e85"
+            },
+            "labels": {
+              "ani.kubercloud.io/instance": "net05a-1fae0bbf-relocated-b1-p2",
+              "ani.kubercloud.io/tenant-id": "fd39ecf7-ac0c-4540-9fbd-4ba08486f30f",
+              "network.ani.io/attachment-id": "att_43006102d417473dbf83bd1837b37a4b",
+              "network.ani.io/generation": "1",
+              "network.ani.io/instance-id": "inst_7b5f0dda-c323-4ecd-bbd8-5637327a458b",
+              "network.ani.io/submission-id": "f8ee126e-b41e-4de0-aa23-58d9178061ce",
+              "network.ani.io/tenant-id": "fd39ecf7-ac0c-4540-9fbd-4ba08486f30f"
+            }
+          },
+          "spec": {
+            "containers": [
+              {
+                "env": [
+                  {
+                    "name": "ANI_WORKLOAD_TOKEN",
+                    "valueFrom": {
+                      "secretKeyRef": {
+                        "key": "token",
+                        "name": "ani-wi-b97aee99-7eba-44e6-81ea"
+                      }
+                    }
+                  },
+                  {
+                    "name": "ANI_WORKLOAD_ID",
+                    "value": "inst_7b5f0dda-c323-4ecd-bbd8-5637327a458b"
+                  },
+                  {
+                    "name": "NET05_ID",
+                    "value": "net05a-1fae0bbf-relocated-b1-p2"
+                  },
+                  {
+                    "name": "NET05_PORT",
+                    "value": "18082"
+                  },
+                  {
+                    "name": "NET05_TERMINATION_DELAY",
+                    "value": "0"
+                  }
+                ],
+                "image": "docker.io/library/net05a-1fae0bbf-probe:ffcf0c98acaedd82",
+                "imagePullPolicy": "IfNotPresent",
+                "name": "net05a-1fae0bbf-relocated-b1-p2",
+                "ports": [
+                  {
+                    "containerPort": 18082,
+                    "name": "probe",
+                    "protocol": "TCP"
+                  }
+                ],
+                "resources": {
+                  "limits": {
+                    "cpu": "250m",
+                    "memory": "64Mi"
+                  },
+                  "requests": {
+                    "cpu": "250m",
+                    "memory": "64Mi"
+                  }
+                },
+                "terminationMessagePath": "/dev/termination-log",
+                "terminationMessagePolicy": "File"
+              }
+            ],
+            "dnsPolicy": "ClusterFirst",
+            "restartPolicy": "Always",
+            "schedulerName": "default-scheduler",
+            "securityContext": {},
+            "terminationGracePeriodSeconds": 30
+          }
+        }
+      },
+      "status": {
+        "availableReplicas": 1,
+        "conditions": [
+          {
+            "lastTransitionTime": "2026-09-10T07:08:23Z",
+            "lastUpdateTime": "2026-09-10T07:08:23Z",
+            "message": "Deployment has minimum availability.",
+            "reason": "MinimumReplicasAvailable",
+            "status": "True",
+            "type": "Available"
+          },
+          {
+            "lastTransitionTime": "2026-09-10T07:08:22Z",
+            "lastUpdateTime": "2026-09-10T07:08:23Z",
+            "message": "ReplicaSet \"net05a-1fae0bbf-relocated-b1-p2-58c4c6f986\" has successfully progressed.",
+            "reason": "NewReplicaSetAvailable",
+            "status": "True",
+            "type": "Progressing"
+          }
+        ],
+        "observedGeneration": 1,
+        "readyReplicas": 1,
+        "replicas": 1,
+        "terminatingReplicas": 0,
+        "updatedReplicas": 1
+      }
+    }
+  ],
+  "kind": "List",
+  "metadata": {
+    "resourceVersion": ""
+  }
+}

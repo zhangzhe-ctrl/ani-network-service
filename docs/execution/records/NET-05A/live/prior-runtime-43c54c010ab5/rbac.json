@@ -1,0 +1,194 @@
+[
+  {
+    "identity": "network",
+    "verb": "create",
+    "resource": "vpcs.networking.kubercloud.com",
+    "expected": true,
+    "actual": true,
+    "exit": 0
+  },
+  {
+    "identity": "network",
+    "verb": "create",
+    "resource": "pods",
+    "expected": false,
+    "actual": false,
+    "exit": 1
+  },
+  {
+    "identity": "network",
+    "verb": "delete",
+    "resource": "namespaces",
+    "expected": false,
+    "actual": false,
+    "exit": 1
+  },
+  {
+    "identity": "network",
+    "verb": "update",
+    "resource": "vnics.networking.kubercloud.com",
+    "expected": false,
+    "actual": false,
+    "exit": 1
+  },
+  {
+    "identity": "network",
+    "verb": "watch",
+    "resource": "pods",
+    "expected": true,
+    "actual": true,
+    "exit": 0
+  },
+  {
+    "identity": "network",
+    "verb": "watch",
+    "resource": "vpcs.networking.kubercloud.com",
+    "expected": true,
+    "actual": true,
+    "exit": 0
+  },
+  {
+    "identity": "network",
+    "verb": "watch",
+    "resource": "subnets.networking.kubercloud.com",
+    "expected": true,
+    "actual": true,
+    "exit": 0
+  },
+  {
+    "identity": "network",
+    "verb": "watch",
+    "resource": "vnics.networking.kubercloud.com",
+    "expected": true,
+    "actual": true,
+    "exit": 0
+  },
+  {
+    "identity": "network",
+    "verb": "watch",
+    "resource": "vnicips.networking.kubercloud.com",
+    "expected": true,
+    "actual": true,
+    "exit": 0
+  },
+  {
+    "identity": "network",
+    "verb": "watch",
+    "resource": "eips.networking.kubercloud.com",
+    "expected": true,
+    "actual": true,
+    "exit": 0
+  },
+  {
+    "identity": "network",
+    "verb": "create",
+    "resource": "secrets",
+    "expected": false,
+    "actual": false,
+    "exit": 1
+  },
+  {
+    "identity": "network",
+    "verb": "get",
+    "resource": "secrets",
+    "expected": false,
+    "actual": false,
+    "exit": 1
+  },
+  {
+    "identity": "network",
+    "verb": "create",
+    "resource": "deployments.apps",
+    "expected": false,
+    "actual": false,
+    "exit": 1
+  },
+  {
+    "identity": "ani",
+    "verb": "delete",
+    "resource": "subnets.networking.kubercloud.com",
+    "expected": false,
+    "actual": false,
+    "exit": 1
+  },
+  {
+    "identity": "ani",
+    "verb": "create",
+    "resource": "deployments.apps",
+    "expected": true,
+    "actual": true,
+    "exit": 0
+  },
+  {
+    "identity": "ani",
+    "verb": "create",
+    "resource": "vpcs.networking.kubercloud.com",
+    "expected": false,
+    "actual": false,
+    "exit": 1
+  },
+  {
+    "identity": "runner",
+    "verb": "create",
+    "resource": "pods/exec",
+    "expected": true,
+    "actual": true,
+    "exit": 0
+  },
+  {
+    "identity": "network",
+    "verb": "create",
+    "resource": "pods/exec",
+    "expected": false,
+    "actual": false,
+    "exit": 1
+  },
+  {
+    "identity": "network",
+    "actual_write": "create Pod",
+    "exit": 1,
+    "response": "Error from server (Forbidden): error when creating \"STDIN\": pods is forbidden: User \"system:serviceaccount:net05a-1fae0bbf-control:network\" cannot create resource \"pods\" in API group \"\" in the namespace \"net05a-1fae0bbf-18648eba-1f32-4ddd-9029-c0b84ae0f875\"\n"
+  },
+  {
+    "identity": "network",
+    "actual_list_watch": "pods",
+    "list_exit": 0,
+    "watch_exit": 0,
+    "watch_stderr": ""
+  },
+  {
+    "identity": "network",
+    "actual_list_watch": "vpcs.networking.kubercloud.com",
+    "list_exit": 0,
+    "watch_exit": 0,
+    "watch_stderr": ""
+  },
+  {
+    "identity": "network",
+    "actual_list_watch": "subnets.networking.kubercloud.com",
+    "list_exit": 0,
+    "watch_exit": 0,
+    "watch_stderr": ""
+  },
+  {
+    "identity": "network",
+    "actual_list_watch": "vnics.networking.kubercloud.com",
+    "list_exit": 0,
+    "watch_exit": 0,
+    "watch_stderr": ""
+  },
+  {
+    "identity": "network",
+    "actual_list_watch": "vnicips.networking.kubercloud.com",
+    "list_exit": 0,
+    "watch_exit": 0,
+    "watch_stderr": ""
+  },
+  {
+    "identity": "network",
+    "actual_list_watch": "eips.networking.kubercloud.com",
+    "list_exit": 0,
+    "watch_exit": 0,
+    "watch_stderr": ""
+  }
+]

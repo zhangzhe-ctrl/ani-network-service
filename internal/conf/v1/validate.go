@@ -66,6 +66,23 @@ func (c *Bootstrap) Validate() error {
 	if w.Lease.AsDuration() < 3*w.RequestTimeout.AsDuration() || w.StaleAfter.AsDuration() <= w.ObserveEvery.AsDuration() || w.RetryMax.AsDuration() < w.RetryMin.AsDuration() {
 		return fmt.Errorf("worker lease, observation and retry timing are inconsistent")
 	}
+	if o := c.Network.Observation; o != nil {
+		for _, v := range []struct {
+			name  string
+			value *durationpb.Duration
+			max   time.Duration
+		}{{"audit interval", o.AuditInterval, 40 * time.Second}, {"audit jitter", o.AuditJitter, 5 * time.Second}, {"audit timeout", o.AuditTimeout, 15 * time.Second}, {"notification flush", o.FlushInterval, time.Second}} {
+			if err := validateDuration(v.name, v.value, v.max); err != nil {
+				return err
+			}
+		}
+		if o.RequestQps < 1 || o.RequestQps > 100 || o.RequestBurst < o.RequestQps || o.RequestBurst > 200 {
+			return fmt.Errorf("invalid Kubernetes request budget")
+		}
+		if o.QueueCapacity < 16 || o.QueueCapacity > 65536 || o.WorkersPerKind < 1 || o.WorkersPerKind > 4 || o.AuditInterval.AsDuration()+o.AuditJitter.AsDuration()+o.AuditTimeout.AsDuration() >= w.StaleAfter.AsDuration() {
+			return fmt.Errorf("invalid observation capacity or freshness budget")
+		}
+	}
 	return nil
 }
 

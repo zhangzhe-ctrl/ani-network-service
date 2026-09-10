@@ -1,0 +1,175 @@
+{
+  "apiVersion": "v1",
+  "items": [
+    {
+      "apiVersion": "v1",
+      "kind": "Service",
+      "metadata": {
+        "annotations": {
+          "ani.io/demo-description": "",
+          "ani.kubercloud.io/network-planes": "tenant_vpc,foundation_mesh",
+          "ani.kubercloud.io/render-mode": "dry-run",
+          "ani.kubercloud.io/runtime-adapter": "planning",
+          "ani.kubercloud.io/storage-kinds": "",
+          "ani.kubercloud.io/subnet-id": "subnet_9e1b5884d6a64182806baf56964e0e85",
+          "ani.kubercloud.io/vpc-id": "vpc_9e3d6b035c674a2a9a6eab4d515d61e7",
+          "ani.kubercloud.io/workload-identity-key-id": "61096668-259e-47d0-a65a-a3c6427fa7b1",
+          "ani.kubercloud.io/workload-identity-secret": "ani-wi-61096668-259e-47d0-a65a",
+          "networking.kubercloud.com/lb_vpc": "kcn-system/kcn-cluster",
+          "ovn.kubernetes.io/logical_switch": "subnet-subnet-9e1b5884d6a64182806baf56964e0e85"
+        },
+        "creationTimestamp": "2026-09-10T07:08:05Z",
+        "labels": {
+          "ani.kubercloud.io/instance": "net05a-1fae0bbf-relocated-b1-p1",
+          "ani.kubercloud.io/instance-kind": "container",
+          "ani.kubercloud.io/tenant-id": "fd39ecf7-ac0c-4540-9fbd-4ba08486f30f",
+          "app.kubernetes.io/component": "service",
+          "app.kubernetes.io/part-of": "ani-platform",
+          "network.ani.io/attachment-id": "att_a9f43ba1dc054c5f9bbfa8b9485512e1",
+          "network.ani.io/generation": "1",
+          "network.ani.io/instance-id": "inst_4ec7fee8-3bd6-4954-aff3-7f078b705b58",
+          "network.ani.io/submission-id": "354bf6df-3ee2-4b94-bb67-cdd85a777aa0",
+          "network.ani.io/tenant-id": "fd39ecf7-ac0c-4540-9fbd-4ba08486f30f"
+        },
+        "name": "net05a-1fae0bbf-relocated-b1-p1",
+        "namespace": "net05a-1fae0bbf-fd39ecf7-ac0c-4540-9fbd-4ba08486f30f",
+        "resourceVersion": "146597",
+        "uid": "dbd2313c-83e0-4824-bc23-577cd180efbc"
+      },
+      "spec": {
+        "clusterIP": "10.96.224.54",
+        "clusterIPs": [
+          "10.96.224.54"
+        ],
+        "internalTrafficPolicy": "Cluster",
+        "ipFamilies": [
+          "IPv4"
+        ],
+        "ipFamilyPolicy": "SingleStack",
+        "ports": [
+          {
+            "name": "probe",
+            "port": 18082,
+            "protocol": "TCP",
+            "targetPort": 18082
+          }
+        ],
+        "selector": {
+          "network.ani.io/attachment-id": "att_a9f43ba1dc054c5f9bbfa8b9485512e1",
+          "network.ani.io/generation": "1",
+          "network.ani.io/instance-id": "inst_4ec7fee8-3bd6-4954-aff3-7f078b705b58",
+          "network.ani.io/submission-id": "354bf6df-3ee2-4b94-bb67-cdd85a777aa0",
+          "network.ani.io/tenant-id": "fd39ecf7-ac0c-4540-9fbd-4ba08486f30f"
+        },
+        "sessionAffinity": "None",
+        "type": "ClusterIP"
+      },
+      "status": {
+        "conditions": [
+          {
+            "lastTransitionTime": "2026-09-10T07:08:05Z",
+            "message": "",
+            "reason": "Valid",
+            "status": "True",
+            "type": "KcnValid"
+          },
+          {
+            "lastTransitionTime": "2026-09-10T07:08:05Z",
+            "message": "",
+            "reason": "Ready",
+            "status": "True",
+            "type": "KcnReady"
+          }
+        ],
+        "loadBalancer": {}
+      }
+    },
+    {
+      "apiVersion": "v1",
+      "kind": "Service",
+      "metadata": {
+        "annotations": {
+          "ani.io/demo-description": "",
+          "ani.kubercloud.io/network-planes": "tenant_vpc,foundation_mesh",
+          "ani.kubercloud.io/render-mode": "dry-run",
+          "ani.kubercloud.io/runtime-adapter": "planning",
+          "ani.kubercloud.io/storage-kinds": "",
+          "ani.kubercloud.io/subnet-id": "subnet_9e1b5884d6a64182806baf56964e0e85",
+          "ani.kubercloud.io/vpc-id": "vpc_9e3d6b035c674a2a9a6eab4d515d61e7",
+          "ani.kubercloud.io/workload-identity-key-id": "b97aee99-7eba-44e6-81ea-9c4384e31d01",
+          "ani.kubercloud.io/workload-identity-secret": "ani-wi-b97aee99-7eba-44e6-81ea",
+          "networking.kubercloud.com/lb_vpc": "kcn-system/kcn-cluster",
+          "ovn.kubernetes.io/logical_switch": "subnet-subnet-9e1b5884d6a64182806baf56964e0e85"
+        },
+        "creationTimestamp": "2026-09-10T07:08:20Z",
+        "labels": {
+          "ani.kubercloud.io/instance": "net05a-1fae0bbf-relocated-b1-p2",
+          "ani.kubercloud.io/instance-kind": "container",
+          "ani.kubercloud.io/tenant-id": "fd39ecf7-ac0c-4540-9fbd-4ba08486f30f",
+          "app.kubernetes.io/component": "service",
+          "app.kubernetes.io/part-of": "ani-platform",
+          "network.ani.io/attachment-id": "att_43006102d417473dbf83bd1837b37a4b",
+          "network.ani.io/generation": "1",
+          "network.ani.io/instance-id": "inst_7b5f0dda-c323-4ecd-bbd8-5637327a458b",
+          "network.ani.io/submission-id": "f8ee126e-b41e-4de0-aa23-58d9178061ce",
+          "network.ani.io/tenant-id": "fd39ecf7-ac0c-4540-9fbd-4ba08486f30f"
+        },
+        "name": "net05a-1fae0bbf-relocated-b1-p2",
+        "namespace": "net05a-1fae0bbf-fd39ecf7-ac0c-4540-9fbd-4ba08486f30f",
+        "resourceVersion": "146703",
+        "uid": "e869dcfa-a0bd-4a7e-ba20-97fda1236ff6"
+      },
+      "spec": {
+        "clusterIP": "10.96.99.168",
+        "clusterIPs": [
+          "10.96.99.168"
+        ],
+        "internalTrafficPolicy": "Cluster",
+        "ipFamilies": [
+          "IPv4"
+        ],
+        "ipFamilyPolicy": "SingleStack",
+        "ports": [
+          {
+            "name": "probe",
+            "port": 18082,
+            "protocol": "TCP",
+            "targetPort": 18082
+          }
+        ],
+        "selector": {
+          "network.ani.io/attachment-id": "att_43006102d417473dbf83bd1837b37a4b",
+          "network.ani.io/generation": "1",
+          "network.ani.io/instance-id": "inst_7b5f0dda-c323-4ecd-bbd8-5637327a458b",
+          "network.ani.io/submission-id": "f8ee126e-b41e-4de0-aa23-58d9178061ce",
+          "network.ani.io/tenant-id": "fd39ecf7-ac0c-4540-9fbd-4ba08486f30f"
+        },
+        "sessionAffinity": "None",
+        "type": "ClusterIP"
+      },
+      "status": {
+        "conditions": [
+          {
+            "lastTransitionTime": "2026-09-10T07:08:20Z",
+            "message": "",
+            "reason": "Valid",
+            "status": "True",
+            "type": "KcnValid"
+          },
+          {
+            "lastTransitionTime": "2026-09-10T07:08:20Z",
+            "message": "",
+            "reason": "Ready",
+            "status": "True",
+            "type": "KcnReady"
+          }
+        ],
+        "loadBalancer": {}
+      }
+    }
+  ],
+  "kind": "List",
+  "metadata": {
+    "resourceVersion": ""
+  }
+}

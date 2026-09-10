@@ -99,3 +99,44 @@ func TestWorkerLifecycleReadinessDetectsDependencyLossAndUnexpectedExit(t *testi
 func (unusedProvider) EnsureSubnet(context.Context, biz.ProviderTarget) (biz.ProviderObservation, error) {
 	return biz.ProviderObservation{}, nil
 }
+
+type channelStepper struct {
+	entered chan struct{}
+	wait    bool
+}
+
+func (s channelStepper) Step(ctx context.Context) (bool, error) {
+	select {
+	case s.entered <- struct{}{}:
+	default:
+	}
+	if s.wait {
+		<-ctx.Done()
+	}
+	return false, nil
+}
+func TestNET05ASlowAttachmentCannotOccupyResourceExecution(t *testing.T) {
+	resource, attachment := make(chan struct{}, 10), make(chan struct{}, 10)
+	s := server.NewWorkerServer(channelStepper{resource, false}, &lifecycleRepository{}, slog.New(slog.NewTextHandler(io.Discard, nil)), 5*time.Millisecond, channelStepper{attachment, true})
+	if e := s.SetConcurrency(2); e != nil {
+		t.Fatal(e)
+	}
+	ctx, cancel := context.WithCancel(context.Background())
+	done := make(chan error, 1)
+	go func() { done <- s.Start(ctx) }()
+	defer func() { cancel(); <-done }()
+	for i := 0; i < 2; i++ {
+		select {
+		case <-attachment:
+		case <-time.After(time.Second):
+			t.Fatal("attachment capacity missing")
+		}
+	}
+	for i := 0; i < 5; i++ {
+		select {
+		case <-resource:
+		case <-time.After(time.Second):
+			t.Fatal("slow owner blocked resource lane")
+		}
+	}
+}

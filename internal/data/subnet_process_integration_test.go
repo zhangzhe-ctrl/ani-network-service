@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"github.com/google/uuid"
 	networkv1 "github.com/zhangzhe-ctrl/ani-network-service/api/network/v1"
+	controlled "github.com/zhangzhe-ctrl/ani-network-service/tests/net05a/provider"
 	"github.com/zhangzhe-ctrl/ani-network-service/tests/testenv"
 	"net/http"
 	"net/http/httptest"
@@ -41,7 +42,8 @@ func TestSubnetProcessesRecoverT1ProviderSuccessAndUnknownDeletion(t *testing.T)
 			if output, err := migration.CombinedOutput(); err != nil {
 				t.Fatalf("explicit migration replay failed: %v %s", err, output)
 			}
-			api := &testenv.KC{}
+			protocol := controlled.New()
+			api := protocol.Backend
 			reached := make(chan struct{})
 			release := make(chan struct{})
 			var captured atomic.Bool
@@ -75,7 +77,7 @@ func TestSubnetProcessesRecoverT1ProviderSuccessAndUnknownDeletion(t *testing.T)
 					_, _ = w.Write(recorder.Body.Bytes())
 					return
 				}
-				api.ServeHTTP(w, r)
+				protocol.ServeHTTP(w, r)
 			}))
 			defer host.Close()
 			defer close(release)

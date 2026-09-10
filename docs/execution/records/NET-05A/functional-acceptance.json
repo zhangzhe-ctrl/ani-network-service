@@ -1,0 +1,280 @@
+{
+  "at": "2026-09-10T08:41:21.170713+00:00",
+  "functional_status": "pass",
+  "source_pair": "20260910T073025Z-6e6ac2fa",
+  "runtime": "net05a-1fae0bbf",
+  "normal_image": {
+    "container": "7bc8d2d0ae0c8e7676e03a8772c9ac72dc41832d888e44cea86828376a58b276",
+    "image_id": "sha256:8f7ef6096055640ea957132834be54f9d983d7b96228c99133d2449d5328f359",
+    "binary_sha256": "17ff788833a0be36c9198cf9fcb8151825504d49a95978663043b710d681bc0b",
+    "argv": [
+      "/ani-network-service",
+      "-conf",
+      "/home/ubuntu/workspace/ani-network-service-runs/net05a-20260910T073025Z-6e6ac2fa/network/configs"
+    ]
+  },
+  "final_build_gates": [
+    {
+      "gate": "verify",
+      "command": [
+        "make",
+        "verify"
+      ],
+      "started": "2026-09-10T07:30:41.395131+00:00",
+      "finished": "2026-09-10T07:31:37.218922+00:00",
+      "exit": 0,
+      "status": "pass",
+      "log": "/home/ubuntu/workspace/ani-network-service-runs/net05a-20260910T073025Z-6e6ac2fa/gates/verify.log",
+      "sha256": "6653f4a580becdaef5b1e0d79b7399065b11980a792827ced77e45511ba0dbe3"
+    },
+    {
+      "gate": "integration",
+      "command": [
+        "make",
+        "integration"
+      ],
+      "started": "2026-09-10T07:31:37.219933+00:00",
+      "finished": "2026-09-10T07:33:19.687036+00:00",
+      "exit": 0,
+      "status": "pass",
+      "log": "/home/ubuntu/workspace/ani-network-service-runs/net05a-20260910T073025Z-6e6ac2fa/gates/integration.log",
+      "sha256": "6c99e2171d1ae165130d64739ce5b0b04a882d03a842c8bac04c89944dbe7ebf"
+    },
+    {
+      "gate": "race",
+      "command": [
+        "make",
+        "race"
+      ],
+      "started": "2026-09-10T07:33:19.687448+00:00",
+      "finished": "2026-09-10T07:35:26.142541+00:00",
+      "exit": 0,
+      "status": "pass",
+      "log": "/home/ubuntu/workspace/ani-network-service-runs/net05a-20260910T073025Z-6e6ac2fa/gates/race.log",
+      "sha256": "918c33b4515069cd6ba2457f9981d785e79fccbc6baceb60c5a76b2c7372294e"
+    }
+  ],
+  "final_gates": [
+    {
+      "name": "network-verify",
+      "exit": 0,
+      "status": "pass",
+      "expected_exit": 0,
+      "sha256": "6653f4a580becdaef5b1e0d79b7399065b11980a792827ced77e45511ba0dbe3"
+    },
+    {
+      "name": "network-race-postgres",
+      "exit": 0,
+      "status": "pass",
+      "expected_exit": 0,
+      "sha256": "918c33b4515069cd6ba2457f9981d785e79fccbc6baceb60c5a76b2c7372294e"
+    },
+    {
+      "name": "network-tenant-mutations",
+      "exit": 0,
+      "status": "pass",
+      "expected_exit": 0,
+      "sha256": "90a1eb1e7a78a068a7c23661457496fdc6b1e1c29f21b47a4b9109bddd9323f2"
+    },
+    {
+      "name": "network-audit",
+      "exit": 0,
+      "status": "pass",
+      "expected_exit": 0,
+      "sha256": "2c62fca44563ee187254b4e9816cc04c52cc6eff089c2d319f4b7e6aa6c33d4b"
+    },
+    {
+      "name": "ani-net05-regressions",
+      "exit": 0,
+      "status": "pass",
+      "expected_exit": 0,
+      "sha256": "29a0992a5e73785f4fb0cad713e6df741d95dcafb75d9fa4317e05c41d9e1b53"
+    },
+    {
+      "name": "ani-test",
+      "exit": 0,
+      "status": "pass",
+      "expected_exit": 0,
+      "sha256": "d7407cf540539ce4bc96f1b9c43513c2db66af4c4a62aedb72a5c84963c2c0a2"
+    },
+    {
+      "name": "ani-architecture-docs",
+      "exit": 0,
+      "status": "pass",
+      "expected_exit": 0,
+      "sha256": "07d9a6bd8370d4a4bd085d2ab28f2a05a50cd263276372b2462e2b52f657c2d0"
+    },
+    {
+      "name": "ani-network-openapi-contract",
+      "exit": 0,
+      "status": "pass",
+      "expected_exit": 0,
+      "sha256": "10af489156166e29a12161f781a68a6b0e5d4d92ef9d66804ca9e737fcb80a7f"
+    },
+    {
+      "name": "ani-existing-compatibility",
+      "exit": 2,
+      "status": "fail",
+      "expected_exit": 2,
+      "sha256": "9ec7678bf387dbfe30150e1c9300430f9ba4a1236b1e9dd4eb798bc465ff24f9"
+    },
+    {
+      "name": "ani-no-new-compatibility",
+      "exit": 0,
+      "status": "pass",
+      "expected_exit": 0,
+      "sha256": "ab5bcf23717a59b20b90585ad7d1bf3b0ce9c29455e2a0a814428ed0d1a1c1b9"
+    },
+    {
+      "name": "ani-existing-atlas",
+      "exit": 1,
+      "status": "fail",
+      "expected_exit": 1,
+      "sha256": "36fa17edd0795dc9799c10d323eead43c3e72cbfe503f5096e4f99dd0c6c9fef"
+    }
+  ],
+  "live_case_markers": [
+    {
+      "at": "2026-09-10T07:44:05.486798+00:00",
+      "case": "V-12",
+      "status": "pass",
+      "note": "identity-bearing bidirectional traffic, controls and routes recorded"
+    },
+    {
+      "at": "2026-09-10T07:50:09.395329+00:00",
+      "case": "V-04-05-13-main-api",
+      "status": "pass",
+      "checks": "nine routes; permanent identities; overlap; strict inputs; cursor binding; cross tenant; tombstones"
+    },
+    {
+      "at": "2026-09-10T07:52:18.888291+00:00",
+      "case": "V-09",
+      "status": "pass",
+      "checks": "paused worker, unchanged DB versions/provider calls, stale exposed, new Prepare rejected, resumed progression"
+    },
+    {
+      "at": "2026-09-10T07:52:52.568070+00:00",
+      "case": "V-06-07-T1",
+      "status": "pass",
+      "checks": "real T1, no worker claim, both exited, Network alone completed without API query"
+    },
+    {
+      "at": "2026-09-10T07:53:47.105450+00:00",
+      "case": "V-07-provider-windows",
+      "status": "pass",
+      "checks": "actual Provider success before T4, delete accepted before confirmed, same UID and durable intent after restart"
+    },
+    {
+      "at": "2026-09-10T07:54:49.524035+00:00",
+      "case": "V-08-lease",
+      "status": "pass",
+      "note": "two real mains, DB clock lease takeover, actual Finish with expired work and live Go context rejected by DB epoch/version fence"
+    },
+    {
+      "at": "2026-09-10T07:55:47.169658+00:00",
+      "case": "V-08-11-unknown-late",
+      "status": "pass",
+      "checks": "real delayed POST, timeout, restart/404 without resubmit, eventual same UID adoption, delayed DELETE response cannot regress tombstone"
+    },
+    {
+      "at": "2026-09-10T07:56:55.853624+00:00",
+      "case": "V-11-provider-failures",
+      "status": "pass",
+      "checks": "transport loss, actual API 403, both restored with stable intent; unknown handled separately"
+    },
+    {
+      "at": "2026-09-10T07:59:29.535000+00:00",
+      "case": "V-10-owner-create-recovery",
+      "status": "pass",
+      "checks": "reserved across leases/restarts; real unknown POST/404 no resend; lost Confirm self-recovered; stable attachment and Pod UID"
+    },
+    {
+      "at": "2026-09-10T08:01:33.733390+00:00",
+      "case": "V-10-owner-delete-recovery",
+      "status": "pass",
+      "checks": "held real owner DELETE retains actual Pod/NIC/IP; releasing protects subnet; closed owner identity revoked; lost Release and consumer outage; individual/simultaneous restarts; Network releases only after real absence and closed consumer"
+    },
+    {
+      "at": "2026-09-10T08:05:36.583884+00:00",
+      "case": "V-19-real-observation",
+      "status": "pass",
+      "checks": "actual new image; six real List/Watch sources; natural kc status; isolated stream disconnect/reconnect; public acceptance and cleanup"
+    },
+    {
+      "at": "2026-09-10T08:21:08.848258+00:00",
+      "case": "product-cleanup",
+      "status": "pass",
+      "checks": "all owner submissions closed, identities revoked, attachments released, actual CR/workload/NIC/IP absence, stable bindings/history/tombstones and zero subnet_count"
+    }
+  ],
+  "normal_dataplane": {
+    "status": "pass",
+    "new_wave": "auditfix",
+    "pods": 9,
+    "nodes": [
+      "kc062-worker",
+      "kc062-worker2"
+    ],
+    "traffic_checks": 177,
+    "negative_checks": 48,
+    "negative_paired_controls": 96,
+    "cases": {
+      "endpoint-listener-identity": 9,
+      "same-subnet-same-node": 6,
+      "same-subnet-cross-node": 6,
+      "same-vpc-cross-subnet": 8,
+      "isolation-domain-positive-control": 4,
+      "paired-domain-positive-control": 96,
+      "same-tenant-cross-vpc-overlap": 20,
+      "cross-tenant-overlap": 20,
+      "cross-tenant-second-domain": 8
+    },
+    "evidence": "live/traffic.jsonl.gz"
+  },
+  "product_cleanup": {
+    "status": "pass",
+    "attachments_released": 30,
+    "owners_closed_and_identity_revoked": 30,
+    "vpcs_deleted": 25,
+    "subnets_deleted": 8,
+    "evidence": "live/database-20260910T082104Z.json.gz"
+  },
+  "fixture_cleanup": {
+    "at": "2026-09-10T08:37:59.590034+00:00",
+    "status": "pass",
+    "run": "net05a-1fae0bbf",
+    "removed_count": 65,
+    "private_directory_absent": true,
+    "owned_containers_absent": true,
+    "owned_docker_network_absent": true,
+    "owned_processes_absent": true,
+    "original_inventory_count": 344,
+    "post_inventory_count": 344,
+    "original_inventory_uids_preserved": true,
+    "added_inventory": [],
+    "postflight_checks": {
+      "identity": true,
+      "nodes": true,
+      "cni_health": true,
+      "cni_image": true,
+      "install_hash": true
+    }
+  },
+  "upgrade_rollback": {
+    "schema_upgrade": "pass with historical intents preserved",
+    "exact_old_main_against_schema4": "fail as designed; guarded refusal before row changes",
+    "guard_and_new_main_recovery": "pass",
+    "evidence": "live/V-17-exact-old-binary-rollback-guard.json"
+  },
+  "capacity": {
+    "fixed_100_comparisons": "pass",
+    "supplement_run": "20260910T083645Z-6386a4b5",
+    "report": "stages/20260910T083645Z-6386a4b5/capacity-evaluation.json",
+    "large_1000_2000": "not_verified; user-authorized deferral"
+  },
+  "limits": [
+    "Controlled protocol tests and real PostgreSQL do not substitute for real Kubernetes Watch/dataplane; both are recorded separately.",
+    "Fault hooks belong to explicit test overlay builds; normal main/image dataplane proof is separate.",
+    "No VM/IAM/production cutover or source-to-deployed-kc-image provenance claim."
+  ]
+}

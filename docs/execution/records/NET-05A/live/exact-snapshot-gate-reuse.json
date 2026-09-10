@@ -1,0 +1,60 @@
+{
+  "source_pair": "/home/ubuntu/workspace/ani-network-service-runs/net05a-20260910T073025Z-6e6ac2fa",
+  "required_new_gates": "not_verified",
+  "gates": [
+    {
+      "name": "network-verify",
+      "command": [
+        "make",
+        "verify"
+      ],
+      "cwd": "/home/ubuntu/workspace/ani-network-service-runs/net05a-20260910T073025Z-6e6ac2fa/network",
+      "started_at": "2026-09-10T07:30:41.395131+00:00",
+      "finished_at": "2026-09-10T07:31:37.218922+00:00",
+      "exit": 0,
+      "expected_exit": 0,
+      "status": "pass",
+      "expectation_met": true,
+      "log": "gates/network-verify.log",
+      "sha256": "6653f4a580becdaef5b1e0d79b7399065b11980a792827ced77e45511ba0dbe3",
+      "reuse": "same exact source snapshot; original gate receipt /home/ubuntu/workspace/ani-network-service-runs/net05a-20260910T073025Z-6e6ac2fa/gates/results.json"
+    },
+    {
+      "name": "network-race-postgres",
+      "command": [
+        "make",
+        "race"
+      ],
+      "cwd": "/home/ubuntu/workspace/ani-network-service-runs/net05a-20260910T073025Z-6e6ac2fa/network",
+      "started_at": "2026-09-10T07:33:19.687448+00:00",
+      "finished_at": "2026-09-10T07:35:26.142541+00:00",
+      "exit": 0,
+      "expected_exit": 0,
+      "status": "pass",
+      "expectation_met": true,
+      "log": "gates/network-race-postgres.log",
+      "sha256": "918c33b4515069cd6ba2457f9981d785e79fccbc6baceb60c5a76b2c7372294e",
+      "reuse": "same exact source snapshot; original gate receipt /home/ubuntu/workspace/ani-network-service-runs/net05a-20260910T073025Z-6e6ac2fa/gates/results.json"
+    },
+    {
+      "name": "ani-existing-atlas",
+      "command": [
+        "/home/ubuntu/.local/share/ani-network-service/bin/atlas-v1.3.0",
+        "migrate",
+        "validate",
+        "--dir",
+        "file://deploy/migrations"
+      ],
+      "cwd": "/home/ubuntu/workspace/ani-network-service-runs/net05a-20260910T073025Z-6e6ac2fa/ani/repo",
+      "started_at": "2026-09-10T08:26:57.445916+00:00",
+      "finished_at": "2026-09-10T08:26:58.230756+00:00",
+      "exit": 1,
+      "expected_exit": 1,
+      "status": "fail",
+      "expectation_met": true,
+      "log": "gates/ani-existing-atlas.log",
+      "sha256": "36fa17edd0795dc9799c10d323eead43c3e72cbfe503f5096e4f99dd0c6c9fef"
+    }
+  ],
+  "purpose": "Reuse only actual completed exact-snapshot gate receipts; remaining final gates have not run."
+}

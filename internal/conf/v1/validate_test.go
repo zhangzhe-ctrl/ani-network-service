@@ -125,3 +125,33 @@ func TestBootstrapRequiresVPCDependenciesAndBoundedWorkerTiming(t *testing.T) {
 		t.Fatal("missing business dependencies accepted")
 	}
 }
+
+func TestNET05AObservationBudgetsAreBounded(t *testing.T) {
+	baseline := validConfig()
+	baseline.Network.Observation = &Observation{AuditInterval: durationpb.New(30 * time.Second), AuditJitter: durationpb.New(2 * time.Second), AuditTimeout: durationpb.New(10 * time.Second), FlushInterval: durationpb.New(100 * time.Millisecond), QueueCapacity: 4096, WorkersPerKind: 2, RequestQps: 5, RequestBurst: 10}
+	if e := baseline.Validate(); e != nil {
+		t.Fatal(e)
+	}
+	for name, mutate := range map[string]func(*Observation){
+		"missing interval": func(o *Observation) { o.AuditInterval = nil },
+		"zero flush":       func(o *Observation) { o.FlushInterval = durationpb.New(0) },
+		"unbounded jitter": func(o *Observation) { o.AuditJitter = durationpb.New(6 * time.Second) },
+		"no freshness headroom": func(o *Observation) {
+			o.AuditInterval = durationpb.New(40 * time.Second)
+			o.AuditJitter = durationpb.New(5 * time.Second)
+			o.AuditTimeout = durationpb.New(15 * time.Second)
+		},
+		"unbounded memory":  func(o *Observation) { o.QueueCapacity = 65537 },
+		"unbounded workers": func(o *Observation) { o.WorkersPerKind = 5 },
+		"zero qps":          func(o *Observation) { o.RequestQps = 0 },
+		"unbounded burst":   func(o *Observation) { o.RequestBurst = 201 },
+	} {
+		t.Run(name, func(t *testing.T) {
+			c := proto.Clone(baseline).(*Bootstrap)
+			mutate(c.Network.Observation)
+			if e := c.Validate(); e == nil {
+				t.Fatal("unsafe observation budget accepted")
+			}
+		})
+	}
+}

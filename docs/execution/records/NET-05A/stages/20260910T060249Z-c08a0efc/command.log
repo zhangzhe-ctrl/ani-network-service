@@ -1,0 +1,17 @@
+test "$(/home/ubuntu/workspace/ani-network-service-runs/net05a-20260910T060249Z-c08a0efc/source/.tools/bin/buf --version)" = "1.60.0"
+test "$(go version -m /home/ubuntu/workspace/ani-network-service-runs/net05a-20260910T060249Z-c08a0efc/source/.tools/bin/buf | awk '$1 == "mod" {print $2 "@" $3; exit}')" = "github.com/bufbuild/buf@v1.60.0"
+/home/ubuntu/workspace/ani-network-service-runs/net05a-20260910T060249Z-c08a0efc/source/.tools/bin/buf lint
+/home/ubuntu/workspace/ani-network-service-runs/net05a-20260910T060249Z-c08a0efc/source/.tools/bin/buf build
+/home/ubuntu/workspace/ani-network-service-runs/net05a-20260910T060249Z-c08a0efc/source/.tools/bin/buf generate --template buf.gen.yaml
+test "$(/home/ubuntu/workspace/ani-network-service-runs/net05a-20260910T060249Z-c08a0efc/source/.tools/bin/sqlc version)" = "v1.31.1"
+test "$(go version -m /home/ubuntu/workspace/ani-network-service-runs/net05a-20260910T060249Z-c08a0efc/source/.tools/bin/sqlc | awk '$1 == "mod" {print $2 "@" $3; exit}')" = "github.com/sqlc-dev/sqlc@v1.31.1"
+/home/ubuntu/workspace/ani-network-service-runs/net05a-20260910T060249Z-c08a0efc/source/.tools/bin/sqlc generate
+go generate ./...
+find . -type f -name '*.go' -not -path './.git/*' -not -path './.tools/*' -not -path './.work/*' -not -path './.tmp/*' -print0 | xargs -0 --no-run-if-empty gofmt -w
+ok  	github.com/zhangzhe-ctrl/ani-network-service/internal/biz	0.003s
+ok  	github.com/zhangzhe-ctrl/ani-network-service/internal/server	2.024s
+ok  	github.com/zhangzhe-ctrl/ani-network-service/internal/conf/v1	0.008s
+127.0.0.1:5432 - accepting connections
+PostgreSQL image=docker.io/library/postgres@sha256:4ef4dbc939d61acea57712655ddb4b4ab27419c913f94cca0cd57cb3ea3c2280 container=7e1217ea74d12630bbb0dddde763758b44fa9dfea9f304d34297f05eb315ea15
+ok  	github.com/zhangzhe-ctrl/ani-network-service/internal/data	9.507s
+removed task container=7e1217ea74d12630bbb0dddde763758b44fa9dfea9f304d34297f05eb315ea15

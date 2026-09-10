@@ -1,0 +1,19 @@
+./scripts/integration ./...
+127.0.0.1:5432 - accepting connections
+PostgreSQL image=docker.io/library/postgres@sha256:4ef4dbc939d61acea57712655ddb4b4ab27419c913f94cca0cd57cb3ea3c2280 container=e78172c32ceae328424f46717ceb48a3620073396ce87b77599c29eb32ff1d4a
+?   	github.com/zhangzhe-ctrl/ani-network-service/api/network/v1	[no test files]
+ok  	github.com/zhangzhe-ctrl/ani-network-service/cmd/ani-network-service	3.601s
+ok  	github.com/zhangzhe-ctrl/ani-network-service/internal/biz	0.004s
+ok  	github.com/zhangzhe-ctrl/ani-network-service/internal/conf/v1	0.010s
+ok  	github.com/zhangzhe-ctrl/ani-network-service/internal/data	80.001s
+?   	github.com/zhangzhe-ctrl/ani-network-service/internal/data/sqlcgen	[no test files]
+ok  	github.com/zhangzhe-ctrl/ani-network-service/internal/server	2.030s
+?   	github.com/zhangzhe-ctrl/ani-network-service/internal/service	[no test files]
+?   	github.com/zhangzhe-ctrl/ani-network-service/migrations	[no test files]
+?   	github.com/zhangzhe-ctrl/ani-network-service/tests/net05	[no test files]
+?   	github.com/zhangzhe-ctrl/ani-network-service/tests/net05/relay	[no test files]
+?   	github.com/zhangzhe-ctrl/ani-network-service/tests/net05/rpc	[no test files]
+ok  	github.com/zhangzhe-ctrl/ani-network-service/tests/net05a/provider	0.010s
+ok  	github.com/zhangzhe-ctrl/ani-network-service/tests/runtime	0.039s
+?   	github.com/zhangzhe-ctrl/ani-network-service/tests/testenv	[no test files]
+removed task container=e78172c32ceae328424f46717ceb48a3620073396ce87b77599c29eb32ff1d4a

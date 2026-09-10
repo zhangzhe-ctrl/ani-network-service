@@ -1,0 +1,218 @@
+{
+  "at": "2026-09-10T08:35:48.443179+00:00",
+  "host": "i-8yg2l7u8",
+  "source_pair": "/home/ubuntu/workspace/ani-network-service-runs/net05a-20260910T073025Z-6e6ac2fa",
+  "prior_source_pair": "/home/ubuntu/workspace/ani-network-service-runs/net05a-20260910T073025Z-6e6ac2fa",
+  "sources": {
+    "network": {
+      "base": "72cdd974d0d25dfd3d65051ac91a03e0e92da0d2",
+      "tree": "4f614625d2f748fabdb9af64f63ec1414da06bea",
+      "archive_sha256": "f0e18c0384e219e30ce55fc25608840006093909d3f798ca1e9dcb18552d4463",
+      "remote_snapshot_commit": "933dc5601cb1eb3977bb69a257b389b2b258162b"
+    },
+    "ani": {
+      "base": "0363b6b5f906886c3ab2748ef68940c562b93382",
+      "tree": "113d664efc7baa96ab1e16bbd9a021ad612c999b",
+      "archive_sha256": "8e67103c962dd89747a73d183aaa55b082b12ae3000036d53383c31cb184c67b",
+      "remote_snapshot_commit": "510fa72c6fd7c20071d0ce23c13df7316960a737"
+    }
+  },
+  "required_new_gates": "pass",
+  "gates": [
+    {
+      "name": "network-verify",
+      "command": [
+        "make",
+        "verify"
+      ],
+      "cwd": "/home/ubuntu/workspace/ani-network-service-runs/net05a-20260910T073025Z-6e6ac2fa/network",
+      "started_at": "2026-09-10T07:30:41.395131+00:00",
+      "finished_at": "2026-09-10T07:31:37.218922+00:00",
+      "exit": 0,
+      "expected_exit": 0,
+      "status": "pass",
+      "expectation_met": true,
+      "log": "gates/network-verify.log",
+      "sha256": "6653f4a580becdaef5b1e0d79b7399065b11980a792827ced77e45511ba0dbe3",
+      "reuse": "same exact source snapshot; original gate receipt /home/ubuntu/workspace/ani-network-service-runs/net05a-20260910T073025Z-6e6ac2fa/gates/results.json"
+    },
+    {
+      "name": "network-race-postgres",
+      "command": [
+        "make",
+        "race"
+      ],
+      "cwd": "/home/ubuntu/workspace/ani-network-service-runs/net05a-20260910T073025Z-6e6ac2fa/network",
+      "started_at": "2026-09-10T07:33:19.687448+00:00",
+      "finished_at": "2026-09-10T07:35:26.142541+00:00",
+      "exit": 0,
+      "expected_exit": 0,
+      "status": "pass",
+      "expectation_met": true,
+      "log": "gates/network-race-postgres.log",
+      "sha256": "918c33b4515069cd6ba2457f9981d785e79fccbc6baceb60c5a76b2c7372294e",
+      "reuse": "same exact source snapshot; original gate receipt /home/ubuntu/workspace/ani-network-service-runs/net05a-20260910T073025Z-6e6ac2fa/gates/results.json"
+    },
+    {
+      "name": "network-tenant-mutations",
+      "command": [
+        "make",
+        "tenant-mutations"
+      ],
+      "cwd": "/home/ubuntu/workspace/ani-network-service-runs/net05a-20260910T073025Z-6e6ac2fa/network",
+      "started_at": "2026-09-10T08:26:58.274027+00:00",
+      "finished_at": "2026-09-10T08:27:43.138569+00:00",
+      "exit": 0,
+      "expected_exit": 0,
+      "status": "pass",
+      "expectation_met": true,
+      "log": "gates/network-tenant-mutations.log",
+      "sha256": "90a1eb1e7a78a068a7c23661457496fdc6b1e1c29f21b47a4b9109bddd9323f2"
+    },
+    {
+      "name": "network-audit",
+      "command": [
+        "make",
+        "audit"
+      ],
+      "cwd": "/home/ubuntu/workspace/ani-network-service-runs/net05a-20260910T073025Z-6e6ac2fa/network",
+      "started_at": "2026-09-10T08:27:43.139657+00:00",
+      "finished_at": "2026-09-10T08:28:21.949548+00:00",
+      "exit": 0,
+      "expected_exit": 0,
+      "status": "pass",
+      "expectation_met": true,
+      "log": "gates/network-audit.log",
+      "sha256": "2c62fca44563ee187254b4e9816cc04c52cc6eff089c2d319f4b7e6aa6c33d4b"
+    },
+    {
+      "name": "ani-net05-regressions",
+      "command": [
+        "go",
+        "test",
+        "-count=1",
+        "-run",
+        "TestNET05|TestNetworkLifecycleExplicitInstanceRejectsInvalidScopeBeforeWrites",
+        "-v",
+        "./pkg/adapters/runtime",
+        "./services/ani-gateway/internal/router"
+      ],
+      "cwd": "/home/ubuntu/workspace/ani-network-service-runs/net05a-20260910T073025Z-6e6ac2fa/ani/repo",
+      "started_at": "2026-09-10T08:28:21.950365+00:00",
+      "finished_at": "2026-09-10T08:29:02.555207+00:00",
+      "exit": 0,
+      "expected_exit": 0,
+      "status": "pass",
+      "expectation_met": true,
+      "log": "gates/ani-net05-regressions.log",
+      "sha256": "29a0992a5e73785f4fb0cad713e6df741d95dcafb75d9fa4317e05c41d9e1b53"
+    },
+    {
+      "name": "ani-test",
+      "command": [
+        "make",
+        "test"
+      ],
+      "cwd": "/home/ubuntu/workspace/ani-network-service-runs/net05a-20260910T073025Z-6e6ac2fa/ani/repo",
+      "started_at": "2026-09-10T08:29:02.556146+00:00",
+      "finished_at": "2026-09-10T08:34:55.034616+00:00",
+      "exit": 0,
+      "expected_exit": 0,
+      "status": "pass",
+      "expectation_met": true,
+      "log": "gates/ani-test.log",
+      "sha256": "d7407cf540539ce4bc96f1b9c43513c2db66af4c4a62aedb72a5c84963c2c0a2"
+    },
+    {
+      "name": "ani-architecture-docs",
+      "command": [
+        "make",
+        "validate-architecture",
+        "validate-doc-entrypoints"
+      ],
+      "cwd": "/home/ubuntu/workspace/ani-network-service-runs/net05a-20260910T073025Z-6e6ac2fa/ani/repo",
+      "started_at": "2026-09-10T08:34:55.041826+00:00",
+      "finished_at": "2026-09-10T08:35:08.626875+00:00",
+      "exit": 0,
+      "expected_exit": 0,
+      "status": "pass",
+      "expectation_met": true,
+      "log": "gates/ani-architecture-docs.log",
+      "sha256": "07d9a6bd8370d4a4bd085d2ab28f2a05a50cd263276372b2462e2b52f657c2d0"
+    },
+    {
+      "name": "ani-network-openapi-contract",
+      "command": [
+        "make",
+        "validate-network-integration",
+        "validate-openapi-spec",
+        "validate-services-route-contract"
+      ],
+      "cwd": "/home/ubuntu/workspace/ani-network-service-runs/net05a-20260910T073025Z-6e6ac2fa/ani/repo",
+      "started_at": "2026-09-10T08:35:08.627355+00:00",
+      "finished_at": "2026-09-10T08:35:39.915273+00:00",
+      "exit": 0,
+      "expected_exit": 0,
+      "status": "pass",
+      "expectation_met": true,
+      "log": "gates/ani-network-openapi-contract.log",
+      "sha256": "10af489156166e29a12161f781a68a6b0e5d4d92ef9d66804ca9e737fcb80a7f"
+    },
+    {
+      "name": "ani-existing-compatibility",
+      "command": [
+        "make",
+        "validate-core-api-compatibility"
+      ],
+      "cwd": "/home/ubuntu/workspace/ani-network-service-runs/net05a-20260910T073025Z-6e6ac2fa/ani/repo",
+      "started_at": "2026-09-10T08:35:39.915869+00:00",
+      "finished_at": "2026-09-10T08:35:42.756981+00:00",
+      "exit": 2,
+      "expected_exit": 2,
+      "status": "fail",
+      "expectation_met": true,
+      "log": "gates/ani-existing-compatibility.log",
+      "sha256": "9ec7678bf387dbfe30150e1c9300430f9ba4a1236b1e9dd4eb798bc465ff24f9"
+    },
+    {
+      "name": "ani-no-new-compatibility",
+      "command": [
+        "/home/ubuntu/.local/share/ani-network-service/net0204-python/bin/python3",
+        "-B",
+        "/home/ubuntu/workspace/ani-network-service-runs/net05a-20260910T073025Z-6e6ac2fa/network/scripts/check-net0204-compatibility",
+        "/home/ubuntu/workspace/ani-network-service-runs/net05a-20260910T073025Z-6e6ac2fa/ani",
+        "/home/ubuntu/workspace/ani-network-service-runs/net05a-20260910T065725Z-b7958dfc/evidence/compatibility.json"
+      ],
+      "cwd": "/home/ubuntu/workspace/ani-network-service-runs/net05a-20260910T073025Z-6e6ac2fa/network",
+      "started_at": "2026-09-10T08:35:42.757505+00:00",
+      "finished_at": "2026-09-10T08:35:48.434313+00:00",
+      "exit": 0,
+      "expected_exit": 0,
+      "status": "pass",
+      "expectation_met": true,
+      "log": "gates/ani-no-new-compatibility.log",
+      "sha256": "ab5bcf23717a59b20b90585ad7d1bf3b0ce9c29455e2a0a814428ed0d1a1c1b9"
+    },
+    {
+      "name": "ani-existing-atlas",
+      "command": [
+        "/home/ubuntu/.local/share/ani-network-service/bin/atlas-v1.3.0",
+        "migrate",
+        "validate",
+        "--dir",
+        "file://deploy/migrations"
+      ],
+      "cwd": "/home/ubuntu/workspace/ani-network-service-runs/net05a-20260910T073025Z-6e6ac2fa/ani/repo",
+      "started_at": "2026-09-10T08:26:57.445916+00:00",
+      "finished_at": "2026-09-10T08:26:58.230756+00:00",
+      "exit": 1,
+      "expected_exit": 1,
+      "status": "fail",
+      "expectation_met": true,
+      "log": "gates/ani-existing-atlas.log",
+      "sha256": "36fa17edd0795dc9799c10d323eead43c3e72cbfe503f5096e4f99dd0c6c9fef"
+    }
+  ],
+  "historical_failures": "eight unchanged compatibility operations and unchanged historical Atlas directory; fixture migration is separate evidence",
+  "continuous_observation_scope": "NET-05A complete observation campaign; separate V-16 through V-19 evidence required"
+}

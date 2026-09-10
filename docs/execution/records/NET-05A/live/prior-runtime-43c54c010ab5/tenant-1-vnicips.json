@@ -1,0 +1,103 @@
+{
+  "apiVersion": "v1",
+  "items": [
+    {
+      "apiVersion": "networking.kubercloud.com/v1",
+      "kind": "VNicIP",
+      "metadata": {
+        "creationTimestamp": "2026-09-10T07:08:06Z",
+        "finalizers": [
+          "networking.kubercloud.com/finalizer"
+        ],
+        "generation": 2,
+        "name": "auto-net05a-1fae0bbf-relocated-b1-p1-84c664-vnic-ckp2n",
+        "namespace": "net05a-1fae0bbf-fd39ecf7-ac0c-4540-9fbd-4ba08486f30f",
+        "ownerReferences": [
+          {
+            "apiVersion": "networking.kubercloud.com/v1",
+            "kind": "VNic",
+            "name": "auto-net05a-1fae0bbf-relocated-b1-p1-84c664-vnic-ckp2n",
+            "uid": "f314b2bd-315d-4528-9647-7e20903019bd"
+          }
+        ],
+        "resourceVersion": "146627",
+        "uid": "bf3c587b-8986-428d-ad06-8cbe1169f902"
+      },
+      "spec": {
+        "ipAddress": "10.205.1.4",
+        "subnet": "net05a-1fae0bbf-fd39ecf7-ac0c-4540-9fbd-4ba08486f30f/subnet-9e1b5884d6a64182806baf56964e0e85",
+        "vNic": "auto-net05a-1fae0bbf-relocated-b1-p1-84c664-vnic-ckp2n"
+      },
+      "status": {
+        "conditions": [
+          {
+            "lastTransitionTime": "2026-09-10T07:08:06Z",
+            "message": "",
+            "reason": "Initialized",
+            "status": "True",
+            "type": "Initialized"
+          },
+          {
+            "lastTransitionTime": "2026-09-10T07:08:06Z",
+            "message": "",
+            "reason": "Valid",
+            "status": "True",
+            "type": "Valid"
+          }
+        ],
+        "vNic": "auto-net05a-1fae0bbf-relocated-b1-p1-84c664-vnic-ckp2n"
+      }
+    },
+    {
+      "apiVersion": "networking.kubercloud.com/v1",
+      "kind": "VNicIP",
+      "metadata": {
+        "creationTimestamp": "2026-09-10T07:08:22Z",
+        "finalizers": [
+          "networking.kubercloud.com/finalizer"
+        ],
+        "generation": 2,
+        "name": "auto-net05a-1fae0bbf-relocated-b1-p2-58c4c6-vnic-jjvxt",
+        "namespace": "net05a-1fae0bbf-fd39ecf7-ac0c-4540-9fbd-4ba08486f30f",
+        "ownerReferences": [
+          {
+            "apiVersion": "networking.kubercloud.com/v1",
+            "kind": "VNic",
+            "name": "auto-net05a-1fae0bbf-relocated-b1-p2-58c4c6-vnic-jjvxt",
+            "uid": "43dd45c9-1d6b-4392-80f5-d5952525b3b0"
+          }
+        ],
+        "resourceVersion": "146736",
+        "uid": "440c0606-fc33-4653-8675-5ef939d23477"
+      },
+      "spec": {
+        "ipAddress": "10.205.1.5",
+        "subnet": "net05a-1fae0bbf-fd39ecf7-ac0c-4540-9fbd-4ba08486f30f/subnet-9e1b5884d6a64182806baf56964e0e85",
+        "vNic": "auto-net05a-1fae0bbf-relocated-b1-p2-58c4c6-vnic-jjvxt"
+      },
+      "status": {
+        "conditions": [
+          {
+            "lastTransitionTime": "2026-09-10T07:08:22Z",
+            "message": "",
+            "reason": "Initialized",
+            "status": "True",
+            "type": "Initialized"
+          },
+          {
+            "lastTransitionTime": "2026-09-10T07:08:22Z",
+            "message": "",
+            "reason": "Valid",
+            "status": "True",
+            "type": "Valid"
+          }
+        ],
+        "vNic": "auto-net05a-1fae0bbf-relocated-b1-p2-58c4c6-vnic-jjvxt"
+      }
+    }
+  ],
+  "kind": "List",
+  "metadata": {
+    "resourceVersion": ""
+  }
+}

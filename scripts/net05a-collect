@@ -1,0 +1,58 @@
+#!/usr/bin/env python3
+"""Collect completed single-repository NET-05A runs from explicit safe paths.
+
+Live fixtures use net05a-export.py with their stronger credential/cleanup fence.
+This collector never reads live recovery directories or runtime configuration.
+"""
+import argparse, hashlib, io, json, pathlib, re, shlex, subprocess, tarfile
+
+p = argparse.ArgumentParser(description=__doc__)
+p.add_argument('runs', nargs='+')
+a = p.parse_args()
+root = pathlib.Path(__file__).resolve().parents[1]
+dest = root / 'docs/execution/records/NET-05A'
+index_path = dest / 'stage-index.json'
+index = {row['run']: row for row in json.loads(index_path.read_text())}
+for run in a.runs:
+    assert re.fullmatch(r'\d{8}T\d{6}Z-[a-f0-9]{8}', run)
+    receipt = root / '.work/net05a-runs' / run
+    snapshot = json.loads((receipt / 'snapshot.json').read_text())
+    remote = '/home/ubuntu/workspace/ani-network-service-runs/net05a-' + run
+    assert snapshot['remote'] == remote
+    script = '''import pathlib,sys,tarfile
+root=pathlib.Path(sys.argv[1])
+assert (root/'command.exit').is_file(), 'run has no terminal exit; inspect instead of replay'
+names=['command.exit','command.log','resources.jsonl','capacity-results.json','capacity-baseline-harness.json']
+names += [str(p.relative_to(root)) for p in (root/'gates').glob('*') if p.name in ['results.json','verify.log','integration.log','race.log','tenant-mutations.log','audit.log']]
+names += [str(p.relative_to(root)) for p in (root/'capacity').glob('*/*') if p.name in ['summary.json','samples.jsonl','command.log']]
+with tarfile.open(fileobj=sys.stdout.buffer,mode='w|') as t:
+ for name in names:
+  path=root/name
+  if not path.exists():continue
+  assert path.is_file() and not path.is_symlink() and path.stat().st_size<50*1024**2
+  t.add(path,arcname=name,recursive=False)
+'''
+    command = 'source /home/ubuntu/.local/share/ani-network-service/env.sh; ' + shlex.join(['python3', '-c', script, remote])
+    archive = subprocess.check_output(['ssh', '-F', '/home/chabking/.ssh/config', '-o', 'BatchMode=yes', 'ubuntu', command])
+    target = dest / 'stages' / run
+    target.mkdir(parents=True, exist_ok=True)
+    files = []
+    with tarfile.open(fileobj=io.BytesIO(archive)) as package:
+        for item in package:
+            assert item.isfile() and not pathlib.PurePosixPath(item.name).is_absolute() and '..' not in pathlib.PurePosixPath(item.name).parts
+            body = package.extractfile(item).read()
+            assert not re.search(rb'postgres(?:ql)?://[^\s]+@|-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----|"kind"\s*:\s*"Secret"', body), item.name
+            output = target / item.name
+            if output.exists():
+                assert output.read_bytes() == body, 'completed evidence drift: ' + item.name
+            else:
+                output.parent.mkdir(parents=True, exist_ok=True)
+                output.write_bytes(body)
+            files.append({'path': item.name, 'sha256': hashlib.sha256(body).hexdigest()})
+    (target / 'snapshot.json').write_bytes((receipt / 'snapshot.json').read_bytes())
+    (target / 'export-manifest.json').write_text(json.dumps({'run': run, 'archive_sha256': hashlib.sha256(archive).hexdigest(), 'files': files}, indent=2) + '\n')
+    code = int((target / 'command.exit').read_text())
+    index[run] = {'run': run, 'remote': remote, 'archive_sha256': snapshot['archive_sha256'], 'source_manifest_sha256': snapshot['manifest_sha256'],
+                  'command': snapshot['command'], 'exit': code, 'status': 'pass' if code == 0 else 'fail', 'log': f'stages/{run}/command.log'}
+    index_path.write_text(json.dumps([index[key] for key in sorted(index)], indent=2) + '\n')
+    print(json.dumps({'run': run, 'exit': code, 'files': len(files)}), flush=True)

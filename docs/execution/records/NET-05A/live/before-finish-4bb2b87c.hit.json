@@ -1,0 +1,66 @@
+{
+  "action": "hold",
+  "at": "2026-09-10T07:53:24.127588482Z",
+  "data": {
+    "progress": {
+      "Proof": {
+        "CollectedAt": "2026-09-10T07:53:21.128749Z",
+        "Hash": "afbb9ddcfbd5529304451237a070e20a5e16e3484e651704750a3bfd1310c2a2",
+        "CoveredGeneration": 4
+      },
+      "Backoff": true,
+      "State": "deleting",
+      "OperationState": "retrying",
+      "Reason": "CLEANUP_PENDING",
+      "Observed": true,
+      "Identity": "a5ca3c1a-6a48-49dc-a097-a919d9b5c21e",
+      "ClearPending": false,
+      "NextDelay": 1086602535
+    },
+    "work": {
+      "Requirement": {
+        "RequestedGeneration": 4,
+        "AppliedAt": "2026-09-10T07:53:14.327291Z",
+        "Hash": "afbb9ddcfbd5529304451237a070e20a5e16e3484e651704750a3bfd1310c2a2"
+      },
+      "Resource": {
+        "ID": "vpc_ae61aaf508aa4ef6897deea2eedbe9fb",
+        "TenantID": "18648eba-1f32-4ddd-9029-c0b84ae0f875",
+        "Kind": "vpc",
+        "VPCID": "",
+        "CIDR": "10.205.0.0/16",
+        "Gateway": "",
+        "LastOperationID": "458ca7aa-041f-4abb-86a7-76cb413281d6",
+        "State": "deleting",
+        "Reason": "",
+        "Version": 3,
+        "UpdatedAt": "2026-09-10T07:53:18.282602Z",
+        "ObservedAt": "2026-09-10T07:53:13.959939Z"
+      },
+      "Operation": {
+        "ID": "458ca7aa-041f-4abb-86a7-76cb413281d6",
+        "TenantID": "18648eba-1f32-4ddd-9029-c0b84ae0f875",
+        "ResourceID": "vpc_ae61aaf508aa4ef6897deea2eedbe9fb",
+        "ResourceType": "vpc",
+        "Kind": "delete_vpc",
+        "State": "running",
+        "Reason": "",
+        "CreatedAt": "2026-09-10T07:53:18.281548Z",
+        "UpdatedAt": "2026-09-10T07:53:21.127529Z",
+        "CompletedAt": null,
+        "NextAttemptAt": "2026-09-10T07:53:18.281548Z"
+      },
+      "ActiveOperation": true,
+      "BindingID": "a47b3cfd-8a57-4fa7-820e-ebbfd551520e",
+      "KnownIdentity": "a5ca3c1a-6a48-49dc-a097-a919d9b5c21e",
+      "PendingAction": "",
+      "Owner": "383f1864-e87b-45ef-a10d-96fad826e65e",
+      "Epoch": 4,
+      "Attempt": 1,
+      "Now": "2026-09-10T07:53:21.128594Z"
+    }
+  },
+  "key": "vpc_ae61aaf508aa4ef6897deea2eedbe9fb",
+  "pid": 1,
+  "point": "before-finish"
+}
