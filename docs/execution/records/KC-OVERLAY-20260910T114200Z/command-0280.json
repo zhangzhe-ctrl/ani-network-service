@@ -1,0 +1,26 @@
+{
+  "at": "2026-09-10T11:54:22.620464+00:00",
+  "argv": [
+    "kubectl",
+    "--context=kind-kc062",
+    "--request-timeout=15s",
+    "exec",
+    "-n",
+    "kcn-system",
+    "kcn-ovn-central-5cfcf4f7b5-dbwnx",
+    "-c",
+    "ovn-central",
+    "--",
+    "ovn-nbctl",
+    "--timeout=5",
+    "--db=tcp:172.18.0.2:6641",
+    "get",
+    "Logical_Router",
+    "er.kc062-worker",
+    "static_routes"
+  ],
+  "exit": 0,
+  "elapsed": 0.155,
+  "stdout": "[46698527-138b-4bb2-b385-c6cdc7c1d9fc, e9aa998c-3f6d-4007-b291-1f2822e5bc33]\n",
+  "stderr": ""
+}

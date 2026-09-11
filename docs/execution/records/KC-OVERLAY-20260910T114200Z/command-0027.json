@@ -1,0 +1,25 @@
+{
+  "at": "2026-09-10T11:46:38.591521+00:00",
+  "argv": [
+    "docker",
+    "exec",
+    "kc062-worker",
+    "curl",
+    "--noproxy",
+    "*",
+    "--resolve",
+    "www.cloudflare.com:443:104.16.124.96",
+    "-sS",
+    "--connect-timeout",
+    "5",
+    "--max-time",
+    "10",
+    "-w",
+    "\nhttp_code=%{http_code}\n",
+    "https://www.cloudflare.com/cdn-cgi/trace?nonce=kceg-0910-1142"
+  ],
+  "exit": 0,
+  "elapsed": 0.662,
+  "stdout": "fl=928f101\nh=www.cloudflare.com\nip=139.198.29.154\nts=1789040799.000\nvisit_scheme=https\nuag=curl/8.14.1\ncolo=FRA\nsliver=050-tier1\nhttp=http/2\nloc=CN\ntls=TLSv1.3\nsni=plaintext\nwarp=off\ngateway=off\nrbi=off\nkex=X25519MLKEM768\n\nhttp_code=200\n",
+  "stderr": ""
+}

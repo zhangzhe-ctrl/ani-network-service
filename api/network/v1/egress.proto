@@ -1,0 +1,198 @@
+syntax = "proto3";
+package network.v1;
+option go_package = "github.com/zhangzhe-ctrl/ani-network-service/api/network/v1;networkv1";
+
+import "google/protobuf/timestamp.proto";
+import "network/v1/network.proto";
+
+// Authorization is supplied by the trusted inbound context, never by a role or
+// permission in a request. A different target_tenant_id requires delegation.
+service TenantEgressService {
+  rpc CreateEIP(CreateEIPRequest) returns (CreateEIPResponse);
+  rpc GetEIP(GetEIPRequest) returns (GetEIPResponse);
+  rpc ListEIPs(ListEIPsRequest) returns (ListEIPsResponse);
+  rpc DeleteEIP(DeleteEIPRequest) returns (DeleteEIPResponse);
+  rpc BindVPCSnat(BindVPCSnatRequest) returns (BindVPCSnatResponse);
+  rpc GetVPCSnat(GetVPCSnatRequest) returns (GetVPCSnatResponse);
+  rpc GetVPCSnatBinding(GetVPCSnatBindingRequest) returns (GetVPCSnatBindingResponse);
+  rpc SetVPCSnatEnabled(SetVPCSnatEnabledRequest) returns (SetVPCSnatEnabledResponse);
+  rpc DeleteVPCSnatBinding(DeleteVPCSnatBindingRequest) returns (DeleteVPCSnatBindingResponse);
+}
+
+// Separate platform scope, with no fictitious tenant. Management authorization
+// does not automatically grant permission to act for a tenant.
+service PlatformNetworkService {
+  rpc ListNodeInterfaces(ListNodeInterfacesRequest) returns (ListNodeInterfacesResponse);
+  rpc AdoptNetworkDevice(AdoptNetworkDeviceRequest) returns (AdoptNetworkDeviceResponse);
+  rpc GetNetworkDevice(GetNetworkDeviceRequest) returns (GetNetworkDeviceResponse);
+  rpc CreateVlanNetwork(CreateVlanNetworkRequest) returns (CreateVlanNetworkResponse);
+  rpc GetVlanNetwork(GetVlanNetworkRequest) returns (GetVlanNetworkResponse);
+  rpc ListVlanNetworks(ListVlanNetworksRequest) returns (ListVlanNetworksResponse);
+  rpc DeleteVlanNetwork(DeleteVlanNetworkRequest) returns (DeleteVlanNetworkResponse);
+  rpc CreateEgressGateway(CreateEgressGatewayRequest) returns (CreateEgressGatewayResponse);
+  rpc GetEgressGateway(GetEgressGatewayRequest) returns (GetEgressGatewayResponse);
+  rpc ListEgressGateways(ListEgressGatewaysRequest) returns (ListEgressGatewaysResponse);
+  rpc DeleteEgressGateway(DeleteEgressGatewayRequest) returns (DeleteEgressGatewayResponse);
+  rpc CreatePublicAddressPool(CreatePublicAddressPoolRequest) returns (CreatePublicAddressPoolResponse);
+  rpc GetPublicAddressPool(GetPublicAddressPoolRequest) returns (GetPublicAddressPoolResponse);
+  rpc ListPublicAddressPools(ListPublicAddressPoolsRequest) returns (ListPublicAddressPoolsResponse);
+  rpc DeletePublicAddressPool(DeletePublicAddressPoolRequest) returns (DeletePublicAddressPoolResponse);
+  rpc RecordPublicPoolVerification(RecordPublicPoolVerificationRequest) returns (RecordPublicPoolVerificationResponse);
+  rpc SetPublicPoolAllocationEnabled(SetPublicPoolAllocationEnabledRequest) returns (SetPublicPoolAllocationEnabledResponse);
+  rpc SetDefaultPublicPool(SetDefaultPublicPoolRequest) returns (SetDefaultPublicPoolResponse);
+  rpc GetPlatformOperation(GetPlatformOperationRequest) returns (GetPlatformOperationResponse);
+}
+
+message EIP {
+  string id = 1;
+  string tenant_id = 2;
+  string name = 3;
+  string description = 4;
+  ResourceState state = 5;
+  string reason = 6;
+  string reason_message = 7;
+  int64 version = 8;
+  google.protobuf.Timestamp created_at = 9;
+  google.protobuf.Timestamp updated_at = 10;
+  google.protobuf.Timestamp observed_at = 11;
+  bool observation_stale = 12;
+  string last_operation_id = 13;
+  string address = 14;
+  string binding_id = 15;
+  // unbound, reserved or bound; none of these proves internet reachability.
+  string binding_state = 16;
+}
+message VPCSnatBinding {
+  string id = 1;
+  string tenant_id = 2;
+  string vpc_id = 3;
+  string eip_id = 4;
+  ResourceState state = 5;
+  string reason = 6;
+  string reason_message = 7;
+  int64 version = 8;
+  google.protobuf.Timestamp created_at = 9;
+  google.protobuf.Timestamp updated_at = 10;
+  google.protobuf.Timestamp observed_at = 11;
+  bool observation_stale = 12;
+  string last_operation_id = 13;
+  string eip_address = 14;
+  bool desired_enabled = 15;
+  // Absence means unknown or stale; never filled from desired_enabled.
+  optional bool applied_enabled = 16;
+}
+message CreateEIPRequest { string target_tenant_id = 1; string name = 2; string description = 3; string idempotency_key = 4; }
+message CreateEIPResponse { EIP eip = 1; }
+message GetEIPRequest { string target_tenant_id = 1; string eip_id = 2; }
+message GetEIPResponse { EIP eip = 1; }
+message ListEIPsRequest { string target_tenant_id = 1; string name = 2; ResourceState state = 3; int32 limit = 4; string cursor = 5; }
+message ListEIPsResponse { repeated EIP items = 1; string next_cursor = 2; }
+message DeleteEIPRequest { string target_tenant_id = 1; string eip_id = 2; }
+message DeleteEIPResponse { EIP eip = 1; }
+message BindVPCSnatRequest { string target_tenant_id = 1; string vpc_id = 2; string eip_id = 3; string idempotency_key = 4; }
+message BindVPCSnatResponse { VPCSnatBinding binding = 1; }
+message GetVPCSnatRequest { string target_tenant_id = 1; string vpc_id = 2; }
+message GetVPCSnatResponse { VPCSnatBinding binding = 1; }
+message GetVPCSnatBindingRequest { string target_tenant_id = 1; string binding_id = 2; }
+message GetVPCSnatBindingResponse { VPCSnatBinding binding = 1; }
+message SetVPCSnatEnabledRequest {
+  string target_tenant_id = 1; string binding_id = 2; bool enabled = 3;
+  int64 expected_version = 4; string idempotency_key = 5;
+}
+message SetVPCSnatEnabledResponse { VPCSnatBinding binding = 1; }
+message DeleteVPCSnatBindingRequest { string target_tenant_id = 1; string binding_id = 2; }
+message DeleteVPCSnatBindingResponse { VPCSnatBinding binding = 1; }
+
+message PlatformResource {
+  string id = 1; string cluster_id = 2; string name = 3; string description = 4;
+  ResourceState state = 5; string reason = 6; string reason_message = 7; int64 version = 8;
+  google.protobuf.Timestamp created_at = 9; google.protobuf.Timestamp updated_at = 10;
+  google.protobuf.Timestamp observed_at = 11; bool observation_stale = 12; string last_operation_id = 13;
+  oneof configuration {
+    NetworkDevice device = 14;
+    VlanNetwork vlan = 15;
+    EgressGateway gateway = 16;
+    PublicAddressPool pool = 17;
+  }
+}
+message NodeInterface {
+  string node_name = 1; string node_uid = 2; string name = 3; string kind = 4;
+  string mac = 5; int32 mtu = 6; bool link_up = 7; bool carrier = 8;
+  repeated string addresses = 9; string master = 10; bool ovs_managed = 11;
+  bool kc_managed = 12; bool default_route = 13; bool management = 14;
+  bool selectable = 15; repeated string unavailable_reasons = 16;
+  google.protobuf.Timestamp observed_at = 17;
+  repeated string vlan_network_ids = 18;
+}
+message NetworkDevice { string device_name = 1; string inventory_fingerprint = 2; repeated NodeInterface nodes = 3; }
+message VlanNetwork { string device_id = 1; int32 vlan_id = 2; }
+// Both Public pool modes use the provider's Public/Host gateway contract.
+message EgressGateway {}
+enum PublicPoolMode { PUBLIC_POOL_MODE_UNSPECIFIED = 0; PUBLIC_POOL_MODE_OVERLAY = 1; PUBLIC_POOL_MODE_UNDERLAY = 2; }
+message PublicAddressPool {
+  PublicPoolMode mode = 1; string gateway_id = 2; string cidr = 3; string ovn_gateway_ip = 4;
+  repeated string excluded_ips = 5; string vlan_network_id = 6; string upstream_gateway_ip = 7;
+  bool allocation_enabled = 8; bool is_default = 9; int64 config_revision = 10;
+  PublicPoolVerification verification = 11;
+  string topology_fingerprint = 12;
+  repeated string observed_provider_images = 13;
+}
+// An administrator's recorded, scoped acceptance evidence, not a synthetic
+// traffic result. Runtime admission also checks the current deployment identity.
+message PublicPoolVerification {
+  string provider_source_revision = 1;
+  repeated string provider_image_digests = 2;
+  string topology_fingerprint = 3;
+  string evidence_reference = 4;
+  string scope = 5;
+  google.protobuf.Timestamp verified_at = 6;
+  google.protobuf.Timestamp expires_at = 7;
+}
+message ListNodeInterfacesRequest { string node_name = 1; }
+message ListNodeInterfacesResponse { repeated NodeInterface items = 1; string inventory_fingerprint = 2; }
+message AdoptNetworkDeviceRequest { string name = 1; string device_name = 2; string inventory_fingerprint = 3; string idempotency_key = 4; }
+message AdoptNetworkDeviceResponse { PlatformResource resource = 1; }
+message GetNetworkDeviceRequest { string device_id = 1; }
+message GetNetworkDeviceResponse { PlatformResource resource = 1; }
+message CreateVlanNetworkRequest { string name = 1; string description = 2; string device_id = 3; int32 vlan_id = 4; string idempotency_key = 5; }
+message CreateVlanNetworkResponse { PlatformResource resource = 1; }
+message GetVlanNetworkRequest { string vlan_network_id = 1; }
+message GetVlanNetworkResponse { PlatformResource resource = 1; }
+message ListVlanNetworksRequest { string name = 1; ResourceState state = 2; int32 limit = 3; string cursor = 4; }
+message ListVlanNetworksResponse { repeated PlatformResource items = 1; string next_cursor = 2; }
+message DeleteVlanNetworkRequest { string vlan_network_id = 1; }
+message DeleteVlanNetworkResponse { PlatformResource resource = 1; }
+message CreateEgressGatewayRequest { string name = 1; string description = 2; string idempotency_key = 3; }
+message CreateEgressGatewayResponse { PlatformResource resource = 1; }
+message GetEgressGatewayRequest { string gateway_id = 1; }
+message GetEgressGatewayResponse { PlatformResource resource = 1; }
+message ListEgressGatewaysRequest { string name = 1; ResourceState state = 2; int32 limit = 3; string cursor = 4; }
+message ListEgressGatewaysResponse { repeated PlatformResource items = 1; string next_cursor = 2; }
+message DeleteEgressGatewayRequest { string gateway_id = 1; }
+message DeleteEgressGatewayResponse { PlatformResource resource = 1; }
+message CreatePublicAddressPoolRequest {
+  string name = 1; string description = 2; PublicPoolMode mode = 3; string gateway_id = 4;
+  string cidr = 5; string ovn_gateway_ip = 6; repeated string excluded_ips = 7;
+  string vlan_network_id = 8; string upstream_gateway_ip = 9; string idempotency_key = 10;
+}
+message CreatePublicAddressPoolResponse { PlatformResource resource = 1; }
+message GetPublicAddressPoolRequest { string pool_id = 1; }
+message GetPublicAddressPoolResponse { PlatformResource resource = 1; }
+message ListPublicAddressPoolsRequest { string name = 1; ResourceState state = 2; int32 limit = 3; string cursor = 4; }
+message ListPublicAddressPoolsResponse { repeated PlatformResource items = 1; string next_cursor = 2; }
+message DeletePublicAddressPoolRequest { string pool_id = 1; }
+message DeletePublicAddressPoolResponse { PlatformResource resource = 1; }
+message RecordPublicPoolVerificationRequest { string pool_id = 1; int64 expected_version = 2; PublicPoolVerification verification = 3; string idempotency_key = 4; }
+message RecordPublicPoolVerificationResponse { PlatformResource resource = 1; }
+message SetPublicPoolAllocationEnabledRequest { string pool_id = 1; bool enabled = 2; int64 expected_version = 3; string idempotency_key = 4; }
+message SetPublicPoolAllocationEnabledResponse { PlatformResource resource = 1; }
+message SetDefaultPublicPoolRequest { string pool_id = 1; int64 expected_version = 2; string idempotency_key = 3; }
+message SetDefaultPublicPoolResponse { PlatformResource resource = 1; }
+message GetPlatformOperationRequest { string operation_id = 1; }
+message GetPlatformOperationResponse { PlatformOperation operation = 1; }
+message PlatformOperation {
+  string id = 1; string resource_id = 2; OperationKind kind = 3; OperationState state = 4;
+  string reason = 5; string reason_message = 6; google.protobuf.Timestamp created_at = 7;
+  google.protobuf.Timestamp updated_at = 8; google.protobuf.Timestamp completed_at = 9;
+  google.protobuf.Timestamp next_attempt_at = 10;
+}

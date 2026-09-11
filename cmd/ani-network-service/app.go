@@ -96,6 +96,13 @@ func buildApp(bc *conf.Bootstrap, logger *slog.Logger) (*kratos.App, error) {
 	middlewares := observability.ServerMiddleware(logger)
 	grpcServer := server.NewGRPCServer(bc.Server.Grpc, readiness, middlewares...)
 	networkv1.RegisterNetworkServiceServer(grpcServer, service.NewNetworkService(network, biz.NewAttachments(repository, policy.StaleAfter)))
+	repository.UseEgressInfrastructure(provider)
+	egress, err := biz.NewEgress(repository, provider, biz.ContextEgressAuthorization{}, key, policy.StaleAfter, time.Now)
+	if err != nil {
+		return nil, err
+	}
+	networkv1.RegisterTenantEgressServiceServer(grpcServer, service.NewTenantEgressService(egress))
+	networkv1.RegisterPlatformNetworkServiceServer(grpcServer, service.NewPlatformNetworkService(egress))
 	adminServer := server.NewAdminServer(bc.Server.Admin, readiness, observability.Gatherer(), middlewares...)
 	app := kratos.New(
 		kratos.ID(id), kratos.Name(Name), kratos.Version(Version), kratos.Logger(logger),

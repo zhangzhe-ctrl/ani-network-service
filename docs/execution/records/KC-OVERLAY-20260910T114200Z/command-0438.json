@@ -1,0 +1,26 @@
+{
+  "at": "2026-09-10T11:56:53.471950+00:00",
+  "argv": [
+    "kubectl",
+    "--context=kind-kc062",
+    "--request-timeout=15s",
+    "exec",
+    "-n",
+    "kcn-system",
+    "kcn-ovn-central-5cfcf4f7b5-dbwnx",
+    "-c",
+    "ovn-central",
+    "--",
+    "ovn-nbctl",
+    "--timeout=5",
+    "--db=tcp:172.18.0.2:6641",
+    "--format=json",
+    "find",
+    "NAT",
+    "external_ip=10.250.200.2"
+  ],
+  "exit": 0,
+  "elapsed": 0.137,
+  "stdout": "{\"data\":[],\"headings\":[\"_uuid\",\"allowed_ext_ips\",\"exempted_ext_ips\",\"external_ids\",\"external_ip\",\"external_mac\",\"external_port_range\",\"gateway_port\",\"logical_ip\",\"logical_port\",\"match\",\"options\",\"priority\",\"type\"]}\n",
+  "stderr": ""
+}

@@ -297,6 +297,8 @@ func (o *KCObservation) flush(ctx context.Context) {
 		var err error
 		if t.kind == "attachment" {
 			err = o.provider.repository.NotifyAttachment(deadline, t.tenant, t.id)
+		} else if t.tenant == "" {
+			_, err = o.provider.repository.queries.NotifyPlatform(deadline, sqlcgen.NotifyPlatformParams{ResourceID: t.id})
 		} else {
 			err = o.provider.repository.NotifyResource(deadline, t.tenant, t.id)
 		}
@@ -381,6 +383,10 @@ func (o *KCObservation) collect(ctx context.Context) (*auditView, error) {
 	if err != nil {
 		return nil, err
 	}
+	platforms, err := o.provider.repository.queries.ObservationPlatformResources(ctx, sqlcgen.ObservationPlatformResourcesParams{ClusterID: o.provider.repository.placement.ClusterID})
+	if err != nil {
+		return nil, err
+	}
 	attachments, err := o.provider.repository.queries.ObservationAttachments(ctx, sqlcgen.ObservationAttachmentsParams{ClusterID: o.provider.repository.placement.ClusterID})
 	if err != nil {
 		return nil, err
@@ -420,7 +426,50 @@ func (o *KCObservation) collect(ctx context.Context) (*auditView, error) {
 			kind, field = "Subnet", "subnet"
 			subnetRefs[r.ResourceID] = r.Namespace + "/" + r.ProviderName
 		}
+		if r.ResourceKind == "eip" || r.ResourceKind == "snat" {
+			kind = egressCRKind(r.ResourceKind)
+			field = r.ResourceKind
+		}
+
 		bind([]string{"object:" + kind + "/" + r.Namespace + "/" + r.ProviderName, field + ":" + r.Namespace + "/" + r.ProviderName, "uid:" + r.ProviderUid}, t)
+	}
+	for _, r := range platforms {
+		t := observationTarget{"", r.ResourceID, r.Kind}
+		v.generations[t.key()] = r.RequestedGeneration
+		ns := ""
+		if r.Kind == "public_pool" {
+			ns = kcSystemNamespace
+		}
+		relation := r.Kind
+		if relation == "public_pool" {
+			relation = "pool"
+		}
+		if relation == "egress_gateway" {
+			relation = "gateway"
+		}
+		keys := []string{"object:" + egressCRKind(r.Kind) + "/" + ns + "/" + r.ProviderName, relation + ":" + ns + "/" + r.ProviderName, "uid:" + r.ProviderUid}
+		if r.Kind == "device" || r.Kind == "vlan" {
+			keys = append(keys, "node-facts")
+		}
+
+		if r.Kind == "public_pool" {
+			keys = append(keys, "provider-images")
+		}
+		bind(keys, t)
+	}
+	edges, err := o.provider.repository.queries.ObservationEgressEdges(ctx, sqlcgen.ObservationEgressEdgesParams{ClusterID: o.provider.repository.placement.ClusterID})
+	if err != nil {
+		return nil, err
+	}
+	for _, edge := range edges {
+		relation := edge.RefKind
+		if relation == "public_pool" {
+			relation = "pool"
+		}
+		if relation == "egress_gateway" {
+			relation = "gateway"
+		}
+		bind([]string{"node-facts", "provider-images", "object:" + egressCRKind(edge.RefKind) + "/" + edge.Namespace + "/" + edge.ProviderName, relation + ":" + edge.Namespace + "/" + edge.ProviderName, "uid:" + edge.ProviderUid}, observationTarget{edge.TenantID, edge.ResourceID, edge.Kind})
 	}
 	for _, a := range attachments {
 		t := observationTarget{a.TenantID, a.AttachmentID, "attachment"}

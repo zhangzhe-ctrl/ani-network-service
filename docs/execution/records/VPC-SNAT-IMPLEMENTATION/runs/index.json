@@ -1,0 +1,618 @@
+[
+  {
+    "run": "20260910T132628Z-815dd081",
+    "host": "ubuntu",
+    "command": [
+      "make",
+      "generate"
+    ],
+    "source_manifest_sha256": "daef6116c2662d809d8c2a3f62dfe6d3a0290d20c08f314e56593198e174ba01",
+    "source_archive_sha256": "e772b889701a46a8df7f849888befbfd0cafcd62bb235a04f023fd562f046ff7",
+    "exit_code": 0,
+    "result": "pass",
+    "log_sha256": "12d3d4a6cdf565c3a8bea3170b99a5fc8802504b205229b2160d447f47dc2c2c",
+    "password_uri_redactions": 0,
+    "postgres_containers": [],
+    "cleanup_logged": true,
+    "resource_samples": 1,
+    "min_mem_available_kib": 3705832,
+    "max_load1": 1.79296875,
+    "min_disk_free_bytes": 203434258432
+  },
+  {
+    "run": "20260910T133354Z-26c9a687",
+    "host": "ubuntu",
+    "command": [
+      "make",
+      "generate"
+    ],
+    "source_manifest_sha256": "e9e1c2a570f3550f539c2856d46d7cf9ec6ab413a18c3822b3b908faebc48743",
+    "source_archive_sha256": "4ae4f6581593015a72a35279913076d97eb0d6af05edc1397aac1899926e98fb",
+    "exit_code": 0,
+    "result": "pass",
+    "log_sha256": "d470ecd0e429f9db37d4857347b391648e80e2958350e52f392cfb82e1dbf5bd",
+    "password_uri_redactions": 0,
+    "postgres_containers": [],
+    "cleanup_logged": true,
+    "resource_samples": 2,
+    "min_mem_available_kib": 4295092,
+    "max_load1": 1.8662109375,
+    "min_disk_free_bytes": 202976370688
+  },
+  {
+    "run": "20260910T134228Z-5bde6bb5",
+    "host": "ubuntu",
+    "command": [
+      "go",
+      "test",
+      "-p",
+      "2",
+      "-count=1",
+      "./internal/biz",
+      "./internal/data"
+    ],
+    "source_manifest_sha256": "f862a2ab82fc85f9e9ba320b296ab6c76b9ff6e2790263e48cfaa9f6efd7f3e1",
+    "source_archive_sha256": "7cb8a961fcac2a29f541a965d54ae6e1524b472e8b7a4ac493df2fe36f9503e0",
+    "exit_code": 1,
+    "result": "fail",
+    "log_sha256": "bec8a8dcc67bc4068c65ead37426fb1ea512b02d6375e87cd5f8443710bd1a97",
+    "password_uri_redactions": 0,
+    "postgres_containers": [],
+    "cleanup_logged": true,
+    "resource_samples": 1,
+    "min_mem_available_kib": 4080736,
+    "max_load1": 2.513671875,
+    "min_disk_free_bytes": 201793425408
+  },
+  {
+    "run": "20260910T134335Z-e81d973f",
+    "host": "ubuntu",
+    "command": [
+      "scripts/integration",
+      "-p",
+      "2",
+      "-run",
+      "TestVPCAcceptanceIsTenantScopedAndReplaysExactly|TestPublicPoolTopology|TestEgressAuthorization|TestNodeInterfaceFacts|TestEgressFingerprints",
+      "./internal/biz",
+      "./internal/data"
+    ],
+    "source_manifest_sha256": "7a51e1be2da3879d20098f8b3611b10ba5cf2517e5210163f6870859f572f742",
+    "source_archive_sha256": "d4dd9e2fb56698a0866c2cf59c943f2e5e37b76384e9c3f32b1f18cb927ccbb5",
+    "exit_code": 0,
+    "result": "pass",
+    "log_sha256": "1beb42a2f8554e2cd5dd059df6b5bb5ecf313c4bada9c908321709f4a2d52363",
+    "password_uri_redactions": 0,
+    "postgres_containers": [
+      "30a58de83f53446da43f71fea7e25b7a5f3e3f52d55604adc8100623f6d20a6e"
+    ],
+    "cleanup_logged": true,
+    "resource_samples": 3,
+    "min_mem_available_kib": 4041728,
+    "max_load1": 9.31982421875,
+    "min_disk_free_bytes": 201535643648
+  },
+  {
+    "run": "20260910T134504Z-0870a505",
+    "host": "ubuntu",
+    "command": [
+      "make",
+      "generate"
+    ],
+    "source_manifest_sha256": "1734fb4603a5e763bbed1357d760bc8b273933621bbd60f9bd9aa342a7aea110",
+    "source_archive_sha256": "5084a04161acde3452dfbacfacba5fdb74d901d4955b764d529c96a9a32c6dd5",
+    "exit_code": 0,
+    "result": "pass",
+    "log_sha256": "f3c1bf5a28818bd5508a399cf2681b97e6958a08364b1c2c71810ed1bfac70ee",
+    "password_uri_redactions": 0,
+    "postgres_containers": [],
+    "cleanup_logged": true,
+    "resource_samples": 1,
+    "min_mem_available_kib": 4187696,
+    "max_load1": 5.31494140625,
+    "min_disk_free_bytes": 201339346944
+  },
+  {
+    "run": "20260910T134828Z-f915232d",
+    "host": "ubuntu",
+    "command": [
+      "go",
+      "test",
+      "-p",
+      "2",
+      "-count=1",
+      "./internal/biz",
+      "./internal/data"
+    ],
+    "source_manifest_sha256": "89032656e9e907db490a230bc6ca4dd1f4730cef0421ff3d2765884b4de86eff",
+    "source_archive_sha256": "1861727b33fec962d637f3a5c26490df6c94c9145f8ca4df293b699733759981",
+    "exit_code": 0,
+    "result": "pass",
+    "log_sha256": "cf59ed678f91e83a7a8327be5d5109f620efa0c9867a63a5a41e1e428b7ee4be",
+    "password_uri_redactions": 0,
+    "postgres_containers": [],
+    "cleanup_logged": true,
+    "resource_samples": 2,
+    "min_mem_available_kib": 4213084,
+    "max_load1": 0.921875,
+    "min_disk_free_bytes": 201129295872
+  },
+  {
+    "run": "20260910T135810Z-822f9e61",
+    "host": "ubuntu",
+    "command": [
+      "make",
+      "generate"
+    ],
+    "source_manifest_sha256": "6be69e9e64196a2a0522e89b6df41413c2020e3f931da1852a588b1de73b5254",
+    "source_archive_sha256": "1e55df5742dede4163d4951f63f1a6ff6943328f03bda84cddfcff1681818bcd",
+    "exit_code": 0,
+    "result": "pass",
+    "log_sha256": "2e076303c11cf7e0faeb8f7b5a5c78b1ceb30aec470f80b3367c2df5e9484c57",
+    "password_uri_redactions": 0,
+    "postgres_containers": [],
+    "cleanup_logged": true,
+    "resource_samples": 1,
+    "min_mem_available_kib": 4285956,
+    "max_load1": 0.4716796875,
+    "min_disk_free_bytes": 201078747136
+  },
+  {
+    "run": "20260910T140102Z-248668b4",
+    "host": "ubuntu",
+    "command": [
+      "go",
+      "test",
+      "-p",
+      "2",
+      "-count=1",
+      "./internal/biz",
+      "./internal/data",
+      "./internal/service",
+      "./cmd/ani-network-service"
+    ],
+    "source_manifest_sha256": "218694750a2d2b8a4ab42237a613b6244cf5b24ab7bcc3534a397aec07707acf",
+    "source_archive_sha256": "7e287f96cab70ab1a3cfe927cd54c9e1c2003e9d676c6463cf7f832841b65207",
+    "exit_code": 1,
+    "result": "fail",
+    "log_sha256": "1699d29b66c6f66495a7a5eb635ba5e19ddad06a8d143f07c092b0c2a7b6e44e",
+    "password_uri_redactions": 0,
+    "postgres_containers": [],
+    "cleanup_logged": true,
+    "resource_samples": 2,
+    "min_mem_available_kib": 4143996,
+    "max_load1": 0.58251953125,
+    "min_disk_free_bytes": 200950222848
+  },
+  {
+    "run": "20260910T140433Z-14745a4b",
+    "host": "ubuntu",
+    "command": [
+      "go",
+      "test",
+      "-p",
+      "2",
+      "-count=1",
+      "./internal/biz",
+      "./internal/data",
+      "./internal/service",
+      "./cmd/ani-network-service"
+    ],
+    "source_manifest_sha256": "60754e923659f936f101230db6c3a808e123462327d8d9dd630c1fc0e68e634e",
+    "source_archive_sha256": "d47587212fabc836f4066f4bc377b6bf0bcdd38ffb162247bc09634bf118e229",
+    "exit_code": 0,
+    "result": "pass",
+    "log_sha256": "5050a6b588e277201f242542f2735017acdf05d2899eb69899b992bff8563f70",
+    "password_uri_redactions": 0,
+    "postgres_containers": [],
+    "cleanup_logged": true,
+    "resource_samples": 2,
+    "min_mem_available_kib": 4106972,
+    "max_load1": 0.83203125,
+    "min_disk_free_bytes": 200852910080
+  },
+  {
+    "run": "20260910T140657Z-0fbbc266",
+    "host": "ubuntu",
+    "command": [
+      "make",
+      "generate"
+    ],
+    "source_manifest_sha256": "15ab18f1f1d33f32f233e9c47874676787c49897c62118669f305cfa671d85d8",
+    "source_archive_sha256": "b30fee15074beec3a0fe2fd1a463d0e64020ede877932d809beefc3b56a4853e",
+    "exit_code": 0,
+    "result": "pass",
+    "log_sha256": "1405e8ccca1a08fcd47ce0496a51971e2754d9d573926a8fc9fb46607912c73b",
+    "password_uri_redactions": 0,
+    "postgres_containers": [],
+    "cleanup_logged": true,
+    "resource_samples": 1,
+    "min_mem_available_kib": 4291860,
+    "max_load1": 0.45361328125,
+    "min_disk_free_bytes": 200835747840
+  },
+  {
+    "run": "20260910T140858Z-56a24cd4",
+    "host": "ubuntu",
+    "command": [
+      "go",
+      "test",
+      "-p",
+      "2",
+      "-count=1",
+      "./internal/biz",
+      "./internal/data",
+      "./internal/service",
+      "./cmd/ani-network-service"
+    ],
+    "source_manifest_sha256": "86ed9c4bc7819421f9482a800d9c56f24ea2671e1f934775759b6b7f38359195",
+    "source_archive_sha256": "103e220198581c1473868b64ff59a124d67766c71ea0fa84c70f3634d951ec04",
+    "exit_code": 1,
+    "result": "fail",
+    "log_sha256": "d2d6066802c33f0f620b301def31cfee8f671e5216e4605fc0e5ead46b652f48",
+    "password_uri_redactions": 0,
+    "postgres_containers": [],
+    "cleanup_logged": true,
+    "resource_samples": 1,
+    "min_mem_available_kib": 4288676,
+    "max_load1": 0.55712890625,
+    "min_disk_free_bytes": 200759721984
+  },
+  {
+    "run": "20260910T141326Z-24ea957e",
+    "host": "ubuntu",
+    "command": [
+      "scripts/integration",
+      "-p",
+      "2",
+      "-run",
+      "TestEgress",
+      "./internal/data"
+    ],
+    "source_manifest_sha256": "80f237362a7771ef60f3ccf961b86f12683f8cde1a739a2584279aced2fb448b",
+    "source_archive_sha256": "f8d6e2b516ade680626db7311a25c5d8000f75b5c9513cc1c78fa544d724a66e",
+    "exit_code": 1,
+    "result": "fail",
+    "log_sha256": "e23637c2be10776207e18478ea83b8c706bc287ad969edbfa40d1b07c42bb747",
+    "password_uri_redactions": 0,
+    "postgres_containers": [
+      "5c290690f1df328509f388aa08aba39b0e521768f1d7e91cdbf851854fc60560"
+    ],
+    "cleanup_logged": true,
+    "resource_samples": 3,
+    "min_mem_available_kib": 4028976,
+    "max_load1": 0.443359375,
+    "min_disk_free_bytes": 200640851968
+  },
+  {
+    "run": "20260910T141632Z-319b1c10",
+    "host": "ubuntu",
+    "command": [
+      "scripts/integration",
+      "-p",
+      "2",
+      "-run",
+      "TestEgress|TestNodeFactsCollector",
+      "./internal/data"
+    ],
+    "source_manifest_sha256": "33a8e2caf781c0dddb5d4db264ce7ada4e6240ee5f154bbea2a25a97152ea1e7",
+    "source_archive_sha256": "3a68f36cd0202165b3ec784eac5a10fa5ca11fb923037ae80ede2447b42f82b6",
+    "exit_code": 1,
+    "result": "fail",
+    "log_sha256": "e885a9e5ecea5e6f5fdf9f83952c6cc1607cc230f6737267a3210d042e16ce59",
+    "password_uri_redactions": 0,
+    "postgres_containers": [
+      "243022b1d4b1f6e8cdf5a966ea10764058d8480f5fc7c06746210f8af23d751f"
+    ],
+    "cleanup_logged": true,
+    "resource_samples": 1,
+    "min_mem_available_kib": 4321760,
+    "max_load1": 0.1474609375,
+    "min_disk_free_bytes": 200564740096
+  },
+  {
+    "run": "20260910T141833Z-3a83b632",
+    "host": "ubuntu",
+    "command": [
+      "go",
+      "mod",
+      "tidy"
+    ],
+    "source_manifest_sha256": "2e47ad68a9a09588eaaae46d9d36994acbfac6158425d3fe673600c46b7b95de",
+    "source_archive_sha256": "2225fc388494760356cd94445a9bcae8d51b0da784f8e0b32e757c35c5d03ce6",
+    "exit_code": 0,
+    "result": "pass",
+    "log_sha256": "537812c35bdd5052d00ac5ef05a929143f879223a6dc8dbb8f6aedd8f6241b23",
+    "password_uri_redactions": 0,
+    "postgres_containers": [],
+    "cleanup_logged": true,
+    "resource_samples": 1,
+    "min_mem_available_kib": 4307724,
+    "max_load1": 0.7529296875,
+    "min_disk_free_bytes": 200478453760
+  },
+  {
+    "run": "20260910T141957Z-9cf6d654",
+    "host": "ubuntu",
+    "command": [
+      "scripts/integration",
+      "-p",
+      "2",
+      "-run",
+      "TestEgress|TestNodeFactsCollector",
+      "./internal/data"
+    ],
+    "source_manifest_sha256": "b36655403fb370d1a9db622d1060e6c09f0e56e7fc72eff2d83de0a67dafd57c",
+    "source_archive_sha256": "f4732fcccbf692b97e83ef85c8d50a0891689b06b8d978c13103e118113e63eb",
+    "exit_code": 0,
+    "result": "pass",
+    "log_sha256": "e225dbe7cd79713c05d5d833e0e26d4a7a68203c7ccfd244c246ffa70bd4fd45",
+    "password_uri_redactions": 0,
+    "postgres_containers": [
+      "3e8b630f89817fa28e949f3b48607214ec44cd0065489de2177a36f529a3c7ce"
+    ],
+    "cleanup_logged": true,
+    "resource_samples": 4,
+    "min_mem_available_kib": 4081884,
+    "max_load1": 1.06787109375,
+    "min_disk_free_bytes": 200265515008
+  },
+  {
+    "run": "20260910T142241Z-72b3358f",
+    "host": "ubuntu",
+    "command": [
+      "scripts/integration",
+      "-p",
+      "2",
+      "-run",
+      "TestEgressKCAdapter",
+      "./internal/data"
+    ],
+    "source_manifest_sha256": "7b4dfcccc23d374aa946df8b509b603ef67cb52ac7a08f9d672f787bd14a4b09",
+    "source_archive_sha256": "cc98d0b347e13330a4c5ae0978d92f1d21836574aecd3bea43271bd134f197fe",
+    "exit_code": 1,
+    "result": "fail",
+    "log_sha256": "fcdff5a755ecd97868111c152e4afe18738ca50588cc266da00c8edfbef4eb33",
+    "password_uri_redactions": 0,
+    "postgres_containers": [
+      "0d9484247fb45ab1d8b9a9ee9ffd3e8dc84e74402c08aff17f0e7844a13b8365"
+    ],
+    "cleanup_logged": true,
+    "resource_samples": 3,
+    "min_mem_available_kib": 4056988,
+    "max_load1": 0.583984375,
+    "min_disk_free_bytes": 200170659840
+  },
+  {
+    "run": "20260910T142417Z-756edd96",
+    "host": "ubuntu",
+    "command": [
+      "scripts/integration",
+      "-p",
+      "2",
+      "-run",
+      "TestEgressKCAdapter|TestEgressPostgres|TestEgressBinding|TestNodeFactsCollector",
+      "./internal/data"
+    ],
+    "source_manifest_sha256": "f59976e56d0916648889edc2b1153056d7dc770657f00f74a50a046a5c9efb74",
+    "source_archive_sha256": "d03fd3aec1ce32eb80130ce392dfa25c664eccfb7e746ba5fce4e0cd112df3a0",
+    "exit_code": 1,
+    "result": "fail",
+    "log_sha256": "2fdb0c6c7c5146ab1a61b4f82a2c5ca5b8e032c467776ee83a8569ef36eb3b27",
+    "password_uri_redactions": 0,
+    "postgres_containers": [
+      "f8ce10add1c1dd93520770842d385b2674641423af58cb94477fb52fa86164fc"
+    ],
+    "cleanup_logged": true,
+    "resource_samples": 3,
+    "min_mem_available_kib": 4060080,
+    "max_load1": 0.3369140625,
+    "min_disk_free_bytes": 200121552896
+  },
+  {
+    "run": "20260910T142527Z-378ae99c",
+    "host": "ubuntu",
+    "command": [
+      "make",
+      "generate"
+    ],
+    "source_manifest_sha256": "c5ecc170fff230dfb31b1139b2178d3110e4cfd91b2f8304388be22b7636cb2e",
+    "source_archive_sha256": "041ce0d57b64eb2a614975a61aa1965a8a5f5aa672e386a783af30eba0803416",
+    "exit_code": 0,
+    "result": "pass",
+    "log_sha256": "b7772499ce60512634fd973a39e0648f74952273d6b870e7e70103deeeec5bb3",
+    "password_uri_redactions": 0,
+    "postgres_containers": [],
+    "cleanup_logged": true,
+    "resource_samples": 1,
+    "min_mem_available_kib": 4317628,
+    "max_load1": 0.82568359375,
+    "min_disk_free_bytes": 200053358592
+  },
+  {
+    "run": "20260910T142727Z-6f7d5b3f",
+    "host": "ubuntu",
+    "command": [
+      "scripts/integration",
+      "-p",
+      "2",
+      "-run",
+      "TestEgress|TestNodeFactsCollector",
+      "./internal/data"
+    ],
+    "source_manifest_sha256": "4b643aafaa14bfdc2421a0f95de8b46f24dde34e5574de14332fda0090d280d9",
+    "source_archive_sha256": "8adfd9b9fe01be7d9b3c0a404234099a3eeff2f8390a0e65f72a69f6d23bee2a",
+    "exit_code": 0,
+    "result": "pass",
+    "log_sha256": "04221f5827dc845d81768898108eee4059675376f8ad67c40763aa7a8b436557",
+    "password_uri_redactions": 0,
+    "postgres_containers": [
+      "3550e3af7c9b33250caafff90061cecdbcbfb04759f8a2446418b7b754251284"
+    ],
+    "cleanup_logged": true,
+    "resource_samples": 3,
+    "min_mem_available_kib": 4047168,
+    "max_load1": 0.283203125,
+    "min_disk_free_bytes": 199891951616
+  },
+  {
+    "run": "20260910T142834Z-90de0406",
+    "host": "ubuntu",
+    "command": [
+      "make",
+      "verify"
+    ],
+    "source_manifest_sha256": "521d868a0c2b5018eb1c11f6b8380eceacff6c665614760deec373116844ea6a",
+    "source_archive_sha256": "90e0e84fffda449bfb68548fb468d5a77462a1b6d80f72a0c364cf681f45c520",
+    "exit_code": 0,
+    "result": "pass",
+    "log_sha256": "3312bb2e162bdfd80997e1b0606ead9c3208fe14b4bce23c10b3389322507afe",
+    "password_uri_redactions": 0,
+    "postgres_containers": [],
+    "cleanup_logged": true,
+    "resource_samples": 10,
+    "min_mem_available_kib": 4096204,
+    "max_load1": 0.98388671875,
+    "min_disk_free_bytes": 199739850752
+  },
+  {
+    "run": "20260910T143025Z-c3699866",
+    "host": "ubuntu",
+    "command": [
+      "scripts/integration",
+      "-p",
+      "2",
+      "./..."
+    ],
+    "source_manifest_sha256": "9dce57c5ae8449cf65032fecbcafa87999643a088cee276aed58af83ceaeefdf",
+    "source_archive_sha256": "fea28cdc148c7985b5f825c9f693aaeefe8f650a1370af3e9ee9c7cbdae036d2",
+    "exit_code": 1,
+    "result": "fail",
+    "log_sha256": "9accd74d2094b93d8aab574e2e5bc6454c984ea0f2a9a940901542a41e83b3a7",
+    "password_uri_redactions": 0,
+    "postgres_containers": [
+      "5e2e5177c0d9622247122273a85cff6667657c54f93ff2f8e25218c71572b61f"
+    ],
+    "cleanup_logged": true,
+    "resource_samples": 24,
+    "min_mem_available_kib": 3937524,
+    "max_load1": 2.26904296875,
+    "min_disk_free_bytes": 199500140544
+  },
+  {
+    "run": "20260910T143332Z-cd20e80b",
+    "host": "ubuntu",
+    "command": [
+      "scripts/integration",
+      "-p",
+      "2",
+      "-run",
+      "TestServiceProcessesRecoverT1|TestEgress",
+      "./internal/data"
+    ],
+    "source_manifest_sha256": "d92024ad239b44e090b204fa92b6ff397949e0dd30b8f4f0c93c854825acb116",
+    "source_archive_sha256": "eac07ce79ee30920da3c4912bf65f7f6070d01c271f71ab301d2bd57b6509bb7",
+    "exit_code": 0,
+    "result": "pass",
+    "log_sha256": "6d50e8f8f33572938de5817ee0ebf70d6b8cf37b45b5573b62e7e285b5badaf0",
+    "password_uri_redactions": 0,
+    "postgres_containers": [
+      "76808e4c4b345ff873b9991bddd7b8495cc427117fb33bda1bf8b7eafe22fd05"
+    ],
+    "cleanup_logged": true,
+    "resource_samples": 12,
+    "min_mem_available_kib": 3913696,
+    "max_load1": 1.28662109375,
+    "min_disk_free_bytes": 199414886400
+  },
+  {
+    "run": "20260910T143740Z-9f5b4d85",
+    "host": "ubuntu",
+    "command": [
+      "make",
+      "generate"
+    ],
+    "source_manifest_sha256": "70133bd0089a23477bcac15a24535e029d863114a16480763ba46454e700e7f6",
+    "source_archive_sha256": "9701ff57c193642ac5bbcd6feb40c8a4320d9471a12c1886521a31c8101b5556",
+    "exit_code": 0,
+    "result": "pass",
+    "log_sha256": "7c4bc0097f8ac27d02917e20e2dbcb8362c1b74bc3750cda516527cb2f81e7af",
+    "password_uri_redactions": 0,
+    "postgres_containers": [],
+    "cleanup_logged": true,
+    "resource_samples": 1,
+    "min_mem_available_kib": 4323168,
+    "max_load1": 0.3486328125,
+    "min_disk_free_bytes": 199455707136
+  },
+  {
+    "run": "20260910T144134Z-71f8a5eb",
+    "host": "ubuntu",
+    "command": [
+      "scripts/integration",
+      "-p",
+      "2",
+      "-run",
+      "TestEgress|TestNodeFactsCollector",
+      "./internal/data"
+    ],
+    "source_manifest_sha256": "c6646abb302e1793f5df2d2e394f4858db42c764a1cc1e72a8b15fa70ab40f01",
+    "source_archive_sha256": "94f4bfc28d08655d43221577db5baac1922f5a5022fcde142b717f2274cc5424",
+    "exit_code": 0,
+    "result": "pass",
+    "log_sha256": "f5a740f20246fa983c6eabb7492b0331a7820cf83a0bdb3022bdaa6efc148ca9",
+    "password_uri_redactions": 0,
+    "postgres_containers": [
+      "642ec46d168a868d2a8c3bbf0b66465476813062fdf35984c0c1e8d8e1c2562f"
+    ],
+    "cleanup_logged": true,
+    "resource_samples": 7,
+    "min_mem_available_kib": 3965756,
+    "max_load1": 1.28369140625,
+    "min_disk_free_bytes": 199218700288
+  },
+  {
+    "run": "20260910T144842Z-acf48246",
+    "host": "ubuntu",
+    "command": [
+      "scripts/integration",
+      "-p",
+      "2",
+      "-race",
+      "./..."
+    ],
+    "source_manifest_sha256": "c6646abb302e1793f5df2d2e394f4858db42c764a1cc1e72a8b15fa70ab40f01",
+    "source_archive_sha256": "5d236b2a423b1214a49b1ce9f3e2feae72e46c89722eab4660a1af0620cb883d",
+    "exit_code": 0,
+    "result": "pass",
+    "log_sha256": "82f284e9355d4ca237feff4a8c59f5ca10a8d22f4872a5a9338f51ad69876ce3",
+    "password_uri_redactions": 0,
+    "postgres_containers": [
+      "d482997ab34c1ae7222c5bb5c74ef013f8e185157e977dcc7465caade3097690"
+    ],
+    "cleanup_logged": true,
+    "resource_samples": 29,
+    "min_mem_available_kib": 3785156,
+    "max_load1": 3.05419921875,
+    "min_disk_free_bytes": 198921244672
+  },
+  {
+    "run": "20260910T145133Z-96a527b1",
+    "host": "ubuntu",
+    "command": [
+      "make",
+      "verify"
+    ],
+    "source_manifest_sha256": "7f42813c2dded9547cbc1d6bfc029ab2ac1dd48f35529fab5ae9a820f3529e57",
+    "source_archive_sha256": "96e3570ece8dc503c2f995751b92448971f8adfefb2a9ac2d9e7407bf588066a",
+    "exit_code": 0,
+    "result": "pass",
+    "log_sha256": "b47418ab578a1bb9a977a32a7a16ccc39d90afe9767ff62e393fa984996b7de9",
+    "password_uri_redactions": 0,
+    "postgres_containers": [],
+    "cleanup_logged": true,
+    "resource_samples": 9,
+    "min_mem_available_kib": 4072328,
+    "max_load1": 2.39501953125,
+    "min_disk_free_bytes": 198920376320
+  }
+]

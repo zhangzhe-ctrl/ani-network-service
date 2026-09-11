@@ -1,0 +1,26 @@
+{
+  "at": "2026-09-10T11:56:52.777373+00:00",
+  "argv": [
+    "kubectl",
+    "--context=kind-kc062",
+    "--request-timeout=15s",
+    "exec",
+    "-n",
+    "kcn-system",
+    "kcn-ovn-central-5cfcf4f7b5-dbwnx",
+    "-c",
+    "ovn-central",
+    "--",
+    "ovn-nbctl",
+    "--timeout=5",
+    "--db=tcp:172.18.0.2:6641",
+    "--format=json",
+    "--columns=name",
+    "list",
+    "Logical_Switch"
+  ],
+  "exit": 0,
+  "elapsed": 0.14,
+  "stdout": "{\"data\":[[\"kcn-system.kcn-default\"],[\"kcn-system.sys-service\"]],\"headings\":[\"name\"]}\n",
+  "stderr": ""
+}

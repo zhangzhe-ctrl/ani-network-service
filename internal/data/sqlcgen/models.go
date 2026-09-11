@@ -6,6 +6,8 @@ package sqlcgen
 
 import (
 	"time"
+
+	"github.com/jackc/pgx/v5/pgtype"
 )
 
 type NetworkAttachment struct {
@@ -61,6 +63,47 @@ type NetworkAttachmentHistory struct {
 	CreatedAt      time.Time
 }
 
+type NetworkDefaultPublicPool struct {
+	ClusterID string
+	PoolID    string
+	Version   int64
+}
+
+type NetworkDeviceAdoption struct {
+	ResourceID           string
+	ClusterID            string
+	Kind                 string
+	DeviceName           string
+	InventoryFingerprint string
+	NodeInventory        []byte
+	NodeProgress         []byte
+}
+
+type NetworkEgressGateway struct {
+	ResourceID string
+	ClusterID  string
+	Kind       string
+}
+
+type NetworkEip struct {
+	TenantID        string
+	EipID           string
+	ClusterID       string
+	Namespace       string
+	Name            string
+	Description     string
+	PoolID          string
+	PoolRevision    int64
+	Address         string
+	State           string
+	Reason          string
+	Version         int64
+	CreatedAt       time.Time
+	UpdatedAt       time.Time
+	ObservedAt      *time.Time
+	LastOperationID string
+}
+
 type NetworkIdempotency struct {
 	TenantID           string
 	OperationKind      string
@@ -72,6 +115,8 @@ type NetworkIdempotency struct {
 	Response           []byte
 	CreatedAt          time.Time
 	SubnetID           *string
+	EipID              *string
+	SnatID             *string
 }
 
 type NetworkOperation struct {
@@ -88,6 +133,81 @@ type NetworkOperation struct {
 	CompletedAt    *time.Time
 	NextAttemptAt  *time.Time
 	SubnetID       *string
+	EipID          *string
+	SnatID         *string
+}
+
+type NetworkPlatformHistory struct {
+	HistoryID      string
+	ResourceID     string
+	OperationID    *string
+	Event          string
+	ResourceState  string
+	OperationState string
+	Reason         string
+	ActorRef       string
+	CallerRef      string
+	CreatedAt      time.Time
+}
+
+type NetworkPlatformIdempotency struct {
+	ClusterID          string
+	OperationKind      string
+	IdempotencyKey     string
+	Fingerprint        string
+	FingerprintVersion int32
+	ResourceID         string
+	OperationID        string
+	Response           []byte
+	CreatedAt          time.Time
+}
+
+type NetworkPlatformOperation struct {
+	OperationID    string
+	ResourceID     string
+	Kind           string
+	State          string
+	Reason         string
+	Attempt        int32
+	ExecutionEpoch int64
+	CreatedAt      time.Time
+	UpdatedAt      time.Time
+	CompletedAt    *time.Time
+	NextAttemptAt  *time.Time
+}
+
+type NetworkPlatformReconciliation struct {
+	ResourceID          string
+	NextRunAt           time.Time
+	LeaseOwner          *string
+	LeaseUntil          *time.Time
+	LeaseEpoch          int64
+	RequestedGeneration int64
+	ProcessedGeneration int64
+	RetryNotBefore      time.Time
+	EvidenceHash        string
+	EvidenceAppliedAt   time.Time
+}
+
+type NetworkPlatformResource struct {
+	ResourceID      string
+	Kind            string
+	ClusterID       string
+	Name            string
+	Description     string
+	State           string
+	Reason          string
+	Version         int64
+	CreatedAt       time.Time
+	UpdatedAt       time.Time
+	ObservedAt      *time.Time
+	LastOperationID string
+	ProviderName    string
+	ProviderUid     string
+	ProviderImages  []string
+	BindingID       string
+	PendingAction   string
+	PendingSince    *time.Time
 }
 
 type NetworkProviderBinding struct {
@@ -102,6 +222,26 @@ type NetworkProviderBinding struct {
 	PendingSince  *time.Time
 	SubnetID      *string
 	ResourceKind  string
+	EipID         *string
+	SnatID        *string
+}
+
+type NetworkPublicPool struct {
+	ResourceID            string
+	ClusterID             string
+	Kind                  string
+	Mode                  string
+	GatewayID             string
+	Cidr                  string
+	OvnGatewayIp          string
+	ExcludedIps           []string
+	VlanNetworkID         *string
+	UpstreamGatewayIp     *string
+	AllocationEnabled     bool
+	ConfigRevision        int64
+	Verification          []byte
+	VerificationExpiresAt *time.Time
+	Retired               bool
 }
 
 type NetworkReconciliation struct {
@@ -118,6 +258,8 @@ type NetworkReconciliation struct {
 	RetryNotBefore      time.Time
 	EvidenceHash        string
 	EvidenceAppliedAt   time.Time
+	EipID               *string
+	SnatID              *string
 }
 
 type NetworkResourceHistory struct {
@@ -135,6 +277,29 @@ type NetworkResourceHistory struct {
 	IdentityVerified bool
 	CreatedAt        time.Time
 	SubnetID         *string
+	EipID            *string
+	SnatID           *string
+}
+
+type NetworkSnatBinding struct {
+	TenantID         string
+	SnatID           string
+	ClusterID        string
+	Namespace        string
+	Name             string
+	Description      string
+	VpcID            string
+	EipID            string
+	DesiredEnabled   bool
+	AppliedEnabled   pgtype.Bool
+	TargetGeneration int64
+	State            string
+	Reason           string
+	Version          int64
+	CreatedAt        time.Time
+	UpdatedAt        time.Time
+	ObservedAt       *time.Time
+	LastOperationID  string
 }
 
 type NetworkSubnet struct {
@@ -152,6 +317,21 @@ type NetworkSubnet struct {
 	UpdatedAt       time.Time
 	ObservedAt      *time.Time
 	LastOperationID string
+}
+
+type NetworkTenantNamespace struct {
+	TenantID  string
+	ClusterID string
+	Namespace string
+}
+
+type NetworkVlanNetwork struct {
+	ResourceID string
+	ClusterID  string
+	Kind       string
+	DeviceID   string
+	VlanID     int32
+	Retired    bool
 }
 
 type NetworkVpc struct {

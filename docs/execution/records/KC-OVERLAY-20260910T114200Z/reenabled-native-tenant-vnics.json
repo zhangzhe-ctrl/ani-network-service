@@ -1,0 +1,147 @@
+{
+  "apiVersion": "v1",
+  "items": [
+    {
+      "apiVersion": "networking.kubercloud.com/v1",
+      "kind": "VNic",
+      "metadata": {
+        "annotations": {
+          "networking.kubercloud.com/allocate_ip_with_dhcp": "false",
+          "networking.kubercloud.com/allocated_vnicip": "auto-probe-10-vnic-pzhfg",
+          "pod.networking.kubercloud.com/probe-10": "kc062-worker/eth0"
+        },
+        "creationTimestamp": "2026-09-10T11:47:08Z",
+        "finalizers": [
+          "networking.kubercloud.com/finalizer"
+        ],
+        "generation": 2,
+        "labels": {
+          "node.networking.kubercloud.com/kc062-worker": ""
+        },
+        "name": "auto-probe-10-vnic-pzhfg",
+        "namespace": "tenant-egress-0910-1142",
+        "ownerReferences": [
+          {
+            "apiVersion": "v1",
+            "kind": "Pod",
+            "name": "probe-10",
+            "uid": "f7602f47-a37b-4f8d-ba7d-bd8ac867ffe3"
+          }
+        ],
+        "resourceVersion": "208872",
+        "uid": "dc1289ea-6b4d-40e0-add2-8a5e30367902"
+      },
+      "spec": {
+        "macAddress": "fa:00:f7:be:79:fa",
+        "subnet": "tenant-egress-0910-1142/kceg-0910-1142-subnet-10",
+        "type": "VETH"
+      },
+      "status": {
+        "conditions": [
+          {
+            "lastTransitionTime": "2026-09-10T11:47:08Z",
+            "message": "",
+            "reason": "Initialized",
+            "status": "True",
+            "type": "Initialized"
+          },
+          {
+            "lastTransitionTime": "2026-09-10T11:47:08Z",
+            "message": "",
+            "reason": "Valid",
+            "status": "True",
+            "type": "Valid"
+          },
+          {
+            "lastTransitionTime": "2026-09-10T11:47:08Z",
+            "message": "",
+            "reason": "Ready",
+            "status": "True",
+            "type": "Ready"
+          }
+        ],
+        "dstNic": "",
+        "gateway": "",
+        "ips": {
+          "auto-probe-10-vnic-pzhfg": "10.241.10.2"
+        },
+        "nic": "kcn-system/nic-tenant-egress-0910-1142-probe-10-4qkvh",
+        "nodeName": "kc062-worker",
+        "primaryIP": "10.241.10.2"
+      }
+    },
+    {
+      "apiVersion": "networking.kubercloud.com/v1",
+      "kind": "VNic",
+      "metadata": {
+        "annotations": {
+          "networking.kubercloud.com/allocate_ip_with_dhcp": "false",
+          "networking.kubercloud.com/allocated_vnicip": "auto-probe-11-vnic-j79c6",
+          "pod.networking.kubercloud.com/probe-11": "kc062-worker2/eth0"
+        },
+        "creationTimestamp": "2026-09-10T11:48:33Z",
+        "finalizers": [
+          "networking.kubercloud.com/finalizer"
+        ],
+        "generation": 2,
+        "labels": {
+          "node.networking.kubercloud.com/kc062-worker2": ""
+        },
+        "name": "auto-probe-11-vnic-j79c6",
+        "namespace": "tenant-egress-0910-1142",
+        "ownerReferences": [
+          {
+            "apiVersion": "v1",
+            "kind": "Pod",
+            "name": "probe-11",
+            "uid": "906c51f3-829c-4812-b242-68cc32d90559"
+          }
+        ],
+        "resourceVersion": "209230",
+        "uid": "d81b6f45-d884-42d3-9354-9bd62e3c18c1"
+      },
+      "spec": {
+        "macAddress": "fa:00:33:72:9c:b7",
+        "subnet": "tenant-egress-0910-1142/kceg-0910-1142-subnet-11",
+        "type": "VETH"
+      },
+      "status": {
+        "conditions": [
+          {
+            "lastTransitionTime": "2026-09-10T11:48:33Z",
+            "message": "",
+            "reason": "Ready",
+            "status": "True",
+            "type": "Ready"
+          },
+          {
+            "lastTransitionTime": "2026-09-10T11:48:34Z",
+            "message": "",
+            "reason": "Initialized",
+            "status": "True",
+            "type": "Initialized"
+          },
+          {
+            "lastTransitionTime": "2026-09-10T11:48:34Z",
+            "message": "",
+            "reason": "Valid",
+            "status": "True",
+            "type": "Valid"
+          }
+        ],
+        "dstNic": "",
+        "gateway": "",
+        "ips": {
+          "auto-probe-11-vnic-j79c6": "10.241.11.2"
+        },
+        "nic": "kcn-system/nic-tenant-egress-0910-1142-probe-11-69mp2",
+        "nodeName": "kc062-worker2",
+        "primaryIP": "10.241.11.2"
+      }
+    }
+  ],
+  "kind": "List",
+  "metadata": {
+    "resourceVersion": ""
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "at": "2026-09-10T11:55:11.690794+00:00",
+  "argv": [
+    "kubectl",
+    "--context=kind-kc062",
+    "--request-timeout=15s",
+    "get",
+    "nodes",
+    "-A",
+    "-o",
+    "custom-columns=NS:.metadata.namespace,NAME:.metadata.name,UID:.metadata.uid",
+    "--no-headers"
+  ],
+  "exit": 0,
+  "elapsed": 0.095,
+  "stdout": "<none>   kc062-control-plane   f70ffcb3-1214-45b3-998e-1fde64ac7567\n<none>   kc062-worker          bb508026-9c41-4900-bca7-a261e32a8b24\n<none>   kc062-worker2         d121afa0-13a5-43dd-8deb-cb642ea77107\n",
+  "stderr": ""
+}

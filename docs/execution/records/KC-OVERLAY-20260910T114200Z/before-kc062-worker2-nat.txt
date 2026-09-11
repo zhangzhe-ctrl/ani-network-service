@@ -1,0 +1,127 @@
+-P PREROUTING ACCEPT
+-P INPUT ACCEPT
+-P OUTPUT ACCEPT
+-P POSTROUTING ACCEPT
+-N DOCKER_OUTPUT
+-N DOCKER_POSTROUTING
+-N KCN-POSTROUTING
+-N KUBE-KUBELET-CANARY
+-N KUBE-MARK-MASQ
+-N KUBE-NODEPORTS
+-N KUBE-POSTROUTING
+-N KUBE-PROXY-CANARY
+-N KUBE-SEP-4DZJZ7LOV3ZBJAGH
+-N KUBE-SEP-AKI3SPNPM2I2DV7J
+-N KUBE-SEP-BX7M2GCC4SYT3EH7
+-N KUBE-SEP-E4PMWXVNOK3IKVUE
+-N KUBE-SEP-FMUXLYJ7H56UOVY4
+-N KUBE-SEP-GJNIZ43Q6AGBCO5J
+-N KUBE-SEP-GNPEEDHUT3X5BTQ2
+-N KUBE-SEP-HIGE6QBG3CPLP7BS
+-N KUBE-SEP-M3YH52YLVV5RIGLJ
+-N KUBE-SEP-MV46HYX2PEXC656O
+-N KUBE-SEP-N6IDZ24MBWWROFKL
+-N KUBE-SEP-NMARAMJ2USBLLGBP
+-N KUBE-SEP-NXTIPUMKQ4ELMYIS
+-N KUBE-SEP-P4I7JZNVOYY6VYNY
+-N KUBE-SEP-V2PECCYPB6X2GSCW
+-N KUBE-SEP-WSBAZPH2546LICO3
+-N KUBE-SERVICES
+-N KUBE-SVC-AFZKYPTWIVDIYBBD
+-N KUBE-SVC-ERIFXISQEP7F7OF4
+-N KUBE-SVC-FN3CKUL4ZNFGVVXL
+-N KUBE-SVC-GXXJIUUZRDUOXB4K
+-N KUBE-SVC-H3AU4KMST63BHXAA
+-N KUBE-SVC-JD5MR3NA4I4DYORP
+-N KUBE-SVC-NPX46M4PTMTKRN6Y
+-N KUBE-SVC-TCOU7JCQXEZGVUNU
+-N KUBE-SVC-UDPDOKU2AFJKWYNL
+-N KUBE-SVC-YXWDTEUORBK23ZKJ
+-A PREROUTING -m comment --comment "kubernetes service portals" -j KUBE-SERVICES
+-A PREROUTING -d 198.18.0.27/32 -j DOCKER_OUTPUT
+-A OUTPUT -m comment --comment "kubernetes service portals" -j KUBE-SERVICES
+-A OUTPUT -d 198.18.0.27/32 -j DOCKER_OUTPUT
+-A POSTROUTING -m comment --comment "kubernetes postrouting rules" -j KUBE-POSTROUTING
+-A POSTROUTING -d 198.18.0.27/32 -j DOCKER_POSTROUTING
+-A POSTROUTING -m comment --comment "kcn:masq for eip ingress" -j KCN-POSTROUTING
+-A DOCKER_OUTPUT -d 198.18.0.27/32 -p tcp -m tcp --dport 53 -j DNAT --to-destination 127.0.0.11:39853
+-A DOCKER_OUTPUT -d 198.18.0.27/32 -p udp -m udp --dport 53 -j DNAT --to-destination 127.0.0.11:34995
+-A DOCKER_POSTROUTING -s 127.0.0.11/32 -p tcp -m tcp --sport 39853 -j SNAT --to-source 198.18.0.27:53
+-A DOCKER_POSTROUTING -s 127.0.0.11/32 -p udp -m udp --sport 34995 -j SNAT --to-source 198.18.0.27:53
+-A KCN-POSTROUTING -s 100.64.0.0/16 -o ovn0 -j ACCEPT
+-A KCN-POSTROUTING -o ovn0 -m set --match-set kcn-intranet src -m set ! --match-set kcn-intranet dst -j MASQUERADE --random-fully
+-A KCN-POSTROUTING -o ovn0 -m set --match-set kcn-intranet src -m set --match-set kcn-cluster-lb dst -j MASQUERADE --random-fully
+-A KCN-POSTROUTING -m set --match-set kcn-nat-outgoing src -j MASQUERADE --random-fully
+-A KUBE-MARK-MASQ -j MARK --set-xmark 0x4000/0x4000
+-A KUBE-POSTROUTING -m mark ! --mark 0x4000/0x4000 -j RETURN
+-A KUBE-POSTROUTING -j MARK --set-xmark 0x4000/0x0
+-A KUBE-POSTROUTING -m comment --comment "kubernetes service traffic requiring SNAT" -j MASQUERADE --random-fully
+-A KUBE-SEP-4DZJZ7LOV3ZBJAGH -s 10.16.0.2/32 -m comment --comment "kube-system/kube-dns:dns-tcp" -j KUBE-MARK-MASQ
+-A KUBE-SEP-4DZJZ7LOV3ZBJAGH -p tcp -m comment --comment "kube-system/kube-dns:dns-tcp" -m tcp -j DNAT --to-destination 10.16.0.2:53
+-A KUBE-SEP-AKI3SPNPM2I2DV7J -s 10.16.0.8/32 -m comment --comment "kubevirt/kubevirt-operator-webhook:webhooks" -j KUBE-MARK-MASQ
+-A KUBE-SEP-AKI3SPNPM2I2DV7J -p tcp -m comment --comment "kubevirt/kubevirt-operator-webhook:webhooks" -m tcp -j DNAT --to-destination 10.16.0.8:8444
+-A KUBE-SEP-BX7M2GCC4SYT3EH7 -s 10.16.0.2/32 -m comment --comment "kube-system/kube-dns:metrics" -j KUBE-MARK-MASQ
+-A KUBE-SEP-BX7M2GCC4SYT3EH7 -p tcp -m comment --comment "kube-system/kube-dns:metrics" -m tcp -j DNAT --to-destination 10.16.0.2:9153
+-A KUBE-SEP-E4PMWXVNOK3IKVUE -s 10.16.0.19/32 -m comment --comment "kubevirt/virt-exportproxy" -j KUBE-MARK-MASQ
+-A KUBE-SEP-E4PMWXVNOK3IKVUE -p tcp -m comment --comment "kubevirt/virt-exportproxy" -m tcp -j DNAT --to-destination 10.16.0.19:8443
+-A KUBE-SEP-FMUXLYJ7H56UOVY4 -s 10.16.0.21/32 -m comment --comment "kubevirt/virt-api" -j KUBE-MARK-MASQ
+-A KUBE-SEP-FMUXLYJ7H56UOVY4 -p tcp -m comment --comment "kubevirt/virt-api" -m tcp -j DNAT --to-destination 10.16.0.21:8443
+-A KUBE-SEP-GJNIZ43Q6AGBCO5J -s 10.16.0.16/32 -m comment --comment "kubevirt/virt-template-controller-manager-metrics-service:http-metrics" -j KUBE-MARK-MASQ
+-A KUBE-SEP-GJNIZ43Q6AGBCO5J -p tcp -m comment --comment "kubevirt/virt-template-controller-manager-metrics-service:http-metrics" -m tcp -j DNAT --to-destination 10.16.0.16:8443
+-A KUBE-SEP-GNPEEDHUT3X5BTQ2 -s 10.16.0.4/32 -m comment --comment "kube-system/kube-dns:dns" -j KUBE-MARK-MASQ
+-A KUBE-SEP-GNPEEDHUT3X5BTQ2 -p udp -m comment --comment "kube-system/kube-dns:dns" -m udp -j DNAT --to-destination 10.16.0.4:53
+-A KUBE-SEP-HIGE6QBG3CPLP7BS -s 10.16.0.15/32 -m comment --comment "kubevirt/virt-template-api-service:http-api" -j KUBE-MARK-MASQ
+-A KUBE-SEP-HIGE6QBG3CPLP7BS -p tcp -m comment --comment "kubevirt/virt-template-api-service:http-api" -m tcp -j DNAT --to-destination 10.16.0.15:9443
+-A KUBE-SEP-M3YH52YLVV5RIGLJ -s 10.16.0.14/32 -m comment --comment "kubevirt/virt-exportproxy" -j KUBE-MARK-MASQ
+-A KUBE-SEP-M3YH52YLVV5RIGLJ -p tcp -m comment --comment "kubevirt/virt-exportproxy" -m tcp -j DNAT --to-destination 10.16.0.14:8443
+-A KUBE-SEP-MV46HYX2PEXC656O -s 10.16.0.2/32 -m comment --comment "kube-system/kube-dns:dns" -j KUBE-MARK-MASQ
+-A KUBE-SEP-MV46HYX2PEXC656O -p udp -m comment --comment "kube-system/kube-dns:dns" -m udp -j DNAT --to-destination 10.16.0.2:53
+-A KUBE-SEP-N6IDZ24MBWWROFKL -s 10.16.0.4/32 -m comment --comment "kube-system/kube-dns:metrics" -j KUBE-MARK-MASQ
+-A KUBE-SEP-N6IDZ24MBWWROFKL -p tcp -m comment --comment "kube-system/kube-dns:metrics" -m tcp -j DNAT --to-destination 10.16.0.4:9153
+-A KUBE-SEP-NMARAMJ2USBLLGBP -s 10.16.0.16/32 -m comment --comment "kubevirt/virt-template-webhook-service:http-webhook" -j KUBE-MARK-MASQ
+-A KUBE-SEP-NMARAMJ2USBLLGBP -p tcp -m comment --comment "kubevirt/virt-template-webhook-service:http-webhook" -m tcp -j DNAT --to-destination 10.16.0.16:9443
+-A KUBE-SEP-NXTIPUMKQ4ELMYIS -s 10.16.0.11/32 -m comment --comment "kubevirt/virt-api" -j KUBE-MARK-MASQ
+-A KUBE-SEP-NXTIPUMKQ4ELMYIS -p tcp -m comment --comment "kubevirt/virt-api" -m tcp -j DNAT --to-destination 10.16.0.11:8443
+-A KUBE-SEP-P4I7JZNVOYY6VYNY -s 10.16.0.7/32 -m comment --comment "kubevirt/kubevirt-operator-webhook:webhooks" -j KUBE-MARK-MASQ
+-A KUBE-SEP-P4I7JZNVOYY6VYNY -p tcp -m comment --comment "kubevirt/kubevirt-operator-webhook:webhooks" -m tcp -j DNAT --to-destination 10.16.0.7:8444
+-A KUBE-SEP-V2PECCYPB6X2GSCW -s 172.18.0.2/32 -m comment --comment "default/kubernetes:https" -j KUBE-MARK-MASQ
+-A KUBE-SEP-V2PECCYPB6X2GSCW -p tcp -m comment --comment "default/kubernetes:https" -m tcp -j DNAT --to-destination 172.18.0.2:6443
+-A KUBE-SEP-WSBAZPH2546LICO3 -s 10.16.0.4/32 -m comment --comment "kube-system/kube-dns:dns-tcp" -j KUBE-MARK-MASQ
+-A KUBE-SEP-WSBAZPH2546LICO3 -p tcp -m comment --comment "kube-system/kube-dns:dns-tcp" -m tcp -j DNAT --to-destination 10.16.0.4:53
+-A KUBE-SERVICES -d 10.96.124.96/32 -p tcp -m comment --comment "kubevirt/virt-exportproxy cluster IP" -m tcp --dport 443 -j KUBE-SVC-AFZKYPTWIVDIYBBD
+-A KUBE-SERVICES -d 10.96.0.10/32 -p tcp -m comment --comment "kube-system/kube-dns:dns-tcp cluster IP" -m tcp --dport 53 -j KUBE-SVC-ERIFXISQEP7F7OF4
+-A KUBE-SERVICES -d 10.96.248.132/32 -p tcp -m comment --comment "kubevirt/virt-template-controller-manager-metrics-service:http-metrics cluster IP" -m tcp --dport 8443 -j KUBE-SVC-FN3CKUL4ZNFGVVXL
+-A KUBE-SERVICES -d 10.96.255.253/32 -p tcp -m comment --comment "kubevirt/virt-template-webhook-service:http-webhook cluster IP" -m tcp --dport 443 -j KUBE-SVC-H3AU4KMST63BHXAA
+-A KUBE-SERVICES -d 10.96.159.233/32 -p tcp -m comment --comment "kubevirt/kubevirt-operator-webhook:webhooks cluster IP" -m tcp --dport 443 -j KUBE-SVC-GXXJIUUZRDUOXB4K
+-A KUBE-SERVICES -d 10.96.0.1/32 -p tcp -m comment --comment "default/kubernetes:https cluster IP" -m tcp --dport 443 -j KUBE-SVC-NPX46M4PTMTKRN6Y
+-A KUBE-SERVICES -d 10.96.0.10/32 -p udp -m comment --comment "kube-system/kube-dns:dns cluster IP" -m udp --dport 53 -j KUBE-SVC-TCOU7JCQXEZGVUNU
+-A KUBE-SERVICES -d 10.96.0.10/32 -p tcp -m comment --comment "kube-system/kube-dns:metrics cluster IP" -m tcp --dport 9153 -j KUBE-SVC-JD5MR3NA4I4DYORP
+-A KUBE-SERVICES -d 10.96.130.43/32 -p tcp -m comment --comment "kubevirt/virt-template-api-service:http-api cluster IP" -m tcp --dport 443 -j KUBE-SVC-YXWDTEUORBK23ZKJ
+-A KUBE-SERVICES -d 10.96.37.18/32 -p tcp -m comment --comment "kubevirt/virt-api cluster IP" -m tcp --dport 443 -j KUBE-SVC-UDPDOKU2AFJKWYNL
+-A KUBE-SERVICES -m comment --comment "kubernetes service nodeports; NOTE: this must be the last rule in this chain" -m addrtype --dst-type LOCAL -j KUBE-NODEPORTS
+-A KUBE-SVC-AFZKYPTWIVDIYBBD ! -s 10.16.0.0/16 -d 10.96.124.96/32 -p tcp -m comment --comment "kubevirt/virt-exportproxy cluster IP" -m tcp --dport 443 -j KUBE-MARK-MASQ
+-A KUBE-SVC-AFZKYPTWIVDIYBBD -m comment --comment "kubevirt/virt-exportproxy -> 10.16.0.14:8443" -m statistic --mode random --probability 0.50000000000 -j KUBE-SEP-M3YH52YLVV5RIGLJ
+-A KUBE-SVC-AFZKYPTWIVDIYBBD -m comment --comment "kubevirt/virt-exportproxy -> 10.16.0.19:8443" -j KUBE-SEP-E4PMWXVNOK3IKVUE
+-A KUBE-SVC-ERIFXISQEP7F7OF4 ! -s 10.16.0.0/16 -d 10.96.0.10/32 -p tcp -m comment --comment "kube-system/kube-dns:dns-tcp cluster IP" -m tcp --dport 53 -j KUBE-MARK-MASQ
+-A KUBE-SVC-ERIFXISQEP7F7OF4 -m comment --comment "kube-system/kube-dns:dns-tcp -> 10.16.0.2:53" -m statistic --mode random --probability 0.50000000000 -j KUBE-SEP-4DZJZ7LOV3ZBJAGH
+-A KUBE-SVC-ERIFXISQEP7F7OF4 -m comment --comment "kube-system/kube-dns:dns-tcp -> 10.16.0.4:53" -j KUBE-SEP-WSBAZPH2546LICO3
+-A KUBE-SVC-FN3CKUL4ZNFGVVXL ! -s 10.16.0.0/16 -d 10.96.248.132/32 -p tcp -m comment --comment "kubevirt/virt-template-controller-manager-metrics-service:http-metrics cluster IP" -m tcp --dport 8443 -j KUBE-MARK-MASQ
+-A KUBE-SVC-FN3CKUL4ZNFGVVXL -m comment --comment "kubevirt/virt-template-controller-manager-metrics-service:http-metrics -> 10.16.0.16:8443" -j KUBE-SEP-GJNIZ43Q6AGBCO5J
+-A KUBE-SVC-GXXJIUUZRDUOXB4K ! -s 10.16.0.0/16 -d 10.96.159.233/32 -p tcp -m comment --comment "kubevirt/kubevirt-operator-webhook:webhooks cluster IP" -m tcp --dport 443 -j KUBE-MARK-MASQ
+-A KUBE-SVC-GXXJIUUZRDUOXB4K -m comment --comment "kubevirt/kubevirt-operator-webhook:webhooks -> 10.16.0.7:8444" -m statistic --mode random --probability 0.50000000000 -j KUBE-SEP-P4I7JZNVOYY6VYNY
+-A KUBE-SVC-GXXJIUUZRDUOXB4K -m comment --comment "kubevirt/kubevirt-operator-webhook:webhooks -> 10.16.0.8:8444" -j KUBE-SEP-AKI3SPNPM2I2DV7J
+-A KUBE-SVC-H3AU4KMST63BHXAA ! -s 10.16.0.0/16 -d 10.96.255.253/32 -p tcp -m comment --comment "kubevirt/virt-template-webhook-service:http-webhook cluster IP" -m tcp --dport 443 -j KUBE-MARK-MASQ
+-A KUBE-SVC-H3AU4KMST63BHXAA -m comment --comment "kubevirt/virt-template-webhook-service:http-webhook -> 10.16.0.16:9443" -j KUBE-SEP-NMARAMJ2USBLLGBP
+-A KUBE-SVC-JD5MR3NA4I4DYORP ! -s 10.16.0.0/16 -d 10.96.0.10/32 -p tcp -m comment --comment "kube-system/kube-dns:metrics cluster IP" -m tcp --dport 9153 -j KUBE-MARK-MASQ
+-A KUBE-SVC-JD5MR3NA4I4DYORP -m comment --comment "kube-system/kube-dns:metrics -> 10.16.0.2:9153" -m statistic --mode random --probability 0.50000000000 -j KUBE-SEP-BX7M2GCC4SYT3EH7
+-A KUBE-SVC-JD5MR3NA4I4DYORP -m comment --comment "kube-system/kube-dns:metrics -> 10.16.0.4:9153" -j KUBE-SEP-N6IDZ24MBWWROFKL
+-A KUBE-SVC-NPX46M4PTMTKRN6Y ! -s 10.16.0.0/16 -d 10.96.0.1/32 -p tcp -m comment --comment "default/kubernetes:https cluster IP" -m tcp --dport 443 -j KUBE-MARK-MASQ
+-A KUBE-SVC-NPX46M4PTMTKRN6Y -m comment --comment "default/kubernetes:https -> 172.18.0.2:6443" -j KUBE-SEP-V2PECCYPB6X2GSCW
+-A KUBE-SVC-TCOU7JCQXEZGVUNU ! -s 10.16.0.0/16 -d 10.96.0.10/32 -p udp -m comment --comment "kube-system/kube-dns:dns cluster IP" -m udp --dport 53 -j KUBE-MARK-MASQ
+-A KUBE-SVC-TCOU7JCQXEZGVUNU -m comment --comment "kube-system/kube-dns:dns -> 10.16.0.2:53" -m statistic --mode random --probability 0.50000000000 -j KUBE-SEP-MV46HYX2PEXC656O
+-A KUBE-SVC-TCOU7JCQXEZGVUNU -m comment --comment "kube-system/kube-dns:dns -> 10.16.0.4:53" -j KUBE-SEP-GNPEEDHUT3X5BTQ2
+-A KUBE-SVC-UDPDOKU2AFJKWYNL ! -s 10.16.0.0/16 -d 10.96.37.18/32 -p tcp -m comment --comment "kubevirt/virt-api cluster IP" -m tcp --dport 443 -j KUBE-MARK-MASQ
+-A KUBE-SVC-UDPDOKU2AFJKWYNL -m comment --comment "kubevirt/virt-api -> 10.16.0.11:8443" -m statistic --mode random --probability 0.50000000000 -j KUBE-SEP-NXTIPUMKQ4ELMYIS
+-A KUBE-SVC-UDPDOKU2AFJKWYNL -m comment --comment "kubevirt/virt-api -> 10.16.0.21:8443" -j KUBE-SEP-FMUXLYJ7H56UOVY4
+-A KUBE-SVC-YXWDTEUORBK23ZKJ ! -s 10.16.0.0/16 -d 10.96.130.43/32 -p tcp -m comment --comment "kubevirt/virt-template-api-service:http-api cluster IP" -m tcp --dport 443 -j KUBE-MARK-MASQ
+-A KUBE-SVC-YXWDTEUORBK23ZKJ -m comment --comment "kubevirt/virt-template-api-service:http-api -> 10.16.0.15:9443" -j KUBE-SEP-HIGE6QBG3CPLP7BS

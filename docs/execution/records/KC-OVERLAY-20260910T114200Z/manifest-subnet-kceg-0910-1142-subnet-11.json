@@ -1,0 +1,22 @@
+{
+  "apiVersion": "networking.kubercloud.com/v1",
+  "kind": "Subnet",
+  "metadata": {
+    "name": "kceg-0910-1142-subnet-11",
+    "labels": {
+      "runbook.ani.io/run": "kceg-0910-1142"
+    },
+    "namespace": "tenant-egress-0910-1142"
+  },
+  "spec": {
+    "type": "VPC",
+    "ipVersion": "IPv4",
+    "gateway": "kceg-0910-1142-vpc",
+    "cidrBlock": "10.241.11.0/24",
+    "gatewayIP": "10.241.11.1",
+    "enableDHCP": false,
+    "allowedNamespaces": {
+      "from": "Same"
+    }
+  }
+}

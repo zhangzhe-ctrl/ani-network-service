@@ -1,0 +1,23 @@
+{
+  "at": "2026-09-10T11:46:37.804920+00:00",
+  "argv": [
+    "kubectl",
+    "--context=kind-kc062",
+    "--request-timeout=15s",
+    "exec",
+    "-n",
+    "kcn-system",
+    "kcn-ovn-central-5cfcf4f7b5-dbwnx",
+    "-c",
+    "ovn-central",
+    "--",
+    "ovn-nbctl",
+    "--timeout=5",
+    "--db=tcp:172.18.0.2:6641",
+    "show"
+  ],
+  "exit": 0,
+  "elapsed": 0.161,
+  "stdout": "switch e42f1750-3a64-49b8-bd91-ace650b72703 (kcn-system.kcn-default)\n    port kubevirt.auto-virt-operator-79b799c796-nc62p-vnic-tcsnl\n        addresses: [\"fa:00:b8:38:2b:d5 10.16.0.7\"]\n    port kubevirt.auto-virt-handler-l75qc-vnic-rn459\n        addresses: [\"fa:00:53:1a:04:2b 10.16.0.18\"]\n    port kubevirt.auto-virt-operator-79b799c796-5p6w8-vnic-wqhvr\n        addresses: [\"fa:00:c1:33:61:8d 10.16.0.8\"]\n    port kube-system.auto-coredns-589f44dc88-gcd57-vnic-4c5nn\n        addresses: [\"fa:00:21:6f:b0:c6 10.16.0.2\"]\n    port kubevirt.auto-virt-api-565d88c79d-zh48q-vnic-b6wvz\n        addresses: [\"fa:00:da:b9:93:4e 10.16.0.21\"]\n    port local-path-storage.auto-local-path-provisioner-56c4685b7c-pdxh-vnic-mp8zt\n        addresses: [\"fa:00:59:c2:5b:1b 10.16.0.3\"]\n    port kubevirt.auto-virt-handler-xllxd-vnic-sm9zd\n        addresses: [\"fa:00:26:00:09:de 10.16.0.20\"]\n    port kubevirt.auto-virt-template-apiserver-5c485dd848-58x-vnic-9cshz\n        addresses: [\"fa:00:02:7e:65:5b 10.16.0.15\"]\n    port kcn-system.kcn-default-vpc.kcn-system.kcn-cluster\n        type: router\n        router-port: vpc.kcn-system.kcn-cluster-kcn-system.kcn-default\n    port kubevirt.auto-virt-exportproxy-7644f96477-98rkr-vnic-crds6\n        addresses: [\"fa:00:19:67:8e:99 10.16.0.14\"]\n    port kubevirt.auto-virt-template-controller-59cf8457d9-mg-vnic-g5cjm\n        addresses: [\"fa:00:e1:b1:09:bb 10.16.0.16\"]\n    port kubevirt.auto-virt-controller-545d9f7b4-s6x5x-vnic-vxsrc\n        addresses: [\"fa:00:88:29:0a:97 10.16.0.12\"]\n    port kubevirt.auto-virt-controller-545d9f7b4-t2llp-vnic-jd2z2\n        addresses: [\"fa:00:d4:c0:c0:63 10.16.0.13\"]\n    port default.auto-virt-launcher-test-vm-1c1g-rp26j-vnic-dfd87\n        addresses: [\"fa:00:5d:15:a4:f0 10.16.0.22\"]\n    port kubevirt.auto-virt-api-565d88c79d-7fzf9-vnic-lpm5d\n        addresses: [\"fa:00:27:86:27:11 10.16.0.11\"]\n    port kubevirt.auto-virt-exportproxy-7644f96477-8g4fw-vnic-kxcxw\n        addresses: [\"fa:00:ae:c0:2b:ab 10.16.0.19\"]\n    port kube-system.auto-coredns-589f44dc88-zmkcs-vnic-8cfgp\n        addresses: [\"fa:00:a0:ff:3f:98 10.16.0.4\"]\nswitch 229b9869-db5d-4f0c-9815-2e8079b3b708 (kcn-system.sys-service)\n    port kcn-system.sys-service-vpc.kcn-system.kcn-cluster\n        type: router\n        router-port: vpc.kcn-system.kcn-cluster-kcn-system.sys-service\n    port kcn-system.node.kc062-worker\n        addresses: [\"fa:00:9f:8f:b1:43 100.64.0.6\"]\n    port kcn-system.node.kc062-control-plane\n        addresses: [\"fa:00:19:dc:f5:5a 100.64.0.3\"]\n    port kcn-system.node.kc062-worker2\n        addresses: [\"fa:00:7d:a4:a6:26 100.64.0.2\"]\nrouter 4fce1e68-6028-41e0-9ebc-67b4e96ef994 (vpc.kcn-system.kcn-cluster)\n    port vpc.kcn-system.kcn-cluster-kcn-system.kcn-default\n        mac: \"fa:00:27:14:ec:a0\"\n        ipv6-lla: \"fe80::f800:27ff:fe14:eca0\"\n        networks: [\"10.16.0.1/16\"]\n    port vpc.kcn-system.kcn-cluster-kcn-system.sys-service\n        mac: \"fa:00:8d:19:63:fd\"\n        ipv6-lla: \"fe80::f800:8dff:fe19:63fd\"\n        networks: [\"100.64.0.1/17\"]\n",
+  "stderr": ""
+}

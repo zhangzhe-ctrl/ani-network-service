@@ -1,0 +1,18 @@
+{
+  "at": "2026-09-10T11:53:40.701482+00:00",
+  "argv": [
+    "kubectl",
+    "--context=kind-kc062",
+    "--request-timeout=15s",
+    "wait",
+    "eips/kceg-0910-1142-eip",
+    "--for=jsonpath={.status.phase}=Bound",
+    "--timeout=40s",
+    "-n",
+    "tenant-egress-0910-1142"
+  ],
+  "exit": 0,
+  "elapsed": 0.175,
+  "stdout": "eip.networking.kubercloud.com/kceg-0910-1142-eip condition met\n",
+  "stderr": ""
+}

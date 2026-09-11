@@ -144,6 +144,16 @@ func (r Reason) Message() string {
 		return "The previously recorded provider object is missing."
 	case CleanupPending:
 		return "Provider cleanup has been requested and awaits confirmation."
+	case PublicEgressNotReady:
+		return "The public egress configuration or acceptance evidence is not ready."
+	case ProviderStateMismatch:
+		return "The observed provider configuration differs from the requested state."
+	case EIPInUse:
+		return "The EIP is reserved by a binding."
+	case VPCSnatExists:
+		return "The VPC has a binding that must be released first."
+	case PermissionDenied:
+		return "The trusted caller does not have permission for this operation."
 	case ResourceInUse:
 		return "Dependent network resources must be released before deletion."
 	default:

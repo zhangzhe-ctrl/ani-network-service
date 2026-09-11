@@ -1,0 +1,16 @@
+{
+  "at": "2026-09-10T11:55:40.163003+00:00",
+  "argv": [
+    "kubectl",
+    "--context=kind-kc062",
+    "--request-timeout=15s",
+    "get",
+    "pods",
+    "-n",
+    "kcn-system"
+  ],
+  "exit": 0,
+  "elapsed": 0.087,
+  "stdout": "NAME                               READY   STATUS    RESTARTS      AGE\nkcn-cni-ds-2gvfs                   1/1     Running   1 (20h ago)   20h\nkcn-cni-ds-pl4ph                   1/1     Running   2 (20h ago)   20h\nkcn-cni-ds-wtmns                   1/1     Running   1 (20h ago)   20h\nkcn-controller-7bdbbb67cb-2jz4k    1/1     Running   0             20h\nkcn-controller-7bdbbb67cb-65lpc    1/1     Running   1 (20h ago)   20h\nkcn-controller-7bdbbb67cb-fvcfq    1/1     Running   1 (20h ago)   20h\nkcn-ovn-central-5cfcf4f7b5-dbwnx   1/1     Running   0             20h\nkcn-ovn-central-5cfcf4f7b5-pp6l9   1/1     Running   0             20h\nkcn-ovn-central-5cfcf4f7b5-wz8xz   1/1     Running   0             20h\nkcn-ovs-ds-jbkdj                   1/1     Running   0             20h\nkcn-ovs-ds-pfx5z                   1/1     Running   0             20h\nkcn-ovs-ds-xnvp6                   1/1     Running   0             20h\n",
+  "stderr": ""
+}

@@ -49,7 +49,7 @@ func (s *KC) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	} else if len(parts) > offset+1 {
 		name = parts[offset+1]
 	}
-	kinds := map[string]string{"namespaces": "Namespace", "vpcs": "VPC", "subnets": "Subnet", "vnics": "VNic", "vnicips": "VNicIP", "eips": "EIP", "pods": "Pod"}
+	kinds := map[string]string{"namespaces": "Namespace", "vpcs": "VPC", "subnets": "Subnet", "vnics": "VNic", "vnicips": "VNicIP", "eips": "EIP", "pods": "Pod", "snats": "Snat", "nats": "Nat", "eipgateways": "EIPGateway", "vlannetworks": "VlanNetwork", "nodes": "Node", "configmaps": "ConfigMap", "services": "Service", "servicecidrs": "ServiceCIDR"}
 	objectKind, ok := kinds[kind]
 	if !ok {
 		s.Invalid = "unexpected resource " + kind
@@ -57,7 +57,7 @@ func (s *KC) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	apiVersion := "networking.kubercloud.com/v1"
-	if kind == "namespaces" || kind == "pods" {
+	if kind == "namespaces" || kind == "pods" || kind == "nodes" || kind == "configmaps" || kind == "services" {
 		apiVersion = "v1"
 	}
 	key := kind + "/" + ns + "/" + name
@@ -101,7 +101,7 @@ func (s *KC) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 			fail(409, "AlreadyExists")
 			return
 		}
-		if kind == "subnets" {
+		if kind == "subnets" && o["spec"].(map[string]any)["type"] != "Public" {
 			spec, _ := o["spec"].(map[string]any)
 			allowed, _ := spec["allowedNamespaces"].(map[string]any)
 			parent, _ := spec["gateway"].(string)
@@ -122,9 +122,16 @@ func (s *KC) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 			}
 			o["status"] = map[string]any{"observedGeneration": 1, "boundResources": bound, "conditions": []any{map[string]any{"type": "Valid", "status": "True"}, map[string]any{"type": "Initialized", "status": "True"}, map[string]any{"type": "Ready", "status": "True"}}}
 		}
+		if !s.egressCreated(kind, ns, o) {
+			s.Invalid = "egress contract mismatch"
+			fail(422, "Invalid")
+			return
+		}
 		s.Objects[key] = o
 		w.WriteHeader(201)
 		_ = json.NewEncoder(w).Encode(o)
+	case "PATCH":
+		s.egressPatch(w, r, key, kind, fail)
 	case "DELETE":
 		o := s.Objects[key]
 		if o == nil {
@@ -144,6 +151,14 @@ func (s *KC) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 			s.Invalid = fmt.Sprintf("unconditional deletion of %s", kind)
 			fail(409, "Conflict")
 			return
+		}
+		if kind == "snats" {
+			spec := o["spec"].(map[string]any)
+			if eip := s.Objects["eips/"+ns+"/"+fmt.Sprint(spec["eip"])]; eip != nil {
+				status := eip["status"].(map[string]any)
+				status["boundResource"] = nil
+				status["phase"] = "Available"
+			}
 		}
 		s.Deletes[kind]++
 		delete(s.Objects, key)

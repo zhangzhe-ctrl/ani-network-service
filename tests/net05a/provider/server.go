@@ -199,10 +199,10 @@ func (s *Server) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 				write(event{"ADDED", obj})
 			}
 			version := "networking.kubercloud.com/v1"
-			if gvr == "pods" {
+			if gvr == "pods" || gvr == "nodes" || gvr == "configmaps" || gvr == "services" {
 				version = "v1"
 			}
-			kind := map[string]string{"vpcs": "VPC", "subnets": "Subnet", "pods": "Pod", "vnics": "VNic", "vnicips": "VNicIP", "eips": "EIP"}[gvr]
+			kind := map[string]string{"vpcs": "VPC", "subnets": "Subnet", "pods": "Pod", "vnics": "VNic", "vnicips": "VNicIP", "eips": "EIP", "snats": "Snat", "nats": "Nat", "eipgateways": "EIPGateway", "vlannetworks": "VlanNetwork", "nodes": "Node", "configmaps": "ConfigMap", "services": "Service", "servicecidrs": "ServiceCIDR"}[gvr]
 			write(event{"BOOKMARK", map[string]any{"apiVersion": version, "kind": kind, "metadata": map[string]any{"resourceVersion": strconv.FormatInt(rev, 10), "annotations": map[string]any{"k8s.io/initial-events-end": "true"}}}})
 			w.(http.Flusher).Flush()
 		}
@@ -286,9 +286,9 @@ func (s *Server) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 				return
 			}
 		}
-		kind := map[string]string{"vpcs": "VPC", "subnets": "Subnet", "pods": "Pod", "vnics": "VNic", "vnicips": "VNicIP", "eips": "EIP"}[gvr]
+		kind := map[string]string{"vpcs": "VPC", "subnets": "Subnet", "pods": "Pod", "vnics": "VNic", "vnicips": "VNicIP", "eips": "EIP", "snats": "Snat", "nats": "Nat", "eipgateways": "EIPGateway", "vlannetworks": "VlanNetwork", "nodes": "Node", "configmaps": "ConfigMap", "services": "Service", "servicecidrs": "ServiceCIDR"}[gvr]
 		version := "networking.kubercloud.com/v1"
-		if gvr == "pods" {
+		if gvr == "pods" || gvr == "nodes" || gvr == "configmaps" || gvr == "services" {
 			version = "v1"
 		}
 		if items == nil {
@@ -304,7 +304,7 @@ func (s *Server) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	s.mu.Lock()
 	s.bytes[key] += int64(recorder.Body.Len())
 	s.mu.Unlock()
-	if verb == "POST" && recorder.Code == 201 {
+	if (verb == "POST" && recorder.Code == 201) || (verb == "PATCH" && recorder.Code == 200) {
 		var obj map[string]any
 		if json.Unmarshal(recorder.Body.Bytes(), &obj) == nil {
 			s.Change(gvr, obj, false)

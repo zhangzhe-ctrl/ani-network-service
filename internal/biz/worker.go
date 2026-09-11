@@ -41,6 +41,7 @@ func (e *ProviderError) Unwrap() error { return e.Cause }
 // ProviderTarget contains only domain references and an opaque provider object
 // identity. The adapter resolves namespace/name/cluster from its persisted map.
 type ProviderTarget struct {
+	Egress                                               *EgressWorkSpec
 	Requirement                                          ObservationRequirement
 	Direct                                               bool
 	TenantID, ResourceID, BindingID, KnownIdentity, CIDR string
@@ -48,6 +49,8 @@ type ProviderTarget struct {
 }
 
 type ProviderObservation struct {
+	Egress                         *EgressAppliedFacts
+	NeedsUpdate                    bool
 	Proof                          ObservationProof
 	Exists, Ready, HasDependencies bool
 	Identity                       string
@@ -63,8 +66,9 @@ type ResourceProvider interface {
 var ErrLeaseLost = errors.New("resource execution lease lost")
 
 // ResourceWork is the immutable resource snapshot used by the shared lifecycle
-// worker. Kind is closed to VPC or Subnet at the repository boundary.
+// worker. Resource kinds are closed at the repository boundary.
 type ResourceWork struct {
+	Egress                                                    *EgressWorkSpec
 	ID, TenantID, Kind, VPCID, CIDR, Gateway, LastOperationID string
 	State                                                     ResourceState
 	Reason                                                    Reason
@@ -88,6 +92,7 @@ type Work struct {
 }
 
 type Progress struct {
+	Egress         *EgressAppliedFacts
 	Proof          ObservationProof
 	Backoff        bool
 	State          ResourceState
@@ -156,7 +161,7 @@ func (w *Worker) Step(ctx context.Context) (bool, error) {
 		progress.NextDelay = w.retryDelay(work.Attempt)
 	}
 	target := ProviderTarget{
-		TenantID: work.Resource.TenantID, ResourceID: work.Resource.ID, BindingID: work.BindingID,
+		TenantID: work.Resource.TenantID, ResourceID: work.Resource.ID, BindingID: work.BindingID, Egress: work.Resource.Egress,
 		KnownIdentity: work.KnownIdentity, CIDR: work.Resource.CIDR,
 		Requirement: work.Requirement, Direct: work.ActiveOperation || work.PendingAction != "" || work.Resource.State == Deleted,
 		Kind: work.Resource.Kind, VPCID: work.Resource.VPCID, Gateway: work.Resource.Gateway,
@@ -178,6 +183,7 @@ func (w *Worker) Step(ctx context.Context) (bool, error) {
 			progress.State = Degraded
 		}
 	} else {
+		progress = applyEgressFacts(progress, observation)
 		progress.Observed = true
 		progress.Proof = observation.Proof
 		if progress.Proof.CollectedAt.IsZero() {
@@ -238,7 +244,9 @@ func (w *Worker) ensure(ctx context.Context, work Work, target ProviderTarget, o
 		callCtx, cancel := context.WithTimeout(ctx, w.policy.RequestTimeout)
 		var value ProviderObservation
 		var err error
-		if target.Kind == "subnet" {
+		if isEgressKind(target.Kind) {
+			value, err = w.mutateEgress(callCtx, target, false)
+		} else if target.Kind == "subnet" {
 			value, err = w.provider.EnsureSubnet(callCtx, target)
 		} else {
 			value, err = w.provider.EnsureVPC(callCtx, target)
@@ -263,10 +271,47 @@ func (w *Worker) ensure(ctx context.Context, work Work, target ProviderTarget, o
 			return progress, nil
 		}
 		observed = value
+		progress = applyEgressFacts(progress, value)
 		if !value.Proof.CollectedAt.IsZero() {
 			progress.Proof = value.Proof
 		}
 		progress.Identity = observed.Identity
+		progress.ClearPending = true
+	}
+	if observed.NeedsUpdate {
+		if !work.ActiveOperation || work.Operation.Kind != "set_snat_enabled" || target.Kind != "snat" {
+			progress.State, progress.Reason = Degraded, ProviderStateMismatch
+			return progress, nil
+		}
+		if err := w.repository.BeginMutation(ctx, work, "update", observed.Identity); err != nil {
+			return progress, err
+		}
+		target.KnownIdentity = observed.Identity
+		callCtx, cancel := context.WithTimeout(ctx, w.policy.RequestTimeout)
+		value, err := w.mutateEgress(callCtx, target, true)
+		cancel()
+		if err != nil {
+			progress.Observed = false
+			progress.Reason = providerReason(err)
+			progress.ClearPending = providerKind(err) != ProviderUncertain
+			if providerKind(err) == ProviderConflict {
+				progress.OperationState = Blocked
+			}
+			return progress, nil
+		}
+		if !value.Exists || value.Identity != observed.Identity {
+			progress.Observed = false
+			progress.ClearPending = false
+			progress.Reason, progress.OperationState = ProviderUnknown, Blocked
+			return progress, nil
+		}
+		observed = value
+		progress = applyEgressFacts(progress, value)
+		if !value.Proof.CollectedAt.IsZero() {
+			progress.Proof = value.Proof
+		}
+		progress.ClearPending = !value.NeedsUpdate
+	} else if work.PendingAction == "update" {
 		progress.ClearPending = true
 	}
 	if observed.Ready {

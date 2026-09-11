@@ -1,0 +1,40 @@
+{
+  "evidence_audit": "pass",
+  "native_overlay_egress": "fail",
+  "counterfactual_route_override_egress": "pass",
+  "primary_external_requests": 20,
+  "expected_assertions_passed": 16,
+  "native_success_assertions_failed": [
+    [
+      "bound",
+      "probe-10"
+    ],
+    [
+      "bound",
+      "probe-11"
+    ],
+    [
+      "reenabled-native",
+      "probe-10"
+    ],
+    [
+      "reenabled-native",
+      "probe-11"
+    ]
+  ],
+  "internal_http_controls": 8,
+  "preserved_inventory_entries": 110,
+  "kubernetes_fixture_cleanup": "pass",
+  "node_nat_routes_config_restored": "pass",
+  "original_pod_readiness_restarts_unchanged": "pass",
+  "original_vm_vmi_uids_status_unchanged": "pass",
+  "test_specific_ovn_cleanup": "pass",
+  "exact_ovn_baseline_restored": false,
+  "retained_ovn_infrastructure": "er.kc062-worker plus sys-service router/switch patch ports; created lazily by kc and cached globally; empty routes, NAT and policies",
+  "dns_dependent_request": "fail: selected resolver/endpoint request timed out; DNS root cause not isolated",
+  "network_service_api": "not_verified",
+  "real_public_eip_no_upstream_nat": "not_verified",
+  "command_count": 441,
+  "first_command_utc": "2026-09-10T11:46:35.996822+00:00",
+  "last_command_utc": "2026-09-10T11:56:53.883561+00:00"
+}

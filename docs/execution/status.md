@@ -1,8 +1,38 @@
 # Network 执行状态
 
-更新日期：2026-09-10。本文件是唯一当前进度入口；[规格](../specs/vpc-subnet.md)描述目标，[计划](../plans/vpc-subnet.md)描述工作包。
+更新日期：2026-09-11。本文件是唯一当前进度入口；[规格](../specs/vpc-subnet.md)描述目标，[计划](../plans/vpc-subnet.md)描述工作包。
 
-## 当前工作
+## VPC SNAT 当前实施
+
+2026-09-10，按 [本轮 Goal](records/VPC-SNAT-IMPLEMENTATION/goal-objective.md) 在独立 `codex/vpc-snat-implementation` worktree 完成本仓实现与必要自动验证。固定基线 `e481e968d3cc2f17bc4c6a736c438428519b09a0`；设计输入 595 项及原有历史证据保留；实施结束时成果未提交，后续分支交付按下方新增授权执行。详细代码、命令、源码快照和边界见 [本轮实施记录](records/VPC-SNAT-IMPLEMENTATION/README.md)。
+
+| 范围 | 当前结果 | 说明 |
+|---|---|---|
+| 平台出口、租户 EIP/SNAT 契约、持久事务、实际 kc adapter、同一 worker 持续观察 | `pass` | 新增领域/Proto/迁移、持久 namespace 与占用、UID/fencing、启停解绑释放、部分设备进度与依赖退化；受控接口与实际进程验证 |
+| 最终 `make verify` | `pass` | ubuntu `20260910T145133Z-96a527b1`，exit 0 |
+| 真实 PG 全量 race、故障恢复、VPC/Subnet/Attachment 回归 | `pass` | ubuntu `20260910T144842Z-acf48246`，exit 0 |
+| 原生 Overlay 数据面 | `not_verified` | 合格 kc 修复版本与源码/运行镜像关联缺失，外部阻塞；本轮未执行 live 出网验收 |
+| Underlay 自动测试 | `pass` | 实际 adapter + 受控事实/HTTP + 真实 PG；VLAN 0/非零合同、部分接管、占用、陈旧事实与生命周期 |
+| Underlay 真实网卡/VLAN/物理出网 | `not_verified` | 按约定延后，未接管真实接口 |
+| ANI Gateway/OpenAPI、真实 IAM、部署/发布 | `not_verified` | 本轮未接入或发布；新增出网 RPC 默认拒绝无可信调用上下文的请求 |
+
+Goal 已标记为 `blocked`：本仓独立工作完成后，同一 Provider 前提连续三轮仍不满足；[第三轮只读复核](records/VPC-SNAT-IMPLEMENTATION/provider-continuation-03.json)确认源码、集群身份与镜像保持。恢复条件是合格 kc 版本、实际镜像 digest 及相关回归证据就绪。
+
+完整 Goal **尚未完成**。按用户“你不用修复kc-networking的bug,标注就行了”，本轮只标注 serviceIP 热加载、跨 namespace EIP 候选及 Snat/VPC namespace 三项缺陷，不改 kc 或升级 CNI。[结束预检](records/VPC-SNAT-IMPLEMENTATION/provider-final-preflight.json)确认固定 kc 源码、原集群身份和运行镜像保持；历史手改 OVN 对照不作为原生通过。
+
+重任务全部在 ubuntu 串行执行，无本地回退。所有任务 PG 容器已清理，未创建 live 测试资源或临时 NAT，未修改已有 VM/宿主防火墙。结束复核原有 13 类资源 UID、kcn-config 与节点路由保持；KUBE-SERVICES NAT 规则顺序差异单独记录，未回写，见 [环境证据](records/VPC-SNAT-IMPLEMENTATION/final-environment.json)与[差异](records/VPC-SNAT-IMPLEMENTATION/node-network-differences.json)。原设计 worktree、共享 checkout、历史迁移和证据保留；远端任务源码/构建物作为证据保留。
+
+2026-09-11 用户确认 kc 未修复是既定事实，先保留该阻塞并处理后续流程。本仓交付核对已完成：[本次交接审计](records/VPC-SNAT-IMPLEMENTATION/handoff-audit-20260911.json)确认 140 项运行源码与最终两项远端门禁一致，595 项原设计输入及 588 项历史证据保持。保留原始门禁结果，不因相同源码而重复执行重测试或 kc 预检。
+
+后续分开处理：本仓成果可继续交接；原生 Overlay 在合格 Provider 的固定源码、实际镜像 digest 与相关回归证据就绪后恢复。Underlay 物理验收按约定延期，ANI/IAM 接入仍属独立范围；用户随后选择本仓收尾及提交推送，目标为当前 `origin/codex/vpc-snat-implementation`；本次分支发布已获授权，见 [发布记录](records/VPC-SNAT-PUBLICATION-20260911/README.md)。其他工作包仍待各自明确范围。完整出网 Goal 保持 `blocked`，不将本仓交付核对视为原生出网通过。
+
+## 历史工作与输入时点
+
+以下为本轮实施之前的事实，不覆盖顶部 VPC SNAT 当前状态。
+
+租户 VPC SNAT 方案文档已完成，包含 Overlay/Underlay、平台网卡/二层/网关/Public 池初始化、租户 EIP/绑定启停与释放、身份/持久化/删除保护及验收合同，见 [方案](../specs/vpc-snat.md)、[计划](../plans/vpc-snat.md)和[操作手册](../kc-public-egress-manual.md)。该方案交付时点仅整理文档和既有证据，当时 Network EIP/Snat 产品实现未启动，kc 修复未实施，Underlay 为 `not_verified`、后续再测；Overlay 保留下面的原始 fail 与诊断对照 pass。交付检查见 [方案文档记录](records/2026-09-10-vpc-snat-design.md)。
+
+2026-09-10 用户授权的独立 kc Overlay EIP/Snat 出网测试已完成并记录，原始新建/重新启用后的出网为 `fail`：ER 源路由下一跳为空。仅对测试路由补齐下一跳后的双 worker HTTPS 对照为 `pass`，不替代原始失败。测试 CR 和临时节点 NAT 已清理，原有资源 UID、Pod/VM 状态、节点 NAT/路由与 kc 配置保持一致；kc 按需创建的空共享 ER 及系统连接端口保留，OVN 清单不完全等于测试前。详见 [本次实测与清理差异](records/KC-OVERLAY-20260910T114200Z/README.md)。本次没有修改 kc 源码或验收 Network EIP API，不改变下列工作包结果。
 
 NET-05A 按用户调整后的范围完成，状态为 `completed_with_deferred_capacity`；1,000/2,000 容量未完成、延期，原完整容量矩阵仍为 `not_verified`。成果位于独立 `codex/net-05a` worktree；Goal 结束时保持未提交，后续提交推送授权见本页末尾；固定输入及证据见 [NET-05A 记录](records/NET-05A-implementation.md)。配额等待 Core 重构后独立接入。NET-05 历史验收及发布事实保留，持续观察豁免不适用于 NET-05A。
 
@@ -52,7 +82,7 @@ NET-02/03 实施与受控验收、NET-04 接口实现和进程验收已完成，
 
 NET-02–04 后续发布记录属于历史输入：Network 固定提交已发布；ANI 固定提交仅保留本地，用户最新决定暂缓推送。NET-05 原 Goal 的验收阶段只允许隔离验收与远端临时验证提交；验收结束后用户明确授权发布 Network 至远端 main，并再次确认 ANI 继续保留本地。KC-KIND 后续记录作为单独环境输入，不混入固定业务源码。
 
-## 下一步
+## 历史下一步安排
 
 NET-05A 按用户调整后的范围结束并停止；Goal 结束后的独立提交推送按本页末尾授权执行。1,000/2,000 容量未完成，后续在资源条件具备且独立恢复该工作后验证；不自动启动 NET-06、配额或发布。以下 NET-05 发布说明为历史安排。
 
@@ -78,3 +108,9 @@ NET-05 验收完成，按用户后续授权发布 Network main，ANI 成果继�
 2026-09-10，用户在 NET-05A Goal 关闭后明确要求提交并推送 Network service。目标为 `origin/codex/net-05a`，包含已验收的实现、迁移、测试运行器、文档和脱敏证据；原 Goal 完成记录中的“未提交”描述保留为当时事实。本次授权不包含其他仓库、NET-06、配额、大规模容量补测、registry 镜像发布或整体切换。
 
 提交前以完整待提交文件清单在 ubuntu 单条受限流水线运行 `make verify`、`make audit`，为包含脱敏证据的实际提交内容重新生成 SBOM。验收阶段排除原始证据的源快照与本次提交内容分别标识；精确远端提交和对应 CI 结果以远端分支与该 SHA 的 checks 为准，不用临时验证提交冒充发布版本。
+
+## VPC SNAT 后续分支提交推送授权
+
+2026-09-11 用户明确选择完成本仓交付收尾与提交推送，目标为 `origin/codex/vpc-snat-implementation`。[发布记录](records/VPC-SNAT-PUBLICATION-20260911/README.md)保留完整暂存树、ubuntu 门禁、历史证据的精确属性处理和最终 SBOM 流程。首轮 `make verify`、6 项 tenant-mutations、漏洞/密钥/SBOM/notice 门禁 `pass`；原全量 PG/race 对应的 140 项运行源码仍保持。当前交付分支的真实提交和 exact-SHA CI 以 Git/托管平台为准，不将临时验证提交冒充发布版本。
+
+本次源码交付不解除 kc 外部阻塞，不宣布原生 Overlay 出网通过。Underlay 物理、ANI Gateway/IAM、合并 main、PR、镜像发布和部署继续保持各自边界。

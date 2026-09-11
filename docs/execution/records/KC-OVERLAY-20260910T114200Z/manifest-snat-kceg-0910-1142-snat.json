@@ -1,0 +1,16 @@
+{
+  "apiVersion": "networking.kubercloud.com/v1",
+  "kind": "Snat",
+  "metadata": {
+    "name": "kceg-0910-1142-snat",
+    "labels": {
+      "runbook.ani.io/run": "kceg-0910-1142"
+    },
+    "namespace": "tenant-egress-0910-1142"
+  },
+  "spec": {
+    "eip": "kceg-0910-1142-eip",
+    "vpc": "kceg-0910-1142-vpc",
+    "disable": false
+  }
+}

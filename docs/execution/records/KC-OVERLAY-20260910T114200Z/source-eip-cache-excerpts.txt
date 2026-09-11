@@ -1,0 +1,83 @@
+296: 	if err := h.List(ctx, &eipgwList, client.UnsafeDisableDeepCopy); err != nil {
+297: 		return fmt.Errorf("Failed to list EIPGateway for load eip releated data: %v", err)
+298: 	}
+299: 	h.states.gws = make(map[string]*gwState)
+300: 	for _, gw := range eipgwList.Items {
+301: 		if gw.Initialized() {
+302: 			h.states.gws[gw.Name] = &gwState{
+303: 				scope:     gw.Spec.Scope,
+304: 				serviceIP: string(gw.Status.LocalIP),
+305: 				subnets:   map[string]*subnetState{}}
+306: 		}
+307: 	}
+308: 	// default vpc (intranet gateway)
+
+355: 	logger.V(1).Info("LoadGatewaySubnet", "gatewayKey", gatewayKey, "subnetKey", subnetKey)
+356: 
+357: 	h.states.Lock()
+358: 	defer h.states.Unlock()
+359: 
+360: 	if _, ok := h.states.gws[gatewayKey]; !ok {
+361: 		// must be eipgateway, not default vpc
+362: 		gw := &networkingv1.EIPGateway{}
+363: 		key := client.ObjectKey{Name: gatewayKey}
+364: 		if err := h.Get(ctx, key, gw, client.UnsafeDisableDeepCopy); err != nil {
+365: 			logger.Error(err, "Failed to get EIPGateway for load gateway subnet", "gatewayKey", gatewayKey, "subnetKey", subnetKey)
+366: 			return err
+367: 		} else {
+368: 			// ignore initialized state
+369: 			h.states.gws[gatewayKey] = &gwState{scope: gw.Spec.Scope, subnets: map[string]*subnetState{}}
+370: 		}
+371: 	}
+372: 
+373: 	if _, ok := h.states.gws[gatewayKey].subnets[subnetKey]; !ok {
+374: 		subnet := &networkingv1.Subnet{}
+375: 		namespace, name, _ := ctrlutils.ParseNameSplit(subnetKey, "")
+376: 		key := client.ObjectKey{Namespace: namespace, Name: name}
+377: 		if err := h.Get(ctx, key, subnet, client.UnsafeDisableDeepCopy); err != nil {
+378: 			logger.Error(err, "Failed to get Subnet for load gateway subnet", "gatewayKey", gatewayKey, "subnetKey", subnetKey)
+379: 			return err
+380: 		} else {
+381: 			// ignore initialized state
+382: 			h.states.gws[gatewayKey].subnets[subnetKey] = &subnetState{
+383: 				underlay: subnet.Status.UnderlayState != nil,
+384: 				cidr:     string(subnet.Spec.CIDRBlock)}
+385: 		}
+386: 	}
+387: 	return nil
+388: }
+389: 
+390: func (h *EIPHandler) loadVPCUplinkIPs(ctx context.Context) error {
+391: 	logger := logf.FromContext(ctx)
+
+1300: 	}
+1301: 
+1302: 	return nil
+1303: }
+1304: 
+1305: func (h *EIPHandler) addEIPRoutesOnER(ctx context.Context, eip *networkingv1.EIP, vpcKey string, nodeName string) error {
+1306: 	logger := logf.FromContext(ctx)
+1307: 
+1308: 	gatewayKey := eip.Status.Gateway
+1309: 	subnetKey, _ := ctrlutils.Format2Key(eip.Spec.Subnet, eip.Namespace)
+1310: 
+1311: 	h.states.ers[nodeName].Lock()
+1312: 	defer h.states.ers[nodeName].Unlock()
+1313: 
+1314: 	lrName := ovs.GetERLogicalRouterName(nodeName)
+1315: 	ovnrt := ctrlutils.MainRouteTable
+1316: 	externalIDs := map[string]string{ctrlutils.ExternalIDSourceKey: ctrlutils.ExternalIDSourceER, "vendor": ctrlutils.CniTypeName}
+1317: 
+1318: 	// add eip subnet network src route to gw
+1319: 	// ovn-nbctl --policy=src-ip lr-route-add er.node1 10.10.5.0/24 100.64.0.253
+1320: 	network := h.states.gws[gatewayKey].subnets[subnetKey].cidr
+1321: 	nexthop := h.states.gws[gatewayKey].serviceIP
+1322: 	if err := h.OvnClient.AddLogicalRouterStaticRoute(lrName, ovnrt, ovnnb.LogicalRouterStaticRoutePolicySrcIP,
+1323: 		network, externalIDs, nil, nil, nexthop); err != nil {
+1324: 		logger.Error(err, "Failed to add eip network src route on er", "network", network, "nodeName", nodeName)
+1325: 		return err
+1326: 	}
+1327: 
+1328: 	// add eip dst route to vpc
+1329: 	// ovn-nbctl lr-route-add er.node1 10.10.5.100 100.65.0.3 er.node1-uplink.ns1.vpc1
+1330: 	externalIDs[ctrlutils.ExternalIDSourceKey] = ctrlutils.ExternalIDSourceEIP

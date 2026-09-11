@@ -12,9 +12,9 @@ func (p *Postgres) observationTelemetry(ctx context.Context) map[string]float64 
  (SELECT coalesce(sum(n_tup_upd),0)::double precision FROM pg_stat_user_tables),
  (SELECT wal_bytes::double precision FROM pg_stat_wal),
  greatest(0,extract(epoch FROM clock_timestamp()-(SELECT min(due) FROM
-   (SELECT next_run_at AS due FROM network_reconciliations UNION ALL SELECT next_check_at FROM network_attachments) q)))::double precision,
+   (SELECT next_run_at AS due FROM network_reconciliations UNION ALL SELECT next_check_at FROM network_attachments UNION ALL SELECT next_run_at FROM network_platform_reconciliations) q)))::double precision,
  coalesce((SELECT max(extract(epoch FROM clock_timestamp()-observed_at)) FROM
-   (SELECT observed_at FROM network_vpcs UNION ALL SELECT observed_at FROM network_subnets UNION ALL SELECT observed_at FROM network_attachments) e),0)::double precision`).Scan(&transactions, &updates, &wal, &queueAge, &evidenceAge)
+   (SELECT observed_at FROM network_vpcs UNION ALL SELECT observed_at FROM network_subnets UNION ALL SELECT observed_at FROM network_attachments UNION ALL SELECT observed_at FROM network_eips UNION ALL SELECT observed_at FROM network_snat_bindings UNION ALL SELECT observed_at FROM network_platform_resources) e),0)::double precision`).Scan(&transactions, &updates, &wal, &queueAge, &evidenceAge)
 	if err != nil {
 		return m
 	}

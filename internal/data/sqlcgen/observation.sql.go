@@ -33,7 +33,7 @@ const notifyResource = `-- name: NotifyResource :execrows
 UPDATE network_reconciliations
 SET requested_generation=requested_generation+1,
     next_run_at=greatest(retry_not_before,least(next_run_at,clock_timestamp()))
-WHERE tenant_id=$1 AND coalesce(vpc_id,subnet_id)=$2::text
+WHERE tenant_id=$1 AND coalesce(vpc_id,subnet_id,eip_id,snat_id)=$2::text
 `
 
 type NotifyResourceParams struct {
@@ -103,11 +103,80 @@ func (q *Queries) ObservationAttachments(ctx context.Context, arg ObservationAtt
 	return items, nil
 }
 
+const observationEgressEdges = `-- name: ObservationEgressEdges :many
+WITH targets AS (
+ SELECT e.tenant_id::text AS tenant_id,e.eip_id AS resource_id,'eip'::text AS kind,e.pool_id,
+ s.vpc_id,e.eip_id,s.snat_id FROM network_eips e
+ LEFT JOIN network_snat_bindings s ON s.tenant_id=e.tenant_id AND s.eip_id=e.eip_id AND s.state<>'deleted'
+ WHERE e.cluster_id=$1
+ UNION ALL
+ SELECT s.tenant_id::text,s.snat_id,'snat'::text,e.pool_id,s.vpc_id,s.eip_id,s.snat_id
+ FROM network_snat_bindings s JOIN network_eips e ON e.tenant_id=s.tenant_id AND e.eip_id=s.eip_id
+ WHERE s.cluster_id=$1
+ UNION ALL
+ SELECT ''::text,p.resource_id,p.kind,p.resource_id,NULL::text,NULL::text,NULL::text
+ FROM network_platform_resources p WHERE p.cluster_id=$1 AND p.kind='public_pool'
+)
+SELECT t.tenant_id,t.resource_id,t.kind,b.resource_kind AS ref_kind,b.namespace,b.provider_name,b.provider_uid
+FROM targets t JOIN network_provider_bindings b ON b.tenant_id::text=t.tenant_id AND b.cluster_id=$1
+ AND (b.eip_id=t.eip_id OR b.snat_id=t.snat_id OR b.vpc_id=t.vpc_id)
+UNION ALL
+SELECT t.tenant_id,t.resource_id,t.kind,p.kind AS ref_kind,
+ CASE WHEN p.kind='public_pool' THEN 'kcn-system' ELSE '' END::text AS namespace,p.provider_name,p.provider_uid
+FROM targets t JOIN network_public_pools cfg ON cfg.cluster_id=$1 AND cfg.resource_id=t.pool_id
+LEFT JOIN network_vlan_networks vlan ON vlan.cluster_id=cfg.cluster_id AND vlan.resource_id=cfg.vlan_network_id
+JOIN network_platform_resources p ON p.cluster_id=cfg.cluster_id AND p.resource_id IN (cfg.resource_id,cfg.gateway_id,cfg.vlan_network_id,vlan.device_id)
+`
+
+type ObservationEgressEdgesParams struct {
+	ClusterID string
+}
+
+type ObservationEgressEdgesRow struct {
+	TenantID     string
+	ResourceID   string
+	Kind         string
+	RefKind      string
+	Namespace    string
+	ProviderName string
+	ProviderUid  string
+}
+
+// Observer-only bulk relationship inventory. No per-tenant/per-resource query
+// loop on a platform event; all fanout joins preserve tenant and cluster scope.
+func (q *Queries) ObservationEgressEdges(ctx context.Context, arg ObservationEgressEdgesParams) ([]ObservationEgressEdgesRow, error) {
+	rows, err := q.db.Query(ctx, observationEgressEdges, arg.ClusterID)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	items := []ObservationEgressEdgesRow{}
+	for rows.Next() {
+		var i ObservationEgressEdgesRow
+		if err := rows.Scan(
+			&i.TenantID,
+			&i.ResourceID,
+			&i.Kind,
+			&i.RefKind,
+			&i.Namespace,
+			&i.ProviderName,
+			&i.ProviderUid,
+		); err != nil {
+			return nil, err
+		}
+		items = append(items, i)
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
+}
+
 const observationResources = `-- name: ObservationResources :many
-SELECT r.tenant_id,coalesce(r.vpc_id,r.subnet_id)::text AS resource_id,
+SELECT r.tenant_id,coalesce(r.vpc_id,r.subnet_id,r.eip_id,r.snat_id)::text AS resource_id,
  r.requested_generation,b.resource_kind,b.namespace,b.provider_name,b.provider_uid
 FROM network_reconciliations r JOIN network_provider_bindings b
- ON b.tenant_id=r.tenant_id AND coalesce(b.vpc_id,b.subnet_id)=coalesce(r.vpc_id,r.subnet_id)
+ ON b.tenant_id=r.tenant_id AND coalesce(b.vpc_id,b.subnet_id,b.eip_id,b.snat_id)=coalesce(r.vpc_id,r.subnet_id,r.eip_id,r.snat_id)
 WHERE b.cluster_id=$1
 `
 

@@ -102,7 +102,7 @@ func Migrate(ctx context.Context, owner *pgxpool.Pool, runtimeRole string) error
 	for _, table := range networkTables {
 		name := pgx.Identifier{"public", table}.Sanitize()
 		permissions := "SELECT, INSERT, UPDATE"
-		if table == "network_idempotency" || table == "network_resource_history" {
+		if table == "network_idempotency" || table == "network_resource_history" || table == "network_platform_idempotency" || table == "network_platform_history" {
 			permissions = "SELECT, INSERT"
 		}
 		if _, err := tx.Exec(ctx, "REVOKE ALL ON "+name+" FROM PUBLIC; REVOKE ALL ON "+name+" FROM "+role+"; GRANT "+permissions+" ON "+name+" TO "+role); err != nil {
@@ -116,6 +116,7 @@ func Migrate(ctx context.Context, owner *pgxpool.Pool, runtimeRole string) error
 }
 
 var networkTables = []string{
+	"network_tenant_namespaces", "network_platform_resources", "network_device_adoptions", "network_vlan_networks", "network_egress_gateways", "network_public_pools", "network_default_public_pools", "network_platform_operations", "network_platform_idempotency", "network_platform_reconciliations", "network_platform_history", "network_eips", "network_snat_bindings",
 	"network_subnets", "network_attachments", "network_attachment_history", "network_vpcs", "network_operations", "network_reconciliations",
 	"network_idempotency", "network_provider_bindings", "network_resource_history",
 }

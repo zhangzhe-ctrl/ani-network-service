@@ -55,7 +55,7 @@ func TestNET05AMigrationUpgradesAllThreeHistoricalChecksums(t *testing.T) {
 	})
 	for _, table := range tables {
 		var body string
-		if e := f.Owner.QueryRow(ctx, "SELECT coalesce(jsonb_agg(to_jsonb(t)-'requested_generation'-'processed_generation'-'retry_not_before'-'evidence_hash'-'evidence_applied_at'),'[]')::text FROM (SELECT * FROM "+table+" ORDER BY tenant_id) t").Scan(&body); e != nil {
+		if e := f.Owner.QueryRow(ctx, "SELECT coalesce(jsonb_agg(to_jsonb(t)-'eip_id'-'snat_id'-'requested_generation'-'processed_generation'-'retry_not_before'-'evidence_hash'-'evidence_applied_at'),'[]')::text FROM (SELECT * FROM "+table+" ORDER BY tenant_id) t").Scan(&body); e != nil {
 			t.Fatal(e)
 		}
 		if body != facts[table] {
@@ -75,7 +75,7 @@ func TestNET05AMigrationUpgradesAllThreeHistoricalChecksums(t *testing.T) {
 		}
 	}
 	var count int
-	if e := f.Owner.QueryRow(ctx, `SELECT count(*) FROM network_schema_version`).Scan(&count); e != nil || count != 4 {
+	if e := f.Owner.QueryRow(ctx, `SELECT count(*) FROM network_schema_version`).Scan(&count); e != nil || count != 5 {
 		t.Fatalf("upgrade missing %d %v", count, e)
 	}
 }

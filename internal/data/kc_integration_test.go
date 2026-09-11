@@ -35,10 +35,10 @@ func (s *controlledKC) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		_, _ = w.Write([]byte(`{"apiVersion":"v1","kind":"Status","code":403,"reason":"Forbidden","status":"Failure"}`))
 		return
 	}
-	for plural, kind := range map[string]string{"vpcs": "VPC", "subnets": "Subnet", "vnics": "VNic", "vnicips": "VNicIP", "eips": "EIP", "pods": "Pod"} {
+	for plural, kind := range map[string]string{"vpcs": "VPC", "subnets": "Subnet", "vnics": "VNic", "vnicips": "VNicIP", "eips": "EIP", "pods": "Pod", "snats": "Snat", "nats": "Nat", "eipgateways": "EIPGateway", "vlannetworks": "VlanNetwork", "nodes": "Node", "configmaps": "ConfigMap", "services": "Service"} {
 		base := "/apis/networking.kubercloud.com/v1/"
 		version := "networking.kubercloud.com/v1"
-		if plural == "pods" {
+		if plural == "pods" || plural == "nodes" || plural == "configmaps" || plural == "services" {
 			base = "/api/v1/"
 			version = "v1"
 		}

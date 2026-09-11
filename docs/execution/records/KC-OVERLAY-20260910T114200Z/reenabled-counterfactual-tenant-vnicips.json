@@ -1,0 +1,103 @@
+{
+  "apiVersion": "v1",
+  "items": [
+    {
+      "apiVersion": "networking.kubercloud.com/v1",
+      "kind": "VNicIP",
+      "metadata": {
+        "creationTimestamp": "2026-09-10T11:47:08Z",
+        "finalizers": [
+          "networking.kubercloud.com/finalizer"
+        ],
+        "generation": 2,
+        "name": "auto-probe-10-vnic-pzhfg",
+        "namespace": "tenant-egress-0910-1142",
+        "ownerReferences": [
+          {
+            "apiVersion": "networking.kubercloud.com/v1",
+            "kind": "VNic",
+            "name": "auto-probe-10-vnic-pzhfg",
+            "uid": "dc1289ea-6b4d-40e0-add2-8a5e30367902"
+          }
+        ],
+        "resourceVersion": "208868",
+        "uid": "606842fc-3141-4e24-bc7d-24f1118d5f47"
+      },
+      "spec": {
+        "ipAddress": "10.241.10.2",
+        "subnet": "tenant-egress-0910-1142/kceg-0910-1142-subnet-10",
+        "vNic": "auto-probe-10-vnic-pzhfg"
+      },
+      "status": {
+        "conditions": [
+          {
+            "lastTransitionTime": "2026-09-10T11:47:08Z",
+            "message": "",
+            "reason": "Initialized",
+            "status": "True",
+            "type": "Initialized"
+          },
+          {
+            "lastTransitionTime": "2026-09-10T11:47:08Z",
+            "message": "",
+            "reason": "Valid",
+            "status": "True",
+            "type": "Valid"
+          }
+        ],
+        "vNic": "auto-probe-10-vnic-pzhfg"
+      }
+    },
+    {
+      "apiVersion": "networking.kubercloud.com/v1",
+      "kind": "VNicIP",
+      "metadata": {
+        "creationTimestamp": "2026-09-10T11:48:33Z",
+        "finalizers": [
+          "networking.kubercloud.com/finalizer"
+        ],
+        "generation": 2,
+        "name": "auto-probe-11-vnic-j79c6",
+        "namespace": "tenant-egress-0910-1142",
+        "ownerReferences": [
+          {
+            "apiVersion": "networking.kubercloud.com/v1",
+            "kind": "VNic",
+            "name": "auto-probe-11-vnic-j79c6",
+            "uid": "d81b6f45-d884-42d3-9354-9bd62e3c18c1"
+          }
+        ],
+        "resourceVersion": "209226",
+        "uid": "aef75845-88df-4563-8bbb-313ec834ecbc"
+      },
+      "spec": {
+        "ipAddress": "10.241.11.2",
+        "subnet": "tenant-egress-0910-1142/kceg-0910-1142-subnet-11",
+        "vNic": "auto-probe-11-vnic-j79c6"
+      },
+      "status": {
+        "conditions": [
+          {
+            "lastTransitionTime": "2026-09-10T11:48:33Z",
+            "message": "",
+            "reason": "Initialized",
+            "status": "True",
+            "type": "Initialized"
+          },
+          {
+            "lastTransitionTime": "2026-09-10T11:48:33Z",
+            "message": "",
+            "reason": "Valid",
+            "status": "True",
+            "type": "Valid"
+          }
+        ],
+        "vNic": "auto-probe-11-vnic-j79c6"
+      }
+    }
+  ],
+  "kind": "List",
+  "metadata": {
+    "resourceVersion": ""
+  }
+}

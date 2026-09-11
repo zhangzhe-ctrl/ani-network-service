@@ -1,0 +1,18 @@
+{
+  "at": "2026-09-10T11:46:36.087404+00:00",
+  "argv": [
+    "kubectl",
+    "--context=kind-kc062",
+    "--request-timeout=15s",
+    "get",
+    "namespaces",
+    "-A",
+    "-o",
+    "custom-columns=NS:.metadata.namespace,NAME:.metadata.name,UID:.metadata.uid",
+    "--no-headers"
+  ],
+  "exit": 0,
+  "elapsed": 0.07,
+  "stdout": "<none>   default              7dbd8a54-1ce8-49aa-8652-040659624b5a\n<none>   kcn-system           860f8948-4f34-490c-a5b0-0d378abf4132\n<none>   kube-node-lease      b11d22bb-2936-4f5f-9959-e1a52d8ec6bc\n<none>   kube-public          2a02eedf-1df9-43dc-bc64-a0b825290406\n<none>   kube-system          a05787f7-fd36-482d-97ce-daef70e269c6\n<none>   kubevirt             0ceedb3f-5a7f-4164-971e-4a310512c877\n<none>   local-path-storage   7e97dbe2-a562-4af0-8ec5-2ddc6e0607ab\n",
+  "stderr": ""
+}

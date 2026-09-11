@@ -1,0 +1,20 @@
+{
+  "at": "2026-09-10T11:52:35.539661+00:00",
+  "argv": [
+    "kubectl",
+    "--context=kind-kc062",
+    "--request-timeout=15s",
+    "exec",
+    "-n",
+    "tenant-egress-0910-1142",
+    "probe-11",
+    "--",
+    "/probe",
+    "request",
+    "http://10.241.10.2:18080/?nonce=kceg-0910-1142-bound-counterfactual"
+  ],
+  "exit": 0,
+  "elapsed": 0.139,
+  "stdout": "status 200\n{\"fixture_id\":\"kceg-0910-1142-probe-10\",\"hostname\":\"probe-10\",\"instance_id\":\"\",\"nonce\":\"kceg-0910-1142-bound-counterfactual\",\"port\":\"18080\"}\n",
+  "stderr": ""
+}

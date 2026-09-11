@@ -1,0 +1,24 @@
+{
+  "at": "2026-09-10T11:49:31.395407+00:00",
+  "argv": [
+    "kubectl",
+    "--context=kind-kc062",
+    "--request-timeout=15s",
+    "exec",
+    "-n",
+    "kcn-system",
+    "kcn-ovn-central-5cfcf4f7b5-dbwnx",
+    "-c",
+    "ovn-central",
+    "--",
+    "ovn-nbctl",
+    "--timeout=5",
+    "--db=tcp:172.18.0.2:6641",
+    "lr-policy-list",
+    "gw.kceg-0910-1142-gw"
+  ],
+  "exit": 0,
+  "elapsed": 0.161,
+  "stdout": "Routing Policies\n     30000          ip4.dst == $gw.kceg.0910.1142.gw.networks           allow                          \n     28000 outport == \"gw.kceg-0910-1142-gw-kcn-system.sys-service\" && ip4.src == $gw.kceg.0910.1142.gw.kc062.worker         reroute                100.64.0.6\n",
+  "stderr": ""
+}

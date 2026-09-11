@@ -1,0 +1,18 @@
+{
+  "at": "2026-09-10T11:46:36.384373+00:00",
+  "argv": [
+    "kubectl",
+    "--context=kind-kc062",
+    "--request-timeout=15s",
+    "get",
+    "subnets",
+    "-A",
+    "-o",
+    "custom-columns=NS:.metadata.namespace,NAME:.metadata.name,UID:.metadata.uid",
+    "--no-headers"
+  ],
+  "exit": 0,
+  "elapsed": 0.071,
+  "stdout": "kcn-system   kcn-default   dc4f5cb5-332a-4f56-9176-c4cbfaa9a6f5\nkcn-system   sys-service   6281dc36-2271-4158-8c1d-110891b5ab7c\nkcn-system   sys-uplink    c992a0fd-a200-45f8-ac0f-5e15e4fe9e31\n",
+  "stderr": ""
+}

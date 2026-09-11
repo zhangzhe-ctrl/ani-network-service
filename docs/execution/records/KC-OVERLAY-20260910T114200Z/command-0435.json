@@ -1,0 +1,26 @@
+{
+  "at": "2026-09-10T11:56:53.056048+00:00",
+  "argv": [
+    "kubectl",
+    "--context=kind-kc062",
+    "--request-timeout=15s",
+    "exec",
+    "-n",
+    "kcn-system",
+    "kcn-ovn-central-5cfcf4f7b5-dbwnx",
+    "-c",
+    "ovn-central",
+    "--",
+    "ovn-nbctl",
+    "--timeout=5",
+    "--db=tcp:172.18.0.2:6641",
+    "--format=json",
+    "--columns=name",
+    "list",
+    "Logical_Switch_Port"
+  ],
+  "exit": 0,
+  "elapsed": 0.139,
+  "stdout": "{\"data\":[[\"kubevirt.auto-virt-api-565d88c79d-7fzf9-vnic-lpm5d\"],[\"kcn-system.kcn-default-vpc.kcn-system.kcn-cluster\"],[\"kcn-system.node.kc062-control-plane\"],[\"kcn-system.sys-service-vpc.kcn-system.kcn-cluster\"],[\"kubevirt.auto-virt-controller-545d9f7b4-t2llp-vnic-jd2z2\"],[\"kubevirt.auto-virt-operator-79b799c796-5p6w8-vnic-wqhvr\"],[\"kubevirt.auto-virt-controller-545d9f7b4-s6x5x-vnic-vxsrc\"],[\"kube-system.auto-coredns-589f44dc88-zmkcs-vnic-8cfgp\"],[\"kcn-system.node.kc062-worker\"],[\"kubevirt.auto-virt-template-controller-59cf8457d9-mg-vnic-g5cjm\"],[\"kcn-system.sys-service-er.kc062-worker\"],[\"kubevirt.auto-virt-template-apiserver-5c485dd848-58x-vnic-9cshz\"],[\"kubevirt.auto-virt-exportproxy-7644f96477-98rkr-vnic-crds6\"],[\"kubevirt.auto-virt-exportproxy-7644f96477-8g4fw-vnic-kxcxw\"],[\"kubevirt.auto-virt-operator-79b799c796-nc62p-vnic-tcsnl\"],[\"kcn-system.node.kc062-worker2\"],[\"local-path-storage.auto-local-path-provisioner-56c4685b7c-pdxh-vnic-mp8zt\"],[\"kube-system.auto-coredns-589f44dc88-gcd57-vnic-4c5nn\"],[\"default.auto-virt-launcher-test-vm-1c1g-rp26j-vnic-dfd87\"],[\"kubevirt.auto-virt-handler-l75qc-vnic-rn459\"],[\"kubevirt.auto-virt-handler-xllxd-vnic-sm9zd\"],[\"kubevirt.auto-virt-api-565d88c79d-zh48q-vnic-b6wvz\"]],\"headings\":[\"name\"]}\n",
+  "stderr": ""
+}

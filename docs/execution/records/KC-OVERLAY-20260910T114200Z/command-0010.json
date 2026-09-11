@@ -1,0 +1,18 @@
+{
+  "at": "2026-09-10T11:46:36.771389+00:00",
+  "argv": [
+    "kubectl",
+    "--context=kind-kc062",
+    "--request-timeout=15s",
+    "get",
+    "nats",
+    "-A",
+    "-o",
+    "custom-columns=NS:.metadata.namespace,NAME:.metadata.name,UID:.metadata.uid",
+    "--no-headers"
+  ],
+  "exit": 0,
+  "elapsed": 0.074,
+  "stdout": "",
+  "stderr": ""
+}

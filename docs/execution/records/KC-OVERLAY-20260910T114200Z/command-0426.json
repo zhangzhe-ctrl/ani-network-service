@@ -1,0 +1,17 @@
+{
+  "at": "2026-09-10T11:55:40.250040+00:00",
+  "argv": [
+    "kubectl",
+    "--context=kind-kc062",
+    "--request-timeout=15s",
+    "get",
+    "vm,vmi",
+    "test-vm-1c1g",
+    "-n",
+    "default"
+  ],
+  "exit": 0,
+  "elapsed": 0.078,
+  "stdout": "NAME                                      AGE     STATUS    READY\nvirtualmachine.kubevirt.io/test-vm-1c1g   7h59m   Running   True\n\nNAME                                              AGE     PHASE     IP           NODENAME        READY\nvirtualmachineinstance.kubevirt.io/test-vm-1c1g   7h59m   Running   10.16.0.22   kc062-worker2   True\n",
+  "stderr": ""
+}

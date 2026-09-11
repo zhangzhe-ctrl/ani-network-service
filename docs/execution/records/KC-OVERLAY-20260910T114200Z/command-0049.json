@@ -1,0 +1,19 @@
+{
+  "at": "2026-09-10T11:46:56.738499+00:00",
+  "argv": [
+    "kubectl",
+    "--context=kind-kc062",
+    "--request-timeout=15s",
+    "get",
+    "eips",
+    "kceg-0910-1142-eip",
+    "-n",
+    "tenant-egress-0910-1142",
+    "-o",
+    "json"
+  ],
+  "exit": 0,
+  "elapsed": 0.079,
+  "stdout": "{\n    \"apiVersion\": \"networking.kubercloud.com/v1\",\n    \"kind\": \"EIP\",\n    \"metadata\": {\n        \"creationTimestamp\": \"2026-09-10T11:46:56Z\",\n        \"finalizers\": [\n            \"networking.kubercloud.com/finalizer\"\n        ],\n        \"generation\": 2,\n        \"labels\": {\n            \"runbook.ani.io/run\": \"kceg-0910-1142\"\n        },\n        \"name\": \"kceg-0910-1142-eip\",\n        \"namespace\": \"tenant-egress-0910-1142\",\n        \"resourceVersion\": \"208807\",\n        \"uid\": \"20e9a604-866b-46e4-b4f8-95b470f84bd1\"\n    },\n    \"spec\": {\n        \"ipAddress\": \"10.250.200.2\",\n        \"ipVersion\": \"IPv4\",\n        \"subnet\": \"kcn-system/kceg-0910-1142-public\"\n    },\n    \"status\": {\n        \"conditions\": [\n            {\n                \"lastTransitionTime\": \"2026-09-10T11:46:56Z\",\n                \"message\": \"\",\n                \"reason\": \"Initialized\",\n                \"status\": \"True\",\n                \"type\": \"Initialized\"\n            },\n            {\n                \"lastTransitionTime\": \"2026-09-10T11:46:56Z\",\n                \"message\": \"\",\n                \"reason\": \"Valid\",\n                \"status\": \"True\",\n                \"type\": \"Valid\"\n            }\n        ],\n        \"gateway\": \"kceg-0910-1142-gw\",\n        \"phase\": \"Available\"\n    }\n}\n",
+  "stderr": ""
+}

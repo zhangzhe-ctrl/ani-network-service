@@ -1,0 +1,5 @@
+default via 172.18.0.1 dev eth0 
+10.16.0.0/16 via 100.64.0.1 dev ovn0 src 100.64.0.2 
+100.64.0.0/17 dev ovn0 scope link 
+100.64.128.0/17 dev ovn0 scope link 
+172.18.0.0/16 dev eth0 proto kernel scope link src 172.18.0.3 

@@ -1,0 +1,20 @@
+{
+  "at": "2026-09-10T11:48:33.175488+00:00",
+  "argv": [
+    "kubectl",
+    "--context=kind-kc062",
+    "--request-timeout=15s",
+    "get",
+    "events",
+    "-n",
+    "tenant-egress-0910-1142",
+    "--field-selector",
+    "type=Warning",
+    "-o",
+    "json"
+  ],
+  "exit": 0,
+  "elapsed": 0.078,
+  "stdout": "{\n    \"apiVersion\": \"v1\",\n    \"items\": [\n        {\n            \"apiVersion\": \"v1\",\n            \"count\": 9,\n            \"eventTime\": null,\n            \"firstTimestamp\": \"2026-09-10T11:47:09Z\",\n            \"involvedObject\": {\n                \"apiVersion\": \"v1\",\n                \"fieldPath\": \"spec.containers{probe}\",\n                \"kind\": \"Pod\",\n                \"name\": \"probe-10\",\n                \"namespace\": \"tenant-egress-0910-1142\",\n                \"resourceVersion\": \"208854\",\n                \"uid\": \"f7602f47-a37b-4f8d-ba7d-bd8ac867ffe3\"\n            },\n            \"kind\": \"Event\",\n            \"lastTimestamp\": \"2026-09-10T11:48:32Z\",\n            \"message\": \"Container image \\\"docker.io/library/import-2026-09-10@sha256:8b305a958323064c72a1215a35b41cb5af96f1c435d33e5425664572a2b85176\\\" is not present with pull policy of Never\",\n            \"metadata\": {\n                \"creationTimestamp\": \"2026-09-10T11:47:09Z\",\n                \"name\": \"probe-10.18d3f327c7119112\",\n                \"namespace\": \"tenant-egress-0910-1142\",\n                \"resourceVersion\": \"209197\",\n                \"uid\": \"c96a44d8-7281-418b-a69d-c1b764e664c0\"\n            },\n            \"reason\": \"ErrImageNeverPull\",\n            \"reportingComponent\": \"kubelet\",\n            \"reportingInstance\": \"kc062-worker\",\n            \"source\": {\n                \"component\": \"kubelet\",\n                \"host\": \"kc062-worker\"\n            },\n            \"type\": \"Warning\"\n        },\n        {\n            \"apiVersion\": \"v1\",\n            \"count\": 9,\n            \"eventTime\": null,\n            \"firstTimestamp\": \"2026-09-10T11:47:09Z\",\n            \"involvedObject\": {\n                \"apiVersion\": \"v1\",\n                \"fieldPath\": \"spec.containers{probe}\",\n                \"kind\": \"Pod\",\n                \"name\": \"probe-10\",\n                \"namespace\": \"tenant-egress-0910-1142\",\n                \"resourceVersion\": \"208854\",\n                \"uid\": \"f7602f47-a37b-4f8d-ba7d-bd8ac867ffe3\"\n            },\n            \"kind\": \"Event\",\n            \"lastTimestamp\": \"2026-09-10T11:48:32Z\",\n            \"message\": \"Error: ErrImageNeverPull\",\n            \"metadata\": {\n                \"creationTimestamp\": \"2026-09-10T11:47:09Z\",\n                \"name\": \"probe-10.18d3f327c71293e5\",\n                \"namespace\": \"tenant-egress-0910-1142\",\n                \"resourceVersion\": \"209198\",\n                \"uid\": \"486ad29f-0867-4fdb-bac8-6c415cd7c9a7\"\n            },\n            \"reason\": \"Failed\",\n            \"reportingComponent\": \"kubelet\",\n            \"reportingInstance\": \"kc062-worker\",\n            \"source\": {\n                \"component\": \"kubelet\",\n                \"host\": \"kc062-worker\"\n            },\n            \"type\": \"Warning\"\n        }\n    ],\n    \"kind\": \"List\",\n    \"metadata\": {\n        \"resourceVersion\": \"\"\n    }\n}\n",
+  "stderr": ""
+}

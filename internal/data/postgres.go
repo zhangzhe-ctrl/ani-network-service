@@ -11,6 +11,7 @@ import (
 	"regexp"
 	"sort"
 	"strings"
+	"sync/atomic"
 
 	"github.com/google/uuid"
 	"github.com/jackc/pgx/v5"
@@ -26,9 +27,11 @@ type Placement struct {
 }
 
 type Postgres struct {
-	pool      *pgxpool.Pool
-	queries   *sqlcgen.Queries
-	placement Placement
+	workTurn             atomic.Uint64
+	egressInfrastructure biz.EgressInfrastructure
+	pool                 *pgxpool.Pool
+	queries              *sqlcgen.Queries
+	placement            Placement
 }
 
 func OpenPostgres(ctx context.Context, dsn string, placement Placement) (*Postgres, error) {
@@ -156,9 +159,16 @@ func (p *Postgres) AcceptVPC(ctx context.Context, intent biz.VPCIntent, attribut
 	if err := q.InsertReconciliation(ctx, sqlcgen.InsertReconciliationParams{TenantID: intent.TenantID, VpcID: vpcID, NextRunAt: now}); err != nil {
 		return biz.VPC{}, databaseFailure(err)
 	}
+	if err := q.EnsureTenantNamespace(ctx, sqlcgen.EnsureTenantNamespaceParams{TenantID: intent.TenantID, ClusterID: p.placement.ClusterID, Namespace: p.placement.NamespacePrefix + intent.TenantID}); err != nil {
+		return biz.VPC{}, databaseFailure(err)
+	}
+	namespace, err := q.GetTenantNamespace(ctx, sqlcgen.GetTenantNamespaceParams{TenantID: intent.TenantID, ClusterID: p.placement.ClusterID})
+	if err != nil {
+		return biz.VPC{}, databaseFailure(err)
+	}
 	if err := q.InsertBinding(ctx, sqlcgen.InsertBindingParams{
 		TenantID: intent.TenantID, VpcID: vpcID, BindingID: uuid.NewString(), ClusterID: p.placement.ClusterID,
-		Namespace: p.placement.NamespacePrefix + intent.TenantID, ProviderName: strings.Replace(vpcID, "_", "-", 1),
+		Namespace: namespace, ProviderName: strings.Replace(vpcID, "_", "-", 1),
 	}); err != nil {
 		return biz.VPC{}, databaseFailure(err)
 	}
@@ -228,6 +238,12 @@ func operation(row sqlcgen.NetworkOperation) biz.Operation {
 	resourceID, kind := textValue(row.VpcID), "vpc"
 	if row.SubnetID != nil {
 		resourceID, kind = *row.SubnetID, "subnet"
+	}
+	if row.EipID != nil {
+		resourceID, kind = *row.EipID, "eip"
+	}
+	if row.SnatID != nil {
+		resourceID, kind = *row.SnatID, "snat"
 	}
 	return biz.Operation{
 		ID: row.OperationID, TenantID: row.TenantID, ResourceID: resourceID, ResourceType: kind, Kind: row.Kind,

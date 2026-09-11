@@ -1,0 +1,20 @@
+{
+  "at": "2026-09-10T11:48:33.254549+00:00",
+  "argv": [
+    "kubectl",
+    "--context=kind-kc062",
+    "--request-timeout=15s",
+    "patch",
+    "pod",
+    "probe-10",
+    "-n",
+    "tenant-egress-0910-1142",
+    "--type=strategic",
+    "-p",
+    "{\"spec\": {\"containers\": [{\"name\": \"probe\", \"image\": \"docker.io/library/net05-1717d354-probe:ffcf0c98acaedd82\"}]}}"
+  ],
+  "exit": 0,
+  "elapsed": 0.089,
+  "stdout": "pod/probe-10 patched\n",
+  "stderr": ""
+}

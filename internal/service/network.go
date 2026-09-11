@@ -99,7 +99,22 @@ var operationsToWire = map[biz.OperationState]networkv1.OperationState{
 	biz.Retrying: networkv1.OperationState_OPERATION_STATE_RETRYING, biz.Blocked: networkv1.OperationState_OPERATION_STATE_BLOCKED,
 	biz.Succeeded: networkv1.OperationState_OPERATION_STATE_SUCCEEDED, biz.OpFailed: networkv1.OperationState_OPERATION_STATE_FAILED,
 }
-var kindsToWire = map[string]networkv1.OperationKind{"create_subnet": networkv1.OperationKind_OPERATION_KIND_CREATE_SUBNET, "delete_subnet": networkv1.OperationKind_OPERATION_KIND_DELETE_SUBNET, "create_vpc": networkv1.OperationKind_OPERATION_KIND_CREATE_VPC, "delete_vpc": networkv1.OperationKind_OPERATION_KIND_DELETE_VPC}
+var kindsToWire = map[string]networkv1.OperationKind{"create_subnet": networkv1.OperationKind_OPERATION_KIND_CREATE_SUBNET, "delete_subnet": networkv1.OperationKind_OPERATION_KIND_DELETE_SUBNET, "create_vpc": networkv1.OperationKind_OPERATION_KIND_CREATE_VPC, "delete_vpc": networkv1.OperationKind_OPERATION_KIND_DELETE_VPC,
+	"create_eip":            networkv1.OperationKind_OPERATION_KIND_CREATE_EIP,
+	"delete_eip":            networkv1.OperationKind_OPERATION_KIND_DELETE_EIP,
+	"bind_snat":             networkv1.OperationKind_OPERATION_KIND_BIND_SNAT,
+	"set_snat_enabled":      networkv1.OperationKind_OPERATION_KIND_SET_SNAT_ENABLED,
+	"delete_snat":           networkv1.OperationKind_OPERATION_KIND_DELETE_SNAT,
+	"adopt_device":          networkv1.OperationKind_OPERATION_KIND_ADOPT_DEVICE,
+	"create_vlan":           networkv1.OperationKind_OPERATION_KIND_CREATE_VLAN,
+	"delete_vlan":           networkv1.OperationKind_OPERATION_KIND_DELETE_VLAN,
+	"create_egress_gateway": networkv1.OperationKind_OPERATION_KIND_CREATE_EGRESS_GATEWAY,
+	"delete_egress_gateway": networkv1.OperationKind_OPERATION_KIND_DELETE_EGRESS_GATEWAY,
+	"create_public_pool":    networkv1.OperationKind_OPERATION_KIND_CREATE_PUBLIC_POOL,
+	"delete_public_pool":    networkv1.OperationKind_OPERATION_KIND_DELETE_PUBLIC_POOL,
+	"set_pool_allocation":   networkv1.OperationKind_OPERATION_KIND_SET_POOL_ALLOCATION,
+	"set_default_pool":      networkv1.OperationKind_OPERATION_KIND_SET_DEFAULT_POOL,
+	"verify_public_pool":    networkv1.OperationKind_OPERATION_KIND_VERIFY_PUBLIC_POOL}
 
 func rpcError(err error) error {
 	if errors.Is(err, context.Canceled) {
@@ -122,9 +137,11 @@ func rpcError(err error) error {
 		code = codes.NotFound
 	case biz.IdempotencyConflict, biz.CIDROverlap, biz.AttachmentConflict:
 		code = codes.AlreadyExists
-	case biz.ResourceInUse, biz.ResourceBusy, biz.ParentNotReady, biz.NetworkNotReady, biz.PlacementMismatch, biz.VersionConflict:
+	case biz.EIPInUse, biz.VPCSnatExists, biz.ProviderOwnership, biz.ProviderStateMismatch, biz.ResourceInUse, biz.ResourceBusy, biz.ParentNotReady, biz.NetworkNotReady, biz.PlacementMismatch, biz.VersionConflict:
 		code = codes.FailedPrecondition
-	case biz.DependencyUnavailable:
+	case biz.PermissionDenied:
+		code = codes.PermissionDenied
+	case biz.DependencyUnavailable, biz.PublicEgressNotReady:
 		code = codes.Unavailable
 	default:
 		reason = "INTERNAL_ERROR"
@@ -136,6 +153,7 @@ func rpcError(err error) error {
 		value = withDetails
 	}
 	return value.Err()
+
 }
 
-var resourceTypesToWire = map[string]networkv1.ResourceType{"vpc": networkv1.ResourceType_RESOURCE_TYPE_VPC, "subnet": networkv1.ResourceType_RESOURCE_TYPE_SUBNET}
+var resourceTypesToWire = map[string]networkv1.ResourceType{"vpc": networkv1.ResourceType_RESOURCE_TYPE_VPC, "subnet": networkv1.ResourceType_RESOURCE_TYPE_SUBNET, "eip": networkv1.ResourceType_RESOURCE_TYPE_EIP, "snat": networkv1.ResourceType_RESOURCE_TYPE_VPC_SNAT_BINDING, "device": networkv1.ResourceType_RESOURCE_TYPE_NETWORK_DEVICE, "vlan": networkv1.ResourceType_RESOURCE_TYPE_VLAN_NETWORK, "egress_gateway": networkv1.ResourceType_RESOURCE_TYPE_EGRESS_GATEWAY, "public_pool": networkv1.ResourceType_RESOURCE_TYPE_PUBLIC_ADDRESS_POOL}

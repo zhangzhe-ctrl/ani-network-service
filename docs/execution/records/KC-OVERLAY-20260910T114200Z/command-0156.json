@@ -1,0 +1,24 @@
+{
+  "at": "2026-09-10T11:49:30.886653+00:00",
+  "argv": [
+    "kubectl",
+    "--context=kind-kc062",
+    "--request-timeout=15s",
+    "exec",
+    "-n",
+    "kcn-system",
+    "kcn-ovn-central-5cfcf4f7b5-dbwnx",
+    "-c",
+    "ovn-central",
+    "--",
+    "ovn-nbctl",
+    "--timeout=5",
+    "--db=tcp:172.18.0.2:6641",
+    "lr-policy-list",
+    "vpc.tenant-egress-0910-1142.kceg-0910-1142-vpc"
+  ],
+  "exit": 0,
+  "elapsed": 0.14,
+  "stdout": "Routing Policies\n     20000 outport == \"public.uplink.tenant-egress-0910-1142.kceg-0910-1142-vpc.lrp\" && ip4.src == 0.0.0.0/0         reroute              100.65.128.5\n         1 outport == \"intranet.uplink.tenant-egress-0910-1142.kceg-0910-1142-vpc.lrp\" && ip4            drop                          \n         1 outport == \"public.uplink.tenant-egress-0910-1142.kceg-0910-1142-vpc.lrp\" && ip4            drop                          \n",
+  "stderr": ""
+}

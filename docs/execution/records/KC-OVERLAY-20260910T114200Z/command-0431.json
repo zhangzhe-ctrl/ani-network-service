@@ -1,0 +1,18 @@
+{
+  "at": "2026-09-10T11:56:00.715590+00:00",
+  "argv": [
+    "kubectl",
+    "--context=kind-kc062",
+    "--request-timeout=15s",
+    "get",
+    "pods",
+    "-n",
+    "kcn-system",
+    "-o",
+    "custom-columns=NAME:.metadata.name,IMAGE:.spec.containers[*].image,IMAGEID:.status.containerStatuses[*].imageID"
+  ],
+  "exit": 0,
+  "elapsed": 0.111,
+  "stdout": "NAME                               IMAGE                                                    IMAGEID\nkcn-cni-ds-2gvfs                   docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2   docker.io/library/import-2026-09-09@sha256:e2efcb27fd9b982ad6f49c0dc7b8d7ab9622bfa1172491c187152422cca27749\nkcn-cni-ds-pl4ph                   docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2   docker.io/library/import-2026-09-09@sha256:e2efcb27fd9b982ad6f49c0dc7b8d7ab9622bfa1172491c187152422cca27749\nkcn-cni-ds-wtmns                   docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2   docker.io/library/import-2026-09-09@sha256:e2efcb27fd9b982ad6f49c0dc7b8d7ab9622bfa1172491c187152422cca27749\nkcn-controller-7bdbbb67cb-2jz4k    docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2   docker.io/library/import-2026-09-09@sha256:e2efcb27fd9b982ad6f49c0dc7b8d7ab9622bfa1172491c187152422cca27749\nkcn-controller-7bdbbb67cb-65lpc    docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2   docker.io/library/import-2026-09-09@sha256:e2efcb27fd9b982ad6f49c0dc7b8d7ab9622bfa1172491c187152422cca27749\nkcn-controller-7bdbbb67cb-fvcfq    docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2   docker.io/library/import-2026-09-09@sha256:e2efcb27fd9b982ad6f49c0dc7b8d7ab9622bfa1172491c187152422cca27749\nkcn-ovn-central-5cfcf4f7b5-dbwnx   docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2   docker.io/library/import-2026-09-09@sha256:e2efcb27fd9b982ad6f49c0dc7b8d7ab9622bfa1172491c187152422cca27749\nkcn-ovn-central-5cfcf4f7b5-pp6l9   docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2   docker.io/library/import-2026-09-09@sha256:e2efcb27fd9b982ad6f49c0dc7b8d7ab9622bfa1172491c187152422cca27749\nkcn-ovn-central-5cfcf4f7b5-wz8xz   docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2   docker.io/library/import-2026-09-09@sha256:e2efcb27fd9b982ad6f49c0dc7b8d7ab9622bfa1172491c187152422cca27749\nkcn-ovs-ds-jbkdj                   docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2   docker.io/library/import-2026-09-09@sha256:e2efcb27fd9b982ad6f49c0dc7b8d7ab9622bfa1172491c187152422cca27749\nkcn-ovs-ds-pfx5z                   docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2   docker.io/library/import-2026-09-09@sha256:e2efcb27fd9b982ad6f49c0dc7b8d7ab9622bfa1172491c187152422cca27749\nkcn-ovs-ds-xnvp6                   docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2   docker.io/library/import-2026-09-09@sha256:e2efcb27fd9b982ad6f49c0dc7b8d7ab9622bfa1172491c187152422cca27749\n",
+  "stderr": ""
+}

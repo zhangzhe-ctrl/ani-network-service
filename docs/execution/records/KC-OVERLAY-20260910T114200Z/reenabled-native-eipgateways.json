@@ -1,0 +1,17 @@
+{
+  "at": "2026-09-10T11:53:40.921476+00:00",
+  "argv": [
+    "kubectl",
+    "--context=kind-kc062",
+    "--request-timeout=15s",
+    "get",
+    "eipgateways",
+    "kceg-0910-1142-gw",
+    "-o",
+    "json"
+  ],
+  "exit": 0,
+  "elapsed": 0.073,
+  "stdout": "{\n    \"apiVersion\": \"networking.kubercloud.com/v1\",\n    \"kind\": \"EIPGateway\",\n    \"metadata\": {\n        \"creationTimestamp\": \"2026-09-10T11:46:54Z\",\n        \"finalizers\": [\n            \"networking.kubercloud.com/finalizer\"\n        ],\n        \"generation\": 1,\n        \"labels\": {\n            \"runbook.ani.io/run\": \"kceg-0910-1142\"\n        },\n        \"name\": \"kceg-0910-1142-gw\",\n        \"resourceVersion\": \"208784\",\n        \"uid\": \"84a4672a-4735-4f6c-a07e-8d8ab97188c2\"\n    },\n    \"spec\": {\n        \"egressType\": \"Host\",\n        \"scope\": \"Public\"\n    },\n    \"status\": {\n        \"boundResources\": {\n            \"router\": \"gw.kceg-0910-1142-gw\"\n        },\n        \"conditions\": [\n            {\n                \"lastTransitionTime\": \"2026-09-10T11:46:54Z\",\n                \"message\": \"\",\n                \"reason\": \"Valid\",\n                \"status\": \"True\",\n                \"type\": \"Valid\"\n            },\n            {\n                \"lastTransitionTime\": \"2026-09-10T11:46:54Z\",\n                \"message\": \"\",\n                \"reason\": \"Initialized\",\n                \"status\": \"True\",\n                \"type\": \"Initialized\"\n            },\n            {\n                \"lastTransitionTime\": \"2026-09-10T11:46:54Z\",\n                \"message\": \"\",\n                \"reason\": \"Ready\",\n                \"status\": \"True\",\n                \"type\": \"Ready\"\n            }\n        ],\n        \"localIP\": \"100.64.0.8\",\n        \"subnets\": {\n            \"kcn-system/kceg-0910-1142-public\": \"10.250.200.0/28\"\n        }\n    }\n}\n",
+  "stderr": ""
+}
