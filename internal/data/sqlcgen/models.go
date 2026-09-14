@@ -63,10 +63,56 @@ type NetworkAttachmentHistory struct {
 	CreatedAt      time.Time
 }
 
+type NetworkBaseBackfillCandidate struct {
+	TenantID           string
+	RunID              string
+	ClusterID          string
+	VpcID              string
+	AcceptedVpcVersion int64
+	State              string
+	Reason             string
+	OperationID        *string
+	Namespace          *string
+	BindingID          *string
+	ProviderName       string
+	ProviderUid        string
+	InitialState       string
+	InitialReason      string
+}
+
+type NetworkBaseBackfillRun struct {
+	RunID           string
+	ClusterID       string
+	PoolID          string
+	PoolRevision    int64
+	Scope           string
+	Paused          bool
+	IntervalMs      int64
+	NextAdmissionAt time.Time
+	CreatedAt       time.Time
+	PlanSha256      string
+	ReviewedAt      *time.Time
+}
+
+type NetworkConnectivityRollout struct {
+	ClusterID                string
+	NewVpcsEnabled           bool
+	LegacyAggregationEnabled bool
+	UpdatedAt                time.Time
+}
+
+type NetworkDefaultIntranetPool struct {
+	ClusterID string
+	PoolID    string
+	Scope     string
+	Version   int64
+}
+
 type NetworkDefaultPublicPool struct {
 	ClusterID string
 	PoolID    string
 	Version   int64
+	Scope     string
 }
 
 type NetworkDeviceAdoption struct {
@@ -102,6 +148,23 @@ type NetworkEip struct {
 	UpdatedAt       time.Time
 	ObservedAt      *time.Time
 	LastOperationID string
+	Scope           string
+	ManagedBy       string
+	SystemOwnerVpc  *string
+}
+
+type NetworkEipClaim struct {
+	TenantID   string
+	ClaimID    string
+	ClusterID  string
+	Namespace  string
+	EipID      string
+	TargetKind string
+	SnatID     *string
+	LbID       *string
+	State      string
+	CreatedAt  time.Time
+	ReleasedAt *time.Time
 }
 
 type NetworkIdempotency struct {
@@ -117,6 +180,33 @@ type NetworkIdempotency struct {
 	SubnetID           *string
 	EipID              *string
 	SnatID             *string
+}
+
+type NetworkLbVipIntent struct {
+	TenantID   string
+	LbID       string
+	ClusterID  string
+	Namespace  string
+	VpcID      string
+	SubnetID   string
+	Address    string
+	ReleasedAt *time.Time
+}
+
+type NetworkLoadBalancer struct {
+	TenantID    string
+	LbID        string
+	ClusterID   string
+	Namespace   string
+	VpcID       string
+	SubnetID    string
+	Exposure    string
+	PublicEipID *string
+	PublicScope string
+	PrivateIp   *string
+	State       string
+	Version     int64
+	CreatedAt   time.Time
 }
 
 type NetworkOperation struct {
@@ -211,19 +301,20 @@ type NetworkPlatformResource struct {
 }
 
 type NetworkProviderBinding struct {
-	TenantID      string
-	VpcID         *string
-	BindingID     string
-	ClusterID     string
-	Namespace     string
-	ProviderName  string
-	ProviderUid   string
-	PendingAction string
-	PendingSince  *time.Time
-	SubnetID      *string
-	ResourceKind  string
-	EipID         *string
-	SnatID        *string
+	TenantID         string
+	VpcID            *string
+	BindingID        string
+	ClusterID        string
+	Namespace        string
+	ProviderName     string
+	ProviderUid      string
+	PendingAction    string
+	PendingSince     *time.Time
+	SubnetID         *string
+	ResourceKind     string
+	EipID            *string
+	SnatID           *string
+	CreateDispatched bool
 }
 
 type NetworkPublicPool struct {
@@ -231,7 +322,7 @@ type NetworkPublicPool struct {
 	ClusterID             string
 	Kind                  string
 	Mode                  string
-	GatewayID             string
+	GatewayID             *string
 	Cidr                  string
 	OvnGatewayIp          string
 	ExcludedIps           []string
@@ -242,6 +333,10 @@ type NetworkPublicPool struct {
 	Verification          []byte
 	VerificationExpiresAt *time.Time
 	Retired               bool
+	Scope                 string
+	DefaultVpcName        string
+	DefaultVpcUid         string
+	IntranetNetworks      []string
 }
 
 type NetworkReconciliation struct {
@@ -260,6 +355,7 @@ type NetworkReconciliation struct {
 	EvidenceAppliedAt   time.Time
 	EipID               *string
 	SnatID              *string
+	Retired             bool
 }
 
 type NetworkResourceHistory struct {
@@ -300,6 +396,8 @@ type NetworkSnatBinding struct {
 	UpdatedAt        time.Time
 	ObservedAt       *time.Time
 	LastOperationID  string
+	Purpose          string
+	SystemOwnerVpc   *string
 }
 
 type NetworkSubnet struct {
@@ -335,16 +433,38 @@ type NetworkVlanNetwork struct {
 }
 
 type NetworkVpc struct {
-	TenantID        string
-	VpcID           string
-	Name            string
-	Description     string
-	Cidr            string
-	State           string
-	Reason          string
-	Version         int64
-	CreatedAt       time.Time
-	UpdatedAt       time.Time
-	ObservedAt      *time.Time
-	LastOperationID string
+	TenantID                 string
+	VpcID                    string
+	Name                     string
+	Description              string
+	Cidr                     string
+	State                    string
+	Reason                   string
+	Version                  int64
+	CreatedAt                time.Time
+	UpdatedAt                time.Time
+	ObservedAt               *time.Time
+	LastOperationID          string
+	BaseConnectivityRequired bool
+}
+
+type NetworkVpcBaseConnectivity struct {
+	TenantID           string
+	VpcID              string
+	ClusterID          string
+	Namespace          string
+	PoolID             string
+	PoolRevision       int64
+	Purpose            string
+	EipID              string
+	SnatID             string
+	OperationID        string
+	State              string
+	Reason             string
+	ProviderReady      bool
+	ProviderObservedAt *time.Time
+	ObservedAt         *time.Time
+	Terminating        bool
+	Version            int64
+	CreatedAt          time.Time
 }

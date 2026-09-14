@@ -68,6 +68,8 @@ var ErrLeaseLost = errors.New("resource execution lease lost")
 // ResourceWork is the immutable resource snapshot used by the shared lifecycle
 // worker. Resource kinds are closed at the repository boundary.
 type ResourceWork struct {
+	BaseRequired                                              bool
+	SystemManaged                                             bool
 	Egress                                                    *EgressWorkSpec
 	ID, TenantID, Kind, VPCID, CIDR, Gateway, LastOperationID string
 	State                                                     ResourceState
@@ -78,6 +80,8 @@ type ResourceWork struct {
 }
 
 type Work struct {
+	GateReason      Reason
+	CancelUnsent    bool
 	Requirement     ObservationRequirement
 	Resource        ResourceWork
 	Operation       Operation
@@ -159,6 +163,19 @@ func (w *Worker) Step(ctx context.Context) (bool, error) {
 	if work.ActiveOperation {
 		progress.OperationState = Retrying
 		progress.NextDelay = w.retryDelay(work.Attempt)
+	}
+	// A durable never-dispatched record is the only shortcut that may retire
+	// a child without resolving a parent UID or making a Provider call.
+	if work.CancelUnsent {
+		progress.State, progress.OperationState, progress.ClearPending = Deleted, Succeeded, true
+		progress.Reason = ""
+		return true, w.repository.Finish(ctx, work, progress)
+	}
+	if work.GateReason != "" {
+		progress.Reason = work.GateReason
+		progress.Backoff = true
+		progress.NextDelay = w.policy.RetryMin
+		return true, w.repository.Finish(ctx, work, progress)
 	}
 	target := ProviderTarget{
 		TenantID: work.Resource.TenantID, ResourceID: work.Resource.ID, BindingID: work.BindingID, Egress: work.Resource.Egress,

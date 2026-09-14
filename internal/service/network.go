@@ -75,7 +75,11 @@ func (s *NetworkService) GetOperation(ctx context.Context, r *networkv1.GetOpera
 	return &networkv1.GetOperationResponse{Operation: &networkv1.Operation{Id: v.ID, TenantId: v.TenantID, ResourceId: v.ResourceID, ResourceType: resourceTypesToWire[v.ResourceType], Kind: kindsToWire[v.Kind], State: operationsToWire[v.State], Reason: string(v.Reason), ReasonMessage: v.Reason.Message(), CreatedAt: timestamppb.New(v.CreatedAt), UpdatedAt: timestamppb.New(v.UpdatedAt), CompletedAt: optionalTime(v.CompletedAt), NextAttemptAt: optionalTime(v.NextAttemptAt)}}, nil
 }
 func wireVPC(v biz.VPC) *networkv1.VPC {
-	return &networkv1.VPC{Id: v.ID, TenantId: v.TenantID, Name: v.Name, Description: v.Description, Cidr: v.CIDR, State: statesToWire[v.State], Reason: string(v.Reason), ReasonMessage: v.Reason.Message(), CreatedAt: timestamppb.New(v.CreatedAt), UpdatedAt: timestamppb.New(v.UpdatedAt), Version: v.Version, ObservedAt: optionalTime(v.ObservedAt), ObservationStale: v.ObservationStale, LastOperationId: v.LastOperationID, SubnetCount: v.SubnetCount}
+	var base *networkv1.VPCBaseConnectivity
+	if b := v.BaseConnectivity; b != nil {
+		base = &networkv1.VPCBaseConnectivity{State: b.State, Reason: string(b.Reason), ReasonMessage: b.Reason.Message(), ObservedAt: optionalTime(b.ObservedAt), ObservationStale: b.ObservationStale}
+	}
+	return &networkv1.VPC{BaseConnectivity: base, Id: v.ID, TenantId: v.TenantID, Name: v.Name, Description: v.Description, Cidr: v.CIDR, State: statesToWire[v.State], Reason: string(v.Reason), ReasonMessage: v.Reason.Message(), CreatedAt: timestamppb.New(v.CreatedAt), UpdatedAt: timestamppb.New(v.UpdatedAt), Version: v.Version, ObservedAt: optionalTime(v.ObservedAt), ObservationStale: v.ObservationStale, LastOperationId: v.LastOperationID, SubnetCount: v.SubnetCount}
 }
 func optionalTime(v *time.Time) *timestamppb.Timestamp {
 	if v == nil {
@@ -99,22 +103,27 @@ var operationsToWire = map[biz.OperationState]networkv1.OperationState{
 	biz.Retrying: networkv1.OperationState_OPERATION_STATE_RETRYING, biz.Blocked: networkv1.OperationState_OPERATION_STATE_BLOCKED,
 	biz.Succeeded: networkv1.OperationState_OPERATION_STATE_SUCCEEDED, biz.OpFailed: networkv1.OperationState_OPERATION_STATE_FAILED,
 }
-var kindsToWire = map[string]networkv1.OperationKind{"create_subnet": networkv1.OperationKind_OPERATION_KIND_CREATE_SUBNET, "delete_subnet": networkv1.OperationKind_OPERATION_KIND_DELETE_SUBNET, "create_vpc": networkv1.OperationKind_OPERATION_KIND_CREATE_VPC, "delete_vpc": networkv1.OperationKind_OPERATION_KIND_DELETE_VPC,
-	"create_eip":            networkv1.OperationKind_OPERATION_KIND_CREATE_EIP,
-	"delete_eip":            networkv1.OperationKind_OPERATION_KIND_DELETE_EIP,
-	"bind_snat":             networkv1.OperationKind_OPERATION_KIND_BIND_SNAT,
-	"set_snat_enabled":      networkv1.OperationKind_OPERATION_KIND_SET_SNAT_ENABLED,
-	"delete_snat":           networkv1.OperationKind_OPERATION_KIND_DELETE_SNAT,
-	"adopt_device":          networkv1.OperationKind_OPERATION_KIND_ADOPT_DEVICE,
-	"create_vlan":           networkv1.OperationKind_OPERATION_KIND_CREATE_VLAN,
-	"delete_vlan":           networkv1.OperationKind_OPERATION_KIND_DELETE_VLAN,
-	"create_egress_gateway": networkv1.OperationKind_OPERATION_KIND_CREATE_EGRESS_GATEWAY,
-	"delete_egress_gateway": networkv1.OperationKind_OPERATION_KIND_DELETE_EGRESS_GATEWAY,
-	"create_public_pool":    networkv1.OperationKind_OPERATION_KIND_CREATE_PUBLIC_POOL,
-	"delete_public_pool":    networkv1.OperationKind_OPERATION_KIND_DELETE_PUBLIC_POOL,
-	"set_pool_allocation":   networkv1.OperationKind_OPERATION_KIND_SET_POOL_ALLOCATION,
-	"set_default_pool":      networkv1.OperationKind_OPERATION_KIND_SET_DEFAULT_POOL,
-	"verify_public_pool":    networkv1.OperationKind_OPERATION_KIND_VERIFY_PUBLIC_POOL}
+var kindsToWire = map[string]networkv1.OperationKind{"ensure_vpc_base_connectivity": networkv1.OperationKind_OPERATION_KIND_ENSURE_VPC_BASE_CONNECTIVITY, "create_subnet": networkv1.OperationKind_OPERATION_KIND_CREATE_SUBNET, "delete_subnet": networkv1.OperationKind_OPERATION_KIND_DELETE_SUBNET, "create_vpc": networkv1.OperationKind_OPERATION_KIND_CREATE_VPC, "delete_vpc": networkv1.OperationKind_OPERATION_KIND_DELETE_VPC,
+	"create_eip":                   networkv1.OperationKind_OPERATION_KIND_CREATE_EIP,
+	"delete_eip":                   networkv1.OperationKind_OPERATION_KIND_DELETE_EIP,
+	"bind_snat":                    networkv1.OperationKind_OPERATION_KIND_BIND_SNAT,
+	"set_snat_enabled":             networkv1.OperationKind_OPERATION_KIND_SET_SNAT_ENABLED,
+	"delete_snat":                  networkv1.OperationKind_OPERATION_KIND_DELETE_SNAT,
+	"adopt_device":                 networkv1.OperationKind_OPERATION_KIND_ADOPT_DEVICE,
+	"create_vlan":                  networkv1.OperationKind_OPERATION_KIND_CREATE_VLAN,
+	"delete_vlan":                  networkv1.OperationKind_OPERATION_KIND_DELETE_VLAN,
+	"create_egress_gateway":        networkv1.OperationKind_OPERATION_KIND_CREATE_EGRESS_GATEWAY,
+	"delete_egress_gateway":        networkv1.OperationKind_OPERATION_KIND_DELETE_EGRESS_GATEWAY,
+	"create_public_pool":           networkv1.OperationKind_OPERATION_KIND_CREATE_PUBLIC_POOL,
+	"delete_public_pool":           networkv1.OperationKind_OPERATION_KIND_DELETE_PUBLIC_POOL,
+	"set_pool_allocation":          networkv1.OperationKind_OPERATION_KIND_SET_POOL_ALLOCATION,
+	"set_default_pool":             networkv1.OperationKind_OPERATION_KIND_SET_DEFAULT_POOL,
+	"verify_public_pool":           networkv1.OperationKind_OPERATION_KIND_VERIFY_PUBLIC_POOL,
+	"create_intranet_pool":         networkv1.OperationKind_OPERATION_KIND_CREATE_INTRANET_POOL,
+	"delete_intranet_pool":         networkv1.OperationKind_OPERATION_KIND_DELETE_INTRANET_POOL,
+	"set_intranet_pool_allocation": networkv1.OperationKind_OPERATION_KIND_SET_INTRANET_POOL_ALLOCATION,
+	"set_default_intranet_pool":    networkv1.OperationKind_OPERATION_KIND_SET_DEFAULT_INTRANET_POOL,
+	"verify_intranet_pool":         networkv1.OperationKind_OPERATION_KIND_VERIFY_INTRANET_POOL}
 
 func rpcError(err error) error {
 	if errors.Is(err, context.Canceled) {
@@ -141,7 +150,7 @@ func rpcError(err error) error {
 		code = codes.FailedPrecondition
 	case biz.PermissionDenied:
 		code = codes.PermissionDenied
-	case biz.DependencyUnavailable, biz.PublicEgressNotReady:
+	case biz.DependencyUnavailable, biz.PublicEgressNotReady, biz.BaseConnectivityNotReady:
 		code = codes.Unavailable
 	default:
 		reason = "INTERNAL_ERROR"

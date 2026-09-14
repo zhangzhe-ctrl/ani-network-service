@@ -191,7 +191,7 @@ WHERE p.cluster_id=$1 AND p.gateway_id=$2 AND r.state<>'deleted'
 
 type CountGatewayPoolsParams struct {
 	ClusterID string
-	GatewayID string
+	GatewayID *string
 }
 
 func (q *Queries) CountGatewayPools(ctx context.Context, arg CountGatewayPoolsParams) (int64, error) {
@@ -271,8 +271,28 @@ func (q *Queries) DuePlatformCandidate(ctx context.Context, arg DuePlatformCandi
 	return i, err
 }
 
+const getDefaultIntranetPool = `-- name: GetDefaultIntranetPool :one
+SELECT cluster_id, pool_id, scope, version FROM network_default_intranet_pools WHERE cluster_id=$1
+`
+
+type GetDefaultIntranetPoolParams struct {
+	ClusterID string
+}
+
+func (q *Queries) GetDefaultIntranetPool(ctx context.Context, arg GetDefaultIntranetPoolParams) (NetworkDefaultIntranetPool, error) {
+	row := q.db.QueryRow(ctx, getDefaultIntranetPool, arg.ClusterID)
+	var i NetworkDefaultIntranetPool
+	err := row.Scan(
+		&i.ClusterID,
+		&i.PoolID,
+		&i.Scope,
+		&i.Version,
+	)
+	return i, err
+}
+
 const getDefaultPublicPool = `-- name: GetDefaultPublicPool :one
-SELECT cluster_id, pool_id, version FROM network_default_public_pools WHERE cluster_id=$1
+SELECT cluster_id, pool_id, version, scope FROM network_default_public_pools WHERE cluster_id=$1
 `
 
 type GetDefaultPublicPoolParams struct {
@@ -282,7 +302,12 @@ type GetDefaultPublicPoolParams struct {
 func (q *Queries) GetDefaultPublicPool(ctx context.Context, arg GetDefaultPublicPoolParams) (NetworkDefaultPublicPool, error) {
 	row := q.db.QueryRow(ctx, getDefaultPublicPool, arg.ClusterID)
 	var i NetworkDefaultPublicPool
-	err := row.Scan(&i.ClusterID, &i.PoolID, &i.Version)
+	err := row.Scan(
+		&i.ClusterID,
+		&i.PoolID,
+		&i.Version,
+		&i.Scope,
+	)
 	return i, err
 }
 
@@ -404,7 +429,7 @@ func (q *Queries) GetPlatformOperation(ctx context.Context, arg GetPlatformOpera
 }
 
 const getPublicPool = `-- name: GetPublicPool :one
-SELECT resource_id, cluster_id, kind, mode, gateway_id, cidr, ovn_gateway_ip, excluded_ips, vlan_network_id, upstream_gateway_ip, allocation_enabled, config_revision, verification, verification_expires_at, retired FROM network_public_pools WHERE cluster_id=$1 AND resource_id=$2
+SELECT resource_id, cluster_id, kind, mode, gateway_id, cidr, ovn_gateway_ip, excluded_ips, vlan_network_id, upstream_gateway_ip, allocation_enabled, config_revision, verification, verification_expires_at, retired, scope, default_vpc_name, default_vpc_uid, intranet_networks FROM network_public_pools WHERE cluster_id=$1 AND resource_id=$2
 `
 
 type GetPublicPoolParams struct {
@@ -431,6 +456,10 @@ func (q *Queries) GetPublicPool(ctx context.Context, arg GetPublicPoolParams) (N
 		&i.Verification,
 		&i.VerificationExpiresAt,
 		&i.Retired,
+		&i.Scope,
+		&i.DefaultVpcName,
+		&i.DefaultVpcUid,
+		&i.IntranetNetworks,
 	)
 	return i, err
 }
@@ -492,6 +521,36 @@ type InsertEgressGatewayParams struct {
 
 func (q *Queries) InsertEgressGateway(ctx context.Context, arg InsertEgressGatewayParams) error {
 	_, err := q.db.Exec(ctx, insertEgressGateway, arg.ResourceID, arg.ClusterID)
+	return err
+}
+
+const insertIntranetPool = `-- name: InsertIntranetPool :exec
+INSERT INTO network_public_pools(resource_id,cluster_id,scope,mode,gateway_id,cidr,ovn_gateway_ip,excluded_ips,default_vpc_name,default_vpc_uid,intranet_networks)
+VALUES($1,$2,'intranet','overlay',NULL,$3,$4,$5,$6,$7,$8)
+`
+
+type InsertIntranetPoolParams struct {
+	ResourceID       string
+	ClusterID        string
+	Cidr             string
+	OvnGatewayIp     string
+	ExcludedIps      []string
+	DefaultVpcName   string
+	DefaultVpcUid    string
+	IntranetNetworks []string
+}
+
+func (q *Queries) InsertIntranetPool(ctx context.Context, arg InsertIntranetPoolParams) error {
+	_, err := q.db.Exec(ctx, insertIntranetPool,
+		arg.ResourceID,
+		arg.ClusterID,
+		arg.Cidr,
+		arg.OvnGatewayIp,
+		arg.ExcludedIps,
+		arg.DefaultVpcName,
+		arg.DefaultVpcUid,
+		arg.IntranetNetworks,
+	)
 	return err
 }
 
@@ -663,7 +722,7 @@ type InsertPublicPoolParams struct {
 	ResourceID        string
 	ClusterID         string
 	Mode              string
-	GatewayID         string
+	GatewayID         *string
 	Cidr              string
 	OvnGatewayIp      string
 	ExcludedIps       []string
@@ -707,12 +766,77 @@ func (q *Queries) InsertVlanNetwork(ctx context.Context, arg InsertVlanNetworkPa
 	return err
 }
 
+const listIntranetPools = `-- name: ListIntranetPools :many
+SELECT r.resource_id, r.kind, r.cluster_id, r.name, r.description, r.state, r.reason, r.version, r.created_at, r.updated_at, r.observed_at, r.last_operation_id, r.provider_name, r.provider_uid, r.provider_images, r.binding_id, r.pending_action, r.pending_since FROM network_platform_resources r JOIN network_public_pools p ON p.cluster_id=r.cluster_id AND p.resource_id=r.resource_id
+WHERE r.cluster_id=$1 AND p.scope='intranet'
+ AND ($2::text='' OR r.name=$2)
+ AND (($3::text='' AND r.state<>'deleted') OR r.state=$3)
+ AND ($4::text='' OR (r.created_at,r.resource_id)<($5::timestamptz,$4::text))
+ORDER BY r.created_at DESC,r.resource_id DESC LIMIT $6::integer
+`
+
+type ListIntranetPoolsParams struct {
+	ClusterID      string
+	NameFilter     string
+	StateFilter    string
+	AfterID        string
+	AfterCreatedAt time.Time
+	MaxResults     int32
+}
+
+func (q *Queries) ListIntranetPools(ctx context.Context, arg ListIntranetPoolsParams) ([]NetworkPlatformResource, error) {
+	rows, err := q.db.Query(ctx, listIntranetPools,
+		arg.ClusterID,
+		arg.NameFilter,
+		arg.StateFilter,
+		arg.AfterID,
+		arg.AfterCreatedAt,
+		arg.MaxResults,
+	)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	items := []NetworkPlatformResource{}
+	for rows.Next() {
+		var i NetworkPlatformResource
+		if err := rows.Scan(
+			&i.ResourceID,
+			&i.Kind,
+			&i.ClusterID,
+			&i.Name,
+			&i.Description,
+			&i.State,
+			&i.Reason,
+			&i.Version,
+			&i.CreatedAt,
+			&i.UpdatedAt,
+			&i.ObservedAt,
+			&i.LastOperationID,
+			&i.ProviderName,
+			&i.ProviderUid,
+			&i.ProviderImages,
+			&i.BindingID,
+			&i.PendingAction,
+			&i.PendingSince,
+		); err != nil {
+			return nil, err
+		}
+		items = append(items, i)
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
+}
+
 const listPlatform = `-- name: ListPlatform :many
-SELECT resource_id, kind, cluster_id, name, description, state, reason, version, created_at, updated_at, observed_at, last_operation_id, provider_name, provider_uid, provider_images, binding_id, pending_action, pending_since FROM network_platform_resources WHERE cluster_id=$1 AND kind=$2
- AND ($3::text='' OR name=$3)
- AND (($4::text='' AND state<>'deleted') OR state=$4)
- AND ($5::text='' OR (created_at,resource_id)<($6::timestamptz,$5::text))
-ORDER BY created_at DESC,resource_id DESC LIMIT $7::integer
+SELECT r.resource_id, r.kind, r.cluster_id, r.name, r.description, r.state, r.reason, r.version, r.created_at, r.updated_at, r.observed_at, r.last_operation_id, r.provider_name, r.provider_uid, r.provider_images, r.binding_id, r.pending_action, r.pending_since FROM network_platform_resources r WHERE r.cluster_id=$1 AND r.kind=$2
+ AND (r.kind<>'public_pool' OR EXISTS (SELECT 1 FROM network_public_pools pool WHERE pool.cluster_id=r.cluster_id AND pool.resource_id=r.resource_id AND pool.scope='public'))
+ AND ($3::text='' OR r.name=$3)
+ AND (($4::text='' AND r.state<>'deleted') OR r.state=$4)
+ AND ($5::text='' OR (r.created_at,r.resource_id)<($6::timestamptz,$5::text))
+ORDER BY r.created_at DESC,r.resource_id DESC LIMIT $7::integer
 `
 
 type ListPlatformParams struct {
@@ -837,7 +961,7 @@ func (q *Queries) LockPlatformKey(ctx context.Context, arg LockPlatformKeyParams
 }
 
 const lockPublicPool = `-- name: LockPublicPool :one
-SELECT resource_id, cluster_id, kind, mode, gateway_id, cidr, ovn_gateway_ip, excluded_ips, vlan_network_id, upstream_gateway_ip, allocation_enabled, config_revision, verification, verification_expires_at, retired FROM network_public_pools WHERE cluster_id=$1 AND resource_id=$2 FOR UPDATE
+SELECT resource_id, cluster_id, kind, mode, gateway_id, cidr, ovn_gateway_ip, excluded_ips, vlan_network_id, upstream_gateway_ip, allocation_enabled, config_revision, verification, verification_expires_at, retired, scope, default_vpc_name, default_vpc_uid, intranet_networks FROM network_public_pools WHERE cluster_id=$1 AND resource_id=$2 FOR UPDATE
 `
 
 type LockPublicPoolParams struct {
@@ -864,6 +988,10 @@ func (q *Queries) LockPublicPool(ctx context.Context, arg LockPublicPoolParams) 
 		&i.Verification,
 		&i.VerificationExpiresAt,
 		&i.Retired,
+		&i.Scope,
+		&i.DefaultVpcName,
+		&i.DefaultVpcUid,
+		&i.IntranetNetworks,
 	)
 	return i, err
 }
@@ -974,11 +1102,11 @@ func (q *Queries) PublicPoolOverlaps(ctx context.Context, arg PublicPoolOverlaps
 
 const publicPoolTopology = `-- name: PublicPoolTopology :one
 SELECT p.resource_id,p.cluster_id,p.config_revision,p.mode,p.gateway_id,p.cidr,p.ovn_gateway_ip,p.excluded_ips,p.vlan_network_id,p.upstream_gateway_ip,
- r.provider_uid AS pool_uid,r.provider_images,g.provider_uid AS gateway_uid,COALESCE(v.provider_uid,'')::text AS vlan_uid,
+ r.provider_uid AS pool_uid,r.provider_images,COALESCE(g.provider_uid,'')::text AS gateway_uid,COALESCE(v.provider_uid,'')::text AS vlan_uid,
  COALESCE(d.provider_uid,'')::text AS device_config_uid
 FROM network_public_pools p
 JOIN network_platform_resources r ON r.cluster_id=p.cluster_id AND r.resource_id=p.resource_id
-JOIN network_platform_resources g ON g.cluster_id=p.cluster_id AND g.resource_id=p.gateway_id
+LEFT JOIN network_platform_resources g ON g.cluster_id=p.cluster_id AND g.resource_id=p.gateway_id
 LEFT JOIN network_platform_resources v ON v.cluster_id=p.cluster_id AND v.resource_id=p.vlan_network_id
 LEFT JOIN network_vlan_networks vl ON vl.cluster_id=p.cluster_id AND vl.resource_id=p.vlan_network_id
 LEFT JOIN network_platform_resources d ON d.cluster_id=vl.cluster_id AND d.resource_id=vl.device_id
@@ -995,7 +1123,7 @@ type PublicPoolTopologyRow struct {
 	ClusterID         string
 	ConfigRevision    int64
 	Mode              string
-	GatewayID         string
+	GatewayID         *string
 	Cidr              string
 	OvnGatewayIp      string
 	ExcludedIps       []string
@@ -1207,6 +1335,21 @@ func (q *Queries) SchedulePlatform(ctx context.Context, arg SchedulePlatformPara
 		return 0, err
 	}
 	return result.RowsAffected(), nil
+}
+
+const setDefaultIntranetPool = `-- name: SetDefaultIntranetPool :exec
+INSERT INTO network_default_intranet_pools(cluster_id,pool_id) VALUES($1,$2)
+ON CONFLICT(cluster_id) DO UPDATE SET pool_id=excluded.pool_id,version=network_default_intranet_pools.version+1
+`
+
+type SetDefaultIntranetPoolParams struct {
+	ClusterID string
+	PoolID    string
+}
+
+func (q *Queries) SetDefaultIntranetPool(ctx context.Context, arg SetDefaultIntranetPoolParams) error {
+	_, err := q.db.Exec(ctx, setDefaultIntranetPool, arg.ClusterID, arg.PoolID)
+	return err
 }
 
 const setDefaultPublicPool = `-- name: SetDefaultPublicPool :exec

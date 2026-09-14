@@ -1,0 +1,25 @@
+{
+  "run": "20260914T134158Z-94e94873",
+  "result": "fail",
+  "ssh_exit": 2,
+  "remote_command_exit": 2,
+  "head": "d8835a22d905e358b7f60756d3113baa97d7c762",
+  "archive_sha256": "9282778cf99df00a3439fc02e90d0fe94df8cc5080d929b27b874e7f71cf0fc4",
+  "manifest_sha256": "e61a3189b2eae762f065835a566f64226d9ff810697d80b153589a2a78c44773",
+  "source_files": 1089,
+  "command": [
+    "bash",
+    "-c",
+    "make verify && scripts/check-vpc-base-contracts && scripts/integration -race ./... -timeout 12m -json"
+  ],
+  "remote": "/home/ubuntu/workspace/ani-network-service-runs/snat-20260914T134158Z-94e94873",
+  "local_source_archive": "/home/chabking/workspace/.worktrees/network-vpc-base-01/.work/snat-runs/20260914T134158Z-94e94873/source.tar.gz",
+  "log_sha256": "be065ab221238471e918b0ad35a9b8f1a2a8db1fa5d901191b4e1487ddbc9ec8",
+  "tool_version_lines": [
+    "go version go1.26.7 linux/amd64",
+    "1.60.0",
+    "v1.31.1"
+  ],
+  "containers_created": [],
+  "containers_removed": []
+}

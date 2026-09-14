@@ -116,7 +116,7 @@ func (q *Queries) GetTenantNamespace(ctx context.Context, arg GetTenantNamespace
 }
 
 const getVPC = `-- name: GetVPC :one
-SELECT v.tenant_id, v.vpc_id, v.name, v.description, v.cidr, v.state, v.reason, v.version, v.created_at, v.updated_at, v.observed_at, v.last_operation_id, (SELECT count(*) FROM network_subnets s WHERE s.tenant_id=v.tenant_id AND s.vpc_id=v.vpc_id AND s.state<>'deleted')::bigint AS subnet_count FROM network_vpcs v WHERE v.tenant_id=$1 AND v.vpc_id=$2
+SELECT v.tenant_id, v.vpc_id, v.name, v.description, v.cidr, v.state, v.reason, v.version, v.created_at, v.updated_at, v.observed_at, v.last_operation_id, v.base_connectivity_required,coalesce(b.state,'missing')::text AS base_state,coalesce(b.reason,'')::text AS base_reason,b.observed_at AS base_observed_at, (SELECT count(*) FROM network_subnets s WHERE s.tenant_id=v.tenant_id AND s.vpc_id=v.vpc_id AND s.state<>'deleted')::bigint AS subnet_count FROM network_vpcs v LEFT JOIN network_vpc_base_connectivity b ON b.tenant_id=v.tenant_id AND b.vpc_id=v.vpc_id WHERE v.tenant_id=$1 AND v.vpc_id=$2
 `
 
 type GetVPCParams struct {
@@ -125,8 +125,11 @@ type GetVPCParams struct {
 }
 
 type GetVPCRow struct {
-	NetworkVpc  NetworkVpc
-	SubnetCount int64
+	NetworkVpc     NetworkVpc
+	BaseState      string
+	BaseReason     string
+	BaseObservedAt *time.Time
+	SubnetCount    int64
 }
 
 func (q *Queries) GetVPC(ctx context.Context, arg GetVPCParams) (GetVPCRow, error) {
@@ -145,14 +148,18 @@ func (q *Queries) GetVPC(ctx context.Context, arg GetVPCParams) (GetVPCRow, erro
 		&i.NetworkVpc.UpdatedAt,
 		&i.NetworkVpc.ObservedAt,
 		&i.NetworkVpc.LastOperationID,
+		&i.NetworkVpc.BaseConnectivityRequired,
+		&i.BaseState,
+		&i.BaseReason,
+		&i.BaseObservedAt,
 		&i.SubnetCount,
 	)
 	return i, err
 }
 
 const insertBinding = `-- name: InsertBinding :exec
-INSERT INTO network_provider_bindings (tenant_id,vpc_id,subnet_id,eip_id,snat_id,binding_id,cluster_id,namespace,provider_name,resource_kind)
-VALUES ($1,NULLIF($2::text,''),NULLIF($3::text,''),NULLIF($4::text,''),NULLIF($5::text,''),$6,$7,$8,$9,CASE WHEN $4::text<>'' THEN 'eip' WHEN $5::text<>'' THEN 'snat' WHEN $3::text<>'' THEN 'subnet' ELSE 'vpc' END)
+INSERT INTO network_provider_bindings (tenant_id,vpc_id,subnet_id,eip_id,snat_id,binding_id,cluster_id,namespace,provider_name,create_dispatched,resource_kind)
+VALUES ($1,NULLIF($2::text,''),NULLIF($3::text,''),NULLIF($4::text,''),NULLIF($5::text,''),$6,$7,$8,$9,false,CASE WHEN $4::text<>'' THEN 'eip' WHEN $5::text<>'' THEN 'snat' WHEN $3::text<>'' THEN 'subnet' ELSE 'vpc' END)
 `
 
 type InsertBindingParams struct {
@@ -314,7 +321,7 @@ func (q *Queries) InsertReconciliation(ctx context.Context, arg InsertReconcilia
 const insertVPC = `-- name: InsertVPC :one
 INSERT INTO network_vpcs (tenant_id,vpc_id,name,description,cidr,state,created_at,updated_at,last_operation_id)
 VALUES ($1,$2,$3,$4,$5,'provisioning',$6,$6,$7)
-RETURNING tenant_id, vpc_id, name, description, cidr, state, reason, version, created_at, updated_at, observed_at, last_operation_id
+RETURNING tenant_id, vpc_id, name, description, cidr, state, reason, version, created_at, updated_at, observed_at, last_operation_id, base_connectivity_required
 `
 
 type InsertVPCParams struct {
@@ -351,12 +358,13 @@ func (q *Queries) InsertVPC(ctx context.Context, arg InsertVPCParams) (NetworkVp
 		&i.UpdatedAt,
 		&i.ObservedAt,
 		&i.LastOperationID,
+		&i.BaseConnectivityRequired,
 	)
 	return i, err
 }
 
 const listVPCs = `-- name: ListVPCs :many
-SELECT v.tenant_id, v.vpc_id, v.name, v.description, v.cidr, v.state, v.reason, v.version, v.created_at, v.updated_at, v.observed_at, v.last_operation_id, (SELECT count(*) FROM network_subnets s WHERE s.tenant_id=v.tenant_id AND s.vpc_id=v.vpc_id AND s.state<>'deleted')::bigint AS subnet_count FROM network_vpcs v
+SELECT v.tenant_id, v.vpc_id, v.name, v.description, v.cidr, v.state, v.reason, v.version, v.created_at, v.updated_at, v.observed_at, v.last_operation_id, v.base_connectivity_required,coalesce(b.state,'missing')::text AS base_state,coalesce(b.reason,'')::text AS base_reason,b.observed_at AS base_observed_at, (SELECT count(*) FROM network_subnets s WHERE s.tenant_id=v.tenant_id AND s.vpc_id=v.vpc_id AND s.state<>'deleted')::bigint AS subnet_count FROM network_vpcs v LEFT JOIN network_vpc_base_connectivity b ON b.tenant_id=v.tenant_id AND b.vpc_id=v.vpc_id
 WHERE v.tenant_id = $1
   AND ($2::text = '' OR v.name = $2)
   AND (($3::text = '' AND v.state <> 'deleted') OR v.state = $3)
@@ -375,8 +383,11 @@ type ListVPCsParams struct {
 }
 
 type ListVPCsRow struct {
-	NetworkVpc  NetworkVpc
-	SubnetCount int64
+	NetworkVpc     NetworkVpc
+	BaseState      string
+	BaseReason     string
+	BaseObservedAt *time.Time
+	SubnetCount    int64
 }
 
 func (q *Queries) ListVPCs(ctx context.Context, arg ListVPCsParams) ([]ListVPCsRow, error) {
@@ -408,6 +419,10 @@ func (q *Queries) ListVPCs(ctx context.Context, arg ListVPCsParams) ([]ListVPCsR
 			&i.NetworkVpc.UpdatedAt,
 			&i.NetworkVpc.ObservedAt,
 			&i.NetworkVpc.LastOperationID,
+			&i.NetworkVpc.BaseConnectivityRequired,
+			&i.BaseState,
+			&i.BaseReason,
+			&i.BaseObservedAt,
 			&i.SubnetCount,
 		); err != nil {
 			return nil, err

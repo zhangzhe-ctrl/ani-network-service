@@ -1,0 +1,139 @@
+{
+  "time_utc": "2026-09-14T11:34:26.217135+00:00",
+  "tests": [
+    {
+      "mode": "public",
+      "source": "kc062-worker",
+      "command": [
+        "docker",
+        "exec",
+        "kc062-worker",
+        "curl",
+        "--noproxy",
+        "*",
+        "--connect-timeout",
+        "3",
+        "--max-time",
+        "5",
+        "-fsS",
+        "http://198.19.231.11:8080/"
+      ],
+      "exit_code": 0,
+      "stdout": "backend-a\n",
+      "stderr": "",
+      "result": "pass"
+    },
+    {
+      "mode": "public",
+      "source": "kc062-worker2",
+      "command": [
+        "docker",
+        "exec",
+        "kc062-worker2",
+        "curl",
+        "--noproxy",
+        "*",
+        "--connect-timeout",
+        "3",
+        "--max-time",
+        "5",
+        "-fsS",
+        "http://198.19.231.11:8080/"
+      ],
+      "exit_code": 0,
+      "stdout": "backend-b\n",
+      "stderr": "",
+      "result": "pass"
+    },
+    {
+      "mode": "both-public",
+      "source": "kc062-worker",
+      "command": [
+        "docker",
+        "exec",
+        "kc062-worker",
+        "curl",
+        "--noproxy",
+        "*",
+        "--connect-timeout",
+        "3",
+        "--max-time",
+        "5",
+        "-fsS",
+        "http://198.19.231.10:8080/"
+      ],
+      "exit_code": 0,
+      "stdout": "backend-b\n",
+      "stderr": "",
+      "result": "pass"
+    },
+    {
+      "mode": "both-public",
+      "source": "kc062-worker2",
+      "command": [
+        "docker",
+        "exec",
+        "kc062-worker2",
+        "curl",
+        "--noproxy",
+        "*",
+        "--connect-timeout",
+        "3",
+        "--max-time",
+        "5",
+        "-fsS",
+        "http://198.19.231.10:8080/"
+      ],
+      "exit_code": 0,
+      "stdout": "backend-a\n",
+      "stderr": "",
+      "result": "pass"
+    },
+    {
+      "mode": "private",
+      "source": "client",
+      "command": [
+        "kubectl",
+        "--context",
+        "kind-kc062",
+        "-n",
+        "lb-strict-0911",
+        "exec",
+        "client",
+        "--",
+        "wget",
+        "-qO-",
+        "-T",
+        "3",
+        "http://10.231.1.101:8080/"
+      ],
+      "exit_code": 0,
+      "stdout": "backend-a\n",
+      "stderr": "",
+      "result": "pass"
+    },
+    {
+      "mode": "both-private",
+      "source": "client",
+      "command": [
+        "kubectl",
+        "--context",
+        "kind-kc062",
+        "-n",
+        "lb-strict-0911",
+        "exec",
+        "client",
+        "--",
+        "wget",
+        "-qO-",
+        "-T",
+        "3",
+        "http://10.231.1.100:8080/"
+      ],
+      "exit_code": 0,
+      "stdout": "backend-b\n",
+      "stderr": "",
+      "result": "pass"
+    }
+  ]
+}

@@ -1,5 +1,7 @@
 # 租户 VPC SNAT 实施计划
 
+> 后续统一建设按[2026-09-14 任务计划](vpc-connectivity-lb.md)推进，涵盖本分支已实现能力的调整、基础 Intranet 和新 LB；本文件保留为原 Public SNAT 工作的历史计划及其未完成验收边界。
+
 日期：2026-09-10。本文安排 [VPC SNAT 方案](../specs/vpc-snat.md)的实施依赖与退出证据，不作为实现或验收证据。当前状态统一见 [执行状态](../execution/status.md)。以下阶段不占用现有 NET-06/NET-AUTH 编号，也不改变原工作包顺序；实际执行范围按当前 Goal 授权，结果以状态页为准。
 
 ## 1. 执行边界

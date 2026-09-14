@@ -51,6 +51,7 @@ func buildApp(bc *conf.Bootstrap, logger *slog.Logger) (*kratos.App, error) {
 	key, _ := base64.StdEncoding.DecodeString(bc.Network.CursorSigningKey)
 	w := bc.Network.Worker
 	policy := biz.WorkerPolicy{Lease: w.Lease.AsDuration(), RequestTimeout: w.RequestTimeout.AsDuration(), ObserveEvery: w.ObserveEvery.AsDuration(), StaleAfter: w.StaleAfter.AsDuration(), RetryMin: w.RetryMin.AsDuration(), RetryMax: w.RetryMax.AsDuration()}
+	repository.UseBaseConnectivityFreshness(policy.StaleAfter)
 	network, err := biz.NewNetwork(repository, key, policy.StaleAfter, time.Now)
 	if err != nil {
 		return nil, err

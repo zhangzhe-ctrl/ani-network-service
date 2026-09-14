@@ -144,6 +144,10 @@ func (r Reason) Message() string {
 		return "The previously recorded provider object is missing."
 	case CleanupPending:
 		return "Provider cleanup has been requested and awaits confirmation."
+	case BaseConnectivityNotReady:
+		return "VPC base connectivity is not ready"
+	case Reason("CREATE_TERMINATED"):
+		return "VPC creation was terminated; cleanup is tracked by its delete operation"
 	case PublicEgressNotReady:
 		return "The public egress configuration or acceptance evidence is not ready."
 	case ProviderStateMismatch:

@@ -13,6 +13,8 @@
 
 公网出网增量：[租户 VPC SNAT 方案](specs/vpc-snat.md)定义 Overlay/Underlay、平台与租户接口及生命周期；[实施计划](plans/vpc-snat.md)安排依赖和后续 Underlay 验收；[操作手册](kc-public-egress-manual.md)提供产品 RPC 顺序及 kc CR/YAML 核对参考；[出网部署前置](../deployments/egress/README.md)说明额外 RBAC 和只读节点事实来源。
 
+2026-09-14 新统一设计：[VPC 基础内网、公网出站与 LB 方案](specs/vpc-connectivity-lb.md)定义新规则及对旧流程的调整；[13 个可执行任务](plans/vpc-connectivity-lb.md)给出依赖、修改范围与验收条件；[方案交付与来源核对](execution/records/2026-09-14-vpc-lb-plan.md)记录固定代码和手工实测的证据边界。本文档交付不代表新流程已实现。
+
 ## 架构决定
 
 | 记录 | 决定 |
@@ -21,6 +23,7 @@
 | [ADR-0002](adr/0002-use-tenant-owned-data-without-rls.md) | 独立 PostgreSQL + sqlc/pgx；租户资源显式 tenant 约束，无 RLS、共享写表或跨服务 FK。 |
 | [ADR-0003](adr/0003-defer-workload-authentication.md) | 本期暂缓服务间身份验证，IAM 就绪后单独接入；租户业务边界继续实现和测试。 |
 | [ADR-0004](adr/0004-observe-cr-with-durable-reconciliation.md) | 共享 CR 观察与 Network 持久执行，NET-05A 位于 NET-06 前；兄弟服务框架自主选择，配额延后到 Core 重构之后。 |
+| [ADR-0005](adr/0005-separate-vpc-connectivity-and-exclusive-eip-bindings.md) | 用户确认 EIP 目标独占，VPC 内网/公网 SNAT 分用途限制，基础内网资源随 VPC 管理。 |
 
 ADR 记录已确认的方向及理由；规格中本轮补齐的数值、字段和协议细节是工程设计，不冒充已经逐项人工批准或实际验收。
 当前用户明确决定优先。规格、ADR、代码或证据出现差异时，标明是待实现目标、过期材料还是需要变更的决定，并更新对应权威材料，不能静默挑选有利版本。
@@ -43,6 +46,8 @@ NET-05A 的观察、时效、调度与增量验收统一见[持续观察规格](
 目录只在有实际文件时创建。过期规范注明替代关系；历史执行记录不随当前状态变化而重写成新的证据。
 
 ## 运行与来源
+
+- [NET-VPC-BASE-01 实施与受控验收](execution/records/NET-VPC-BASE-01/README.md)：六卡实现、固定源码、分层验收、补齐工具及下一批输入；[Intranet 平台运行前提](../deployments/egress/intranet.md)。
 
 - [VPC SNAT 本仓实现与验证](execution/records/VPC-SNAT-IMPLEMENTATION/README.md)：固定设计输入、接口/事务/worker 落点、远端必要门禁、kc 外部阻塞与清理证据。
 

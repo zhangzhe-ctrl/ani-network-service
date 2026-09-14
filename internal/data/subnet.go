@@ -150,6 +150,13 @@ func (p *Postgres) DeleteSubnet(ctx context.Context, tenant, id string) (biz.Sub
 	if row.State == string(biz.Deleting) || row.State == string(biz.Deleted) {
 		return subnet(row), nil
 	}
+	lbCount, err := q.BlockingLBForSubnet(ctx, sqlcgen.BlockingLBForSubnetParams{TenantID: tenant, SubnetID: id})
+	if err != nil {
+		return biz.Subnet{}, databaseFailure(err)
+	}
+	if lbCount > 0 {
+		return biz.Subnet{}, biz.Fail(biz.ResourceInUse, "subnet has an unreleased load balancer")
+	}
 	count, err := q.CountAttachments(ctx, sqlcgen.CountAttachmentsParams{TenantID: tenant, SubnetID: id})
 	if err != nil {
 		return biz.Subnet{}, databaseFailure(err)

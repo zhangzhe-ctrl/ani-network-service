@@ -621,7 +621,7 @@ func (q *Queries) LockDueAttachment(ctx context.Context, arg LockDueAttachmentPa
 }
 
 const lockDueAttachmentParent = `-- name: LockDueAttachmentParent :one
-SELECT v.tenant_id, v.vpc_id, v.name, v.description, v.cidr, v.state, v.reason, v.version, v.created_at, v.updated_at, v.observed_at, v.last_operation_id FROM network_vpcs v WHERE EXISTS(SELECT 1 FROM network_attachments a WHERE a.tenant_id=v.tenant_id AND a.vpc_id=v.vpc_id AND a.next_check_at<=clock_timestamp() AND (a.lease_until IS NULL OR a.lease_until<=clock_timestamp()))
+SELECT v.tenant_id, v.vpc_id, v.name, v.description, v.cidr, v.state, v.reason, v.version, v.created_at, v.updated_at, v.observed_at, v.last_operation_id, v.base_connectivity_required FROM network_vpcs v WHERE EXISTS(SELECT 1 FROM network_attachments a WHERE a.tenant_id=v.tenant_id AND a.vpc_id=v.vpc_id AND a.next_check_at<=clock_timestamp() AND (a.lease_until IS NULL OR a.lease_until<=clock_timestamp()))
 ORDER BY (SELECT min(a.next_check_at) FROM network_attachments a WHERE a.tenant_id=v.tenant_id AND a.vpc_id=v.vpc_id AND (a.lease_until IS NULL OR a.lease_until<=clock_timestamp())),v.vpc_id LIMIT 1 FOR UPDATE OF v SKIP LOCKED
 `
 
@@ -641,6 +641,7 @@ func (q *Queries) LockDueAttachmentParent(ctx context.Context) (NetworkVpc, erro
 		&i.UpdatedAt,
 		&i.ObservedAt,
 		&i.LastOperationID,
+		&i.BaseConnectivityRequired,
 	)
 	return i, err
 }

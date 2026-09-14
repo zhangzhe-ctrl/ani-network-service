@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+set -Eeuo pipefail
+baseline=$(mktemp -d)
+trap 'rm -rf -- "$baseline"' EXIT
+tar -xf docs/execution/records/NET-VPC-BASE-01/contract-baseline.tar -C "$baseline"
+.tools/bin/buf lint
+.tools/bin/buf breaking --against "$baseline"
+printf 'NET-VPC-BASE-01 contracts baseline=d8835a22d905e358b7f60756d3113baa97d7c762 pass\n'

@@ -18,10 +18,10 @@ func newEgressID(prefix string) string {
 	return prefix + "_" + strings.ReplaceAll(uuid.NewString(), "-", "")
 }
 func eipResource(r sqlcgen.NetworkEip) biz.EIP {
-	return biz.EIP{EgressMetadata: biz.EgressMetadata{ID: r.EipID, Name: r.Name, Description: r.Description, State: biz.ResourceState(r.State), Reason: biz.Reason(r.Reason), Version: r.Version, CreatedAt: r.CreatedAt, UpdatedAt: r.UpdatedAt, ObservedAt: r.ObservedAt, LastOperationID: r.LastOperationID}, TenantID: r.TenantID, Address: r.Address, BindingState: "unbound"}
+	return biz.EIP{EgressMetadata: biz.EgressMetadata{ID: r.EipID, Name: r.Name, Description: r.Description, State: biz.ResourceState(r.State), Reason: biz.Reason(r.Reason), Version: r.Version, CreatedAt: r.CreatedAt, UpdatedAt: r.UpdatedAt, ObservedAt: r.ObservedAt, LastOperationID: r.LastOperationID}, TenantID: r.TenantID, Address: r.Address, BindingState: "unbound", Scope: r.Scope, ManagedBy: r.ManagedBy}
 }
 func snatResource(r sqlcgen.NetworkSnatBinding, address string) biz.VPCSnatBinding {
-	v := biz.VPCSnatBinding{EgressMetadata: biz.EgressMetadata{ID: r.SnatID, Name: r.Name, Description: r.Description, State: biz.ResourceState(r.State), Reason: biz.Reason(r.Reason), Version: r.Version, CreatedAt: r.CreatedAt, UpdatedAt: r.UpdatedAt, ObservedAt: r.ObservedAt, LastOperationID: r.LastOperationID}, TenantID: r.TenantID, VPCID: r.VpcID, EIPID: r.EipID, EIPAddress: address, DesiredEnabled: r.DesiredEnabled}
+	v := biz.VPCSnatBinding{EgressMetadata: biz.EgressMetadata{ID: r.SnatID, Name: r.Name, Description: r.Description, State: biz.ResourceState(r.State), Reason: biz.Reason(r.Reason), Version: r.Version, CreatedAt: r.CreatedAt, UpdatedAt: r.UpdatedAt, ObservedAt: r.ObservedAt, LastOperationID: r.LastOperationID}, TenantID: r.TenantID, VPCID: r.VpcID, EIPID: r.EipID, EIPAddress: address, DesiredEnabled: r.DesiredEnabled, Purpose: r.Purpose}
 	if r.AppliedEnabled.Valid {
 		value := r.AppliedEnabled.Bool
 		v.AppliedEnabled = &value
@@ -147,11 +147,34 @@ func (p *Postgres) AcceptEIP(ctx context.Context, i biz.EgressIntent, a biz.Attr
 	}
 	return v, nil
 }
+func eipBindingTarget(kind, id, state string) *biz.EIPBindingTarget {
+	if kind == "" {
+		return nil
+	}
+	return &biz.EIPBindingTarget{Kind: kind, ID: id, State: state}
+}
+
+// Internal workers can load all address purposes. Tenant entry points must
+// enforce the Public boundary before accepting or returning a resource.
+func requireTenantPublicEIP(row sqlcgen.NetworkEip) error {
+	if row.Scope != "public" || row.ManagedBy != "tenant" {
+		return biz.Fail(biz.ResourceNotFound, "EIP not found")
+	}
+	return nil
+}
+func requirePublicSnat(row sqlcgen.NetworkSnatBinding) error {
+	if row.Purpose != "public" {
+		return biz.Fail(biz.ResourceNotFound, "SNAT binding not found")
+	}
+	return nil
+}
+
 func (p *Postgres) GetEIP(ctx context.Context, tenant, id string) (biz.EIP, error) {
 	r, err := p.queries.GetEIP(ctx, sqlcgen.GetEIPParams{TenantID: tenant, EipID: id})
 	v := eipResource(r.NetworkEip)
 	v.BindingID = r.BindingID
 	v.BindingState = r.BindingState
+	v.BindingTarget = eipBindingTarget(r.BindingTargetKind, r.BindingTargetID, r.BindingState)
 	return v, databaseFailure(err)
 }
 func (p *Postgres) ListEIPs(ctx context.Context, tenant string, f biz.VPCFilter) ([]biz.EIP, error) {
@@ -164,6 +187,7 @@ func (p *Postgres) ListEIPs(ctx context.Context, tenant string, f biz.VPCFilter)
 		v := eipResource(r.NetworkEip)
 		v.BindingID = r.BindingID
 		v.BindingState = r.BindingState
+		v.BindingTarget = eipBindingTarget(r.BindingTargetKind, r.BindingTargetID, r.BindingState)
 		values = append(values, v)
 	}
 	return values, nil
@@ -189,6 +213,9 @@ func (p *Postgres) AcceptSnat(ctx context.Context, i biz.EgressIntent, a biz.Att
 		if err != nil {
 			return biz.VPCSnatBinding{}, databaseFailure(err)
 		}
+		if err = requirePublicSnat(prior); err != nil {
+			return biz.VPCSnatBinding{}, err
+		}
 	}
 	vpcID, eipID := i.VPCID, i.EIPID
 	if i.Kind == "set_snat_enabled" {
@@ -201,6 +228,9 @@ func (p *Postgres) AcceptSnat(ctx context.Context, i biz.EgressIntent, a biz.Att
 	eip, err := q.LockEIP(ctx, sqlcgen.LockEIPParams{TenantID: i.TenantID, EipID: eipID})
 	if err != nil {
 		return biz.VPCSnatBinding{}, databaseFailure(err)
+	}
+	if err = requireTenantPublicEIP(eip); err != nil {
+		return biz.VPCSnatBinding{}, err
 	}
 	if i.Kind == "set_snat_enabled" {
 		prior, err = q.LockSnat(ctx, sqlcgen.LockSnatParams{TenantID: i.TenantID, SnatID: i.ID})
@@ -242,6 +272,9 @@ func (p *Postgres) AcceptSnat(ctx context.Context, i biz.EgressIntent, a biz.Att
 	// Disabling an existing binding remains possible when an exit is degraded.
 	// Creating/enabling requires applied, fresh parents and exit configuration.
 	if i.Kind == "bind_snat" || i.Enabled {
+		if err = p.requireBaseConnectivity(ctx, q, i.TenantID, vpcID, now, freshness); err != nil {
+			return biz.VPCSnatBinding{}, err
+		}
 		if !freshResource(parent.State, parent.ObservedAt, now, freshness) || !freshResource(eip.State, eip.ObservedAt, now, freshness) {
 			return biz.VPCSnatBinding{}, biz.Fail(biz.PublicEgressNotReady, "network parents are not ready")
 		}
@@ -279,6 +312,15 @@ func (p *Postgres) AcceptSnat(ctx context.Context, i biz.EgressIntent, a biz.Att
 	}
 	if err != nil {
 		return biz.VPCSnatBinding{}, databaseFailure(err)
+	}
+	if i.Kind == "bind_snat" {
+		claimed, err := q.ClaimEIPForSnat(ctx, sqlcgen.ClaimEIPForSnatParams{TenantID: i.TenantID, EipID: eipID, ClusterID: eip.ClusterID, Namespace: eip.Namespace, SnatID: row.SnatID, CreatedAt: now})
+		if err != nil {
+			return biz.VPCSnatBinding{}, databaseFailure(err)
+		}
+		if claimed != 1 {
+			return biz.VPCSnatBinding{}, biz.Fail(biz.EIPInUse, "EIP is reserved by another target")
+		}
 	}
 	v := snatResource(row, eip.Address)
 	v.ObservationStale = true
@@ -326,6 +368,9 @@ func (p *Postgres) DeleteEIP(ctx context.Context, tenant, id string, a biz.Attri
 	if err != nil {
 		return biz.EIP{}, databaseFailure(err)
 	}
+	if err = requireTenantPublicEIP(row); err != nil {
+		return biz.EIP{}, err
+	}
 	if row.State == "deleting" || row.State == "deleted" {
 		return eipResource(row), nil
 	}
@@ -367,12 +412,18 @@ func (p *Postgres) DeleteSnat(ctx context.Context, tenant, id string, a biz.Attr
 	if err != nil {
 		return biz.VPCSnatBinding{}, databaseFailure(err)
 	}
+	if err = requirePublicSnat(ref); err != nil {
+		return biz.VPCSnatBinding{}, err
+	}
 	if _, err = q.LockVPC(ctx, sqlcgen.LockVPCParams{TenantID: tenant, VpcID: ref.VpcID}); err != nil {
 		return biz.VPCSnatBinding{}, databaseFailure(err)
 	}
 	eip, err := q.LockEIP(ctx, sqlcgen.LockEIPParams{TenantID: tenant, EipID: ref.EipID})
 	if err != nil {
 		return biz.VPCSnatBinding{}, databaseFailure(err)
+	}
+	if err = requireTenantPublicEIP(eip); err != nil {
+		return biz.VPCSnatBinding{}, err
 	}
 	row, err := q.LockSnat(ctx, sqlcgen.LockSnatParams{TenantID: tenant, SnatID: id})
 	if err != nil {

@@ -16,7 +16,7 @@ SET lease_owner=$1::uuid, lease_epoch=lease_epoch+1,
     lease_until=clock_timestamp()+$2::bigint*interval '1 microsecond'
 WHERE tenant_id=$3 AND coalesce(vpc_id,subnet_id,eip_id,snat_id)=$4::text
   AND (lease_until IS NULL OR lease_until <= clock_timestamp())
-RETURNING tenant_id, vpc_id, next_run_at, lease_owner, lease_until, lease_epoch, subnet_id, reconciliation_id, requested_generation, processed_generation, retry_not_before, evidence_hash, evidence_applied_at, eip_id, snat_id
+RETURNING tenant_id, vpc_id, next_run_at, lease_owner, lease_until, lease_epoch, subnet_id, reconciliation_id, requested_generation, processed_generation, retry_not_before, evidence_hash, evidence_applied_at, eip_id, snat_id, retired
 `
 
 type AcquireLeaseParams struct {
@@ -50,6 +50,7 @@ func (q *Queries) AcquireLease(ctx context.Context, arg AcquireLeaseParams) (Net
 		&i.EvidenceAppliedAt,
 		&i.EipID,
 		&i.SnatID,
+		&i.Retired,
 	)
 	return i, err
 }
@@ -58,7 +59,7 @@ const admitDeletion = `-- name: AdmitDeletion :one
 UPDATE network_vpcs SET state='deleting', reason='', last_operation_id=$1,
     version=version+1, updated_at=clock_timestamp()
 WHERE tenant_id=$2 AND vpc_id=$3 AND version=$4
-RETURNING tenant_id, vpc_id, name, description, cidr, state, reason, version, created_at, updated_at, observed_at, last_operation_id
+RETURNING tenant_id, vpc_id, name, description, cidr, state, reason, version, created_at, updated_at, observed_at, last_operation_id, base_connectivity_required
 `
 
 type AdmitDeletionParams struct {
@@ -89,6 +90,7 @@ func (q *Queries) AdmitDeletion(ctx context.Context, arg AdmitDeletionParams) (N
 		&i.UpdatedAt,
 		&i.ObservedAt,
 		&i.LastOperationID,
+		&i.BaseConnectivityRequired,
 	)
 	return i, err
 }
@@ -98,7 +100,7 @@ UPDATE network_vpcs
 SET state=$1, reason=$2, version=version+1, updated_at=clock_timestamp(),
     observed_at=CASE WHEN $3::boolean THEN $4::timestamptz ELSE observed_at END
 WHERE tenant_id=$5 AND vpc_id=$6 AND version=$7
-RETURNING tenant_id, vpc_id, name, description, cidr, state, reason, version, created_at, updated_at, observed_at, last_operation_id
+RETURNING tenant_id, vpc_id, name, description, cidr, state, reason, version, created_at, updated_at, observed_at, last_operation_id, base_connectivity_required
 `
 
 type AdvanceVPCParams struct {
@@ -135,6 +137,7 @@ func (q *Queries) AdvanceVPC(ctx context.Context, arg AdvanceVPCParams) (Network
 		&i.UpdatedAt,
 		&i.ObservedAt,
 		&i.LastOperationID,
+		&i.BaseConnectivityRequired,
 	)
 	return i, err
 }
@@ -142,6 +145,7 @@ func (q *Queries) AdvanceVPC(ctx context.Context, arg AdvanceVPCParams) (Network
 const beginProviderMutation = `-- name: BeginProviderMutation :execrows
 UPDATE network_provider_bindings
 SET pending_action=$1, pending_since=clock_timestamp(),
+    create_dispatched=create_dispatched OR $1::text='create',
     provider_uid=CASE WHEN provider_uid='' THEN $2::text ELSE provider_uid END
 WHERE tenant_id=$3 AND coalesce(vpc_id,subnet_id,eip_id,snat_id)=$4::text AND binding_id=$5
   AND (provider_uid='' OR provider_uid=$2)
@@ -173,7 +177,7 @@ func (q *Queries) BeginProviderMutation(ctx context.Context, arg BeginProviderMu
 }
 
 const checkLease = `-- name: CheckLease :one
-SELECT tenant_id, vpc_id, next_run_at, lease_owner, lease_until, lease_epoch, subnet_id, reconciliation_id, requested_generation, processed_generation, retry_not_before, evidence_hash, evidence_applied_at, eip_id, snat_id FROM network_reconciliations
+SELECT tenant_id, vpc_id, next_run_at, lease_owner, lease_until, lease_epoch, subnet_id, reconciliation_id, requested_generation, processed_generation, retry_not_before, evidence_hash, evidence_applied_at, eip_id, snat_id, retired FROM network_reconciliations
 WHERE tenant_id=$1 AND coalesce(vpc_id,subnet_id,eip_id,snat_id)=$2::text AND lease_owner=$3 AND lease_epoch=$4
   AND lease_until > clock_timestamp()
 FOR UPDATE
@@ -210,6 +214,7 @@ func (q *Queries) CheckLease(ctx context.Context, arg CheckLeaseParams) (Network
 		&i.EvidenceAppliedAt,
 		&i.EipID,
 		&i.SnatID,
+		&i.Retired,
 	)
 	return i, err
 }
@@ -252,7 +257,7 @@ func (q *Queries) CompleteAttempt(ctx context.Context, arg CompleteAttemptParams
 }
 
 const getBinding = `-- name: GetBinding :one
-SELECT tenant_id, vpc_id, binding_id, cluster_id, namespace, provider_name, provider_uid, pending_action, pending_since, subnet_id, resource_kind, eip_id, snat_id FROM network_provider_bindings WHERE tenant_id=$1 AND coalesce(vpc_id,subnet_id,eip_id,snat_id)=$2::text
+SELECT tenant_id, vpc_id, binding_id, cluster_id, namespace, provider_name, provider_uid, pending_action, pending_since, subnet_id, resource_kind, eip_id, snat_id, create_dispatched FROM network_provider_bindings WHERE tenant_id=$1 AND coalesce(vpc_id,subnet_id,eip_id,snat_id)=$2::text
 `
 
 type GetBindingParams struct {
@@ -277,6 +282,7 @@ func (q *Queries) GetBinding(ctx context.Context, arg GetBindingParams) (Network
 		&i.ResourceKind,
 		&i.EipID,
 		&i.SnatID,
+		&i.CreateDispatched,
 	)
 	return i, err
 }
@@ -309,7 +315,7 @@ func (q *Queries) LockDueResourceParent(ctx context.Context) (LockDueResourcePar
 }
 
 const lockVPC = `-- name: LockVPC :one
-SELECT tenant_id, vpc_id, name, description, cidr, state, reason, version, created_at, updated_at, observed_at, last_operation_id FROM network_vpcs WHERE tenant_id=$1 AND vpc_id=$2 FOR UPDATE
+SELECT tenant_id, vpc_id, name, description, cidr, state, reason, version, created_at, updated_at, observed_at, last_operation_id, base_connectivity_required FROM network_vpcs WHERE tenant_id=$1 AND vpc_id=$2 FOR UPDATE
 `
 
 type LockVPCParams struct {
@@ -333,6 +339,7 @@ func (q *Queries) LockVPC(ctx context.Context, arg LockVPCParams) (NetworkVpc, e
 		&i.UpdatedAt,
 		&i.ObservedAt,
 		&i.LastOperationID,
+		&i.BaseConnectivityRequired,
 	)
 	return i, err
 }

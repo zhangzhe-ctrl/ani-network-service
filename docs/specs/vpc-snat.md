@@ -1,5 +1,7 @@
 # 租户 VPC SNAT 方案：Overlay 与 Underlay
 
+> 2026-09-14 部分规则由[统一方案](vpc-connectivity-lb.md)接替：每 VPC 的 SNAT 按内网/公网分别限制，EIP 占用覆盖 SNAT/LB，VPC 新增基础内网生命周期。下文保留为 d8835a22 已有实现的来源；未冲突的 Public 申请/启停/解绑/释放和平台模式规则继续适用，不把新方案当作已实现。
+
 日期：2026-09-10；版本：1。本文定义 Network 的公网地址申请和 VPC SNAT 增量方案。用户已确认的模式、namespace 和权限要求在本文固化；接口名称、一期数量限制、持久模型和状态表达属于本次形成的工程设计，不代表已经实现或逐项验收。
 
 本文承接 [VPC/Subnet 规格](vpc-subnet.md)、[持续观察规格](cr-observation.md)及既有 [ADR](../START-HERE.md#架构决定)，不改写这些模块已完成的验收边界。实现顺序见 [实施计划](../plans/vpc-snat.md)，实际命令与 YAML 见 [操作手册](../kc-public-egress-manual.md)，当前状态只维护在 [执行状态](../execution/status.md)。旧附件仅为背景，Provider 字段以固定 kc 源码和实际运行结果为依据。

@@ -1,0 +1,25 @@
+{
+  "run": "20260914T131858Z-cdc3c1eb",
+  "result": "fail",
+  "ssh_exit": 1,
+  "remote_command_exit": 1,
+  "head": "d8835a22d905e358b7f60756d3113baa97d7c762",
+  "archive_sha256": "6bd1b081b95ce758157448cda6c389751cf116783edd752931dba4c1c243eae1",
+  "manifest_sha256": "f2ea797ff933965b0705323248df3e3f83f95e7c07260891575f6e1149878221",
+  "source_files": 1080,
+  "command": [
+    "bash",
+    "-c",
+    ".tools/bin/sqlc generate && scripts/integration ./internal/data -run \"Test(BaseSchema|BaseConnectivity|Intranet|PublicTenant|PublicBind|PublicEIP)\" -timeout 150s"
+  ],
+  "remote": "/home/ubuntu/workspace/ani-network-service-runs/snat-20260914T131858Z-cdc3c1eb",
+  "local_source_archive": "/home/chabking/workspace/.worktrees/network-vpc-base-01/.work/snat-runs/20260914T131858Z-cdc3c1eb/source.tar.gz",
+  "log_sha256": "e6884b93ca687bb9f7cd17b72211018088fa31cc7bf646231bcba8ffdcc60d05",
+  "tool_version_lines": [],
+  "containers_created": [
+    "3094c4362560dea4ce2e34fae4cf1e6931f519e390cdd73f0a5a9a7b6b4a2ec6"
+  ],
+  "containers_removed": [
+    "3094c4362560dea4ce2e34fae4cf1e6931f519e390cdd73f0a5a9a7b6b4a2ec6"
+  ]
+}

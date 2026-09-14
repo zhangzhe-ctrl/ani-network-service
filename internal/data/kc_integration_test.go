@@ -35,12 +35,16 @@ func (s *controlledKC) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		_, _ = w.Write([]byte(`{"apiVersion":"v1","kind":"Status","code":403,"reason":"Forbidden","status":"Failure"}`))
 		return
 	}
-	for plural, kind := range map[string]string{"vpcs": "VPC", "subnets": "Subnet", "vnics": "VNic", "vnicips": "VNicIP", "eips": "EIP", "pods": "Pod", "snats": "Snat", "nats": "Nat", "eipgateways": "EIPGateway", "vlannetworks": "VlanNetwork", "nodes": "Node", "configmaps": "ConfigMap", "services": "Service"} {
+	for plural, kind := range map[string]string{"vpcs": "VPC", "subnets": "Subnet", "vnics": "VNic", "vnicips": "VNicIP", "eips": "EIP", "pods": "Pod", "snats": "Snat", "nats": "Nat", "eipgateways": "EIPGateway", "vlannetworks": "VlanNetwork", "nodes": "Node", "configmaps": "ConfigMap", "services": "Service", "servicecidrs": "ServiceCIDR"} {
 		base := "/apis/networking.kubercloud.com/v1/"
 		version := "networking.kubercloud.com/v1"
 		if plural == "pods" || plural == "nodes" || plural == "configmaps" || plural == "services" {
 			base = "/api/v1/"
 			version = "v1"
+		}
+		if plural == "servicecidrs" {
+			base = "/apis/networking.k8s.io/v1/"
+			version = "networking.k8s.io/v1"
 		}
 		if r.Method == "GET" && r.URL.Path == base+plural {
 			items := []any{}

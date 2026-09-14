@@ -1,0 +1,38 @@
+{
+  "result": "pass",
+  "host": "local",
+  "scope": "Editing, hashing, documentation/anchor checking, Git inspection and whitespace only. No local compilation or heavy tests.",
+  "checks": [
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "result": "pass",
+      "output": ""
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--cached",
+        "--exit-code"
+      ],
+      "exit_code": 0,
+      "result": "pass",
+      "output": ""
+    },
+    {
+      "command": [
+        "python3",
+        "docs/execution/records/NET-VPC-BASE-01/verify_documents.py"
+      ],
+      "result": "pass",
+      "evidence": "document-checks.json",
+      "documents": 17,
+      "relative_links": 215
+    }
+  ]
+}

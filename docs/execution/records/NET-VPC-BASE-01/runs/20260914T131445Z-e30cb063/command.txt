@@ -1,0 +1,14 @@
+source.tar.gz: OK
+verified source files: 1074
+ok  	github.com/zhangzhe-ctrl/ani-network-service/internal/biz	0.004s [no tests to run]
+# github.com/zhangzhe-ctrl/ani-network-service/internal/data
+internal/data/base_backfill.go:392:112: cannot use c.VpcID (variable of type string) as *string value in struct literal
+internal/data/base_connectivity.go:29:192: cannot use vpcID (variable of type string) as *string value in struct literal
+internal/data/base_connectivity.go:114:93: cannot use r.ID (variable of type string) as *string value in struct literal
+internal/data/base_connectivity.go:116:93: cannot use r.ID (variable of type string) as *string value in struct literal
+internal/data/platform.go:521:118: cannot use id (variable of type string) as *string value in struct literal
+ok  	github.com/zhangzhe-ctrl/ani-network-service/internal/service	0.007s [no tests to run]
+FAIL	github.com/zhangzhe-ctrl/ani-network-service/internal/data [build failed]
+FAIL	github.com/zhangzhe-ctrl/ani-network-service/cmd/ani-network-service [build failed]
+FAIL
+REMOTE_COMMAND_EXIT=1

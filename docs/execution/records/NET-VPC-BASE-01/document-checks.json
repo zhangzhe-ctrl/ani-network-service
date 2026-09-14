@@ -1,0 +1,1368 @@
+{
+  "command": "python3 docs/execution/records/NET-VPC-BASE-01/verify_documents.py",
+  "result": "pass",
+  "documents": 17,
+  "relative_links": 215,
+  "files": [
+    {
+      "path": "CONTEXT.md",
+      "sha256": "912c6448e623db02747a544842a81e18e71d074c0a07c9e5cc5fcc4bf1e3f956"
+    },
+    {
+      "path": "deployments/egress/README.md",
+      "sha256": "d4f7b485d5c6b43d4f4af821d835bb1f8226b9d846de7914c12dabe11dafa6d9"
+    },
+    {
+      "path": "deployments/egress/intranet.md",
+      "sha256": "b8148483aba9d2708d5734a6022bf84ad785d1730302154c5c70798944524f8d"
+    },
+    {
+      "path": "docs/START-HERE.md",
+      "sha256": "1ee499068ba567887fb6eb3454c2045602392d40de00758c79c610fad9f1b0d7"
+    },
+    {
+      "path": "docs/adr/0005-separate-vpc-connectivity-and-exclusive-eip-bindings.md",
+      "sha256": "1672884f90b747f907bf5eaa44507ea09932c1b4abb04f5ad94fd16519207fe1"
+    },
+    {
+      "path": "docs/execution/records/2026-09-14-vpc-lb-plan.md",
+      "sha256": "4631c224ac234f2f8a74975c31ef4c6196d70f4c76d7768abfd03af0f9c5cbed"
+    },
+    {
+      "path": "docs/execution/records/NET-VPC-BASE-01/README.md",
+      "sha256": "e88a1c688bcbbcadae57758247f5bfc50cee0b6ac550c5f1a5b41180f774f4de"
+    },
+    {
+      "path": "docs/execution/records/NET-VPC-BASE-01/backfill.md",
+      "sha256": "094303e7919f9dbb2cd74f0c972f53e0604d603be1d597c1efeca9f09a807709"
+    },
+    {
+      "path": "docs/execution/records/NET-VPC-BASE-01/contracts.md",
+      "sha256": "3f5cfcd4c01809f13f061dc7628bc2fe27180ceccd1a099034d1ea8708b8dd43"
+    },
+    {
+      "path": "docs/execution/records/NET-VPC-BASE-01/goal-objective-updated.md",
+      "sha256": "b86f9148bc752e129362f5070d1fc7d699cf476c44b023f34fe8650b9882bbdc"
+    },
+    {
+      "path": "docs/execution/records/NET-VPC-BASE-01/goal-objective.md",
+      "sha256": "7468de30757820879d6a6a548192d4049b4ca75d6496d8963c8847da270e0847"
+    },
+    {
+      "path": "docs/execution/status.md",
+      "sha256": "6c4b85d544fc46e08e5de8ab507bcfb796f32f40f28fe719921d9d9256ef1e33"
+    },
+    {
+      "path": "docs/plans/vpc-connectivity-lb.md",
+      "sha256": "3e4f2adae98b8984d30357c7a8b9278c8a26df0ba016277fadb934f28eb6eaff"
+    },
+    {
+      "path": "docs/plans/vpc-snat.md",
+      "sha256": "8502881aa937c064830eedf86f880e098917120d982a2d96b325ad1a5a1d8a30"
+    },
+    {
+      "path": "docs/specs/vpc-connectivity-lb.md",
+      "sha256": "4a7e549362449e9cc2e97cea5a27c1681be3ea0e6cdf9c0244a8e562a80f26be"
+    },
+    {
+      "path": "docs/specs/vpc-snat.md",
+      "sha256": "37fe006fb98b963469b44903de50db4038d4ddb059b0631906a106ab31fe99e5"
+    },
+    {
+      "path": "docs/specs/vpc-subnet.md",
+      "sha256": "26e859d6d3bf6f4fdde80dd968f52bf76ecaa6d4a7761f63ceef31031c0cfcc7"
+    }
+  ],
+  "checks": [
+    {
+      "file": "deployments/egress/README.md",
+      "line": 5,
+      "target": "network-rbac.yaml",
+      "result": "pass"
+    },
+    {
+      "file": "deployments/egress/README.md",
+      "line": 14,
+      "target": "NodeFacts.Dockerfile",
+      "result": "pass"
+    },
+    {
+      "file": "deployments/egress/README.md",
+      "line": 40,
+      "target": "intranet.md",
+      "result": "pass"
+    },
+    {
+      "file": "deployments/egress/intranet.md",
+      "line": 4,
+      "target": "../../docs/specs/vpc-connectivity-lb.md",
+      "result": "pass"
+    },
+    {
+      "file": "deployments/egress/intranet.md",
+      "line": 5,
+      "target": "../../docs/execution/status.md",
+      "result": "pass"
+    },
+    {
+      "file": "deployments/egress/intranet.md",
+      "line": 15,
+      "target": "network-rbac.yaml",
+      "result": "pass"
+    },
+    {
+      "file": "docs/START-HERE.md",
+      "line": 3,
+      "target": "../README.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/START-HERE.md",
+      "line": 3,
+      "target": "../AGENTS.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/START-HERE.md",
+      "line": 4,
+      "target": "execution/status.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/START-HERE.md",
+      "line": 8,
+      "target": "../CONTEXT.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/START-HERE.md",
+      "line": 9,
+      "target": "specs/vpc-subnet.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/START-HERE.md",
+      "line": 10,
+      "target": "#架构决定",
+      "result": "pass"
+    },
+    {
+      "file": "docs/START-HERE.md",
+      "line": 11,
+      "target": "plans/vpc-subnet.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/START-HERE.md",
+      "line": 11,
+      "target": "plans/cr-observation.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/START-HERE.md",
+      "line": 12,
+      "target": "execution/status.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/START-HERE.md",
+      "line": 14,
+      "target": "specs/vpc-snat.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/START-HERE.md",
+      "line": 14,
+      "target": "plans/vpc-snat.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/START-HERE.md",
+      "line": 14,
+      "target": "kc-public-egress-manual.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/START-HERE.md",
+      "line": 14,
+      "target": "../deployments/egress/README.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/START-HERE.md",
+      "line": 16,
+      "target": "specs/vpc-connectivity-lb.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/START-HERE.md",
+      "line": 16,
+      "target": "plans/vpc-connectivity-lb.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/START-HERE.md",
+      "line": 16,
+      "target": "execution/records/2026-09-14-vpc-lb-plan.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/START-HERE.md",
+      "line": 22,
+      "target": "adr/0001-own-network-lifecycle.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/START-HERE.md",
+      "line": 23,
+      "target": "adr/0002-use-tenant-owned-data-without-rls.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/START-HERE.md",
+      "line": 24,
+      "target": "adr/0003-defer-workload-authentication.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/START-HERE.md",
+      "line": 25,
+      "target": "adr/0004-observe-cr-with-durable-reconciliation.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/START-HERE.md",
+      "line": 26,
+      "target": "adr/0005-separate-vpc-connectivity-and-exclusive-eip-bindings.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/START-HERE.md",
+      "line": 31,
+      "target": "specs/cr-observation.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/START-HERE.md",
+      "line": 31,
+      "target": "execution/records/NET-05A-implementation.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/START-HERE.md",
+      "line": 50,
+      "target": "execution/records/NET-VPC-BASE-01/README.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/START-HERE.md",
+      "line": 50,
+      "target": "../deployments/egress/intranet.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/START-HERE.md",
+      "line": 52,
+      "target": "execution/records/VPC-SNAT-IMPLEMENTATION/README.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/START-HERE.md",
+      "line": 54,
+      "target": "execution/records/KC-OVERLAY-20260910T114200Z/README.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/START-HERE.md",
+      "line": 55,
+      "target": "execution/records/NET-05-implementation.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/START-HERE.md",
+      "line": 56,
+      "target": "runtime.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/START-HERE.md",
+      "line": 57,
+      "target": "runtime-verification.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/START-HERE.md",
+      "line": 58,
+      "target": "remote-execution.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/START-HERE.md",
+      "line": 59,
+      "target": "scaffold/provenance.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/START-HERE.md",
+      "line": 59,
+      "target": "scaffold/bom.cdx.json",
+      "result": "pass"
+    },
+    {
+      "file": "docs/START-HERE.md",
+      "line": 60,
+      "target": "execution/records/2026-09-09-source-assessment.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/START-HERE.md",
+      "line": 61,
+      "target": "execution/records/2026-09-09-design-verification.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/START-HERE.md",
+      "line": 62,
+      "target": "execution/records/2026-09-10-cr-observation-selection.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/START-HERE.md",
+      "line": 63,
+      "target": "execution/records/2026-09-10-cr-observation-plan.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/adr/0005-separate-vpc-connectivity-and-exclusive-eip-bindings.md",
+      "line": 12,
+      "target": "../specs/vpc-connectivity-lb.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/2026-09-14-vpc-lb-plan.md",
+      "line": 7,
+      "target": "../../specs/vpc-connectivity-lb.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/2026-09-14-vpc-lb-plan.md",
+      "line": 8,
+      "target": "../../plans/vpc-connectivity-lb.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/2026-09-14-vpc-lb-plan.md",
+      "line": 9,
+      "target": "../../adr/0005-separate-vpc-connectivity-and-exclusive-eip-bindings.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/2026-09-14-vpc-lb-plan.md",
+      "line": 10,
+      "target": "../../../CONTEXT.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/2026-09-14-vpc-lb-plan.md",
+      "line": 17,
+      "target": "VPC-LB-PLAN-20260914/inputs.json",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/2026-09-14-vpc-lb-plan.md",
+      "line": 21,
+      "target": "../../../internal/data/postgres.go",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/2026-09-14-vpc-lb-plan.md",
+      "line": 22,
+      "target": "../../../internal/biz/worker.go",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/2026-09-14-vpc-lb-plan.md",
+      "line": 22,
+      "target": "../../../internal/data/egress.go",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/2026-09-14-vpc-lb-plan.md",
+      "line": 23,
+      "target": "../../../migrations/0005_vpc_egress.sql",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/2026-09-14-vpc-lb-plan.md",
+      "line": 24,
+      "target": "../../../internal/data/queries/egress.sql",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/2026-09-14-vpc-lb-plan.md",
+      "line": 25,
+      "target": "../../../internal/data/kc_egress.go",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/2026-09-14-vpc-lb-plan.md",
+      "line": 26,
+      "target": "../../../internal/data/kc_egress.go",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/2026-09-14-vpc-lb-plan.md",
+      "line": 27,
+      "target": "../../../internal/data/worker.go",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/2026-09-14-vpc-lb-plan.md",
+      "line": 33,
+      "target": "VPC-LB-PLAN-20260914/lb-traffic.json",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/2026-09-14-vpc-lb-plan.md",
+      "line": 33,
+      "target": "VPC-LB-PLAN-20260914/lb-verification.json",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/2026-09-14-vpc-lb-plan.md",
+      "line": 39,
+      "target": "VPC-LB-PLAN-20260914/document-checks.json",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/2026-09-14-vpc-lb-plan.md",
+      "line": 41,
+      "target": "../status.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/NET-VPC-BASE-01/README.md",
+      "line": 3,
+      "target": "../../status.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/NET-VPC-BASE-01/README.md",
+      "line": 3,
+      "target": "../../../specs/vpc-connectivity-lb.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/NET-VPC-BASE-01/README.md",
+      "line": 3,
+      "target": "../../../adr/0005-separate-vpc-connectivity-and-exclusive-eip-bindings.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/NET-VPC-BASE-01/README.md",
+      "line": 7,
+      "target": "inputs.json",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/NET-VPC-BASE-01/README.md",
+      "line": 7,
+      "target": "goal-objective-updated.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/NET-VPC-BASE-01/README.md",
+      "line": 7,
+      "target": "goal-objective.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/NET-VPC-BASE-01/README.md",
+      "line": 7,
+      "target": "goal-update.json",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/NET-VPC-BASE-01/README.md",
+      "line": 15,
+      "target": "contracts.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/NET-VPC-BASE-01/README.md",
+      "line": 15,
+      "target": "../../../../api/network/v1/network.proto",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/NET-VPC-BASE-01/README.md",
+      "line": 15,
+      "target": "../../../../api/network/v1/egress.proto",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/NET-VPC-BASE-01/README.md",
+      "line": 15,
+      "target": "../../../../api/network/v1/load_balancer.proto",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/NET-VPC-BASE-01/README.md",
+      "line": 15,
+      "target": "../../../../scripts/check-vpc-base-contracts",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/NET-VPC-BASE-01/README.md",
+      "line": 16,
+      "target": "../../../../migrations/0006_vpc_base_connectivity.sql",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/NET-VPC-BASE-01/README.md",
+      "line": 16,
+      "target": "../../../../internal/data/base_schema_integration_test.go",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/NET-VPC-BASE-01/README.md",
+      "line": 17,
+      "target": "../../../../internal/biz/platform_intranet.go",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/NET-VPC-BASE-01/README.md",
+      "line": 17,
+      "target": "../../../../internal/data/platform_capabilities.go",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/NET-VPC-BASE-01/README.md",
+      "line": 17,
+      "target": "../../../../internal/data/kc_intranet.go",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/NET-VPC-BASE-01/README.md",
+      "line": 17,
+      "target": "../../../../deployments/egress/intranet.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/NET-VPC-BASE-01/README.md",
+      "line": 17,
+      "target": "platform-provider-inputs.json",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/NET-VPC-BASE-01/README.md",
+      "line": 18,
+      "target": "../../../../internal/data/base_connectivity.go",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/NET-VPC-BASE-01/README.md",
+      "line": 18,
+      "target": "../../../../internal/data/worker.go",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/NET-VPC-BASE-01/README.md",
+      "line": 18,
+      "target": "../../../../internal/data/base_connectivity_integration_test.go",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/NET-VPC-BASE-01/README.md",
+      "line": 18,
+      "target": "../../../../internal/data/base_process_integration_test.go",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/NET-VPC-BASE-01/README.md",
+      "line": 18,
+      "target": "../../../../internal/data/base_concurrency_integration_test.go",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/NET-VPC-BASE-01/README.md",
+      "line": 19,
+      "target": "../../../../internal/data/egress.go",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/NET-VPC-BASE-01/README.md",
+      "line": 19,
+      "target": "../../../../internal/data/egress_public_integration_test.go",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/NET-VPC-BASE-01/README.md",
+      "line": 19,
+      "target": "../../../../internal/service/egress_public_test.go",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/NET-VPC-BASE-01/README.md",
+      "line": 20,
+      "target": "../../../../cmd/ani-network-service/base_connectivity.go",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/NET-VPC-BASE-01/README.md",
+      "line": 20,
+      "target": "../../../../internal/data/base_backfill.go",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/NET-VPC-BASE-01/README.md",
+      "line": 20,
+      "target": "backfill.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/NET-VPC-BASE-01/README.md",
+      "line": 20,
+      "target": "../../../../internal/data/base_backfill_integration_test.go",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/NET-VPC-BASE-01/README.md",
+      "line": 36,
+      "target": "gates.json",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/NET-VPC-BASE-01/README.md",
+      "line": 71,
+      "target": "gates.json",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/NET-VPC-BASE-01/README.md",
+      "line": 72,
+      "target": "runs/20260914T135236Z-18dc5c44/snapshot.json",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/NET-VPC-BASE-01/README.md",
+      "line": 72,
+      "target": "runs/20260914T135236Z-18dc5c44/command.txt",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/NET-VPC-BASE-01/README.md",
+      "line": 72,
+      "target": "runs/20260914T135236Z-18dc5c44/test-results.json",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/NET-VPC-BASE-01/README.md",
+      "line": 72,
+      "target": "runs/20260914T135236Z-18dc5c44/result.json",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/NET-VPC-BASE-01/README.md",
+      "line": 73,
+      "target": "runs.json",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/NET-VPC-BASE-01/README.md",
+      "line": 74,
+      "target": "source-manifest.json",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/NET-VPC-BASE-01/README.md",
+      "line": 75,
+      "target": "candidate-audit.json",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/NET-VPC-BASE-01/README.md",
+      "line": 75,
+      "target": "document-checks.json",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/NET-VPC-BASE-01/README.md",
+      "line": 75,
+      "target": "cleanup.json",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/NET-VPC-BASE-01/README.md",
+      "line": 87,
+      "target": "../../../../deployments/egress/intranet.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/NET-VPC-BASE-01/README.md",
+      "line": 87,
+      "target": "backfill.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/NET-VPC-BASE-01/backfill.md",
+      "line": 3,
+      "target": "../../status.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/NET-VPC-BASE-01/backfill.md",
+      "line": 3,
+      "target": "../../../specs/vpc-connectivity-lb.md#82-既有-vpc-补齐",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/NET-VPC-BASE-01/backfill.md",
+      "line": 7,
+      "target": "../../../../cmd/ani-network-service/base_connectivity.go",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/NET-VPC-BASE-01/backfill.md",
+      "line": 9,
+      "target": "../../../../internal/data/base_backfill.go",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/NET-VPC-BASE-01/backfill.md",
+      "line": 9,
+      "target": "../../../../internal/data/queries/base_backfill.sql",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/NET-VPC-BASE-01/backfill.md",
+      "line": 69,
+      "target": "../../../../internal/data/base_backfill_integration_test.go",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/NET-VPC-BASE-01/backfill.md",
+      "line": 69,
+      "target": "gates.json",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/NET-VPC-BASE-01/contracts.md",
+      "line": 3,
+      "target": "../../status.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/NET-VPC-BASE-01/contracts.md",
+      "line": 3,
+      "target": "../../../specs/vpc-connectivity-lb.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/NET-VPC-BASE-01/contracts.md",
+      "line": 7,
+      "target": "../VPC-LB-PLAN-20260914/inputs.json",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/NET-VPC-BASE-01/contracts.md",
+      "line": 7,
+      "target": "../2026-09-14-vpc-lb-plan.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/NET-VPC-BASE-01/contracts.md",
+      "line": 11,
+      "target": "../../../../api/network/v1/network.proto",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/NET-VPC-BASE-01/contracts.md",
+      "line": 12,
+      "target": "../../../../api/network/v1/egress.proto",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/NET-VPC-BASE-01/contracts.md",
+      "line": 13,
+      "target": "../../../../api/network/v1/load_balancer.proto",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/NET-VPC-BASE-01/contracts.md",
+      "line": 15,
+      "target": "../../../../buf.gen.yaml",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/NET-VPC-BASE-01/contracts.md",
+      "line": 80,
+      "target": "gates.json",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/NET-VPC-BASE-01/contracts.md",
+      "line": 81,
+      "target": "gates.json",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/records/NET-VPC-BASE-01/contracts.md",
+      "line": 92,
+      "target": "../../../remote-execution.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/status.md",
+      "line": 3,
+      "target": "../specs/vpc-subnet.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/status.md",
+      "line": 3,
+      "target": "../plans/vpc-subnet.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/status.md",
+      "line": 7,
+      "target": "records/NET-VPC-BASE-01/README.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/status.md",
+      "line": 7,
+      "target": "records/NET-VPC-BASE-01/source-manifest.json",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/status.md",
+      "line": 7,
+      "target": "records/NET-VPC-BASE-01/candidate-audit.json",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/status.md",
+      "line": 9,
+      "target": "records/NET-VPC-BASE-01/gates.json",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/status.md",
+      "line": 9,
+      "target": "records/NET-VPC-BASE-01/cleanup.json",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/status.md",
+      "line": 15,
+      "target": "../specs/vpc-connectivity-lb.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/status.md",
+      "line": 15,
+      "target": "../plans/vpc-connectivity-lb.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/status.md",
+      "line": 15,
+      "target": "../adr/0005-separate-vpc-connectivity-and-exclusive-eip-bindings.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/status.md",
+      "line": 17,
+      "target": "records/2026-09-14-vpc-lb-plan.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/status.md",
+      "line": 23,
+      "target": "records/VPC-SNAT-IMPLEMENTATION/goal-objective.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/status.md",
+      "line": 23,
+      "target": "records/VPC-SNAT-IMPLEMENTATION/README.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/status.md",
+      "line": 35,
+      "target": "records/VPC-SNAT-IMPLEMENTATION/provider-continuation-03.json",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/status.md",
+      "line": 37,
+      "target": "records/VPC-SNAT-IMPLEMENTATION/provider-final-preflight.json",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/status.md",
+      "line": 39,
+      "target": "records/VPC-SNAT-IMPLEMENTATION/final-environment.json",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/status.md",
+      "line": 39,
+      "target": "records/VPC-SNAT-IMPLEMENTATION/node-network-differences.json",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/status.md",
+      "line": 41,
+      "target": "records/VPC-SNAT-IMPLEMENTATION/handoff-audit-20260911.json",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/status.md",
+      "line": 43,
+      "target": "records/VPC-SNAT-PUBLICATION-20260911/README.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/status.md",
+      "line": 49,
+      "target": "../specs/vpc-snat.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/status.md",
+      "line": 49,
+      "target": "../plans/vpc-snat.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/status.md",
+      "line": 49,
+      "target": "../kc-public-egress-manual.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/status.md",
+      "line": 49,
+      "target": "records/2026-09-10-vpc-snat-design.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/status.md",
+      "line": 51,
+      "target": "records/KC-OVERLAY-20260910T114200Z/README.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/status.md",
+      "line": 53,
+      "target": "records/NET-05A-implementation.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/status.md",
+      "line": 55,
+      "target": "records/NET-05-implementation.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/status.md",
+      "line": 59,
+      "target": "records/NET-02-04-implementation.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/status.md",
+      "line": 59,
+      "target": "records/NET-02-04/completion-audit.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/status.md",
+      "line": 80,
+      "target": "records/2026-09-09-source-assessment.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/status.md",
+      "line": 81,
+      "target": "records/2026-09-09-design-verification.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/status.md",
+      "line": 83,
+      "target": "records/2026-09-09-remote-readiness.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/status.md",
+      "line": 84,
+      "target": "records/NET-01-implementation.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/status.md",
+      "line": 85,
+      "target": "records/NET-02-04-implementation.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/status.md",
+      "line": 87,
+      "target": "records/NET-02-04/baseline-gate-drift.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/status.md",
+      "line": 89,
+      "target": "records/NET-05-implementation.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/status.md",
+      "line": 90,
+      "target": "records/NET-05A-implementation.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/status.md",
+      "line": 91,
+      "target": "records/NET-05A/stages/20260910T083645Z-6386a4b5/capacity-evaluation.json",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/status.md",
+      "line": 109,
+      "target": "records/2026-09-09-source-assessment.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/status.md",
+      "line": 110,
+      "target": "records/2026-09-09-design-verification.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/status.md",
+      "line": 111,
+      "target": "records/2026-09-09-remote-readiness.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/status.md",
+      "line": 113,
+      "target": "records/NET-01-implementation.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/status.md",
+      "line": 114,
+      "target": "records/NET-05-implementation.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/execution/status.md",
+      "line": 130,
+      "target": "records/VPC-SNAT-PUBLICATION-20260911/README.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/plans/vpc-connectivity-lb.md",
+      "line": 3,
+      "target": "../specs/vpc-connectivity-lb.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/plans/vpc-connectivity-lb.md",
+      "line": 3,
+      "target": "../execution/status.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/plans/vpc-connectivity-lb.md",
+      "line": 11,
+      "target": "../remote-execution.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/plans/vpc-snat.md",
+      "line": 3,
+      "target": "vpc-connectivity-lb.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/plans/vpc-snat.md",
+      "line": 5,
+      "target": "../specs/vpc-snat.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/plans/vpc-snat.md",
+      "line": 5,
+      "target": "../execution/status.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/plans/vpc-snat.md",
+      "line": 31,
+      "target": "../execution/records/KC-OVERLAY-20260910T114200Z/README.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/plans/vpc-snat.md",
+      "line": 33,
+      "target": "../kc-public-egress-manual.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/plans/vpc-snat.md",
+      "line": 52,
+      "target": "../remote-execution.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/specs/vpc-connectivity-lb.md",
+      "line": 3,
+      "target": "../adr/0005-separate-vpc-connectivity-and-exclusive-eip-bindings.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/specs/vpc-connectivity-lb.md",
+      "line": 3,
+      "target": "../plans/vpc-connectivity-lb.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/specs/vpc-connectivity-lb.md",
+      "line": 3,
+      "target": "../execution/status.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/specs/vpc-connectivity-lb.md",
+      "line": 24,
+      "target": "../../CONTEXT.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/specs/vpc-snat.md",
+      "line": 3,
+      "target": "vpc-connectivity-lb.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/specs/vpc-snat.md",
+      "line": 7,
+      "target": "vpc-subnet.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/specs/vpc-snat.md",
+      "line": 7,
+      "target": "cr-observation.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/specs/vpc-snat.md",
+      "line": 7,
+      "target": "../START-HERE.md#架构决定",
+      "result": "pass"
+    },
+    {
+      "file": "docs/specs/vpc-snat.md",
+      "line": 7,
+      "target": "../plans/vpc-snat.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/specs/vpc-snat.md",
+      "line": 7,
+      "target": "../kc-public-egress-manual.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/specs/vpc-snat.md",
+      "line": 7,
+      "target": "../execution/status.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/specs/vpc-snat.md",
+      "line": 22,
+      "target": "../execution/records/KC-OVERLAY-20260910T114200Z/README.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/specs/vpc-snat.md",
+      "line": 51,
+      "target": "../adr/0003-defer-workload-authentication.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/specs/vpc-snat.md",
+      "line": 95,
+      "target": "../kc-public-egress-manual.md#31-查询候选网卡",
+      "result": "pass"
+    },
+    {
+      "file": "docs/specs/vpc-snat.md",
+      "line": 225,
+      "target": "cr-observation.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/specs/vpc-snat.md",
+      "line": 227,
+      "target": "../../internal/biz/egress.go",
+      "result": "pass"
+    },
+    {
+      "file": "docs/specs/vpc-snat.md",
+      "line": 227,
+      "target": "../../internal/data/platform.go",
+      "result": "pass"
+    },
+    {
+      "file": "docs/specs/vpc-snat.md",
+      "line": 227,
+      "target": "../../internal/data/egress.go",
+      "result": "pass"
+    },
+    {
+      "file": "docs/specs/vpc-snat.md",
+      "line": 227,
+      "target": "../../internal/data/kc_egress.go",
+      "result": "pass"
+    },
+    {
+      "file": "docs/specs/vpc-snat.md",
+      "line": 227,
+      "target": "../../internal/biz/worker.go",
+      "result": "pass"
+    },
+    {
+      "file": "docs/specs/vpc-snat.md",
+      "line": 227,
+      "target": "../../deployments/egress/README.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/specs/vpc-snat.md",
+      "line": 233,
+      "target": "../../migrations/0005_vpc_egress.sql",
+      "result": "pass"
+    },
+    {
+      "file": "docs/specs/vpc-snat.md",
+      "line": 284,
+      "target": "../../CONTEXT.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/specs/vpc-snat.md",
+      "line": 285,
+      "target": "../kc-public-egress-manual.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/specs/vpc-snat.md",
+      "line": 286,
+      "target": "../execution/records/KC-OVERLAY-20260910T114200Z/README.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/specs/vpc-snat.md",
+      "line": 287,
+      "target": "../execution/records/KC-OVERLAY-20260910T114200Z/source-snapshot.json",
+      "result": "pass"
+    },
+    {
+      "file": "docs/specs/vpc-snat.md",
+      "line": 288,
+      "target": "../../api/network/v1/network.proto",
+      "result": "pass"
+    },
+    {
+      "file": "docs/specs/vpc-subnet.md",
+      "line": 3,
+      "target": "vpc-connectivity-lb.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/specs/vpc-subnet.md",
+      "line": 7,
+      "target": "../START-HERE.md#架构决定",
+      "result": "pass"
+    },
+    {
+      "file": "docs/specs/vpc-subnet.md",
+      "line": 9,
+      "target": "../execution/status.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/specs/vpc-subnet.md",
+      "line": 10,
+      "target": "../../CONTEXT.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/specs/vpc-subnet.md",
+      "line": 10,
+      "target": "../execution/records/2026-09-09-source-assessment.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/specs/vpc-subnet.md",
+      "line": 14,
+      "target": "vpc-snat.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/specs/vpc-subnet.md",
+      "line": 182,
+      "target": "cr-observation.md#4-事实时效与真实校验",
+      "result": "pass"
+    },
+    {
+      "file": "docs/specs/vpc-subnet.md",
+      "line": 231,
+      "target": "cr-observation.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/specs/vpc-subnet.md",
+      "line": 231,
+      "target": "cr-observation.md#5-查询版本与数据库成本",
+      "result": "pass"
+    },
+    {
+      "file": "docs/specs/vpc-subnet.md",
+      "line": 328,
+      "target": "cr-observation.md",
+      "result": "pass"
+    },
+    {
+      "file": "docs/specs/vpc-subnet.md",
+      "line": 357,
+      "target": "../../api/network/v1/network.proto",
+      "result": "pass"
+    },
+    {
+      "file": "docs/specs/vpc-subnet.md",
+      "line": 402,
+      "target": "cr-observation.md#8-验收合同",
+      "result": "pass"
+    },
+    {
+      "file": "docs/specs/vpc-subnet.md",
+      "line": 422,
+      "target": "../plans/cr-observation.md",
+      "result": "pass"
+    }
+  ]
+}

@@ -223,7 +223,7 @@ func (f *egressFixture) binding(t *testing.T, id string, state biz.ResourceState
 }
 func TestEgressPostgresLifecycleIsolationAndPermanentReplay(t *testing.T) {
 	f := newEgressFixture(t)
-	vpc := availableVPC(t, f.n, f.w, f.tenant, "vpc")
+	vpc := availableEgressVPC(t, f, "vpc")
 	eip := f.eip(t, "address")
 	if _, err := f.e.CreateEIP(context.Background(), biz.EgressIntent{TenantID: f.tenant, Name: "untrusted", IdempotencyKey: "bad"}); biz.ReasonOf(err) != biz.PermissionDenied {
 		t.Fatal("untrusted explicit tenant accepted", err)
@@ -328,7 +328,7 @@ func TestEgressPostgresLifecycleIsolationAndPermanentReplay(t *testing.T) {
 }
 func TestEgressConcurrentBindingAndAcceptanceRollback(t *testing.T) {
 	f := newEgressFixture(t)
-	v := availableVPC(t, f.n, f.w, f.tenant, "race-vpc")
+	v := availableEgressVPC(t, f, "race-vpc")
 	e := f.eip(t, "race-eip")
 	var mu sync.Mutex
 	wins := []biz.VPCSnatBinding{}
@@ -360,7 +360,7 @@ func TestEgressConcurrentBindingAndAcceptanceRollback(t *testing.T) {
 	for _, table := range []string{"network_snat_bindings", "network_operations", "network_idempotency"} {
 		column := "snat_id"
 		var count int
-		if err := f.owner.QueryRow(f.ctx, "SELECT count(*) FROM "+table+" WHERE tenant_id=$1 AND "+column+" IS NOT NULL", f.tenant).Scan(&count); err != nil || count != 1 {
+		if err := f.owner.QueryRow(f.ctx, "SELECT count(*) FROM "+table+" WHERE tenant_id=$1 AND "+column+" IS NOT NULL AND snat_id IN (SELECT snat_id FROM network_snat_bindings WHERE tenant_id=$1 AND purpose='public')", f.tenant).Scan(&count); err != nil || count != 1 {
 			t.Fatalf("partial acceptance in %s: %d %v", table, count, err)
 		}
 	}
@@ -476,7 +476,7 @@ func TestEgressUnderlayPlatformOccupancyAndRetirement(t *testing.T) {
 
 func TestEgressUnknownUpdateKeepsOccupancyAndRecoversExactDesiredState(t *testing.T) {
 	f := newEgressFixture(t)
-	vpc := availableVPC(t, f.n, f.w, f.tenant, "update-vpc")
+	vpc := availableEgressVPC(t, f, "update-vpc")
 	eip := f.eip(t, "update-eip")
 	bound, err := f.e.BindVPCSnat(f.ctx, biz.EgressIntent{VPCID: vpc.ID, EIPID: eip.ID, IdempotencyKey: "bind"})
 	if err != nil {

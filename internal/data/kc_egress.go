@@ -160,8 +160,11 @@ func (p *KCProvider) resolveEgress(ctx context.Context, t biz.ProviderTarget) (e
 			return r, readFailure(err)
 		}
 		poolID = e.PoolID
+		if e.Scope == "intranet" && (e.ManagedBy != "system" || e.SystemOwnerVpc == nil) {
+			return r, &biz.ProviderError{Kind: biz.ProviderConflict}
+		}
 		r.address = e.Address
-		view, err := p.repository.queries.GetEIP(ctx, sqlcgen.GetEIPParams{TenantID: t.TenantID, EipID: t.ResourceID})
+		view, err := p.repository.queries.GetEIPClaim(ctx, sqlcgen.GetEIPClaimParams{TenantID: t.TenantID, EipID: t.ResourceID})
 		if err != nil {
 			return r, readFailure(err)
 		}
@@ -230,11 +233,31 @@ func (p *KCProvider) resolveEgress(ctx context.Context, t biz.ProviderTarget) (e
 		if err != nil {
 			return r, readFailure(err)
 		}
+		if t.Kind == "eip" || t.Kind == "snat" {
+			eipID := t.ResourceID
+			if t.Kind == "snat" {
+				eipID = r.snat.EipID
+			}
+			e, err := p.repository.queries.GetEIPInternal(ctx, sqlcgen.GetEIPInternalParams{TenantID: t.TenantID, EipID: eipID})
+			if err != nil {
+				return r, readFailure(err)
+			}
+			if e.Scope != r.pool.Scope || (r.snat.SnatID != "" && (r.snat.Purpose != e.Scope || (e.Scope == "intranet" && (e.ManagedBy != "system" || e.SystemOwnerVpc == nil || *e.SystemOwnerVpc != r.snat.VpcID)))) {
+				return r, &biz.ProviderError{Kind: biz.ProviderConflict}
+			}
+		}
 		if err = addPlatform("pool", "public_pool", poolID); err != nil {
 			return r, err
 		}
-		if err = addPlatform("gateway", "egress_gateway", r.pool.GatewayID); err != nil {
-			return r, err
+		if r.pool.Scope == "intranet" {
+			if r.pool.GatewayID != nil || r.pool.DefaultVpcName == "" || r.pool.DefaultVpcUid == "" {
+				return r, &biz.ProviderError{Kind: biz.ProviderConflict}
+			}
+			r.refs["default_vpc"] = egressReference{binding: sqlcgen.NetworkProviderBinding{ResourceKind: "vpc", ClusterID: r.binding.ClusterID, Namespace: kcSystemNamespace, ProviderName: r.pool.DefaultVpcName, ProviderUid: r.pool.DefaultVpcUid}}
+		} else {
+			if err = addPlatform("gateway", "egress_gateway", textValue(r.pool.GatewayID)); err != nil {
+				return r, err
+			}
 		}
 		if r.pool.VlanNetworkID != nil {
 			vlan, err := p.repository.queries.GetVlanNetwork(ctx, sqlcgen.GetVlanNetworkParams{ClusterID: r.binding.ClusterID, ResourceID: *r.pool.VlanNetworkID})
@@ -250,7 +273,11 @@ func (p *KCProvider) resolveEgress(ctx context.Context, t biz.ProviderTarget) (e
 			r.spec = map[string]any{"subnet": kcSystemNamespace + "/" + r.refs["pool"].binding.ProviderName, "ipVersion": "IPv4"}
 		}
 		if t.Kind == "public_pool" {
-			r.spec = renderPublicPool(r.pool, r.refs["gateway"].binding.ProviderName, r.refs["vlan"].binding.ProviderName)
+			if r.pool.Scope == "intranet" {
+				r.spec = renderIntranetPool(r.pool)
+			} else {
+				r.spec = renderPublicPool(r.pool, r.refs["gateway"].binding.ProviderName, r.refs["vlan"].binding.ProviderName)
+			}
 		}
 	}
 	return r, nil
@@ -424,6 +451,9 @@ func (p *KCProvider) readEgressSet(ctx context.Context, r egressResolved, critic
 		refs[k] = v
 	}
 	result.keys = append(result.keys, objectKey(r.binding), "provider-images")
+	if r.pool.Scope == "intranet" {
+		result.keys = append(result.keys, "object:ConfigMap/kcn-system/kcn-config", "intranet-service-ranges")
+	}
 	if r.deviceID != "" {
 		result.keys = append(result.keys, "node-facts")
 	}
@@ -513,6 +543,21 @@ func (p *KCProvider) readEgressSet(ctx context.Context, r egressResolved, critic
 		result.proof.CollectedAt = now
 		result.proof.CoveredGeneration = r.target.Requirement.RequestedGeneration
 	}
+	if r.pool.Scope == "intranet" {
+		config, err := p.client.Resource(kcConfigMaps).Namespace(kcSystemNamespace).Get(ctx, "kcn-config", metav1.GetOptions{})
+		if apierrors.IsNotFound(err) {
+			config, err = nil, nil
+		}
+		if err != nil {
+			return result, readFailure(err)
+		}
+		result.objects["intranet_config"] = config
+		serviceNetworks, err := p.listAll(ctx, kcServiceCIDRs)
+		if err != nil {
+			return result, err
+		}
+		result.all[kcServiceCIDRs] = serviceNetworks
+	}
 	result.proof.Hash = contentHash(struct {
 		Objects map[string]*unstructured.Unstructured
 		All     map[string][]unstructured.Unstructured
@@ -576,7 +621,11 @@ func inspectEgressSet(r egressResolved, set egressReadSet) (biz.ProviderObservat
 	for key, ref := range r.refs {
 		other := set.objects[key]
 		if other != nil {
-			if err := inspectEgressIdentity(other, ref.binding, ref.id, ref.binding.ProviderUid); err != nil {
+			if key == "default_vpc" {
+				if !intranetGatewayIdentity(r.pool, other) {
+					return value, &biz.ProviderError{Kind: biz.ProviderConflict}
+				}
+			} else if err := inspectEgressIdentity(other, ref.binding, ref.id, ref.binding.ProviderUid); err != nil {
 				return value, err
 			}
 		}
@@ -609,7 +658,7 @@ func inspectEgressSet(r egressResolved, set egressReadSet) (biz.ProviderObservat
 			}
 		}
 	case "public_pool":
-		value.Ready = publicPoolReady(r, o, set.objects["gateway"], set.objects["vlan"])
+		value.Ready = addressPoolReady(r, o, set)
 		value.Egress.ProviderImages = providerImages(set.all[pods])
 		ref := r.binding.Namespace + "/" + r.binding.ProviderName
 		for _, gvr := range []schema.GroupVersionResource{kcEIPs, observationGVRs[3], observationGVRs[4], pods} {
@@ -624,7 +673,7 @@ func inspectEgressSet(r egressResolved, set egressReadSet) (biz.ProviderObservat
 		if r.target.Kind == "snat" {
 			eip = set.objects["eip"]
 		}
-		ready, address := eipAllocated(r, eip, set.objects["pool"], set.objects["gateway"], set.objects["vlan"])
+		ready, address := allocatedEIP(r, eip, set)
 		if r.address != "" && address != "" && address != r.address {
 			return value, &biz.ProviderError{Kind: biz.ProviderConflict}
 		}
@@ -845,7 +894,7 @@ func (p *KCProvider) UpdateEgress(ctx context.Context, t biz.ProviderTarget) (bi
 	}
 	o = current
 	if t.Egress.DesiredEnabled && crBool(o, "spec", "disable") {
-		ready, _ := eipAllocated(r, set.objects["eip"], set.objects["pool"], set.objects["gateway"], set.objects["vlan"])
+		ready, _ := allocatedEIP(r, set.objects["eip"], set)
 		if !ready || !verifiedEgressExit(r, set) || !bindingApplied(set.objects["eip"], o, set.objects["vpc"], false) || eipBindingConflict(set, r.binding.Namespace, crName(set.objects["eip"]), r.binding.ProviderName) {
 			return checked, &biz.ProviderError{Kind: biz.ProviderTemporary}
 		}
@@ -909,6 +958,9 @@ func egressPrerequisites(r egressResolved, set egressReadSet) bool {
 	vlan := set.objects["vlan"]
 	switch r.target.Kind {
 	case "public_pool":
+		if r.pool.Scope == "intranet" {
+			return intranetInfrastructureReady(r.pool, set.objects["default_vpc"], set.objects["intranet_config"], set.all[kcServiceCIDRs], set.all[pods])
+		}
 		if !goodConditions(gw, "Valid", "Initialized", "Ready") || crString(gw, "status", "localIP") == "" || crString(gw, "status", "boundResources", "router") == "" {
 			return false
 		}
@@ -918,10 +970,10 @@ func egressPrerequisites(r egressResolved, set egressReadSet) bool {
 		}
 		return true
 	case "eip":
-		return publicPoolReady(r, set.objects["pool"], gw, vlan) && verifiedEgressExit(r, set)
+		return addressPoolReady(r, set.objects["pool"], set) && verifiedEgressExit(r, set)
 	case "snat":
 		eip, vpc := set.objects["eip"], set.objects["vpc"]
-		ok, _ := eipAllocated(r, eip, set.objects["pool"], gw, vlan)
+		ok, _ := allocatedEIP(r, eip, set)
 		return ok && verifiedEgressExit(r, set) && goodConditions(vpc, "Valid", "Initialized", "Ready") && crInt(vpc, "status", "observedGeneration") == vpc.GetGeneration() && crString(eip, "status", "phase") == "Available" && emptyBoundResource(eip) && !eipBindingConflict(set, r.binding.Namespace, crName(eip), r.binding.ProviderName)
 	}
 	return true
@@ -994,5 +1046,5 @@ func verifiedEgressExit(r egressResolved, set egressReadSet) bool {
 	if json.Unmarshal(r.pool.Verification, &evidence) != nil {
 		return false
 	}
-	return sameProviderImages(evidence.ProviderImageDigests, providerImages(set.all[pods])) && biz.ValidatePoolVerification(evidence, time.Now()) == nil
+	return sameProviderImages(evidence.ProviderImageDigests, providerImages(set.all[pods])) && biz.ValidatePoolVerificationForScope(evidence, r.pool.Scope, time.Now()) == nil
 }

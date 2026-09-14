@@ -10,7 +10,7 @@ import (
 )
 
 func vpcWork(v sqlcgen.NetworkVpc) biz.ResourceWork {
-	return biz.ResourceWork{ID: v.VpcID, TenantID: v.TenantID, Kind: "vpc", CIDR: v.Cidr, State: biz.ResourceState(v.State), Reason: biz.Reason(v.Reason), Version: v.Version, UpdatedAt: v.UpdatedAt, ObservedAt: v.ObservedAt, LastOperationID: v.LastOperationID}
+	return biz.ResourceWork{ID: v.VpcID, TenantID: v.TenantID, Kind: "vpc", BaseRequired: v.BaseConnectivityRequired, CIDR: v.Cidr, State: biz.ResourceState(v.State), Reason: biz.Reason(v.Reason), Version: v.Version, UpdatedAt: v.UpdatedAt, ObservedAt: v.ObservedAt, LastOperationID: v.LastOperationID}
 }
 func subnetWork(s sqlcgen.NetworkSubnet) biz.ResourceWork {
 	return biz.ResourceWork{ID: s.SubnetID, TenantID: s.TenantID, Kind: "subnet", VPCID: s.VpcID, CIDR: s.Cidr, Gateway: s.Gateway, State: biz.ResourceState(s.State), Reason: biz.Reason(s.Reason), Version: s.Version, UpdatedAt: s.UpdatedAt, ObservedAt: s.ObservedAt, LastOperationID: s.LastOperationID}
@@ -65,13 +65,18 @@ func claimResource(ctx context.Context, q *sqlcgen.Queries) (biz.ResourceWork, e
 	return biz.ResourceWork{}, pgx.ErrNoRows
 }
 func eipWork(e sqlcgen.NetworkEip) biz.ResourceWork {
-	return biz.ResourceWork{ID: e.EipID, TenantID: e.TenantID, Kind: "eip", State: biz.ResourceState(e.State), Reason: biz.Reason(e.Reason), Version: e.Version, UpdatedAt: e.UpdatedAt, ObservedAt: e.ObservedAt, LastOperationID: e.LastOperationID, Egress: &biz.EgressWorkSpec{PoolID: e.PoolID}}
+	return biz.ResourceWork{ID: e.EipID, TenantID: e.TenantID, Kind: "eip", VPCID: textValue(e.SystemOwnerVpc), SystemManaged: e.ManagedBy == "system", State: biz.ResourceState(e.State), Reason: biz.Reason(e.Reason), Version: e.Version, UpdatedAt: e.UpdatedAt, ObservedAt: e.ObservedAt, LastOperationID: e.LastOperationID, Egress: &biz.EgressWorkSpec{PoolID: e.PoolID}}
 }
 func snatWork(s sqlcgen.NetworkSnatBinding) biz.ResourceWork {
-	return biz.ResourceWork{ID: s.SnatID, TenantID: s.TenantID, Kind: "snat", VPCID: s.VpcID, State: biz.ResourceState(s.State), Reason: biz.Reason(s.Reason), Version: s.Version, UpdatedAt: s.UpdatedAt, ObservedAt: s.ObservedAt, LastOperationID: s.LastOperationID, Egress: &biz.EgressWorkSpec{EIPID: s.EipID, DesiredEnabled: s.DesiredEnabled, TargetGeneration: s.TargetGeneration}}
+	return biz.ResourceWork{ID: s.SnatID, TenantID: s.TenantID, Kind: "snat", VPCID: s.VpcID, SystemManaged: s.Purpose == "intranet", State: biz.ResourceState(s.State), Reason: biz.Reason(s.Reason), Version: s.Version, UpdatedAt: s.UpdatedAt, ObservedAt: s.ObservedAt, LastOperationID: s.LastOperationID, Egress: &biz.EgressWorkSpec{EIPID: s.EipID, DesiredEnabled: s.DesiredEnabled, TargetGeneration: s.TargetGeneration}}
 }
 func lockResource(ctx context.Context, q *sqlcgen.Queries, r biz.ResourceWork) (biz.ResourceWork, error) {
 	if r.Kind == "eip" {
+		if r.VPCID != "" {
+			if _, err := q.LockVPC(ctx, sqlcgen.LockVPCParams{TenantID: r.TenantID, VpcID: r.VPCID}); err != nil {
+				return biz.ResourceWork{}, err
+			}
+		}
 		e, err := q.LockEIP(ctx, sqlcgen.LockEIPParams{TenantID: r.TenantID, EipID: r.ID})
 		return eipWork(e), err
 	}

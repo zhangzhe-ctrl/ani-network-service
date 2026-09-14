@@ -12,6 +12,7 @@ import (
 	"sort"
 	"strings"
 	"sync/atomic"
+	"time"
 
 	"github.com/google/uuid"
 	"github.com/jackc/pgx/v5"
@@ -27,6 +28,7 @@ type Placement struct {
 }
 
 type Postgres struct {
+	baseFreshness        time.Duration
 	workTurn             atomic.Uint64
 	egressInfrastructure biz.EgressInfrastructure
 	pool                 *pgxpool.Pool
@@ -172,7 +174,22 @@ func (p *Postgres) AcceptVPC(ctx context.Context, intent biz.VPCIntent, attribut
 	}); err != nil {
 		return biz.VPC{}, databaseFailure(err)
 	}
+	if err := q.LockConnectivityRollout(ctx, sqlcgen.LockConnectivityRolloutParams{ClusterID: p.placement.ClusterID}); err != nil {
+		return biz.VPC{}, databaseFailure(err)
+	}
+	rollout, rolloutErr := q.GetConnectivityRollout(ctx, sqlcgen.GetConnectivityRolloutParams{ClusterID: p.placement.ClusterID})
+	if rolloutErr != nil && !errors.Is(rolloutErr, pgx.ErrNoRows) {
+		return biz.VPC{}, databaseFailure(rolloutErr)
+	}
+	if rollout.NewVpcsEnabled {
+		if err := p.acceptBaseConnectivity(ctx, q, intent.TenantID, vpcID, namespace, operationID, "", 0, now, true); err != nil {
+			return biz.VPC{}, err
+		}
+	}
 	value := vpc(row)
+	if rollout.NewVpcsEnabled {
+		value.BaseConnectivity = &biz.BaseConnectivity{State: "pending", Reason: biz.BaseConnectivityNotReady, ObservationStale: true}
+	}
 	value.ObservationStale = true
 	snapshot, err := json.Marshal(value)
 	if err != nil {
@@ -201,12 +218,35 @@ func (p *Postgres) GetVPC(ctx context.Context, tenant, id string) (biz.VPC, erro
 	row, err := p.queries.GetVPC(ctx, sqlcgen.GetVPCParams{TenantID: tenant, VpcID: id})
 	value := vpc(row.NetworkVpc)
 	value.SubnetCount = row.SubnetCount
+	value.BaseConnectivity = &biz.BaseConnectivity{State: row.BaseState, Reason: biz.Reason(row.BaseReason), ObservedAt: row.BaseObservedAt}
 	return value, databaseFailure(err)
 }
 
 func (p *Postgres) GetOperation(ctx context.Context, tenant, id string) (biz.Operation, error) {
 	row, err := p.queries.GetOperation(ctx, sqlcgen.GetOperationParams{TenantID: tenant, OperationID: id})
-	return operation(row), databaseFailure(err)
+	if err != nil {
+		return biz.Operation{}, databaseFailure(err)
+	}
+	// Internal child operations cannot be discovered by guessing an operation ID.
+	if row.EipID != nil {
+		e, eerr := p.queries.GetEIPInternal(ctx, sqlcgen.GetEIPInternalParams{TenantID: tenant, EipID: *row.EipID})
+		if eerr != nil {
+			return biz.Operation{}, databaseFailure(eerr)
+		}
+		if e.ManagedBy == "system" {
+			return biz.Operation{}, biz.Fail(biz.ResourceNotFound, "operation not found")
+		}
+	}
+	if row.SnatID != nil {
+		s, serr := p.queries.GetSnatInternal(ctx, sqlcgen.GetSnatInternalParams{TenantID: tenant, SnatID: *row.SnatID})
+		if serr != nil {
+			return biz.Operation{}, databaseFailure(serr)
+		}
+		if s.Purpose == "intranet" {
+			return biz.Operation{}, biz.Fail(biz.ResourceNotFound, "operation not found")
+		}
+	}
+	return operation(row), nil
 }
 
 func (p *Postgres) ListVPCs(ctx context.Context, tenant string, filter biz.VPCFilter) ([]biz.VPC, error) {
@@ -221,6 +261,7 @@ func (p *Postgres) ListVPCs(ctx context.Context, tenant string, filter biz.VPCFi
 	for _, row := range rows {
 		value := vpc(row.NetworkVpc)
 		value.SubnetCount = row.SubnetCount
+		value.BaseConnectivity = &biz.BaseConnectivity{State: row.BaseState, Reason: biz.Reason(row.BaseReason), ObservedAt: row.BaseObservedAt}
 		result = append(result, value)
 	}
 	return result, nil

@@ -7,6 +7,8 @@ import "network/v1/network.proto";
 
 // Authorization is supplied by the trusted inbound context, never by a role or
 // permission in a request. A different target_tenant_id requires delegation.
+// Every method is restricted to tenant-managed Public resources. System-managed
+// Intranet resources are excluded from lists and lookups (including guessed IDs).
 service TenantEgressService {
   rpc CreateEIP(CreateEIPRequest) returns (CreateEIPResponse);
   rpc GetEIP(GetEIPRequest) returns (GetEIPResponse);
@@ -40,6 +42,14 @@ service PlatformNetworkService {
   rpc RecordPublicPoolVerification(RecordPublicPoolVerificationRequest) returns (RecordPublicPoolVerificationResponse);
   rpc SetPublicPoolAllocationEnabled(SetPublicPoolAllocationEnabledRequest) returns (SetPublicPoolAllocationEnabledResponse);
   rpc SetDefaultPublicPool(SetDefaultPublicPoolRequest) returns (SetDefaultPublicPoolResponse);
+  rpc CreateIntranetAddressPool(CreateIntranetAddressPoolRequest) returns (CreateIntranetAddressPoolResponse);
+  rpc GetIntranetAddressPool(GetIntranetAddressPoolRequest) returns (GetIntranetAddressPoolResponse);
+  rpc ListIntranetAddressPools(ListIntranetAddressPoolsRequest) returns (ListIntranetAddressPoolsResponse);
+  rpc DeleteIntranetAddressPool(DeleteIntranetAddressPoolRequest) returns (DeleteIntranetAddressPoolResponse);
+  rpc RecordIntranetPoolVerification(RecordIntranetPoolVerificationRequest) returns (RecordIntranetPoolVerificationResponse);
+  rpc SetIntranetPoolAllocationEnabled(SetIntranetPoolAllocationEnabledRequest) returns (SetIntranetPoolAllocationEnabledResponse);
+  rpc SetDefaultIntranetPool(SetDefaultIntranetPoolRequest) returns (SetDefaultIntranetPoolResponse);
+  rpc GetPlatformNetworkCapabilities(GetPlatformNetworkCapabilitiesRequest) returns (GetPlatformNetworkCapabilitiesResponse);
   rpc GetPlatformOperation(GetPlatformOperationRequest) returns (GetPlatformOperationResponse);
 }
 
@@ -58,9 +68,24 @@ message EIP {
   bool observation_stale = 12;
   string last_operation_id = 13;
   string address = 14;
+  // Compatibility field: SNAT binding ID only; empty for a load_balancer target.
+  // An empty value MUST NOT be interpreted as absence of an EIP claim.
   string binding_id = 15;
   // unbound, reserved or bound; none of these proves internet reachability.
   string binding_state = 16;
+  // Absent only when no active claim exists. This and binding_state are projected
+  // from the same claim; an LB claim never projects binding_state=unbound.
+  EIPBindingTarget binding_target = 17;
+  // Output only. TenantEgressService returns public / tenant exclusively.
+  string scope = 18;
+  string managed_by = 19;
+}
+message EIPBindingTarget {
+  // vpc_snat or load_balancer.
+  string kind = 1;
+  string id = 2;
+  // reserved or bound; unknown Provider outcomes preserve the active claim.
+  string state = 3;
 }
 message VPCSnatBinding {
   string id = 1;
@@ -80,6 +105,8 @@ message VPCSnatBinding {
   bool desired_enabled = 15;
   // Absence means unknown or stale; never filled from desired_enabled.
   optional bool applied_enabled = 16;
+  // Output only. All existing tenant SNAT APIs select public, never intranet.
+  string purpose = 17;
 }
 message CreateEIPRequest { string target_tenant_id = 1; string name = 2; string description = 3; string idempotency_key = 4; }
 message CreateEIPResponse { EIP eip = 1; }
@@ -113,6 +140,7 @@ message PlatformResource {
     VlanNetwork vlan = 15;
     EgressGateway gateway = 16;
     PublicAddressPool pool = 17;
+    IntranetAddressPool intranet_pool = 18;
   }
 }
 message NodeInterface {
@@ -136,6 +164,53 @@ message PublicAddressPool {
   PublicPoolVerification verification = 11;
   string topology_fingerprint = 12;
   repeated string observed_provider_images = 13;
+  // Output only; always public. The legacy message/field meanings are preserved.
+  string scope = 14;
+}
+// A platform-owned pool backed by an Intranet Subnet and a verified default VPC
+// gateway. It is not a Public EIPGateway or a tenant workload subnet.
+message IntranetAddressPool {
+  string cidr = 1;
+  string ovn_gateway_ip = 2;
+  repeated string excluded_ips = 3;
+  string default_vpc_name = 4;
+  string default_vpc_uid = 5;
+  repeated string intranet_networks = 6;
+  bool allocation_enabled = 7;
+  bool is_default = 8;
+  int64 config_revision = 9;
+  IntranetPoolVerification verification = 10;
+  string topology_fingerprint = 11;
+  repeated string observed_provider_images = 12;
+  // Output only; always intranet.
+  string scope = 13;
+}
+// Administrative evidence for the fixed pool/configuration/provider snapshot.
+// Recording it does not itself make the capability ready or prove real traffic.
+message IntranetPoolVerification {
+  string provider_source_revision = 1;
+  repeated string provider_image_digests = 2;
+  string topology_fingerprint = 3;
+  string evidence_reference = 4;
+  string scope = 5;
+  google.protobuf.Timestamp verified_at = 6;
+  google.protobuf.Timestamp expires_at = 7;
+}
+message CapabilityObservation {
+  string reason = 1;
+  string reason_message = 2;
+  google.protobuf.Timestamp observed_at = 3;
+  bool observation_stale = 4;
+}
+// Independent admission capabilities. Missing/stale/unknown evidence always
+// yields ready=false. LB unavailability does not block base-only VPC creation.
+message PlatformNetworkCapabilities {
+  bool base_connectivity_ready = 1;
+  bool public_address_ready = 2;
+  bool load_balancer_ready = 3;
+  CapabilityObservation base_connectivity = 4;
+  CapabilityObservation public_address = 5;
+  CapabilityObservation load_balancer = 6;
 }
 // An administrator's recorded, scoped acceptance evidence, not a synthetic
 // traffic result. Runtime admission also checks the current deployment identity.
@@ -188,6 +263,30 @@ message SetPublicPoolAllocationEnabledRequest { string pool_id = 1; bool enabled
 message SetPublicPoolAllocationEnabledResponse { PlatformResource resource = 1; }
 message SetDefaultPublicPoolRequest { string pool_id = 1; int64 expected_version = 2; string idempotency_key = 3; }
 message SetDefaultPublicPoolResponse { PlatformResource resource = 1; }
+// Scope is fixed by this RPC. Administrator identity comes only from trusted
+// context. Names/UIDs below describe existing platform facts; this API cannot
+// modify the default VPC, controller configuration or intranet routing ranges.
+message CreateIntranetAddressPoolRequest {
+  string name = 1; string description = 2; string cidr = 3;
+  string ovn_gateway_ip = 4; repeated string excluded_ips = 5;
+  string default_vpc_name = 6; string default_vpc_uid = 7;
+  repeated string intranet_networks = 8; string idempotency_key = 9;
+}
+message CreateIntranetAddressPoolResponse { PlatformResource resource = 1; }
+message GetIntranetAddressPoolRequest { string pool_id = 1; }
+message GetIntranetAddressPoolResponse { PlatformResource resource = 1; }
+message ListIntranetAddressPoolsRequest { string name = 1; ResourceState state = 2; int32 limit = 3; string cursor = 4; }
+message ListIntranetAddressPoolsResponse { repeated PlatformResource items = 1; string next_cursor = 2; }
+message DeleteIntranetAddressPoolRequest { string pool_id = 1; }
+message DeleteIntranetAddressPoolResponse { PlatformResource resource = 1; }
+message RecordIntranetPoolVerificationRequest { string pool_id = 1; int64 expected_version = 2; IntranetPoolVerification verification = 3; string idempotency_key = 4; }
+message RecordIntranetPoolVerificationResponse { PlatformResource resource = 1; }
+message SetIntranetPoolAllocationEnabledRequest { string pool_id = 1; bool enabled = 2; int64 expected_version = 3; string idempotency_key = 4; }
+message SetIntranetPoolAllocationEnabledResponse { PlatformResource resource = 1; }
+message SetDefaultIntranetPoolRequest { string pool_id = 1; int64 expected_version = 2; string idempotency_key = 3; }
+message SetDefaultIntranetPoolResponse { PlatformResource resource = 1; }
+message GetPlatformNetworkCapabilitiesRequest {}
+message GetPlatformNetworkCapabilitiesResponse { PlatformNetworkCapabilities capabilities = 1; }
 message GetPlatformOperationRequest { string operation_id = 1; }
 message GetPlatformOperationResponse { PlatformOperation operation = 1; }
 message PlatformOperation {

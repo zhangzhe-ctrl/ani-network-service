@@ -1,0 +1,632 @@
+{
+  "time_utc": "2026-09-14T11:41:21.787634+00:00",
+  "context": "kind-kc062",
+  "namespace": "lb-strict-0911",
+  "result": "pass",
+  "checks": [
+    {
+      "name": "intranet-snat-bound",
+      "result": "pass",
+      "detail": {
+        "conditions": [
+          {
+            "lastTransitionTime": "2026-09-14T08:24:21Z",
+            "message": "",
+            "reason": "Valid",
+            "status": "True",
+            "type": "Valid"
+          }
+        ],
+        "eipAddress": "10.232.254.2",
+        "phase": "Bound"
+      }
+    },
+    {
+      "name": "intranet-eip-bound",
+      "result": "pass",
+      "detail": {
+        "boundResource": {
+          "nodeName": "kc062-worker",
+          "observedGeneration": 1,
+          "resource": "tenant-intranet-snat",
+          "resourceType": "Snat",
+          "vpc": "lb-strict-0911/tenant"
+        },
+        "conditions": [
+          {
+            "lastTransitionTime": "2026-09-14T08:06:44Z",
+            "message": "",
+            "reason": "Initialized",
+            "status": "True",
+            "type": "Initialized"
+          },
+          {
+            "lastTransitionTime": "2026-09-14T08:06:44Z",
+            "message": "",
+            "reason": "Valid",
+            "status": "True",
+            "type": "Valid"
+          }
+        ],
+        "gateway": "kcn-system/kcn-cluster",
+        "phase": "Bound"
+      }
+    },
+    {
+      "name": "backend-a",
+      "result": "pass",
+      "detail": {
+        "command": [
+          "kubectl",
+          "--context",
+          "kind-kc062",
+          "-n",
+          "lb-strict-0911",
+          "exec",
+          "client",
+          "--",
+          "wget",
+          "-qO-",
+          "-T",
+          "3",
+          "http://10.231.1.2:8080/"
+        ],
+        "exit_code": 0,
+        "stdout": "backend-a\n",
+        "stderr": ""
+      }
+    },
+    {
+      "name": "backend-b",
+      "result": "pass",
+      "detail": {
+        "command": [
+          "kubectl",
+          "--context",
+          "kind-kc062",
+          "-n",
+          "lb-strict-0911",
+          "exec",
+          "client",
+          "--",
+          "wget",
+          "-qO-",
+          "-T",
+          "3",
+          "http://10.231.1.4:8080/"
+        ],
+        "exit_code": 0,
+        "stdout": "backend-b\n",
+        "stderr": ""
+      }
+    },
+    {
+      "name": "test-private-noeip-class",
+      "result": "pass",
+      "detail": "lb-small-noeip"
+    },
+    {
+      "name": "test-private-noeip-service",
+      "result": "pass",
+      "detail": "ClusterIP"
+    },
+    {
+      "name": "test-private-noeip-route",
+      "result": "pass",
+      "detail": {
+        "parents": [
+          {
+            "conditions": [
+              {
+                "lastTransitionTime": "2026-09-11T04:47:41Z",
+                "message": "Route is accepted",
+                "observedGeneration": 1,
+                "reason": "Accepted",
+                "status": "True",
+                "type": "Accepted"
+              },
+              {
+                "lastTransitionTime": "2026-09-11T04:47:41Z",
+                "message": "Resolved all the Object references for the Route",
+                "observedGeneration": 1,
+                "reason": "ResolvedRefs",
+                "status": "True",
+                "type": "ResolvedRefs"
+              }
+            ],
+            "controllerName": "gateway.envoyproxy.io/gatewayclass-controller",
+            "parentRef": {
+              "group": "gateway.networking.k8s.io",
+              "kind": "Gateway",
+              "name": "test-private-noeip"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "test-private-noeip-policy",
+      "result": "pass",
+      "detail": {
+        "ancestors": [
+          {
+            "ancestorRef": {
+              "group": "gateway.networking.k8s.io",
+              "kind": "Gateway",
+              "name": "test-private-noeip",
+              "namespace": "lb-strict-0911"
+            },
+            "conditions": [
+              {
+                "lastTransitionTime": "2026-09-11T05:24:27Z",
+                "message": "Policy has been accepted.",
+                "observedGeneration": 1,
+                "reason": "Accepted",
+                "status": "True",
+                "type": "Accepted"
+              }
+            ],
+            "controllerName": "gateway.envoyproxy.io/gatewayclass-controller"
+          }
+        ]
+      }
+    },
+    {
+      "name": "test-private-noeip-no-eip",
+      "result": "pass",
+      "detail": {
+        "networking.kubercloud.com/lb_vip_address": "10.231.1.101",
+        "networking.kubercloud.com/lb_vpc": "lb-strict-0911/tenant",
+        "networking.kubercloud.com/subnet": "lb-strict-0911/tenant-subnet"
+      }
+    },
+    {
+      "name": "test-private-noeip-vip-1",
+      "result": "pass",
+      "detail": {
+        "command": [
+          "kubectl",
+          "--context",
+          "kind-kc062",
+          "-n",
+          "lb-strict-0911",
+          "exec",
+          "client",
+          "--",
+          "wget",
+          "-qO-",
+          "-T",
+          "3",
+          "http://10.231.1.101:8080/"
+        ],
+        "exit_code": 0,
+        "stdout": "backend-b\n",
+        "stderr": ""
+      }
+    },
+    {
+      "name": "test-private-noeip-vip-2",
+      "result": "pass",
+      "detail": {
+        "command": [
+          "kubectl",
+          "--context",
+          "kind-kc062",
+          "-n",
+          "lb-strict-0911",
+          "exec",
+          "client",
+          "--",
+          "wget",
+          "-qO-",
+          "-T",
+          "3",
+          "http://10.231.1.101:8080/"
+        ],
+        "exit_code": 0,
+        "stdout": "backend-a\n",
+        "stderr": ""
+      }
+    },
+    {
+      "name": "test-private-noeip-vip-3",
+      "result": "pass",
+      "detail": {
+        "command": [
+          "kubectl",
+          "--context",
+          "kind-kc062",
+          "-n",
+          "lb-strict-0911",
+          "exec",
+          "client",
+          "--",
+          "wget",
+          "-qO-",
+          "-T",
+          "3",
+          "http://10.231.1.101:8080/"
+        ],
+        "exit_code": 0,
+        "stdout": "backend-a\n",
+        "stderr": ""
+      }
+    },
+    {
+      "name": "test-public-class",
+      "result": "pass",
+      "detail": "lb-small"
+    },
+    {
+      "name": "test-public-service",
+      "result": "pass",
+      "detail": "LoadBalancer"
+    },
+    {
+      "name": "test-public-route",
+      "result": "pass",
+      "detail": {
+        "parents": [
+          {
+            "conditions": [
+              {
+                "lastTransitionTime": "2026-09-14T11:33:23Z",
+                "message": "Route is accepted",
+                "observedGeneration": 1,
+                "reason": "Accepted",
+                "status": "True",
+                "type": "Accepted"
+              },
+              {
+                "lastTransitionTime": "2026-09-14T11:33:23Z",
+                "message": "Resolved all the Object references for the Route",
+                "observedGeneration": 1,
+                "reason": "ResolvedRefs",
+                "status": "True",
+                "type": "ResolvedRefs"
+              }
+            ],
+            "controllerName": "gateway.envoyproxy.io/gatewayclass-controller",
+            "parentRef": {
+              "group": "gateway.networking.k8s.io",
+              "kind": "Gateway",
+              "name": "test-public"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "test-public-policy",
+      "result": "pass",
+      "detail": {
+        "ancestors": [
+          {
+            "ancestorRef": {
+              "group": "gateway.networking.k8s.io",
+              "kind": "Gateway",
+              "name": "test-public",
+              "namespace": "lb-strict-0911"
+            },
+            "conditions": [
+              {
+                "lastTransitionTime": "2026-09-14T11:33:23Z",
+                "message": "Policy has been accepted.",
+                "observedGeneration": 1,
+                "reason": "Accepted",
+                "status": "True",
+                "type": "Accepted"
+              }
+            ],
+            "controllerName": "gateway.envoyproxy.io/gatewayclass-controller"
+          }
+        ]
+      }
+    },
+    {
+      "name": "test-public-vip-disabled",
+      "result": "pass",
+      "detail": {
+        "networking.kubercloud.com/lb_eips": "public-only-eip",
+        "networking.kubercloud.com/lb_vip_address": "disable",
+        "networking.kubercloud.com/lb_vpc": "lb-strict-0911/tenant",
+        "networking.kubercloud.com/subnet": "lb-strict-0911/tenant-subnet"
+      }
+    },
+    {
+      "name": "test-public-eip-bound",
+      "result": "pass",
+      "detail": {
+        "boundResource": {
+          "nodeName": "kc062-worker",
+          "resource": "test-public",
+          "resourceType": "Service",
+          "vpc": "lb-strict-0911/tenant"
+        },
+        "conditions": [
+          {
+            "lastTransitionTime": "2026-09-14T11:33:23Z",
+            "message": "",
+            "reason": "Initialized",
+            "status": "True",
+            "type": "Initialized"
+          },
+          {
+            "lastTransitionTime": "2026-09-14T11:33:23Z",
+            "message": "",
+            "reason": "Valid",
+            "status": "True",
+            "type": "Valid"
+          }
+        ],
+        "gateway": "lb-strict-0911-public",
+        "phase": "Bound"
+      }
+    },
+    {
+      "name": "test-public-eip-from-kc062-worker",
+      "result": "pass",
+      "detail": {
+        "command": [
+          "docker",
+          "exec",
+          "kc062-worker",
+          "curl",
+          "--noproxy",
+          "*",
+          "--connect-timeout",
+          "3",
+          "--max-time",
+          "5",
+          "-fsS",
+          "http://198.19.231.11:8080/"
+        ],
+        "exit_code": 0,
+        "stdout": "backend-a\n",
+        "stderr": ""
+      }
+    },
+    {
+      "name": "test-public-eip-from-kc062-worker2",
+      "result": "pass",
+      "detail": {
+        "command": [
+          "docker",
+          "exec",
+          "kc062-worker2",
+          "curl",
+          "--noproxy",
+          "*",
+          "--connect-timeout",
+          "3",
+          "--max-time",
+          "5",
+          "-fsS",
+          "http://198.19.231.11:8080/"
+        ],
+        "exit_code": 0,
+        "stdout": "backend-b\n",
+        "stderr": ""
+      }
+    },
+    {
+      "name": "test-both-class",
+      "result": "pass",
+      "detail": "lb-small"
+    },
+    {
+      "name": "test-both-service",
+      "result": "pass",
+      "detail": "LoadBalancer"
+    },
+    {
+      "name": "test-both-route",
+      "result": "pass",
+      "detail": {
+        "parents": [
+          {
+            "conditions": [
+              {
+                "lastTransitionTime": "2026-09-11T04:25:00Z",
+                "message": "Route is accepted",
+                "observedGeneration": 1,
+                "reason": "Accepted",
+                "status": "True",
+                "type": "Accepted"
+              },
+              {
+                "lastTransitionTime": "2026-09-11T04:25:00Z",
+                "message": "Resolved all the Object references for the Route",
+                "observedGeneration": 1,
+                "reason": "ResolvedRefs",
+                "status": "True",
+                "type": "ResolvedRefs"
+              }
+            ],
+            "controllerName": "gateway.envoyproxy.io/gatewayclass-controller",
+            "parentRef": {
+              "group": "gateway.networking.k8s.io",
+              "kind": "Gateway",
+              "name": "test-both"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "test-both-policy",
+      "result": "pass",
+      "detail": {
+        "ancestors": [
+          {
+            "ancestorRef": {
+              "group": "gateway.networking.k8s.io",
+              "kind": "Gateway",
+              "name": "test-both",
+              "namespace": "lb-strict-0911"
+            },
+            "conditions": [
+              {
+                "lastTransitionTime": "2026-09-14T11:33:23Z",
+                "message": "Policy has been accepted.",
+                "observedGeneration": 1,
+                "reason": "Accepted",
+                "status": "True",
+                "type": "Accepted"
+              }
+            ],
+            "controllerName": "gateway.envoyproxy.io/gatewayclass-controller"
+          }
+        ]
+      }
+    },
+    {
+      "name": "test-both-vip-1",
+      "result": "pass",
+      "detail": {
+        "command": [
+          "kubectl",
+          "--context",
+          "kind-kc062",
+          "-n",
+          "lb-strict-0911",
+          "exec",
+          "client",
+          "--",
+          "wget",
+          "-qO-",
+          "-T",
+          "3",
+          "http://10.231.1.100:8080/"
+        ],
+        "exit_code": 0,
+        "stdout": "backend-a\n",
+        "stderr": ""
+      }
+    },
+    {
+      "name": "test-both-vip-2",
+      "result": "pass",
+      "detail": {
+        "command": [
+          "kubectl",
+          "--context",
+          "kind-kc062",
+          "-n",
+          "lb-strict-0911",
+          "exec",
+          "client",
+          "--",
+          "wget",
+          "-qO-",
+          "-T",
+          "3",
+          "http://10.231.1.100:8080/"
+        ],
+        "exit_code": 0,
+        "stdout": "backend-b\n",
+        "stderr": ""
+      }
+    },
+    {
+      "name": "test-both-vip-3",
+      "result": "pass",
+      "detail": {
+        "command": [
+          "kubectl",
+          "--context",
+          "kind-kc062",
+          "-n",
+          "lb-strict-0911",
+          "exec",
+          "client",
+          "--",
+          "wget",
+          "-qO-",
+          "-T",
+          "3",
+          "http://10.231.1.100:8080/"
+        ],
+        "exit_code": 0,
+        "stdout": "backend-a\n",
+        "stderr": ""
+      }
+    },
+    {
+      "name": "test-both-eip-bound",
+      "result": "pass",
+      "detail": {
+        "boundResource": {
+          "nodeName": "kc062-worker",
+          "resource": "test-both",
+          "resourceType": "Service",
+          "vpc": "lb-strict-0911/tenant"
+        },
+        "conditions": [
+          {
+            "lastTransitionTime": "2026-09-11T04:20:33Z",
+            "message": "",
+            "reason": "Initialized",
+            "status": "True",
+            "type": "Initialized"
+          },
+          {
+            "lastTransitionTime": "2026-09-11T04:20:33Z",
+            "message": "",
+            "reason": "Valid",
+            "status": "True",
+            "type": "Valid"
+          }
+        ],
+        "gateway": "lb-strict-0911-public",
+        "phase": "Bound"
+      }
+    },
+    {
+      "name": "test-both-eip-from-kc062-worker",
+      "result": "pass",
+      "detail": {
+        "command": [
+          "docker",
+          "exec",
+          "kc062-worker",
+          "curl",
+          "--noproxy",
+          "*",
+          "--connect-timeout",
+          "3",
+          "--max-time",
+          "5",
+          "-fsS",
+          "http://198.19.231.10:8080/"
+        ],
+        "exit_code": 0,
+        "stdout": "backend-b\n",
+        "stderr": ""
+      }
+    },
+    {
+      "name": "test-both-eip-from-kc062-worker2",
+      "result": "pass",
+      "detail": {
+        "command": [
+          "docker",
+          "exec",
+          "kc062-worker2",
+          "curl",
+          "--noproxy",
+          "*",
+          "--connect-timeout",
+          "3",
+          "--max-time",
+          "5",
+          "-fsS",
+          "http://198.19.231.10:8080/"
+        ],
+        "exit_code": 0,
+        "stdout": "backend-a\n",
+        "stderr": ""
+      }
+    }
+  ]
+}

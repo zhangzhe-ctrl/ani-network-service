@@ -83,7 +83,7 @@ func newEgressKCFixture(t *testing.T, intercept func(http.ResponseWriter, *http.
 }
 func TestEgressKCAdapterSharedObservationLifecycleAndDrift(t *testing.T) {
 	f, api, _, _ := newEgressKCFixture(t, nil)
-	vpc := availableVPC(t, f.n, f.w, f.tenant, "vpc")
+	vpc := availableEgressVPC(t, f, "vpc")
 	eip := f.eip(t, "eip")
 	bound, err := f.e.BindVPCSnat(f.ctx, biz.EgressIntent{VPCID: vpc.ID, EIPID: eip.ID, IdempotencyKey: "bind"})
 	if err != nil {

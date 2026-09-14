@@ -1,0 +1,1235 @@
+{
+  "goal": "NET-VPC-BASE-01",
+  "result": "pass",
+  "run": "20260914T135236Z-18dc5c44",
+  "head": "d8835a22d905e358b7f60756d3113baa97d7c762",
+  "remote": "/home/ubuntu/workspace/ani-network-service-runs/snat-20260914T135236Z-18dc5c44",
+  "archive_sha256": "6f272a3e740ff514f9e69e23bbf23f261c9cc7c68772c525dcb0148a3c5ced7b",
+  "manifest_sha256": "027f36b977f6695397f7a89db7b1e0c2cc90b23d68785fefb239b50f89552e2e",
+  "command": [
+    "bash",
+    "-c",
+    "scripts/integration -race ./internal/data -run \"TestBase(BackfillRechecksFreshnessAfterPlatformLockWait|ConnectivityInitialSnatPendingKeepsCreateOpenThenWorkerRecovers)$\" -timeout 90s -v && make verify && scripts/check-vpc-base-contracts && scripts/integration -race ./... -timeout 12m -json"
+  ],
+  "exit_code": 0,
+  "make_verify": "pass",
+  "fixed_baseline_breaking": "pass",
+  "generation_consistency": "pass",
+  "postgresql_full_race": "pass",
+  "top_level_tests": {
+    "pass": 115,
+    "fail": 0,
+    "skip": 1
+  },
+  "test_events": {
+    "pass": 259,
+    "fail": 0,
+    "skip": 1
+  },
+  "packages": {
+    "pass": 8,
+    "fail": 0,
+    "skip": 7
+  },
+  "skipped_tests": [
+    "TestNET05ACapacity"
+  ],
+  "skipped_explanation": "Existing optional NET05A capacity benchmark is outside this Goal and was not enabled. All required controlled tests ran.",
+  "process_scenarios": [
+    "vpc_POST_success_response_lost",
+    "eip_POST_success_response_lost",
+    "snat_POST_success_response_lost",
+    "eip_POST_accepted_success_after_process_kill",
+    "partial_unknown_EIP_termination_before_late_success",
+    "snats_DELETE_success_response_lost",
+    "eips_DELETE_success_response_lost",
+    "vpcs_DELETE_success_response_lost",
+    "termination_before_any_CR_process_recovery"
+  ],
+  "runtime_source_coverage": {
+    "result": "pass",
+    "files": 212,
+    "records": [
+      {
+        "path": "Makefile",
+        "sha256": "e64cb9abc04d64b8b3c56693697a43bd01edd80360e74d360654cfb8ab5bf634",
+        "mode": "100644"
+      },
+      {
+        "path": "api/network/v1/egress.pb.go",
+        "sha256": "87b74f0d55fea638112d918b2ebace3d3d861764c3b0550608cde05ef2935988",
+        "mode": "100644"
+      },
+      {
+        "path": "api/network/v1/egress.proto",
+        "sha256": "5c44d16bb3287f6908a3099ce0671d19b2495d2f78c2670f50badbe36151f30a",
+        "mode": "100644"
+      },
+      {
+        "path": "api/network/v1/egress_grpc.pb.go",
+        "sha256": "a57db81851fdb6988e0c02bb4253f1b633fde6e4b591a1c0cc461b6058b3e35e",
+        "mode": "100644"
+      },
+      {
+        "path": "api/network/v1/load_balancer.pb.go",
+        "sha256": "065cdc0cdf59180e4c7c79e70e0f5441ca789024e12a64a1cc42a5b38ac77e6c",
+        "mode": "100644"
+      },
+      {
+        "path": "api/network/v1/load_balancer.proto",
+        "sha256": "039b56efa23881b6ddeb38f60d9a698bb39a6304a713d201d6aeda0e38676356",
+        "mode": "100644"
+      },
+      {
+        "path": "api/network/v1/load_balancer_grpc.pb.go",
+        "sha256": "b6ce2f525ab83abcc1c6783ee186d10822d77530bcfb361e3f25daf35861d675",
+        "mode": "100644"
+      },
+      {
+        "path": "api/network/v1/network.pb.go",
+        "sha256": "540c62e3e83caf1507a0f2a8090791a357d142f2853a83a293e513079b301d35",
+        "mode": "100644"
+      },
+      {
+        "path": "api/network/v1/network.proto",
+        "sha256": "a84b8b6be7032e6855b91f43d96d110d104e1407ea43ee244398ab2832110fb6",
+        "mode": "100644"
+      },
+      {
+        "path": "api/network/v1/network_grpc.pb.go",
+        "sha256": "ff896e43e3fbd710f504bc066d84293568a007965f863c780750b6fae91bb6b5",
+        "mode": "100644"
+      },
+      {
+        "path": "buf.gen.yaml",
+        "sha256": "a5b51f8141d08bc0ffdcf2925e1ffbc48eab3792d0bbe64bf0f7cb60bff60212",
+        "mode": "100644"
+      },
+      {
+        "path": "buf.yaml",
+        "sha256": "fc26102bf3d244ea32c685b64d09965a7b0cc2bb0cf760b9758d9779c02a6861",
+        "mode": "100644"
+      },
+      {
+        "path": "cmd/ani-network-service/app.go",
+        "sha256": "5544b0a2343c7ecb2ac3f7b8f5ccad1b543ae40c07c39df5722e380d627ef740",
+        "mode": "100644"
+      },
+      {
+        "path": "cmd/ani-network-service/app_test.go",
+        "sha256": "517648fa6eda356e4c275dac96f2643de9a8d6c40a883013d969f776d579ffb6",
+        "mode": "100644"
+      },
+      {
+        "path": "cmd/ani-network-service/base_connectivity.go",
+        "sha256": "40db7087304b7ed80102be0874e2bcd57aa38fe370b761aab9f1e46e505ea941",
+        "mode": "100644"
+      },
+      {
+        "path": "cmd/ani-network-service/main.go",
+        "sha256": "790a43f415076d8de5af5915d55ed566efb1bf4906b936fc6ecce83bf1301747",
+        "mode": "100644"
+      },
+      {
+        "path": "cmd/ani-network-service/main_test.go",
+        "sha256": "94022bcd677b2a1550dfe10a8967909d9ae232633ca87f92536c9ca3d1ebf773",
+        "mode": "100644"
+      },
+      {
+        "path": "cmd/ani-network-service/migrate.go",
+        "sha256": "7a17dc99fd4e99b7dfeb8e216936f3f395d54b2acdff868d8b400d8c72c3523b",
+        "mode": "100644"
+      },
+      {
+        "path": "configs/config.yaml",
+        "sha256": "c35fbaae6832fe47d1a1f9dec0edeb49d4e4f37d8ef05d8dbcfd56d7482f7558",
+        "mode": "100644"
+      },
+      {
+        "path": "deployments/egress/NodeFacts.Dockerfile",
+        "sha256": "10c8284bd6194db0a0410e96ebe6b600d4e45d41aa13b8da8d19942da962428f",
+        "mode": "100644"
+      },
+      {
+        "path": "deployments/egress/network-rbac.yaml",
+        "sha256": "5fc014994af70038cf7a01a38dd590f8ca8abdc7f44dc049ad54c13f7d44fd75",
+        "mode": "100644"
+      },
+      {
+        "path": "go.mod",
+        "sha256": "f83978e1b1ccc77e8b4a6486ad2e6b70282a8b72d961afffcf801944b4c3c6c5",
+        "mode": "100644"
+      },
+      {
+        "path": "go.sum",
+        "sha256": "d8dc69b3724b6350175d103f86a19aeae6077df83ee3f918a9c8fbb132e33138",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/biz/attachment.go",
+        "sha256": "ddf56417db09388fe1376b1cfcb7dc89bfc7e4f0497cf632af724f90d8d0978c",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/biz/attachment_worker.go",
+        "sha256": "a30da0aa157a24104133b05248abd395efbf79aa02054f104dc8000eeeee6636",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/biz/doc.go",
+        "sha256": "90dc96bab69aec3bfb1144593f2ee18d0600ba2522179f970e2ba6e6c27383eb",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/biz/egress.go",
+        "sha256": "bf25b5ff41852c4a285409d4665e4a5411d8a6189750cefda2b30566411dc78b",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/biz/egress_test.go",
+        "sha256": "449fe6b752b2570909b329e38afc0719b6ad0dc06256e5f67da81a60465e88e7",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/biz/egress_worker.go",
+        "sha256": "11f4df1bfc3421ae6c36360c07f05dfc2d76b3f713eb989784812e06aac594c7",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/biz/list.go",
+        "sha256": "c95e1a6d10ad5d16f5256ef50a56945e6e8f0131117739dac1feea1f0ec872f1",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/biz/network.go",
+        "sha256": "c1854dc9fa17b3d7dab19947826f797af2133e266d030db25fa09c7286bb7c34",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/biz/observation.go",
+        "sha256": "91e4edc4ceaba1c234aa37c5fe6ff887e027f825e68058f38737601860768538",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/biz/platform_intranet.go",
+        "sha256": "070f85ba4e8fe6f1a4ab756ce1a642663a503abb6fd5d4ccc22c84d39360f626",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/biz/platform_intranet_test.go",
+        "sha256": "a1825762368e14fd217d2a0426de80b87017ba9574219a15ad547c8e2031c0f7",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/biz/subnet.go",
+        "sha256": "923b715f5a0e972e30252050f7cb574dcb3cbb7610fce05bb482db618911c4c4",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/biz/subnet_test.go",
+        "sha256": "bdebe0a83967aceb9cead402898eb87475cf0da7f79097639e6e9f8322b99ecb",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/biz/vpc.go",
+        "sha256": "e8ab2448b5dbe6347ba54f8d18dd0f139277675507d0afece55e79e49822dc7e",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/biz/vpc_test.go",
+        "sha256": "896ee535d48572b6aa5cadf1525a2394c9007b6db8c5dfbfb4ab74b19ceb3bcb",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/biz/worker.go",
+        "sha256": "e82fa85e0c6aa7aa355e0c1345b6b2c5566351b9b52a9253177a33b2cb1c36ef",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/conf/v1/conf.pb.go",
+        "sha256": "f9baca3ad1d2630cc11ebf398072bee7f3b442f70938fa4339c331927c6104f5",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/conf/v1/conf.proto",
+        "sha256": "3d138f0408021aa75a9e6bfa8dbafda137de165ee1e9c0293844759de55debaa",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/conf/v1/validate.go",
+        "sha256": "76500c01b00e9306dddeb22e40f2b260a48b0c54a9e9b6b43dc77dcf54457bc8",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/conf/v1/validate_test.go",
+        "sha256": "d243df7df1c047ecd9fcc4d4a494daea893addbe76f60233e93211c4256f4530",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/attachment.go",
+        "sha256": "4718aabc94a0110005d96a31c9719acd285d59cc287d71bc541146cf24722d4d",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/attachment_integration_test.go",
+        "sha256": "d87175d663f6a0132784f0e00b9b4c6edec503fa511bc550bd7913842fbca30a",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/attachment_worker.go",
+        "sha256": "525e079d19003002dbbcd6e4fffc491fd1c4c5e4673325b170a403865a8cdd22",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/base_backfill.go",
+        "sha256": "66224551542f2a0b587bb76cf4d8a2f9348ce222968e07edda41d4c3207e21da",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/base_backfill_integration_test.go",
+        "sha256": "f8f58d57120bcc0a20a77c3bd8ca8e4bbcfd807461f5a40369ece0fc5df20d98",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/base_concurrency_integration_test.go",
+        "sha256": "c0bc44459676ab74f9b3997d322c9a558033fa1f021450fcdf6d06c89f018b90",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/base_connectivity.go",
+        "sha256": "343311584e1c027eba5f1d1855ac5da65e58b09dfc5d0e8c1429bb94ac142091",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/base_connectivity_integration_test.go",
+        "sha256": "323bdc769d1502c96a02f120d703b42bf8c0be7d8131aec38977cb54bc9d1aea",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/base_process_integration_test.go",
+        "sha256": "23e2fd9f8ca5b23e3c77b39f2317bdbfdf710a2bc1e7dabfbbaf449548a8596b",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/base_schema_integration_test.go",
+        "sha256": "771e2f93532dc422c888f9173c722f0789c8b87a5df227be516da0a87a4a0869",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/doc.go",
+        "sha256": "50978525ad3fa635c857f9b62af37e5898ab9ff02e847654eb1b831d236d74fa",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/egress.go",
+        "sha256": "56fee312fc7a15ba3923fb6e4c0eb9672fc28e942496718d2787a12636d87441",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/egress_device_integration_test.go",
+        "sha256": "d4f8d9ec383a807ee68eb0ce6ca21c406c74e2e180c1e5452e046332e03a2f4b",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/egress_grpc_integration_test.go",
+        "sha256": "7c8cb1495a954b055801e738977cc7228f7f9c480a8f6f2fcfd612e5f1c5deb9",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/egress_integration_test.go",
+        "sha256": "1479be20d15ecda0eb9ae076374324aeb8c5cbb513fad09385936cab0399492c",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/egress_kc_integration_test.go",
+        "sha256": "5c2881c83791f317d4c5aa05f56b2c53d534bd042ff68ab6c4c9c28994d13f50",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/egress_process_integration_test.go",
+        "sha256": "64cd1d8f3a1d3aded9be23b68b0d8714e22754db82890011d4e88763b6d32697",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/egress_public_integration_test.go",
+        "sha256": "0bbe22d660e82a7b1ac10dbb786c2754fc0010a73a44d1663275a14d2e6489ef",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/faults_integration_test.go",
+        "sha256": "17c27ff4f2c6d2b268162e25081d13a4552b32dc316b5d02ff32c3122c3d649b",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/grpc_integration_test.go",
+        "sha256": "9d7c92237ba53053c8de0e7b35e931a739eeb0cac5ba269ff9230d27bd178df1",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/instance_consumer.go",
+        "sha256": "c17e209e37f5eb081a005238caa22eb58f0be638361318b3d315d4550b8fdeda",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/kc.go",
+        "sha256": "2fb7e8eeb3a572fd22736224505b505acb2afecbc405ecef3bee6dc5d461d065",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/kc_attachment.go",
+        "sha256": "a8596f00374e760c6ab913b7c4d901e2664b76b6c13e190c887e1ea109d7a8c1",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/kc_egress.go",
+        "sha256": "cd49517721b5f09d67f83add7b847721ea1bec6791f58e233c186faf375d541e",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/kc_egress_test.go",
+        "sha256": "3cb1c70e2e3d28dc7a3c52fdc8e04f8323df7143cfeb2d1f7088e06ff7552657",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/kc_index.go",
+        "sha256": "5acd918f56bf6d5f8aed4e0eb9e763867972a1f465492631c8e395063d611d26",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/kc_index_test.go",
+        "sha256": "a8bfb7d28e0ea4dc9badba732f257f958d0d928207a8fcd56a06435a61916d3f",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/kc_integration_test.go",
+        "sha256": "5f4cb636a70dfb96a352434462efc6b3c2482cfd3ae7868d72c3361fe2fa5006",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/kc_intranet.go",
+        "sha256": "7134d9a4ea1ebaa6b104fd906c2fadf84bbd65e893e84465e45fbe2991974990",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/kc_intranet_test.go",
+        "sha256": "c98bd996cc160a6dc7f285011df79797c037c30ce36a72b04f33fde387478165",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/kc_metrics.go",
+        "sha256": "f56031c4ad3cbf23d02006c438843c361ed827ceaf2b26d64a53d23e78fbfc3c",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/kc_node_facts.go",
+        "sha256": "294da03c09a34e47608740d111c6569019c9cbfa1a334c68a78fd07e5c575690",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/kc_observation.go",
+        "sha256": "471aca21758a81eb4cac24a4999b7c3b3f5ed3b52c52e45bee2f4365380c7e67",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/kc_observation_integration_test.go",
+        "sha256": "79d3801029553ff45229e018382d41bdd0f951123b8c1eb818d1f74431395c6a",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/kc_observed_provider.go",
+        "sha256": "8e59b446b634c493647b5aa0e8c03d74f7a616752b201342b46d72cceff9d6b5",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/migrate.go",
+        "sha256": "74817d2becc9dc23b4f8304b7a7b13547e534e6535027d8a21787dfcc780f310",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/net05a_capacity_current_test.go",
+        "sha256": "971bf0a9fa39e479c31fc3fdf304e13bb2977a9932315e726dc436b9d17f1036",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/net05a_capacity_test.go",
+        "sha256": "54f38877afed6fd1f32bc8265b37969266ef073652bb6a2d0ec451323e7626e4",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/node_facts_collector.go",
+        "sha256": "74629c99ea9c1aa2027902931e703645abfd38f2700427ef33c576b38b44fbfa",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/observation.go",
+        "sha256": "5495da7e3f5006a6dcb83cf959f65105b63227f5cbb1b20524469765008d9138",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/observation_integration_test.go",
+        "sha256": "7b35065e817ff89f8e0f57c786a694daf1bf2d5b5fd96789f19aecebe93f24bf",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/observation_telemetry.go",
+        "sha256": "258c4b381699b1cf7b3cc00a904171c1da091fbd42acdb93cb98c06dc069dd73",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/observation_upgrade_integration_test.go",
+        "sha256": "76a8f19808e0564c03b0297dc5fae5eeab83c06e2d2e18859567c49295d3e273",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/platform.go",
+        "sha256": "e5cab9981d6b40350616a94977c8d349dd390b6253a13fa3ad4fa48720299a23",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/platform_capabilities.go",
+        "sha256": "fa7aa5cafc8cdc3abaa76576c74cc134c0b1ff4eddbad724ad951fe5eb63b4f4",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/platform_intranet_integration_test.go",
+        "sha256": "3c749973d1fff0a01f75aaec88b6c6d308fd2a4f48447e3e24f4036121860760",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/platform_intranet_kc_integration_test.go",
+        "sha256": "33f8fa475202a15d2a323d651862ff04ffd30c2cb9701bb42b4c27b6ae6e6531",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/platform_worker.go",
+        "sha256": "91d4b2273ff2e56a6cc2552e8fe7936c7604b5ff8cab25df519374a932350125",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/postgres.go",
+        "sha256": "bc87d9cb9c43d4e6f261a18265dbae9f78811a89bd51bcf067d8a900d7236183",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/postgres_integration_test.go",
+        "sha256": "f27972c130d530c8a7b71651c1a37a58779d1708073d6a3033cf0de792fc6d71",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/process_integration_test.go",
+        "sha256": "d7dd3c5dacac0b66c128610bd3e1132777a08db8769bb01dfec7ea822357b963",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/provider_faults_integration_test.go",
+        "sha256": "cd91a99fcf2fe6e971052db418bfbd51f3952fbf07cf055d597f9ae8d4ebe237",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/queries/attachments.sql",
+        "sha256": "c1094004c94f565e09f1bb8fe25ccda8f5c8f387550aa2200d2304221cad7b0b",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/queries/base_backfill.sql",
+        "sha256": "3f82c9088459b4e9e4ba4a5b9496983bcc02c60715b8a27986b07e8676c1ed3a",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/queries/base_connectivity.sql",
+        "sha256": "f581b85d5f67d23d75b5a38c717d1bd19a7a191aa4478e5e02e2443c73256021",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/queries/egress.sql",
+        "sha256": "7ea726d95c32a1fa70ea10e808a1b2b7a4fba5f0ee16c44c06743974f89e2f17",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/queries/observation.sql",
+        "sha256": "eaf9a91011e465e1711787adfec3ed547cd3df753bd4c66cbe33054486d8df4c",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/queries/platform.sql",
+        "sha256": "ebd8e4583264d2764be9c9710a920338900cd9714c37d26863ec955fa1d66095",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/queries/subnets.sql",
+        "sha256": "d5f4dab9726c64ba04537edc719f8e8974a731491831a629ed4195b7fb45f3c7",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/queries/vpcs.sql",
+        "sha256": "cf04a2784f9d284219c7db3ef5a72300fa8830812dea0f76294971f43f10e15c",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/queries/worker.sql",
+        "sha256": "749da08f7fb98c3eda8512281f55a799c56aa22775d140eaecbfd3089e70b261",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/resource_work.go",
+        "sha256": "66100a79ca2a8ff4fc0c151002556c2b40c3f81dc50d03abf69d6cca5aabe0a9",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/resource_work_net05_integration_test.go",
+        "sha256": "669aebb59f1721679bbb8f83f695d082dbc7b9c5fbac722b3b614ae19e68ca4e",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/sqlcgen/attachments.sql.go",
+        "sha256": "bf8486312e3149faca92e7d90b23e3830c66d78660fae72147df9047f2743760",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/sqlcgen/base_backfill.sql.go",
+        "sha256": "c30c37929066465da725ce9b08d41ebefbfcccd846bbda52ab185e85b56a8c32",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/sqlcgen/base_connectivity.sql.go",
+        "sha256": "13af9bf607a2d3b156b1303c9465d9b796fb07f98ce6a0ccb9c58f09f6688559",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/sqlcgen/db.go",
+        "sha256": "c40f70c9870c43ddc88f743ec63627bc9af2d57fab48fdb0c055981d090b0cf8",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/sqlcgen/egress.sql.go",
+        "sha256": "0ac9add73ce1267e511a355b5cb6201535ea42372b1d01f36d71db34fd74a521",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/sqlcgen/models.go",
+        "sha256": "f9d506422f0732fc78475c023178532572a2252833d1482d52912857cbb1e8d7",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/sqlcgen/observation.sql.go",
+        "sha256": "572a191b9d17557b05fe813c6de6b06f3ba059a7dfe4f957aa47c25704b2a9ba",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/sqlcgen/platform.sql.go",
+        "sha256": "542ce33db4c35fdafb942a2e33dcabb36f59e79e78959e3a900d7ade7a3349e4",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/sqlcgen/subnets.sql.go",
+        "sha256": "214fdbccfe36aa74b3228020df07a0e1efac122511d2234f01a175e1d146fe2a",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/sqlcgen/vpcs.sql.go",
+        "sha256": "1e2efc199076aa92cfd74ce7bd9a2c2db23f98cc587951727472b16265e67dd2",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/sqlcgen/worker.sql.go",
+        "sha256": "3f3c8049b202cd75fea1c955e94deabc9e181f9ea4384c51e56e42fa06f08b43",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/subnet.go",
+        "sha256": "605775464f8ac348ffffdbb96ef910f0c0223ff3a141138e8b0ba1d306dc6a89",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/subnet_integration_test.go",
+        "sha256": "e0b8bea0e3acb420e712a4c79412f4033eb703dad26bdb2c185b3d2498f4246e",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/subnet_kc_integration_test.go",
+        "sha256": "de1f354bbaf5c4874dc83800861202843047509320e4309dde16577c9e9ed073",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/subnet_process_integration_test.go",
+        "sha256": "61174fef4fac27de2108dd35141bd33f304180b6d58ef5b7bca4a20451138ebe",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/subnet_upgrade_integration_test.go",
+        "sha256": "1ef374f4832f1619df77586eaf7932ce1c5cb654f8e26e2923718fb308c3ef31",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/worker.go",
+        "sha256": "53e9497fd250f51a1b6f99ae4e463816f66567989d9caeb0c5d8dc38b91ce1a8",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/data/worker_integration_test.go",
+        "sha256": "806c277ebc8e159812e549142f54cb509d2ec4212cfe6dda9d6b83381897093d",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/server/admin.go",
+        "sha256": "0746d987a940b5ef83bfef756b79143cdfb42143f1104effdb78d90bfacd78fc",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/server/admin_test.go",
+        "sha256": "979c2932f4909524b44658bdb25e28d46b85425fb6ee16db75148c308929c5ed",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/server/grpc.go",
+        "sha256": "738d9935e358a52aa80ff96db1625b166e7600f8af88e9e15b099b07239f0e8e",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/server/health.go",
+        "sha256": "7a861fa8ceb20fef5e7f5b872b859eb6d07e7d05b4c2f8b50af1a8c59caecb11",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/server/observability.go",
+        "sha256": "a6f129a84ff3c0ceed60fb008482f6e3cd72d5a42d4c1e5cc0cfe88b255fd36f",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/server/observation.go",
+        "sha256": "a8c25b9f2b9aa70def01f6794dd8eb8c6f7c9d54a3ab42eab54de77f3a7f8187",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/server/readiness.go",
+        "sha256": "fdf40b6c4f438e7b40e40b5b1f1d0d55187240f19fdedddea1219f42e4971ba0",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/server/server.go",
+        "sha256": "b28ebf0a522c2ba3265e6d9a6317ea8a08069268eb73a36950913c6bde7a70c5",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/server/worker.go",
+        "sha256": "ab2f944bca097fdaa9cfb2dfc8f3d59cdb47102302d4cd0d4ba961b250e048f0",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/server/worker_test.go",
+        "sha256": "38c7976d0e2773010ce118399b7c102a312eb06becd1b432b4522af4f24fda39",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/service/attachment.go",
+        "sha256": "1c01211903096e61b3d82775834564b5a644ee8411a3e38ea37e80343100a484",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/service/doc.go",
+        "sha256": "e55ae12ceb943c6be84e31540c839d606ffd319bfdf9ab92312ae2066137f5f7",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/service/egress.go",
+        "sha256": "2ec2779ec7d3372bec6c99e8b0d4edeb17b858e50840eeb8c02bad11cd4c1d6e",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/service/egress_public_test.go",
+        "sha256": "f8ab6a4a86c8494378691f401e78458e2340ab3a91f0f77bb985483c67f26a70",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/service/network.go",
+        "sha256": "675ca1453a018f742fc46e1d780b54b7c493b5224955143ced67377cf659b0d5",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/service/platform_intranet.go",
+        "sha256": "2dc375439d470c778236813af5de85c94884e548bdcaf8852cf13d1dd4e1de2c",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/service/platform_operation_test.go",
+        "sha256": "f4b6b6c9a54cbbfdcd8d1bd3baeed283bb6c98afed41dc9d35051a3be462c19d",
+        "mode": "100644"
+      },
+      {
+        "path": "internal/service/subnet.go",
+        "sha256": "6b412d89e00264be67901c9855b9c5527f291ab00e3e3ff6af3bbdf1573d548c",
+        "mode": "100644"
+      },
+      {
+        "path": "migrations/0001_vpc.sql",
+        "sha256": "c9c99dd3cfba59f5a6fcf8025e7d0d433a8bd322df1088c58912a44d1e32736a",
+        "mode": "100644"
+      },
+      {
+        "path": "migrations/0002_subnet.sql",
+        "sha256": "ab5dfbc25cc9f2323d2fbee2dbb109d28115597a6f8322e1242f4484dc6a5fdb",
+        "mode": "100644"
+      },
+      {
+        "path": "migrations/0003_attachment.sql",
+        "sha256": "9617a45668d6f0a4c0590f07f36889acbd56c4b966dcd0c9f2b3d1f093ee69dd",
+        "mode": "100644"
+      },
+      {
+        "path": "migrations/0004_observation.sql",
+        "sha256": "6ff6142ba197f3a8e62e6433daf2deb672c3f125d634d4f63441f3b11e9c58b6",
+        "mode": "100644"
+      },
+      {
+        "path": "migrations/0005_vpc_egress.sql",
+        "sha256": "03391a468313dbf64050840dda02a2d9da4845fdf864364bc34aade4069818e6",
+        "mode": "100644"
+      },
+      {
+        "path": "migrations/0006_vpc_base_connectivity.sql",
+        "sha256": "bf8918f6a357850bd54f3d1b4e6120d7cfcb9b9be76a5e2825436bd19be3ef13",
+        "mode": "100644"
+      },
+      {
+        "path": "migrations/embed.go",
+        "sha256": "7a3dfefa1f2cdf9678a5bb1a041ae8f46bb6ad869845c336146b72b6dc18f592",
+        "mode": "100644"
+      },
+      {
+        "path": "scripts/check-net0204-compatibility",
+        "sha256": "02fc3d08d01aa8d034b05820985534c6b4587f6d50c7bdb72e5fef88c303988d",
+        "mode": "100644"
+      },
+      {
+        "path": "scripts/check-tenant-mutations",
+        "sha256": "86001dd289a752f921dd3688aa1d5b89bde3d0f0d01fa7ec4f3e39cc8fd5345b",
+        "mode": "100755"
+      },
+      {
+        "path": "scripts/check-vpc-base-contracts",
+        "sha256": "65d71b1dcafc30a4153ee467ce32be0582002bab14f557930033d1fc3c6c8b8f",
+        "mode": "100755"
+      },
+      {
+        "path": "scripts/generate-sbom",
+        "sha256": "5b42c7984a0a42c2ecef6da9af593c5a7472f13d07dc3dd0af36f1009537fac0",
+        "mode": "100755"
+      },
+      {
+        "path": "scripts/integration",
+        "sha256": "b2cb9e3b91105f059519fd9170fe71cd6526bddb4dce313a1d1db10dde01ba8e",
+        "mode": "100755"
+      },
+      {
+        "path": "scripts/integration-pair",
+        "sha256": "a205befc6eadd59a0ab256ea824de5b21fe6ea17119b2427bf33709dc8bb9273",
+        "mode": "100755"
+      },
+      {
+        "path": "scripts/net05-api.py",
+        "sha256": "3034bf0255d1b4d3632a9be6bec4f4a7a7802bcc672c5739748929c455850efa",
+        "mode": "100644"
+      },
+      {
+        "path": "scripts/net05-build-faults.py",
+        "sha256": "3a4b97479b041da645a08d71ac0dfbb44d186b4aab73726727c92a0474ec8280",
+        "mode": "100644"
+      },
+      {
+        "path": "scripts/net05-cleanup.py",
+        "sha256": "0a1fbceb44bc5a3c9db90f615534da600341060e681747076d89ce0456627a83",
+        "mode": "100644"
+      },
+      {
+        "path": "scripts/net05-export.py",
+        "sha256": "cd96d11bfc15b261c1454e424260251c5e65b89d9f718e52922b6c4af1b0408d",
+        "mode": "100644"
+      },
+      {
+        "path": "scripts/net05-faults.py",
+        "sha256": "6a39e57f8fb65e49fa3e8e48bf9d78e5a5531819d0cb3adc805d0c5ed7c0a298",
+        "mode": "100644"
+      },
+      {
+        "path": "scripts/net05-gates.py",
+        "sha256": "60ad89b0c8f45642cad4c0e16f8b5397d0759aabc880d41d4c21c97c6390621a",
+        "mode": "100644"
+      },
+      {
+        "path": "scripts/net05-kind.py",
+        "sha256": "0ff3b60b0a4e0549cde830ef01a013df5058dc076cebd61547c5e29e2d494159",
+        "mode": "100644"
+      },
+      {
+        "path": "scripts/net05-preflight.py",
+        "sha256": "095edc31025cf9a7da6985c769415bf96f296da1383db6eb736fd2d84131b430",
+        "mode": "100644"
+      },
+      {
+        "path": "scripts/net05-remote",
+        "sha256": "c501fd6e6e5604daec1aa6eb53630bf94f62e3912d9f965d29035e30f2945d51",
+        "mode": "100755"
+      },
+      {
+        "path": "scripts/net05a-adapt.py",
+        "sha256": "dbc4e5f7f3149a9dfe1f30c6836acded1dc1d5e25a7c5de742b63200b4387d78",
+        "mode": "100644"
+      },
+      {
+        "path": "scripts/net05a-api.py",
+        "sha256": "8933e0af4cafc7f5b35015024536e33d85e39785aa1ce144f67dc76f74efc799",
+        "mode": "100755"
+      },
+      {
+        "path": "scripts/net05a-build-faults.py",
+        "sha256": "c8e36000cea30bafc0e1ae249d1693f0c575d04de02cfabc8eb25df28936b2a2",
+        "mode": "100755"
+      },
+      {
+        "path": "scripts/net05a-capacity",
+        "sha256": "458f046aa8cc8e9ccb483164200c8cae7b10fc7ccbfecad72b15f8501841f239",
+        "mode": "100755"
+      },
+      {
+        "path": "scripts/net05a-capacity-report",
+        "sha256": "2ee88835083b03dbb0be43fa650d9c67e9ae9be339c7cdaa876bfb9a648368e5",
+        "mode": "100755"
+      },
+      {
+        "path": "scripts/net05a-cleanup.py",
+        "sha256": "f07ccd2ba6e4f007c766c9708930b96c5f5588402197f5fbdd54a84aacaeaab1",
+        "mode": "100755"
+      },
+      {
+        "path": "scripts/net05a-collect",
+        "sha256": "e1dc14c410db3853e875812f9edff0f484b84413521cde89f6e095a0caefd434",
+        "mode": "100755"
+      },
+      {
+        "path": "scripts/net05a-export.py",
+        "sha256": "3454db04e824c8603b750adaf9d5bfb8e87178943322b38072f3ed03ee9f598d",
+        "mode": "100755"
+      },
+      {
+        "path": "scripts/net05a-faults.py",
+        "sha256": "62c17a995bb1eb652db0d7ed4ca5bd8aff82b459fb1899279d14ed9010bd1021",
+        "mode": "100755"
+      },
+      {
+        "path": "scripts/net05a-gates",
+        "sha256": "03f0f5442c844476675386e9b07d1bec0ab440b98da8bb19673a7971dd948932",
+        "mode": "100755"
+      },
+      {
+        "path": "scripts/net05a-gates.py",
+        "sha256": "f6e51c8f36bbaa8d5f963531d5c49af6c4a16233865f1b4dac4dd9c048c4f557",
+        "mode": "100755"
+      },
+      {
+        "path": "scripts/net05a-kind.py",
+        "sha256": "e756baea130c4f5beb19f3ec708484f043a9bff5b321937e9df85a3d0b13e5c9",
+        "mode": "100755"
+      },
+      {
+        "path": "scripts/net05a-live.py",
+        "sha256": "e21833c733feb51c8178e3d80e001378cb16370ef7fe65bd74bde902306712ad",
+        "mode": "100755"
+      },
+      {
+        "path": "scripts/net05a-pair",
+        "sha256": "b9a624b421a90880e7e18db81912c149e8bfd74b8192fc4840c84421a449f05f",
+        "mode": "100755"
+      },
+      {
+        "path": "scripts/net05a-remote",
+        "sha256": "09aa95c9907e15520d2b2f301070fc7a088f213c7aeaf73dcd2097adb9afd0be",
+        "mode": "100755"
+      },
+      {
+        "path": "scripts/net05a-resource-guard",
+        "sha256": "31745d175c8d93df0f5b60458b25450d54f88d5353e75c624260b44d24f387d0",
+        "mode": "100755"
+      },
+      {
+        "path": "scripts/net05a-return-generated",
+        "sha256": "82ecec63cd8a052921f24a6895e3722efe00af234959dab845e1df252688a1ec",
+        "mode": "100755"
+      },
+      {
+        "path": "scripts/net05a-stage",
+        "sha256": "ba105f3d7a3188aad2f05f3fa6076a94d3f1602f1df967fe6276e733afecc690",
+        "mode": "100755"
+      },
+      {
+        "path": "scripts/remote-pair",
+        "sha256": "9d5516818f738c52757e54c61bc92c20e893c791534d446e4080632828a3343d",
+        "mode": "100755"
+      },
+      {
+        "path": "scripts/remote-run",
+        "sha256": "f23e6b5c5493c0bbdfe5f7f412ac837f5d341adb74530a253e56accf5d5f2671",
+        "mode": "100755"
+      },
+      {
+        "path": "scripts/render-node-facts",
+        "sha256": "8dfcd9237d38995f6a275b665b86e94db9266927c868fbbecde4847dc6fb94b3",
+        "mode": "100755"
+      },
+      {
+        "path": "scripts/return-network-generated",
+        "sha256": "07f8d4e30ebb3f6dd758653f7cea6bf904f5a51c043d635ec771ed7ad5a0f80b",
+        "mode": "100755"
+      },
+      {
+        "path": "scripts/return-pair-generated",
+        "sha256": "f57246b9eceb6e436b850d490ea785f82a555b66b37600172d57f2c43988c550",
+        "mode": "100755"
+      },
+      {
+        "path": "scripts/snat-remote",
+        "sha256": "4f0f58cde8e984db986ee6b995115e1b39d866a06298879c64ae7c5c654df0c7",
+        "mode": "100755"
+      },
+      {
+        "path": "scripts/snat-return-generated",
+        "sha256": "36a6fa4fdccfc97ce62c2b9755ffafc75debf2566c1c77c210e2977b5027166a",
+        "mode": "100755"
+      },
+      {
+        "path": "scripts/test-net0204-wire",
+        "sha256": "bfe6f5bc1e52623b38540058b90e2c5d671ec46182944ac64499db4a47e6f38c",
+        "mode": "100755"
+      },
+      {
+        "path": "scripts/verify-boundaries",
+        "sha256": "0cc63b116be74dd4edfe0980b485e0a2e56d077060708e0c5ff6050992ade7d5",
+        "mode": "100755"
+      },
+      {
+        "path": "scripts/verify-source",
+        "sha256": "e86c4c98eb29d7e699a9383e16c6f88cb8b93843b25ec0518a0bee825101deba",
+        "mode": "100755"
+      },
+      {
+        "path": "scripts/verify-supply-chain",
+        "sha256": "63b22190a52eab5ef7d2f87fc18d48a69ed439a21901553dc23a7e913f0f0ec1",
+        "mode": "100755"
+      },
+      {
+        "path": "sqlc.yaml",
+        "sha256": "f33fad80eb771e942c4d21426b9957ce7a68da6c81ea6dcb5f05e54241a17428",
+        "mode": "100644"
+      },
+      {
+        "path": "tests/net05/Dockerfile",
+        "sha256": "33288678038fb267831b37d44055742838429cdc04a7bb0735763364136e6092",
+        "mode": "100644"
+      },
+      {
+        "path": "tests/net05/hook.txt",
+        "sha256": "d90eeff793c90e200a972e8c9e3f43506d64606d6b908015c4fa85daacc100ee",
+        "mode": "100644"
+      },
+      {
+        "path": "tests/net05/kube-relay.py",
+        "sha256": "9f4dc003f232d28057b3b7d5910e99dc365c3abbaefbc7529cab171b08f5589f",
+        "mode": "100644"
+      },
+      {
+        "path": "tests/net05/probe.go",
+        "sha256": "fbbdc2e8a4bf4841e58699ea8b7b20822ea5be2907bcccde478c096fafad8439",
+        "mode": "100644"
+      },
+      {
+        "path": "tests/net05/relay/main.go",
+        "sha256": "db5e6c5e3036e70a504468b963b9761bab3c8c1cd112a8ff5db7dc35825aed00",
+        "mode": "100644"
+      },
+      {
+        "path": "tests/net05/rpc/main.go",
+        "sha256": "7195b254af32f9c66050e0d6e1c0a75671368745dcea2a3cc24ae7b6d82c3f81",
+        "mode": "100644"
+      },
+      {
+        "path": "tests/net05a/Network.Dockerfile",
+        "sha256": "79adc18c943e9f9928926491ac68ded83b64f651de3a2e8b82ebd6d0a0e85d17",
+        "mode": "100644"
+      },
+      {
+        "path": "tests/net05a/capacity-baseline.txt",
+        "sha256": "2a662469671324b7597ceb3180e1f2480509fa417da904ee640166227720c80e",
+        "mode": "100644"
+      },
+      {
+        "path": "tests/net05a/kube-relay.py",
+        "sha256": "fe50196d80ac873927bbe8b73d3f0fbafd4c0dd336a342fa4e00775534fa62d1",
+        "mode": "100644"
+      },
+      {
+        "path": "tests/net05a/placement.py",
+        "sha256": "710e8870e87d50bfd32050d8f970119335fbb711eafe9b827dd59a398295d542",
+        "mode": "100644"
+      },
+      {
+        "path": "tests/net05a/provider/server.go",
+        "sha256": "2f6073af0893e00f00fb3d44a5db9fe93d022ad80da550d01710ab6d0034a97e",
+        "mode": "100644"
+      },
+      {
+        "path": "tests/net05a/provider/server_test.go",
+        "sha256": "2ac37afa9793310daae865fa3ef9d43a58774e529ca757d5d2690eef62bdcb2e",
+        "mode": "100644"
+      },
+      {
+        "path": "tests/runtime/runtime_test.go",
+        "sha256": "64c337e5eaf8aefe384316ab7a2b003e8c49bb81f6f566716a60956eeda39de8",
+        "mode": "100644"
+      },
+      {
+        "path": "tests/testenv/kc.go",
+        "sha256": "5eb1a89f2f83242f397cb948544c0526a4fec55ef040a172dbdd2f07d7ccdc5a",
+        "mode": "100644"
+      },
+      {
+        "path": "tests/testenv/kc_egress.go",
+        "sha256": "237ca090dc90647de41a399a6bbca09d46d6825b03f7e44cc298c77b91e64dda",
+        "mode": "100644"
+      },
+      {
+        "path": "tests/testenv/kubeconfig.go",
+        "sha256": "ee97cf9efba643c7fc1980479dff213c6fc6884c1b6a0cb3234d0acadf7ca6c0",
+        "mode": "100644"
+      },
+      {
+        "path": "tests/testenv/postgres.go",
+        "sha256": "bc6a46e5e777ff37317f11861c38d65febfb8c1e19c185e54b404798631ed0ba",
+        "mode": "100644"
+      },
+      {
+        "path": "tests/testenv/secret.go",
+        "sha256": "58db3dce5dbecbbe2e9a7770f9147dc2514c4722e568a88574036e9a14fe58d0",
+        "mode": "100644"
+      }
+    ]
+  },
+  "post_gate_scope": "Only final documentation/evidence is added after this snapshot. Runtime, tests, schema, contracts, dependencies, configuration and supporting scripts above exactly match final local source.",
+  "matrix": [
+    {
+      "id": "U-V01",
+      "database": "pass",
+      "controlled_provider": "pass",
+      "process_recovery": "pass",
+      "real_data_plane": "not_verified",
+      "scope": "Only this batch related assertions. LB product acceptance/lifecycle, actual network traffic and live rollout are excluded.",
+      "tests": [
+        "TestBaseAdmissionRequiresDefaultWithoutLeavingAnAcceptedIntent",
+        "TestIntranetPlatformScopesDefaultsAllocationAndIndependentCapabilities",
+        "TestBaseConnectivityActualAdapterLifecycleObservationAndPureReads"
+      ]
+    },
+    {
+      "id": "U-V02",
+      "database": "pass",
+      "controlled_provider": "pass",
+      "process_recovery": "pass",
+      "real_data_plane": "not_verified",
+      "scope": "Only this batch related assertions. LB product acceptance/lifecycle, actual network traffic and live rollout are excluded.",
+      "tests": [
+        "TestBaseConnectivityServiceProcessesRecoverEveryDurableBoundary",
+        "TestBaseConnectivityInitialSnatPendingKeepsCreateOpenThenWorkerRecovers",
+        "TestBaseConcurrentWorkersDoNotAllocateTwiceOrLoseDeletionFences"
+      ]
+    },
+    {
+      "id": "U-V03",
+      "database": "pass",
+      "controlled_provider": "pass",
+      "process_recovery": "not_verified",
+      "real_data_plane": "not_verified",
+      "scope": "Only this batch related assertions. LB product acceptance/lifecycle, actual network traffic and live rollout are excluded.",
+      "tests": [
+        "TestBaseSchemaOneIntranetOnePublicAndSamePurposeContention",
+        "TestBaseSchemaIntranetPurposeContention",
+        "TestPublicTenantInterfacesHideSystemResourcesAndPreserveBaseIdentity"
+      ]
+    },
+    {
+      "id": "U-V04",
+      "database": "pass",
+      "controlled_provider": "pass",
+      "process_recovery": "not_verified",
+      "real_data_plane": "not_verified",
+      "scope": "Only this batch related assertions. LB product acceptance/lifecycle, actual network traffic and live rollout are excluded.",
+      "tests": [
+        "TestBaseSchemaSnatAndLBClaimContentionBothWinnerOrders",
+        "TestBaseSchemaTypedTenantPlacementAndVIPConstraints",
+        "TestEIPUnifiedClaimProjectionForReservedAndBoundLB"
+      ]
+    },
+    {
+      "id": "U-V05",
+      "database": "pass",
+      "controlled_provider": "pass",
+      "process_recovery": "pass",
+      "real_data_plane": "not_verified",
+      "scope": "Only this batch related assertions. LB product acceptance/lifecycle, actual network traffic and live rollout are excluded.",
+      "tests": [
+        "TestPublicTenantInterfacesHideSystemResourcesAndPreserveBaseIdentity",
+        "TestPublicBindAndEnableRequireFreshBaseButDisableCanProceed",
+        "TestEgressServiceProcessesRecoverLostCreateDeleteAndTombstone"
+      ]
+    },
+    {
+      "id": "U-V09",
+      "database": "pass",
+      "controlled_provider": "pass",
+      "process_recovery": "pass",
+      "real_data_plane": "not_verified",
+      "scope": "Only this batch related assertions. LB product acceptance/lifecycle, actual network traffic and live rollout are excluded.",
+      "tests": [
+        "TestBaseConnectivityTerminationBeforeAnyProviderCreate",
+        "TestBaseConnectivityServiceProcessesRecoverEveryDurableBoundary",
+        "TestBaseSchemaTypedTenantPlacementAndVIPConstraints"
+      ]
+    },
+    {
+      "id": "U-V10",
+      "database": "pass",
+      "controlled_provider": "pass",
+      "process_recovery": "pass",
+      "real_data_plane": "not_verified",
+      "scope": "Only this batch related assertions. LB product acceptance/lifecycle, actual network traffic and live rollout are excluded.",
+      "tests": [
+        "TestBaseSchemaLegacyPublicUpgradePreservesDurableFactsAndReplay",
+        "TestBaseSchemaUnknownPublicProvenanceStopsWholeUpgrade",
+        "TestBaseBackfillCLIProcessRestartKeepsReviewedPlanAndSingleAdmission",
+        "TestBaseBackfillRejectsChangedProviderIdentityAndRacesDeletion",
+        "TestBaseBackfillRechecksFreshnessAfterPlatformLockWait"
+      ]
+    },
+    {
+      "id": "U-V11",
+      "database": "pass",
+      "controlled_provider": "pass",
+      "process_recovery": "pass",
+      "real_data_plane": "not_verified",
+      "scope": "Only this batch related assertions. LB product acceptance/lifecycle, actual network traffic and live rollout are excluded.",
+      "tests": [
+        "TestIntranetKCPlatformActualAdapterObservationAndRecovery",
+        "TestBaseConnectivityActualAdapterLifecycleObservationAndPureReads",
+        "TestBaseConnectivityServiceProcessesRecoverEveryDurableBoundary"
+      ]
+    }
+  ],
+  "not_verified": [
+    "real Intranet traffic",
+    "Public egress and source address",
+    "three LB data planes",
+    "LB product CRUD and Provider lifecycle",
+    "existing workload uninterrupted during actual backfill",
+    "formal database upgrade/backfill",
+    "publication/deployment",
+    "NET-U07 full card",
+    "NET-U09"
+  ]
+}

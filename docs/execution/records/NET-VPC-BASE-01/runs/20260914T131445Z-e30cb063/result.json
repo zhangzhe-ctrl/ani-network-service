@@ -1,0 +1,21 @@
+{
+  "run": "20260914T131445Z-e30cb063",
+  "result": "fail",
+  "ssh_exit": 1,
+  "remote_command_exit": 1,
+  "head": "d8835a22d905e358b7f60756d3113baa97d7c762",
+  "archive_sha256": "4832a71358484e8d87f42b9fe4398a0e487ec671b58621b54a845cc8547de838",
+  "manifest_sha256": "a5c1a042a810f28fbacc9076a9974de9335c82faab92741b848532cbc1f0d273",
+  "source_files": 1074,
+  "command": [
+    "bash",
+    "-c",
+    ".tools/bin/buf lint && .tools/bin/buf generate --template buf.gen.yaml && .tools/bin/sqlc generate && go test ./internal/biz ./internal/service ./internal/data ./cmd/ani-network-service -run \"^$\""
+  ],
+  "remote": "/home/ubuntu/workspace/ani-network-service-runs/snat-20260914T131445Z-e30cb063",
+  "local_source_archive": "/home/chabking/workspace/.worktrees/network-vpc-base-01/.work/snat-runs/20260914T131445Z-e30cb063/source.tar.gz",
+  "log_sha256": "f2ba9f0b6547d31f25c86f70c0533d5ccc78033451d06b2747aea11a88f68d7b",
+  "tool_version_lines": [],
+  "containers_created": [],
+  "containers_removed": []
+}

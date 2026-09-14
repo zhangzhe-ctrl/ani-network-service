@@ -42,6 +42,12 @@ func main() {
 	logger := newRuntimeLogger(os.Stdout)
 	log.SetDefault(logger)
 	execute := func() error {
+		if baseConnectivityAction != "" {
+			if flagNodeFacts || flagMigrate {
+				return fmt.Errorf("base connectivity, node facts and migration modes are exclusive")
+			}
+			return runBaseConnectivityCommand()
+		}
 		if flagNodeFacts {
 			if flagMigrate {
 				return fmt.Errorf("node facts and migration modes are exclusive")

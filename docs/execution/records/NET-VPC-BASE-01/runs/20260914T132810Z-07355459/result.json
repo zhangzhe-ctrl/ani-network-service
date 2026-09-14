@@ -1,0 +1,29 @@
+{
+  "run": "20260914T132810Z-07355459",
+  "result": "fail",
+  "ssh_exit": 1,
+  "remote_command_exit": 1,
+  "head": "d8835a22d905e358b7f60756d3113baa97d7c762",
+  "archive_sha256": "3488786a59f7b7cb8beee2acb384f411f234d7f1df47c0aa44e493a32bd99789",
+  "manifest_sha256": "a1bccc4f687d1e8071899146f5d50e85ebc9c63a04de31e60ce1b71124c02d30",
+  "source_files": 1086,
+  "command": [
+    "bash",
+    "-c",
+    ".tools/bin/buf generate --template buf.gen.yaml && .tools/bin/sqlc generate && scripts/integration ./internal/data -run \"Test(Base|ServiceProcessesRecoverT1)\" -timeout 5m -v"
+  ],
+  "remote": "/home/ubuntu/workspace/ani-network-service-runs/snat-20260914T132810Z-07355459",
+  "local_source_archive": "/home/chabking/workspace/.worktrees/network-vpc-base-01/.work/snat-runs/20260914T132810Z-07355459/source.tar.gz",
+  "log_sha256": "32991c13e3fe1dc870b500dd067170b4adb7b685c879da093b364eec094250c8",
+  "tool_version_lines": [
+    "go version go1.26.7 linux/amd64",
+    "1.60.0",
+    "v1.31.1"
+  ],
+  "containers_created": [
+    "9e97c2f5932883cf03d82588b0581aed7fd3a86df6fbc70f429a97fee89fb734"
+  ],
+  "containers_removed": [
+    "9e97c2f5932883cf03d82588b0581aed7fd3a86df6fbc70f429a97fee89fb734"
+  ]
+}

@@ -1,0 +1,213 @@
+syntax = "proto3";
+package network.v1;
+option go_package = "github.com/zhangzhe-ctrl/ani-network-service/api/network/v1;networkv1";
+
+import "google/protobuf/timestamp.proto";
+import "network/v1/network.proto";
+
+// NET-U00 contract reservation. NET-VPC-BASE-01 does not register this service,
+// accept LB operations, or implement LB Provider behavior. NET-U05/U06 must meet
+// their separate gates before registration. No request accepts Provider YAML,
+// namespace, cluster placement, GatewayClass, image or Kubernetes annotations.
+// target_tenant_id follows TenantEgressService's trusted-context/delegation rule;
+// it is never accepted as proof of tenant identity or authorization.
+service TenantLoadBalancerService {
+  rpc CreateLoadBalancer(CreateLoadBalancerRequest) returns (CreateLoadBalancerResponse);
+  rpc GetLoadBalancer(GetLoadBalancerRequest) returns (GetLoadBalancerResponse);
+  rpc ListLoadBalancers(ListLoadBalancersRequest) returns (ListLoadBalancersResponse);
+  rpc UpdateLoadBalancer(UpdateLoadBalancerRequest) returns (UpdateLoadBalancerResponse);
+  rpc DeleteLoadBalancer(DeleteLoadBalancerRequest) returns (DeleteLoadBalancerResponse);
+  rpc GetLoadBalancerOperation(GetLoadBalancerOperationRequest) returns (GetLoadBalancerOperationResponse);
+}
+
+enum LoadBalancerExposure {
+  LOAD_BALANCER_EXPOSURE_UNSPECIFIED = 0;
+  LOAD_BALANCER_EXPOSURE_PRIVATE = 1;
+  LOAD_BALANCER_EXPOSURE_PUBLIC = 2;
+  LOAD_BALANCER_EXPOSURE_PUBLIC_PRIVATE = 3;
+}
+enum LoadBalancerListenerProtocol {
+  LOAD_BALANCER_LISTENER_PROTOCOL_UNSPECIFIED = 0;
+  LOAD_BALANCER_LISTENER_PROTOCOL_HTTP = 1;
+}
+enum LoadBalancerAlgorithm {
+  LOAD_BALANCER_ALGORITHM_UNSPECIFIED = 0;
+  LOAD_BALANCER_ALGORITHM_ROUND_ROBIN = 1;
+}
+enum LoadBalancerHealthCheckProtocol {
+  LOAD_BALANCER_HEALTH_CHECK_PROTOCOL_UNSPECIFIED = 0;
+  LOAD_BALANCER_HEALTH_CHECK_PROTOCOL_TCP = 1;
+}
+// Configuration completion and observed traffic health are independent of the
+// resource lifecycle and operation history. UNSPECIFIED is never a ready result.
+enum LoadBalancerConfigurationState {
+  LOAD_BALANCER_CONFIGURATION_STATE_UNSPECIFIED = 0;
+  LOAD_BALANCER_CONFIGURATION_STATE_PENDING = 1;
+  LOAD_BALANCER_CONFIGURATION_STATE_APPLYING = 2;
+  LOAD_BALANCER_CONFIGURATION_STATE_CONFIGURED = 3;
+  LOAD_BALANCER_CONFIGURATION_STATE_DEGRADED = 4;
+  LOAD_BALANCER_CONFIGURATION_STATE_UNKNOWN = 5;
+}
+enum LoadBalancerDataPlaneState {
+  LOAD_BALANCER_DATA_PLANE_STATE_UNSPECIFIED = 0;
+  LOAD_BALANCER_DATA_PLANE_STATE_UNKNOWN = 1;
+  LOAD_BALANCER_DATA_PLANE_STATE_HEALTHY = 2;
+  LOAD_BALANCER_DATA_PLANE_STATE_UNHEALTHY = 3;
+}
+
+// One HTTP listener and one default Prefix("/") route. The route is fixed, not
+// user-supplied policy. Absence defaults to HTTP on 8080; an explicit port is
+// 1..65535. Once accepted, protocol and port are immutable in this release.
+message LoadBalancerListenerInput {
+  LoadBalancerListenerProtocol protocol = 1;
+  optional uint32 port = 2;
+}
+message LoadBalancerListener {
+  string id = 1;
+  LoadBalancerListenerProtocol protocol = 2;
+  uint32 port = 3;
+}
+// The backend must resolve to a current, allocated business address in this VPC
+// using Attachment plus Provider identity facts. CIDR membership alone is not
+// sufficient. ID is empty for new members; update can retain an existing member
+// ID only with the same subnet/address/port identity. An endpoint change replaces
+// the member. Network neither creates nor deletes the business workload.
+message LoadBalancerBackendInput {
+  string id = 1;
+  string subnet_id = 2;
+  string address = 3;
+  uint32 port = 4;
+  // Absent defaults to 1. Zero retains the member with no traffic weight.
+  optional uint32 weight = 5;
+}
+message LoadBalancerBackendMember {
+  string id = 1;
+  string subnet_id = 2;
+  string address = 3;
+  uint32 port = 4;
+  uint32 weight = 5;
+  string attachment_id = 6;
+  // unknown, available or unavailable, based on this member's identity facts.
+  string state = 7;
+  string reason = 8;
+  google.protobuf.Timestamp observed_at = 9;
+  bool observation_stale = 10;
+}
+// First release: TCP active health checking, defaults 5s interval, 3s timeout,
+// unhealthy threshold 3 and healthy threshold 1. Explicit values must be positive
+// and timeout_seconds must be less than interval_seconds. The algorithm is
+// RoundRobin and panicThreshold=0; neither is an arbitrary Provider policy.
+message LoadBalancerHealthCheck {
+  LoadBalancerHealthCheckProtocol protocol = 1;
+  optional uint32 interval_seconds = 2;
+  optional uint32 timeout_seconds = 3;
+  optional uint32 unhealthy_threshold = 4;
+  optional uint32 healthy_threshold = 5;
+}
+
+message LoadBalancer {
+  string id = 1;
+  string tenant_id = 2;
+  string vpc_id = 3;
+  string subnet_id = 4;
+  string name = 5;
+  string description = 6;
+  LoadBalancerExposure exposure = 7;
+  string flavor = 8;
+  string public_eip_id = 9;
+  string private_ip = 10;
+  LoadBalancerListener listener = 11;
+  repeated LoadBalancerBackendMember backends = 12;
+  LoadBalancerHealthCheck health_check = 13;
+  LoadBalancerAlgorithm algorithm = 14;
+  ResourceState state = 15;
+  string reason = 16;
+  string reason_message = 17;
+  int64 version = 18;
+  int64 desired_version = 19;
+  // Preserved during partially applied or failed updates; never copied from
+  // desired_version until the corresponding configuration is verified.
+  int64 applied_version = 20;
+  LoadBalancerConfigurationState configuration_state = 21;
+  // unknown without a suitable fresh health source. Gateway/Route/Policy
+  // Accepted, Pod Running and operation success cannot imply healthy.
+  LoadBalancerDataPlaneState data_plane_state = 22;
+  google.protobuf.Timestamp observed_at = 23;
+  bool observation_stale = 24;
+  google.protobuf.Timestamp created_at = 25;
+  google.protobuf.Timestamp updated_at = 26;
+  string last_operation_id = 27;
+  string public_address = 28;
+  // Timestamp of actual data-plane health evidence, independent of configured
+  // resources. Absent when unknown; stale evidence forces data_plane_state=unknown.
+  google.protobuf.Timestamp data_plane_observed_at = 29;
+}
+
+// Creation validates a nonempty backend set, one supported HTTP listener and
+// flavor=small. Private/public_private require a usable private_ip in subnet_id;
+// public forbids private_ip. Public/public_private require an allocated, unclaimed
+// Public EIP; private forbids public_eip_id. All three require fresh base readiness.
+// Accepted intent atomically reserves parents, VIP/EIP and stable child identities.
+// Replaying the same key and normalized intent returns the accepted snapshot;
+// a changed intent under the same key is IDEMPOTENCY_CONFLICT.
+message CreateLoadBalancerRequest {
+  string target_tenant_id = 1;
+  string name = 2;
+  string description = 3;
+  string vpc_id = 4;
+  string subnet_id = 5;
+  LoadBalancerExposure exposure = 6;
+  string flavor = 7;
+  string public_eip_id = 8;
+  string private_ip = 9;
+  LoadBalancerListenerInput listener = 10;
+  repeated LoadBalancerBackendInput backends = 11;
+  LoadBalancerHealthCheck health_check = 12;
+  string idempotency_key = 13;
+}
+// Mutations return accepted resource/operation snapshots. Acceptance is not
+// asynchronous configuration completion. GetLoadBalancerOperation polls the
+// durable result; all GET/List methods are pure reads and never repair resources.
+message CreateLoadBalancerResponse { LoadBalancer load_balancer = 1; Operation operation = 2; }
+message GetLoadBalancerRequest { string target_tenant_id = 1; string load_balancer_id = 2; }
+message GetLoadBalancerResponse { LoadBalancer load_balancer = 1; }
+message ListLoadBalancersRequest {
+  string target_tenant_id = 1;
+  string name = 2;
+  string vpc_id = 3;
+  string subnet_id = 4;
+  LoadBalancerExposure exposure = 5;
+  ResourceState state = 6;
+  int32 limit = 7;
+  string cursor = 8;
+}
+message ListLoadBalancersResponse { repeated LoadBalancer items = 1; string next_cursor = 2; }
+
+// Full replacement of mutable fields only: name, description, backend set and
+// supported health check parameters. Immutable placement/exposure/EIP/VIP/flavor/
+// listener fields are absent. expected_version is the resource version returned
+// by GET. Accepted updates retain the old applied_version until verified.
+// Idempotent replay is checked before version conflict; concurrent operations on
+// one LB are mutually exclusive and deletion closes admission to new updates.
+message UpdateLoadBalancerRequest {
+  string target_tenant_id = 1;
+  string load_balancer_id = 2;
+  int64 expected_version = 3;
+  string idempotency_key = 4;
+  string name = 5;
+  string description = 6;
+  repeated LoadBalancerBackendInput backends = 7;
+  LoadBalancerHealthCheck health_check = 8;
+}
+message UpdateLoadBalancerResponse { LoadBalancer load_balancer = 1; Operation operation = 2; }
+// Delete is idempotent by tenant/resource identity, including while deleting or
+// after completion, as with existing network deletes. Returns the same delete
+// operation. Claims and parent/VIP reservations survive unknown Provider results.
+// Completion requires actual release; it retains the independent Public EIP,
+// VPC base connectivity and business workloads.
+message DeleteLoadBalancerRequest { string target_tenant_id = 1; string load_balancer_id = 2; }
+message DeleteLoadBalancerResponse { LoadBalancer load_balancer = 1; Operation operation = 2; }
+// Only this tenant's load_balancer operations are visible, including deletes.
+// Cross-tenant or non-LB IDs return NOT_FOUND, never an operation from another API.
+message GetLoadBalancerOperationRequest { string target_tenant_id = 1; string operation_id = 2; }
+message GetLoadBalancerOperationResponse { Operation operation = 1; }

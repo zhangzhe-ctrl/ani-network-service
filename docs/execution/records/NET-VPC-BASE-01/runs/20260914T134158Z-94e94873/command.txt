@@ -1,0 +1,33 @@
+source.tar.gz: OK
+verified source files: 1089
+go version go1.26.7 linux/amd64
+1.60.0
+v1.31.1
+test "$(/home/ubuntu/workspace/ani-network-service-runs/snat-20260914T134158Z-94e94873/source/.tools/bin/buf --version)" = "1.60.0"
+test "$(go version -m /home/ubuntu/workspace/ani-network-service-runs/snat-20260914T134158Z-94e94873/source/.tools/bin/buf | awk '$1 == "mod" {print $2 "@" $3; exit}')" = "github.com/bufbuild/buf@v1.60.0"
+test "$(/home/ubuntu/workspace/ani-network-service-runs/snat-20260914T134158Z-94e94873/source/.tools/bin/sqlc version)" = "v1.31.1"
+test "$(go version -m /home/ubuntu/workspace/ani-network-service-runs/snat-20260914T134158Z-94e94873/source/.tools/bin/sqlc | awk '$1 == "mod" {print $2 "@" $3; exit}')" = "github.com/sqlc-dev/sqlc@v1.31.1"
+./scripts/verify-source /home/ubuntu/workspace/ani-network-service-runs/snat-20260914T134158Z-94e94873/source/.tools/bin/buf /home/ubuntu/workspace/ani-network-service-runs/snat-20260914T134158Z-94e94873/source/.tools/bin/sqlc
+./scripts/verify-boundaries
+domain and repository ownership boundaries verified
+go mod tidy -diff
+diff current/go.mod tidy/go.mod
+--- current/go.mod
++++ tidy/go.mod
+@@ -19,6 +19,7 @@
+ 	google.golang.org/protobuf v1.36.12-0.20260120151049-f2248ac996af
+ 	k8s.io/apimachinery v0.36.0
+ 	k8s.io/client-go v0.36.0
++	sigs.k8s.io/yaml v1.6.0
+ )
+ 
+ require (
+@@ -73,5 +74,4 @@
+ 	sigs.k8s.io/json v0.0.0-20250730193827-2d320260d730 // indirect
+ 	sigs.k8s.io/randfill v1.0.0 // indirect
+ 	sigs.k8s.io/structured-merge-diff/v6 v6.3.2 // indirect
+-	sigs.k8s.io/yaml v1.6.0 // indirect
+ )
+
+make: *** [Makefile:93: verify] Error 1
+REMOTE_COMMAND_EXIT=2

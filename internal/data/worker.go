@@ -60,10 +60,15 @@ func (p *Postgres) Claim(ctx context.Context, owner string, duration time.Durati
 	if err != nil {
 		return biz.Work{}, false, databaseFailure(err)
 	}
+	gateReason, err := p.baseWorkGate(ctx, q, resource, now)
+	if err != nil {
+		return biz.Work{}, false, err
+	}
+	cancelUnsent := (resource.State == biz.Deleting || resource.State == biz.Deleted) && resource.SystemManaged && !binding.CreateDispatched && binding.ProviderUid == "" && binding.PendingAction == ""
 	if err := tx.Commit(ctx); err != nil {
 		return biz.Work{}, false, databaseFailure(err)
 	}
-	return biz.Work{Requirement: biz.ObservationRequirement{RequestedGeneration: lease.RequestedGeneration, AppliedAt: lease.EvidenceAppliedAt, Hash: lease.EvidenceHash}, Resource: resource, Operation: operation(op), ActiveOperation: active, BindingID: binding.BindingID,
+	return biz.Work{GateReason: gateReason, CancelUnsent: cancelUnsent, Requirement: biz.ObservationRequirement{RequestedGeneration: lease.RequestedGeneration, AppliedAt: lease.EvidenceAppliedAt, Hash: lease.EvidenceHash}, Resource: resource, Operation: operation(op), ActiveOperation: active, BindingID: binding.BindingID,
 		KnownIdentity: binding.ProviderUid, PendingAction: binding.PendingAction, Owner: owner, Epoch: lease.LeaseEpoch, Attempt: op.Attempt, Now: now}, true, nil
 }
 
@@ -110,6 +115,15 @@ func (p *Postgres) BeginMutation(ctx context.Context, work biz.Work, action, ide
 	if err := lockedWork(ctx, q, work); err != nil {
 		return err
 	}
+	if work.Resource.SystemManaged && (action == "create" || action == "update") {
+		b, err := q.GetBaseConnectivity(ctx, sqlcgen.GetBaseConnectivityParams{TenantID: work.Resource.TenantID, VpcID: work.Resource.VPCID})
+		if err != nil {
+			return databaseFailure(err)
+		}
+		if b.Terminating {
+			return biz.ErrLeaseLost
+		}
+	}
 	if err := affected(q.BeginProviderMutation(ctx, sqlcgen.BeginProviderMutationParams{
 		TenantID: work.Resource.TenantID, ResourceID: work.Resource.ID, BindingID: work.BindingID, Action: action, Identity: identity,
 	})); err != nil {
@@ -133,6 +147,13 @@ func (p *Postgres) Finish(ctx context.Context, work biz.Work, progress biz.Progr
 	}
 	if progress.Observed && !progress.Proof.Covers(work.Requirement) {
 		return biz.ErrLeaseLost
+	}
+	now, err := q.DatabaseTime(ctx)
+	if err != nil {
+		return databaseFailure(err)
+	}
+	if err = p.finishBaseConnectivity(ctx, q, work, &progress, now); err != nil {
+		return err
 	}
 	row, err := advanceResource(ctx, q, work.Resource, progress)
 	if err != nil {
@@ -173,6 +194,12 @@ func (p *Postgres) Finish(ctx context.Context, work biz.Work, progress biz.Progr
 			return databaseFailure(err)
 		}
 	}
+	if work.CancelUnsent && progress.State == biz.Deleted {
+		if err := affected(q.RetireCancelledResource(ctx, sqlcgen.RetireCancelledResourceParams{TenantID: row.TenantID, ResourceID: &row.ID, Owner: work.Owner, Epoch: work.Epoch})); err != nil {
+			return err
+		}
+		return databaseFailure(tx.Commit(ctx))
+	}
 	if err := affected(q.ReleaseLease(ctx, sqlcgen.ReleaseLeaseParams{
 		TenantID: row.TenantID, ResourceID: row.ID, Owner: &work.Owner, Epoch: work.Epoch, DelayMicros: progress.NextDelay.Microseconds(),
 		CoveredGeneration: coveredGeneration(progress.Observed, progress.Proof, work.Requirement), Observed: progress.Observed, EvidenceHash: progress.Proof.Hash, Backoff: progress.Backoff,
@@ -196,6 +223,13 @@ func (p *Postgres) DeleteVPC(ctx context.Context, tenant, id string) (biz.VPC, e
 	if row.State == string(biz.Deleting) || row.State == string(biz.Deleted) {
 		return vpc(row), nil
 	}
+	lbCount, err := q.BlockingLBForVPC(ctx, sqlcgen.BlockingLBForVPCParams{TenantID: tenant, VpcID: id})
+	if err != nil {
+		return biz.VPC{}, databaseFailure(err)
+	}
+	if lbCount > 0 {
+		return biz.VPC{}, biz.Fail(biz.ResourceInUse, "load balancers must be deleted before their VPC")
+	}
 	snatCount, err := q.BlockingSnatForVPC(ctx, sqlcgen.BlockingSnatForVPCParams{TenantID: tenant, VpcID: id})
 	if err != nil {
 		return biz.VPC{}, databaseFailure(err)
@@ -215,7 +249,17 @@ func (p *Postgres) DeleteVPC(ctx context.Context, tenant, id string) (biz.VPC, e
 		return biz.VPC{}, databaseFailure(err)
 	}
 	if op.CompletedAt == nil {
-		return biz.VPC{}, biz.Fail(biz.ResourceBusy, "VPC creation is still active")
+		if _, baseErr := q.GetBaseConnectivity(ctx, sqlcgen.GetBaseConnectivityParams{TenantID: tenant, VpcID: id}); errors.Is(baseErr, pgx.ErrNoRows) {
+			return biz.VPC{}, biz.Fail(biz.ResourceBusy, "legacy VPC creation is still active")
+		} else if baseErr != nil {
+			return biz.VPC{}, databaseFailure(baseErr)
+		}
+		if err = q.RetireActiveOperation(ctx, sqlcgen.RetireActiveOperationParams{TenantID: tenant, OperationID: op.OperationID}); err != nil {
+			return biz.VPC{}, databaseFailure(err)
+		}
+	}
+	if err = q.TerminateBase(ctx, sqlcgen.TerminateBaseParams{TenantID: tenant, VpcID: id}); err != nil {
+		return biz.VPC{}, databaseFailure(err)
 	}
 	now, err := q.DatabaseTime(ctx)
 	if err != nil {

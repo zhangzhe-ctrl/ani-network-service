@@ -6,11 +6,12 @@ SELECT * FROM network_platform_resources WHERE cluster_id=$1 AND kind=$2 AND res
 SELECT * FROM network_platform_resources WHERE cluster_id=$1 AND kind=$2 AND resource_id=$3 FOR UPDATE;
 
 -- name: ListPlatform :many
-SELECT * FROM network_platform_resources WHERE cluster_id=sqlc.arg(cluster_id) AND kind=sqlc.arg(kind)
- AND (sqlc.arg(name_filter)::text='' OR name=sqlc.arg(name_filter))
- AND ((sqlc.arg(state_filter)::text='' AND state<>'deleted') OR state=sqlc.arg(state_filter))
- AND (sqlc.arg(after_id)::text='' OR (created_at,resource_id)<(sqlc.arg(after_created_at)::timestamptz,sqlc.arg(after_id)::text))
-ORDER BY created_at DESC,resource_id DESC LIMIT sqlc.arg(max_results)::integer;
+SELECT r.* FROM network_platform_resources r WHERE r.cluster_id=sqlc.arg(cluster_id) AND r.kind=sqlc.arg(kind)
+ AND (r.kind<>'public_pool' OR EXISTS (SELECT 1 FROM network_public_pools pool WHERE pool.cluster_id=r.cluster_id AND pool.resource_id=r.resource_id AND pool.scope='public'))
+ AND (sqlc.arg(name_filter)::text='' OR r.name=sqlc.arg(name_filter))
+ AND ((sqlc.arg(state_filter)::text='' AND r.state<>'deleted') OR r.state=sqlc.arg(state_filter))
+ AND (sqlc.arg(after_id)::text='' OR (r.created_at,r.resource_id)<(sqlc.arg(after_created_at)::timestamptz,sqlc.arg(after_id)::text))
+ORDER BY r.created_at DESC,r.resource_id DESC LIMIT sqlc.arg(max_results)::integer;
 
 -- name: GetPublicPool :one
 SELECT * FROM network_public_pools WHERE cluster_id=$1 AND resource_id=$2;
@@ -165,11 +166,11 @@ SELECT p.*,r.requested_generation FROM network_platform_resources p JOIN network
 
 -- name: PublicPoolTopology :one
 SELECT p.resource_id,p.cluster_id,p.config_revision,p.mode,p.gateway_id,p.cidr,p.ovn_gateway_ip,p.excluded_ips,p.vlan_network_id,p.upstream_gateway_ip,
- r.provider_uid AS pool_uid,r.provider_images,g.provider_uid AS gateway_uid,COALESCE(v.provider_uid,'')::text AS vlan_uid,
+ r.provider_uid AS pool_uid,r.provider_images,COALESCE(g.provider_uid,'')::text AS gateway_uid,COALESCE(v.provider_uid,'')::text AS vlan_uid,
  COALESCE(d.provider_uid,'')::text AS device_config_uid
 FROM network_public_pools p
 JOIN network_platform_resources r ON r.cluster_id=p.cluster_id AND r.resource_id=p.resource_id
-JOIN network_platform_resources g ON g.cluster_id=p.cluster_id AND g.resource_id=p.gateway_id
+LEFT JOIN network_platform_resources g ON g.cluster_id=p.cluster_id AND g.resource_id=p.gateway_id
 LEFT JOIN network_platform_resources v ON v.cluster_id=p.cluster_id AND v.resource_id=p.vlan_network_id
 LEFT JOIN network_vlan_networks vl ON vl.cluster_id=p.cluster_id AND vl.resource_id=p.vlan_network_id
 LEFT JOIN network_platform_resources d ON d.cluster_id=vl.cluster_id AND d.resource_id=vl.device_id
@@ -183,3 +184,22 @@ UPDATE network_vlan_networks SET retired=true WHERE cluster_id=$1 AND resource_i
 
 -- name: RetirePublicPoolSlot :execrows
 UPDATE network_public_pools SET retired=true WHERE cluster_id=$1 AND resource_id=$2;
+
+-- name: InsertIntranetPool :exec
+INSERT INTO network_public_pools(resource_id,cluster_id,scope,mode,gateway_id,cidr,ovn_gateway_ip,excluded_ips,default_vpc_name,default_vpc_uid,intranet_networks)
+VALUES(sqlc.arg(resource_id),sqlc.arg(cluster_id),'intranet','overlay',NULL,sqlc.arg(cidr),sqlc.arg(ovn_gateway_ip),sqlc.arg(excluded_ips),sqlc.arg(default_vpc_name),sqlc.arg(default_vpc_uid),sqlc.arg(intranet_networks));
+
+-- name: GetDefaultIntranetPool :one
+SELECT * FROM network_default_intranet_pools WHERE cluster_id=$1;
+
+-- name: SetDefaultIntranetPool :exec
+INSERT INTO network_default_intranet_pools(cluster_id,pool_id) VALUES($1,$2)
+ON CONFLICT(cluster_id) DO UPDATE SET pool_id=excluded.pool_id,version=network_default_intranet_pools.version+1;
+
+-- name: ListIntranetPools :many
+SELECT r.* FROM network_platform_resources r JOIN network_public_pools p ON p.cluster_id=r.cluster_id AND p.resource_id=r.resource_id
+WHERE r.cluster_id=sqlc.arg(cluster_id) AND p.scope='intranet'
+ AND (sqlc.arg(name_filter)::text='' OR r.name=sqlc.arg(name_filter))
+ AND ((sqlc.arg(state_filter)::text='' AND r.state<>'deleted') OR r.state=sqlc.arg(state_filter))
+ AND (sqlc.arg(after_id)::text='' OR (r.created_at,r.resource_id)<(sqlc.arg(after_created_at)::timestamptz,sqlc.arg(after_id)::text))
+ORDER BY r.created_at DESC,r.resource_id DESC LIMIT sqlc.arg(max_results)::integer;

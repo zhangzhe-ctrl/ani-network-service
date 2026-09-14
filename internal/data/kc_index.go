@@ -16,7 +16,7 @@ var observationGVRs = []schema.GroupVersionResource{kcVPCs, kcSubnets, pods,
 	{Group: kcVPCs.Group, Version: "v1", Resource: "vnics"},
 	{Group: kcVPCs.Group, Version: "v1", Resource: "vnicips"},
 	{Group: kcVPCs.Group, Version: "v1", Resource: "eips"},
-	kcSnats, kcNats, kcServices, kcEgressGateways, kcVlans, kcNodes, kcConfigMaps,
+	kcSnats, kcNats, kcServices, kcEgressGateways, kcVlans, kcNodes, kcConfigMaps, kcServiceCIDRs,
 }
 
 const relationshipIndex = "network-relationship"
@@ -52,11 +52,13 @@ func relationshipKeys(value any) ([]string, error) {
 		}
 	}
 	switch o.GetKind() {
+	case "ServiceCIDR":
+		keys = append(keys, "intranet-service-ranges")
 	case "VPC":
 		keys = append(keys, "vpc:"+o.GetNamespace()+"/"+o.GetName())
 		keys = append(keys, "gateway:"+o.GetNamespace()+"/"+o.GetName())
 	case "Subnet":
-		if crString(o, "spec", "type") == "Public" {
+		if crString(o, "spec", "type") == "Public" || crString(o, "spec", "type") == "Intranet" {
 			keys = append(keys, "pool:"+o.GetNamespace()+"/"+o.GetName(), "gateway:/"+crString(o, "spec", "gateway"))
 		}
 		if vlan := crString(o, "spec", "underlayConfig", "vlanNetwork"); vlan != "" {

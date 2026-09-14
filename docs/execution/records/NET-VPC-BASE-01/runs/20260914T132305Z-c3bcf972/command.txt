@@ -1,0 +1,47 @@
+source.tar.gz: OK
+verified source files: 1085
+go version go1.26.7 linux/amd64
+1.60.0
+v1.31.1
+NET-VPC-BASE-01 contracts baseline=d8835a22d905e358b7f60756d3113baa97d7c762 pass
+127.0.0.1:5432 - accepting connections
+PostgreSQL image=docker.io/library/postgres@sha256:4ef4dbc939d61acea57712655ddb4b4ab27419c913f94cca0cd57cb3ea3c2280 container=b0ba3e072cfeb05c29e6bc780d918538a9ba8c3480f1c596cbcd210c8de0ce5e
+?   	github.com/zhangzhe-ctrl/ani-network-service/api/network/v1	[no test files]
+ok  	github.com/zhangzhe-ctrl/ani-network-service/cmd/ani-network-service	14.200s
+ok  	github.com/zhangzhe-ctrl/ani-network-service/internal/biz	0.011s
+ok  	github.com/zhangzhe-ctrl/ani-network-service/internal/conf/v1	0.009s
+--- FAIL: TestBaseSchemaLegacyPublicUpgradePreservesDurableFactsAndReplay (0.27s)
+    base_schema_integration_test.go:157: migration changed legacy network_provider_bindings identity/history/snapshot/lease
+I0914 21:24:26.038868 4007847 reflector.go:664] "Warning: watch ended with error" reflector="pkg/mod/k8s.io/client-go@v0.36.0/tools/cache/reflector.go:343" type="*unstructured.Unstructured" err="very short watch: pkg/mod/k8s.io/client-go@v0.36.0/tools/cache/reflector.go:343: Unexpected watch close - watch lasted less than a second and no items received"
+I0914 21:24:26.038930 4007847 reflector.go:664] "Warning: watch ended with error" reflector="pkg/mod/k8s.io/client-go@v0.36.0/tools/cache/reflector.go:343" type="*unstructured.Unstructured" err="very short watch: pkg/mod/k8s.io/client-go@v0.36.0/tools/cache/reflector.go:343: Unexpected watch close - watch lasted less than a second and no items received"
+I0914 21:24:26.038963 4007847 reflector.go:664] "Warning: watch ended with error" reflector="pkg/mod/k8s.io/client-go@v0.36.0/tools/cache/reflector.go:343" type="*unstructured.Unstructured" err="very short watch: pkg/mod/k8s.io/client-go@v0.36.0/tools/cache/reflector.go:343: Unexpected watch close - watch lasted less than a second and no items received"
+I0914 21:24:26.038997 4007847 reflector.go:664] "Warning: watch ended with error" reflector="pkg/mod/k8s.io/client-go@v0.36.0/tools/cache/reflector.go:343" type="*unstructured.Unstructured" err="very short watch: pkg/mod/k8s.io/client-go@v0.36.0/tools/cache/reflector.go:343: Unexpected watch close - watch lasted less than a second and no items received"
+I0914 21:24:26.039025 4007847 reflector.go:664] "Warning: watch ended with error" reflector="pkg/mod/k8s.io/client-go@v0.36.0/tools/cache/reflector.go:343" type="*unstructured.Unstructured" err="very short watch: pkg/mod/k8s.io/client-go@v0.36.0/tools/cache/reflector.go:343: Unexpected watch close - watch lasted less than a second and no items received"
+I0914 21:24:26.039049 4007847 reflector.go:664] "Warning: watch ended with error" reflector="pkg/mod/k8s.io/client-go@v0.36.0/tools/cache/reflector.go:343" type="*unstructured.Unstructured" err="very short watch: pkg/mod/k8s.io/client-go@v0.36.0/tools/cache/reflector.go:343: Unexpected watch close - watch lasted less than a second and no items received"
+I0914 21:24:26.039075 4007847 reflector.go:664] "Warning: watch ended with error" reflector="pkg/mod/k8s.io/client-go@v0.36.0/tools/cache/reflector.go:343" type="*unstructured.Unstructured" err="very short watch: pkg/mod/k8s.io/client-go@v0.36.0/tools/cache/reflector.go:343: Unexpected watch close - watch lasted less than a second and no items received"
+I0914 21:24:26.039109 4007847 reflector.go:664] "Warning: watch ended with error" reflector="pkg/mod/k8s.io/client-go@v0.36.0/tools/cache/reflector.go:343" type="*unstructured.Unstructured" err="very short watch: pkg/mod/k8s.io/client-go@v0.36.0/tools/cache/reflector.go:343: Unexpected watch close - watch lasted less than a second and no items received"
+I0914 21:24:26.039137 4007847 reflector.go:664] "Warning: watch ended with error" reflector="pkg/mod/k8s.io/client-go@v0.36.0/tools/cache/reflector.go:343" type="*unstructured.Unstructured" err="very short watch: pkg/mod/k8s.io/client-go@v0.36.0/tools/cache/reflector.go:343: Unexpected watch close - watch lasted less than a second and no items received"
+I0914 21:24:26.039168 4007847 reflector.go:664] "Warning: watch ended with error" reflector="pkg/mod/k8s.io/client-go@v0.36.0/tools/cache/reflector.go:343" type="*unstructured.Unstructured" err="very short watch: pkg/mod/k8s.io/client-go@v0.36.0/tools/cache/reflector.go:343: Unexpected watch close - watch lasted less than a second and no items received"
+I0914 21:24:26.039240 4007847 reflector.go:664] "Warning: watch ended with error" reflector="pkg/mod/k8s.io/client-go@v0.36.0/tools/cache/reflector.go:343" type="*unstructured.Unstructured" err="very short watch: pkg/mod/k8s.io/client-go@v0.36.0/tools/cache/reflector.go:343: Unexpected watch close - watch lasted less than a second and no items received"
+I0914 21:24:26.039287 4007847 reflector.go:664] "Warning: watch ended with error" reflector="pkg/mod/k8s.io/client-go@v0.36.0/tools/cache/reflector.go:343" type="*unstructured.Unstructured" err="very short watch: pkg/mod/k8s.io/client-go@v0.36.0/tools/cache/reflector.go:343: Unexpected watch close - watch lasted less than a second and no items received"
+I0914 21:24:26.038877 4007847 reflector.go:664] "Warning: watch ended with error" reflector="pkg/mod/k8s.io/client-go@v0.36.0/tools/cache/reflector.go:343" type="*unstructured.Unstructured" err="very short watch: pkg/mod/k8s.io/client-go@v0.36.0/tools/cache/reflector.go:343: Unexpected watch close - watch lasted less than a second and no items received"
+--- FAIL: TestServiceProcessesRecoverT1AndProviderSuccessWithoutCaller (17.95s)
+    --- FAIL: TestServiceProcessesRecoverT1AndProviderSuccessWithoutCaller/after-T1 (10.01s)
+        process_integration_test.go:116: RPC never reached RESOURCE_STATE_AVAILABLE: state=RESOURCE_STATE_PROVISIONING reason=PROVIDER_UNAVAILABLE
+    --- FAIL: TestServiceProcessesRecoverT1AndProviderSuccessWithoutCaller/after-provider-success (4.53s)
+        process_integration_test.go:104: process did not reach selected crash point
+FAIL
+FAIL	github.com/zhangzhe-ctrl/ani-network-service/internal/data	128.372s
+?   	github.com/zhangzhe-ctrl/ani-network-service/internal/data/sqlcgen	[no test files]
+ok  	github.com/zhangzhe-ctrl/ani-network-service/internal/server	2.026s
+ok  	github.com/zhangzhe-ctrl/ani-network-service/internal/service	0.006s
+?   	github.com/zhangzhe-ctrl/ani-network-service/migrations	[no test files]
+?   	github.com/zhangzhe-ctrl/ani-network-service/tests/net05	[no test files]
+?   	github.com/zhangzhe-ctrl/ani-network-service/tests/net05/relay	[no test files]
+?   	github.com/zhangzhe-ctrl/ani-network-service/tests/net05/rpc	[no test files]
+ok  	github.com/zhangzhe-ctrl/ani-network-service/tests/net05a/provider	0.014s
+ok  	github.com/zhangzhe-ctrl/ani-network-service/tests/runtime	0.042s
+?   	github.com/zhangzhe-ctrl/ani-network-service/tests/testenv	[no test files]
+FAIL
+removed task container=b0ba3e072cfeb05c29e6bc780d918538a9ba8c3480f1c596cbcd210c8de0ce5e
+REMOTE_COMMAND_EXIT=1

@@ -1,0 +1,46 @@
+{
+  "run": "20260914T135236Z-18dc5c44",
+  "result": "pass",
+  "ssh_exit": 0,
+  "remote_command_exit": 0,
+  "head": "d8835a22d905e358b7f60756d3113baa97d7c762",
+  "archive_sha256": "6f272a3e740ff514f9e69e23bbf23f261c9cc7c68772c525dcb0148a3c5ced7b",
+  "manifest_sha256": "027f36b977f6695397f7a89db7b1e0c2cc90b23d68785fefb239b50f89552e2e",
+  "source_files": 1161,
+  "command": [
+    "bash",
+    "-c",
+    "scripts/integration -race ./internal/data -run \"TestBase(BackfillRechecksFreshnessAfterPlatformLockWait|ConnectivityInitialSnatPendingKeepsCreateOpenThenWorkerRecovers)$\" -timeout 90s -v && make verify && scripts/check-vpc-base-contracts && scripts/integration -race ./... -timeout 12m -json"
+  ],
+  "remote": "/home/ubuntu/workspace/ani-network-service-runs/snat-20260914T135236Z-18dc5c44",
+  "local_source_archive": "/home/chabking/workspace/.worktrees/network-vpc-base-01/.work/snat-runs/20260914T135236Z-18dc5c44/source.tar.gz",
+  "log_sha256": "bb10aa9e1ea3938b6649b5d9e36e9914007d17951b1404c9d866b14f3214bbad",
+  "tool_version_lines": [
+    "go version go1.26.7 linux/amd64",
+    "1.60.0",
+    "v1.31.1"
+  ],
+  "containers_created": [
+    "c668fd3417bec2fc81b370aaf7cbd77ce330b3983f6f0f9ce8f7bbb4a208a549",
+    "55c3c6741054c389e73ec4ddd79c781733f2a31566e9e3ca6f84297547c075cc"
+  ],
+  "containers_removed": [
+    "c668fd3417bec2fc81b370aaf7cbd77ce330b3983f6f0f9ce8f7bbb4a208a549",
+    "55c3c6741054c389e73ec4ddd79c781733f2a31566e9e3ca6f84297547c075cc"
+  ],
+  "test_events": {
+    "pass": 259,
+    "fail": 0,
+    "skip": 1
+  },
+  "top_level_tests": {
+    "pass": 115,
+    "fail": 0,
+    "skip": 1
+  },
+  "packages": {
+    "pass": 8,
+    "fail": 0,
+    "skip": 7
+  }
+}

@@ -23,7 +23,11 @@ func platformMetadata(r sqlcgen.NetworkPlatformResource) biz.PlatformResource {
 	return biz.PlatformResource{EgressMetadata: biz.EgressMetadata{ID: r.ResourceID, Name: r.Name, Description: r.Description, State: biz.ResourceState(r.State), Reason: biz.Reason(r.Reason), Version: r.Version, CreatedAt: r.CreatedAt, UpdatedAt: r.UpdatedAt, ObservedAt: r.ObservedAt, LastOperationID: r.LastOperationID}, Kind: r.Kind, ClusterID: r.ClusterID}
 }
 func poolConfig(p sqlcgen.NetworkPublicPool) biz.PublicPoolConfig {
-	return biz.PublicPoolConfig{Mode: p.Mode, GatewayID: p.GatewayID, CIDR: p.Cidr, OVNGatewayIP: p.OvnGatewayIp, ExcludedIPs: p.ExcludedIps, VlanNetworkID: textValue(p.VlanNetworkID), UpstreamGatewayIP: textValue(p.UpstreamGatewayIp)}
+	c := biz.PublicPoolConfig{Mode: p.Mode, GatewayID: textValue(p.GatewayID), CIDR: p.Cidr, OVNGatewayIP: p.OvnGatewayIp, ExcludedIPs: p.ExcludedIps, VlanNetworkID: textValue(p.VlanNetworkID), UpstreamGatewayIP: textValue(p.UpstreamGatewayIp), DefaultVPCName: p.DefaultVpcName, DefaultVPCUID: p.DefaultVpcUid, IntranetNetworks: p.IntranetNetworks}
+	if p.Scope == "intranet" {
+		c.Scope = "intranet"
+	}
+	return c
 }
 func platformSnapshot(ctx context.Context, q *sqlcgen.Queries, r sqlcgen.NetworkPlatformResource) (biz.PlatformResource, error) {
 	v := platformMetadata(r)
@@ -61,7 +65,7 @@ func platformSnapshot(ctx context.Context, q *sqlcgen.Queries, r sqlcgen.Network
 		if err != nil {
 			return v, databaseFailure(err)
 		}
-		v.TopologyFingerprint = contentHash(topology)
+		v.TopologyFingerprint = addressPoolTopologyHash(d, topology)
 		v.ObservedProviderImages = r.ProviderImages
 		v.AllocationEnabled = d.AllocationEnabled
 		if len(d.Verification) > 0 {
@@ -71,11 +75,20 @@ func platformSnapshot(ctx context.Context, q *sqlcgen.Queries, r sqlcgen.Network
 			}
 			v.Verification = &verification
 		}
-		def, err := q.GetDefaultPublicPool(ctx, sqlcgen.GetDefaultPublicPoolParams{ClusterID: r.ClusterID})
-		if err != nil && !errors.Is(err, pgx.ErrNoRows) {
-			return v, databaseFailure(err)
+		if d.Scope == "intranet" {
+			def, err := q.GetDefaultIntranetPool(ctx, sqlcgen.GetDefaultIntranetPoolParams{ClusterID: r.ClusterID})
+			if err != nil && !errors.Is(err, pgx.ErrNoRows) {
+				return v, databaseFailure(err)
+			}
+			v.IsDefault = def.PoolID == r.ResourceID
+			v.Kind = "intranet_pool"
+		} else {
+			def, err := q.GetDefaultPublicPool(ctx, sqlcgen.GetDefaultPublicPoolParams{ClusterID: r.ClusterID})
+			if err != nil && !errors.Is(err, pgx.ErrNoRows) {
+				return v, databaseFailure(err)
+			}
+			v.IsDefault = def.PoolID == r.ResourceID
 		}
-		v.IsDefault = def.PoolID == r.ResourceID
 	}
 	return v, nil
 }
@@ -86,11 +99,15 @@ func (p *Postgres) GetPlatform(ctx context.Context, kind, id string) (biz.Platfo
 	}
 	defer tx.Rollback(ctx)
 	q := p.queries.WithTx(tx)
-	r, err := q.GetPlatform(ctx, sqlcgen.GetPlatformParams{ClusterID: p.placement.ClusterID, Kind: kind, ResourceID: id})
+	r, err := q.GetPlatform(ctx, sqlcgen.GetPlatformParams{ClusterID: p.placement.ClusterID, Kind: storagePlatformKind(kind), ResourceID: id})
 	if err != nil {
 		return biz.PlatformResource{}, databaseFailure(err)
 	}
-	return platformSnapshot(ctx, q, r)
+	v, err := platformSnapshot(ctx, q, r)
+	if err == nil && v.Kind != kind {
+		return biz.PlatformResource{}, biz.Fail(biz.ResourceNotFound, "platform resource not found")
+	}
+	return v, err
 }
 func (p *Postgres) ListPlatform(ctx context.Context, kind string, f biz.VPCFilter) ([]biz.PlatformResource, error) {
 	tx, err := p.pool.BeginTx(ctx, pgx.TxOptions{IsoLevel: pgx.RepeatableRead, AccessMode: pgx.ReadOnly})
@@ -99,7 +116,12 @@ func (p *Postgres) ListPlatform(ctx context.Context, kind string, f biz.VPCFilte
 	}
 	defer tx.Rollback(ctx)
 	q := p.queries.WithTx(tx)
-	rows, err := q.ListPlatform(ctx, sqlcgen.ListPlatformParams{ClusterID: p.placement.ClusterID, Kind: kind, NameFilter: f.Name, StateFilter: f.State, AfterID: f.AfterID, AfterCreatedAt: f.AfterCreatedAt, MaxResults: f.Limit})
+	var rows []sqlcgen.NetworkPlatformResource
+	if kind == "intranet_pool" {
+		rows, err = q.ListIntranetPools(ctx, sqlcgen.ListIntranetPoolsParams{ClusterID: p.placement.ClusterID, NameFilter: f.Name, StateFilter: f.State, AfterID: f.AfterID, AfterCreatedAt: f.AfterCreatedAt, MaxResults: f.Limit})
+	} else {
+		rows, err = q.ListPlatform(ctx, sqlcgen.ListPlatformParams{ClusterID: p.placement.ClusterID, Kind: kind, NameFilter: f.Name, StateFilter: f.State, AfterID: f.AfterID, AfterCreatedAt: f.AfterCreatedAt, MaxResults: f.Limit})
+	}
 	if err != nil {
 		return nil, databaseFailure(err)
 	}
@@ -143,7 +165,7 @@ func (p *Postgres) AcceptPlatform(ctx context.Context, i biz.PlatformIntent, a b
 	if v, found, err := platformReplay(ctx, p.queries, p.placement.ClusterID, i); found || err != nil {
 		return v, err
 	}
-	if i.Kind == "adopt_device" || i.Kind == "create_public_pool" {
+	if i.Kind == "adopt_device" || i.Kind == "create_public_pool" || i.Kind == "create_intranet_pool" {
 		if p.egressInfrastructure == nil {
 			return biz.PlatformResource{}, biz.Fail(biz.DependencyUnavailable, "platform facts are unavailable")
 		}
@@ -173,6 +195,14 @@ func (p *Postgres) AcceptPlatform(ctx context.Context, i biz.PlatformIntent, a b
 				return biz.PlatformResource{}, biz.Fail(biz.DependencyUnavailable, "device facts must cover all nodes")
 			}
 			i.Device = &d
+		} else if i.Kind == "create_intranet_pool" {
+			infra, ok := p.egressInfrastructure.(biz.IntranetPoolInfrastructure)
+			if !ok {
+				return biz.PlatformResource{}, biz.Fail(biz.DependencyUnavailable, "intranet infrastructure facts are unavailable")
+			}
+			if err := infra.ValidateIntranetPool(ctx, *i.Pool); err != nil {
+				return biz.PlatformResource{}, err
+			}
 		} else {
 			if err := p.egressInfrastructure.ValidatePublicPool(ctx, *i.Pool); err != nil {
 				return biz.PlatformResource{}, err
@@ -209,7 +239,7 @@ func (p *Postgres) AcceptPlatform(ctx context.Context, i biz.PlatformIntent, a b
 		kind, prefix = "vlan", "vlan"
 	case "create_egress_gateway":
 		kind, prefix = "egress_gateway", "egw"
-	case "create_public_pool":
+	case "create_public_pool", "create_intranet_pool":
 		kind, prefix = "public_pool", "pool"
 	default:
 		return biz.PlatformResource{}, biz.Fail(biz.InvalidArgument, "invalid platform intent")
@@ -230,8 +260,10 @@ func (p *Postgres) AcceptPlatform(ctx context.Context, i biz.PlatformIntent, a b
 		}
 	}
 	if i.Pool != nil {
-		if err = checkParent("egress_gateway", i.Pool.GatewayID); err != nil {
-			return biz.PlatformResource{}, err
+		if i.Pool.Scope != "intranet" {
+			if err = checkParent("egress_gateway", i.Pool.GatewayID); err != nil {
+				return biz.PlatformResource{}, err
+			}
 		}
 		if i.Pool.Mode == "underlay" {
 			if err = checkParent("vlan", i.Pool.VlanNetworkID); err != nil {
@@ -247,7 +279,7 @@ func (p *Postgres) AcceptPlatform(ctx context.Context, i biz.PlatformIntent, a b
 			return biz.PlatformResource{}, databaseFailure(err)
 		}
 		if n > 0 {
-			return biz.PlatformResource{}, biz.Fail(biz.ResourceInUse, "public pool CIDR overlaps an existing pool")
+			return biz.PlatformResource{}, biz.Fail(biz.ResourceInUse, "address pool CIDR overlaps an existing pool")
 		}
 	}
 	id := newEgressID(prefix)
@@ -272,7 +304,11 @@ func (p *Postgres) AcceptPlatform(ctx context.Context, i biz.PlatformIntent, a b
 		err = q.InsertEgressGateway(ctx, sqlcgen.InsertEgressGatewayParams{ResourceID: id, ClusterID: p.placement.ClusterID})
 	case "public_pool":
 		c := i.Pool
-		err = q.InsertPublicPool(ctx, sqlcgen.InsertPublicPoolParams{ResourceID: id, ClusterID: p.placement.ClusterID, Mode: c.Mode, GatewayID: c.GatewayID, Cidr: c.CIDR, OvnGatewayIp: c.OVNGatewayIP, ExcludedIps: c.ExcludedIPs, VlanNetworkID: c.VlanNetworkID, UpstreamGatewayIp: c.UpstreamGatewayIP})
+		if c.Scope == "intranet" {
+			err = q.InsertIntranetPool(ctx, sqlcgen.InsertIntranetPoolParams{ResourceID: id, ClusterID: p.placement.ClusterID, Cidr: c.CIDR, OvnGatewayIp: c.OVNGatewayIP, ExcludedIps: c.ExcludedIPs, DefaultVpcName: c.DefaultVPCName, DefaultVpcUid: c.DefaultVPCUID, IntranetNetworks: c.IntranetNetworks})
+		} else {
+			err = q.InsertPublicPool(ctx, sqlcgen.InsertPublicPoolParams{ResourceID: id, ClusterID: p.placement.ClusterID, Mode: c.Mode, GatewayID: &c.GatewayID, Cidr: c.CIDR, OvnGatewayIp: c.OVNGatewayIP, ExcludedIps: c.ExcludedIPs, VlanNetworkID: c.VlanNetworkID, UpstreamGatewayIp: c.UpstreamGatewayIP})
+		}
 	}
 	if err != nil {
 		return biz.PlatformResource{}, databaseFailure(err)
@@ -328,23 +364,26 @@ func (p *Postgres) acceptPoolChange(ctx context.Context, tx pgx.Tx, q *sqlcgen.Q
 	if err != nil {
 		return biz.PlatformResource{}, databaseFailure(err)
 	}
+	if (strings.Contains(i.Kind, "intranet") && pool.Scope != "intranet") || (!strings.Contains(i.Kind, "intranet") && pool.Scope != "public") {
+		return biz.PlatformResource{}, biz.Fail(biz.ResourceNotFound, "pool not found")
+	}
 	topology, err := q.PublicPoolTopology(ctx, sqlcgen.PublicPoolTopologyParams{ClusterID: row.ClusterID, ResourceID: row.ResourceID})
 	if err != nil {
 		return biz.PlatformResource{}, databaseFailure(err)
 	}
 	switch i.Kind {
-	case "verify_public_pool":
-		if !freshResource(row.State, row.ObservedAt, now, freshness) || i.Verification == nil || i.Verification.TopologyFingerprint != contentHash(topology) || !sameProviderImages(i.Verification.ProviderImageDigests, row.ProviderImages) {
-			return biz.PlatformResource{}, biz.Fail(biz.PublicEgressNotReady, "verification does not match ready pool topology")
+	case "verify_public_pool", "verify_intranet_pool":
+		if !freshResource(row.State, row.ObservedAt, now, freshness) || i.Verification == nil || i.Verification.TopologyFingerprint != addressPoolTopologyHash(pool, topology) || !sameProviderImages(i.Verification.ProviderImageDigests, row.ProviderImages) {
+			return biz.PlatformResource{}, biz.Fail(poolUnavailableReason(pool.Scope), "verification does not match ready pool topology")
 		}
-		if err = biz.ValidatePoolVerification(*i.Verification, now); err != nil {
+		if err = biz.ValidatePoolVerificationForScope(*i.Verification, pool.Scope, now); err != nil {
 			return biz.PlatformResource{}, err
 		}
 		b, _ := json.Marshal(i.Verification)
 		if err = affected(q.SavePoolVerification(ctx, sqlcgen.SavePoolVerificationParams{ClusterID: p.placement.ClusterID, ResourceID: i.ID, Verification: b, VerificationExpiresAt: &i.Verification.ExpiresAt})); err != nil {
 			return biz.PlatformResource{}, err
 		}
-	case "set_pool_allocation":
+	case "set_pool_allocation", "set_intranet_pool_allocation":
 		if i.Enabled {
 			if err = p.poolReady(ctx, q, pool, now, freshness, false); err != nil {
 				return biz.PlatformResource{}, err
@@ -352,6 +391,10 @@ func (p *Postgres) acceptPoolChange(ctx context.Context, tx pgx.Tx, q *sqlcgen.Q
 		}
 		if err = affected(q.SetPoolAllocation(ctx, sqlcgen.SetPoolAllocationParams{ClusterID: p.placement.ClusterID, ResourceID: i.ID, AllocationEnabled: i.Enabled})); err != nil {
 			return biz.PlatformResource{}, err
+		}
+	case "set_default_intranet_pool":
+		if err = q.SetDefaultIntranetPool(ctx, sqlcgen.SetDefaultIntranetPoolParams{ClusterID: p.placement.ClusterID, PoolID: i.ID}); err != nil {
+			return biz.PlatformResource{}, databaseFailure(err)
 		}
 	case "set_default_pool":
 		// The default can be configured while closed; admission remains gated.
@@ -393,7 +436,7 @@ func sameProviderImages(a, b []string) bool {
 }
 func (p *Postgres) poolReady(ctx context.Context, q *sqlcgen.Queries, pool sqlcgen.NetworkPublicPool, now time.Time, freshness time.Duration, allocation bool) error {
 	unavailable := func() error {
-		return biz.Fail(biz.PublicEgressNotReady, "public egress configuration or evidence is not ready")
+		return biz.Fail(poolUnavailableReason(pool.Scope), "address pool configuration or evidence is not ready")
 	}
 	if allocation && !pool.AllocationEnabled {
 		return unavailable()
@@ -406,10 +449,13 @@ func (p *Postgres) poolReady(ctx context.Context, q *sqlcgen.Queries, pool sqlcg
 		return databaseFailure(err)
 	}
 	var evidence biz.PublicPoolVerification
-	if json.Unmarshal(pool.Verification, &evidence) != nil || evidence.TopologyFingerprint != contentHash(topology) || !sameProviderImages(evidence.ProviderImageDigests, topology.ProviderImages) || biz.ValidatePoolVerification(evidence, now) != nil {
+	if json.Unmarshal(pool.Verification, &evidence) != nil || evidence.TopologyFingerprint != addressPoolTopologyHash(pool, topology) || !sameProviderImages(evidence.ProviderImageDigests, topology.ProviderImages) || biz.ValidatePoolVerificationForScope(evidence, pool.Scope, now) != nil {
 		return unavailable()
 	}
-	refs := [][2]string{{"public_pool", pool.ResourceID}, {"egress_gateway", pool.GatewayID}}
+	refs := [][2]string{{"public_pool", pool.ResourceID}}
+	if pool.Scope != "intranet" {
+		refs = append(refs, [2]string{"egress_gateway", textValue(pool.GatewayID)})
+	}
 	if pool.VlanNetworkID != nil {
 		refs = append(refs, [2]string{"vlan", *pool.VlanNetworkID})
 		vlan, err := q.GetVlanNetwork(ctx, sqlcgen.GetVlanNetworkParams{ClusterID: pool.ClusterID, ResourceID: *pool.VlanNetworkID})
@@ -439,9 +485,16 @@ func (p *Postgres) DeletePlatform(ctx context.Context, kind, id string, a biz.At
 	if err = q.LockPlatformCluster(ctx, sqlcgen.LockPlatformClusterParams{ClusterID: p.placement.ClusterID}); err != nil {
 		return biz.PlatformResource{}, databaseFailure(err)
 	}
-	row, err := q.LockPlatform(ctx, sqlcgen.LockPlatformParams{ClusterID: p.placement.ClusterID, Kind: kind, ResourceID: id})
+	row, err := q.LockPlatform(ctx, sqlcgen.LockPlatformParams{ClusterID: p.placement.ClusterID, Kind: storagePlatformKind(kind), ResourceID: id})
 	if err != nil {
 		return biz.PlatformResource{}, databaseFailure(err)
+	}
+	snapshot, err := platformSnapshot(ctx, q, row)
+	if err != nil {
+		return biz.PlatformResource{}, err
+	}
+	if snapshot.Kind != kind {
+		return biz.PlatformResource{}, biz.Fail(biz.ResourceNotFound, "platform resource not found")
 	}
 	if row.State == "deleted" || row.State == "deleting" {
 		return platformSnapshot(ctx, q, row)
@@ -455,7 +508,7 @@ func (p *Postgres) DeletePlatform(ctx context.Context, kind, id string, a biz.At
 	}
 	var count int64
 	switch kind {
-	case "public_pool":
+	case "public_pool", "intranet_pool":
 		pool, err := q.LockPublicPool(ctx, sqlcgen.LockPublicPoolParams{ClusterID: p.placement.ClusterID, ResourceID: id})
 		if err != nil {
 			return biz.PlatformResource{}, databaseFailure(err)
@@ -465,7 +518,7 @@ func (p *Postgres) DeletePlatform(ctx context.Context, kind, id string, a biz.At
 		}
 		count, err = q.CountPoolEIPs(ctx, sqlcgen.CountPoolEIPsParams{ClusterID: p.placement.ClusterID, PoolID: id})
 	case "egress_gateway":
-		count, err = q.CountGatewayPools(ctx, sqlcgen.CountGatewayPoolsParams{ClusterID: p.placement.ClusterID, GatewayID: id})
+		count, err = q.CountGatewayPools(ctx, sqlcgen.CountGatewayPoolsParams{ClusterID: p.placement.ClusterID, GatewayID: &id})
 	case "vlan":
 		count, err = q.CountVlanPools(ctx, sqlcgen.CountVlanPoolsParams{ClusterID: p.placement.ClusterID, VlanNetworkID: &id})
 	default:
@@ -515,6 +568,34 @@ func platformOperationResourceKind(kind string) string {
 		return "egress_gateway"
 	case "create_public_pool", "delete_public_pool", "verify_public_pool", "set_pool_allocation", "set_default_pool":
 		return "public_pool"
+	case "create_intranet_pool", "delete_intranet_pool", "verify_intranet_pool", "set_intranet_pool_allocation", "set_default_intranet_pool":
+		return "intranet_pool"
 	}
 	return ""
+}
+
+func storagePlatformKind(kind string) string {
+	if kind == "intranet_pool" {
+		return "public_pool"
+	}
+	return kind
+}
+func poolUnavailableReason(scope string) biz.Reason {
+	if scope == "intranet" {
+		return biz.Reason("BASE_CONNECTIVITY_NOT_READY")
+	}
+	return biz.PublicEgressNotReady
+}
+
+// Public hashing retains the legacy JSON shape, including nil optional fields.
+// Intranet evidence additionally pins the default router and destination intent.
+func addressPoolTopologyHash(pool sqlcgen.NetworkPublicPool, topology sqlcgen.PublicPoolTopologyRow) string {
+	if pool.Scope != "intranet" {
+		return contentHash(topology)
+	}
+	return contentHash(struct {
+		Topology                             sqlcgen.PublicPoolTopologyRow
+		Scope, DefaultVPCName, DefaultVPCUID string
+		IntranetNetworks                     []string
+	}{topology, pool.Scope, pool.DefaultVpcName, pool.DefaultVpcUid, pool.IntranetNetworks})
 }

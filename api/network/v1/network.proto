@@ -60,6 +60,17 @@ enum OperationKind {
   OPERATION_KIND_SET_POOL_ALLOCATION = 17;
   OPERATION_KIND_SET_DEFAULT_POOL = 18;
   OPERATION_KIND_VERIFY_PUBLIC_POOL = 19;
+  // A separate system operation; never rewrites a historic create_vpc result.
+  OPERATION_KIND_ENSURE_VPC_BASE_CONNECTIVITY = 20;
+  OPERATION_KIND_CREATE_INTRANET_POOL = 21;
+  OPERATION_KIND_DELETE_INTRANET_POOL = 22;
+  OPERATION_KIND_SET_INTRANET_POOL_ALLOCATION = 23;
+  OPERATION_KIND_SET_DEFAULT_INTRANET_POOL = 24;
+  OPERATION_KIND_VERIFY_INTRANET_POOL = 25;
+  // Contract reservations only in NET-VPC-BASE-01; no LB runtime is registered.
+  OPERATION_KIND_CREATE_LOAD_BALANCER = 26;
+  OPERATION_KIND_UPDATE_LOAD_BALANCER = 27;
+  OPERATION_KIND_DELETE_LOAD_BALANCER = 28;
 }
 message VPC {
   string id = 1;
@@ -78,6 +89,18 @@ message VPC {
   // Non-deleted subnets counted in the same query snapshot.
   int64 subnet_count = 14;
   string reason_message = 15;
+  VPCBaseConnectivity base_connectivity = 16;
+}
+// Read-only system dependency summary. Internal EIP/SNAT IDs, placement and
+// address-pool selection are deliberately not tenant-configurable or exposed.
+message VPCBaseConnectivity {
+  // missing, pending, ready, degraded, deleting, deleted or unknown.
+  // ready means fresh configuration evidence, not traffic health.
+  string state = 1;
+  string reason = 2;
+  google.protobuf.Timestamp observed_at = 3;
+  bool observation_stale = 4;
+  string reason_message = 5;
 }
 enum ResourceType {
   RESOURCE_TYPE_UNSPECIFIED = 0;
@@ -89,6 +112,8 @@ enum ResourceType {
   RESOURCE_TYPE_VLAN_NETWORK = 6;
   RESOURCE_TYPE_EGRESS_GATEWAY = 7;
   RESOURCE_TYPE_PUBLIC_ADDRESS_POOL = 8;
+  RESOURCE_TYPE_INTRANET_ADDRESS_POOL = 9;
+  RESOURCE_TYPE_LOAD_BALANCER = 10;
 }
 message Operation {
   string id = 1;

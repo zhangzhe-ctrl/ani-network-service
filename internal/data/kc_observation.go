@@ -453,7 +453,7 @@ func (o *KCObservation) collect(ctx context.Context) (*auditView, error) {
 		}
 
 		if r.Kind == "public_pool" {
-			keys = append(keys, "provider-images")
+			keys = append(keys, "provider-images", "object:ConfigMap/kcn-system/kcn-config", "intranet-service-ranges")
 		}
 		bind(keys, t)
 	}
@@ -469,7 +469,7 @@ func (o *KCObservation) collect(ctx context.Context) (*auditView, error) {
 		if relation == "egress_gateway" {
 			relation = "gateway"
 		}
-		bind([]string{"node-facts", "provider-images", "object:" + egressCRKind(edge.RefKind) + "/" + edge.Namespace + "/" + edge.ProviderName, relation + ":" + edge.Namespace + "/" + edge.ProviderName, "uid:" + edge.ProviderUid}, observationTarget{edge.TenantID, edge.ResourceID, edge.Kind})
+		bind([]string{"node-facts", "provider-images", "object:ConfigMap/kcn-system/kcn-config", "intranet-service-ranges", "object:" + egressCRKind(edge.RefKind) + "/" + edge.Namespace + "/" + edge.ProviderName, relation + ":" + edge.Namespace + "/" + edge.ProviderName, "uid:" + edge.ProviderUid}, observationTarget{edge.TenantID, edge.ResourceID, edge.Kind})
 	}
 	for _, a := range attachments {
 		t := observationTarget{a.TenantID, a.AttachmentID, "attachment"}

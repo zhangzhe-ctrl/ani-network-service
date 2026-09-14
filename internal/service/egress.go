@@ -23,10 +23,25 @@ func NewPlatformNetworkService(e *biz.Egress) *PlatformNetworkService {
 	return &PlatformNetworkService{egress: e}
 }
 func wireEIP(v biz.EIP) *networkv1.EIP {
-	return &networkv1.EIP{Id: v.ID, TenantId: v.TenantID, Name: v.Name, Description: v.Description, State: statesToWire[v.State], Reason: string(v.Reason), ReasonMessage: v.Reason.Message(), Version: v.Version, CreatedAt: timestamppb.New(v.CreatedAt), UpdatedAt: timestamppb.New(v.UpdatedAt), ObservedAt: optionalTime(v.ObservedAt), ObservationStale: v.ObservationStale, LastOperationId: v.LastOperationID, Address: v.Address, BindingId: v.BindingID, BindingState: v.BindingState}
+	// Persisted pre-U00 acceptance snapshots have no scope fields. Their source
+	// resources were exclusively tenant Public EIPs; preserve that replay.
+	if v.Scope == "" {
+		v.Scope = "public"
+	}
+	if v.ManagedBy == "" {
+		v.ManagedBy = "tenant"
+	}
+	r := &networkv1.EIP{Id: v.ID, TenantId: v.TenantID, Name: v.Name, Description: v.Description, State: statesToWire[v.State], Reason: string(v.Reason), ReasonMessage: v.Reason.Message(), Version: v.Version, CreatedAt: timestamppb.New(v.CreatedAt), UpdatedAt: timestamppb.New(v.UpdatedAt), ObservedAt: optionalTime(v.ObservedAt), ObservationStale: v.ObservationStale, LastOperationId: v.LastOperationID, Address: v.Address, BindingId: v.BindingID, BindingState: v.BindingState, Scope: v.Scope, ManagedBy: v.ManagedBy}
+	if v.BindingTarget != nil {
+		r.BindingTarget = &networkv1.EIPBindingTarget{Kind: v.BindingTarget.Kind, Id: v.BindingTarget.ID, State: v.BindingTarget.State}
+	}
+	return r
 }
 func wireSnat(v biz.VPCSnatBinding) *networkv1.VPCSnatBinding {
-	return &networkv1.VPCSnatBinding{Id: v.ID, TenantId: v.TenantID, VpcId: v.VPCID, EipId: v.EIPID, EipAddress: v.EIPAddress, State: statesToWire[v.State], Reason: string(v.Reason), ReasonMessage: v.Reason.Message(), Version: v.Version, CreatedAt: timestamppb.New(v.CreatedAt), UpdatedAt: timestamppb.New(v.UpdatedAt), ObservedAt: optionalTime(v.ObservedAt), ObservationStale: v.ObservationStale, LastOperationId: v.LastOperationID, DesiredEnabled: v.DesiredEnabled, AppliedEnabled: v.AppliedEnabled}
+	if v.Purpose == "" {
+		v.Purpose = "public"
+	}
+	return &networkv1.VPCSnatBinding{Id: v.ID, TenantId: v.TenantID, VpcId: v.VPCID, EipId: v.EIPID, EipAddress: v.EIPAddress, State: statesToWire[v.State], Reason: string(v.Reason), ReasonMessage: v.Reason.Message(), Version: v.Version, CreatedAt: timestamppb.New(v.CreatedAt), UpdatedAt: timestamppb.New(v.UpdatedAt), ObservedAt: optionalTime(v.ObservedAt), ObservationStale: v.ObservationStale, LastOperationId: v.LastOperationID, DesiredEnabled: v.DesiredEnabled, AppliedEnabled: v.AppliedEnabled, Purpose: v.Purpose}
 }
 func wireNode(v biz.NodeInterface) *networkv1.NodeInterface {
 	return &networkv1.NodeInterface{NodeName: v.NodeName, NodeUid: v.NodeUID, Name: v.Name, Kind: v.Kind, Mac: v.MAC, Mtu: v.MTU, LinkUp: v.LinkUp, Carrier: v.Carrier, Addresses: v.Addresses, Master: v.Master, OvsManaged: v.OVSManaged, KcManaged: v.KCManaged, DefaultRoute: v.DefaultRoute, Management: v.Management, Selectable: v.Selectable, UnavailableReasons: v.UnavailableReasons, ObservedAt: timestamppb.New(v.ObservedAt), VlanNetworkIds: v.VlanNetworkIDs}
@@ -46,18 +61,26 @@ func wirePlatform(v biz.PlatformResource) *networkv1.PlatformResource {
 	if v.Kind == "egress_gateway" {
 		r.Configuration = &networkv1.PlatformResource_Gateway{Gateway: &networkv1.EgressGateway{}}
 	}
-	if v.Pool != nil {
+	if v.Pool != nil && v.Pool.Scope != "intranet" {
 		p := v.Pool
 		mode := networkv1.PublicPoolMode_PUBLIC_POOL_MODE_OVERLAY
 		if p.Mode == "underlay" {
 			mode = networkv1.PublicPoolMode_PUBLIC_POOL_MODE_UNDERLAY
 		}
-		pool := &networkv1.PublicAddressPool{Mode: mode, GatewayId: p.GatewayID, Cidr: p.CIDR, OvnGatewayIp: p.OVNGatewayIP, ExcludedIps: p.ExcludedIPs, VlanNetworkId: p.VlanNetworkID, UpstreamGatewayIp: p.UpstreamGatewayIP, AllocationEnabled: v.AllocationEnabled, IsDefault: v.IsDefault, ConfigRevision: v.ConfigRevision, TopologyFingerprint: v.TopologyFingerprint, ObservedProviderImages: v.ObservedProviderImages}
+		pool := &networkv1.PublicAddressPool{Scope: "public", Mode: mode, GatewayId: p.GatewayID, Cidr: p.CIDR, OvnGatewayIp: p.OVNGatewayIP, ExcludedIps: p.ExcludedIPs, VlanNetworkId: p.VlanNetworkID, UpstreamGatewayIp: p.UpstreamGatewayIP, AllocationEnabled: v.AllocationEnabled, IsDefault: v.IsDefault, ConfigRevision: v.ConfigRevision, TopologyFingerprint: v.TopologyFingerprint, ObservedProviderImages: v.ObservedProviderImages}
 		if v.Verification != nil {
 			ev := v.Verification
 			pool.Verification = &networkv1.PublicPoolVerification{ProviderSourceRevision: ev.ProviderSourceRevision, ProviderImageDigests: ev.ProviderImageDigests, TopologyFingerprint: ev.TopologyFingerprint, EvidenceReference: ev.EvidenceReference, Scope: ev.Scope, VerifiedAt: timestamppb.New(ev.VerifiedAt), ExpiresAt: timestamppb.New(ev.ExpiresAt)}
 		}
 		r.Configuration = &networkv1.PlatformResource_Pool{Pool: pool}
+	}
+	if v.Pool != nil && v.Pool.Scope == "intranet" {
+		p := v.Pool
+		pool := &networkv1.IntranetAddressPool{Cidr: p.CIDR, OvnGatewayIp: p.OVNGatewayIP, ExcludedIps: p.ExcludedIPs, DefaultVpcName: p.DefaultVPCName, DefaultVpcUid: p.DefaultVPCUID, IntranetNetworks: p.IntranetNetworks, AllocationEnabled: v.AllocationEnabled, IsDefault: v.IsDefault, ConfigRevision: v.ConfigRevision, TopologyFingerprint: v.TopologyFingerprint, ObservedProviderImages: v.ObservedProviderImages, Scope: "intranet"}
+		if ev := v.Verification; ev != nil {
+			pool.Verification = &networkv1.IntranetPoolVerification{ProviderSourceRevision: ev.ProviderSourceRevision, ProviderImageDigests: ev.ProviderImageDigests, TopologyFingerprint: ev.TopologyFingerprint, EvidenceReference: ev.EvidenceReference, Scope: ev.Scope, VerifiedAt: timestamppb.New(ev.VerifiedAt), ExpiresAt: timestamppb.New(ev.ExpiresAt)}
+		}
+		r.Configuration = &networkv1.PlatformResource_IntranetPool{IntranetPool: pool}
 	}
 	return r
 }

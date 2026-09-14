@@ -71,7 +71,7 @@ func TestEgressGRPCContractAuthorizationAndNullableAppliedState(t *testing.T) {
 		v, err := f.e.GetEIP(f.ctx, "", created.Eip.Id)
 		return err == nil && v.State == biz.Available
 	})
-	vpc := availableVPC(t, f.n, f.w, f.tenant, "rpc-vpc")
+	vpc := availableEgressVPC(t, f, "rpc-vpc")
 	bound, err := client.BindVPCSnat(ctx, &networkv1.BindVPCSnatRequest{VpcId: vpc.ID, EipId: created.Eip.Id, IdempotencyKey: "rpc-bind"})
 	if err != nil || !bound.Binding.DesiredEnabled || bound.Binding.AppliedEnabled != nil {
 		t.Fatal("acceptance fabricated applied state", bound, err)

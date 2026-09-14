@@ -34,3 +34,8 @@ virtual interfaces, masters, OVS/KC-managed interfaces and VLAN occupancy.
 Applying the probe manifests only discovers facts. Adopting a device is an
 explicit platform operation. In this Goal real physical devices are not adopted;
 physical/OVS socket deployment verification remains `not_verified`.
+
+## Intranet pools
+
+[Intranet pool prerequisites](intranet.md) covers the default VPC identity,
+existing destination routing ranges, independent evidence and allocation gates.

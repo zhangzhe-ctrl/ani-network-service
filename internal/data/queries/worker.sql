@@ -41,6 +41,7 @@ SELECT * FROM network_provider_bindings WHERE tenant_id=sqlc.arg(tenant_id) AND 
 -- name: BeginProviderMutation :execrows
 UPDATE network_provider_bindings
 SET pending_action=sqlc.arg(action), pending_since=clock_timestamp(),
+    create_dispatched=create_dispatched OR sqlc.arg(action)::text='create',
     provider_uid=CASE WHEN provider_uid='' THEN sqlc.arg(identity)::text ELSE provider_uid END
 WHERE tenant_id=sqlc.arg(tenant_id) AND coalesce(vpc_id,subnet_id,eip_id,snat_id)=sqlc.arg(resource_id)::text AND binding_id=sqlc.arg(binding_id)
   AND (provider_uid='' OR provider_uid=sqlc.arg(identity))

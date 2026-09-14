@@ -1,8 +1,24 @@
 # Network 执行状态
 
-更新日期：2026-09-11。本文件是唯一当前进度入口；[规格](../specs/vpc-subnet.md)描述目标，[计划](../plans/vpc-subnet.md)描述工作包。
+更新日期：2026-09-14。本文件是唯一当前进度入口；[规格](../specs/vpc-subnet.md)描述目标，[计划](../plans/vpc-subnet.md)描述工作包。
 
-## VPC SNAT 当前实施
+## 当前工作：NET-VPC-BASE-01
+
+状态：`completed_controlled`。本批 NET-U00、U01、U02、U03、U04、U08 的实现和所有必需受控门禁已完成。固定基线 `d8835a22d905e358b7f60756d3113baa97d7c762`，工作树 `/home/chabking/workspace/.worktrees/network-vpc-base-01`，分支 `codex/net-vpc-base-01`；实现验收时点的未提交成果已固定；用户随后授权提交并推送远端 main。详见[六卡交付与下一批输入](records/NET-VPC-BASE-01/README.md)、[最终成果 manifest](records/NET-VPC-BASE-01/source-manifest.json)和[输入审计](records/NET-VPC-BASE-01/candidate-audit.json)。
+
+最终 ubuntu run `20260914T135236Z-18dc5c44`：`make verify`、固定生成/基线 breaking、真实 PostgreSQL 全量 race 均 **pass**，115 个顶层测试通过，9 个基础服务进程恢复场景通过。唯一可选容量测试未启动，不影响本批受控门禁；[逐项状态、命令及源码覆盖](records/NET-VPC-BASE-01/gates.json)保留 pass/fail/not_verified 层次，早期失败未覆盖删除。[清理复核](records/NET-VPC-BASE-01/cleanup.json)确认任务容器及运行进程已结束；其他工作树、共享缓存和原 LB 手工现场保留。
+
+2026-09-14 用户在受控验收结束后授权将本批成果提交并推送远端 main；实现门禁与历史 manifest 保留原时点。此次 Git 发布不包含部署或真实存量补齐。NET-U05—U07、U09—U12 均未启动；本批必要故障测试不等于 U07 全卡完成。真实内网流量、Public 出站及源地址、三类 LB、旧工作负载不中断、真实迁移/补齐均 **not_verified**。第二批以最终未提交成果和 0006/完整 LB 契约为输入，并先满足合格 kc/Envoy 镜像、拓扑、地址和独立数据面测试环境前提。
+
+## 已交付设计输入：VPC 基础连接、公网出站与 LB
+
+用户确认 EIP 只能绑定一个目标、SNAT 按内网/公网用途分别限制，并要求新方案和可执行任务。本次在 Network `d8835a22d905e358b7f60756d3113baa97d7c762` 上新建独立文档工作树 `codex/vpc-lb-plan-20260914`，交付[统一方案](../specs/vpc-connectivity-lb.md)、[NET-U00—U12 任务卡](../plans/vpc-connectivity-lb.md)与[ADR-0005](../adr/0005-separate-vpc-connectivity-and-exclusive-eip-bindings.md)。
+
+设计交付时点状态：`design_delivered`。该历史文档轮次只修改文档，未实现新生命周期、未执行数据库迁移/存量补齐、未操作集群或 ANI/kc 源码，未提交/推送；当时 NET-U00—U12 均 `not_started`。当前实现与验收以顶部 NET-VPC-BASE-01 为准。两条明确确认的规则与其余工程提案分开标识；基线、只读核对和文档检查见[交付记录](records/2026-09-14-vpc-lb-plan.md)。
+
+历史手工 LB 三类型 HTTP 在 kind 成功，不能作为新产品 API、Public SNAT 出站、真实互联网或生产部署验收。下面保留已有 Public 分支的实际完成及外部阻塞；新设计不自动消除它们。
+
+## VPC SNAT 已有实现基线
 
 2026-09-10，按 [本轮 Goal](records/VPC-SNAT-IMPLEMENTATION/goal-objective.md) 在独立 `codex/vpc-snat-implementation` worktree 完成本仓实现与必要自动验证。固定基线 `e481e968d3cc2f17bc4c6a736c438428519b09a0`；设计输入 595 项及原有历史证据保留；实施结束时成果未提交，后续分支交付按下方新增授权执行。详细代码、命令、源码快照和边界见 [本轮实施记录](records/VPC-SNAT-IMPLEMENTATION/README.md)。
 

@@ -33,7 +33,7 @@ const notifyResource = `-- name: NotifyResource :execrows
 UPDATE network_reconciliations
 SET requested_generation=requested_generation+1,
     next_run_at=greatest(retry_not_before,least(next_run_at,clock_timestamp()))
-WHERE tenant_id=$1 AND coalesce(vpc_id,subnet_id,eip_id,snat_id)=$2::text
+WHERE NOT retired AND tenant_id=$1 AND coalesce(vpc_id,subnet_id,eip_id,snat_id)=$2::text
 `
 
 type NotifyResourceParams struct {
@@ -114,6 +114,9 @@ WITH targets AS (
  FROM network_snat_bindings s JOIN network_eips e ON e.tenant_id=s.tenant_id AND e.eip_id=s.eip_id
  WHERE s.cluster_id=$1
  UNION ALL
+ SELECT b.tenant_id::text,b.vpc_id,'vpc'::text,b.pool_id,b.vpc_id,b.eip_id,b.snat_id
+ FROM network_vpc_base_connectivity b WHERE b.cluster_id=$1
+ UNION ALL
  SELECT ''::text,p.resource_id,p.kind,p.resource_id,NULL::text,NULL::text,NULL::text
  FROM network_platform_resources p WHERE p.cluster_id=$1 AND p.kind='public_pool'
 )
@@ -126,6 +129,9 @@ SELECT t.tenant_id,t.resource_id,t.kind,p.kind AS ref_kind,
 FROM targets t JOIN network_public_pools cfg ON cfg.cluster_id=$1 AND cfg.resource_id=t.pool_id
 LEFT JOIN network_vlan_networks vlan ON vlan.cluster_id=cfg.cluster_id AND vlan.resource_id=cfg.vlan_network_id
 JOIN network_platform_resources p ON p.cluster_id=cfg.cluster_id AND p.resource_id IN (cfg.resource_id,cfg.gateway_id,cfg.vlan_network_id,vlan.device_id)
+UNION ALL
+SELECT t.tenant_id,t.resource_id,t.kind,'vpc'::text,'kcn-system'::text,cfg.default_vpc_name,cfg.default_vpc_uid
+FROM targets t JOIN network_public_pools cfg ON cfg.cluster_id=$1 AND cfg.resource_id=t.pool_id WHERE cfg.scope='intranet'
 `
 
 type ObservationEgressEdgesParams struct {
@@ -177,7 +183,7 @@ SELECT r.tenant_id,coalesce(r.vpc_id,r.subnet_id,r.eip_id,r.snat_id)::text AS re
  r.requested_generation,b.resource_kind,b.namespace,b.provider_name,b.provider_uid
 FROM network_reconciliations r JOIN network_provider_bindings b
  ON b.tenant_id=r.tenant_id AND coalesce(b.vpc_id,b.subnet_id,b.eip_id,b.snat_id)=coalesce(r.vpc_id,r.subnet_id,r.eip_id,r.snat_id)
-WHERE b.cluster_id=$1
+WHERE b.cluster_id=$1 AND NOT r.retired
 `
 
 type ObservationResourcesParams struct {

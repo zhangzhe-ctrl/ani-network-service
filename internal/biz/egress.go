@@ -86,17 +86,33 @@ type EgressMetadata struct {
 	ObservationStale      bool
 	LastOperationID       string
 }
+
+// EIPBindingTarget is the exclusive address claim. BindingID remains the legacy
+// SNAT-only field; a load balancer claim has a target and a non-unbound state
+// while its legacy BindingID is empty.
+type EIPBindingTarget struct {
+	Kind, ID, State string
+}
 type EIP struct {
 	EgressMetadata
 	TenantID, Address, BindingID, BindingState string
+	BindingTarget                              *EIPBindingTarget `json:",omitempty"`
+	Scope                                      string            `json:",omitempty"`
+	ManagedBy                                  string            `json:",omitempty"`
 }
 type VPCSnatBinding struct {
 	EgressMetadata
 	TenantID, VPCID, EIPID, EIPAddress string
+	Purpose                            string `json:",omitempty"`
 	DesiredEnabled                     bool
 	AppliedEnabled                     *bool
 }
 type PublicPoolConfig struct {
+	// Empty scope preserves the original public intent fingerprint and replay.
+	Scope                               string   `json:",omitempty"`
+	DefaultVPCName                      string   `json:",omitempty"`
+	DefaultVPCUID                       string   `json:",omitempty"`
+	IntranetNetworks                    []string `json:",omitempty"`
 	Mode, GatewayID, CIDR, OVNGatewayIP string
 	ExcludedIPs                         []string
 	VlanNetworkID, UpstreamGatewayIP    string
@@ -202,6 +218,24 @@ type EgressRepository interface {
 type EgressInfrastructure interface {
 	ListNodeInterfaces(context.Context) (InterfaceInventory, error)
 	ValidatePublicPool(context.Context, PublicPoolConfig) error
+}
+
+// Intranet infrastructure is separate so public-only providers cannot assert
+// base connectivity without implementing its actual gateway and route contract.
+type IntranetPoolInfrastructure interface {
+	ValidateIntranetPool(context.Context, PublicPoolConfig) error
+}
+type CapabilityObservation struct {
+	Ready            bool
+	Reason           Reason
+	ObservedAt       *time.Time
+	ObservationStale bool
+}
+type PlatformNetworkCapabilities struct {
+	BaseConnectivity, PublicAddress, LoadBalancer CapabilityObservation
+}
+type PlatformCapabilitiesRepository interface {
+	GetPlatformCapabilities(context.Context, time.Duration) (PlatformNetworkCapabilities, error)
 }
 type Egress struct {
 	repository     EgressRepository
@@ -415,11 +449,17 @@ func (e *Egress) CreatePlatform(ctx context.Context, i PlatformIntent) (Platform
 		if i.Device != nil || i.Vlan != nil || i.Pool != nil {
 			return PlatformResource{}, Fail(InvalidArgument, "gateway has no mode or device configuration")
 		}
-	case "create_public_pool":
+	case "create_public_pool", "create_intranet_pool":
 		if i.Device != nil || i.Vlan != nil || i.Pool == nil {
 			return PlatformResource{}, Fail(InvalidArgument, "pool configuration is required")
 		}
-		normalized, err := NormalizePublicPool(*i.Pool)
+		var normalized PublicPoolConfig
+		var err error
+		if i.Kind == "create_intranet_pool" {
+			normalized, err = NormalizeIntranetPool(*i.Pool)
+		} else {
+			normalized, err = NormalizePublicPool(*i.Pool)
+		}
 		if err != nil {
 			return PlatformResource{}, err
 		}
@@ -437,7 +477,7 @@ func platformPrefix(kind string) string {
 		return "vlan"
 	case "egress_gateway":
 		return "egw"
-	case "public_pool":
+	case "public_pool", "intranet_pool":
 		return "pool"
 	}
 	return "invalid"
@@ -508,13 +548,17 @@ func (e *Egress) SetPool(ctx context.Context, i PlatformIntent) (PlatformResourc
 	i.Vlan = nil
 	i.Pool = nil
 	switch i.Kind {
-	case "set_pool_allocation", "set_default_pool":
+	case "set_pool_allocation", "set_default_pool", "set_intranet_pool_allocation", "set_default_intranet_pool":
 		i.Verification = nil
-	case "verify_public_pool":
+	case "verify_public_pool", "verify_intranet_pool":
 		if i.Verification == nil {
 			return PlatformResource{}, Fail(InvalidArgument, "verification is required")
 		}
-		if err = ValidatePoolVerification(*i.Verification, e.now()); err != nil {
+		scope := "public"
+		if i.Kind == "verify_intranet_pool" {
+			scope = "intranet"
+		}
+		if err = ValidatePoolVerificationForScope(*i.Verification, scope, e.now()); err != nil {
 			return PlatformResource{}, err
 		}
 	default:
@@ -537,6 +581,9 @@ func NormalizePublicPool(p PublicPoolConfig) (PublicPoolConfig, error) {
 		return p, Fail(InvalidArgument, "invalid public pool topology or reserved address")
 	}
 	cidr, err := netip.ParsePrefix(p.CIDR)
+	if (p.Scope != "" && p.Scope != "public") || p.DefaultVPCName != "" || p.DefaultVPCUID != "" || len(p.IntranetNetworks) != 0 {
+		return bad()
+	}
 	if err != nil || !cidr.Addr().Is4() || cidr != cidr.Masked() || cidr.Bits() > 30 || !validEgressID(p.GatewayID, "egw") {
 		return bad()
 	}

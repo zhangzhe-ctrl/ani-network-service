@@ -30,7 +30,17 @@ const (
 	OpFailed  OperationState = "failed"
 )
 
+type BaseConnectivity struct {
+	State            string
+	Reason           Reason
+	ObservedAt       *time.Time
+	ObservationStale bool
+}
+
+const BaseConnectivityNotReady Reason = "BASE_CONNECTIVITY_NOT_READY"
+
 type VPC struct {
+	BaseConnectivity                      *BaseConnectivity `json:",omitempty"`
 	ID, TenantID, Name, CIDR, Description string
 	State                                 ResourceState
 	Reason                                Reason
@@ -151,6 +161,10 @@ func (n *Network) DeleteVPC(ctx context.Context, tenant, id string) (VPC, error)
 }
 
 func (n *Network) observation(value VPC) VPC {
+	if value.BaseConnectivity != nil {
+		b := value.BaseConnectivity
+		b.ObservationStale = b.ObservedAt == nil || b.ObservedAt.After(n.now()) || n.now().Sub(*b.ObservedAt) > n.freshness
+	}
 	value.ObservationStale = value.ObservedAt == nil || n.now().Sub(*value.ObservedAt) > n.freshness
 	return value
 }

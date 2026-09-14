@@ -14,7 +14,7 @@ import (
 
 const admitEIPDeletion = `-- name: AdmitEIPDeletion :one
 UPDATE network_eips SET state='deleting',reason='',last_operation_id=$1,version=version+1,updated_at=clock_timestamp()
-WHERE tenant_id=$2 AND eip_id=$3 AND version=$4 RETURNING tenant_id, eip_id, cluster_id, namespace, name, description, pool_id, pool_revision, address, state, reason, version, created_at, updated_at, observed_at, last_operation_id
+WHERE tenant_id=$2 AND eip_id=$3 AND version=$4 RETURNING tenant_id, eip_id, cluster_id, namespace, name, description, pool_id, pool_revision, address, state, reason, version, created_at, updated_at, observed_at, last_operation_id, scope, managed_by, system_owner_vpc
 `
 
 type AdmitEIPDeletionParams struct {
@@ -49,13 +49,16 @@ func (q *Queries) AdmitEIPDeletion(ctx context.Context, arg AdmitEIPDeletionPara
 		&i.UpdatedAt,
 		&i.ObservedAt,
 		&i.LastOperationID,
+		&i.Scope,
+		&i.ManagedBy,
+		&i.SystemOwnerVpc,
 	)
 	return i, err
 }
 
 const admitSnatDeletion = `-- name: AdmitSnatDeletion :one
 UPDATE network_snat_bindings SET state='deleting',reason='',applied_enabled=NULL,last_operation_id=$1,version=version+1,updated_at=clock_timestamp()
-WHERE tenant_id=$2 AND snat_id=$3 AND version=$4 RETURNING tenant_id, snat_id, cluster_id, namespace, name, description, vpc_id, eip_id, desired_enabled, applied_enabled, target_generation, state, reason, version, created_at, updated_at, observed_at, last_operation_id
+WHERE tenant_id=$2 AND snat_id=$3 AND version=$4 RETURNING tenant_id, snat_id, cluster_id, namespace, name, description, vpc_id, eip_id, desired_enabled, applied_enabled, target_generation, state, reason, version, created_at, updated_at, observed_at, last_operation_id, purpose, system_owner_vpc
 `
 
 type AdmitSnatDeletionParams struct {
@@ -92,6 +95,8 @@ func (q *Queries) AdmitSnatDeletion(ctx context.Context, arg AdmitSnatDeletionPa
 		&i.UpdatedAt,
 		&i.ObservedAt,
 		&i.LastOperationID,
+		&i.Purpose,
+		&i.SystemOwnerVpc,
 	)
 	return i, err
 }
@@ -100,7 +105,7 @@ const advanceEIP = `-- name: AdvanceEIP :one
 UPDATE network_eips SET state=$1,reason=$2,version=version+1,updated_at=clock_timestamp(),
  address=CASE WHEN $3::text<>'' THEN $3 ELSE address END,
  observed_at=CASE WHEN $4::boolean THEN $5::timestamptz ELSE observed_at END
-WHERE tenant_id=$6 AND eip_id=$7 AND version=$8 RETURNING tenant_id, eip_id, cluster_id, namespace, name, description, pool_id, pool_revision, address, state, reason, version, created_at, updated_at, observed_at, last_operation_id
+WHERE tenant_id=$6 AND eip_id=$7 AND version=$8 RETURNING tenant_id, eip_id, cluster_id, namespace, name, description, pool_id, pool_revision, address, state, reason, version, created_at, updated_at, observed_at, last_operation_id, scope, managed_by, system_owner_vpc
 `
 
 type AdvanceEIPParams struct {
@@ -143,6 +148,9 @@ func (q *Queries) AdvanceEIP(ctx context.Context, arg AdvanceEIPParams) (Network
 		&i.UpdatedAt,
 		&i.ObservedAt,
 		&i.LastOperationID,
+		&i.Scope,
+		&i.ManagedBy,
+		&i.SystemOwnerVpc,
 	)
 	return i, err
 }
@@ -152,7 +160,7 @@ UPDATE network_snat_bindings SET state=$1,reason=$2,version=version+1,updated_at
  applied_enabled=$3::boolean,
  target_generation=greatest(target_generation,$4::bigint),
  observed_at=CASE WHEN $5::boolean THEN $6::timestamptz ELSE observed_at END
-WHERE tenant_id=$7 AND snat_id=$8 AND version=$9 RETURNING tenant_id, snat_id, cluster_id, namespace, name, description, vpc_id, eip_id, desired_enabled, applied_enabled, target_generation, state, reason, version, created_at, updated_at, observed_at, last_operation_id
+WHERE tenant_id=$7 AND snat_id=$8 AND version=$9 RETURNING tenant_id, snat_id, cluster_id, namespace, name, description, vpc_id, eip_id, desired_enabled, applied_enabled, target_generation, state, reason, version, created_at, updated_at, observed_at, last_operation_id, purpose, system_owner_vpc
 `
 
 type AdvanceSnatParams struct {
@@ -199,12 +207,14 @@ func (q *Queries) AdvanceSnat(ctx context.Context, arg AdvanceSnatParams) (Netwo
 		&i.UpdatedAt,
 		&i.ObservedAt,
 		&i.LastOperationID,
+		&i.Purpose,
+		&i.SystemOwnerVpc,
 	)
 	return i, err
 }
 
 const blockingSnatForEIP = `-- name: BlockingSnatForEIP :one
-SELECT count(*)::bigint FROM network_snat_bindings WHERE tenant_id=$1 AND eip_id=$2 AND state<>'deleted'
+SELECT count(*)::bigint FROM network_eip_claims WHERE tenant_id=$1 AND eip_id=$2 AND released_at IS NULL
 `
 
 type BlockingSnatForEIPParams struct {
@@ -220,7 +230,7 @@ func (q *Queries) BlockingSnatForEIP(ctx context.Context, arg BlockingSnatForEIP
 }
 
 const blockingSnatForVPC = `-- name: BlockingSnatForVPC :one
-SELECT count(*)::bigint FROM network_snat_bindings WHERE tenant_id=$1 AND vpc_id=$2 AND state<>'deleted'
+SELECT count(*)::bigint FROM network_snat_bindings WHERE tenant_id=$1 AND vpc_id=$2 AND purpose='public' AND state<>'deleted'
 `
 
 type BlockingSnatForVPCParams struct {
@@ -235,15 +245,47 @@ func (q *Queries) BlockingSnatForVPC(ctx context.Context, arg BlockingSnatForVPC
 	return column_1, err
 }
 
+const claimEIPForSnat = `-- name: ClaimEIPForSnat :execrows
+INSERT INTO network_eip_claims(tenant_id,eip_id,cluster_id,namespace,target_kind,snat_id,state,created_at)
+VALUES($1,$2,$3,$4,'vpc_snat',$5::text,'reserved',$6)
+ON CONFLICT DO NOTHING
+`
+
+type ClaimEIPForSnatParams struct {
+	TenantID  string
+	EipID     string
+	ClusterID string
+	Namespace string
+	SnatID    string
+	CreatedAt time.Time
+}
+
+// The target foreign key and the active EIP index arbitrate SNAT/LB admission.
+func (q *Queries) ClaimEIPForSnat(ctx context.Context, arg ClaimEIPForSnatParams) (int64, error) {
+	result, err := q.db.Exec(ctx, claimEIPForSnat,
+		arg.TenantID,
+		arg.EipID,
+		arg.ClusterID,
+		arg.Namespace,
+		arg.SnatID,
+		arg.CreatedAt,
+	)
+	if err != nil {
+		return 0, err
+	}
+	return result.RowsAffected(), nil
+}
+
 const dueResourceCandidates = `-- name: DueResourceCandidates :many
 SELECT r.tenant_id,coalesce(r.vpc_id,r.subnet_id,r.eip_id,r.snat_id)::text AS resource_id,b.resource_kind,
- coalesce(r.vpc_id,s.vpc_id,sn.vpc_id,'')::text AS parent_vpc_id,coalesce(r.eip_id,sn.eip_id,'')::text AS parent_eip_id,
+ coalesce(r.vpc_id,s.vpc_id,sn.vpc_id,e.system_owner_vpc,'')::text AS parent_vpc_id,coalesce(r.eip_id,sn.eip_id,'')::text AS parent_eip_id,
  r.next_run_at AS due_at
 FROM network_reconciliations r JOIN network_provider_bindings b ON b.tenant_id=r.tenant_id
  AND coalesce(b.vpc_id,b.subnet_id,b.eip_id,b.snat_id)=coalesce(r.vpc_id,r.subnet_id,r.eip_id,r.snat_id)
 LEFT JOIN network_subnets s ON s.tenant_id=r.tenant_id AND s.subnet_id=r.subnet_id
 LEFT JOIN network_snat_bindings sn ON sn.tenant_id=r.tenant_id AND sn.snat_id=r.snat_id
-WHERE r.next_run_at<=clock_timestamp() AND (r.lease_until IS NULL OR r.lease_until<=clock_timestamp())
+LEFT JOIN network_eips e ON e.tenant_id=r.tenant_id AND e.eip_id=r.eip_id
+WHERE NOT r.retired AND r.next_run_at<=clock_timestamp() AND (r.lease_until IS NULL OR r.lease_until<=clock_timestamp())
 ORDER BY r.next_run_at,coalesce(r.vpc_id,r.subnet_id,r.eip_id,r.snat_id) LIMIT 32
 `
 
@@ -286,10 +328,13 @@ func (q *Queries) DueResourceCandidates(ctx context.Context) ([]DueResourceCandi
 }
 
 const getEIP = `-- name: GetEIP :one
-SELECT e.tenant_id, e.eip_id, e.cluster_id, e.namespace, e.name, e.description, e.pool_id, e.pool_revision, e.address, e.state, e.reason, e.version, e.created_at, e.updated_at, e.observed_at, e.last_operation_id,coalesce(s.snat_id,'')::text AS binding_id,
- CASE WHEN s.snat_id IS NULL THEN 'unbound' WHEN s.state='available' AND s.applied_enabled IS NOT NULL THEN 'bound' ELSE 'reserved' END::text AS binding_state
-FROM network_eips e LEFT JOIN network_snat_bindings s ON s.tenant_id=e.tenant_id AND s.eip_id=e.eip_id AND s.state<>'deleted'
-WHERE e.tenant_id=$1 AND e.eip_id=$2
+SELECT e.tenant_id, e.eip_id, e.cluster_id, e.namespace, e.name, e.description, e.pool_id, e.pool_revision, e.address, e.state, e.reason, e.version, e.created_at, e.updated_at, e.observed_at, e.last_operation_id, e.scope, e.managed_by, e.system_owner_vpc,coalesce(c.snat_id,'')::text AS binding_id,
+ coalesce(c.state,'unbound')::text AS binding_state,
+ coalesce(c.target_kind,'')::text AS binding_target_kind,
+ coalesce(c.snat_id,c.lb_id,'')::text AS binding_target_id
+FROM network_eips e LEFT JOIN network_eip_claims c
+ ON c.tenant_id=e.tenant_id AND c.eip_id=e.eip_id AND c.released_at IS NULL
+WHERE e.tenant_id=$1 AND e.eip_id=$2 AND e.scope='public' AND e.managed_by='tenant'
 `
 
 type GetEIPParams struct {
@@ -298,9 +343,11 @@ type GetEIPParams struct {
 }
 
 type GetEIPRow struct {
-	NetworkEip   NetworkEip
-	BindingID    string
-	BindingState string
+	NetworkEip        NetworkEip
+	BindingID         string
+	BindingState      string
+	BindingTargetKind string
+	BindingTargetID   string
 }
 
 func (q *Queries) GetEIP(ctx context.Context, arg GetEIPParams) (GetEIPRow, error) {
@@ -323,14 +370,74 @@ func (q *Queries) GetEIP(ctx context.Context, arg GetEIPParams) (GetEIPRow, erro
 		&i.NetworkEip.UpdatedAt,
 		&i.NetworkEip.ObservedAt,
 		&i.NetworkEip.LastOperationID,
+		&i.NetworkEip.Scope,
+		&i.NetworkEip.ManagedBy,
+		&i.NetworkEip.SystemOwnerVpc,
 		&i.BindingID,
 		&i.BindingState,
+		&i.BindingTargetKind,
+		&i.BindingTargetID,
+	)
+	return i, err
+}
+
+const getEIPClaim = `-- name: GetEIPClaim :one
+SELECT e.tenant_id, e.eip_id, e.cluster_id, e.namespace, e.name, e.description, e.pool_id, e.pool_revision, e.address, e.state, e.reason, e.version, e.created_at, e.updated_at, e.observed_at, e.last_operation_id, e.scope, e.managed_by, e.system_owner_vpc,coalesce(c.snat_id,'')::text AS binding_id,
+ coalesce(c.state,'unbound')::text AS binding_state,
+ coalesce(c.target_kind,'')::text AS binding_target_kind,
+ coalesce(c.snat_id,c.lb_id,'')::text AS binding_target_id
+FROM network_eips e LEFT JOIN network_eip_claims c
+ ON c.tenant_id=e.tenant_id AND c.eip_id=e.eip_id AND c.released_at IS NULL
+WHERE e.tenant_id=$1 AND e.eip_id=$2
+`
+
+type GetEIPClaimParams struct {
+	TenantID string
+	EipID    string
+}
+
+type GetEIPClaimRow struct {
+	NetworkEip        NetworkEip
+	BindingID         string
+	BindingState      string
+	BindingTargetKind string
+	BindingTargetID   string
+}
+
+// Worker-only lookup includes system addresses and uses the same claim projection.
+func (q *Queries) GetEIPClaim(ctx context.Context, arg GetEIPClaimParams) (GetEIPClaimRow, error) {
+	row := q.db.QueryRow(ctx, getEIPClaim, arg.TenantID, arg.EipID)
+	var i GetEIPClaimRow
+	err := row.Scan(
+		&i.NetworkEip.TenantID,
+		&i.NetworkEip.EipID,
+		&i.NetworkEip.ClusterID,
+		&i.NetworkEip.Namespace,
+		&i.NetworkEip.Name,
+		&i.NetworkEip.Description,
+		&i.NetworkEip.PoolID,
+		&i.NetworkEip.PoolRevision,
+		&i.NetworkEip.Address,
+		&i.NetworkEip.State,
+		&i.NetworkEip.Reason,
+		&i.NetworkEip.Version,
+		&i.NetworkEip.CreatedAt,
+		&i.NetworkEip.UpdatedAt,
+		&i.NetworkEip.ObservedAt,
+		&i.NetworkEip.LastOperationID,
+		&i.NetworkEip.Scope,
+		&i.NetworkEip.ManagedBy,
+		&i.NetworkEip.SystemOwnerVpc,
+		&i.BindingID,
+		&i.BindingState,
+		&i.BindingTargetKind,
+		&i.BindingTargetID,
 	)
 	return i, err
 }
 
 const getEIPInternal = `-- name: GetEIPInternal :one
-SELECT tenant_id, eip_id, cluster_id, namespace, name, description, pool_id, pool_revision, address, state, reason, version, created_at, updated_at, observed_at, last_operation_id FROM network_eips WHERE tenant_id=$1 AND eip_id=$2
+SELECT tenant_id, eip_id, cluster_id, namespace, name, description, pool_id, pool_revision, address, state, reason, version, created_at, updated_at, observed_at, last_operation_id, scope, managed_by, system_owner_vpc FROM network_eips WHERE tenant_id=$1 AND eip_id=$2
 `
 
 type GetEIPInternalParams struct {
@@ -358,6 +465,9 @@ func (q *Queries) GetEIPInternal(ctx context.Context, arg GetEIPInternalParams) 
 		&i.UpdatedAt,
 		&i.ObservedAt,
 		&i.LastOperationID,
+		&i.Scope,
+		&i.ManagedBy,
+		&i.SystemOwnerVpc,
 	)
 	return i, err
 }
@@ -393,9 +503,9 @@ func (q *Queries) GetEgressIdempotency(ctx context.Context, arg GetEgressIdempot
 }
 
 const getSnat = `-- name: GetSnat :one
-SELECT s.tenant_id, s.snat_id, s.cluster_id, s.namespace, s.name, s.description, s.vpc_id, s.eip_id, s.desired_enabled, s.applied_enabled, s.target_generation, s.state, s.reason, s.version, s.created_at, s.updated_at, s.observed_at, s.last_operation_id,e.address FROM network_snat_bindings s
+SELECT s.tenant_id, s.snat_id, s.cluster_id, s.namespace, s.name, s.description, s.vpc_id, s.eip_id, s.desired_enabled, s.applied_enabled, s.target_generation, s.state, s.reason, s.version, s.created_at, s.updated_at, s.observed_at, s.last_operation_id, s.purpose, s.system_owner_vpc,e.address FROM network_snat_bindings s
 JOIN network_eips e ON e.tenant_id=s.tenant_id AND e.eip_id=s.eip_id
-WHERE s.tenant_id=$1 AND
+WHERE s.tenant_id=$1 AND s.purpose='public' AND e.scope='public' AND e.managed_by='tenant' AND
  ((NOT $2::boolean AND s.snat_id=$3::text) OR
  ($2::boolean AND s.vpc_id=$3::text AND s.state<>'deleted'))
 `
@@ -433,13 +543,15 @@ func (q *Queries) GetSnat(ctx context.Context, arg GetSnatParams) (GetSnatRow, e
 		&i.NetworkSnatBinding.UpdatedAt,
 		&i.NetworkSnatBinding.ObservedAt,
 		&i.NetworkSnatBinding.LastOperationID,
+		&i.NetworkSnatBinding.Purpose,
+		&i.NetworkSnatBinding.SystemOwnerVpc,
 		&i.Address,
 	)
 	return i, err
 }
 
 const getSnatInternal = `-- name: GetSnatInternal :one
-SELECT tenant_id, snat_id, cluster_id, namespace, name, description, vpc_id, eip_id, desired_enabled, applied_enabled, target_generation, state, reason, version, created_at, updated_at, observed_at, last_operation_id FROM network_snat_bindings WHERE tenant_id=$1 AND snat_id=$2
+SELECT tenant_id, snat_id, cluster_id, namespace, name, description, vpc_id, eip_id, desired_enabled, applied_enabled, target_generation, state, reason, version, created_at, updated_at, observed_at, last_operation_id, purpose, system_owner_vpc FROM network_snat_bindings WHERE tenant_id=$1 AND snat_id=$2
 `
 
 type GetSnatInternalParams struct {
@@ -469,13 +581,15 @@ func (q *Queries) GetSnatInternal(ctx context.Context, arg GetSnatInternalParams
 		&i.UpdatedAt,
 		&i.ObservedAt,
 		&i.LastOperationID,
+		&i.Purpose,
+		&i.SystemOwnerVpc,
 	)
 	return i, err
 }
 
 const insertEIP = `-- name: InsertEIP :one
-INSERT INTO network_eips(tenant_id,eip_id,cluster_id,namespace,name,description,pool_id,pool_revision,state,created_at,updated_at,last_operation_id)
-VALUES($1,$2,$3,$4,$5,$6,$7,$8,'provisioning',$9,$9,$10) RETURNING tenant_id, eip_id, cluster_id, namespace, name, description, pool_id, pool_revision, address, state, reason, version, created_at, updated_at, observed_at, last_operation_id
+INSERT INTO network_eips(tenant_id,eip_id,cluster_id,namespace,name,description,pool_id,pool_revision,scope,managed_by,state,created_at,updated_at,last_operation_id)
+VALUES($1,$2,$3,$4,$5,$6,$7,$8,'public','tenant','provisioning',$9,$9,$10) RETURNING tenant_id, eip_id, cluster_id, namespace, name, description, pool_id, pool_revision, address, state, reason, version, created_at, updated_at, observed_at, last_operation_id, scope, managed_by, system_owner_vpc
 `
 
 type InsertEIPParams struct {
@@ -522,6 +636,9 @@ func (q *Queries) InsertEIP(ctx context.Context, arg InsertEIPParams) (NetworkEi
 		&i.UpdatedAt,
 		&i.ObservedAt,
 		&i.LastOperationID,
+		&i.Scope,
+		&i.ManagedBy,
+		&i.SystemOwnerVpc,
 	)
 	return i, err
 }
@@ -559,8 +676,8 @@ func (q *Queries) InsertEgressIdempotency(ctx context.Context, arg InsertEgressI
 }
 
 const insertSnat = `-- name: InsertSnat :one
-INSERT INTO network_snat_bindings(tenant_id,snat_id,cluster_id,namespace,name,description,vpc_id,eip_id,desired_enabled,state,created_at,updated_at,last_operation_id)
-VALUES($1,$2,$3,$4,'VPC SNAT','',$5,$6,true,'provisioning',$7,$7,$8) RETURNING tenant_id, snat_id, cluster_id, namespace, name, description, vpc_id, eip_id, desired_enabled, applied_enabled, target_generation, state, reason, version, created_at, updated_at, observed_at, last_operation_id
+INSERT INTO network_snat_bindings(tenant_id,snat_id,cluster_id,namespace,name,description,vpc_id,eip_id,purpose,desired_enabled,state,created_at,updated_at,last_operation_id)
+VALUES($1,$2,$3,$4,'VPC SNAT','',$5,$6,'public',true,'provisioning',$7,$7,$8) RETURNING tenant_id, snat_id, cluster_id, namespace, name, description, vpc_id, eip_id, desired_enabled, applied_enabled, target_generation, state, reason, version, created_at, updated_at, observed_at, last_operation_id, purpose, system_owner_vpc
 `
 
 type InsertSnatParams struct {
@@ -605,15 +722,20 @@ func (q *Queries) InsertSnat(ctx context.Context, arg InsertSnatParams) (Network
 		&i.UpdatedAt,
 		&i.ObservedAt,
 		&i.LastOperationID,
+		&i.Purpose,
+		&i.SystemOwnerVpc,
 	)
 	return i, err
 }
 
 const listEIPs = `-- name: ListEIPs :many
-SELECT e.tenant_id, e.eip_id, e.cluster_id, e.namespace, e.name, e.description, e.pool_id, e.pool_revision, e.address, e.state, e.reason, e.version, e.created_at, e.updated_at, e.observed_at, e.last_operation_id,coalesce(s.snat_id,'')::text AS binding_id,
- CASE WHEN s.snat_id IS NULL THEN 'unbound' WHEN s.state='available' AND s.applied_enabled IS NOT NULL THEN 'bound' ELSE 'reserved' END::text AS binding_state
-FROM network_eips e LEFT JOIN network_snat_bindings s ON s.tenant_id=e.tenant_id AND s.eip_id=e.eip_id AND s.state<>'deleted'
-WHERE e.tenant_id=$1
+SELECT e.tenant_id, e.eip_id, e.cluster_id, e.namespace, e.name, e.description, e.pool_id, e.pool_revision, e.address, e.state, e.reason, e.version, e.created_at, e.updated_at, e.observed_at, e.last_operation_id, e.scope, e.managed_by, e.system_owner_vpc,coalesce(c.snat_id,'')::text AS binding_id,
+ coalesce(c.state,'unbound')::text AS binding_state,
+ coalesce(c.target_kind,'')::text AS binding_target_kind,
+ coalesce(c.snat_id,c.lb_id,'')::text AS binding_target_id
+FROM network_eips e LEFT JOIN network_eip_claims c
+ ON c.tenant_id=e.tenant_id AND c.eip_id=e.eip_id AND c.released_at IS NULL
+WHERE e.tenant_id=$1 AND e.scope='public' AND e.managed_by='tenant'
  AND ($2::text='' OR e.name=$2)
  AND (($3::text='' AND e.state<>'deleted') OR e.state=$3)
  AND ($4::text='' OR (e.created_at,e.eip_id)<($5::timestamptz,$4::text))
@@ -630,9 +752,11 @@ type ListEIPsParams struct {
 }
 
 type ListEIPsRow struct {
-	NetworkEip   NetworkEip
-	BindingID    string
-	BindingState string
+	NetworkEip        NetworkEip
+	BindingID         string
+	BindingState      string
+	BindingTargetKind string
+	BindingTargetID   string
 }
 
 func (q *Queries) ListEIPs(ctx context.Context, arg ListEIPsParams) ([]ListEIPsRow, error) {
@@ -668,8 +792,13 @@ func (q *Queries) ListEIPs(ctx context.Context, arg ListEIPsParams) ([]ListEIPsR
 			&i.NetworkEip.UpdatedAt,
 			&i.NetworkEip.ObservedAt,
 			&i.NetworkEip.LastOperationID,
+			&i.NetworkEip.Scope,
+			&i.NetworkEip.ManagedBy,
+			&i.NetworkEip.SystemOwnerVpc,
 			&i.BindingID,
 			&i.BindingState,
+			&i.BindingTargetKind,
+			&i.BindingTargetID,
 		); err != nil {
 			return nil, err
 		}
@@ -682,7 +811,7 @@ func (q *Queries) ListEIPs(ctx context.Context, arg ListEIPsParams) ([]ListEIPsR
 }
 
 const lockEIP = `-- name: LockEIP :one
-SELECT tenant_id, eip_id, cluster_id, namespace, name, description, pool_id, pool_revision, address, state, reason, version, created_at, updated_at, observed_at, last_operation_id FROM network_eips WHERE tenant_id=$1 AND eip_id=$2 FOR UPDATE
+SELECT tenant_id, eip_id, cluster_id, namespace, name, description, pool_id, pool_revision, address, state, reason, version, created_at, updated_at, observed_at, last_operation_id, scope, managed_by, system_owner_vpc FROM network_eips WHERE tenant_id=$1 AND eip_id=$2 FOR UPDATE
 `
 
 type LockEIPParams struct {
@@ -710,6 +839,9 @@ func (q *Queries) LockEIP(ctx context.Context, arg LockEIPParams) (NetworkEip, e
 		&i.UpdatedAt,
 		&i.ObservedAt,
 		&i.LastOperationID,
+		&i.Scope,
+		&i.ManagedBy,
+		&i.SystemOwnerVpc,
 	)
 	return i, err
 }
@@ -731,7 +863,7 @@ func (q *Queries) LockEgressKey(ctx context.Context, arg LockEgressKeyParams) er
 }
 
 const lockSnat = `-- name: LockSnat :one
-SELECT tenant_id, snat_id, cluster_id, namespace, name, description, vpc_id, eip_id, desired_enabled, applied_enabled, target_generation, state, reason, version, created_at, updated_at, observed_at, last_operation_id FROM network_snat_bindings WHERE tenant_id=$1 AND snat_id=$2 FOR UPDATE
+SELECT tenant_id, snat_id, cluster_id, namespace, name, description, vpc_id, eip_id, desired_enabled, applied_enabled, target_generation, state, reason, version, created_at, updated_at, observed_at, last_operation_id, purpose, system_owner_vpc FROM network_snat_bindings WHERE tenant_id=$1 AND snat_id=$2 FOR UPDATE
 `
 
 type LockSnatParams struct {
@@ -761,6 +893,8 @@ func (q *Queries) LockSnat(ctx context.Context, arg LockSnatParams) (NetworkSnat
 		&i.UpdatedAt,
 		&i.ObservedAt,
 		&i.LastOperationID,
+		&i.Purpose,
+		&i.SystemOwnerVpc,
 	)
 	return i, err
 }
@@ -768,7 +902,7 @@ func (q *Queries) LockSnat(ctx context.Context, arg LockSnatParams) (NetworkSnat
 const setSnatIntent = `-- name: SetSnatIntent :one
 UPDATE network_snat_bindings SET desired_enabled=$1,applied_enabled=NULL,state='provisioning',reason='',
  last_operation_id=$2,version=version+1,updated_at=clock_timestamp()
-WHERE tenant_id=$3 AND snat_id=$4 AND version=$5 RETURNING tenant_id, snat_id, cluster_id, namespace, name, description, vpc_id, eip_id, desired_enabled, applied_enabled, target_generation, state, reason, version, created_at, updated_at, observed_at, last_operation_id
+WHERE tenant_id=$3 AND snat_id=$4 AND version=$5 RETURNING tenant_id, snat_id, cluster_id, namespace, name, description, vpc_id, eip_id, desired_enabled, applied_enabled, target_generation, state, reason, version, created_at, updated_at, observed_at, last_operation_id, purpose, system_owner_vpc
 `
 
 type SetSnatIntentParams struct {
@@ -807,12 +941,14 @@ func (q *Queries) SetSnatIntent(ctx context.Context, arg SetSnatIntentParams) (N
 		&i.UpdatedAt,
 		&i.ObservedAt,
 		&i.LastOperationID,
+		&i.Purpose,
+		&i.SystemOwnerVpc,
 	)
 	return i, err
 }
 
 const tryLockWorkEIP = `-- name: TryLockWorkEIP :one
-SELECT tenant_id, eip_id, cluster_id, namespace, name, description, pool_id, pool_revision, address, state, reason, version, created_at, updated_at, observed_at, last_operation_id FROM network_eips WHERE tenant_id=$1 AND eip_id=$2 FOR UPDATE SKIP LOCKED
+SELECT tenant_id, eip_id, cluster_id, namespace, name, description, pool_id, pool_revision, address, state, reason, version, created_at, updated_at, observed_at, last_operation_id, scope, managed_by, system_owner_vpc FROM network_eips WHERE tenant_id=$1 AND eip_id=$2 FOR UPDATE SKIP LOCKED
 `
 
 type TryLockWorkEIPParams struct {
@@ -840,12 +976,15 @@ func (q *Queries) TryLockWorkEIP(ctx context.Context, arg TryLockWorkEIPParams) 
 		&i.UpdatedAt,
 		&i.ObservedAt,
 		&i.LastOperationID,
+		&i.Scope,
+		&i.ManagedBy,
+		&i.SystemOwnerVpc,
 	)
 	return i, err
 }
 
 const tryLockWorkSnat = `-- name: TryLockWorkSnat :one
-SELECT tenant_id, snat_id, cluster_id, namespace, name, description, vpc_id, eip_id, desired_enabled, applied_enabled, target_generation, state, reason, version, created_at, updated_at, observed_at, last_operation_id FROM network_snat_bindings WHERE tenant_id=$1 AND snat_id=$2 FOR UPDATE SKIP LOCKED
+SELECT tenant_id, snat_id, cluster_id, namespace, name, description, vpc_id, eip_id, desired_enabled, applied_enabled, target_generation, state, reason, version, created_at, updated_at, observed_at, last_operation_id, purpose, system_owner_vpc FROM network_snat_bindings WHERE tenant_id=$1 AND snat_id=$2 FOR UPDATE SKIP LOCKED
 `
 
 type TryLockWorkSnatParams struct {
@@ -875,12 +1014,14 @@ func (q *Queries) TryLockWorkSnat(ctx context.Context, arg TryLockWorkSnatParams
 		&i.UpdatedAt,
 		&i.ObservedAt,
 		&i.LastOperationID,
+		&i.Purpose,
+		&i.SystemOwnerVpc,
 	)
 	return i, err
 }
 
 const tryLockWorkVPC = `-- name: TryLockWorkVPC :one
-SELECT tenant_id, vpc_id, name, description, cidr, state, reason, version, created_at, updated_at, observed_at, last_operation_id FROM network_vpcs WHERE tenant_id=$1 AND vpc_id=$2 FOR UPDATE SKIP LOCKED
+SELECT tenant_id, vpc_id, name, description, cidr, state, reason, version, created_at, updated_at, observed_at, last_operation_id, base_connectivity_required FROM network_vpcs WHERE tenant_id=$1 AND vpc_id=$2 FOR UPDATE SKIP LOCKED
 `
 
 type TryLockWorkVPCParams struct {
@@ -904,6 +1045,7 @@ func (q *Queries) TryLockWorkVPC(ctx context.Context, arg TryLockWorkVPCParams) 
 		&i.UpdatedAt,
 		&i.ObservedAt,
 		&i.LastOperationID,
+		&i.BaseConnectivityRequired,
 	)
 	return i, err
 }
