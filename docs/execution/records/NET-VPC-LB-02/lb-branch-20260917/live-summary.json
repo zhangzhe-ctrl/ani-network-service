@@ -1,0 +1,1105 @@
+{
+  "result": "read_only_window_complete",
+  "start": "2026-09-17T15:38:05.681815+00:00",
+  "stop": "2026-09-17T15:44:58.704910+00:00",
+  "duration_seconds": 413.023095,
+  "streams": {
+    "kcn-system-subnets.jsonl": {
+      "initial_objects": 5,
+      "events": {
+        "ADDED": 5
+      },
+      "intentional_stop": true
+    },
+    "pubdebug-20260917-backends.jsonl": {
+      "initial_objects": 2,
+      "events": {
+        "ADDED": 2
+      },
+      "intentional_stop": true
+    },
+    "pubdebug-20260917-backendtrafficpolicies.jsonl": {
+      "initial_objects": 2,
+      "events": {
+        "ADDED": 2
+      },
+      "intentional_stop": true
+    },
+    "pubdebug-20260917-eips.jsonl": {
+      "initial_objects": 4,
+      "events": {
+        "ADDED": 4
+      },
+      "intentional_stop": true
+    },
+    "pubdebug-20260917-gateways.jsonl": {
+      "initial_objects": 2,
+      "events": {
+        "ADDED": 2
+      },
+      "intentional_stop": true
+    },
+    "pubdebug-20260917-httproutes.jsonl": {
+      "initial_objects": 2,
+      "events": {
+        "ADDED": 2
+      },
+      "intentional_stop": true
+    },
+    "pubdebug-20260917-pods.jsonl": {
+      "initial_objects": 9,
+      "events": {
+        "ADDED": 9
+      },
+      "intentional_stop": true
+    },
+    "pubdebug-20260917-services.jsonl": {
+      "initial_objects": 2,
+      "events": {
+        "ADDED": 2
+      },
+      "intentional_stop": true
+    },
+    "pubdebug-20260917-snats.jsonl": {
+      "initial_objects": 2,
+      "events": {
+        "ADDED": 2
+      },
+      "intentional_stop": true
+    },
+    "pubdebug-20260917-vnicips.jsonl": {
+      "initial_objects": 9,
+      "events": {
+        "ADDED": 9
+      },
+      "intentional_stop": true
+    },
+    "pubdebug-20260917-vnics.jsonl": {
+      "initial_objects": 9,
+      "events": {
+        "ADDED": 9
+      },
+      "intentional_stop": true
+    },
+    "pubdebug-20260917-vpcs.jsonl": {
+      "initial_objects": 1,
+      "events": {
+        "ADDED": 1
+      },
+      "intentional_stop": true
+    }
+  },
+  "modified_deleted_error_events": [],
+  "selected_initial_objects": {
+    "Subnet/pubdebug-20260917-public": {
+      "kind": "Subnet",
+      "metadata": {
+        "namespace": "kcn-system",
+        "name": "pubdebug-20260917-public",
+        "uid": "39619c25-703e-4db2-a35a-d44ee2acb780",
+        "generation": 1,
+        "resourceVersion": "1092201",
+        "deletionTimestamp": null
+      },
+      "status": {
+        "boundResources": {
+          "gatewayPort": "gw.pubdebug-20260917-egress-kcn-system.pubdebug-20260917-public",
+          "switch": "kcn-system.pubdebug-20260917-public"
+        },
+        "conditions": [
+          {
+            "lastTransitionTime": "2026-09-17T02:30:57Z",
+            "message": "",
+            "reason": "Initialized",
+            "status": "True",
+            "type": "Initialized"
+          },
+          {
+            "lastTransitionTime": "2026-09-17T02:30:57Z",
+            "message": "",
+            "reason": "Valid",
+            "status": "True",
+            "type": "Valid"
+          },
+          {
+            "lastTransitionTime": "2026-09-17T02:30:57Z",
+            "message": "",
+            "reason": "Ready",
+            "status": "True",
+            "type": "Ready"
+          }
+        ],
+        "gatewayMac": "fa:00:48:74:34:85",
+        "observedGeneration": 1,
+        "underlayState": {
+          "chassisNode": "ani-01",
+          "ready": true,
+          "vlanNetwork": "pubdebug-20260917-vlan0"
+        },
+        "v4availableIPrange": "172.16.102.197-172.16.102.207",
+        "v4availableIPs": 11,
+        "v4usingIPrange": "172.16.102.192-172.16.102.196",
+        "v4usingIPs": 5
+      },
+      "spec": {
+        "allowedNamespaces": {
+          "from": "Selector",
+          "selector": {
+            "matchLabels": {
+              "manual.ani.io/run": "pubdebug-20260917"
+            }
+          }
+        },
+        "cidrBlock": "172.16.102.0/24",
+        "enableDHCP": false,
+        "excludeIPs": [
+          "172.16.102.1..172.16.102.191",
+          "172.16.102.208..172.16.102.254"
+        ],
+        "gateway": "pubdebug-20260917-egress",
+        "gatewayIP": "172.16.102.2",
+        "ipVersion": "IPv4",
+        "natOutgoing": false,
+        "type": "Public",
+        "underlayConfig": {
+          "gatewayIP": "172.16.102.1",
+          "vlanNetwork": "pubdebug-20260917-vlan0"
+        }
+      }
+    },
+    "Backend/backend-a": {
+      "kind": "Backend",
+      "metadata": {
+        "namespace": "pubdebug-20260917",
+        "name": "backend-a",
+        "uid": "0ddeaffc-d506-473a-b30a-c77236036ede",
+        "generation": 1,
+        "resourceVersion": "1121340",
+        "deletionTimestamp": null
+      },
+      "status": {
+        "conditions": [
+          {
+            "lastTransitionTime": "2026-09-17T04:17:59Z",
+            "message": "The Backend was accepted",
+            "observedGeneration": 1,
+            "reason": "Accepted",
+            "status": "True",
+            "type": "Accepted"
+          }
+        ]
+      },
+      "spec": {
+        "endpoints": [
+          {
+            "ip": {
+              "address": "10.233.1.2",
+              "port": 8080
+            }
+          }
+        ],
+        "type": "Endpoints"
+      }
+    },
+    "Backend/backend-b": {
+      "kind": "Backend",
+      "metadata": {
+        "namespace": "pubdebug-20260917",
+        "name": "backend-b",
+        "uid": "852586dc-a121-4267-83db-9973b9b3b39d",
+        "generation": 1,
+        "resourceVersion": "1121342",
+        "deletionTimestamp": null
+      },
+      "status": {
+        "conditions": [
+          {
+            "lastTransitionTime": "2026-09-17T04:17:59Z",
+            "message": "The Backend was accepted",
+            "observedGeneration": 1,
+            "reason": "Accepted",
+            "status": "True",
+            "type": "Accepted"
+          }
+        ]
+      },
+      "spec": {
+        "endpoints": [
+          {
+            "ip": {
+              "address": "10.233.1.3",
+              "port": 8080
+            }
+          }
+        ],
+        "type": "Endpoints"
+      }
+    },
+    "BackendTrafficPolicy/dual-lb-policy": {
+      "kind": "BackendTrafficPolicy",
+      "metadata": {
+        "namespace": "pubdebug-20260917",
+        "name": "dual-lb-policy",
+        "uid": "9e904b3c-792a-4858-83d8-c011b1254c0f",
+        "generation": 1,
+        "resourceVersion": "1234141",
+        "deletionTimestamp": null
+      },
+      "status": {
+        "ancestors": [
+          {
+            "ancestorRef": {
+              "group": "gateway.networking.k8s.io",
+              "kind": "Gateway",
+              "name": "dual-lb",
+              "namespace": "pubdebug-20260917",
+              "sectionName": "http"
+            },
+            "conditions": [
+              {
+                "lastTransitionTime": "2026-09-17T10:39:42Z",
+                "message": "Policy has been accepted.",
+                "observedGeneration": 1,
+                "reason": "Accepted",
+                "status": "True",
+                "type": "Accepted"
+              }
+            ],
+            "controllerName": "gateway.envoyproxy.io/gatewayclass-controller"
+          }
+        ]
+      },
+      "spec": {
+        "healthCheck": {
+          "active": {
+            "healthyThreshold": 1,
+            "interval": "5s",
+            "tcp": {},
+            "timeout": "3s",
+            "type": "TCP",
+            "unhealthyThreshold": 3
+          },
+          "panicThreshold": 0
+        },
+        "loadBalancer": {
+          "type": "RoundRobin"
+        },
+        "targetRefs": [
+          {
+            "group": "gateway.networking.k8s.io",
+            "kind": "HTTPRoute",
+            "name": "dual-lb"
+          }
+        ]
+      }
+    },
+    "EIP/dual-eip": {
+      "kind": "EIP",
+      "metadata": {
+        "namespace": "pubdebug-20260917",
+        "name": "dual-eip",
+        "uid": "9708934d-6f6a-4c0b-b013-9f38185102c1",
+        "generation": 1,
+        "resourceVersion": "1234125",
+        "deletionTimestamp": null
+      },
+      "status": {
+        "boundResource": {
+          "nodeName": "ani-01",
+          "resource": "dual-lb",
+          "resourceType": "Service",
+          "vpc": "pubdebug-20260917/tenant"
+        },
+        "conditions": [
+          {
+            "lastTransitionTime": "2026-09-17T02:31:03Z",
+            "message": "",
+            "reason": "Initialized",
+            "status": "True",
+            "type": "Initialized"
+          },
+          {
+            "lastTransitionTime": "2026-09-17T02:31:03Z",
+            "message": "",
+            "reason": "Valid",
+            "status": "True",
+            "type": "Valid"
+          }
+        ],
+        "gateway": "pubdebug-20260917-egress",
+        "phase": "Bound"
+      },
+      "spec": {
+        "ipAddress": "172.16.102.195",
+        "ipVersion": "IPv4",
+        "subnet": "kcn-system/pubdebug-20260917-public"
+      }
+    },
+    "EIP/public-eip": {
+      "kind": "EIP",
+      "metadata": {
+        "namespace": "pubdebug-20260917",
+        "name": "public-eip",
+        "uid": "673f7976-a3b3-46dc-bcaa-f8ed72288fc7",
+        "generation": 1,
+        "resourceVersion": "1091796",
+        "deletionTimestamp": null
+      },
+      "status": {
+        "boundResource": {
+          "nodeName": "ani-01",
+          "resource": "public-lb",
+          "resourceType": "Service",
+          "vpc": "pubdebug-20260917/tenant"
+        },
+        "conditions": [
+          {
+            "lastTransitionTime": "2026-09-17T02:31:03Z",
+            "message": "",
+            "reason": "Initialized",
+            "status": "True",
+            "type": "Initialized"
+          },
+          {
+            "lastTransitionTime": "2026-09-17T02:31:03Z",
+            "message": "",
+            "reason": "Valid",
+            "status": "True",
+            "type": "Valid"
+          }
+        ],
+        "gateway": "pubdebug-20260917-egress",
+        "phase": "Bound"
+      },
+      "spec": {
+        "ipAddress": "172.16.102.194",
+        "ipVersion": "IPv4",
+        "subnet": "kcn-system/pubdebug-20260917-public"
+      }
+    },
+    "Gateway/dual-lb": {
+      "kind": "Gateway",
+      "metadata": {
+        "namespace": "pubdebug-20260917",
+        "name": "dual-lb",
+        "uid": "53768c90-77d4-49db-8b0a-b77e11af5301",
+        "generation": 1,
+        "resourceVersion": "1234178",
+        "deletionTimestamp": null
+      },
+      "status": {
+        "addresses": [
+          {
+            "type": "IPAddress",
+            "value": "172.16.102.195"
+          }
+        ],
+        "conditions": [
+          {
+            "lastTransitionTime": "2026-09-17T10:39:43Z",
+            "message": "The Gateway has been scheduled by Envoy Gateway",
+            "observedGeneration": 1,
+            "reason": "Accepted",
+            "status": "True",
+            "type": "Accepted"
+          },
+          {
+            "lastTransitionTime": "2026-09-17T10:39:43Z",
+            "message": "Address assigned to the Gateway, 2/2 envoy replicas available",
+            "observedGeneration": 1,
+            "reason": "Programmed",
+            "status": "True",
+            "type": "Programmed"
+          }
+        ],
+        "listeners": [
+          {
+            "attachedRoutes": 1,
+            "conditions": [
+              {
+                "lastTransitionTime": "2026-09-17T10:39:43Z",
+                "message": "Sending translated listener configuration to the data plane",
+                "observedGeneration": 1,
+                "reason": "Programmed",
+                "status": "True",
+                "type": "Programmed"
+              },
+              {
+                "lastTransitionTime": "2026-09-17T10:39:43Z",
+                "message": "Listener has been successfully translated",
+                "observedGeneration": 1,
+                "reason": "Accepted",
+                "status": "True",
+                "type": "Accepted"
+              },
+              {
+                "lastTransitionTime": "2026-09-17T10:39:43Z",
+                "message": "Listener references have been resolved",
+                "observedGeneration": 1,
+                "reason": "ResolvedRefs",
+                "status": "True",
+                "type": "ResolvedRefs"
+              }
+            ],
+            "name": "http",
+            "supportedKinds": [
+              {
+                "group": "gateway.networking.k8s.io",
+                "kind": "HTTPRoute"
+              },
+              {
+                "group": "gateway.networking.k8s.io",
+                "kind": "GRPCRoute"
+              }
+            ]
+          }
+        ]
+      },
+      "spec": {
+        "gatewayClassName": "lb-small",
+        "infrastructure": {
+          "annotations": {
+            "networking.kubercloud.com/lb_eips": "dual-eip",
+            "networking.kubercloud.com/lb_vip_address": "10.233.0.201",
+            "networking.kubercloud.com/lb_vpc": "pubdebug-20260917/tenant",
+            "networking.kubercloud.com/subnet": "pubdebug-20260917/entry"
+          }
+        },
+        "listeners": [
+          {
+            "allowedRoutes": {
+              "namespaces": {
+                "from": "Same"
+              }
+            },
+            "name": "http",
+            "port": 8080,
+            "protocol": "HTTP"
+          }
+        ]
+      }
+    },
+    "Gateway/public-lb": {
+      "kind": "Gateway",
+      "metadata": {
+        "namespace": "pubdebug-20260917",
+        "name": "public-lb",
+        "uid": "0488e6cd-e259-4939-a44d-f133946909d7",
+        "generation": 1,
+        "resourceVersion": "1091817",
+        "deletionTimestamp": null
+      },
+      "status": {
+        "addresses": [
+          {
+            "type": "IPAddress",
+            "value": "172.16.102.194"
+          }
+        ],
+        "conditions": [
+          {
+            "lastTransitionTime": "2026-09-17T02:43:01Z",
+            "message": "The Gateway has been scheduled by Envoy Gateway",
+            "observedGeneration": 1,
+            "reason": "Accepted",
+            "status": "True",
+            "type": "Accepted"
+          },
+          {
+            "lastTransitionTime": "2026-09-17T02:43:01Z",
+            "message": "Address assigned to the Gateway, 2/2 envoy replicas available",
+            "observedGeneration": 1,
+            "reason": "Programmed",
+            "status": "True",
+            "type": "Programmed"
+          }
+        ],
+        "listeners": [
+          {
+            "attachedRoutes": 1,
+            "conditions": [
+              {
+                "lastTransitionTime": "2026-09-17T02:43:01Z",
+                "message": "Sending translated listener configuration to the data plane",
+                "observedGeneration": 1,
+                "reason": "Programmed",
+                "status": "True",
+                "type": "Programmed"
+              },
+              {
+                "lastTransitionTime": "2026-09-17T02:43:01Z",
+                "message": "Listener has been successfully translated",
+                "observedGeneration": 1,
+                "reason": "Accepted",
+                "status": "True",
+                "type": "Accepted"
+              },
+              {
+                "lastTransitionTime": "2026-09-17T02:43:01Z",
+                "message": "Listener references have been resolved",
+                "observedGeneration": 1,
+                "reason": "ResolvedRefs",
+                "status": "True",
+                "type": "ResolvedRefs"
+              }
+            ],
+            "name": "http",
+            "supportedKinds": [
+              {
+                "group": "gateway.networking.k8s.io",
+                "kind": "HTTPRoute"
+              },
+              {
+                "group": "gateway.networking.k8s.io",
+                "kind": "GRPCRoute"
+              }
+            ]
+          }
+        ]
+      },
+      "spec": {
+        "gatewayClassName": "lb-small",
+        "infrastructure": {
+          "annotations": {
+            "networking.kubercloud.com/lb_eips": "public-eip",
+            "networking.kubercloud.com/lb_vip_address": "disable",
+            "networking.kubercloud.com/lb_vpc": "pubdebug-20260917/tenant",
+            "networking.kubercloud.com/subnet": "pubdebug-20260917/entry"
+          }
+        },
+        "listeners": [
+          {
+            "allowedRoutes": {
+              "namespaces": {
+                "from": "Same"
+              }
+            },
+            "name": "http",
+            "port": 8080,
+            "protocol": "HTTP"
+          }
+        ]
+      }
+    },
+    "HTTPRoute/dual-lb": {
+      "kind": "HTTPRoute",
+      "metadata": {
+        "namespace": "pubdebug-20260917",
+        "name": "dual-lb",
+        "uid": "bd13cacb-3a6d-4024-9cb5-e0a56fd0f298",
+        "generation": 1,
+        "resourceVersion": "1234139",
+        "deletionTimestamp": null
+      },
+      "status": {
+        "parents": [
+          {
+            "conditions": [
+              {
+                "lastTransitionTime": "2026-09-17T10:39:42Z",
+                "message": "Route is accepted",
+                "observedGeneration": 1,
+                "reason": "Accepted",
+                "status": "True",
+                "type": "Accepted"
+              },
+              {
+                "lastTransitionTime": "2026-09-17T10:39:42Z",
+                "message": "Resolved all the Object references for the Route",
+                "observedGeneration": 1,
+                "reason": "ResolvedRefs",
+                "status": "True",
+                "type": "ResolvedRefs"
+              }
+            ],
+            "controllerName": "gateway.envoyproxy.io/gatewayclass-controller",
+            "parentRef": {
+              "group": "gateway.networking.k8s.io",
+              "kind": "Gateway",
+              "name": "dual-lb",
+              "sectionName": "http"
+            }
+          }
+        ]
+      },
+      "spec": {
+        "parentRefs": [
+          {
+            "group": "gateway.networking.k8s.io",
+            "kind": "Gateway",
+            "name": "dual-lb",
+            "sectionName": "http"
+          }
+        ],
+        "rules": [
+          {
+            "backendRefs": [
+              {
+                "group": "gateway.envoyproxy.io",
+                "kind": "Backend",
+                "name": "backend-a",
+                "port": 8080,
+                "weight": 1
+              },
+              {
+                "group": "gateway.envoyproxy.io",
+                "kind": "Backend",
+                "name": "backend-b",
+                "port": 8080,
+                "weight": 1
+              }
+            ],
+            "matches": [
+              {
+                "path": {
+                  "type": "PathPrefix",
+                  "value": "/"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "HTTPRoute/public-lb": {
+      "kind": "HTTPRoute",
+      "metadata": {
+        "namespace": "pubdebug-20260917",
+        "name": "public-lb",
+        "uid": "949d1fb5-929a-464c-a177-db3cbb2d7a7f",
+        "generation": 1,
+        "resourceVersion": "1121343",
+        "deletionTimestamp": null
+      },
+      "status": {
+        "parents": [
+          {
+            "conditions": [
+              {
+                "lastTransitionTime": "2026-09-17T04:17:59Z",
+                "message": "Route is accepted",
+                "observedGeneration": 1,
+                "reason": "Accepted",
+                "status": "True",
+                "type": "Accepted"
+              },
+              {
+                "lastTransitionTime": "2026-09-17T04:17:59Z",
+                "message": "Resolved all the Object references for the Route",
+                "observedGeneration": 1,
+                "reason": "ResolvedRefs",
+                "status": "True",
+                "type": "ResolvedRefs"
+              }
+            ],
+            "controllerName": "gateway.envoyproxy.io/gatewayclass-controller",
+            "parentRef": {
+              "group": "gateway.networking.k8s.io",
+              "kind": "Gateway",
+              "name": "public-lb",
+              "sectionName": "http"
+            }
+          }
+        ]
+      },
+      "spec": {
+        "parentRefs": [
+          {
+            "group": "gateway.networking.k8s.io",
+            "kind": "Gateway",
+            "name": "public-lb",
+            "sectionName": "http"
+          }
+        ],
+        "rules": [
+          {
+            "backendRefs": [
+              {
+                "group": "gateway.envoyproxy.io",
+                "kind": "Backend",
+                "name": "backend-a",
+                "port": 8080,
+                "weight": 1
+              },
+              {
+                "group": "gateway.envoyproxy.io",
+                "kind": "Backend",
+                "name": "backend-b",
+                "port": 8080,
+                "weight": 1
+              }
+            ],
+            "matches": [
+              {
+                "path": {
+                  "type": "PathPrefix",
+                  "value": "/"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "Pod/backend-a": {
+      "kind": "Pod",
+      "metadata": {
+        "namespace": "pubdebug-20260917",
+        "name": "backend-a",
+        "uid": "0ac26823-224a-4771-af45-f96bb7aaef57",
+        "generation": 1,
+        "resourceVersion": "1092263",
+        "deletionTimestamp": null
+      },
+      "status": {
+        "conditions": [
+          {
+            "lastProbeTime": null,
+            "lastTransitionTime": "2026-09-17T02:44:04Z",
+            "observedGeneration": 1,
+            "status": "True",
+            "type": "PodReadyToStartContainers"
+          },
+          {
+            "lastProbeTime": null,
+            "lastTransitionTime": "2026-09-17T02:44:02Z",
+            "observedGeneration": 1,
+            "status": "True",
+            "type": "Initialized"
+          },
+          {
+            "lastProbeTime": null,
+            "lastTransitionTime": "2026-09-17T02:44:05Z",
+            "observedGeneration": 1,
+            "status": "True",
+            "type": "Ready"
+          },
+          {
+            "lastProbeTime": null,
+            "lastTransitionTime": "2026-09-17T02:44:05Z",
+            "observedGeneration": 1,
+            "status": "True",
+            "type": "ContainersReady"
+          },
+          {
+            "lastProbeTime": null,
+            "lastTransitionTime": "2026-09-17T02:44:02Z",
+            "observedGeneration": 1,
+            "status": "True",
+            "type": "PodScheduled"
+          }
+        ],
+        "containerStatuses": [
+          {
+            "allocatedResources": {
+              "cpu": "10m",
+              "memory": "32Mi"
+            },
+            "containerID": "containerd://54e69f4b61e69ee4219869ff006b051bdb5ecfab4c3160c580e8a228d253a34b",
+            "image": "localhost/lb02-2b3122-probe:20260915",
+            "imageID": "docker.io/library/import-2026-09-15@sha256:6dc16949364cbd67c142d6d0ca3aa6353146917816936e63beb672621fcb9295",
+            "lastState": {},
+            "name": "probe",
+            "ready": true,
+            "resources": {
+              "limits": {
+                "cpu": "100m",
+                "memory": "64Mi"
+              },
+              "requests": {
+                "cpu": "10m",
+                "memory": "32Mi"
+              }
+            },
+            "restartCount": 0,
+            "started": true,
+            "state": {
+              "running": {
+                "startedAt": "2026-09-17T02:44:04Z"
+              }
+            },
+            "user": {
+              "linux": {
+                "gid": 65532,
+                "supplementalGroups": [
+                  65532
+                ],
+                "uid": 65532
+              }
+            }
+          }
+        ],
+        "hostIP": "172.16.101.11",
+        "hostIPs": [
+          {
+            "ip": "172.16.101.11"
+          }
+        ],
+        "observedGeneration": 1,
+        "phase": "Running",
+        "podIP": "10.233.1.2",
+        "podIPs": [
+          {
+            "ip": "10.233.1.2"
+          }
+        ],
+        "qosClass": "Burstable",
+        "startTime": "2026-09-17T02:44:02Z"
+      }
+    },
+    "Pod/backend-b": {
+      "kind": "Pod",
+      "metadata": {
+        "namespace": "pubdebug-20260917",
+        "name": "backend-b",
+        "uid": "914dfe81-8d7d-4f57-ae4c-fccadd89a812",
+        "generation": 1,
+        "resourceVersion": "1092272",
+        "deletionTimestamp": null
+      },
+      "status": {
+        "conditions": [
+          {
+            "lastProbeTime": null,
+            "lastTransitionTime": "2026-09-17T02:44:05Z",
+            "observedGeneration": 1,
+            "status": "True",
+            "type": "PodReadyToStartContainers"
+          },
+          {
+            "lastProbeTime": null,
+            "lastTransitionTime": "2026-09-17T02:44:02Z",
+            "observedGeneration": 1,
+            "status": "True",
+            "type": "Initialized"
+          },
+          {
+            "lastProbeTime": null,
+            "lastTransitionTime": "2026-09-17T02:44:05Z",
+            "observedGeneration": 1,
+            "status": "True",
+            "type": "Ready"
+          },
+          {
+            "lastProbeTime": null,
+            "lastTransitionTime": "2026-09-17T02:44:05Z",
+            "observedGeneration": 1,
+            "status": "True",
+            "type": "ContainersReady"
+          },
+          {
+            "lastProbeTime": null,
+            "lastTransitionTime": "2026-09-17T02:44:02Z",
+            "observedGeneration": 1,
+            "status": "True",
+            "type": "PodScheduled"
+          }
+        ],
+        "containerStatuses": [
+          {
+            "allocatedResources": {
+              "cpu": "10m",
+              "memory": "32Mi"
+            },
+            "containerID": "containerd://f008699da2578cd68c3f9ccfd2211b3151b2b3c6e69d407e5274a855fa150ad2",
+            "image": "localhost/lb02-2b3122-probe:20260915",
+            "imageID": "docker.io/library/import-2026-09-15@sha256:6dc16949364cbd67c142d6d0ca3aa6353146917816936e63beb672621fcb9295",
+            "lastState": {},
+            "name": "probe",
+            "ready": true,
+            "resources": {
+              "limits": {
+                "cpu": "100m",
+                "memory": "64Mi"
+              },
+              "requests": {
+                "cpu": "10m",
+                "memory": "32Mi"
+              }
+            },
+            "restartCount": 0,
+            "started": true,
+            "state": {
+              "running": {
+                "startedAt": "2026-09-17T02:44:04Z"
+              }
+            },
+            "user": {
+              "linux": {
+                "gid": 65532,
+                "supplementalGroups": [
+                  65532
+                ],
+                "uid": 65532
+              }
+            }
+          }
+        ],
+        "hostIP": "172.16.101.12",
+        "hostIPs": [
+          {
+            "ip": "172.16.101.12"
+          }
+        ],
+        "observedGeneration": 1,
+        "phase": "Running",
+        "podIP": "10.233.1.3",
+        "podIPs": [
+          {
+            "ip": "10.233.1.3"
+          }
+        ],
+        "qosClass": "Burstable",
+        "startTime": "2026-09-17T02:44:02Z"
+      }
+    },
+    "Service/dual-lb": {
+      "kind": "Service",
+      "metadata": {
+        "namespace": "pubdebug-20260917",
+        "name": "dual-lb",
+        "uid": "02557582-e19b-411c-a34e-36184d85b5ba",
+        "generation": null,
+        "resourceVersion": "1234132",
+        "deletionTimestamp": null
+      },
+      "status": {
+        "conditions": [
+          {
+            "lastTransitionTime": "2026-09-17T10:39:42Z",
+            "message": "pubdebug-20260917/entry/10.233.0.201",
+            "reason": "Allocated",
+            "status": "True",
+            "type": "VipAllocated"
+          },
+          {
+            "lastTransitionTime": "2026-09-17T10:39:42Z",
+            "message": "",
+            "reason": "Valid",
+            "status": "True",
+            "type": "KcnValid"
+          },
+          {
+            "lastTransitionTime": "2026-09-17T10:39:42Z",
+            "message": "",
+            "reason": "Ready",
+            "status": "True",
+            "type": "KcnReady"
+          }
+        ],
+        "loadBalancer": {
+          "ingress": [
+            {
+              "ip": "172.16.102.195",
+              "ipMode": "Proxy"
+            }
+          ]
+        }
+      },
+      "spec": {
+        "allocateLoadBalancerNodePorts": true,
+        "clusterIP": "10.96.118.242",
+        "clusterIPs": [
+          "10.96.118.242"
+        ],
+        "externalTrafficPolicy": "Local",
+        "healthCheckNodePort": 30657,
+        "internalTrafficPolicy": "Cluster",
+        "ipFamilies": [
+          "IPv4"
+        ],
+        "ipFamilyPolicy": "SingleStack",
+        "ports": [
+          {
+            "name": "http-8080",
+            "nodePort": 30793,
+            "port": 8080,
+            "protocol": "TCP",
+            "targetPort": 8080
+          }
+        ],
+        "selector": {
+          "app.kubernetes.io/component": "proxy",
+          "app.kubernetes.io/managed-by": "envoy-gateway",
+          "app.kubernetes.io/name": "envoy",
+          "gateway.envoyproxy.io/owning-gateway-name": "dual-lb",
+          "gateway.envoyproxy.io/owning-gateway-namespace": "pubdebug-20260917",
+          "gateway.networking.k8s.io/gateway-name": "dual-lb"
+        },
+        "sessionAffinity": "None",
+        "type": "LoadBalancer"
+      }
+    },
+    "Service/public-lb": {
+      "kind": "Service",
+      "metadata": {
+        "namespace": "pubdebug-20260917",
+        "name": "public-lb",
+        "uid": "8c4195ed-f136-425c-9fa6-1983e501d2e4",
+        "generation": null,
+        "resourceVersion": "1091798",
+        "deletionTimestamp": null
+      },
+      "status": {
+        "conditions": [
+          {
+            "lastTransitionTime": "2026-09-17T02:42:59Z",
+            "message": "",
+            "reason": "Valid",
+            "status": "True",
+            "type": "KcnValid"
+          },
+          {
+            "lastTransitionTime": "2026-09-17T02:42:59Z",
+            "message": "",
+            "reason": "Ready",
+            "status": "True",
+            "type": "KcnReady"
+          }
+        ],
+        "loadBalancer": {
+          "ingress": [
+            {
+              "ip": "172.16.102.194",
+              "ipMode": "Proxy"
+            }
+          ]
+        }
+      },
+      "spec": {
+        "allocateLoadBalancerNodePorts": true,
+        "clusterIP": "10.96.209.196",
+        "clusterIPs": [
+          "10.96.209.196"
+        ],
+        "externalTrafficPolicy": "Local",
+        "healthCheckNodePort": 31239,
+        "internalTrafficPolicy": "Cluster",
+        "ipFamilies": [
+          "IPv4"
+        ],
+        "ipFamilyPolicy": "SingleStack",
+        "ports": [
+          {
+            "name": "http-8080",
+            "nodePort": 30663,
+            "port": 8080,
+            "protocol": "TCP",
+            "targetPort": 8080
+          }
+        ],
+        "selector": {
+          "app.kubernetes.io/component": "proxy",
+          "app.kubernetes.io/managed-by": "envoy-gateway",
+          "app.kubernetes.io/name": "envoy",
+          "gateway.envoyproxy.io/owning-gateway-name": "public-lb",
+          "gateway.envoyproxy.io/owning-gateway-namespace": "pubdebug-20260917",
+          "gateway.networking.k8s.io/gateway-name": "public-lb"
+        },
+        "sessionAffinity": "None",
+        "type": "LoadBalancer"
+      }
+    }
+  },
+  "limits": "Existing manual CRs have no Network database binding. This is independent current-scene corroboration, not live product-path reproduction. No HTTP traffic was run."
+}

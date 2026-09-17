@@ -1,8 +1,12 @@
 # Network 执行状态
 
-更新日期：2026-09-17。本文件是唯一当前进度入口；[规格](../specs/vpc-subnet.md)描述目标，[计划](../plans/vpc-subnet.md)描述工作包。
+更新日期：2026-09-18。本文件是唯一当前进度入口；[规格](../specs/vpc-subnet.md)描述目标，[计划](../plans/vpc-subnet.md)描述工作包。
 
 ## 当前工作：NET-VPC-LB-02
+
+2026-09-18 [LB 正式修复及 CI 修正](records/NET-VPC-LB-02/lb-fix-20260918/README.md)已实现：LB 关系核验前后两处审计失效均改为在原调用截止时间内重新完整采集，保留身份、时效与并发检查；无截止时间调用仍最多一次刷新，取消/超时不返回可用证明。原代码在私网/双入口均能复现剩余约 27 秒却提前 unknown/PROVIDER_UNAVAILABLE；修复后的真实 PG/adapter/worker 单次调用在约 5.5 秒内 configured/fresh，Provider 对象摘要不变。Fedora UTC 环境中相关 PostgreSQL/race 27 项顶层测试、54 项子测试及 `make verify` 均 pass，包含六种真实进程恢复场景。四个隔离 PG 容器已清理，本轮没有集群写入。交付目标为原分支；精确提交与推送后的 CI 以最终发布回执为准。此结果不扩展为真实双入口稳定窗口或所有历史退化均修复。
+
+上一提交 `83a4346` 的两组 CI 失败也已定位：进程测试缺少必填健康检查端口，现已补齐；更新回执比较是 UTC 环境下 `time.Local` 与 `time.UTC` 的相同时刻被 reflect.DeepEqual 误判，现改为比较完整 JSON 回执，产品幂等实现未变。原始 red 与隔离字段差异留证。前序 [LB 分支诊断](records/NET-VPC-LB-02/lb-branch-20260917/README.md)保留其诊断时点事实。
 
 2026-09-17 [失败分支诊断与修正](records/NET-VPC-LB-02/base-branch-20260917/README.md)完成验证：正常 Watch 连续续接令关键审计再次失效，Egress 在仍余 21.5–25.3 秒时提前返回 ProviderTemporary，导致 SNAT 应用事实未知、基础连接退化。修正改为原调用截止时间内重新采集，保留身份/时效/并发检查；不是 worker 未调度。真实同对象窗口由修正前 4 段退化，变为修正后 600 秒内数据库/API **602/602 ready、0 stale、0 应用事实未知**，覆盖 24 次来源续接。受控回归原代码 red/修正 green，相关 PostgreSQL/race 44 项顶层测试及 `make verify` 通过；首轮测试运行器超时及后续剩余选集结果分别留证。临时定点日志已移除。隔离产品、支持资源、运行进程及 PG 容器均已清理，私有备份保留；已有 Public Subnet UID/generation/spec 保持。交付目标为原分支，提交与远端一致性以最终回执为准，未合并 main、未部署，不将本次修正认定为整个 Goal 完成。
 

@@ -205,7 +205,8 @@ func TestLBServiceProcessesRecoverUnknownMutationsWithTwoWorkers(t *testing.T) {
 			if tc.method == "POST" {
 				fault.armed.Store(true)
 			}
-			request := &networkv1.CreateLoadBalancerRequest{Name: "process-lb", VpcId: f.vpc.ID, SubnetId: f.subnet.ID, Exposure: networkv1.LoadBalancerExposure_LOAD_BALANCER_EXPOSURE_PRIVATE, PrivateIp: "10.42.1.100", IdempotencyKey: "process-lb", Backends: []*networkv1.LoadBalancerBackendInput{{SubnetId: f.backendSubnet.ID, Address: "10.42.2.2", Port: 8080}}}
+			health := &networkv1.LoadBalancerHealthCheck{Port: f.request.Health.Port}
+			request := &networkv1.CreateLoadBalancerRequest{HealthCheck: health, Name: "process-lb", VpcId: f.vpc.ID, SubnetId: f.subnet.ID, Exposure: networkv1.LoadBalancerExposure_LOAD_BALANCER_EXPOSURE_PRIVATE, PrivateIp: "10.42.1.100", IdempotencyKey: "process-lb", Backends: []*networkv1.LoadBalancerBackendInput{{SubnetId: f.backendSubnet.ID, Address: "10.42.2.2", Port: 8080}}}
 			var created *networkv1.CreateLoadBalancerResponse
 			awaitNET05A(t, 8*time.Second, func() bool {
 				created, err = client.CreateLoadBalancer(context.Background(), request)
@@ -220,7 +221,7 @@ func TestLBServiceProcessesRecoverUnknownMutationsWithTwoWorkers(t *testing.T) {
 				fault.armed.Store(true)
 				if tc.method == "PATCH" {
 					zero := uint32(0)
-					_, err = client.UpdateLoadBalancer(context.Background(), &networkv1.UpdateLoadBalancerRequest{LoadBalancerId: id, ExpectedVersion: lb.Version, Name: "updated", IdempotencyKey: "update", Backends: []*networkv1.LoadBalancerBackendInput{{Id: lb.Backends[0].ID, SubnetId: lb.Backends[0].SubnetID, Address: lb.Backends[0].Address, Port: lb.Backends[0].Port, Weight: &zero}}})
+					_, err = client.UpdateLoadBalancer(context.Background(), &networkv1.UpdateLoadBalancerRequest{HealthCheck: health, LoadBalancerId: id, ExpectedVersion: lb.Version, Name: "updated", IdempotencyKey: "update", Backends: []*networkv1.LoadBalancerBackendInput{{Id: lb.Backends[0].ID, SubnetId: lb.Backends[0].SubnetID, Address: lb.Backends[0].Address, Port: lb.Backends[0].Port, Weight: &zero}}})
 				} else {
 					_, err = client.DeleteLoadBalancer(context.Background(), &networkv1.DeleteLoadBalancerRequest{LoadBalancerId: id})
 				}
@@ -248,7 +249,7 @@ func TestLBServiceProcessesRecoverUnknownMutationsWithTwoWorkers(t *testing.T) {
 				if err = f.f.owner.QueryRow(f.f.ctx, `SELECT count(*) FROM network_lb_vip_intents WHERE tenant_id=$1 AND lb_id=$2 AND released_at IS NULL`, f.f.tenant, id).Scan(&reserved); err != nil || reserved != 1 {
 					t.Fatal("termination released an uncertain write's VIP", reserved, err)
 				}
-				if _, err = client.UpdateLoadBalancer(context.Background(), &networkv1.UpdateLoadBalancerRequest{LoadBalancerId: id, ExpectedVersion: deleted.LoadBalancer.Version, Name: "closed", IdempotencyKey: "closed", Backends: request.Backends}); status.Code(err) != codes.FailedPrecondition {
+				if _, err = client.UpdateLoadBalancer(context.Background(), &networkv1.UpdateLoadBalancerRequest{HealthCheck: health, LoadBalancerId: id, ExpectedVersion: deleted.LoadBalancer.Version, Name: "closed", IdempotencyKey: "closed", Backends: request.Backends}); status.Code(err) != codes.FailedPrecondition {
 					t.Fatal("delete did not close updates", err)
 				}
 			}

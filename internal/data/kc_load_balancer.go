@@ -3,6 +3,7 @@ package data
 import (
 	"context"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"net/netip"
 	"strconv"
@@ -252,15 +253,35 @@ func lbInspect(obj, desired *unstructured.Unstructured, c biz.LoadBalancerCompon
 	return v, nil
 }
 
+var errLBAuditInvalid = errors.New("LB audit needs a fresh collection")
+
 func (p *KCProvider) ObserveLoadBalancer(ctx context.Context, w biz.Work) (biz.LoadBalancerObservation, error) {
-	return p.observeLoadBalancer(ctx, w, false)
+	refresh := false
+	for {
+		if err := ctx.Err(); err != nil {
+			return biz.LoadBalancerObservation{}, readFailure(err)
+		}
+		o, err := p.observeLoadBalancerOnce(ctx, w, refresh)
+		if err != errLBAuditInvalid {
+			if ctx.Err() != nil {
+				return biz.LoadBalancerObservation{}, readFailure(ctx.Err())
+			}
+			return o, err
+		}
+		// A Watch renewal invalidates the audit, not the Provider facts. Each
+		// retry collects after a new database boundary within the original
+		// deadline. Actual read errors and identity conflicts are not retried.
+		// Unbounded callers retain only one fresh-collection fallback.
+		if refresh {
+			if _, bounded := ctx.Deadline(); !bounded {
+				return biz.LoadBalancerObservation{}, readFailure(err)
+			}
+		}
+		refresh = true
+	}
 }
 
-// A stale/invalid cached audit is a reason to collect once more inside the
-// current observation, not evidence that the Provider configuration changed.
-// The second pass retains all coverage and identity checks and shares the
-// caller's bounded context; a second invalidation returns to durable recovery.
-func (p *KCProvider) observeLoadBalancer(ctx context.Context, w biz.Work, refresh bool) (biz.LoadBalancerObservation, error) {
+func (p *KCProvider) observeLoadBalancerOnce(ctx context.Context, w biz.Work, refresh bool) (biz.LoadBalancerObservation, error) {
 	o := biz.LoadBalancerObservation{}
 	r, err := p.resolveLB(ctx, w)
 	if err != nil {
@@ -313,10 +334,7 @@ func (p *KCProvider) observeLoadBalancer(ctx context.Context, w biz.Work, refres
 		o.Proof.CollectedAt = view.collected
 		o.Proof.CoveredGeneration = view.generations[observationTarget{w.Resource.TenantID, w.Resource.ID, "load_balancer"}.key()]
 		if !o.Proof.Covers(w.Requirement) || !p.observation.valid(view, keys) {
-			if !refresh {
-				return p.observeLoadBalancer(ctx, w, true)
-			}
-			return o, readFailure(fmt.Errorf("LB audit does not cover current dependency facts"))
+			return biz.LoadBalancerObservation{}, errLBAuditInvalid
 		}
 	}
 	o.DependenciesReady = r.dependencies
@@ -362,10 +380,7 @@ func (p *KCProvider) observeLoadBalancer(ctx context.Context, w biz.Work, refres
 		}
 	}
 	if view != nil && !p.observation.valid(view, keys) {
-		if !refresh {
-			return p.observeLoadBalancer(ctx, w, true)
-		}
-		return o, readFailure(fmt.Errorf("LB dependencies changed during observation"))
+		return biz.LoadBalancerObservation{}, errLBAuditInvalid
 	}
 	return o, nil
 }

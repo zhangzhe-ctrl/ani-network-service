@@ -1,0 +1,46 @@
+{
+  "at": "2026-09-17T16:22:35.321692+00:00",
+  "base_head": "83a4346d05069fb957f9ff6096c00dd586504e62",
+  "run": "/home/chabking/workspace/ani-network-service-runs/lb-fix-20260918T0011",
+  "host": "fedora",
+  "go": "go version go1.26.7-X:nodwarf5 linux/amd64",
+  "timezone": "UTC for CI red and green race",
+  "gates": {
+    "original_receipt_default_timezone": "pass (private and public_private)",
+    "original_receipt_utc": "expected_red: all three exposure cases; only equal-instant location differences",
+    "original_lb_retry": "expected_red: both private and public_private",
+    "lb_and_related_pg_race": "pass",
+    "make_verify": "pass",
+    "ci_after_push": "not_verified_at_record_creation",
+    "live_product_dual_lb_stability": "not_verified_this_turn"
+  },
+  "race_top_level_passes": 27,
+  "race_subtest_passes": 54,
+  "configured_measurements": [
+    "lb_audit_retry_integration_test.go:306: private configured/fresh after 2 boundaries; elapsed=5.518509236s remaining=24.481483366s",
+    "lb_audit_retry_integration_test.go:306: public_private configured/fresh after 2 boundaries; elapsed=5.454209485s remaining=24.545779819s"
+  ],
+  "containers": [
+    {
+      "label": "receipt-red",
+      "id": "777ae646e4e2f68148207e18b99021f186ea53a9cea42d91e621ff991bd831d4",
+      "removed": true
+    },
+    {
+      "label": "receipt-utc-red",
+      "id": "2d0a94fd58de1649a21690f029615decff996851c85caf08c173611ffc325a4e",
+      "removed": true
+    },
+    {
+      "label": "retry-red",
+      "id": "113c7656b9125dcf3adb9f40cde0c13dad76ac0c99e4016c2710bcdebe749649",
+      "removed": true
+    },
+    {
+      "label": "green-race",
+      "id": "5f46e0845740440cb5267760bfc3d54f39f229b400eeff4944c30ee5ba4fbbc9",
+      "removed": true
+    }
+  ],
+  "cluster_writes": false
+}

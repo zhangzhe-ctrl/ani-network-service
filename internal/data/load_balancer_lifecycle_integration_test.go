@@ -415,8 +415,22 @@ func TestLBActualAdapterThreeExposuresUpdateAndDelete(t *testing.T) {
 				t.Fatal("weight zero lost")
 			}
 			replay, err := f.lbs.Update(f.f.ctx, update)
-			if err != nil || !reflect.DeepEqual(replay, updated) {
-				t.Fatal("update receipt was not immutable", err)
+			if err != nil {
+				t.Fatal(err)
+			}
+			// Compare the complete persisted receipt representation. A PG
+			// timestamp in time.Local and its JSON replay in time.UTC can
+			// represent the same instant while reflect.DeepEqual is false.
+			acceptedJSON, err := json.Marshal(updated)
+			if err != nil {
+				t.Fatal(err)
+			}
+			replayJSON, err := json.Marshal(replay)
+			if err != nil {
+				t.Fatal(err)
+			}
+			if string(acceptedJSON) != string(replayJSON) {
+				t.Fatalf("update receipt was not immutable: accepted=%s replay=%s", acceptedJSON, replayJSON)
 			}
 			del, err := f.lbs.Delete(f.f.ctx, "", lb.ID)
 			if err != nil {
