@@ -1,0 +1,52 @@
+{
+  "at": "2026-09-15T04:15:00.253273+00:00",
+  "execution_host": "ubuntu",
+  "context": "tenant-b",
+  "command": "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/lb-api call -target unix:///home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-b.sock -service NetworkService -method GetAttachment",
+  "request": {
+    "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+    "attachment_id": "att_27718b5a92e64f669739aec7a5c51f8a"
+  },
+  "exit": 0,
+  "response": {
+    "code": "OK",
+    "response": {
+      "attachment": {
+        "id": "att_27718b5a92e64f669739aec7a5c51f8a",
+        "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+        "vpc_id": "vpc_1004994c0bde496f9ff64a4c812c9607",
+        "subnet_id": "subnet_a5fb362460324310bc0401d044d699bb",
+        "instance_id": "lb02-2b3122-legacy-client",
+        "slot": "primary",
+        "submission_id": "493e31e8-bb12-4602-b761-0e019e335d38",
+        "generation": "1",
+        "cluster_id": "lb02-09141908-2b3122",
+        "namespace": "lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832",
+        "binding_revision": "229f136e-8f55-4540-811f-b63c0129b6af:eea2ba11-e6d1-407d-899a-39c55b531f17",
+        "state": "ATTACHMENT_STATE_ATTACHED",
+        "reason": "",
+        "version": "35",
+        "pod_primary": {
+          "format_version": 1,
+          "namespace": "lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832",
+          "subnet_annotation": "lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832/subnet-a5fb362460324310bc0401d044d699bb",
+          "labels": {
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "instance_id": "lb02-2b3122-legacy-client",
+            "attachment_id": "att_27718b5a92e64f669739aec7a5c51f8a",
+            "submission_id": "493e31e8-bb12-4602-b761-0e019e335d38",
+            "generation": "1"
+          }
+        },
+        "pod_name": "lb02-2b3122-legacy-client",
+        "pod_uid": "0492092a-dc27-49aa-9501-cb0c3d6ab1be",
+        "consumer_finalization_id": "",
+        "created_at": "2026-09-15T04:11:53.368094Z",
+        "updated_at": "2026-09-15T04:14:57.708618Z",
+        "observed_at": "2026-09-15T04:14:52.564550Z",
+        "released_at": null
+      }
+    }
+  },
+  "stderr": ""
+}

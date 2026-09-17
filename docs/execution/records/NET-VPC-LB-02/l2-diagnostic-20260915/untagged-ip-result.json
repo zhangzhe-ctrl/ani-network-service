@@ -1,0 +1,430 @@
+{
+  "at": "2026-09-15T01:02:37.934696+00:00",
+  "command": [
+    "ssh",
+    "-F",
+    "/home/chabking/.ssh/config",
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "ConnectTimeout=8",
+    "ani-test-1",
+    "sudo -n python3 -"
+  ],
+  "script_sha256": "cdd87863cad0ebf7837bf27d72e31cefcfa27f5f270c27307ccf0a41798e53ac",
+  "exit_code": 1,
+  "stderr": "",
+  "evidence": {
+    "at": "2026-09-15T01:02:37.485044+00:00",
+    "source": "172.16.102.200",
+    "device": "ens35",
+    "bridge": "br-ens35",
+    "commands": [
+      {
+        "argv": [
+          "/usr/local/bin/kubectl",
+          "--kubeconfig",
+          "/etc/kubernetes/admin.conf",
+          "--context",
+          "kubernetes-admin@ani-platform",
+          "get",
+          "namespace",
+          "kube-system",
+          "-o",
+          "jsonpath={.metadata.uid}"
+        ],
+        "exit_code": 0,
+        "stdout": "be57b911-892c-4e75-aa9d-4a05d819c59e",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "ip",
+          "-j",
+          "-d",
+          "addr",
+          "show",
+          "dev",
+          "ens35"
+        ],
+        "exit_code": 0,
+        "stdout": "[{\"ifindex\":3,\"ifname\":\"ens35\",\"flags\":[\"BROADCAST\",\"MULTICAST\",\"UP\",\"LOWER_UP\"],\"mtu\":1500,\"qdisc\":\"mq\",\"master\":\"ovs-system\",\"operstate\":\"UP\",\"group\":\"default\",\"txqlen\":1000,\"link_type\":\"ether\",\"address\":\"00:0c:29:e2:f0:2b\",\"broadcast\":\"ff:ff:ff:ff:ff:ff\",\"promiscuity\":1,\"allmulti\":0,\"min_mtu\":60,\"max_mtu\":9190,\"linkinfo\":{\"info_slave_kind\":\"openvswitch\"},\"num_tx_queues\":16,\"num_rx_queues\":16,\"gso_max_size\":65536,\"gso_max_segs\":65535,\"tso_max_size\":65536,\"tso_max_segs\":65535,\"gro_max_size\":65536,\"parentbus\":\"pci\",\"parentdev\":\"0000:02:03.0\",\"altnames\":[\"enp2s3\"],\"addr_info\":[]}]\n",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "ip",
+          "-j",
+          "-d",
+          "addr",
+          "show",
+          "dev",
+          "br-ens35"
+        ],
+        "exit_code": 0,
+        "stdout": "[{\"ifindex\":9,\"ifname\":\"br-ens35\",\"flags\":[\"BROADCAST\",\"MULTICAST\"],\"mtu\":1500,\"qdisc\":\"noop\",\"operstate\":\"DOWN\",\"group\":\"default\",\"txqlen\":1000,\"link_type\":\"ether\",\"address\":\"00:0c:29:e2:f0:2b\",\"broadcast\":\"ff:ff:ff:ff:ff:ff\",\"promiscuity\":1,\"allmulti\":0,\"min_mtu\":68,\"max_mtu\":65535,\"linkinfo\":{\"info_kind\":\"openvswitch\"},\"num_tx_queues\":1,\"num_rx_queues\":1,\"gso_max_size\":65536,\"gso_max_segs\":65535,\"tso_max_size\":65536,\"tso_max_segs\":65535,\"gro_max_size\":65536,\"addr_info\":[]}]\n",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "ip",
+          "-j",
+          "route",
+          "show"
+        ],
+        "exit_code": 0,
+        "stdout": "[{\"dst\":\"default\",\"gateway\":\"172.16.101.1\",\"dev\":\"ens34\",\"protocol\":\"static\",\"flags\":[]},{\"dst\":\"10.16.0.0/16\",\"gateway\":\"100.64.0.1\",\"dev\":\"ovn0\",\"prefsrc\":\"100.64.0.2\",\"flags\":[]},{\"dst\":\"10.242.252.0/24\",\"gateway\":\"100.64.0.1\",\"dev\":\"ovn0\",\"prefsrc\":\"100.64.0.2\",\"flags\":[]},{\"dst\":\"100.64.0.0/17\",\"dev\":\"ovn0\",\"scope\":\"link\",\"flags\":[]},{\"dst\":\"100.64.128.0/17\",\"dev\":\"ovn0\",\"scope\":\"link\",\"flags\":[]},{\"dst\":\"172.16.101.0/24\",\"dev\":\"ens34\",\"protocol\":\"kernel\",\"scope\":\"link\",\"prefsrc\":\"172.16.101.10\",\"flags\":[]},{\"dst\":\"172.16.202.0/24\",\"dev\":\"ens36\",\"protocol\":\"kernel\",\"scope\":\"link\",\"prefsrc\":\"172.16.202.10\",\"flags\":[]}]\n",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "/usr/local/bin/kubectl",
+          "--kubeconfig",
+          "/etc/kubernetes/admin.conf",
+          "--context",
+          "kubernetes-admin@ani-platform",
+          "-n",
+          "kcn-system",
+          "exec",
+          "kcn-ovs-ds-7hfv8",
+          "-c",
+          "openvswitch",
+          "--",
+          "ovs-vsctl",
+          "--format=json",
+          "--columns=name,tag,trunks,vlan_mode",
+          "list",
+          "Port",
+          "ens35",
+          "br-ens35"
+        ],
+        "exit_code": 0,
+        "stdout": "{\"data\":[[\"ens35\",[\"set\",[]],[\"set\",[]],[\"set\",[]]],[\"br-ens35\",[\"set\",[]],[\"set\",[]],[\"set\",[]]]],\"headings\":[\"name\",\"tag\",\"trunks\",\"vlan_mode\"]}\n",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "ip",
+          "-j",
+          "-d",
+          "addr",
+          "show",
+          "dev",
+          "ens35"
+        ],
+        "exit_code": 0,
+        "stdout": "[{\"ifindex\":3,\"ifname\":\"ens35\",\"flags\":[\"BROADCAST\",\"MULTICAST\",\"UP\",\"LOWER_UP\"],\"mtu\":1500,\"qdisc\":\"mq\",\"master\":\"ovs-system\",\"operstate\":\"UP\",\"group\":\"default\",\"txqlen\":1000,\"link_type\":\"ether\",\"address\":\"00:0c:29:e2:f0:2b\",\"broadcast\":\"ff:ff:ff:ff:ff:ff\",\"promiscuity\":1,\"allmulti\":0,\"min_mtu\":60,\"max_mtu\":9190,\"linkinfo\":{\"info_slave_kind\":\"openvswitch\"},\"num_tx_queues\":16,\"num_rx_queues\":16,\"gso_max_size\":65536,\"gso_max_segs\":65535,\"tso_max_size\":65536,\"tso_max_segs\":65535,\"gro_max_size\":65536,\"parentbus\":\"pci\",\"parentdev\":\"0000:02:03.0\",\"altnames\":[\"enp2s3\"],\"addr_info\":[]}]\n",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "ip",
+          "-j",
+          "-d",
+          "addr",
+          "show",
+          "dev",
+          "br-ens35"
+        ],
+        "exit_code": 0,
+        "stdout": "[{\"ifindex\":9,\"ifname\":\"br-ens35\",\"flags\":[\"BROADCAST\",\"MULTICAST\"],\"mtu\":1500,\"qdisc\":\"noop\",\"operstate\":\"DOWN\",\"group\":\"default\",\"txqlen\":1000,\"link_type\":\"ether\",\"address\":\"00:0c:29:e2:f0:2b\",\"broadcast\":\"ff:ff:ff:ff:ff:ff\",\"promiscuity\":1,\"allmulti\":0,\"min_mtu\":68,\"max_mtu\":65535,\"linkinfo\":{\"info_kind\":\"openvswitch\"},\"num_tx_queues\":1,\"num_rx_queues\":1,\"gso_max_size\":65536,\"gso_max_segs\":65535,\"tso_max_size\":65536,\"tso_max_segs\":65535,\"gro_max_size\":65536,\"addr_info\":[]}]\n",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "ip",
+          "-j",
+          "route",
+          "show"
+        ],
+        "exit_code": 0,
+        "stdout": "[{\"dst\":\"default\",\"gateway\":\"172.16.101.1\",\"dev\":\"ens34\",\"protocol\":\"static\",\"flags\":[]},{\"dst\":\"10.16.0.0/16\",\"gateway\":\"100.64.0.1\",\"dev\":\"ovn0\",\"prefsrc\":\"100.64.0.2\",\"flags\":[]},{\"dst\":\"10.242.252.0/24\",\"gateway\":\"100.64.0.1\",\"dev\":\"ovn0\",\"prefsrc\":\"100.64.0.2\",\"flags\":[]},{\"dst\":\"100.64.0.0/17\",\"dev\":\"ovn0\",\"scope\":\"link\",\"flags\":[]},{\"dst\":\"100.64.128.0/17\",\"dev\":\"ovn0\",\"scope\":\"link\",\"flags\":[]},{\"dst\":\"172.16.101.0/24\",\"dev\":\"ens34\",\"protocol\":\"kernel\",\"scope\":\"link\",\"prefsrc\":\"172.16.101.10\",\"flags\":[]},{\"dst\":\"172.16.202.0/24\",\"dev\":\"ens36\",\"protocol\":\"kernel\",\"scope\":\"link\",\"prefsrc\":\"172.16.202.10\",\"flags\":[]}]\n",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "/usr/local/bin/kubectl",
+          "--kubeconfig",
+          "/etc/kubernetes/admin.conf",
+          "--context",
+          "kubernetes-admin@ani-platform",
+          "-n",
+          "kcn-system",
+          "exec",
+          "kcn-ovs-ds-7hfv8",
+          "-c",
+          "openvswitch",
+          "--",
+          "ovs-vsctl",
+          "--format=json",
+          "--columns=name,tag,trunks,vlan_mode",
+          "list",
+          "Port",
+          "ens35",
+          "br-ens35"
+        ],
+        "exit_code": 0,
+        "stdout": "{\"data\":[[\"ens35\",[\"set\",[]],[\"set\",[]],[\"set\",[]]],[\"br-ens35\",[\"set\",[]],[\"set\",[]],[\"set\",[]]]],\"headings\":[\"name\",\"tag\",\"trunks\",\"vlan_mode\"]}\n",
+        "stderr": ""
+      }
+    ],
+    "before": {
+      "physical": [
+        {
+          "ifindex": 3,
+          "ifname": "ens35",
+          "flags": [
+            "BROADCAST",
+            "MULTICAST",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1500,
+          "qdisc": "mq",
+          "master": "ovs-system",
+          "operstate": "UP",
+          "group": "default",
+          "txqlen": 1000,
+          "link_type": "ether",
+          "address": "00:0c:29:e2:f0:2b",
+          "broadcast": "ff:ff:ff:ff:ff:ff",
+          "promiscuity": 1,
+          "allmulti": 0,
+          "min_mtu": 60,
+          "max_mtu": 9190,
+          "linkinfo": {
+            "info_slave_kind": "openvswitch"
+          },
+          "num_tx_queues": 16,
+          "num_rx_queues": 16,
+          "gso_max_size": 65536,
+          "gso_max_segs": 65535,
+          "tso_max_size": 65536,
+          "tso_max_segs": 65535,
+          "gro_max_size": 65536,
+          "parentbus": "pci",
+          "parentdev": "0000:02:03.0",
+          "altnames": [
+            "enp2s3"
+          ],
+          "addr_info": []
+        }
+      ],
+      "bridge": [
+        {
+          "ifindex": 9,
+          "ifname": "br-ens35",
+          "flags": [
+            "BROADCAST",
+            "MULTICAST"
+          ],
+          "mtu": 1500,
+          "qdisc": "noop",
+          "operstate": "DOWN",
+          "group": "default",
+          "txqlen": 1000,
+          "link_type": "ether",
+          "address": "00:0c:29:e2:f0:2b",
+          "broadcast": "ff:ff:ff:ff:ff:ff",
+          "promiscuity": 1,
+          "allmulti": 0,
+          "min_mtu": 68,
+          "max_mtu": 65535,
+          "linkinfo": {
+            "info_kind": "openvswitch"
+          },
+          "num_tx_queues": 1,
+          "num_rx_queues": 1,
+          "gso_max_size": 65536,
+          "gso_max_segs": 65535,
+          "tso_max_size": 65536,
+          "tso_max_segs": 65535,
+          "gro_max_size": 65536,
+          "addr_info": []
+        }
+      ],
+      "routes": [
+        {
+          "dst": "default",
+          "gateway": "172.16.101.1",
+          "dev": "ens34",
+          "protocol": "static",
+          "flags": []
+        },
+        {
+          "dst": "10.16.0.0/16",
+          "gateway": "100.64.0.1",
+          "dev": "ovn0",
+          "prefsrc": "100.64.0.2",
+          "flags": []
+        },
+        {
+          "dst": "10.242.252.0/24",
+          "gateway": "100.64.0.1",
+          "dev": "ovn0",
+          "prefsrc": "100.64.0.2",
+          "flags": []
+        },
+        {
+          "dst": "100.64.0.0/17",
+          "dev": "ovn0",
+          "scope": "link",
+          "flags": []
+        },
+        {
+          "dst": "100.64.128.0/17",
+          "dev": "ovn0",
+          "scope": "link",
+          "flags": []
+        },
+        {
+          "dst": "172.16.101.0/24",
+          "dev": "ens34",
+          "protocol": "kernel",
+          "scope": "link",
+          "prefsrc": "172.16.101.10",
+          "flags": []
+        },
+        {
+          "dst": "172.16.202.0/24",
+          "dev": "ens36",
+          "protocol": "kernel",
+          "scope": "link",
+          "prefsrc": "172.16.202.10",
+          "flags": []
+        }
+      ],
+      "ovs": "{\"data\":[[\"ens35\",[\"set\",[]],[\"set\",[]],[\"set\",[]]],[\"br-ens35\",[\"set\",[]],[\"set\",[]],[\"set\",[]]]],\"headings\":[\"name\",\"tag\",\"trunks\",\"vlan_mode\"]}\n"
+    },
+    "error": "'inet6_addr_gen_mode'",
+    "after": {
+      "physical": [
+        {
+          "ifindex": 3,
+          "ifname": "ens35",
+          "flags": [
+            "BROADCAST",
+            "MULTICAST",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1500,
+          "qdisc": "mq",
+          "master": "ovs-system",
+          "operstate": "UP",
+          "group": "default",
+          "txqlen": 1000,
+          "link_type": "ether",
+          "address": "00:0c:29:e2:f0:2b",
+          "broadcast": "ff:ff:ff:ff:ff:ff",
+          "promiscuity": 1,
+          "allmulti": 0,
+          "min_mtu": 60,
+          "max_mtu": 9190,
+          "linkinfo": {
+            "info_slave_kind": "openvswitch"
+          },
+          "num_tx_queues": 16,
+          "num_rx_queues": 16,
+          "gso_max_size": 65536,
+          "gso_max_segs": 65535,
+          "tso_max_size": 65536,
+          "tso_max_segs": 65535,
+          "gro_max_size": 65536,
+          "parentbus": "pci",
+          "parentdev": "0000:02:03.0",
+          "altnames": [
+            "enp2s3"
+          ],
+          "addr_info": []
+        }
+      ],
+      "bridge": [
+        {
+          "ifindex": 9,
+          "ifname": "br-ens35",
+          "flags": [
+            "BROADCAST",
+            "MULTICAST"
+          ],
+          "mtu": 1500,
+          "qdisc": "noop",
+          "operstate": "DOWN",
+          "group": "default",
+          "txqlen": 1000,
+          "link_type": "ether",
+          "address": "00:0c:29:e2:f0:2b",
+          "broadcast": "ff:ff:ff:ff:ff:ff",
+          "promiscuity": 1,
+          "allmulti": 0,
+          "min_mtu": 68,
+          "max_mtu": 65535,
+          "linkinfo": {
+            "info_kind": "openvswitch"
+          },
+          "num_tx_queues": 1,
+          "num_rx_queues": 1,
+          "gso_max_size": 65536,
+          "gso_max_segs": 65535,
+          "tso_max_size": 65536,
+          "tso_max_segs": 65535,
+          "gro_max_size": 65536,
+          "addr_info": []
+        }
+      ],
+      "routes": [
+        {
+          "dst": "default",
+          "gateway": "172.16.101.1",
+          "dev": "ens34",
+          "protocol": "static",
+          "flags": []
+        },
+        {
+          "dst": "10.16.0.0/16",
+          "gateway": "100.64.0.1",
+          "dev": "ovn0",
+          "prefsrc": "100.64.0.2",
+          "flags": []
+        },
+        {
+          "dst": "10.242.252.0/24",
+          "gateway": "100.64.0.1",
+          "dev": "ovn0",
+          "prefsrc": "100.64.0.2",
+          "flags": []
+        },
+        {
+          "dst": "100.64.0.0/17",
+          "dev": "ovn0",
+          "scope": "link",
+          "flags": []
+        },
+        {
+          "dst": "100.64.128.0/17",
+          "dev": "ovn0",
+          "scope": "link",
+          "flags": []
+        },
+        {
+          "dst": "172.16.101.0/24",
+          "dev": "ens34",
+          "protocol": "kernel",
+          "scope": "link",
+          "prefsrc": "172.16.101.10",
+          "flags": []
+        },
+        {
+          "dst": "172.16.202.0/24",
+          "dev": "ens36",
+          "protocol": "kernel",
+          "scope": "link",
+          "prefsrc": "172.16.202.10",
+          "flags": []
+        }
+      ],
+      "ovs": "{\"data\":[[\"ens35\",[\"set\",[]],[\"set\",[]],[\"set\",[]]],[\"br-ens35\",[\"set\",[]],[\"set\",[]],[\"set\",[]]]],\"headings\":[\"name\",\"tag\",\"trunks\",\"vlan_mode\"]}\n"
+    },
+    "restored": true
+  }
+}

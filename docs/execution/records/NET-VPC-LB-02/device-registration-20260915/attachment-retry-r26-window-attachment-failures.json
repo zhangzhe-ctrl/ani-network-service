@@ -1,0 +1,12 @@
+{
+  "at": "2026-09-15T13:58:17.599894+00:00",
+  "execution_host": "ubuntu",
+  "transport_exit": 0,
+  "result": {
+    "query": "SELECT COALESCE(json_agg(row_to_json(t)),'[]'::json) FROM (SELECT attachment_id,created_at,event,state,reason,pod_uid FROM network_attachment_history WHERE created_at>='2026-09-15T13:45:11.795596Z' AND created_at<='2026-09-15T13:57:11.813843Z' AND reason<>'' ORDER BY created_at) t;",
+    "exit": 0,
+    "stdout": "BEGIN\n[]\nROLLBACK\n",
+    "stderr": ""
+  },
+  "stderr": ""
+}

@@ -1,0 +1,133 @@
+{
+  "at": "2026-09-15T14:22:24.487828+00:00",
+  "execution_host": "ubuntu",
+  "phase": "finish",
+  "submissions": [
+    {
+      "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+      "instance_id": "lb02-2b3122-legacy-a",
+      "submission_id": "c913fc0a-8a24-42d8-b748-787d130294c8",
+      "generation": "1",
+      "cluster_id": "lb02-09141908-2b3122",
+      "namespace": "lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832",
+      "protocol_version": 1,
+      "attachment_id": "att_e17cd1ca47b741e6a637c44fbc7789cb",
+      "state": "SUBMISSION_STATE_CLOSED",
+      "pod_uids": [
+        "26b5bdc1-240e-48eb-b0b0-8daafab076af"
+      ],
+      "controller_uids": [],
+      "finalization_id": "9be6d1fb-b9ce-401b-b4d0-61579b34cceb",
+      "closed_at": "2026-09-15T14:22:23.677936+00:00"
+    },
+    {
+      "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+      "instance_id": "lb02-2b3122-legacy-b",
+      "submission_id": "82524de1-a145-49c1-a9c0-c0bdec6ba393",
+      "generation": "1",
+      "cluster_id": "lb02-09141908-2b3122",
+      "namespace": "lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832",
+      "protocol_version": 1,
+      "attachment_id": "att_c3ecbb00f69442868d10004d061a5ffe",
+      "state": "SUBMISSION_STATE_CLOSED",
+      "pod_uids": [
+        "dac02bc4-9e9f-47dc-90a1-fb9bfcfe6cc0"
+      ],
+      "controller_uids": [],
+      "finalization_id": "b4642ba2-7235-4e4c-8d23-4952842a445c",
+      "closed_at": "2026-09-15T14:22:24.104830+00:00"
+    },
+    {
+      "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+      "instance_id": "lb02-2b3122-legacy-client",
+      "submission_id": "493e31e8-bb12-4602-b761-0e019e335d38",
+      "generation": "1",
+      "cluster_id": "lb02-09141908-2b3122",
+      "namespace": "lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832",
+      "protocol_version": 1,
+      "attachment_id": "att_27718b5a92e64f669739aec7a5c51f8a",
+      "state": "SUBMISSION_STATE_CLOSED",
+      "pod_uids": [
+        "0492092a-dc27-49aa-9501-cb0c3d6ab1be"
+      ],
+      "controller_uids": [],
+      "finalization_id": "f8f8c65d-3a66-43b2-9ae3-167b03786639",
+      "closed_at": "2026-09-15T14:22:24.487507+00:00"
+    }
+  ],
+  "results": [
+    {
+      "at": "2026-09-15T14:22:23.677719+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=15s",
+        "get",
+        "pod",
+        "lb02-2b3122-legacy-a",
+        "-n",
+        "lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832",
+        "--ignore-not-found",
+        "-o",
+        "json"
+      ],
+      "request": null,
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-15T14:22:24.104631+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=15s",
+        "get",
+        "pod",
+        "lb02-2b3122-legacy-b",
+        "-n",
+        "lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832",
+        "--ignore-not-found",
+        "-o",
+        "json"
+      ],
+      "request": null,
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-15T14:22:24.487304+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=15s",
+        "get",
+        "pod",
+        "lb02-2b3122-legacy-client",
+        "-n",
+        "lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832",
+        "--ignore-not-found",
+        "-o",
+        "json"
+      ],
+      "request": null,
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "creation_closed_by": "permanent create-started marker and owner registry already containing each successful submission; no controllers or unresolved POSTs"
+}

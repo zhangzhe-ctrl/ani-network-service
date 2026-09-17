@@ -1,0 +1,47 @@
+{
+  "at": "2026-09-14T19:04:47.936656+00:00",
+  "scope": "same target and zero sender; only Ethernet VLAN tag varied; no configuration changes",
+  "operating_vlan_stays": 102,
+  "results": [
+    {
+      "mode": "tagged_102",
+      "probe": {
+        "at": "2026-09-14T19:04:44.940157+00:00",
+        "interface": "ens35",
+        "transmit_vlan": 102,
+        "target": "172.16.102.1",
+        "sender_ip": "0.0.0.0",
+        "frames_sent": 2,
+        "replies": [],
+        "nic_delta": {
+          "tx_packets": 2,
+          "tx_dropped": 0,
+          "tx_errors": 0,
+          "rx_packets": 0
+        },
+        "host_configuration_changes": 0,
+        "result": "not_verified"
+      }
+    },
+    {
+      "mode": "untagged_diagnostic_only",
+      "probe": {
+        "at": "2026-09-14T19:04:47.925150+00:00",
+        "interface": "ens35",
+        "transmit_vlan": null,
+        "target": "172.16.102.1",
+        "sender_ip": "0.0.0.0",
+        "frames_sent": 2,
+        "replies": [],
+        "nic_delta": {
+          "tx_packets": 2,
+          "tx_dropped": 0,
+          "tx_errors": 0,
+          "rx_packets": 0
+        },
+        "host_configuration_changes": 0,
+        "result": "not_verified"
+      }
+    }
+  ]
+}

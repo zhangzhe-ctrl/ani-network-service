@@ -1,0 +1,73 @@
+{
+  "at": "2026-09-15T10:52:05.443522+00:00",
+  "source_run": "20260915T074304Z-31ea8959",
+  "runtime": "r18",
+  "result": "fail",
+  "scope": "simultaneous literal VIP and EIP requests for product public_private LB",
+  "lb_id": "lb_74f96109961444a48b26c31601e6131f",
+  "configuration_operation": {
+    "id": "18447cd2-6a31-48f5-bc5f-b7b225c16374",
+    "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+    "resource_id": "lb_74f96109961444a48b26c31601e6131f",
+    "kind": "OPERATION_KIND_CREATE_LOAD_BALANCER",
+    "state": "OPERATION_STATE_SUCCEEDED",
+    "reason": "",
+    "created_at": "2026-09-15T10:15:22.365334Z",
+    "updated_at": "2026-09-15T10:40:48.472296Z",
+    "completed_at": "2026-09-15T10:40:48.472296Z",
+    "next_attempt_at": null,
+    "resource_type": "RESOURCE_TYPE_LOAD_BALANCER",
+    "reason_message": ""
+  },
+  "gateway_uid": "2deefbdc-ca81-4701-8725-dccb8ee18d66",
+  "service_uid": "cbbfbc82-49c0-4bbc-96f3-a3924f685421",
+  "deployment_uid": "74c76b1a-6020-471c-b9fd-ab0f7a51ca09",
+  "small_two_replicas": true,
+  "provider_pods": [
+    {
+      "name": "lb-74f96109961444a48b26c31601e6131f-75568698bb-8zg4x",
+      "uid": "ce02fd40-202f-457a-be79-11af94711234",
+      "node": "ani-03",
+      "ip": "10.233.0.9"
+    },
+    {
+      "name": "lb-74f96109961444a48b26c31601e6131f-75568698bb-vb2fd",
+      "uid": "ad31a52c-1481-48db-bfd1-10e0f50c6cb4",
+      "node": "ani-01",
+      "ip": "10.233.0.10"
+    }
+  ],
+  "entry_summary": {
+    "VIP": {
+      "count": 12,
+      "passed": 12,
+      "backend_counts": {
+        "lb02-2b3122-base-a": 6,
+        "lb02-2b3122-base-b": 6
+      },
+      "result": "pass"
+    },
+    "EIP": {
+      "count": 12,
+      "passed": 0,
+      "backend_counts": {
+        "lb02-2b3122-base-a": 0,
+        "lb02-2b3122-base-b": 0
+      },
+      "result": "fail"
+    }
+  },
+  "paired_requests_overlap": true,
+  "evidence": [
+    "public-private-created.json",
+    "public-private-configured-provider.json",
+    "public-private-operation.json",
+    "dual-entry-r18.json"
+  ],
+  "assessment_correction": "Initial local assessment looked for KC annotations in Gateway metadata; actual contract uses spec.infrastructure.annotations. Corrected field path, same expected values and unmodified objects.",
+  "limitations": [
+    "VIP pass, EIP fail; overall dual-entry acceptance fails.",
+    "Subsequent product observation degraded or stale; successful Create operation is not continuous configuration or health proof.",
+    "No direct Pod-IP, NodePort or port-forward substitute."
+  ]
+}

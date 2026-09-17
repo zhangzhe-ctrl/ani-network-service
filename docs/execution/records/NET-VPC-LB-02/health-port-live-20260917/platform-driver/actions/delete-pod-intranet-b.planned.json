@@ -1,0 +1,25 @@
+{
+  "at": "2026-09-17T11:36:03.256177+00:00",
+  "intent": {
+    "body": {
+      "apiVersion": "v1",
+      "gracePeriodSeconds": 30,
+      "kind": "DeleteOptions",
+      "preconditions": {
+        "uid": "bf095f30-17be-4391-bfce-50fa0c90bd3b"
+      },
+      "propagationPolicy": "Foreground"
+    },
+    "command": [
+      "/home/chabking/workspace/ani-network-service-runs/lb-health-e2e-20260917/private/runtime/bin/kubectl",
+      "--kubeconfig",
+      "/home/chabking/workspace/ani-network-service-runs/lb-health-e2e-20260917/private/runtime/owner-kubeconfig.json",
+      "--request-timeout=20s",
+      "delete",
+      "--raw",
+      "/api/v1/namespaces/lbhealth-0917/pods/lbhealth-0917-intranet-b",
+      "-f",
+      "-"
+    ]
+  }
+}

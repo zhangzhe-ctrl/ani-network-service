@@ -1,0 +1,144 @@
+{
+  "at": "2026-09-15T12:40:35.814198+00:00",
+  "run": "lb02-09141908-2b3122",
+  "current_candidate": "20260915T121305Z-1e089142",
+  "overall": "not_verified",
+  "kind": "dated U09 evidence snapshot, current ledger remains docs/execution/status.md",
+  "matrix": [
+    {
+      "goal_item": 1,
+      "result": "pass",
+      "scope": "新 VPC 自动基础内网，两个 worker 的 DNS/内网 HTTP 实测",
+      "evidence": "base-intranet-r15-renewal.json",
+      "limitations": []
+    },
+    {
+      "goal_item": 2,
+      "result": "pass",
+      "scope": "同 VPC 客户端直连 private VIP，两个真实节点后端，原 small 两副本",
+      "evidence": "private-vip-audit-refresh-r24-assessment.json",
+      "limitations": []
+    },
+    {
+      "goal_item": 3,
+      "result": "fail",
+      "scope": "public LB 外部 EIP 入口，不依赖 Public SNAT",
+      "evidence": "public-lb-external-no-snat-assessment.json",
+      "limitations": [
+        "24 literal Public EIP requests timed out with no Public SNAT; direct Public Pod control passed; passive ens35 capture saw ARP reply and SYN but no SYN-ACK."
+      ],
+      "followup": "public-forwarding-followup.md",
+      "disposition": "User deferred further Public forwarding diagnosis; original fail preserved, possible plugin or external network cause not confirmed."
+    },
+    {
+      "goal_item": 4,
+      "result": "fail",
+      "scope": "public_private 的 VIP/EIP 同时有效",
+      "evidence": "public-private-assessment.json",
+      "limitations": [
+        "12 overlapping pairs: VIP 12/12 with both actual backends; EIP 0/12. Config creation succeeded; continuous observation remains unstable."
+      ],
+      "followup": "public-forwarding-followup.md",
+      "disposition": "User deferred further Public forwarding diagnosis; original fail preserved, possible plugin or external network cause not confirmed."
+    },
+    {
+      "goal_item": 5,
+      "result": "pass",
+      "scope": "Public SNAT 启停/解绑期间基础身份和 private 流量保持",
+      "evidence": "public-snat-lifecycle-assessment.json",
+      "limitations": [
+        "Finite samples, not a gapless availability guarantee."
+      ]
+    },
+    {
+      "goal_item": 6,
+      "result": "fail",
+      "scope": "Public 出站真实连接和出口源地址",
+      "evidence": "public-snat-source-reenabled.json",
+      "limitations": [
+        "Enable and re-enable both timed out; expected EIP source .195 was not observed at receiver."
+      ],
+      "followup": "public-forwarding-followup.md",
+      "disposition": "User deferred further Public forwarding diagnosis; original fail preserved, possible plugin or external network cause not confirmed."
+    },
+    {
+      "goal_item": 7,
+      "result": "pass",
+      "scope": "成员新增/移除，权重 0，TCP 健康失败/恢复；各证据保留实际候选",
+      "evidence": "private-vip-member-removed-assessment.json",
+      "limitations": [
+        "权重/健康实测为 r12 freshness 候选；r13 新增摘要规范化后成员更新通过。产品持续健康仍 unknown"
+      ]
+    },
+    {
+      "goal_item": 8,
+      "result": "not_verified",
+      "scope": "完整 API 同 EIP 竞争、错误租户/namespace/UID、合法与外来 Service 占用",
+      "evidence": "public-eip-competition-assessment.json",
+      "limitations": [
+        "Both first-owner live EIP occupancy orders, wrong tenant EIP read, legitimate/foreign Service tests and cross-namespace foreign EIP Service protection/recovery passed.",
+        "Actual same-name generated Service UID replacement remains not_verified; controlled UID tests remain separately qualified."
+      ],
+      "additional_evidence": "cross-namespace-service-assessment.json"
+    },
+    {
+      "goal_item": 9,
+      "result": "pass",
+      "scope": "完整 LB 删除后 EIP 重绑、VIP/父占用释放、原基础与后端保留",
+      "evidence": "public-eip-reuse-assessment.json",
+      "limitations": [
+        "Combined with private-lb-delete-assessment.json and private-lb-vip-reuse-assessment.json for private VIP/parent release. New dual LB cleanup remains required separately."
+      ]
+    },
+    {
+      "goal_item": 10,
+      "result": "pass",
+      "scope": "DeleteVPC 按顺序清理系统基础资源",
+      "evidence": "base-cleanup-assessment.json",
+      "limitations": []
+    },
+    {
+      "goal_item": 11,
+      "result": "pass",
+      "scope": "U08 旧形态业务 VPC 补齐/暂停恢复/历史操作/删除竞争",
+      "evidence": "u08-continuous-assessment.json",
+      "limitations": [
+        "306 sampled requests across before/during/after succeeded; max one-direction sample-start gap 3.83 seconds, no guarantee for unsampled instants. Delete-first live race is separately recorded in u08-delete-race-assessment.json."
+      ],
+      "cleanup_evidence": "continuous-cleanup-assessment.json"
+    }
+  ],
+  "separate_failure": {
+    "result": "fail",
+    "scope": "continuous configuration observation stability",
+    "evidence": "private-lb-r24-stability-assessment.json",
+    "fixed_window": "30/30 configured and fresh",
+    "post_window": "Actual read BackendIdentityMismatch; Attachment ProviderUnavailable/recovery recorded, original Pod/VNic/VNicIP identities present."
+  },
+  "scope_boundary": [
+    "No real IAM, public Gateway or ANI UI acceptance",
+    "No production or formal migration",
+    "No capacity or HA result",
+    "No replacement of public traffic with NodePort, port-forward or Pod IP"
+  ],
+  "supersedes": "u09-matrix-20260915T1144.json",
+  "new_source_work": "Egress/LB bounded fresh audit recovery qualified by full gates and deployed; later Attachment-related observation degradation still unresolved.",
+  "current_source_validation": {
+    "source_run": "20260915T121305Z-1e089142",
+    "gates": "audit-refresh-candidate-gates.json",
+    "live_deployed": true,
+    "runtime": "r24",
+    "install": "audit-refresh-candidate-deployed.json",
+    "backup": "audit-refresh-r24-checkpoint-1239.json",
+    "configuration": "audit-window-config-comparison-02.json",
+    "private_data_plane": "private-vip-audit-refresh-r24-assessment.json",
+    "observation": "private-lb-r24-stability-assessment.json",
+    "retained_resources": "audit-refresh-r24-retained-product-resources.json"
+  },
+  "public_prerequisites": {
+    "result": "pass",
+    "qualification": "public-pool-qualification-assessment.json",
+    "admission": "public-pool-admission-enabled-03.json",
+    "scope": "underlay laboratory direct workload egress/return only, not tenant EIP/SNAT or Internet"
+  }
+}

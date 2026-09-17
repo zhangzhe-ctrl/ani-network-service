@@ -1,0 +1,27 @@
+{
+  "namespace": "lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832",
+  "commands": [
+    {
+      "pod": "lb02-2b3122-continuous-a",
+      "label": "binary-provenance",
+      "argv": [
+        "/usr/bin/sha256sum",
+        "/probe"
+      ],
+      "expect_contains": [
+        "ffcf0c98acaedd82d52d8b9b9f981a8bbc8b1fbc4499be94947d9040f0014bed"
+      ]
+    },
+    {
+      "pod": "lb02-2b3122-continuous-b",
+      "label": "binary-provenance",
+      "argv": [
+        "/usr/bin/sha256sum",
+        "/probe"
+      ],
+      "expect_contains": [
+        "ffcf0c98acaedd82d52d8b9b9f981a8bbc8b1fbc4499be94947d9040f0014bed"
+      ]
+    }
+  ]
+}

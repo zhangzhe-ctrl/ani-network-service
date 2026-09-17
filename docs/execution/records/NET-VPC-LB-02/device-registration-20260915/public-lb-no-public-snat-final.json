@@ -1,0 +1,12 @@
+{
+  "at": "2026-09-15T09:30:32.487631+00:00",
+  "execution_host": "ubuntu",
+  "transport_exit": 0,
+  "result": {
+    "query": "SELECT snat_id,purpose,eip_id,state FROM network_snat_bindings WHERE vpc_id='vpc_d06f28e82fe847f7bf2cedd57dad82f4'; SELECT row_to_json(o) FROM network_operations o WHERE operation_id='ca4a5f4a-0886-4219-96c8-077f46737937';",
+    "exit": 0,
+    "stdout": "BEGIN\nsnat_3cbc9e4d07b44c0291a541d50bd4b43e|intranet|eip_c428922594b94429a405305c6c781897|available\n{\"tenant_id\":\"d896f754-ab06-4cbe-a7fd-53148d16d0ad\",\"operation_id\":\"ca4a5f4a-0886-4219-96c8-077f46737937\",\"vpc_id\":null,\"kind\":\"create_load_balancer\",\"state\":\"succeeded\",\"reason\":\"\",\"attempt\":15,\"execution_epoch\":15,\"created_at\":\"2026-09-15T09:13:07.496475+00:00\",\"updated_at\":\"2026-09-15T09:29:08.218528+00:00\",\"completed_at\":\"2026-09-15T09:29:08.218528+00:00\",\"next_attempt_at\":null,\"subnet_id\":null,\"eip_id\":null,\"snat_id\":null,\"lb_id\":\"lb_bd6f74b7445b4c5a815763d38a995f14\"}\nROLLBACK\n",
+    "stderr": ""
+  },
+  "stderr": ""
+}

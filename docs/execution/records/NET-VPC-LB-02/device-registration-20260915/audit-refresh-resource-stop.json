@@ -1,0 +1,17 @@
+{
+  "at": "2026-09-15T12:03:13.174841+00:00",
+  "execution_host": "ubuntu",
+  "source_run": "20260915T115924Z-bb92edb2",
+  "archive_sha256": "2e5a523e3ff3d3e36913dd0e758201da13e8bb2ae3b08f04b64b24dc41a0c379",
+  "manifest_sha256": "8b6f5e26e1c87ea571c8b0ced1379bf816ebbd37f0896d80a184df6968af8c5e",
+  "command": [
+    "bash",
+    "-e",
+    "-c",
+    "validation_tmp=$(mktemp -d /var/tmp/nlb2.XXXXXX); chmod 700 \"$validation_tmp\"; export TMPDIR=\"$validation_tmp\"; scripts/integration -race ./internal/data -run \"^(TestEgressRefreshesInvalidAuditWithoutLosingAppliedFacts|TestLBRefreshesInvalidAuditAndStillRejectsReusedBackendIdentity|TestEgressKCAdapterSharedObservationLifecycleAndDrift|TestLBCapabilityUsesSharedAuditAndKeepsVPCIndependent)$\" -timeout 4m -json"
+  ],
+  "conclusion": "Resource guard stopped before test results: disk free 21432795136 bytes below 20 GiB. Not a test pass or source verdict; ephemeral test PG cleanup completed.",
+  "test_results": [],
+  "log": "audit-refresh-resource-stop-command.txt",
+  "log_sha256": "8363b81e808626e92045246d0cc76107ad4d3b2e0090329fdc04e80586468aea"
+}

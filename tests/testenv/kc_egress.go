@@ -149,17 +149,28 @@ func (s *KC) fixtureConfigPatch(w http.ResponseWriter, r *http.Request, key stri
 		Op, Path string
 		Value    any
 	}
-	if json.NewDecoder(r.Body).Decode(&patch) != nil || len(patch) != 4 || patch[0].Op != "test" || patch[0].Path != "/metadata/uid" || patch[0].Value != m["uid"] || patch[1].Op != "test" || patch[1].Path != "/metadata/resourceVersion" || patch[1].Value != m["resourceVersion"] {
+	if json.NewDecoder(r.Body).Decode(&patch) != nil || (len(patch) != 3 && len(patch) != 4) || patch[0].Op != "test" || patch[0].Path != "/metadata/uid" || patch[0].Value != m["uid"] || patch[1].Op != "test" || patch[1].Path != "/metadata/resourceVersion" || patch[1].Value != m["resourceVersion"] {
 		fail(409, "Conflict")
 		return
 	}
-	if patch[2].Op != "add" || patch[2].Path != "/data/managedDevices" || patch[3].Op != "add" || patch[3].Path != "/metadata/annotations" {
+	last := len(patch) - 1
+	if patch[last].Op != "add" || patch[last].Path != "/metadata/annotations" || (len(patch) == 4 && (patch[2].Op != "add" || patch[2].Path != "/data/managedDevices")) {
 		s.Invalid = "unexpected ConfigMap mutation"
 		fail(422, "Invalid")
 		return
 	}
-	o["data"].(map[string]any)["managedDevices"] = patch[2].Value
-	m["annotations"] = patch[3].Value
+	if _, ok := patch[last].Value.(map[string]any); !ok {
+		fail(422, "Invalid")
+		return
+	}
+	if len(patch) == 4 {
+		if _, ok := patch[2].Value.(string); !ok {
+			fail(422, "Invalid")
+			return
+		}
+		o["data"].(map[string]any)["managedDevices"] = patch[2].Value
+	}
+	m["annotations"] = patch[last].Value
 	rv, _ := strconv.Atoi(fmt.Sprint(m["resourceVersion"]))
 	m["resourceVersion"] = strconv.Itoa(rv + 1)
 	_ = json.NewEncoder(w).Encode(o)

@@ -1,0 +1,144 @@
+{
+  "apiVersion": "v1",
+  "kind": "List",
+  "items": [
+    {
+      "apiVersion": "v1",
+      "kind": "ServiceAccount",
+      "metadata": {
+        "namespace": "lb02-09141908-2b3122",
+        "name": "lb02-2b3122-workload-owner",
+        "labels": {
+          "network.ani.io/test-run": "lb02-09141908-2b3122"
+        }
+      },
+      "automountServiceAccountToken": false
+    },
+    {
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "Role",
+      "metadata": {
+        "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+        "name": "lb02-2b3122-workload-owner",
+        "labels": {
+          "network.ani.io/test-run": "lb02-09141908-2b3122"
+        }
+      },
+      "rules": [
+        {
+          "apiGroups": [
+            ""
+          ],
+          "resources": [
+            "pods"
+          ],
+          "verbs": [
+            "create",
+            "get",
+            "list",
+            "watch",
+            "delete"
+          ]
+        },
+        {
+          "apiGroups": [
+            ""
+          ],
+          "resources": [
+            "pods/exec"
+          ],
+          "verbs": [
+            "create",
+            "get"
+          ]
+        }
+      ]
+    },
+    {
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "RoleBinding",
+      "metadata": {
+        "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+        "name": "lb02-2b3122-workload-owner",
+        "labels": {
+          "network.ani.io/test-run": "lb02-09141908-2b3122"
+        }
+      },
+      "roleRef": {
+        "apiGroup": "rbac.authorization.k8s.io",
+        "kind": "Role",
+        "name": "lb02-2b3122-workload-owner"
+      },
+      "subjects": [
+        {
+          "kind": "ServiceAccount",
+          "namespace": "lb02-09141908-2b3122",
+          "name": "lb02-2b3122-workload-owner"
+        }
+      ]
+    },
+    {
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "Role",
+      "metadata": {
+        "namespace": "lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832",
+        "name": "lb02-2b3122-workload-owner",
+        "labels": {
+          "network.ani.io/test-run": "lb02-09141908-2b3122"
+        }
+      },
+      "rules": [
+        {
+          "apiGroups": [
+            ""
+          ],
+          "resources": [
+            "pods"
+          ],
+          "verbs": [
+            "create",
+            "get",
+            "list",
+            "watch",
+            "delete"
+          ]
+        },
+        {
+          "apiGroups": [
+            ""
+          ],
+          "resources": [
+            "pods/exec"
+          ],
+          "verbs": [
+            "create",
+            "get"
+          ]
+        }
+      ]
+    },
+    {
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "RoleBinding",
+      "metadata": {
+        "namespace": "lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832",
+        "name": "lb02-2b3122-workload-owner",
+        "labels": {
+          "network.ani.io/test-run": "lb02-09141908-2b3122"
+        }
+      },
+      "roleRef": {
+        "apiGroup": "rbac.authorization.k8s.io",
+        "kind": "Role",
+        "name": "lb02-2b3122-workload-owner"
+      },
+      "subjects": [
+        {
+          "kind": "ServiceAccount",
+          "namespace": "lb02-09141908-2b3122",
+          "name": "lb02-2b3122-workload-owner"
+        }
+      ]
+    }
+  ]
+}

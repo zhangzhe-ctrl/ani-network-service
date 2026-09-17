@@ -1,0 +1,65 @@
+{
+  "scope": "interpret existing delete wait using actual provider Pod grace, no mutation",
+  "evidence": "public-lb-delete-provider-progress.json",
+  "pods": [
+    {
+      "name": "lb-bd6f74b7445b4c5a815763d38a995f14-c9df5cb8c-5xpjw",
+      "uid": "455fe810-ba4d-47a1-b242-1afbc2d02025",
+      "deletion_timestamp": "2026-09-15T10:12:20Z",
+      "deletion_grace_period_seconds": 360,
+      "termination_grace_period_seconds": 360,
+      "lifecycle": [
+        {
+          "preStop": {
+            "httpGet": {
+              "path": "/shutdown/ready",
+              "port": 19002,
+              "scheme": "HTTP"
+            }
+          }
+        },
+        {
+          "preStop": {
+            "exec": {
+              "command": [
+                "envoy-gateway",
+                "envoy",
+                "shutdown"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "lb-bd6f74b7445b4c5a815763d38a995f14-c9df5cb8c-svb8f",
+      "uid": "8f2fa695-6cd6-470c-9029-6e806c16acc3",
+      "deletion_timestamp": "2026-09-15T10:12:20Z",
+      "deletion_grace_period_seconds": 360,
+      "termination_grace_period_seconds": 360,
+      "lifecycle": [
+        {
+          "preStop": {
+            "httpGet": {
+              "path": "/shutdown/ready",
+              "port": 19002,
+              "scheme": "HTTP"
+            }
+          }
+        },
+        {
+          "preStop": {
+            "exec": {
+              "command": [
+                "envoy-gateway",
+                "envoy",
+                "shutdown"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "conclusion": "First bounded wait ended before configured Pod deletion deadline; this is not evidence of a stuck finalizer."
+}

@@ -29,10 +29,35 @@ type NodeFactsDocument struct {
 }
 
 func (p *KCProvider) ListNodeInterfaces(ctx context.Context) (biz.InterfaceInventory, error) {
-	nodes, maps, vlans, collected, err := p.nodeFactsObjects(ctx)
+	return p.listNodeInterfaces(ctx, nil)
+}
+
+// A dependent read consumes the caller's complete audit. Starting another audit
+// here can outlive that caller's deadline and invalidate the first view while
+// waiting. Its existing node-facts fence remains authoritative.
+func (p *KCProvider) listNodeInterfaces(ctx context.Context, view *auditView) (biz.InterfaceInventory, error) {
+	var nodes, maps, vlans []unstructured.Unstructured
+	var collected time.Time
+	var err error
+	if view == nil {
+		nodes, maps, vlans, collected, err = p.nodeFactsObjects(ctx)
+	} else {
+		if p.observation == nil || !p.observation.valid(view, []string{"node-facts"}) {
+			return biz.InterfaceInventory{}, &biz.ProviderError{Kind: biz.ProviderTemporary}
+		}
+		nodes, maps, vlans, collected, err = nodeFactsFromView(view)
+	}
 	if err != nil {
 		return biz.InterfaceInventory{}, err
 	}
+	config, err := p.client.Resource(kcConfigMaps).Namespace(kcSystemNamespace).Get(ctx, "kcn-config", metav1.GetOptions{})
+	if err != nil {
+		return biz.InterfaceInventory{}, readFailure(err)
+	}
+	if config.GetUID() == "" || config.GetDeletionTimestamp() != nil {
+		return biz.InterfaceInventory{}, &biz.ProviderError{Kind: biz.ProviderConflict}
+	}
+	configured := managedDevices(config)
 	byUID := map[string][]unstructured.Unstructured{}
 	for _, cm := range maps {
 		if cm.GetNamespace() != kcSystemNamespace || cm.GetLabels()[ownerLabel] != factsOwner {
@@ -71,6 +96,9 @@ func (p *KCProvider) ListNodeInterfaces(ctx context.Context) (biz.InterfaceInven
 			names[iface.Name] = true
 			iface.ObservedAt = doc.CollectedAt
 			iface.KCManaged = managed[iface.Name]
+			iface.KCConfigured = slices.Contains(configured, iface.Name)
+			iface.KCConfigUID = string(config.GetUID())
+			iface.KCDeviceOwner = config.GetAnnotations()[adoptionMarker(iface.Name)]
 			iface.Selectable = false
 			iface.UnavailableReasons = nil
 			iface.VlanNetworkIDs = nil
@@ -129,13 +157,13 @@ func (p *KCProvider) deviceConfig(ctx context.Context, t biz.ProviderTarget) (sq
 	return r, nil
 }
 func (p *KCProvider) observeDevice(ctx context.Context, t biz.ProviderTarget) (biz.ProviderObservation, error) {
+	return p.observeDeviceFromView(ctx, t, nil)
+}
+
+func (p *KCProvider) observeDeviceFromView(ctx context.Context, t biz.ProviderTarget, view *auditView) (biz.ProviderObservation, error) {
 	config, err := p.deviceConfig(ctx, t)
 	if err != nil {
 		return biz.ProviderObservation{}, err
-	}
-	now, err := p.repository.queries.DatabaseTime(ctx)
-	if err != nil {
-		return biz.ProviderObservation{}, readFailure(err)
 	}
 	cm, err := p.client.Resource(kcConfigMaps).Namespace(kcSystemNamespace).Get(ctx, "kcn-config", metav1.GetOptions{})
 	if err != nil {
@@ -144,21 +172,36 @@ func (p *KCProvider) observeDevice(ctx context.Context, t biz.ProviderTarget) (b
 	if cm.GetUID() == "" || cm.GetResourceVersion() == "" || (t.KnownIdentity != "" && string(cm.GetUID()) != t.KnownIdentity) {
 		return biz.ProviderObservation{}, &biz.ProviderError{Kind: biz.ProviderConflict}
 	}
-	marker := cm.GetAnnotations()[adoptionMarker(config.DeviceName)]
-	if (marker != "" && marker != t.BindingID) || (marker == "" && slices.Contains(managedDevices(cm), config.DeviceName)) {
+	var accepted []biz.NodeInterface
+	if json.Unmarshal(config.NodeInventory, &accepted) != nil || len(accepted) == 0 {
 		return biz.ProviderObservation{}, &biz.ProviderError{Kind: biz.ProviderConflict}
 	}
-	inventory, err := p.ListNodeInterfaces(ctx)
+	preManaged := accepted[0].KCConfigured
+	for _, item := range accepted {
+		if item.KCConfigured != preManaged || (item.KCConfigUID != "" && item.KCConfigUID != string(cm.GetUID())) {
+			return biz.ProviderObservation{}, &biz.ProviderError{Kind: biz.ProviderConflict}
+		}
+	}
+	configured := slices.Contains(managedDevices(cm), config.DeviceName)
+	marker := cm.GetAnnotations()[adoptionMarker(config.DeviceName)]
+	if (marker != "" && marker != t.BindingID) || (marker == "" && configured && !preManaged) || (preManaged && !configured) {
+		return biz.ProviderObservation{}, &biz.ProviderError{Kind: biz.ProviderConflict}
+	}
+	inventory, err := p.listNodeInterfaces(ctx, view)
 	if err != nil {
 		return biz.ProviderObservation{}, err
 	}
-	var accepted []biz.NodeInterface
-	if json.Unmarshal(config.NodeInventory, &accepted) != nil {
-		return biz.ProviderObservation{}, &biz.ProviderError{Kind: biz.ProviderConflict}
+	// Compare timestamps after reading facts: a collection completed during the
+	// read is not a future observation. Truly future/stale facts still fail.
+	now, err := p.repository.queries.DatabaseTime(ctx)
+	if err != nil {
+		return biz.ProviderObservation{}, readFailure(err)
 	}
 	nodes := map[string]bool{}
+	identities := map[string]biz.NodeInterface{}
 	for _, v := range accepted {
 		nodes[v.NodeUID] = true
+		identities[v.NodeUID] = v
 	}
 	current := map[string]bool{}
 	progress := []biz.NodeInterface{}
@@ -170,8 +213,21 @@ func (p *KCProvider) observeDevice(ctx context.Context, t biz.ProviderTarget) (b
 			continue
 		}
 		progress = append(progress, v)
-		if !nodes[v.NodeUID] || !v.KCManaged || !v.OVSManaged || v.ObservedAt.IsZero() || v.ObservedAt.After(now) || now.Sub(v.ObservedAt) > time.Minute {
+		identity := identities[v.NodeUID]
+		if (identity.MAC != "" && identity.MAC != v.MAC) || (identity.NodeName != "" && identity.NodeName != v.NodeName) {
+			return biz.ProviderObservation{}, &biz.ProviderError{Kind: biz.ProviderConflict}
+		}
+		if v.KCConfigUID != string(cm.GetUID()) {
+			return biz.ProviderObservation{}, &biz.ProviderError{Kind: biz.ProviderConflict}
+		}
+		if !nodes[v.NodeUID] || !v.KCManaged || !v.OVSManaged || !v.KCConfigured || !v.KCBridgeReady || !v.LinkUp || !v.Carrier || v.Kind != "device" || v.Management || v.DefaultRoute || v.Master != "ovs-system" || v.ObservedAt.IsZero() || v.ObservedAt.After(now) || now.Sub(v.ObservedAt) > time.Minute {
 			ready = false
+		}
+		for _, raw := range v.Addresses {
+			address, err := netip.ParsePrefix(raw)
+			if err != nil || !address.Addr().IsLinkLocalUnicast() {
+				ready = false
+			}
 		}
 	}
 	if len(current) != len(nodes) || len(progress) != len(nodes) {
@@ -241,17 +297,32 @@ func (p *KCProvider) ensureDevice(ctx context.Context, t biz.ProviderTarget) (bi
 		return existing, readFailure(err)
 	}
 	devices := managedDevices(cm)
-	if slices.Contains(devices, config.DeviceName) {
+	var accepted []biz.NodeInterface
+	if json.Unmarshal(config.NodeInventory, &accepted) != nil || len(accepted) == 0 {
 		return existing, &biz.ProviderError{Kind: biz.ProviderConflict}
 	}
-	devices = append(devices, config.DeviceName)
-	slices.Sort(devices)
+	preManaged := accepted[0].KCConfigured
+	for _, item := range accepted {
+		if item.KCConfigured != preManaged || (item.KCConfigUID != "" && item.KCConfigUID != string(cm.GetUID())) {
+			return existing, &biz.ProviderError{Kind: biz.ProviderConflict}
+		}
+	}
+	if slices.Contains(devices, config.DeviceName) != preManaged || cm.GetAnnotations()[adoptionMarker(config.DeviceName)] != "" {
+		return existing, &biz.ProviderError{Kind: biz.ProviderConflict}
+	}
 	annotations := cm.GetAnnotations()
 	if annotations == nil {
 		annotations = map[string]string{}
 	}
 	annotations[adoptionMarker(config.DeviceName)] = t.BindingID
-	patch, _ := json.Marshal([]map[string]any{{"op": "test", "path": "/metadata/uid", "value": string(cm.GetUID())}, {"op": "test", "path": "/metadata/resourceVersion", "value": cm.GetResourceVersion()}, {"op": "add", "path": "/data/managedDevices", "value": strings.Join(devices, ",")}, {"op": "add", "path": "/metadata/annotations", "value": annotations}})
+	ops := []map[string]any{{"op": "test", "path": "/metadata/uid", "value": string(cm.GetUID())}, {"op": "test", "path": "/metadata/resourceVersion", "value": cm.GetResourceVersion()}}
+	if !preManaged {
+		devices = append(devices, config.DeviceName)
+		slices.Sort(devices)
+		ops = append(ops, map[string]any{"op": "add", "path": "/data/managedDevices", "value": strings.Join(devices, ",")})
+	}
+	ops = append(ops, map[string]any{"op": "add", "path": "/metadata/annotations", "value": annotations})
+	patch, _ := json.Marshal(ops)
 	_, err = endpoint.Patch(ctx, "kcn-config", types.JSONPatchType, patch, metav1.PatchOptions{FieldManager: "ani-network-service"})
 	if err != nil {
 		return existing, mutationFailure(err)
@@ -336,18 +407,14 @@ func (p *KCProvider) nodeFactsObjects(ctx context.Context) ([]unstructured.Unstr
 				return nil, nil, nil, time.Time{}, readFailure(err)
 			}
 		}
-		items := func(gvr schema.GroupVersionResource) []unstructured.Unstructured {
-			out := []unstructured.Unstructured{}
-			for _, raw := range view.indices[gvr].List() {
-				out = append(out, *raw.(*unstructured.Unstructured).DeepCopy())
-			}
-			return out
+		nodes, maps, vlans, collected, err := nodeFactsFromView(view)
+		if err != nil {
+			return nil, nil, nil, time.Time{}, err
 		}
-		nodes, maps, vlans := items(kcNodes), items(kcConfigMaps), items(kcVlans)
 		if !p.observation.valid(view, []string{"node-facts"}) {
 			return nil, nil, nil, time.Time{}, &biz.ProviderError{Kind: biz.ProviderTemporary}
 		}
-		return nodes, maps, vlans, view.collected, nil
+		return nodes, maps, vlans, collected, nil
 	}
 	collected, err := p.repository.queries.DatabaseTime(ctx)
 	if err != nil {
@@ -366,4 +433,20 @@ func (p *KCProvider) nodeFactsObjects(ctx context.Context) ([]unstructured.Unstr
 		return nil, nil, nil, time.Time{}, err
 	}
 	return nodes, maps.Items, vlans, collected, nil
+}
+
+func nodeFactsFromView(view *auditView) ([]unstructured.Unstructured, []unstructured.Unstructured, []unstructured.Unstructured, time.Time, error) {
+	for _, gvr := range []schema.GroupVersionResource{kcNodes, kcConfigMaps, kcVlans} {
+		if view.indices[gvr] == nil {
+			return nil, nil, nil, time.Time{}, &biz.ProviderError{Kind: biz.ProviderTemporary}
+		}
+	}
+	items := func(gvr schema.GroupVersionResource) []unstructured.Unstructured {
+		out := []unstructured.Unstructured{}
+		for _, raw := range view.indices[gvr].List() {
+			out = append(out, *raw.(*unstructured.Unstructured).DeepCopy())
+		}
+		return out
+	}
+	return items(kcNodes), items(kcConfigMaps), items(kcVlans), view.collected, nil
 }

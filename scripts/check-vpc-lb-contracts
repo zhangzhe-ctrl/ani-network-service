@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+set -Eeuo pipefail
+baseline=$(mktemp -d)
+trap 'rm -rf -- "$baseline"' EXIT
+python3 - <<'PY'
+import hashlib,json,pathlib
+root=pathlib.Path('docs/execution/records/NET-VPC-LB-02')
+metadata=json.loads((root/'contract-baseline.json').read_text())
+assert metadata['head']=='e534bb0e8ef83055e18e91d1d41a6c821348a887'
+assert hashlib.sha256((root/'contract-baseline.tar').read_bytes()).hexdigest()==metadata['archive_sha256']
+PY
+tar -xf docs/execution/records/NET-VPC-LB-02/contract-baseline.tar -C "$baseline"
+.tools/bin/buf lint
+.tools/bin/buf breaking --against "$baseline"
+printf 'NET-VPC-LB-02 contracts baseline=e534bb0e8ef83055e18e91d1d41a6c821348a887 pass\n'

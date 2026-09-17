@@ -1,0 +1,772 @@
+{
+  "execution_host": "ubuntu",
+  "command": [
+    "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/lb-api",
+    "call",
+    "-target",
+    "unix:///home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-b.sock",
+    "-service",
+    "NetworkService",
+    "-method",
+    "GetOperation"
+  ],
+  "request": {
+    "operation_id": "3accfc90-de5f-4fa4-8558-fd13b51c4342"
+  },
+  "expected": {
+    "response.operation.state": "OPERATION_STATE_SUCCEEDED"
+  },
+  "result": "fail",
+  "records": [
+    {
+      "at": "2026-09-15T06:07:21.164331+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "3accfc90-de5f-4fa4-8558-fd13b51c4342",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "resource_id": "vpc_1f6fbd7f85cd4baba0b0382770aa480e",
+            "kind": "OPERATION_KIND_ENSURE_VPC_BASE_CONNECTIVITY",
+            "state": "OPERATION_STATE_RETRYING",
+            "reason": "BASE_CONNECTIVITY_NOT_READY",
+            "created_at": "2026-09-15T06:06:54.682618Z",
+            "updated_at": "2026-09-15T06:07:20.702771Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T06:07:25.702771Z",
+            "resource_type": "RESOURCE_TYPE_VPC",
+            "reason_message": "VPC base connectivity is not ready"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T06:07:26.176035+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "3accfc90-de5f-4fa4-8558-fd13b51c4342",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "resource_id": "vpc_1f6fbd7f85cd4baba0b0382770aa480e",
+            "kind": "OPERATION_KIND_ENSURE_VPC_BASE_CONNECTIVITY",
+            "state": "OPERATION_STATE_RETRYING",
+            "reason": "BASE_CONNECTIVITY_NOT_READY",
+            "created_at": "2026-09-15T06:06:54.682618Z",
+            "updated_at": "2026-09-15T06:07:20.702771Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T06:07:25.702771Z",
+            "resource_type": "RESOURCE_TYPE_VPC",
+            "reason_message": "VPC base connectivity is not ready"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T06:07:31.188734+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "3accfc90-de5f-4fa4-8558-fd13b51c4342",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "resource_id": "vpc_1f6fbd7f85cd4baba0b0382770aa480e",
+            "kind": "OPERATION_KIND_ENSURE_VPC_BASE_CONNECTIVITY",
+            "state": "OPERATION_STATE_RETRYING",
+            "reason": "BASE_CONNECTIVITY_NOT_READY",
+            "created_at": "2026-09-15T06:06:54.682618Z",
+            "updated_at": "2026-09-15T06:07:20.702771Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T06:07:25.702771Z",
+            "resource_type": "RESOURCE_TYPE_VPC",
+            "reason_message": "VPC base connectivity is not ready"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T06:07:36.200730+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "3accfc90-de5f-4fa4-8558-fd13b51c4342",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "resource_id": "vpc_1f6fbd7f85cd4baba0b0382770aa480e",
+            "kind": "OPERATION_KIND_ENSURE_VPC_BASE_CONNECTIVITY",
+            "state": "OPERATION_STATE_RETRYING",
+            "reason": "BASE_CONNECTIVITY_NOT_READY",
+            "created_at": "2026-09-15T06:06:54.682618Z",
+            "updated_at": "2026-09-15T06:07:20.702771Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T06:07:25.702771Z",
+            "resource_type": "RESOURCE_TYPE_VPC",
+            "reason_message": "VPC base connectivity is not ready"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T06:07:41.212961+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "3accfc90-de5f-4fa4-8558-fd13b51c4342",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "resource_id": "vpc_1f6fbd7f85cd4baba0b0382770aa480e",
+            "kind": "OPERATION_KIND_ENSURE_VPC_BASE_CONNECTIVITY",
+            "state": "OPERATION_STATE_RETRYING",
+            "reason": "BASE_CONNECTIVITY_NOT_READY",
+            "created_at": "2026-09-15T06:06:54.682618Z",
+            "updated_at": "2026-09-15T06:07:20.702771Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T06:07:25.702771Z",
+            "resource_type": "RESOURCE_TYPE_VPC",
+            "reason_message": "VPC base connectivity is not ready"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T06:07:46.224277+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "3accfc90-de5f-4fa4-8558-fd13b51c4342",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "resource_id": "vpc_1f6fbd7f85cd4baba0b0382770aa480e",
+            "kind": "OPERATION_KIND_ENSURE_VPC_BASE_CONNECTIVITY",
+            "state": "OPERATION_STATE_RETRYING",
+            "reason": "BASE_CONNECTIVITY_NOT_READY",
+            "created_at": "2026-09-15T06:06:54.682618Z",
+            "updated_at": "2026-09-15T06:07:20.702771Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T06:07:25.702771Z",
+            "resource_type": "RESOURCE_TYPE_VPC",
+            "reason_message": "VPC base connectivity is not ready"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T06:07:51.238343+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "3accfc90-de5f-4fa4-8558-fd13b51c4342",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "resource_id": "vpc_1f6fbd7f85cd4baba0b0382770aa480e",
+            "kind": "OPERATION_KIND_ENSURE_VPC_BASE_CONNECTIVITY",
+            "state": "OPERATION_STATE_RETRYING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "created_at": "2026-09-15T06:06:54.682618Z",
+            "updated_at": "2026-09-15T06:07:49.194056Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T06:07:54.194057Z",
+            "resource_type": "RESOURCE_TYPE_VPC",
+            "reason_message": "The network provider is temporarily unavailable."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T06:07:56.251096+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "3accfc90-de5f-4fa4-8558-fd13b51c4342",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "resource_id": "vpc_1f6fbd7f85cd4baba0b0382770aa480e",
+            "kind": "OPERATION_KIND_ENSURE_VPC_BASE_CONNECTIVITY",
+            "state": "OPERATION_STATE_RETRYING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "created_at": "2026-09-15T06:06:54.682618Z",
+            "updated_at": "2026-09-15T06:07:49.194056Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T06:07:54.194057Z",
+            "resource_type": "RESOURCE_TYPE_VPC",
+            "reason_message": "The network provider is temporarily unavailable."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T06:08:01.264257+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "3accfc90-de5f-4fa4-8558-fd13b51c4342",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "resource_id": "vpc_1f6fbd7f85cd4baba0b0382770aa480e",
+            "kind": "OPERATION_KIND_ENSURE_VPC_BASE_CONNECTIVITY",
+            "state": "OPERATION_STATE_RETRYING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "created_at": "2026-09-15T06:06:54.682618Z",
+            "updated_at": "2026-09-15T06:07:49.194056Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T06:07:54.194057Z",
+            "resource_type": "RESOURCE_TYPE_VPC",
+            "reason_message": "The network provider is temporarily unavailable."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T06:08:06.278339+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "3accfc90-de5f-4fa4-8558-fd13b51c4342",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "resource_id": "vpc_1f6fbd7f85cd4baba0b0382770aa480e",
+            "kind": "OPERATION_KIND_ENSURE_VPC_BASE_CONNECTIVITY",
+            "state": "OPERATION_STATE_RETRYING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "created_at": "2026-09-15T06:06:54.682618Z",
+            "updated_at": "2026-09-15T06:07:49.194056Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T06:07:54.194057Z",
+            "resource_type": "RESOURCE_TYPE_VPC",
+            "reason_message": "The network provider is temporarily unavailable."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T06:08:11.291094+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "3accfc90-de5f-4fa4-8558-fd13b51c4342",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "resource_id": "vpc_1f6fbd7f85cd4baba0b0382770aa480e",
+            "kind": "OPERATION_KIND_ENSURE_VPC_BASE_CONNECTIVITY",
+            "state": "OPERATION_STATE_RETRYING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "created_at": "2026-09-15T06:06:54.682618Z",
+            "updated_at": "2026-09-15T06:07:49.194056Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T06:07:54.194057Z",
+            "resource_type": "RESOURCE_TYPE_VPC",
+            "reason_message": "The network provider is temporarily unavailable."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T06:08:16.302598+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "3accfc90-de5f-4fa4-8558-fd13b51c4342",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "resource_id": "vpc_1f6fbd7f85cd4baba0b0382770aa480e",
+            "kind": "OPERATION_KIND_ENSURE_VPC_BASE_CONNECTIVITY",
+            "state": "OPERATION_STATE_RETRYING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "created_at": "2026-09-15T06:06:54.682618Z",
+            "updated_at": "2026-09-15T06:07:49.194056Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T06:07:54.194057Z",
+            "resource_type": "RESOURCE_TYPE_VPC",
+            "reason_message": "The network provider is temporarily unavailable."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T06:08:21.313358+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "3accfc90-de5f-4fa4-8558-fd13b51c4342",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "resource_id": "vpc_1f6fbd7f85cd4baba0b0382770aa480e",
+            "kind": "OPERATION_KIND_ENSURE_VPC_BASE_CONNECTIVITY",
+            "state": "OPERATION_STATE_RETRYING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "created_at": "2026-09-15T06:06:54.682618Z",
+            "updated_at": "2026-09-15T06:07:49.194056Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T06:07:54.194057Z",
+            "resource_type": "RESOURCE_TYPE_VPC",
+            "reason_message": "The network provider is temporarily unavailable."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T06:08:26.324619+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "3accfc90-de5f-4fa4-8558-fd13b51c4342",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "resource_id": "vpc_1f6fbd7f85cd4baba0b0382770aa480e",
+            "kind": "OPERATION_KIND_ENSURE_VPC_BASE_CONNECTIVITY",
+            "state": "OPERATION_STATE_RETRYING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "created_at": "2026-09-15T06:06:54.682618Z",
+            "updated_at": "2026-09-15T06:07:49.194056Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T06:07:54.194057Z",
+            "resource_type": "RESOURCE_TYPE_VPC",
+            "reason_message": "The network provider is temporarily unavailable."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T06:08:31.336188+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "3accfc90-de5f-4fa4-8558-fd13b51c4342",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "resource_id": "vpc_1f6fbd7f85cd4baba0b0382770aa480e",
+            "kind": "OPERATION_KIND_ENSURE_VPC_BASE_CONNECTIVITY",
+            "state": "OPERATION_STATE_RETRYING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "created_at": "2026-09-15T06:06:54.682618Z",
+            "updated_at": "2026-09-15T06:07:49.194056Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T06:07:54.194057Z",
+            "resource_type": "RESOURCE_TYPE_VPC",
+            "reason_message": "The network provider is temporarily unavailable."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T06:08:36.349046+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "3accfc90-de5f-4fa4-8558-fd13b51c4342",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "resource_id": "vpc_1f6fbd7f85cd4baba0b0382770aa480e",
+            "kind": "OPERATION_KIND_ENSURE_VPC_BASE_CONNECTIVITY",
+            "state": "OPERATION_STATE_RETRYING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "created_at": "2026-09-15T06:06:54.682618Z",
+            "updated_at": "2026-09-15T06:07:49.194056Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T06:07:54.194057Z",
+            "resource_type": "RESOURCE_TYPE_VPC",
+            "reason_message": "The network provider is temporarily unavailable."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T06:08:41.360757+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "3accfc90-de5f-4fa4-8558-fd13b51c4342",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "resource_id": "vpc_1f6fbd7f85cd4baba0b0382770aa480e",
+            "kind": "OPERATION_KIND_ENSURE_VPC_BASE_CONNECTIVITY",
+            "state": "OPERATION_STATE_RETRYING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "created_at": "2026-09-15T06:06:54.682618Z",
+            "updated_at": "2026-09-15T06:07:49.194056Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T06:07:54.194057Z",
+            "resource_type": "RESOURCE_TYPE_VPC",
+            "reason_message": "The network provider is temporarily unavailable."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T06:08:46.372104+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "3accfc90-de5f-4fa4-8558-fd13b51c4342",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "resource_id": "vpc_1f6fbd7f85cd4baba0b0382770aa480e",
+            "kind": "OPERATION_KIND_ENSURE_VPC_BASE_CONNECTIVITY",
+            "state": "OPERATION_STATE_RETRYING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "created_at": "2026-09-15T06:06:54.682618Z",
+            "updated_at": "2026-09-15T06:08:43.950125Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T06:08:48.950125Z",
+            "resource_type": "RESOURCE_TYPE_VPC",
+            "reason_message": "The network provider is temporarily unavailable."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T06:08:51.382624+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "3accfc90-de5f-4fa4-8558-fd13b51c4342",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "resource_id": "vpc_1f6fbd7f85cd4baba0b0382770aa480e",
+            "kind": "OPERATION_KIND_ENSURE_VPC_BASE_CONNECTIVITY",
+            "state": "OPERATION_STATE_RETRYING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "created_at": "2026-09-15T06:06:54.682618Z",
+            "updated_at": "2026-09-15T06:08:43.950125Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T06:08:48.950125Z",
+            "resource_type": "RESOURCE_TYPE_VPC",
+            "reason_message": "The network provider is temporarily unavailable."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T06:08:56.394656+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "3accfc90-de5f-4fa4-8558-fd13b51c4342",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "resource_id": "vpc_1f6fbd7f85cd4baba0b0382770aa480e",
+            "kind": "OPERATION_KIND_ENSURE_VPC_BASE_CONNECTIVITY",
+            "state": "OPERATION_STATE_RETRYING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "created_at": "2026-09-15T06:06:54.682618Z",
+            "updated_at": "2026-09-15T06:08:43.950125Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T06:08:48.950125Z",
+            "resource_type": "RESOURCE_TYPE_VPC",
+            "reason_message": "The network provider is temporarily unavailable."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T06:09:01.410544+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "3accfc90-de5f-4fa4-8558-fd13b51c4342",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "resource_id": "vpc_1f6fbd7f85cd4baba0b0382770aa480e",
+            "kind": "OPERATION_KIND_ENSURE_VPC_BASE_CONNECTIVITY",
+            "state": "OPERATION_STATE_RETRYING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "created_at": "2026-09-15T06:06:54.682618Z",
+            "updated_at": "2026-09-15T06:08:43.950125Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T06:08:48.950125Z",
+            "resource_type": "RESOURCE_TYPE_VPC",
+            "reason_message": "The network provider is temporarily unavailable."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T06:09:06.423503+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "3accfc90-de5f-4fa4-8558-fd13b51c4342",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "resource_id": "vpc_1f6fbd7f85cd4baba0b0382770aa480e",
+            "kind": "OPERATION_KIND_ENSURE_VPC_BASE_CONNECTIVITY",
+            "state": "OPERATION_STATE_RETRYING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "created_at": "2026-09-15T06:06:54.682618Z",
+            "updated_at": "2026-09-15T06:08:43.950125Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T06:08:48.950125Z",
+            "resource_type": "RESOURCE_TYPE_VPC",
+            "reason_message": "The network provider is temporarily unavailable."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T06:09:11.434654+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "3accfc90-de5f-4fa4-8558-fd13b51c4342",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "resource_id": "vpc_1f6fbd7f85cd4baba0b0382770aa480e",
+            "kind": "OPERATION_KIND_ENSURE_VPC_BASE_CONNECTIVITY",
+            "state": "OPERATION_STATE_RETRYING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "created_at": "2026-09-15T06:06:54.682618Z",
+            "updated_at": "2026-09-15T06:08:43.950125Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T06:08:48.950125Z",
+            "resource_type": "RESOURCE_TYPE_VPC",
+            "reason_message": "The network provider is temporarily unavailable."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T06:09:16.448900+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "3accfc90-de5f-4fa4-8558-fd13b51c4342",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "resource_id": "vpc_1f6fbd7f85cd4baba0b0382770aa480e",
+            "kind": "OPERATION_KIND_ENSURE_VPC_BASE_CONNECTIVITY",
+            "state": "OPERATION_STATE_RETRYING",
+            "reason": "PROVIDER_RESULT_UNKNOWN",
+            "created_at": "2026-09-15T06:06:54.682618Z",
+            "updated_at": "2026-09-15T06:09:14.350614Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T06:09:19.350614Z",
+            "resource_type": "RESOURCE_TYPE_VPC",
+            "reason_message": "The external request result is unknown; Network is observing the original request."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T06:09:21.461956+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "3accfc90-de5f-4fa4-8558-fd13b51c4342",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "resource_id": "vpc_1f6fbd7f85cd4baba0b0382770aa480e",
+            "kind": "OPERATION_KIND_ENSURE_VPC_BASE_CONNECTIVITY",
+            "state": "OPERATION_STATE_RETRYING",
+            "reason": "PROVIDER_RESULT_UNKNOWN",
+            "created_at": "2026-09-15T06:06:54.682618Z",
+            "updated_at": "2026-09-15T06:09:14.350614Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T06:09:19.350614Z",
+            "resource_type": "RESOURCE_TYPE_VPC",
+            "reason_message": "The external request result is unknown; Network is observing the original request."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T06:09:26.474319+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "3accfc90-de5f-4fa4-8558-fd13b51c4342",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "resource_id": "vpc_1f6fbd7f85cd4baba0b0382770aa480e",
+            "kind": "OPERATION_KIND_ENSURE_VPC_BASE_CONNECTIVITY",
+            "state": "OPERATION_STATE_RETRYING",
+            "reason": "PROVIDER_RESULT_UNKNOWN",
+            "created_at": "2026-09-15T06:06:54.682618Z",
+            "updated_at": "2026-09-15T06:09:14.350614Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T06:09:19.350614Z",
+            "resource_type": "RESOURCE_TYPE_VPC",
+            "reason_message": "The external request result is unknown; Network is observing the original request."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T06:09:31.486338+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "3accfc90-de5f-4fa4-8558-fd13b51c4342",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "resource_id": "vpc_1f6fbd7f85cd4baba0b0382770aa480e",
+            "kind": "OPERATION_KIND_ENSURE_VPC_BASE_CONNECTIVITY",
+            "state": "OPERATION_STATE_RETRYING",
+            "reason": "PROVIDER_RESULT_UNKNOWN",
+            "created_at": "2026-09-15T06:06:54.682618Z",
+            "updated_at": "2026-09-15T06:09:14.350614Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T06:09:19.350614Z",
+            "resource_type": "RESOURCE_TYPE_VPC",
+            "reason_message": "The external request result is unknown; Network is observing the original request."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T06:09:36.498801+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "3accfc90-de5f-4fa4-8558-fd13b51c4342",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "resource_id": "vpc_1f6fbd7f85cd4baba0b0382770aa480e",
+            "kind": "OPERATION_KIND_ENSURE_VPC_BASE_CONNECTIVITY",
+            "state": "OPERATION_STATE_RETRYING",
+            "reason": "PROVIDER_RESULT_UNKNOWN",
+            "created_at": "2026-09-15T06:06:54.682618Z",
+            "updated_at": "2026-09-15T06:09:14.350614Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T06:09:19.350614Z",
+            "resource_type": "RESOURCE_TYPE_VPC",
+            "reason_message": "The external request result is unknown; Network is observing the original request."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T06:09:41.510257+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "3accfc90-de5f-4fa4-8558-fd13b51c4342",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "resource_id": "vpc_1f6fbd7f85cd4baba0b0382770aa480e",
+            "kind": "OPERATION_KIND_ENSURE_VPC_BASE_CONNECTIVITY",
+            "state": "OPERATION_STATE_RETRYING",
+            "reason": "PROVIDER_RESULT_UNKNOWN",
+            "created_at": "2026-09-15T06:06:54.682618Z",
+            "updated_at": "2026-09-15T06:09:14.350614Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T06:09:19.350614Z",
+            "resource_type": "RESOURCE_TYPE_VPC",
+            "reason_message": "The external request result is unknown; Network is observing the original request."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T06:09:46.523729+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "3accfc90-de5f-4fa4-8558-fd13b51c4342",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "resource_id": "vpc_1f6fbd7f85cd4baba0b0382770aa480e",
+            "kind": "OPERATION_KIND_ENSURE_VPC_BASE_CONNECTIVITY",
+            "state": "OPERATION_STATE_RETRYING",
+            "reason": "PROVIDER_RESULT_UNKNOWN",
+            "created_at": "2026-09-15T06:06:54.682618Z",
+            "updated_at": "2026-09-15T06:09:14.350614Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T06:09:19.350614Z",
+            "resource_type": "RESOURCE_TYPE_VPC",
+            "reason_message": "The external request result is unknown; Network is observing the original request."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    }
+  ]
+}

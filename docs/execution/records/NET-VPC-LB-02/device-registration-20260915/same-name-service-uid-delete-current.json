@@ -1,0 +1,30 @@
+{
+  "at": "2026-09-15T14:13:59.372671+00:00",
+  "execution_host": "ubuntu",
+  "context": "tenant-a",
+  "command": "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/lb-api call -target unix:///home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-a.sock -service TenantLoadBalancerService -method GetLoadBalancerOperation",
+  "request": {
+    "operation_id": "760f8ac9-fe72-4139-8d70-757b0dfaa3dc"
+  },
+  "exit": 0,
+  "response": {
+    "code": "OK",
+    "response": {
+      "operation": {
+        "id": "760f8ac9-fe72-4139-8d70-757b0dfaa3dc",
+        "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+        "resource_id": "lb_74f96109961444a48b26c31601e6131f",
+        "kind": "OPERATION_KIND_DELETE_LOAD_BALANCER",
+        "state": "OPERATION_STATE_SUCCEEDED",
+        "reason": "",
+        "created_at": "2026-09-15T13:59:14.378404Z",
+        "updated_at": "2026-09-15T14:12:05.415801Z",
+        "completed_at": "2026-09-15T14:12:05.415801Z",
+        "next_attempt_at": null,
+        "resource_type": "RESOURCE_TYPE_LOAD_BALANCER",
+        "reason_message": ""
+      }
+    }
+  },
+  "stderr": ""
+}

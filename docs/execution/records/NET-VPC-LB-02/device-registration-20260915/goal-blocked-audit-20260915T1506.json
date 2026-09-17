@@ -1,0 +1,68 @@
+{
+  "at": "2026-09-15T15:06:15.143960+00:00",
+  "result": "blocked",
+  "previous_goal_turn": "progress: Attachment fix qualification, real UID protection/recovery, final product cleanup, preserved backup and handoff completed",
+  "not_a_verified_wait": "No test process is running; r28 is inactive with MainPID=0. Retained PostgreSQL is recovery storage, not a live verification job.",
+  "goal_complete": false,
+  "objective_file": "/home/chabking/.codex/attachments/ad522c5e-936b-4881-855c-876f02e0372c/goal-objective.md",
+  "objective_sha256": "46ac5e4b45a82e7ec071ee9255f97e0bfe8457bb5c88865259a0c0e836384386",
+  "mandatory_failures": [
+    3,
+    4,
+    6
+  ],
+  "blocker": "Required Public ingress/egress verification remains failed and user deferred further Public investigation; acceptance cannot be completed without resuming that work or an external network/provider change. Root cause is not established.",
+  "consecutive_turns": [
+    {
+      "turn_id": "01a0a4e2-c3aa-7dd1-bf24-479d6cba72cc",
+      "started_at": "2026-09-15T11:45:19+00:00",
+      "completed_at": "2026-09-15T12:41:06+00:00",
+      "public_failure_evidence": "u09-matrix-20260915T1240.json",
+      "required_public_items_still_fail": [
+        3,
+        4,
+        6
+      ]
+    },
+    {
+      "turn_id": "01a0a515-d5a8-7b60-b402-4c0fe2752831",
+      "started_at": "2026-09-15T12:41:06+00:00",
+      "completed_at": "2026-09-15T15:03:12+00:00",
+      "public_failure_evidence": "u09-matrix-20260915T1500.json",
+      "required_public_items_still_fail": [
+        3,
+        4,
+        6
+      ]
+    },
+    {
+      "turn_id": "01a0a597-ec1a-7ba3-b8a5-8dff7eebb449",
+      "started_at": "2026-09-15T15:03:12+00:00",
+      "completed_at": null,
+      "public_failure_evidence": "u09-matrix-20260915T1500.json",
+      "required_public_items_still_fail": [
+        3,
+        4,
+        6
+      ]
+    }
+  ],
+  "separate_unresolved_issue": "Dual LB observation stability failed. No root cause is confirmed by generic r26 RPC statuses; narrower reproducing evidence requires reconstructing the now-deleted Public-dependent live scene. Not attributed to the external network and not silently marked passed.",
+  "independent_work_completed": "Qualified scoped implementation and controlled gates, product business cleanup, exact infrastructure retention and final handoff. No new confirmed independent code defect identified by the bounded artifact review.",
+  "next_action": "Wait for an explicit return to the deferred Public/dual-entry scene; keep original failures and source qualification. Do not restart tests solely due automatic continuation.",
+  "retained_infrastructure": "final-retained-inventory.json",
+  "runtime_verification": {
+    "at": "2026-09-15T15:06:15.143960+00:00",
+    "unit_exit": 0,
+    "unit": "MainPID=0\nLoadState=not-found\nActiveState=inactive\nSubState=dead\n",
+    "unit_stderr": "",
+    "postgres_inspect_exit": 0,
+    "postgres_running": "true",
+    "backup_bytes": 548274,
+    "backup_sha256": "3aaa624e30f10d36376d9e5300cca9060ef6bd90aa7a48b77475c3ed2adc01f4"
+  },
+  "qualified_source_run": "20260915T132645Z-482e616d",
+  "qualified_source_files": 260,
+  "runtime_source_drift": [],
+  "no_cluster_mutation_or_traffic_probe": true
+}

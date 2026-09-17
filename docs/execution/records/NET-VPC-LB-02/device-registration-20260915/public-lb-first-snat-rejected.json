@@ -1,0 +1,28 @@
+{
+  "at": "2026-09-15T09:14:42.769365+00:00",
+  "execution_host": "ubuntu",
+  "context": "tenant-a",
+  "command": "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/lb-api call -target unix:///home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-a.sock -service TenantEgressService -method BindVPCSnat",
+  "request": {
+    "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+    "eip_id": "eip_fdab288a3b1846138806e8e5e14529a9",
+    "idempotency_key": "lb02-2b3122-lb-first-snat-competition"
+  },
+  "exit": 1,
+  "response": {
+    "code": "FailedPrecondition",
+    "status": {
+      "code": 9,
+      "message": "EIP is reserved by a binding",
+      "details": [
+        {
+          "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+          "reason": "EIP_IN_USE",
+          "domain": "network.ani.io",
+          "metadata": {}
+        }
+      ]
+    }
+  },
+  "stderr": "RPC failed; structured status is in stdout\n"
+}

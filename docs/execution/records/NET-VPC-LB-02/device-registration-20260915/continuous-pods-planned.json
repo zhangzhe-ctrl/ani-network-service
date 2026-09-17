@@ -1,0 +1,234 @@
+[
+  {
+    "pod": {
+      "apiVersion": "v1",
+      "kind": "Pod",
+      "metadata": {
+        "namespace": "lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832",
+        "name": "lb02-2b3122-continuous-a",
+        "labels": {
+          "network.ani.io/tenant-id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+          "network.ani.io/instance-id": "lb02-2b3122-continuous-a",
+          "network.ani.io/attachment-id": "att_a84eb739ac3046c695f0d61433607655",
+          "network.ani.io/submission-id": "42385473-6310-44d7-8810-96572e8731f1",
+          "network.ani.io/generation": "1",
+          "network.ani.io/test-run": "lb02-09141908-2b3122"
+        },
+        "annotations": {
+          "networking.kubercloud.com/subnet": "lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832/subnet-483e588794f045a6afb54c2db0b6d643"
+        }
+      },
+      "spec": {
+        "automountServiceAccountToken": false,
+        "nodeSelector": {
+          "kubernetes.io/hostname": "ani-02"
+        },
+        "restartPolicy": "Always",
+        "securityContext": {
+          "runAsNonRoot": true,
+          "runAsUser": 65532,
+          "runAsGroup": 65532,
+          "seccompProfile": {
+            "type": "RuntimeDefault"
+          }
+        },
+        "containers": [
+          {
+            "name": "probe",
+            "image": "localhost/lb02-2b3122-probe@sha256:647c2acd8e115511a18506014995ec01b7d0d62fbc05f2a6e51a5c65c2a3fcce",
+            "imagePullPolicy": "Never",
+            "env": [
+              {
+                "name": "NET05_ID",
+                "value": "lb02-09141908-2b3122"
+              },
+              {
+                "name": "ANI_WORKLOAD_ID",
+                "value": "lb02-2b3122-continuous-a"
+              },
+              {
+                "name": "NET05_PORT",
+                "value": "8080"
+              }
+            ],
+            "ports": [
+              {
+                "containerPort": 8080
+              }
+            ],
+            "resources": {
+              "requests": {
+                "cpu": "10m",
+                "memory": "32Mi"
+              },
+              "limits": {
+                "cpu": "100m",
+                "memory": "64Mi"
+              }
+            },
+            "securityContext": {
+              "allowPrivilegeEscalation": false,
+              "readOnlyRootFilesystem": true,
+              "capabilities": {
+                "drop": [
+                  "ALL"
+                ]
+              }
+            }
+          }
+        ]
+      }
+    },
+    "attachment": {
+      "id": "att_a84eb739ac3046c695f0d61433607655",
+      "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+      "vpc_id": "vpc_1f6fbd7f85cd4baba0b0382770aa480e",
+      "subnet_id": "subnet_483e588794f045a6afb54c2db0b6d643",
+      "instance_id": "lb02-2b3122-continuous-a",
+      "slot": "primary",
+      "submission_id": "42385473-6310-44d7-8810-96572e8731f1",
+      "generation": "1",
+      "cluster_id": "lb02-09141908-2b3122",
+      "namespace": "lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832",
+      "binding_revision": "9c31e9da-fc47-435c-b2d7-8ff3c16c27a7:a095fe58-e4b1-405d-b4f0-9ce8e23fd009",
+      "state": "ATTACHMENT_STATE_RESERVED",
+      "reason": "",
+      "version": "1",
+      "pod_primary": {
+        "format_version": 1,
+        "namespace": "lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832",
+        "subnet_annotation": "lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832/subnet-483e588794f045a6afb54c2db0b6d643",
+        "labels": {
+          "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+          "instance_id": "lb02-2b3122-continuous-a",
+          "attachment_id": "att_a84eb739ac3046c695f0d61433607655",
+          "submission_id": "42385473-6310-44d7-8810-96572e8731f1",
+          "generation": "1"
+        }
+      },
+      "pod_name": "",
+      "pod_uid": "",
+      "consumer_finalization_id": "",
+      "created_at": "2026-09-15T06:03:49.778041Z",
+      "updated_at": "2026-09-15T06:03:49.778041Z",
+      "observed_at": null,
+      "released_at": null
+    }
+  },
+  {
+    "pod": {
+      "apiVersion": "v1",
+      "kind": "Pod",
+      "metadata": {
+        "namespace": "lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832",
+        "name": "lb02-2b3122-continuous-b",
+        "labels": {
+          "network.ani.io/tenant-id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+          "network.ani.io/instance-id": "lb02-2b3122-continuous-b",
+          "network.ani.io/attachment-id": "att_0e4e1bbc34e04b96b2931113c668ced2",
+          "network.ani.io/submission-id": "eb4204ff-bfae-4b95-8f35-c74301fd7963",
+          "network.ani.io/generation": "1",
+          "network.ani.io/test-run": "lb02-09141908-2b3122"
+        },
+        "annotations": {
+          "networking.kubercloud.com/subnet": "lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832/subnet-483e588794f045a6afb54c2db0b6d643"
+        }
+      },
+      "spec": {
+        "automountServiceAccountToken": false,
+        "nodeSelector": {
+          "kubernetes.io/hostname": "ani-03"
+        },
+        "restartPolicy": "Always",
+        "securityContext": {
+          "runAsNonRoot": true,
+          "runAsUser": 65532,
+          "runAsGroup": 65532,
+          "seccompProfile": {
+            "type": "RuntimeDefault"
+          }
+        },
+        "containers": [
+          {
+            "name": "probe",
+            "image": "localhost/lb02-2b3122-probe@sha256:647c2acd8e115511a18506014995ec01b7d0d62fbc05f2a6e51a5c65c2a3fcce",
+            "imagePullPolicy": "Never",
+            "env": [
+              {
+                "name": "NET05_ID",
+                "value": "lb02-09141908-2b3122"
+              },
+              {
+                "name": "ANI_WORKLOAD_ID",
+                "value": "lb02-2b3122-continuous-b"
+              },
+              {
+                "name": "NET05_PORT",
+                "value": "8080"
+              }
+            ],
+            "ports": [
+              {
+                "containerPort": 8080
+              }
+            ],
+            "resources": {
+              "requests": {
+                "cpu": "10m",
+                "memory": "32Mi"
+              },
+              "limits": {
+                "cpu": "100m",
+                "memory": "64Mi"
+              }
+            },
+            "securityContext": {
+              "allowPrivilegeEscalation": false,
+              "readOnlyRootFilesystem": true,
+              "capabilities": {
+                "drop": [
+                  "ALL"
+                ]
+              }
+            }
+          }
+        ]
+      }
+    },
+    "attachment": {
+      "id": "att_0e4e1bbc34e04b96b2931113c668ced2",
+      "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+      "vpc_id": "vpc_1f6fbd7f85cd4baba0b0382770aa480e",
+      "subnet_id": "subnet_483e588794f045a6afb54c2db0b6d643",
+      "instance_id": "lb02-2b3122-continuous-b",
+      "slot": "primary",
+      "submission_id": "eb4204ff-bfae-4b95-8f35-c74301fd7963",
+      "generation": "1",
+      "cluster_id": "lb02-09141908-2b3122",
+      "namespace": "lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832",
+      "binding_revision": "9c31e9da-fc47-435c-b2d7-8ff3c16c27a7:a095fe58-e4b1-405d-b4f0-9ce8e23fd009",
+      "state": "ATTACHMENT_STATE_RESERVED",
+      "reason": "",
+      "version": "1",
+      "pod_primary": {
+        "format_version": 1,
+        "namespace": "lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832",
+        "subnet_annotation": "lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832/subnet-483e588794f045a6afb54c2db0b6d643",
+        "labels": {
+          "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+          "instance_id": "lb02-2b3122-continuous-b",
+          "attachment_id": "att_0e4e1bbc34e04b96b2931113c668ced2",
+          "submission_id": "eb4204ff-bfae-4b95-8f35-c74301fd7963",
+          "generation": "1"
+        }
+      },
+      "pod_name": "",
+      "pod_uid": "",
+      "consumer_finalization_id": "",
+      "created_at": "2026-09-15T06:03:50.051846Z",
+      "updated_at": "2026-09-15T06:03:50.051847Z",
+      "observed_at": null,
+      "released_at": null
+    }
+  }
+]

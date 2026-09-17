@@ -1,0 +1,307 @@
+{
+  "at": "2026-09-15T07:10:10.345935+00:00",
+  "result": "pass",
+  "configmap_uid": "dcca6e9e-db3f-4ebe-8b27-8898e3a2939e",
+  "configmap_data_unchanged": true,
+  "adoption_annotations_unchanged": true,
+  "configmap": {
+    "apiVersion": "v1",
+    "data": {
+      "enablePortSecurity": "false",
+      "encapNetworks": "172.16.101.0/24",
+      "hasMultusCNI": "false",
+      "intranetNetworks": "- 172.16.101.0/24\n- 172.16.201.0/24\n- 172.16.202.0/24\n- 10.96.0.0/16\n",
+      "isDefaultCNI": "true",
+      "managedDevices": "ens35",
+      "nadDefaultNamespace": "kube-system"
+    },
+    "kind": "ConfigMap",
+    "metadata": {
+      "annotations": {
+        "network.ani.io/device-adoption-2f5c91188d083599": "a1fdc522-a807-40b7-89a6-986b0039ff43"
+      },
+      "creationTimestamp": "2026-09-14T12:26:10Z",
+      "name": "kcn-config",
+      "namespace": "kcn-system",
+      "resourceVersion": "240845",
+      "uid": "dcca6e9e-db3f-4ebe-8b27-8898e3a2939e"
+    }
+  },
+  "original_owner_rbac": [
+    {
+      "apiVersion": "v1",
+      "automountServiceAccountToken": false,
+      "kind": "ServiceAccount",
+      "metadata": {
+        "creationTimestamp": "2026-09-15T04:03:05Z",
+        "labels": {
+          "network.ani.io/test-run": "lb02-09141908-2b3122"
+        },
+        "name": "lb02-2b3122-workload-owner",
+        "namespace": "lb02-09141908-2b3122",
+        "resourceVersion": "270812",
+        "uid": "0f8210f3-0c4a-44af-83c4-89c30b521939"
+      }
+    },
+    {
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "Role",
+      "metadata": {
+        "creationTimestamp": "2026-09-15T04:03:05Z",
+        "labels": {
+          "network.ani.io/test-run": "lb02-09141908-2b3122"
+        },
+        "name": "lb02-2b3122-workload-owner",
+        "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+        "resourceVersion": "270813",
+        "uid": "7279dd58-8cae-4c8f-b874-992f15826883"
+      },
+      "rules": [
+        {
+          "apiGroups": [
+            ""
+          ],
+          "resources": [
+            "pods"
+          ],
+          "verbs": [
+            "create",
+            "get",
+            "list",
+            "watch",
+            "delete"
+          ]
+        },
+        {
+          "apiGroups": [
+            ""
+          ],
+          "resources": [
+            "pods/exec"
+          ],
+          "verbs": [
+            "create",
+            "get"
+          ]
+        }
+      ]
+    },
+    {
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "RoleBinding",
+      "metadata": {
+        "creationTimestamp": "2026-09-15T04:03:05Z",
+        "labels": {
+          "network.ani.io/test-run": "lb02-09141908-2b3122"
+        },
+        "name": "lb02-2b3122-workload-owner",
+        "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+        "resourceVersion": "270814",
+        "uid": "05a1a014-4058-4b8a-ab44-f9b0b807a1f1"
+      },
+      "roleRef": {
+        "apiGroup": "rbac.authorization.k8s.io",
+        "kind": "Role",
+        "name": "lb02-2b3122-workload-owner"
+      },
+      "subjects": [
+        {
+          "kind": "ServiceAccount",
+          "name": "lb02-2b3122-workload-owner",
+          "namespace": "lb02-09141908-2b3122"
+        }
+      ]
+    },
+    {
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "Role",
+      "metadata": {
+        "creationTimestamp": "2026-09-15T04:03:05Z",
+        "labels": {
+          "network.ani.io/test-run": "lb02-09141908-2b3122"
+        },
+        "name": "lb02-2b3122-workload-owner",
+        "namespace": "lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832",
+        "resourceVersion": "270815",
+        "uid": "664f0a13-c2b3-45c7-9c72-7b9b72e2ec18"
+      },
+      "rules": [
+        {
+          "apiGroups": [
+            ""
+          ],
+          "resources": [
+            "pods"
+          ],
+          "verbs": [
+            "create",
+            "get",
+            "list",
+            "watch",
+            "delete"
+          ]
+        },
+        {
+          "apiGroups": [
+            ""
+          ],
+          "resources": [
+            "pods/exec"
+          ],
+          "verbs": [
+            "create",
+            "get"
+          ]
+        }
+      ]
+    },
+    {
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "RoleBinding",
+      "metadata": {
+        "creationTimestamp": "2026-09-15T04:03:05Z",
+        "labels": {
+          "network.ani.io/test-run": "lb02-09141908-2b3122"
+        },
+        "name": "lb02-2b3122-workload-owner",
+        "namespace": "lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832",
+        "resourceVersion": "270816",
+        "uid": "b086ea18-66ba-4e8d-9179-bcb0af3599ba"
+      },
+      "roleRef": {
+        "apiGroup": "rbac.authorization.k8s.io",
+        "kind": "Role",
+        "name": "lb02-2b3122-workload-owner"
+      },
+      "subjects": [
+        {
+          "kind": "ServiceAccount",
+          "name": "lb02-2b3122-workload-owner",
+          "namespace": "lb02-09141908-2b3122"
+        }
+      ]
+    }
+  ],
+  "actions": [
+    {
+      "command": [
+        "sudo",
+        "-n",
+        "/usr/local/bin/kubectl",
+        "--kubeconfig",
+        "/etc/kubernetes/admin.conf",
+        "--context",
+        "kubernetes-admin@ani-platform",
+        "--request-timeout=15s",
+        "get",
+        "configmap",
+        "kcn-config",
+        "-n",
+        "kcn-system",
+        "-o",
+        "json"
+      ],
+      "exit": 0
+    },
+    {
+      "command": [
+        "sudo",
+        "-n",
+        "/usr/local/bin/kubectl",
+        "--kubeconfig",
+        "/etc/kubernetes/admin.conf",
+        "--context",
+        "kubernetes-admin@ani-platform",
+        "--request-timeout=15s",
+        "get",
+        "ServiceAccount",
+        "lb02-2b3122-workload-owner",
+        "-n",
+        "lb02-09141908-2b3122",
+        "-o",
+        "json"
+      ],
+      "exit": 0
+    },
+    {
+      "command": [
+        "sudo",
+        "-n",
+        "/usr/local/bin/kubectl",
+        "--kubeconfig",
+        "/etc/kubernetes/admin.conf",
+        "--context",
+        "kubernetes-admin@ani-platform",
+        "--request-timeout=15s",
+        "get",
+        "Role",
+        "lb02-2b3122-workload-owner",
+        "-n",
+        "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+        "-o",
+        "json"
+      ],
+      "exit": 0
+    },
+    {
+      "command": [
+        "sudo",
+        "-n",
+        "/usr/local/bin/kubectl",
+        "--kubeconfig",
+        "/etc/kubernetes/admin.conf",
+        "--context",
+        "kubernetes-admin@ani-platform",
+        "--request-timeout=15s",
+        "get",
+        "RoleBinding",
+        "lb02-2b3122-workload-owner",
+        "-n",
+        "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+        "-o",
+        "json"
+      ],
+      "exit": 0
+    },
+    {
+      "command": [
+        "sudo",
+        "-n",
+        "/usr/local/bin/kubectl",
+        "--kubeconfig",
+        "/etc/kubernetes/admin.conf",
+        "--context",
+        "kubernetes-admin@ani-platform",
+        "--request-timeout=15s",
+        "get",
+        "Role",
+        "lb02-2b3122-workload-owner",
+        "-n",
+        "lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832",
+        "-o",
+        "json"
+      ],
+      "exit": 0
+    },
+    {
+      "command": [
+        "sudo",
+        "-n",
+        "/usr/local/bin/kubectl",
+        "--kubeconfig",
+        "/etc/kubernetes/admin.conf",
+        "--context",
+        "kubernetes-admin@ani-platform",
+        "--request-timeout=15s",
+        "get",
+        "RoleBinding",
+        "lb02-2b3122-workload-owner",
+        "-n",
+        "lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832",
+        "-o",
+        "json"
+      ],
+      "exit": 0
+    }
+  ]
+}

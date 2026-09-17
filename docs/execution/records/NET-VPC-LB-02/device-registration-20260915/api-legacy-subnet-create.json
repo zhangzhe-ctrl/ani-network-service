@@ -1,0 +1,38 @@
+{
+  "at": "2026-09-15T04:04:51.254314+00:00",
+  "execution_host": "ubuntu",
+  "context": "tenant-b",
+  "command": "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/lb-api call -target unix:///home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-b.sock -service NetworkService -method CreateSubnet",
+  "request": {
+    "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+    "name": "lb02-2b3122-legacy-workloads",
+    "vpc_id": "vpc_1004994c0bde496f9ff64a4c812c9607",
+    "cidr": "10.233.16.0/24",
+    "idempotency_key": "lb02-2b3122-legacy-subnet"
+  },
+  "exit": 0,
+  "response": {
+    "code": "OK",
+    "response": {
+      "subnet": {
+        "id": "subnet_a5fb362460324310bc0401d044d699bb",
+        "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+        "name": "lb02-2b3122-legacy-workloads",
+        "description": "",
+        "cidr": "10.233.16.0/24",
+        "state": "RESOURCE_STATE_PROVISIONING",
+        "reason": "",
+        "created_at": "2026-09-15T04:04:51.219744Z",
+        "updated_at": "2026-09-15T04:04:51.219744Z",
+        "version": "1",
+        "observed_at": null,
+        "observation_stale": true,
+        "last_operation_id": "37be7e82-6043-4889-91fd-df7cdd91398b",
+        "vpc_id": "vpc_1004994c0bde496f9ff64a4c812c9607",
+        "reason_message": "",
+        "gateway": "10.233.16.1"
+      }
+    }
+  },
+  "stderr": ""
+}

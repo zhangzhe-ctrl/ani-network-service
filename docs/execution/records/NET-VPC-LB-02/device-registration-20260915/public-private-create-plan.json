@@ -1,0 +1,23 @@
+{
+  "name": "lb02-2b3122-dual",
+  "description": "U09 simultaneous direct VIP and Public EIP entry",
+  "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+  "subnet_id": "subnet_f74d90cbb5484f7fb37f8a8f6782da1d",
+  "exposure": "LOAD_BALANCER_EXPOSURE_PUBLIC_PRIVATE",
+  "flavor": "small",
+  "public_eip_id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+  "backends": [
+    {
+      "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+      "address": "10.233.1.2",
+      "port": 8080
+    },
+    {
+      "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+      "address": "10.233.1.3",
+      "port": 8080
+    }
+  ],
+  "idempotency_key": "lb02-2b3122-dual-lb-01",
+  "private_ip": "10.233.0.201"
+}

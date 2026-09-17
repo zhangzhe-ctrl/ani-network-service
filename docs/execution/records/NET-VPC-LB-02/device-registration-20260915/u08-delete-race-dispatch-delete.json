@@ -1,0 +1,45 @@
+{
+  "at": "2026-09-15T05:44:25.681611+00:00",
+  "execution_host": "ubuntu",
+  "source_run": "20260915T051609Z-70cbcaa3",
+  "results": [
+    {
+      "label": "backfill_dispatch",
+      "started_at": "2026-09-15T05:44:25.681649+00:00",
+      "finished_at": "2026-09-15T05:44:25.763096+00:00",
+      "command": [
+        "python3",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/base-connectivity-call.py"
+      ],
+      "request": {
+        "action": "dispatch",
+        "run": "95211933-dbcf-445e-a875-7e675f9fd493",
+        "max": 1
+      },
+      "exit": 0,
+      "stdout": "{\"at\": \"2026-09-15T05:44:25.755531+00:00\", \"execution_host\": \"ubuntu\", \"database\": \"net_vpc_lb_02_2b3122\", \"command\": [\"/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/network\", \"-base-connectivity\", \"dispatch\", \"-base-run\", \"95211933-dbcf-445e-a875-7e675f9fd493\", \"-base-max\", \"1\"], \"request\": {\"action\": \"dispatch\", \"run\": \"95211933-dbcf-445e-a875-7e675f9fd493\", \"max\": 1}, \"exit\": 0, \"stdout\": \"{\\\"run_id\\\":\\\"95211933-dbcf-445e-a875-7e675f9fd493\\\",\\\"state\\\":\\\"conflict\\\",\\\"tenant_id\\\":\\\"93b06aeb-e445-4823-ade8-e7b7d8e19832\\\",\\\"vpc_id\\\":\\\"vpc_af937bb766324a5a8a41a08d55c39062\\\",\\\"reason\\\":\\\"RESOURCE_BUSY\\\"}\\n\", \"stderr\": \"\"}\n",
+      "stderr": ""
+    },
+    {
+      "label": "delete_vpc",
+      "started_at": "2026-09-15T05:44:25.681444+00:00",
+      "finished_at": "2026-09-15T05:44:25.707477+00:00",
+      "command": [
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/lb-api",
+        "call",
+        "-target",
+        "unix:///home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-b.sock",
+        "-service",
+        "NetworkService",
+        "-method",
+        "DeleteVPC"
+      ],
+      "request": {
+        "vpc_id": "vpc_af937bb766324a5a8a41a08d55c39062"
+      },
+      "exit": 0,
+      "stdout": "{\"code\":\"OK\",\"response\":{\"vpc\":{\"id\":\"vpc_af937bb766324a5a8a41a08d55c39062\",\"tenant_id\":\"93b06aeb-e445-4823-ade8-e7b7d8e19832\",\"name\":\"lb02-2b3122-u08-delete-race\",\"description\":\"Run-owned legacy fixture for U08 admission/delete competition, no workloads\",\"cidr\":\"10.233.48.0/20\",\"state\":\"RESOURCE_STATE_DELETING\",\"reason\":\"\",\"created_at\":\"2026-09-15T05:42:02.300930Z\",\"updated_at\":\"2026-09-15T05:44:25.702483Z\",\"version\":\"14\",\"observed_at\":\"2026-09-15T05:44:19.688743Z\",\"observation_stale\":false,\"last_operation_id\":\"c3da0a29-bb3a-40d9-9f3f-462220127d49\",\"subnet_count\":\"0\",\"reason_message\":\"\",\"base_connectivity\":null}}}\n",
+      "stderr": ""
+    }
+  ]
+}

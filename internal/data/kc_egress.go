@@ -110,6 +110,7 @@ type egressReference struct {
 	id      string
 }
 type egressResolved struct {
+	lbID                       string
 	binding                    sqlcgen.NetworkProviderBinding
 	target                     biz.ProviderTarget
 	spec                       map[string]any
@@ -187,6 +188,9 @@ func (p *KCProvider) resolveEgress(ctx context.Context, t biz.ProviderTarget) (e
 			if err = addTenant("vpc", "vpc", s.VpcID); err != nil {
 				return r, err
 			}
+		}
+		if view.BindingTargetKind == "load_balancer" {
+			r.lbID = view.BindingTargetID
 		}
 	case "snat":
 		s, err := p.repository.queries.GetSnatInternal(ctx, sqlcgen.GetSnatInternalParams{TenantID: t.TenantID, SnatID: t.ResourceID})
@@ -429,6 +433,8 @@ func matchesEgressSpec(o *unstructured.Unstructured, expected map[string]any, ki
 // Critical calls force a collection after Claim and GET each identity directly.
 // Ordinary observations reuse proven facts and never renew them on cache access.
 type egressReadSet struct {
+	lbBound                     bool
+	lbServiceUID                string
 	deviceRequired, deviceReady bool
 	objects                     map[string]*unstructured.Unstructured
 	view                        *auditView
@@ -558,6 +564,11 @@ func (p *KCProvider) readEgressSet(ctx context.Context, r egressResolved, critic
 		}
 		result.all[kcServiceCIDRs] = serviceNetworks
 	}
+	if r.lbID != "" {
+		if err = p.readEIPLoadBalancer(ctx, r, &result); err != nil {
+			return result, err
+		}
+	}
 	result.proof.Hash = contentHash(struct {
 		Objects map[string]*unstructured.Unstructured
 		All     map[string][]unstructured.Unstructured
@@ -568,7 +579,7 @@ func (p *KCProvider) readEgressSet(ctx context.Context, r egressResolved, critic
 		if err != nil {
 			return result, err
 		}
-		device, err := p.observeDevice(ctx, biz.ProviderTarget{Kind: "device", ResourceID: r.deviceID, BindingID: b.BindingID, KnownIdentity: b.ProviderUid, Direct: critical, Requirement: biz.ObservationRequirement{RequestedGeneration: r.target.Requirement.RequestedGeneration}})
+		device, err := p.observeDeviceFromView(ctx, biz.ProviderTarget{Kind: "device", ResourceID: r.deviceID, BindingID: b.BindingID, KnownIdentity: b.ProviderUid, Direct: critical, Requirement: biz.ObservationRequirement{RequestedGeneration: r.target.Requirement.RequestedGeneration}}, result.view)
 		if err != nil {
 			return result, err
 		}
@@ -579,6 +590,13 @@ func (p *KCProvider) readEgressSet(ctx context.Context, r egressResolved, critic
 		result.proof.Hash = contentHash([]string{result.proof.Hash, device.Proof.Hash})
 	}
 	if result.view != nil && !p.observation.valid(result.view, result.keys) {
+		// A cached audit can be invalidated between worker attempts by a
+		// related event or Watch boundary. Verify once against a new complete
+		// collection before reporting unknown facts. The critical path keeps
+		// the same timeout and rejects another invalidation without looping.
+		if !critical {
+			return p.readEgressSet(ctx, r, true)
+		}
 		return result, &biz.ProviderError{Kind: biz.ProviderTemporary}
 	}
 	if !result.proof.Covers(r.target.Requirement) {
@@ -687,10 +705,10 @@ func inspectEgressSet(r egressResolved, set egressReadSet) (biz.ProviderObservat
 		} else if ref, ok := r.refs["snat"]; ok {
 			expectedSnat = ref.binding.ProviderName
 		}
-		conflict := eipBindingConflict(set, r.binding.Namespace, crName(eip), expectedSnat)
+		conflict := eipBindingConflictAllowed(set, r.binding.Namespace, crName(eip), expectedSnat, set.lbServiceUID)
 		if r.target.Kind == "eip" {
-			value.HasDependencies = len(bound) > 0 || conflict || expectedSnat != ""
-			value.Ready = ready && verifiedEgressExit(r, set) && !conflict && ((len(bound) == 0 && crString(eip, "status", "phase") == "Available") || bindingApplied(eip, snat, set.objects["vpc"], r.snat.DesiredEnabled))
+			value.HasDependencies = len(bound) > 0 || conflict || expectedSnat != "" || r.lbID != ""
+			value.Ready = ready && verifiedEgressExit(r, set) && !conflict && ((len(bound) == 0 && crString(eip, "status", "phase") == "Available") || bindingApplied(eip, snat, set.objects["vpc"], r.snat.DesiredEnabled) || set.lbBound)
 		} else {
 			value.HasDependencies = conflict || (o == nil && (len(bound) > 0 || !goodConditions(eip, "Valid", "Initialized") || crString(eip, "status", "phase") != "Available"))
 			if o != nil {
@@ -776,6 +794,9 @@ func bindingApplied(eip, snat, vpc *unstructured.Unstructured, enabled bool) boo
 	return !enabled || crString(eip, "status", "boundResource", "nodeName") != ""
 }
 func eipBindingConflict(set egressReadSet, namespace, eip, expectedSnat string) bool {
+	return eipBindingConflictAllowed(set, namespace, eip, expectedSnat, "")
+}
+func eipBindingConflictAllowed(set egressReadSet, namespace, eip, expectedSnat, serviceUID string) bool {
 	if eip == "" {
 		return false
 	}
@@ -783,21 +804,24 @@ func eipBindingConflict(set egressReadSet, namespace, eip, expectedSnat string) 
 		for _, o := range set.all[gvr] {
 			// Namespace participates in every reference; a cross-namespace same name
 			// never counts as this binding or as proof of its applied state.
-			if o.GetNamespace() != namespace || crString(&o, "spec", "eip") != eip {
+			if kcRef(crString(&o, "spec", "eip"), o.GetNamespace()) != namespace+"/"+eip {
 				continue
 			}
-			if gvr == kcSnats && o.GetName() == expectedSnat {
+			if gvr == kcSnats && o.GetNamespace() == namespace && o.GetName() == expectedSnat {
 				continue
 			}
 			return true
 		}
 	}
 	for _, svc := range set.all[kcServices] {
-		if svc.GetNamespace() != namespace || crString(&svc, "spec", "type") != "LoadBalancer" {
+		if crString(&svc, "spec", "type") != "LoadBalancer" {
 			continue
 		}
 		for _, name := range strings.Split(svc.GetAnnotations()["networking.kubercloud.com/lb_eips"], ",") {
-			if strings.TrimSpace(name) == eip || strings.TrimSpace(name) == namespace+"/"+eip {
+			if kcRef(strings.TrimSpace(name), svc.GetNamespace()) == namespace+"/"+eip {
+				if svc.GetNamespace() == namespace && serviceUID != "" && string(svc.GetUID()) == serviceUID {
+					continue
+				}
 				return true
 			}
 		}

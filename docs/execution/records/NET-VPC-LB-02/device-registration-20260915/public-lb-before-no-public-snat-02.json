@@ -1,0 +1,12 @@
+{
+  "at": "2026-09-15T08:58:12.013019+00:00",
+  "execution_host": "ubuntu",
+  "transport_exit": 0,
+  "result": {
+    "query": "SELECT snat_id,purpose,eip_id,provider_uid,state FROM network_snat_bindings WHERE vpc_id='vpc_d06f28e82fe847f7bf2cedd57dad82f4';",
+    "exit": 3,
+    "stdout": "BEGIN\n",
+    "stderr": "ERROR:  column \"provider_uid\" does not exist\nLINE 1: SELECT snat_id,purpose,eip_id,provider_uid,state FROM networ...\n                                      ^\n"
+  },
+  "stderr": ""
+}

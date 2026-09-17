@@ -1,0 +1,42 @@
+{
+  "at": "2026-09-15T06:15:03.096479+00:00",
+  "execution_host": "ubuntu",
+  "context": "tenant-b",
+  "command": "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/lb-api call -target unix:///home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-b.sock -service NetworkService -method ReleaseAttachment",
+  "request": {
+    "attachment_id": "att_a84eb739ac3046c695f0d61433607655",
+    "expected_version": "104",
+    "consumer_finalization_id": "4d73945a-217b-4b9d-9fbe-4a8528b569bf"
+  },
+  "exit": 0,
+  "response": {
+    "code": "OK",
+    "response": {
+      "attachment": {
+        "id": "att_a84eb739ac3046c695f0d61433607655",
+        "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+        "vpc_id": "vpc_1f6fbd7f85cd4baba0b0382770aa480e",
+        "subnet_id": "subnet_483e588794f045a6afb54c2db0b6d643",
+        "instance_id": "lb02-2b3122-continuous-a",
+        "slot": "primary",
+        "submission_id": "42385473-6310-44d7-8810-96572e8731f1",
+        "generation": "1",
+        "cluster_id": "lb02-09141908-2b3122",
+        "namespace": "lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832",
+        "binding_revision": "9c31e9da-fc47-435c-b2d7-8ff3c16c27a7:a095fe58-e4b1-405d-b4f0-9ce8e23fd009",
+        "state": "ATTACHMENT_STATE_RELEASING",
+        "reason": "CONSUMER_NOT_CLOSED",
+        "version": "104",
+        "pod_primary": null,
+        "pod_name": "lb02-2b3122-continuous-a",
+        "pod_uid": "46cb430b-68e8-4093-b3ff-9c8a6375463f",
+        "consumer_finalization_id": "4d73945a-217b-4b9d-9fbe-4a8528b569bf",
+        "created_at": "2026-09-15T06:03:49.778041Z",
+        "updated_at": "2026-09-15T06:14:54.045095Z",
+        "observed_at": "2026-09-15T06:14:49.010374Z",
+        "released_at": null
+      }
+    }
+  },
+  "stderr": ""
+}

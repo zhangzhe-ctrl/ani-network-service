@@ -1,0 +1,95 @@
+{
+  "at": "2026-09-15T09:08:40.374918+00:00",
+  "unit": "ani-net-lb02-2b3122-r16.service",
+  "source_run": "20260915T074304Z-31ea8959",
+  "binary_sha256": {
+    "lb-api": "d39b956bc52f0b0762085086b8766e9edafdfd5282e64eb114590b2e96d7a711",
+    "network": "e145656061a225d10dfbc6ba714a9bac0b7f219f5fc9082062fc2e0c3b9cdd9f"
+  },
+  "config_sha256": "66ae352283e0358a31c9b1abdbb8c2e93a14359fd5643b32a5911a7dac846b8a",
+  "resource_samples": [
+    {
+      "at": "2026-09-15T09:08:10.372228+00:00",
+      "load1": 1.21337890625,
+      "mem_available_kib": 2929608,
+      "swap_used_kib": 3831156,
+      "disk_free_bytes": 22520971264
+    },
+    {
+      "at": "2026-09-15T09:08:15.372830+00:00",
+      "load1": 1.27685546875,
+      "mem_available_kib": 2954232,
+      "swap_used_kib": 3831156,
+      "disk_free_bytes": 22520950784
+    },
+    {
+      "at": "2026-09-15T09:08:20.373267+00:00",
+      "load1": 1.4150390625,
+      "mem_available_kib": 2949520,
+      "swap_used_kib": 3831156,
+      "disk_free_bytes": 22520930304
+    },
+    {
+      "at": "2026-09-15T09:08:25.373686+00:00",
+      "load1": 1.30126953125,
+      "mem_available_kib": 2946652,
+      "swap_used_kib": 3831156,
+      "disk_free_bytes": 22520913920
+    },
+    {
+      "at": "2026-09-15T09:08:30.374096+00:00",
+      "load1": 1.19677734375,
+      "mem_available_kib": 2935320,
+      "swap_used_kib": 3831156,
+      "disk_free_bytes": 22520897536
+    },
+    {
+      "at": "2026-09-15T09:08:35.374507+00:00",
+      "load1": 1.1806640625,
+      "mem_available_kib": 2946484,
+      "swap_used_kib": 3831156,
+      "disk_free_bytes": 22520877056
+    },
+    {
+      "at": "2026-09-15T09:08:40.374876+00:00",
+      "load1": 1.24658203125,
+      "mem_available_kib": 2934520,
+      "swap_used_kib": 3831156,
+      "disk_free_bytes": 22520856576
+    }
+  ],
+  "command": [
+    "systemd-run",
+    "--user",
+    "--unit",
+    "ani-net-lb02-2b3122-r16.service",
+    "--working-directory",
+    "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private",
+    "-p",
+    "Type=exec",
+    "-p",
+    "Restart=no",
+    "-p",
+    "CPUQuota=200%",
+    "-p",
+    "MemoryMax=2300M",
+    "-p",
+    "MemorySwapMax=0",
+    "--setenv=GOMAXPROCS=2",
+    "--setenv=GOFLAGS=-p=2",
+    "--setenv=GOMEMLIMIT=1500MiB",
+    "flock",
+    "-n",
+    "/home/ubuntu/.local/share/ani-network-service/net05a-heavy.lock",
+    "/home/ubuntu/workspace/ani-network-service-runs/snat-20260915T074304Z-31ea8959/source/scripts/net05a-resource-guard",
+    "python3",
+    "/home/ubuntu/workspace/ani-network-service-runs/snat-20260915T074304Z-31ea8959/source/scripts/lb-live-runtime",
+    "serve",
+    "--directory",
+    "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private"
+  ],
+  "database_preserved": true,
+  "exit": 0,
+  "stdout": "",
+  "stderr": "Running as unit: ani-net-lb02-2b3122-r16.service; invocation ID: 70102897275944c1909b118dce7cda59\n"
+}

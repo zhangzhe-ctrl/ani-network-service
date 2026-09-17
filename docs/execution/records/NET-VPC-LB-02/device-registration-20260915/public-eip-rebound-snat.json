@@ -1,0 +1,50 @@
+{
+  "at": "2026-09-15T10:15:38.977183+00:00",
+  "execution_host": "ubuntu",
+  "command": [
+    "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/lb-api",
+    "call",
+    "-target",
+    "unix:///home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-a.sock",
+    "-service",
+    "TenantEgressService",
+    "-method",
+    "BindVPCSnat"
+  ],
+  "request": {
+    "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+    "eip_id": "eip_fdab288a3b1846138806e8e5e14529a9",
+    "idempotency_key": "lb02-public-lb-eip-rebind-snat-01"
+  },
+  "result": "pass",
+  "records": [
+    {
+      "at": "2026-09-15T10:15:38.977156+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "binding": {
+            "id": "snat_69b2441cc70147a4adfeb22c8c0659fc",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "eip_id": "eip_fdab288a3b1846138806e8e5e14529a9",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "",
+            "reason_message": "",
+            "version": "1",
+            "created_at": "2026-09-15T10:15:38.964672Z",
+            "updated_at": "2026-09-15T10:15:38.964672Z",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "14faa332-d682-4d8b-b80a-2b65f5b18e3f",
+            "eip_address": "172.16.102.194",
+            "desired_enabled": true,
+            "purpose": "public"
+          }
+        }
+      },
+      "stderr": ""
+    }
+  ]
+}

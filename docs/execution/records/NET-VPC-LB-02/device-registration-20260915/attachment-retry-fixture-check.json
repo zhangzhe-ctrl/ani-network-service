@@ -1,0 +1,23 @@
+{
+  "at": "2026-09-15T13:00:38.685858+00:00",
+  "execution_host": "ubuntu",
+  "source_run": "20260915T125823Z-87bb4eca",
+  "archive_sha256": "f097837079af7d6458192020c5dde8db0b932c874c14ce60d512183da4382b45",
+  "manifest_sha256": "a500ab11eb1dee0d1539e946fe30a4d58a2770b00ac075d831965c1a8905b7c8",
+  "command": [
+    "bash",
+    "-e",
+    "-c",
+    "validation_tmp=$(mktemp -d /var/tmp/nlb2.XXXXXX); chmod 700 \"$validation_tmp\"; export TMPDIR=\"$validation_tmp\"; scripts/integration ./internal/data -run \"^TestAttachmentFinishesFreshAuditAfterConsecutiveWatchBoundaries$\" -timeout 2m -json"
+  ],
+  "conclusion": "Test preparation replaced required Pod annotations and hit ProviderConflict before reproducing the intended retry exhaustion. Not a product defect verdict; preserve required annotations and pin the active Watch session before rerunning.",
+  "test_results": [
+    {
+      "Test": "TestAttachmentFinishesFreshAuditAfterConsecutiveWatchBoundaries",
+      "Action": "fail",
+      "Elapsed": 1.01
+    }
+  ],
+  "log": "attachment-retry-fixture-check-command.txt",
+  "log_sha256": "1c86b73a8b61174711bab8c7fb25fd5b07afce8934d6851a38c07f74b79d2b61"
+}

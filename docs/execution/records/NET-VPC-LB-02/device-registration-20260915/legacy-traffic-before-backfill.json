@@ -1,0 +1,320 @@
+{
+  "at": "2026-09-15T04:15:44.938269+00:00",
+  "execution_host": "ubuntu",
+  "results": [
+    {
+      "kind": "binary",
+      "pod": "lb02-2b3122-legacy-a",
+      "argv": [
+        "sha256sum",
+        "/probe"
+      ],
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832",
+        "lb02-2b3122-legacy-a",
+        "-c",
+        "probe",
+        "--",
+        "sha256sum",
+        "/probe"
+      ],
+      "exit": 0,
+      "stdout": "ffcf0c98acaedd82d52d8b9b9f981a8bbc8b1fbc4499be94947d9040f0014bed  /probe\n",
+      "stderr": "",
+      "pass": true
+    },
+    {
+      "kind": "network",
+      "pod": "lb02-2b3122-legacy-a",
+      "argv": [
+        "/probe",
+        "inspect"
+      ],
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832",
+        "lb02-2b3122-legacy-a",
+        "-c",
+        "probe",
+        "--",
+        "/probe",
+        "inspect"
+      ],
+      "exit": 0,
+      "stdout": "{\"addresses\":[{\"IP\":\"127.0.0.1\",\"Mask\":\"/wAAAA==\"},{\"IP\":\"10.233.16.2\",\"Mask\":\"////AA==\"},{\"IP\":\"::1\",\"Mask\":\"/////////////////////w==\"},{\"IP\":\"fe80::f800:feff:fed1:8e78\",\"Mask\":\"//////////8AAAAAAAAAAA==\"}],\"routes\":\"Iface\\tDestination\\tGateway \\tFlags\\tRefCnt\\tUse\\tMetric\\tMask\\t\\tMTU\\tWindow\\tIRTT                                                       \\neth0\\t00000000\\t0110E90A\\t0003\\t0\\t0\\t0\\t00000000\\t0\\t0\\t0                                                                               \\neth0\\t0010E90A\\t00000000\\t0001\\t0\\t0\\t0\\t00FFFFFF\\t0\\t0\\t0                                                                               \\n\"}\n",
+      "stderr": "",
+      "pass": true
+    },
+    {
+      "kind": "binary",
+      "pod": "lb02-2b3122-legacy-b",
+      "argv": [
+        "sha256sum",
+        "/probe"
+      ],
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832",
+        "lb02-2b3122-legacy-b",
+        "-c",
+        "probe",
+        "--",
+        "sha256sum",
+        "/probe"
+      ],
+      "exit": 0,
+      "stdout": "ffcf0c98acaedd82d52d8b9b9f981a8bbc8b1fbc4499be94947d9040f0014bed  /probe\n",
+      "stderr": "",
+      "pass": true
+    },
+    {
+      "kind": "network",
+      "pod": "lb02-2b3122-legacy-b",
+      "argv": [
+        "/probe",
+        "inspect"
+      ],
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832",
+        "lb02-2b3122-legacy-b",
+        "-c",
+        "probe",
+        "--",
+        "/probe",
+        "inspect"
+      ],
+      "exit": 0,
+      "stdout": "{\"addresses\":[{\"IP\":\"127.0.0.1\",\"Mask\":\"/wAAAA==\"},{\"IP\":\"10.233.16.3\",\"Mask\":\"////AA==\"},{\"IP\":\"::1\",\"Mask\":\"/////////////////////w==\"},{\"IP\":\"fe80::f800:4aff:fe9c:286\",\"Mask\":\"//////////8AAAAAAAAAAA==\"}],\"routes\":\"Iface\\tDestination\\tGateway \\tFlags\\tRefCnt\\tUse\\tMetric\\tMask\\t\\tMTU\\tWindow\\tIRTT                                                       \\neth0\\t00000000\\t0110E90A\\t0003\\t0\\t0\\t0\\t00000000\\t0\\t0\\t0                                                                               \\neth0\\t0010E90A\\t00000000\\t0001\\t0\\t0\\t0\\t00FFFFFF\\t0\\t0\\t0                                                                               \\n\"}\n",
+      "stderr": "",
+      "pass": true
+    },
+    {
+      "kind": "binary",
+      "pod": "lb02-2b3122-legacy-client",
+      "argv": [
+        "sha256sum",
+        "/probe"
+      ],
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832",
+        "lb02-2b3122-legacy-client",
+        "-c",
+        "probe",
+        "--",
+        "sha256sum",
+        "/probe"
+      ],
+      "exit": 0,
+      "stdout": "ffcf0c98acaedd82d52d8b9b9f981a8bbc8b1fbc4499be94947d9040f0014bed  /probe\n",
+      "stderr": "",
+      "pass": true
+    },
+    {
+      "kind": "network",
+      "pod": "lb02-2b3122-legacy-client",
+      "argv": [
+        "/probe",
+        "inspect"
+      ],
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832",
+        "lb02-2b3122-legacy-client",
+        "-c",
+        "probe",
+        "--",
+        "/probe",
+        "inspect"
+      ],
+      "exit": 0,
+      "stdout": "{\"addresses\":[{\"IP\":\"127.0.0.1\",\"Mask\":\"/wAAAA==\"},{\"IP\":\"10.233.16.4\",\"Mask\":\"////AA==\"},{\"IP\":\"::1\",\"Mask\":\"/////////////////////w==\"},{\"IP\":\"fe80::f800:6fff:fe8a:7732\",\"Mask\":\"//////////8AAAAAAAAAAA==\"}],\"routes\":\"Iface\\tDestination\\tGateway \\tFlags\\tRefCnt\\tUse\\tMetric\\tMask\\t\\tMTU\\tWindow\\tIRTT                                                       \\neth0\\t00000000\\t0110E90A\\t0003\\t0\\t0\\t0\\t00000000\\t0\\t0\\t0                                                                               \\neth0\\t0010E90A\\t00000000\\t0001\\t0\\t0\\t0\\t00FFFFFF\\t0\\t0\\t0                                                                               \\n\"}\n",
+      "stderr": "",
+      "pass": true
+    },
+    {
+      "kind": "http",
+      "pod": "lb02-2b3122-legacy-client",
+      "expected_instance": "lb02-2b3122-legacy-a",
+      "argv": [
+        "/probe",
+        "request",
+        "http://10.233.16.2:8080/?nonce=lb02-before-backfill"
+      ],
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832",
+        "lb02-2b3122-legacy-client",
+        "-c",
+        "probe",
+        "--",
+        "/probe",
+        "request",
+        "http://10.233.16.2:8080/?nonce=lb02-before-backfill"
+      ],
+      "exit": 0,
+      "stdout": "status 200\n{\"fixture_id\":\"lb02-09141908-2b3122\",\"hostname\":\"lb02-2b3122-legacy-a\",\"instance_id\":\"lb02-2b3122-legacy-a\",\"nonce\":\"lb02-before-backfill\",\"port\":\"8080\"}\n",
+      "stderr": "",
+      "pass": true
+    },
+    {
+      "kind": "http",
+      "pod": "lb02-2b3122-legacy-client",
+      "expected_instance": "lb02-2b3122-legacy-b",
+      "argv": [
+        "/probe",
+        "request",
+        "http://10.233.16.3:8080/?nonce=lb02-before-backfill"
+      ],
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832",
+        "lb02-2b3122-legacy-client",
+        "-c",
+        "probe",
+        "--",
+        "/probe",
+        "request",
+        "http://10.233.16.3:8080/?nonce=lb02-before-backfill"
+      ],
+      "exit": 0,
+      "stdout": "status 200\n{\"fixture_id\":\"lb02-09141908-2b3122\",\"hostname\":\"lb02-2b3122-legacy-b\",\"instance_id\":\"lb02-2b3122-legacy-b\",\"nonce\":\"lb02-before-backfill\",\"port\":\"8080\"}\n",
+      "stderr": "",
+      "pass": true
+    },
+    {
+      "kind": "http",
+      "pod": "lb02-2b3122-legacy-a",
+      "expected_instance": "lb02-2b3122-legacy-b",
+      "argv": [
+        "/probe",
+        "request",
+        "http://10.233.16.3:8080/?nonce=lb02-before-backfill"
+      ],
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832",
+        "lb02-2b3122-legacy-a",
+        "-c",
+        "probe",
+        "--",
+        "/probe",
+        "request",
+        "http://10.233.16.3:8080/?nonce=lb02-before-backfill"
+      ],
+      "exit": 0,
+      "stdout": "status 200\n{\"fixture_id\":\"lb02-09141908-2b3122\",\"hostname\":\"lb02-2b3122-legacy-b\",\"instance_id\":\"lb02-2b3122-legacy-b\",\"nonce\":\"lb02-before-backfill\",\"port\":\"8080\"}\n",
+      "stderr": "",
+      "pass": true
+    },
+    {
+      "kind": "http",
+      "pod": "lb02-2b3122-legacy-b",
+      "expected_instance": "lb02-2b3122-legacy-a",
+      "argv": [
+        "/probe",
+        "request",
+        "http://10.233.16.2:8080/?nonce=lb02-before-backfill"
+      ],
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832",
+        "lb02-2b3122-legacy-b",
+        "-c",
+        "probe",
+        "--",
+        "/probe",
+        "request",
+        "http://10.233.16.2:8080/?nonce=lb02-before-backfill"
+      ],
+      "exit": 0,
+      "stdout": "status 200\n{\"fixture_id\":\"lb02-09141908-2b3122\",\"hostname\":\"lb02-2b3122-legacy-a\",\"instance_id\":\"lb02-2b3122-legacy-a\",\"nonce\":\"lb02-before-backfill\",\"port\":\"8080\"}\n",
+      "stderr": "",
+      "pass": true
+    }
+  ],
+  "result": "pass",
+  "scope": "legacy VPC workload baseline before U08; no LB entry traffic"
+}

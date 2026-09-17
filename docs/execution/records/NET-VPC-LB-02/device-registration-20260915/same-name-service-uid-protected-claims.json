@@ -1,0 +1,12 @@
+{
+  "at": "2026-09-15T14:06:22.178462+00:00",
+  "execution_host": "ubuntu",
+  "transport_exit": 0,
+  "result": {
+    "query": "SELECT json_build_object('lb_state',(SELECT state FROM network_load_balancers WHERE lb_id='lb_74f96109961444a48b26c31601e6131f'),'registered_service_uids',(SELECT json_agg(provider_uid) FROM network_lb_generated_resources WHERE lb_id='lb_74f96109961444a48b26c31601e6131f' AND kind='Service'),'active_eip_claims',(SELECT count(*) FROM network_eip_claims WHERE lb_id='lb_74f96109961444a48b26c31601e6131f' AND released_at IS NULL),'active_vip_intents',(SELECT count(*) FROM network_lb_vip_intents WHERE lb_id='lb_74f96109961444a48b26c31601e6131f' AND released_at IS NULL),'active_subnet_refs',(SELECT count(*) FROM network_lb_subnet_refs WHERE lb_id='lb_74f96109961444a48b26c31601e6131f' AND released_at IS NULL));",
+    "exit": 0,
+    "stdout": "BEGIN\n{\"lb_state\" : \"deleting\", \"registered_service_uids\" : [\"cbbfbc82-49c0-4bbc-96f3-a3924f685421\"], \"active_eip_claims\" : 1, \"active_vip_intents\" : 1, \"active_subnet_refs\" : 2}\nROLLBACK\n",
+    "stderr": ""
+  },
+  "stderr": ""
+}

@@ -1,0 +1,69 @@
+{
+  "at": "2026-09-15T07:31:19.121337+00:00",
+  "command": [
+    "sudo",
+    "-n",
+    "/usr/local/bin/kubectl",
+    "--kubeconfig",
+    "/etc/kubernetes/admin.conf",
+    "--context",
+    "kubernetes-admin@ani-platform",
+    "--request-timeout=20s",
+    "get",
+    "pods",
+    "-n",
+    "kube-system",
+    "-l",
+    "component=kube-apiserver",
+    "-o",
+    "json"
+  ],
+  "exit": 0,
+  "servers": [
+    {
+      "name": "kube-apiserver-ani-01",
+      "uid": "3a710c5e-cd9f-47fe-b18d-aad9196c3be8",
+      "created_at": "2026-09-14T12:23:06Z",
+      "node": "ani-01",
+      "start_time": "2026-09-14T13:49:32Z",
+      "containers": [
+        {
+          "name": "kube-apiserver",
+          "restart_count": 6,
+          "started_at": "2026-09-14T12:23:03Z",
+          "image_id": "hub.kubesphere.com.cn/kubernetes/kube-apiserver@sha256:6a7b73e718540d2c097cbcdc84c0f2cffad7a51ebccaf7f0b8cceb464715e1d9"
+        }
+      ]
+    },
+    {
+      "name": "kube-apiserver-ani-02",
+      "uid": "db6436e5-b6c8-480f-9ea3-04b02d85005b",
+      "created_at": "2026-09-14T12:25:58Z",
+      "node": "ani-02",
+      "start_time": "2026-09-14T14:07:03Z",
+      "containers": [
+        {
+          "name": "kube-apiserver",
+          "restart_count": 0,
+          "started_at": "2026-09-14T12:25:35Z",
+          "image_id": "hub.kubesphere.com.cn/kubernetes/kube-apiserver@sha256:6a7b73e718540d2c097cbcdc84c0f2cffad7a51ebccaf7f0b8cceb464715e1d9"
+        }
+      ]
+    },
+    {
+      "name": "kube-apiserver-ani-03",
+      "uid": "940e7dcd-c18c-411f-a195-af50389dd073",
+      "created_at": "2026-09-14T12:26:47Z",
+      "node": "ani-03",
+      "start_time": "2026-09-14T13:49:43Z",
+      "containers": [
+        {
+          "name": "kube-apiserver",
+          "restart_count": 0,
+          "started_at": "2026-09-14T12:26:39Z",
+          "image_id": "hub.kubesphere.com.cn/kubernetes/kube-apiserver@sha256:6a7b73e718540d2c097cbcdc84c0f2cffad7a51ebccaf7f0b8cceb464715e1d9"
+        }
+      ]
+    }
+  ]
+}

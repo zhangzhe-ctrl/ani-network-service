@@ -1,0 +1,78 @@
+source.tar.gz: OK
+verified source files: 1251
+go version go1.26.7 linux/amd64
+1.60.0
+v1.31.1
+127.0.0.1:5432 - accepting connections
+PostgreSQL image=docker.io/library/postgres@sha256:4ef4dbc939d61acea57712655ddb4b4ab27419c913f94cca0cd57cb3ea3c2280 container=8c71f42cd1c38a37e4f3693be35eca0db9b7bf3bde1c2e51499fcaf7bb1f8655
+=== RUN   TestBaseConnectivityActualAdapterLifecycleObservationAndPureReads
+--- PASS: TestBaseConnectivityActualAdapterLifecycleObservationAndPureReads (2.00s)
+=== RUN   TestEgressKCDeviceAdoptionPartialFactsAndUntaggedVlan
+--- PASS: TestEgressKCDeviceAdoptionPartialFactsAndUntaggedVlan (0.68s)
+=== RUN   TestEgressKCAdapterSharedObservationLifecycleAndDrift
+--- PASS: TestEgressKCAdapterSharedObservationLifecycleAndDrift (2.50s)
+=== RUN   TestLBCapabilityUsesSharedAuditAndKeepsVPCIndependent
+--- PASS: TestLBCapabilityUsesSharedAuditAndKeepsVPCIndependent (3.05s)
+=== RUN   TestLBConcurrentSNATClaimBothArrivalOrders
+=== RUN   TestLBConcurrentSNATClaimBothArrivalOrders/lb
+=== RUN   TestLBConcurrentSNATClaimBothArrivalOrders/snat
+--- PASS: TestLBConcurrentSNATClaimBothArrivalOrders (3.55s)
+    --- PASS: TestLBConcurrentSNATClaimBothArrivalOrders/lb (1.79s)
+    --- PASS: TestLBConcurrentSNATClaimBothArrivalOrders/snat (1.76s)
+=== RUN   TestLBConcurrentVIPAndEntryDeletion
+=== RUN   TestLBConcurrentVIPAndEntryDeletion/vip
+=== RUN   TestLBConcurrentVIPAndEntryDeletion/entry-delete
+--- PASS: TestLBConcurrentVIPAndEntryDeletion (3.21s)
+    --- PASS: TestLBConcurrentVIPAndEntryDeletion/vip (1.51s)
+    --- PASS: TestLBConcurrentVIPAndEntryDeletion/entry-delete (1.70s)
+=== RUN   TestLBNewRelationsRejectCrossTenantSQLAndAPI
+--- PASS: TestLBNewRelationsRejectCrossTenantSQLAndAPI (1.61s)
+=== RUN   TestLBActualAdapterThreeExposuresUpdateAndDelete
+=== RUN   TestLBActualAdapterThreeExposuresUpdateAndDelete/private
+=== RUN   TestLBActualAdapterThreeExposuresUpdateAndDelete/public
+=== RUN   TestLBActualAdapterThreeExposuresUpdateAndDelete/public_private
+--- PASS: TestLBActualAdapterThreeExposuresUpdateAndDelete (15.95s)
+    --- PASS: TestLBActualAdapterThreeExposuresUpdateAndDelete/private (4.44s)
+    --- PASS: TestLBActualAdapterThreeExposuresUpdateAndDelete/public (5.86s)
+    --- PASS: TestLBActualAdapterThreeExposuresUpdateAndDelete/public_private (5.64s)
+=== RUN   TestLBActualAdapterIdentityLossRemovesRouteAndRetainsAppliedVersion
+--- PASS: TestLBActualAdapterIdentityLossRemovesRouteAndRetainsAppliedVersion (3.72s)
+=== RUN   TestLBActualAdapterFinalizerAndNeverSentDelete
+=== RUN   TestLBActualAdapterFinalizerAndNeverSentDelete/true
+=== RUN   TestLBActualAdapterFinalizerAndNeverSentDelete/false
+--- PASS: TestLBActualAdapterFinalizerAndNeverSentDelete (5.55s)
+    --- PASS: TestLBActualAdapterFinalizerAndNeverSentDelete/true (1.75s)
+    --- PASS: TestLBActualAdapterFinalizerAndNeverSentDelete/false (3.80s)
+=== RUN   TestLBServiceProcessesRecoverUnknownMutationsWithTwoWorkers
+=== RUN   TestLBServiceProcessesRecoverUnknownMutationsWithTwoWorkers/backend_POST_response_lost
+    load_balancer_process_integration_test.go:287: backend_POST_response_lost: same LB=lb_438164d596b745bfa281d3558abceadd recovered using two service processes; product cleanup verified
+=== RUN   TestLBServiceProcessesRecoverUnknownMutationsWithTwoWorkers/gateway_POST_late_success
+    load_balancer_process_integration_test.go:287: gateway_POST_late_success: same LB=lb_0049822160d84039b331dec7372dc9e4 recovered using two service processes; product cleanup verified
+=== RUN   TestLBServiceProcessesRecoverUnknownMutationsWithTwoWorkers/policy_POST_response_lost
+    load_balancer_process_integration_test.go:287: policy_POST_response_lost: same LB=lb_37c380dc1f0a4df5aef7dfb2b001c3e3 recovered using two service processes; product cleanup verified
+=== RUN   TestLBServiceProcessesRecoverUnknownMutationsWithTwoWorkers/route_UPDATE_response_lost
+    load_balancer_process_integration_test.go:287: route_UPDATE_response_lost: same LB=lb_7bb4b272d3ef4de3aa79759953a818e5 recovered using two service processes; product cleanup verified
+=== RUN   TestLBServiceProcessesRecoverUnknownMutationsWithTwoWorkers/gateway_DELETE_response_lost
+    load_balancer_process_integration_test.go:287: gateway_DELETE_response_lost: same LB=lb_93fd6a17ee0b4596a0b9f1c4c0f1f816 recovered using two service processes; product cleanup verified
+--- PASS: TestLBServiceProcessesRecoverUnknownMutationsWithTwoWorkers (96.24s)
+    --- PASS: TestLBServiceProcessesRecoverUnknownMutationsWithTwoWorkers/backend_POST_response_lost (17.81s)
+    --- PASS: TestLBServiceProcessesRecoverUnknownMutationsWithTwoWorkers/gateway_POST_late_success (17.31s)
+    --- PASS: TestLBServiceProcessesRecoverUnknownMutationsWithTwoWorkers/policy_POST_response_lost (17.45s)
+    --- PASS: TestLBServiceProcessesRecoverUnknownMutationsWithTwoWorkers/route_UPDATE_response_lost (18.22s)
+    --- PASS: TestLBServiceProcessesRecoverUnknownMutationsWithTwoWorkers/gateway_DELETE_response_lost (17.65s)
+=== RUN   TestLBAdmissionAtomicIdentityReplayAndParentOccupancy
+--- PASS: TestLBAdmissionAtomicIdentityReplayAndParentOccupancy (1.86s)
+=== RUN   TestLBAdmissionRejectsCIDROnlyBackendAndDuplicateVIP
+--- PASS: TestLBAdmissionRejectsCIDROnlyBackendAndDuplicateVIP (1.92s)
+=== RUN   TestLBAdmissionCompetesWithSNATForOneClaimBothOrders
+=== RUN   TestLBAdmissionCompetesWithSNATForOneClaimBothOrders/snat
+=== RUN   TestLBAdmissionCompetesWithSNATForOneClaimBothOrders/lb
+--- PASS: TestLBAdmissionCompetesWithSNATForOneClaimBothOrders (4.19s)
+    --- PASS: TestLBAdmissionCompetesWithSNATForOneClaimBothOrders/snat (2.19s)
+    --- PASS: TestLBAdmissionCompetesWithSNATForOneClaimBothOrders/lb (2.00s)
+=== RUN   TestIntranetPlatformScopesDefaultsAllocationAndIndependentCapabilities
+--- PASS: TestIntranetPlatformScopesDefaultsAllocationAndIndependentCapabilities (0.66s)
+PASS
+ok  	github.com/zhangzhe-ctrl/ani-network-service/internal/data	147.773s
+removed task container=8c71f42cd1c38a37e4f3693be35eca0db9b7bf3bde1c2e51499fcaf7bb1f8655
+REMOTE_COMMAND_EXIT=0

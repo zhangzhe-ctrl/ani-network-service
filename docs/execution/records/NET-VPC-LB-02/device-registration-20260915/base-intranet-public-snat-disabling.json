@@ -1,0 +1,297 @@
+{
+  "at": "2026-09-15T09:56:34.465977+00:00",
+  "execution_host": "ubuntu",
+  "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+  "results": [
+    {
+      "pod": "lb02-2b3122-base-a",
+      "label": "binary",
+      "argv": [
+        "sha256sum",
+        "/probe"
+      ],
+      "expect_contains": [
+        "ffcf0c98acaedd82d52d8b9b9f981a8bbc8b1fbc4499be94947d9040f0014bed"
+      ],
+      "at": "2026-09-15T09:56:26.194697+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+        "lb02-2b3122-base-a",
+        "-c",
+        "probe",
+        "--",
+        "sha256sum",
+        "/probe"
+      ],
+      "exit": 0,
+      "stdout": "ffcf0c98acaedd82d52d8b9b9f981a8bbc8b1fbc4499be94947d9040f0014bed  /probe\n",
+      "stderr": "",
+      "pass": true
+    },
+    {
+      "pod": "lb02-2b3122-base-a",
+      "label": "dns",
+      "argv": [
+        "getent",
+        "hosts",
+        "kubernetes.default.svc.cluster.local"
+      ],
+      "expect_contains": [
+        "10.96.0.1"
+      ],
+      "at": "2026-09-15T09:56:27.215772+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+        "lb02-2b3122-base-a",
+        "-c",
+        "probe",
+        "--",
+        "getent",
+        "hosts",
+        "kubernetes.default.svc.cluster.local"
+      ],
+      "exit": 0,
+      "stdout": "10.96.0.1       kubernetes.default.svc.cluster.local\n",
+      "stderr": "",
+      "pass": true
+    },
+    {
+      "pod": "lb02-2b3122-base-a",
+      "label": "dns-service-http",
+      "argv": [
+        "/probe",
+        "request",
+        "http://10.96.0.10:9153/metrics?nonce=lb02-2b3122-base"
+      ],
+      "expect_contains": [
+        "status 200",
+        "# HELP"
+      ],
+      "at": "2026-09-15T09:56:28.202866+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+        "lb02-2b3122-base-a",
+        "-c",
+        "probe",
+        "--",
+        "/probe",
+        "request",
+        "http://10.96.0.10:9153/metrics?nonce=lb02-2b3122-base"
+      ],
+      "exit": 0,
+      "stdout": "status 200\n# HELP coredns_build_info A metric with a constant '1' value labeled by version, revision, and goversion from which CoreDNS was built.\n# TYPE coredns_build_info gauge\ncoredns_build_info{goversion=\"go1.25.2\",revision=\"1db4568\",version=\"1.13.1\"} 1\n# HELP coredns_cache_entries The number of elements in the cache.\n# TYPE coredns_cache_entries gauge\ncoredns_cache_entries{server=\"dns://:53\",type=\"denial\",view=\"\",zones=\".\"} 0\ncoredns_cache_entries{server=\"dns://:53\",type=\"success\",view=\"\",zones=\".\"} 0\n# HELP coredns_cache_misses_total The count of cache misses. Deprecated, derive misses from cache hits/requests counters.\n# TYPE coredns_cache_misses_total counter\ncoredns_cache_misses_total{server=\"dns://:53\",view=\"\",zones=\".\"} 49480\n# HELP coredns_cache_requests_total The count of cache requests.\n# TYPE coredns_cache_requests_total counter\ncoredns_cache_requests_total{server=\"dns://:53\",view=\"\",zones=\".\"} 49480\n# HELP coredns_dns_request_duration_seconds Histogram of the time (in seconds) each request took per zone.\n# TYPE coredns_dns_request_duration_seconds histogram\ncoredns_dns_request_duration_seconds_bucket{server=\"dns://:53\",view=\"\",zone=\".\",le=\"0.00025\"} 25621\ncoredns_dns_request_duration_seconds_bucket{server=\"dns://:53\",view=\"\",zone=\".\",le=\"0.0005\"} 35551\ncoredns_dns_request_duration_seconds_bucket{server=\"dns://:53\",view=\"\",zone=\".\",le=\"0.001\"} 35833\ncoredns_dns_request_duration_seconds_bucket{server=\"dns://:53\",view=\"\",zone=\".\",le=\"0.002\"} 35833\ncoredns_dns_request_duration_seconds_bucket{server=\"dns://:53\",view=\"\",zone=\".\",le=\"0.004\"} 35833\ncoredns_dns_request_duration_seconds_bucket{server=\"dns://:53\",view=\"\",zone=\".\",le=\"0.008\"} 35834\ncoredns_dns_request_duration_seconds_bucket{server=\"dns://:53\",view=\"\",zone=\".\",le=\"0.016\"} 35834\ncoredns_dns_request_duration_seconds_bucket{server=\"dns://:53\",view=\"\",zone=\".\",le=\"0.032\"} 35835\ncoredns_dns_request_duration_seconds_bucket{server=\"dns://:53\",view=\"\",zone=\".\",le=\"0.064\"} 35835\ncoredns_dns_request_duration_seconds_bucket{server=\"dns://:53\",view=\"\",zone=\".\",le=\"0.128\"} 35835\ncoredns_dns_request_duration_seconds_bucket{server=\"dns://:53\",view=\"\",zone=\".\",le=\"0.256\"} 35835\ncoredns_dns_request_duration_seconds_bucket{server=\"dns://:53\",view=\"\",zone=\".\",le=\"0.512\"} 35835\ncoredns_dns_request_duration_seconds_bucket{server=\"dns://:53\",view=\"\",zone=\".\",le=\"1.024\"} 35835\ncoredns_dns_request_duration_seconds_bucket{server=\"dns://:53\",view=\"\",zone=\".\",le=\"2.048\"} 49475\ncoredns_dns_request_duration_seconds_bucket{server=\"dns://:53\",view=\"\",zone=\".\",le=\"4.096\"} 49478\ncoredns_dns_request_duration_seconds_bucket{server=\"dns://:53\",view=\"\",zone=\".\",le=\"8.192\"} 49480\ncoredns_dns_request_duration_seconds_bucket{server=\"dns://:53\",view=\"\",zone=\".\",le=\"+Inf\"} 49480\ncoredns_dns_request_duration_seconds_sum{server=\"dns://:53\",view=\"\",zone=\".\"} 27321.407659119926\ncoredns_dns_request_duration_seconds_count{server=\"dns://:53\",view=\"\",zone=\".\"} 49480\n# HELP coredns_dns_request_size_bytes Size of the EDNS0 UDP buffer in bytes (64K for TCP) per zone and protocol.\n# TYPE coredns_dns_request_size_bytes histogram\ncoredns_dns_request_size_bytes_bucket{proto=\"udp\",server=\"dns://:53\",view=\"\",zone=\".\",le=\"0\"} 0\ncoredns_dns_request_size_bytes_bucket{proto=\"udp\",server=\"dns://:53\",view=\"\",zone=\".\",le=\"100\"} 49473\ncoredns_dns_request_size_bytes_bucket{proto=\"udp\",server=\"dns://:53\",view=\"\",zone=\".\",le=\"200\"} 49480\ncoredns_dns_request_size_bytes_bucket{proto=\"udp\",server=\"dns://:53\",view=\"\",zone=\".\",le=\"300\"} 49480\ncoredns_dns_request_size_bytes_bucket{proto=\"udp\",server=\"dns://:53\",view=\"\",zone=\".\",le=\"400\"} 49480\ncoredns_dns_request_size_bytes_bucket{proto=\"udp\",server=\"dns://:53\",view=\"\",zone=\".\",le=\"511\"} 49480\ncoredns_dns_request_size_bytes_bucket{proto=\"udp\",server=\"dns://:53\",view=\"\",zone=\".\",le=\"1023\"} 49480\ncoredns_dns_request_size_bytes_bucket{proto=\"udp\",server=\"dns://:53\",view=\"\",zone=\".\",le=\"2047\"} 49480\ncoredns_dns_request_size_bytes_bucket{proto=\"udp\",server=\"dns://:53\",view=\"\",zone=\".\",le=\"4095\"} 49480\ncoredns_dns_request_size_bytes_bucket{proto=\"udp\",server=\"dns://:53\",view=\"\",zone=\".\",le=\"8",
+      "stderr": "",
+      "pass": true
+    },
+    {
+      "pod": "lb02-2b3122-base-a",
+      "label": "envoy-service-http",
+      "argv": [
+        "/probe",
+        "request",
+        "http://10.96.1.31:19001/metrics?nonce=lb02-2b3122-base"
+      ],
+      "expect_contains": [
+        "status 200",
+        "# HELP"
+      ],
+      "at": "2026-09-15T09:56:29.252031+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+        "lb02-2b3122-base-a",
+        "-c",
+        "probe",
+        "--",
+        "/probe",
+        "request",
+        "http://10.96.1.31:19001/metrics?nonce=lb02-2b3122-base"
+      ],
+      "exit": 0,
+      "stdout": "status 200\n# HELP certwatcher_read_certificate_errors_total Total number of certificate read errors\n# TYPE certwatcher_read_certificate_errors_total counter\ncertwatcher_read_certificate_errors_total 0\n# HELP certwatcher_read_certificate_total Total number of certificate reads\n# TYPE certwatcher_read_certificate_total counter\ncertwatcher_read_certificate_total 6915\n# HELP controller_runtime_active_workers Number of currently used workers per controller\n# TYPE controller_runtime_active_workers gauge\ncontroller_runtime_active_workers{controller=\"gatewayapi-1789397043\"} 0\n# HELP controller_runtime_conversion_webhook_panics_total Total number of conversion webhook panics\n# TYPE controller_runtime_conversion_webhook_panics_total counter\ncontroller_runtime_conversion_webhook_panics_total 0\n# HELP controller_runtime_max_concurrent_reconciles Maximum number of concurrent reconciles per controller\n# TYPE controller_runtime_max_concurrent_reconciles gauge\ncontroller_runtime_max_concurrent_reconciles{controller=\"gatewayapi-1789397043\"} 1\n# HELP controller_runtime_reconcile_errors_total Total number of reconciliation errors per controller\n# TYPE controller_runtime_reconcile_errors_total counter\ncontroller_runtime_reconcile_errors_total{controller=\"gatewayapi-1789397043\"} 0\n# HELP controller_runtime_reconcile_panics_total Total number of reconciliation panics per controller\n# TYPE controller_runtime_reconcile_panics_total counter\ncontroller_runtime_reconcile_panics_total{controller=\"gatewayapi-1789397043\"} 0\n# HELP controller_runtime_reconcile_time_seconds Length of time per reconciliation per controller\n# TYPE controller_runtime_reconcile_time_seconds histogram\ncontroller_runtime_reconcile_time_seconds_bucket{controller=\"gatewayapi-1789397043\",le=\"0.005\"} 67\ncontroller_runtime_reconcile_time_seconds_bucket{controller=\"gatewayapi-1789397043\",le=\"0.01\"} 67\ncontroller_runtime_reconcile_time_seconds_bucket{controller=\"gatewayapi-1789397043\",le=\"0.025\"} 68\ncontroller_runtime_reconcile_time_seconds_bucket{controller=\"gatewayapi-1789397043\",le=\"0.05\"} 68\ncontroller_runtime_reconcile_time_seconds_bucket{controller=\"gatewayapi-1789397043\",le=\"0.1\"} 68\ncontroller_runtime_reconcile_time_seconds_bucket{controller=\"gatewayapi-1789397043\",le=\"0.15\"} 69\ncontroller_runtime_reconcile_time_seconds_bucket{controller=\"gatewayapi-1789397043\",le=\"0.2\"} 69\ncontroller_runtime_reconcile_time_seconds_bucket{controller=\"gatewayapi-1789397043\",le=\"0.25\"} 69\ncontroller_runtime_reconcile_time_seconds_bucket{controller=\"gatewayapi-1789397043\",le=\"0.3\"} 69\ncontroller_runtime_reconcile_time_seconds_bucket{controller=\"gatewayapi-1789397043\",le=\"0.35\"} 69\ncontroller_runtime_reconcile_time_seconds_bucket{controller=\"gatewayapi-1789397043\",le=\"0.4\"} 69\ncontroller_runtime_reconcile_time_seconds_bucket{controller=\"gatewayapi-1789397043\",le=\"0.45\"} 69\ncontroller_runtime_reconcile_time_seconds_bucket{controller=\"gatewayapi-1789397043\",le=\"0.5\"} 69\ncontroller_runtime_reconcile_time_seconds_bucket{controller=\"gatewayapi-1789397043\",le=\"0.6\"} 69\ncontroller_runtime_reconcile_time_seconds_bucket{controller=\"gatewayapi-1789397043\",le=\"0.7\"} 69\ncontroller_runtime_reconcile_time_seconds_bucket{controller=\"gatewayapi-1789397043\",le=\"0.8\"} 69\ncontroller_runtime_reconcile_time_seconds_bucket{controller=\"gatewayapi-1789397043\",le=\"0.9\"} 69\ncontroller_runtime_reconcile_time_seconds_bucket{controller=\"gatewayapi-1789397043\",le=\"1\"} 69\ncontroller_runtime_reconcile_time_seconds_bucket{controller=\"gatewayapi-1789397043\",le=\"1.25\"} 69\ncontroller_runtime_reconcile_time_seconds_bucket{controller=\"gatewayapi-1789397043\",le=\"1.5\"} 69\ncontroller_runtime_reconcile_time_seconds_bucket{controller=\"gatewayapi-1789397043\",le=\"1.75\"} 69\ncontroller_runtime_reconcile_time_seconds_bucket{controller=\"gatewayapi-1789397043\",le=\"2\"} 69\ncontroller_runtime_reconcile_time_seconds_bucket{controller=\"gatewayapi-1789397043\",le=\"2.5\"} 69\ncontroller_runtime_reconcile_time_seconds_bucket{controller=\"gatewayapi-1789397043\",le=\"3\"} 69\ncontroller_runtime_reconcile_time_seconds_bucket{controller=\"gatewayapi-1789397043\",le=\"3.5\"} 69",
+      "stderr": "",
+      "pass": true
+    },
+    {
+      "pod": "lb02-2b3122-base-b",
+      "label": "binary",
+      "argv": [
+        "sha256sum",
+        "/probe"
+      ],
+      "expect_contains": [
+        "ffcf0c98acaedd82d52d8b9b9f981a8bbc8b1fbc4499be94947d9040f0014bed"
+      ],
+      "at": "2026-09-15T09:56:31.155366+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+        "lb02-2b3122-base-b",
+        "-c",
+        "probe",
+        "--",
+        "sha256sum",
+        "/probe"
+      ],
+      "exit": 0,
+      "stdout": "ffcf0c98acaedd82d52d8b9b9f981a8bbc8b1fbc4499be94947d9040f0014bed  /probe\n",
+      "stderr": "",
+      "pass": true
+    },
+    {
+      "pod": "lb02-2b3122-base-b",
+      "label": "dns",
+      "argv": [
+        "getent",
+        "hosts",
+        "kubernetes.default.svc.cluster.local"
+      ],
+      "expect_contains": [
+        "10.96.0.1"
+      ],
+      "at": "2026-09-15T09:56:32.164027+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+        "lb02-2b3122-base-b",
+        "-c",
+        "probe",
+        "--",
+        "getent",
+        "hosts",
+        "kubernetes.default.svc.cluster.local"
+      ],
+      "exit": 0,
+      "stdout": "10.96.0.1       kubernetes.default.svc.cluster.local\n",
+      "stderr": "",
+      "pass": true
+    },
+    {
+      "pod": "lb02-2b3122-base-b",
+      "label": "dns-service-http",
+      "argv": [
+        "/probe",
+        "request",
+        "http://10.96.0.10:9153/metrics?nonce=lb02-2b3122-base"
+      ],
+      "expect_contains": [
+        "status 200",
+        "# HELP"
+      ],
+      "at": "2026-09-15T09:56:33.374534+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+        "lb02-2b3122-base-b",
+        "-c",
+        "probe",
+        "--",
+        "/probe",
+        "request",
+        "http://10.96.0.10:9153/metrics?nonce=lb02-2b3122-base"
+      ],
+      "exit": 0,
+      "stdout": "status 200\n# HELP coredns_build_info A metric with a constant '1' value labeled by version, revision, and goversion from which CoreDNS was built.\n# TYPE coredns_build_info gauge\ncoredns_build_info{goversion=\"go1.25.2\",revision=\"1db4568\",version=\"1.13.1\"} 1\n# HELP coredns_cache_entries The number of elements in the cache.\n# TYPE coredns_cache_entries gauge\ncoredns_cache_entries{server=\"dns://:53\",type=\"denial\",view=\"\",zones=\".\"} 0\ncoredns_cache_entries{server=\"dns://:53\",type=\"success\",view=\"\",zones=\".\"} 0\n# HELP coredns_cache_misses_total The count of cache misses. Deprecated, derive misses from cache hits/requests counters.\n# TYPE coredns_cache_misses_total counter\ncoredns_cache_misses_total{server=\"dns://:53\",view=\"\",zones=\".\"} 49497\n# HELP coredns_cache_requests_total The count of cache requests.\n# TYPE coredns_cache_requests_total counter\ncoredns_cache_requests_total{server=\"dns://:53\",view=\"\",zones=\".\"} 49497\n# HELP coredns_dns_request_duration_seconds Histogram of the time (in seconds) each request took per zone.\n# TYPE coredns_dns_request_duration_seconds histogram\ncoredns_dns_request_duration_seconds_bucket{server=\"dns://:53\",view=\"\",zone=\".\",le=\"0.00025\"} 25630\ncoredns_dns_request_duration_seconds_bucket{server=\"dns://:53\",view=\"\",zone=\".\",le=\"0.0005\"} 35566\ncoredns_dns_request_duration_seconds_bucket{server=\"dns://:53\",view=\"\",zone=\".\",le=\"0.001\"} 35848\ncoredns_dns_request_duration_seconds_bucket{server=\"dns://:53\",view=\"\",zone=\".\",le=\"0.002\"} 35848\ncoredns_dns_request_duration_seconds_bucket{server=\"dns://:53\",view=\"\",zone=\".\",le=\"0.004\"} 35848\ncoredns_dns_request_duration_seconds_bucket{server=\"dns://:53\",view=\"\",zone=\".\",le=\"0.008\"} 35849\ncoredns_dns_request_duration_seconds_bucket{server=\"dns://:53\",view=\"\",zone=\".\",le=\"0.016\"} 35849\ncoredns_dns_request_duration_seconds_bucket{server=\"dns://:53\",view=\"\",zone=\".\",le=\"0.032\"} 35850\ncoredns_dns_request_duration_seconds_bucket{server=\"dns://:53\",view=\"\",zone=\".\",le=\"0.064\"} 35850\ncoredns_dns_request_duration_seconds_bucket{server=\"dns://:53\",view=\"\",zone=\".\",le=\"0.128\"} 35850\ncoredns_dns_request_duration_seconds_bucket{server=\"dns://:53\",view=\"\",zone=\".\",le=\"0.256\"} 35850\ncoredns_dns_request_duration_seconds_bucket{server=\"dns://:53\",view=\"\",zone=\".\",le=\"0.512\"} 35850\ncoredns_dns_request_duration_seconds_bucket{server=\"dns://:53\",view=\"\",zone=\".\",le=\"1.024\"} 35850\ncoredns_dns_request_duration_seconds_bucket{server=\"dns://:53\",view=\"\",zone=\".\",le=\"2.048\"} 49491\ncoredns_dns_request_duration_seconds_bucket{server=\"dns://:53\",view=\"\",zone=\".\",le=\"4.096\"} 49494\ncoredns_dns_request_duration_seconds_bucket{server=\"dns://:53\",view=\"\",zone=\".\",le=\"8.192\"} 49496\ncoredns_dns_request_duration_seconds_bucket{server=\"dns://:53\",view=\"\",zone=\".\",le=\"+Inf\"} 49496\ncoredns_dns_request_duration_seconds_sum{server=\"dns://:53\",view=\"\",zone=\".\"} 27323.41339045693\ncoredns_dns_request_duration_seconds_count{server=\"dns://:53\",view=\"\",zone=\".\"} 49496\n# HELP coredns_dns_request_size_bytes Size of the EDNS0 UDP buffer in bytes (64K for TCP) per zone and protocol.\n# TYPE coredns_dns_request_size_bytes histogram\ncoredns_dns_request_size_bytes_bucket{proto=\"udp\",server=\"dns://:53\",view=\"\",zone=\".\",le=\"0\"} 0\ncoredns_dns_request_size_bytes_bucket{proto=\"udp\",server=\"dns://:53\",view=\"\",zone=\".\",le=\"100\"} 49489\ncoredns_dns_request_size_bytes_bucket{proto=\"udp\",server=\"dns://:53\",view=\"\",zone=\".\",le=\"200\"} 49496\ncoredns_dns_request_size_bytes_bucket{proto=\"udp\",server=\"dns://:53\",view=\"\",zone=\".\",le=\"300\"} 49496\ncoredns_dns_request_size_bytes_bucket{proto=\"udp\",server=\"dns://:53\",view=\"\",zone=\".\",le=\"400\"} 49496\ncoredns_dns_request_size_bytes_bucket{proto=\"udp\",server=\"dns://:53\",view=\"\",zone=\".\",le=\"511\"} 49496\ncoredns_dns_request_size_bytes_bucket{proto=\"udp\",server=\"dns://:53\",view=\"\",zone=\".\",le=\"1023\"} 49496\ncoredns_dns_request_size_bytes_bucket{proto=\"udp\",server=\"dns://:53\",view=\"\",zone=\".\",le=\"2047\"} 49496\ncoredns_dns_request_size_bytes_bucket{proto=\"udp\",server=\"dns://:53\",view=\"\",zone=\".\",le=\"4095\"} 49496\ncoredns_dns_request_size_bytes_bucket{proto=\"udp\",server=\"dns://:53\",view=\"\",zone=\".\",le=\"82",
+      "stderr": "",
+      "pass": true
+    },
+    {
+      "pod": "lb02-2b3122-base-b",
+      "label": "envoy-service-http",
+      "argv": [
+        "/probe",
+        "request",
+        "http://10.96.1.31:19001/metrics?nonce=lb02-2b3122-base"
+      ],
+      "expect_contains": [
+        "status 200",
+        "# HELP"
+      ],
+      "at": "2026-09-15T09:56:34.465950+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+        "lb02-2b3122-base-b",
+        "-c",
+        "probe",
+        "--",
+        "/probe",
+        "request",
+        "http://10.96.1.31:19001/metrics?nonce=lb02-2b3122-base"
+      ],
+      "exit": 0,
+      "stdout": "status 200\n# HELP certwatcher_read_certificate_errors_total Total number of certificate read errors\n# TYPE certwatcher_read_certificate_errors_total counter\ncertwatcher_read_certificate_errors_total 0\n# HELP certwatcher_read_certificate_total Total number of certificate reads\n# TYPE certwatcher_read_certificate_total counter\ncertwatcher_read_certificate_total 6916\n# HELP controller_runtime_active_workers Number of currently used workers per controller\n# TYPE controller_runtime_active_workers gauge\ncontroller_runtime_active_workers{controller=\"gatewayapi-1789397043\"} 0\n# HELP controller_runtime_conversion_webhook_panics_total Total number of conversion webhook panics\n# TYPE controller_runtime_conversion_webhook_panics_total counter\ncontroller_runtime_conversion_webhook_panics_total 0\n# HELP controller_runtime_max_concurrent_reconciles Maximum number of concurrent reconciles per controller\n# TYPE controller_runtime_max_concurrent_reconciles gauge\ncontroller_runtime_max_concurrent_reconciles{controller=\"gatewayapi-1789397043\"} 1\n# HELP controller_runtime_reconcile_errors_total Total number of reconciliation errors per controller\n# TYPE controller_runtime_reconcile_errors_total counter\ncontroller_runtime_reconcile_errors_total{controller=\"gatewayapi-1789397043\"} 0\n# HELP controller_runtime_reconcile_panics_total Total number of reconciliation panics per controller\n# TYPE controller_runtime_reconcile_panics_total counter\ncontroller_runtime_reconcile_panics_total{controller=\"gatewayapi-1789397043\"} 0\n# HELP controller_runtime_reconcile_time_seconds Length of time per reconciliation per controller\n# TYPE controller_runtime_reconcile_time_seconds histogram\ncontroller_runtime_reconcile_time_seconds_bucket{controller=\"gatewayapi-1789397043\",le=\"0.005\"} 67\ncontroller_runtime_reconcile_time_seconds_bucket{controller=\"gatewayapi-1789397043\",le=\"0.01\"} 67\ncontroller_runtime_reconcile_time_seconds_bucket{controller=\"gatewayapi-1789397043\",le=\"0.025\"} 68\ncontroller_runtime_reconcile_time_seconds_bucket{controller=\"gatewayapi-1789397043\",le=\"0.05\"} 68\ncontroller_runtime_reconcile_time_seconds_bucket{controller=\"gatewayapi-1789397043\",le=\"0.1\"} 68\ncontroller_runtime_reconcile_time_seconds_bucket{controller=\"gatewayapi-1789397043\",le=\"0.15\"} 69\ncontroller_runtime_reconcile_time_seconds_bucket{controller=\"gatewayapi-1789397043\",le=\"0.2\"} 69\ncontroller_runtime_reconcile_time_seconds_bucket{controller=\"gatewayapi-1789397043\",le=\"0.25\"} 69\ncontroller_runtime_reconcile_time_seconds_bucket{controller=\"gatewayapi-1789397043\",le=\"0.3\"} 69\ncontroller_runtime_reconcile_time_seconds_bucket{controller=\"gatewayapi-1789397043\",le=\"0.35\"} 69\ncontroller_runtime_reconcile_time_seconds_bucket{controller=\"gatewayapi-1789397043\",le=\"0.4\"} 69\ncontroller_runtime_reconcile_time_seconds_bucket{controller=\"gatewayapi-1789397043\",le=\"0.45\"} 69\ncontroller_runtime_reconcile_time_seconds_bucket{controller=\"gatewayapi-1789397043\",le=\"0.5\"} 69\ncontroller_runtime_reconcile_time_seconds_bucket{controller=\"gatewayapi-1789397043\",le=\"0.6\"} 69\ncontroller_runtime_reconcile_time_seconds_bucket{controller=\"gatewayapi-1789397043\",le=\"0.7\"} 69\ncontroller_runtime_reconcile_time_seconds_bucket{controller=\"gatewayapi-1789397043\",le=\"0.8\"} 69\ncontroller_runtime_reconcile_time_seconds_bucket{controller=\"gatewayapi-1789397043\",le=\"0.9\"} 69\ncontroller_runtime_reconcile_time_seconds_bucket{controller=\"gatewayapi-1789397043\",le=\"1\"} 69\ncontroller_runtime_reconcile_time_seconds_bucket{controller=\"gatewayapi-1789397043\",le=\"1.25\"} 69\ncontroller_runtime_reconcile_time_seconds_bucket{controller=\"gatewayapi-1789397043\",le=\"1.5\"} 69\ncontroller_runtime_reconcile_time_seconds_bucket{controller=\"gatewayapi-1789397043\",le=\"1.75\"} 69\ncontroller_runtime_reconcile_time_seconds_bucket{controller=\"gatewayapi-1789397043\",le=\"2\"} 69\ncontroller_runtime_reconcile_time_seconds_bucket{controller=\"gatewayapi-1789397043\",le=\"2.5\"} 69\ncontroller_runtime_reconcile_time_seconds_bucket{controller=\"gatewayapi-1789397043\",le=\"3\"} 69\ncontroller_runtime_reconcile_time_seconds_bucket{controller=\"gatewayapi-1789397043\",le=\"3.5\"} 69",
+      "stderr": "",
+      "pass": true
+    }
+  ],
+  "input_file": "docs/execution/records/NET-VPC-LB-02/device-registration-20260915/base-intranet-r15-renewal-plan.json",
+  "result": "pass"
+}

@@ -1,0 +1,18 @@
+source.tar.gz: OK
+verified source files: 2387
+go version go1.26.7 linux/amd64
+1.60.0
+v1.31.1
+127.0.0.1:5432 - accepting connections
+PostgreSQL image=docker.io/library/postgres@sha256:4ef4dbc939d61acea57712655ddb4b4ab27419c913f94cca0cd57cb3ea3c2280 container=57b15b9dfc2eb22ed1bf15dd2cc50ef617ac0fa9add606d4ec79efe0a9a000fe
+{"Time":"2026-09-15T21:01:07.054483293+08:00","Action":"start","Package":"github.com/zhangzhe-ctrl/ani-network-service/internal/data"}
+{"Time":"2026-09-15T21:01:07.064628947+08:00","Action":"run","Package":"github.com/zhangzhe-ctrl/ani-network-service/internal/data","Test":"TestAttachmentFinishesFreshAuditAfterConsecutiveWatchBoundaries"}
+{"Time":"2026-09-15T21:01:07.064666208+08:00","Action":"output","Package":"github.com/zhangzhe-ctrl/ani-network-service/internal/data","Test":"TestAttachmentFinishesFreshAuditAfterConsecutiveWatchBoundaries","Output":"=== RUN   TestAttachmentFinishesFreshAuditAfterConsecutiveWatchBoundaries\n"}
+{"Time":"2026-09-15T21:01:08.041566047+08:00","Action":"output","Package":"github.com/zhangzhe-ctrl/ani-network-service/internal/data","Test":"TestAttachmentFinishesFreshAuditAfterConsecutiveWatchBoundaries","Output":"    attachment_audit_retry_integration_test.go:128: stable audit within caller budget was not consumed after two Watch boundaries: collections=1 observation={Proof:{CollectedAt:0001-01-01 00:00:00 +0000 UTC Hash: CoveredGeneration:0} Exists:false HasDependencies:false PodName: PodUID: Relations:[]} err=network provider: temporary\n"}
+{"Time":"2026-09-15T21:01:08.162887143+08:00","Action":"output","Package":"github.com/zhangzhe-ctrl/ani-network-service/internal/data","Test":"TestAttachmentFinishesFreshAuditAfterConsecutiveWatchBoundaries","Output":"--- FAIL: TestAttachmentFinishesFreshAuditAfterConsecutiveWatchBoundaries (1.10s)\n"}
+{"Time":"2026-09-15T21:01:08.163038263+08:00","Action":"fail","Package":"github.com/zhangzhe-ctrl/ani-network-service/internal/data","Test":"TestAttachmentFinishesFreshAuditAfterConsecutiveWatchBoundaries","Elapsed":1.1}
+{"Time":"2026-09-15T21:01:08.163722783+08:00","Action":"output","Package":"github.com/zhangzhe-ctrl/ani-network-service/internal/data","Output":"FAIL\n"}
+{"Time":"2026-09-15T21:01:08.167953533+08:00","Action":"output","Package":"github.com/zhangzhe-ctrl/ani-network-service/internal/data","Output":"FAIL\tgithub.com/zhangzhe-ctrl/ani-network-service/internal/data\t1.113s\n"}
+{"Time":"2026-09-15T21:01:08.168000696+08:00","Action":"fail","Package":"github.com/zhangzhe-ctrl/ani-network-service/internal/data","Elapsed":1.114}
+removed task container=57b15b9dfc2eb22ed1bf15dd2cc50ef617ac0fa9add606d4ec79efe0a9a000fe
+REMOTE_COMMAND_EXIT=1

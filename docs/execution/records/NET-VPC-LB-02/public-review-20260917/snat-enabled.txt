@@ -1,0 +1,35 @@
+apiVersion: networking.kubercloud.com/v1
+kind: Snat
+metadata:
+  creationTimestamp: "2026-09-17T10:40:31Z"
+  finalizers:
+  - networking.kubercloud.com/finalizer
+  generation: 1
+  labels:
+    manual.ani.io/run: pubdebug-20260917
+  name: public-snat
+  namespace: pubdebug-20260917
+  resourceVersion: "1234419"
+  uid: 053791a1-3920-4556-8837-5b14555bc88b
+spec:
+  disable: false
+  eip: snat-eip
+  vpc: tenant
+status:
+  conditions:
+  - lastTransitionTime: "2026-09-17T10:40:31Z"
+    message: ""
+    reason: Valid
+    status: "True"
+    type: Valid
+  eipAddress: 172.16.102.196
+  phase: Bound
+source=client
+status 200
+{"fixture_id":"pubdebug-20260917","hostname":"public-b","instance_id":"public-b","nonce":"snat-enabled-client","port":"8080"}
+source=backend-a
+status 200
+{"fixture_id":"pubdebug-20260917","hostname":"public-b","instance_id":"public-b","nonce":"snat-enabled-backend-a","port":"8080"}
+source=backend-b
+status 200
+{"fixture_id":"pubdebug-20260917","hostname":"public-b","instance_id":"public-b","nonce":"snat-enabled-backend-b","port":"8080"}

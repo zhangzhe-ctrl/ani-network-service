@@ -1,0 +1,983 @@
+{
+  "execution_host": "ubuntu",
+  "command": [
+    "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/lb-api",
+    "call",
+    "-target",
+    "unix:///home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-a.sock",
+    "-service",
+    "TenantEgressService",
+    "-method",
+    "GetEIP"
+  ],
+  "request": {
+    "eip_id": "eip_fdab288a3b1846138806e8e5e14529a9"
+  },
+  "expected": {
+    "response.eip.state": "RESOURCE_STATE_AVAILABLE",
+    "response.eip.observation_stale": false
+  },
+  "result": "fail",
+  "records": [
+    {
+      "at": "2026-09-15T08:57:25.312487+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "eip": {
+            "id": "eip_fdab288a3b1846138806e8e5e14529a9",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-public-lb-eip",
+            "description": "U09 public LB entry, separately owned EIP",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "",
+            "reason_message": "",
+            "version": "1",
+            "created_at": "2026-09-15T08:56:43.580547Z",
+            "updated_at": "2026-09-15T08:56:43.580547Z",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "08488aea-b150-49e6-a8cc-f4bf300bf166",
+            "address": "",
+            "binding_id": "",
+            "binding_state": "unbound",
+            "binding_target": null,
+            "scope": "public",
+            "managed_by": "tenant"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T08:57:30.323568+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "eip": {
+            "id": "eip_fdab288a3b1846138806e8e5e14529a9",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-public-lb-eip",
+            "description": "U09 public LB entry, separately owned EIP",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "",
+            "reason_message": "",
+            "version": "1",
+            "created_at": "2026-09-15T08:56:43.580547Z",
+            "updated_at": "2026-09-15T08:56:43.580547Z",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "08488aea-b150-49e6-a8cc-f4bf300bf166",
+            "address": "",
+            "binding_id": "",
+            "binding_state": "unbound",
+            "binding_target": null,
+            "scope": "public",
+            "managed_by": "tenant"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T08:57:35.336298+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "eip": {
+            "id": "eip_fdab288a3b1846138806e8e5e14529a9",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-public-lb-eip",
+            "description": "U09 public LB entry, separately owned EIP",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "",
+            "reason_message": "",
+            "version": "1",
+            "created_at": "2026-09-15T08:56:43.580547Z",
+            "updated_at": "2026-09-15T08:56:43.580547Z",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "08488aea-b150-49e6-a8cc-f4bf300bf166",
+            "address": "",
+            "binding_id": "",
+            "binding_state": "unbound",
+            "binding_target": null,
+            "scope": "public",
+            "managed_by": "tenant"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T08:57:40.348755+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "eip": {
+            "id": "eip_fdab288a3b1846138806e8e5e14529a9",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-public-lb-eip",
+            "description": "U09 public LB entry, separately owned EIP",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "",
+            "reason_message": "",
+            "version": "1",
+            "created_at": "2026-09-15T08:56:43.580547Z",
+            "updated_at": "2026-09-15T08:56:43.580547Z",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "08488aea-b150-49e6-a8cc-f4bf300bf166",
+            "address": "",
+            "binding_id": "",
+            "binding_state": "unbound",
+            "binding_target": null,
+            "scope": "public",
+            "managed_by": "tenant"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T08:57:45.361162+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "eip": {
+            "id": "eip_fdab288a3b1846138806e8e5e14529a9",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-public-lb-eip",
+            "description": "U09 public LB entry, separately owned EIP",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "",
+            "reason_message": "",
+            "version": "1",
+            "created_at": "2026-09-15T08:56:43.580547Z",
+            "updated_at": "2026-09-15T08:56:43.580547Z",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "08488aea-b150-49e6-a8cc-f4bf300bf166",
+            "address": "",
+            "binding_id": "",
+            "binding_state": "unbound",
+            "binding_target": null,
+            "scope": "public",
+            "managed_by": "tenant"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T08:57:50.374541+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "eip": {
+            "id": "eip_fdab288a3b1846138806e8e5e14529a9",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-public-lb-eip",
+            "description": "U09 public LB entry, separately owned EIP",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "",
+            "reason_message": "",
+            "version": "1",
+            "created_at": "2026-09-15T08:56:43.580547Z",
+            "updated_at": "2026-09-15T08:56:43.580547Z",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "08488aea-b150-49e6-a8cc-f4bf300bf166",
+            "address": "",
+            "binding_id": "",
+            "binding_state": "unbound",
+            "binding_target": null,
+            "scope": "public",
+            "managed_by": "tenant"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T08:57:55.386118+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "eip": {
+            "id": "eip_fdab288a3b1846138806e8e5e14529a9",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-public-lb-eip",
+            "description": "U09 public LB entry, separately owned EIP",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "",
+            "reason_message": "",
+            "version": "1",
+            "created_at": "2026-09-15T08:56:43.580547Z",
+            "updated_at": "2026-09-15T08:56:43.580547Z",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "08488aea-b150-49e6-a8cc-f4bf300bf166",
+            "address": "",
+            "binding_id": "",
+            "binding_state": "unbound",
+            "binding_target": null,
+            "scope": "public",
+            "managed_by": "tenant"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T08:58:00.397080+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "eip": {
+            "id": "eip_fdab288a3b1846138806e8e5e14529a9",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-public-lb-eip",
+            "description": "U09 public LB entry, separately owned EIP",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "",
+            "reason_message": "",
+            "version": "1",
+            "created_at": "2026-09-15T08:56:43.580547Z",
+            "updated_at": "2026-09-15T08:56:43.580547Z",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "08488aea-b150-49e6-a8cc-f4bf300bf166",
+            "address": "",
+            "binding_id": "",
+            "binding_state": "unbound",
+            "binding_target": null,
+            "scope": "public",
+            "managed_by": "tenant"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T08:58:05.408002+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "eip": {
+            "id": "eip_fdab288a3b1846138806e8e5e14529a9",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-public-lb-eip",
+            "description": "U09 public LB entry, separately owned EIP",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "",
+            "reason_message": "",
+            "version": "1",
+            "created_at": "2026-09-15T08:56:43.580547Z",
+            "updated_at": "2026-09-15T08:56:43.580547Z",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "08488aea-b150-49e6-a8cc-f4bf300bf166",
+            "address": "",
+            "binding_id": "",
+            "binding_state": "unbound",
+            "binding_target": null,
+            "scope": "public",
+            "managed_by": "tenant"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T08:58:10.421110+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "eip": {
+            "id": "eip_fdab288a3b1846138806e8e5e14529a9",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-public-lb-eip",
+            "description": "U09 public LB entry, separately owned EIP",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "version": "2",
+            "created_at": "2026-09-15T08:56:43.580547Z",
+            "updated_at": "2026-09-15T08:58:06.302108Z",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "08488aea-b150-49e6-a8cc-f4bf300bf166",
+            "address": "",
+            "binding_id": "",
+            "binding_state": "unbound",
+            "binding_target": null,
+            "scope": "public",
+            "managed_by": "tenant"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T08:58:15.444260+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "eip": {
+            "id": "eip_fdab288a3b1846138806e8e5e14529a9",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-public-lb-eip",
+            "description": "U09 public LB entry, separately owned EIP",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "version": "2",
+            "created_at": "2026-09-15T08:56:43.580547Z",
+            "updated_at": "2026-09-15T08:58:06.302108Z",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "08488aea-b150-49e6-a8cc-f4bf300bf166",
+            "address": "",
+            "binding_id": "",
+            "binding_state": "unbound",
+            "binding_target": null,
+            "scope": "public",
+            "managed_by": "tenant"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T08:58:20.456222+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "eip": {
+            "id": "eip_fdab288a3b1846138806e8e5e14529a9",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-public-lb-eip",
+            "description": "U09 public LB entry, separately owned EIP",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "version": "2",
+            "created_at": "2026-09-15T08:56:43.580547Z",
+            "updated_at": "2026-09-15T08:58:06.302108Z",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "08488aea-b150-49e6-a8cc-f4bf300bf166",
+            "address": "",
+            "binding_id": "",
+            "binding_state": "unbound",
+            "binding_target": null,
+            "scope": "public",
+            "managed_by": "tenant"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T08:58:25.469101+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "eip": {
+            "id": "eip_fdab288a3b1846138806e8e5e14529a9",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-public-lb-eip",
+            "description": "U09 public LB entry, separately owned EIP",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "version": "2",
+            "created_at": "2026-09-15T08:56:43.580547Z",
+            "updated_at": "2026-09-15T08:58:06.302108Z",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "08488aea-b150-49e6-a8cc-f4bf300bf166",
+            "address": "",
+            "binding_id": "",
+            "binding_state": "unbound",
+            "binding_target": null,
+            "scope": "public",
+            "managed_by": "tenant"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T08:58:30.482525+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "eip": {
+            "id": "eip_fdab288a3b1846138806e8e5e14529a9",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-public-lb-eip",
+            "description": "U09 public LB entry, separately owned EIP",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "version": "2",
+            "created_at": "2026-09-15T08:56:43.580547Z",
+            "updated_at": "2026-09-15T08:58:06.302108Z",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "08488aea-b150-49e6-a8cc-f4bf300bf166",
+            "address": "",
+            "binding_id": "",
+            "binding_state": "unbound",
+            "binding_target": null,
+            "scope": "public",
+            "managed_by": "tenant"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T08:58:35.495005+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "eip": {
+            "id": "eip_fdab288a3b1846138806e8e5e14529a9",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-public-lb-eip",
+            "description": "U09 public LB entry, separately owned EIP",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "version": "2",
+            "created_at": "2026-09-15T08:56:43.580547Z",
+            "updated_at": "2026-09-15T08:58:06.302108Z",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "08488aea-b150-49e6-a8cc-f4bf300bf166",
+            "address": "",
+            "binding_id": "",
+            "binding_state": "unbound",
+            "binding_target": null,
+            "scope": "public",
+            "managed_by": "tenant"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T08:58:40.509465+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "eip": {
+            "id": "eip_fdab288a3b1846138806e8e5e14529a9",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-public-lb-eip",
+            "description": "U09 public LB entry, separately owned EIP",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "version": "2",
+            "created_at": "2026-09-15T08:56:43.580547Z",
+            "updated_at": "2026-09-15T08:58:06.302108Z",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "08488aea-b150-49e6-a8cc-f4bf300bf166",
+            "address": "",
+            "binding_id": "",
+            "binding_state": "unbound",
+            "binding_target": null,
+            "scope": "public",
+            "managed_by": "tenant"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T08:58:45.523061+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "eip": {
+            "id": "eip_fdab288a3b1846138806e8e5e14529a9",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-public-lb-eip",
+            "description": "U09 public LB entry, separately owned EIP",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "version": "2",
+            "created_at": "2026-09-15T08:56:43.580547Z",
+            "updated_at": "2026-09-15T08:58:06.302108Z",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "08488aea-b150-49e6-a8cc-f4bf300bf166",
+            "address": "",
+            "binding_id": "",
+            "binding_state": "unbound",
+            "binding_target": null,
+            "scope": "public",
+            "managed_by": "tenant"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T08:58:50.535118+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "eip": {
+            "id": "eip_fdab288a3b1846138806e8e5e14529a9",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-public-lb-eip",
+            "description": "U09 public LB entry, separately owned EIP",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "version": "2",
+            "created_at": "2026-09-15T08:56:43.580547Z",
+            "updated_at": "2026-09-15T08:58:06.302108Z",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "08488aea-b150-49e6-a8cc-f4bf300bf166",
+            "address": "",
+            "binding_id": "",
+            "binding_state": "unbound",
+            "binding_target": null,
+            "scope": "public",
+            "managed_by": "tenant"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T08:58:55.551363+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "eip": {
+            "id": "eip_fdab288a3b1846138806e8e5e14529a9",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-public-lb-eip",
+            "description": "U09 public LB entry, separately owned EIP",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "version": "2",
+            "created_at": "2026-09-15T08:56:43.580547Z",
+            "updated_at": "2026-09-15T08:58:06.302108Z",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "08488aea-b150-49e6-a8cc-f4bf300bf166",
+            "address": "",
+            "binding_id": "",
+            "binding_state": "unbound",
+            "binding_target": null,
+            "scope": "public",
+            "managed_by": "tenant"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T08:59:00.562448+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "eip": {
+            "id": "eip_fdab288a3b1846138806e8e5e14529a9",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-public-lb-eip",
+            "description": "U09 public LB entry, separately owned EIP",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "version": "2",
+            "created_at": "2026-09-15T08:56:43.580547Z",
+            "updated_at": "2026-09-15T08:58:06.302108Z",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "08488aea-b150-49e6-a8cc-f4bf300bf166",
+            "address": "",
+            "binding_id": "",
+            "binding_state": "unbound",
+            "binding_target": null,
+            "scope": "public",
+            "managed_by": "tenant"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T08:59:05.574380+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "eip": {
+            "id": "eip_fdab288a3b1846138806e8e5e14529a9",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-public-lb-eip",
+            "description": "U09 public LB entry, separately owned EIP",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "version": "2",
+            "created_at": "2026-09-15T08:56:43.580547Z",
+            "updated_at": "2026-09-15T08:58:06.302108Z",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "08488aea-b150-49e6-a8cc-f4bf300bf166",
+            "address": "",
+            "binding_id": "",
+            "binding_state": "unbound",
+            "binding_target": null,
+            "scope": "public",
+            "managed_by": "tenant"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T08:59:10.587726+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "eip": {
+            "id": "eip_fdab288a3b1846138806e8e5e14529a9",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-public-lb-eip",
+            "description": "U09 public LB entry, separately owned EIP",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "version": "2",
+            "created_at": "2026-09-15T08:56:43.580547Z",
+            "updated_at": "2026-09-15T08:58:06.302108Z",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "08488aea-b150-49e6-a8cc-f4bf300bf166",
+            "address": "",
+            "binding_id": "",
+            "binding_state": "unbound",
+            "binding_target": null,
+            "scope": "public",
+            "managed_by": "tenant"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T08:59:15.606481+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "eip": {
+            "id": "eip_fdab288a3b1846138806e8e5e14529a9",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-public-lb-eip",
+            "description": "U09 public LB entry, separately owned EIP",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "version": "2",
+            "created_at": "2026-09-15T08:56:43.580547Z",
+            "updated_at": "2026-09-15T08:58:06.302108Z",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "08488aea-b150-49e6-a8cc-f4bf300bf166",
+            "address": "",
+            "binding_id": "",
+            "binding_state": "unbound",
+            "binding_target": null,
+            "scope": "public",
+            "managed_by": "tenant"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T08:59:20.617547+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "eip": {
+            "id": "eip_fdab288a3b1846138806e8e5e14529a9",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-public-lb-eip",
+            "description": "U09 public LB entry, separately owned EIP",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "version": "2",
+            "created_at": "2026-09-15T08:56:43.580547Z",
+            "updated_at": "2026-09-15T08:58:06.302108Z",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "08488aea-b150-49e6-a8cc-f4bf300bf166",
+            "address": "",
+            "binding_id": "",
+            "binding_state": "unbound",
+            "binding_target": null,
+            "scope": "public",
+            "managed_by": "tenant"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T08:59:25.629684+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "eip": {
+            "id": "eip_fdab288a3b1846138806e8e5e14529a9",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-public-lb-eip",
+            "description": "U09 public LB entry, separately owned EIP",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "version": "3",
+            "created_at": "2026-09-15T08:56:43.580547Z",
+            "updated_at": "2026-09-15T08:59:23.188785Z",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "08488aea-b150-49e6-a8cc-f4bf300bf166",
+            "address": "",
+            "binding_id": "",
+            "binding_state": "unbound",
+            "binding_target": null,
+            "scope": "public",
+            "managed_by": "tenant"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T08:59:30.641811+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "eip": {
+            "id": "eip_fdab288a3b1846138806e8e5e14529a9",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-public-lb-eip",
+            "description": "U09 public LB entry, separately owned EIP",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "version": "3",
+            "created_at": "2026-09-15T08:56:43.580547Z",
+            "updated_at": "2026-09-15T08:59:23.188785Z",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "08488aea-b150-49e6-a8cc-f4bf300bf166",
+            "address": "",
+            "binding_id": "",
+            "binding_state": "unbound",
+            "binding_target": null,
+            "scope": "public",
+            "managed_by": "tenant"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T08:59:35.653141+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "eip": {
+            "id": "eip_fdab288a3b1846138806e8e5e14529a9",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-public-lb-eip",
+            "description": "U09 public LB entry, separately owned EIP",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "version": "3",
+            "created_at": "2026-09-15T08:56:43.580547Z",
+            "updated_at": "2026-09-15T08:59:23.188785Z",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "08488aea-b150-49e6-a8cc-f4bf300bf166",
+            "address": "",
+            "binding_id": "",
+            "binding_state": "unbound",
+            "binding_target": null,
+            "scope": "public",
+            "managed_by": "tenant"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T08:59:40.665487+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "eip": {
+            "id": "eip_fdab288a3b1846138806e8e5e14529a9",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-public-lb-eip",
+            "description": "U09 public LB entry, separately owned EIP",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "version": "3",
+            "created_at": "2026-09-15T08:56:43.580547Z",
+            "updated_at": "2026-09-15T08:59:23.188785Z",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "08488aea-b150-49e6-a8cc-f4bf300bf166",
+            "address": "",
+            "binding_id": "",
+            "binding_state": "unbound",
+            "binding_target": null,
+            "scope": "public",
+            "managed_by": "tenant"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T08:59:45.686827+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "eip": {
+            "id": "eip_fdab288a3b1846138806e8e5e14529a9",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-public-lb-eip",
+            "description": "U09 public LB entry, separately owned EIP",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "version": "3",
+            "created_at": "2026-09-15T08:56:43.580547Z",
+            "updated_at": "2026-09-15T08:59:23.188785Z",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "08488aea-b150-49e6-a8cc-f4bf300bf166",
+            "address": "",
+            "binding_id": "",
+            "binding_state": "unbound",
+            "binding_target": null,
+            "scope": "public",
+            "managed_by": "tenant"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T08:59:50.702478+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "eip": {
+            "id": "eip_fdab288a3b1846138806e8e5e14529a9",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-public-lb-eip",
+            "description": "U09 public LB entry, separately owned EIP",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "version": "3",
+            "created_at": "2026-09-15T08:56:43.580547Z",
+            "updated_at": "2026-09-15T08:59:23.188785Z",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "08488aea-b150-49e6-a8cc-f4bf300bf166",
+            "address": "",
+            "binding_id": "",
+            "binding_state": "unbound",
+            "binding_target": null,
+            "scope": "public",
+            "managed_by": "tenant"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    }
+  ]
+}

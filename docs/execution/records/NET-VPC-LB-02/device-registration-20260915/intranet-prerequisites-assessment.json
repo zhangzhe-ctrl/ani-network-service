@@ -1,0 +1,25 @@
+{
+  "at": "2026-09-15T03:20:50.536702+00:00",
+  "scope": "base_intranet",
+  "raw_evidence": "intranet-prerequisites-readonly.json",
+  "raw_sha256": "20f48b3ae19b502f2d364d59bc1862e34cff4b728ddb33944a52dabd9f3b6d87",
+  "checks": {
+    "default_vpc_identity_generation_conditions": true,
+    "intranet_pool_identity_generation_conditions": true,
+    "pool_mapping": true,
+    "declared_service_dns_xds_target_ranges": true,
+    "service_cidrs_covered": true,
+    "provider_roles_healthy": true,
+    "provider_images_match_verified_source": true,
+    "controller_default_router": true
+  },
+  "provider_source_revision": "735abf81cb728f30bd0f15e1885dcd7f88b56ab0",
+  "provider_image_digests": [
+    "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4"
+  ],
+  "provider_source_evidence": "../provider-provenance-20260915.json",
+  "result": "pass_for_platform_contract_prerequisites",
+  "workload_traffic": "not_verified",
+  "public_egress": "not_verified",
+  "recorded_in_product": false
+}

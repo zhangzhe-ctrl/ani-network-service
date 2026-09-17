@@ -1,0 +1,465 @@
+{
+  "at": "2026-09-15T09:55:43.215283+00:00",
+  "execution_host": "ubuntu",
+  "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+  "results": [
+    {
+      "pod": "lb02-2b3122-base-client",
+      "label": "private-vip-public-snat-disabling-0",
+      "argv": [
+        "/probe",
+        "request",
+        "http://10.233.0.200:8080/?nonce=lb02-private-vip-public-snat-disabling-0"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"nonce\":\"lb02-private-vip-public-snat-disabling-0\""
+      ],
+      "at": "2026-09-15T09:55:30.253352+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+        "lb02-2b3122-base-client",
+        "-c",
+        "probe",
+        "--",
+        "/probe",
+        "request",
+        "http://10.233.0.200:8080/?nonce=lb02-private-vip-public-snat-disabling-0"
+      ],
+      "exit": 0,
+      "stdout": "status 200\n{\"fixture_id\":\"lb02-09141908-2b3122\",\"hostname\":\"lb02-2b3122-base-b\",\"instance_id\":\"lb02-2b3122-base-b\",\"nonce\":\"lb02-private-vip-public-snat-disabling-0\",\"port\":\"8080\"}\n",
+      "stderr": "",
+      "pass": true
+    },
+    {
+      "pod": "lb02-2b3122-base-client",
+      "label": "private-vip-public-snat-disabling-1",
+      "argv": [
+        "/probe",
+        "request",
+        "http://10.233.0.200:8080/?nonce=lb02-private-vip-public-snat-disabling-1"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"nonce\":\"lb02-private-vip-public-snat-disabling-1\""
+      ],
+      "at": "2026-09-15T09:55:31.449673+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+        "lb02-2b3122-base-client",
+        "-c",
+        "probe",
+        "--",
+        "/probe",
+        "request",
+        "http://10.233.0.200:8080/?nonce=lb02-private-vip-public-snat-disabling-1"
+      ],
+      "exit": 0,
+      "stdout": "status 200\n{\"fixture_id\":\"lb02-09141908-2b3122\",\"hostname\":\"lb02-2b3122-base-a\",\"instance_id\":\"lb02-2b3122-base-a\",\"nonce\":\"lb02-private-vip-public-snat-disabling-1\",\"port\":\"8080\"}\n",
+      "stderr": "",
+      "pass": true
+    },
+    {
+      "pod": "lb02-2b3122-base-client",
+      "label": "private-vip-public-snat-disabling-2",
+      "argv": [
+        "/probe",
+        "request",
+        "http://10.233.0.200:8080/?nonce=lb02-private-vip-public-snat-disabling-2"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"nonce\":\"lb02-private-vip-public-snat-disabling-2\""
+      ],
+      "at": "2026-09-15T09:55:32.861300+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+        "lb02-2b3122-base-client",
+        "-c",
+        "probe",
+        "--",
+        "/probe",
+        "request",
+        "http://10.233.0.200:8080/?nonce=lb02-private-vip-public-snat-disabling-2"
+      ],
+      "exit": 0,
+      "stdout": "status 200\n{\"fixture_id\":\"lb02-09141908-2b3122\",\"hostname\":\"lb02-2b3122-base-a\",\"instance_id\":\"lb02-2b3122-base-a\",\"nonce\":\"lb02-private-vip-public-snat-disabling-2\",\"port\":\"8080\"}\n",
+      "stderr": "",
+      "pass": true
+    },
+    {
+      "pod": "lb02-2b3122-base-client",
+      "label": "private-vip-public-snat-disabling-3",
+      "argv": [
+        "/probe",
+        "request",
+        "http://10.233.0.200:8080/?nonce=lb02-private-vip-public-snat-disabling-3"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"nonce\":\"lb02-private-vip-public-snat-disabling-3\""
+      ],
+      "at": "2026-09-15T09:55:34.044488+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+        "lb02-2b3122-base-client",
+        "-c",
+        "probe",
+        "--",
+        "/probe",
+        "request",
+        "http://10.233.0.200:8080/?nonce=lb02-private-vip-public-snat-disabling-3"
+      ],
+      "exit": 0,
+      "stdout": "status 200\n{\"fixture_id\":\"lb02-09141908-2b3122\",\"hostname\":\"lb02-2b3122-base-b\",\"instance_id\":\"lb02-2b3122-base-b\",\"nonce\":\"lb02-private-vip-public-snat-disabling-3\",\"port\":\"8080\"}\n",
+      "stderr": "",
+      "pass": true
+    },
+    {
+      "pod": "lb02-2b3122-base-client",
+      "label": "private-vip-public-snat-disabling-4",
+      "argv": [
+        "/probe",
+        "request",
+        "http://10.233.0.200:8080/?nonce=lb02-private-vip-public-snat-disabling-4"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"nonce\":\"lb02-private-vip-public-snat-disabling-4\""
+      ],
+      "at": "2026-09-15T09:55:35.053908+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+        "lb02-2b3122-base-client",
+        "-c",
+        "probe",
+        "--",
+        "/probe",
+        "request",
+        "http://10.233.0.200:8080/?nonce=lb02-private-vip-public-snat-disabling-4"
+      ],
+      "exit": 0,
+      "stdout": "status 200\n{\"fixture_id\":\"lb02-09141908-2b3122\",\"hostname\":\"lb02-2b3122-base-a\",\"instance_id\":\"lb02-2b3122-base-a\",\"nonce\":\"lb02-private-vip-public-snat-disabling-4\",\"port\":\"8080\"}\n",
+      "stderr": "",
+      "pass": true
+    },
+    {
+      "pod": "lb02-2b3122-base-client",
+      "label": "private-vip-public-snat-disabling-5",
+      "argv": [
+        "/probe",
+        "request",
+        "http://10.233.0.200:8080/?nonce=lb02-private-vip-public-snat-disabling-5"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"nonce\":\"lb02-private-vip-public-snat-disabling-5\""
+      ],
+      "at": "2026-09-15T09:55:36.413544+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+        "lb02-2b3122-base-client",
+        "-c",
+        "probe",
+        "--",
+        "/probe",
+        "request",
+        "http://10.233.0.200:8080/?nonce=lb02-private-vip-public-snat-disabling-5"
+      ],
+      "exit": 0,
+      "stdout": "status 200\n{\"fixture_id\":\"lb02-09141908-2b3122\",\"hostname\":\"lb02-2b3122-base-b\",\"instance_id\":\"lb02-2b3122-base-b\",\"nonce\":\"lb02-private-vip-public-snat-disabling-5\",\"port\":\"8080\"}\n",
+      "stderr": "",
+      "pass": true
+    },
+    {
+      "pod": "lb02-2b3122-base-client",
+      "label": "private-vip-public-snat-disabling-6",
+      "argv": [
+        "/probe",
+        "request",
+        "http://10.233.0.200:8080/?nonce=lb02-private-vip-public-snat-disabling-6"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"nonce\":\"lb02-private-vip-public-snat-disabling-6\""
+      ],
+      "at": "2026-09-15T09:55:37.453680+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+        "lb02-2b3122-base-client",
+        "-c",
+        "probe",
+        "--",
+        "/probe",
+        "request",
+        "http://10.233.0.200:8080/?nonce=lb02-private-vip-public-snat-disabling-6"
+      ],
+      "exit": 0,
+      "stdout": "status 200\n{\"fixture_id\":\"lb02-09141908-2b3122\",\"hostname\":\"lb02-2b3122-base-b\",\"instance_id\":\"lb02-2b3122-base-b\",\"nonce\":\"lb02-private-vip-public-snat-disabling-6\",\"port\":\"8080\"}\n",
+      "stderr": "",
+      "pass": true
+    },
+    {
+      "pod": "lb02-2b3122-base-client",
+      "label": "private-vip-public-snat-disabling-7",
+      "argv": [
+        "/probe",
+        "request",
+        "http://10.233.0.200:8080/?nonce=lb02-private-vip-public-snat-disabling-7"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"nonce\":\"lb02-private-vip-public-snat-disabling-7\""
+      ],
+      "at": "2026-09-15T09:55:38.563125+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+        "lb02-2b3122-base-client",
+        "-c",
+        "probe",
+        "--",
+        "/probe",
+        "request",
+        "http://10.233.0.200:8080/?nonce=lb02-private-vip-public-snat-disabling-7"
+      ],
+      "exit": 0,
+      "stdout": "status 200\n{\"fixture_id\":\"lb02-09141908-2b3122\",\"hostname\":\"lb02-2b3122-base-a\",\"instance_id\":\"lb02-2b3122-base-a\",\"nonce\":\"lb02-private-vip-public-snat-disabling-7\",\"port\":\"8080\"}\n",
+      "stderr": "",
+      "pass": true
+    },
+    {
+      "pod": "lb02-2b3122-base-client",
+      "label": "private-vip-public-snat-disabling-8",
+      "argv": [
+        "/probe",
+        "request",
+        "http://10.233.0.200:8080/?nonce=lb02-private-vip-public-snat-disabling-8"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"nonce\":\"lb02-private-vip-public-snat-disabling-8\""
+      ],
+      "at": "2026-09-15T09:55:39.881853+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+        "lb02-2b3122-base-client",
+        "-c",
+        "probe",
+        "--",
+        "/probe",
+        "request",
+        "http://10.233.0.200:8080/?nonce=lb02-private-vip-public-snat-disabling-8"
+      ],
+      "exit": 0,
+      "stdout": "status 200\n{\"fixture_id\":\"lb02-09141908-2b3122\",\"hostname\":\"lb02-2b3122-base-a\",\"instance_id\":\"lb02-2b3122-base-a\",\"nonce\":\"lb02-private-vip-public-snat-disabling-8\",\"port\":\"8080\"}\n",
+      "stderr": "",
+      "pass": true
+    },
+    {
+      "pod": "lb02-2b3122-base-client",
+      "label": "private-vip-public-snat-disabling-9",
+      "argv": [
+        "/probe",
+        "request",
+        "http://10.233.0.200:8080/?nonce=lb02-private-vip-public-snat-disabling-9"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"nonce\":\"lb02-private-vip-public-snat-disabling-9\""
+      ],
+      "at": "2026-09-15T09:55:40.920656+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+        "lb02-2b3122-base-client",
+        "-c",
+        "probe",
+        "--",
+        "/probe",
+        "request",
+        "http://10.233.0.200:8080/?nonce=lb02-private-vip-public-snat-disabling-9"
+      ],
+      "exit": 0,
+      "stdout": "status 200\n{\"fixture_id\":\"lb02-09141908-2b3122\",\"hostname\":\"lb02-2b3122-base-b\",\"instance_id\":\"lb02-2b3122-base-b\",\"nonce\":\"lb02-private-vip-public-snat-disabling-9\",\"port\":\"8080\"}\n",
+      "stderr": "",
+      "pass": true
+    },
+    {
+      "pod": "lb02-2b3122-base-client",
+      "label": "private-vip-public-snat-disabling-10",
+      "argv": [
+        "/probe",
+        "request",
+        "http://10.233.0.200:8080/?nonce=lb02-private-vip-public-snat-disabling-10"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"nonce\":\"lb02-private-vip-public-snat-disabling-10\""
+      ],
+      "at": "2026-09-15T09:55:42.147672+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+        "lb02-2b3122-base-client",
+        "-c",
+        "probe",
+        "--",
+        "/probe",
+        "request",
+        "http://10.233.0.200:8080/?nonce=lb02-private-vip-public-snat-disabling-10"
+      ],
+      "exit": 0,
+      "stdout": "status 200\n{\"fixture_id\":\"lb02-09141908-2b3122\",\"hostname\":\"lb02-2b3122-base-b\",\"instance_id\":\"lb02-2b3122-base-b\",\"nonce\":\"lb02-private-vip-public-snat-disabling-10\",\"port\":\"8080\"}\n",
+      "stderr": "",
+      "pass": true
+    },
+    {
+      "pod": "lb02-2b3122-base-client",
+      "label": "private-vip-public-snat-disabling-11",
+      "argv": [
+        "/probe",
+        "request",
+        "http://10.233.0.200:8080/?nonce=lb02-private-vip-public-snat-disabling-11"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"nonce\":\"lb02-private-vip-public-snat-disabling-11\""
+      ],
+      "at": "2026-09-15T09:55:43.215257+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+        "lb02-2b3122-base-client",
+        "-c",
+        "probe",
+        "--",
+        "/probe",
+        "request",
+        "http://10.233.0.200:8080/?nonce=lb02-private-vip-public-snat-disabling-11"
+      ],
+      "exit": 0,
+      "stdout": "status 200\n{\"fixture_id\":\"lb02-09141908-2b3122\",\"hostname\":\"lb02-2b3122-base-a\",\"instance_id\":\"lb02-2b3122-base-a\",\"nonce\":\"lb02-private-vip-public-snat-disabling-11\",\"port\":\"8080\"}\n",
+      "stderr": "",
+      "pass": true
+    }
+  ],
+  "input_file": "docs/execution/records/NET-VPC-LB-02/device-registration-20260915/private-vip-public-snat-disabling-planned.json",
+  "result": "pass"
+}

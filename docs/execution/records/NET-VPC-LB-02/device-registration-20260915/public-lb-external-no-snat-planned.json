@@ -1,0 +1,341 @@
+{
+  "namespace": "lb02-09141908-2b3122",
+  "commands": [
+    {
+      "pod": "lb02-2b3122-outside-observer",
+      "label": "public-lb-external-no-snat-0",
+      "argv": [
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-0"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"nonce\":\"lb02-public-lb-external-no-snat-0\""
+      ]
+    },
+    {
+      "pod": "lb02-2b3122-outside-observer",
+      "label": "public-lb-external-no-snat-1",
+      "argv": [
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-1"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"nonce\":\"lb02-public-lb-external-no-snat-1\""
+      ]
+    },
+    {
+      "pod": "lb02-2b3122-outside-observer",
+      "label": "public-lb-external-no-snat-2",
+      "argv": [
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-2"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"nonce\":\"lb02-public-lb-external-no-snat-2\""
+      ]
+    },
+    {
+      "pod": "lb02-2b3122-outside-observer",
+      "label": "public-lb-external-no-snat-3",
+      "argv": [
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-3"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"nonce\":\"lb02-public-lb-external-no-snat-3\""
+      ]
+    },
+    {
+      "pod": "lb02-2b3122-outside-observer",
+      "label": "public-lb-external-no-snat-4",
+      "argv": [
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-4"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"nonce\":\"lb02-public-lb-external-no-snat-4\""
+      ]
+    },
+    {
+      "pod": "lb02-2b3122-outside-observer",
+      "label": "public-lb-external-no-snat-5",
+      "argv": [
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-5"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"nonce\":\"lb02-public-lb-external-no-snat-5\""
+      ]
+    },
+    {
+      "pod": "lb02-2b3122-outside-observer",
+      "label": "public-lb-external-no-snat-6",
+      "argv": [
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-6"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"nonce\":\"lb02-public-lb-external-no-snat-6\""
+      ]
+    },
+    {
+      "pod": "lb02-2b3122-outside-observer",
+      "label": "public-lb-external-no-snat-7",
+      "argv": [
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-7"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"nonce\":\"lb02-public-lb-external-no-snat-7\""
+      ]
+    },
+    {
+      "pod": "lb02-2b3122-outside-observer",
+      "label": "public-lb-external-no-snat-8",
+      "argv": [
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-8"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"nonce\":\"lb02-public-lb-external-no-snat-8\""
+      ]
+    },
+    {
+      "pod": "lb02-2b3122-outside-observer",
+      "label": "public-lb-external-no-snat-9",
+      "argv": [
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-9"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"nonce\":\"lb02-public-lb-external-no-snat-9\""
+      ]
+    },
+    {
+      "pod": "lb02-2b3122-outside-observer",
+      "label": "public-lb-external-no-snat-10",
+      "argv": [
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-10"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"nonce\":\"lb02-public-lb-external-no-snat-10\""
+      ]
+    },
+    {
+      "pod": "lb02-2b3122-outside-observer",
+      "label": "public-lb-external-no-snat-11",
+      "argv": [
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-11"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"nonce\":\"lb02-public-lb-external-no-snat-11\""
+      ]
+    },
+    {
+      "pod": "lb02-2b3122-outside-observer",
+      "label": "public-lb-external-no-snat-12",
+      "argv": [
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-12"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"nonce\":\"lb02-public-lb-external-no-snat-12\""
+      ]
+    },
+    {
+      "pod": "lb02-2b3122-outside-observer",
+      "label": "public-lb-external-no-snat-13",
+      "argv": [
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-13"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"nonce\":\"lb02-public-lb-external-no-snat-13\""
+      ]
+    },
+    {
+      "pod": "lb02-2b3122-outside-observer",
+      "label": "public-lb-external-no-snat-14",
+      "argv": [
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-14"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"nonce\":\"lb02-public-lb-external-no-snat-14\""
+      ]
+    },
+    {
+      "pod": "lb02-2b3122-outside-observer",
+      "label": "public-lb-external-no-snat-15",
+      "argv": [
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-15"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"nonce\":\"lb02-public-lb-external-no-snat-15\""
+      ]
+    },
+    {
+      "pod": "lb02-2b3122-outside-observer",
+      "label": "public-lb-external-no-snat-16",
+      "argv": [
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-16"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"nonce\":\"lb02-public-lb-external-no-snat-16\""
+      ]
+    },
+    {
+      "pod": "lb02-2b3122-outside-observer",
+      "label": "public-lb-external-no-snat-17",
+      "argv": [
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-17"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"nonce\":\"lb02-public-lb-external-no-snat-17\""
+      ]
+    },
+    {
+      "pod": "lb02-2b3122-outside-observer",
+      "label": "public-lb-external-no-snat-18",
+      "argv": [
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-18"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"nonce\":\"lb02-public-lb-external-no-snat-18\""
+      ]
+    },
+    {
+      "pod": "lb02-2b3122-outside-observer",
+      "label": "public-lb-external-no-snat-19",
+      "argv": [
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-19"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"nonce\":\"lb02-public-lb-external-no-snat-19\""
+      ]
+    },
+    {
+      "pod": "lb02-2b3122-outside-observer",
+      "label": "public-lb-external-no-snat-20",
+      "argv": [
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-20"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"nonce\":\"lb02-public-lb-external-no-snat-20\""
+      ]
+    },
+    {
+      "pod": "lb02-2b3122-outside-observer",
+      "label": "public-lb-external-no-snat-21",
+      "argv": [
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-21"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"nonce\":\"lb02-public-lb-external-no-snat-21\""
+      ]
+    },
+    {
+      "pod": "lb02-2b3122-outside-observer",
+      "label": "public-lb-external-no-snat-22",
+      "argv": [
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-22"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"nonce\":\"lb02-public-lb-external-no-snat-22\""
+      ]
+    },
+    {
+      "pod": "lb02-2b3122-outside-observer",
+      "label": "public-lb-external-no-snat-23",
+      "argv": [
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-23"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"nonce\":\"lb02-public-lb-external-no-snat-23\""
+      ]
+    }
+  ]
+}

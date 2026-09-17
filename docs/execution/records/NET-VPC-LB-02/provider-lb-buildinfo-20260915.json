@@ -1,0 +1,56 @@
+{
+  "at": "2026-09-14T19:00:34.199539+00:00",
+  "mode": "read_only version metadata; no data-plane configuration changes",
+  "shutdown_manager": [
+    {
+      "container_id": "359928663cde15b38892370a26c716b296dc74bd8da0285027381db7b46dac5c",
+      "container_name": "shutdown-manager",
+      "pid": 356807,
+      "executable": "/usr/local/bin/envoy-gateway",
+      "image": {
+        "image": "sha256:5f75b495bf07beb23f8ac4f97649e876ed723f1c6d02031bbc7cd23028b490b6",
+        "annotations": {},
+        "userSpecifiedImage": "docker.changqingyun.cn/kubercloud/gateway-dev:latest",
+        "runtimeHandler": ""
+      },
+      "image_ref": "sha256:5f75b495bf07beb23f8ac4f97649e876ed723f1c6d02031bbc7cd23028b490b6",
+      "go_version": "go1.26.6",
+      "build_info_fields": [
+        "path\tgithub.com/envoyproxy/gateway/cmd/envoy-gateway",
+        "mod\tgithub.com/envoyproxy/gateway\tv1.9.0-rc.0.0.20260824130120-4de02efc8f05\t",
+        "build\tCGO_ENABLED=0",
+        "build\tGOARCH=amd64",
+        "build\tGOOS=linux",
+        "build\tvcs=git",
+        "build\tvcs.revision=4de02efc8f05292e6a577b1a5d2106508d03ed46",
+        "build\tvcs.time=2026-08-24T13:01:20Z",
+        "build\tvcs.modified=false"
+      ],
+      "build_info_sha256": "453e1f3e14cc5f696dc2433fbd575ddf1accd92198a174be8dc5cb06be2ad31b"
+    }
+  ],
+  "envoy_version": {
+    "command": [
+      "sudo",
+      "-n",
+      "/usr/local/bin/kubectl",
+      "--context",
+      "kubernetes-admin@ani-platform",
+      "--kubeconfig",
+      "/etc/kubernetes/admin.conf",
+      "--request-timeout=15s",
+      "-n",
+      "lb-validation",
+      "exec",
+      "my-lb-57b4db95c8-7wpc7",
+      "-c",
+      "envoy",
+      "--",
+      "envoy",
+      "--version"
+    ],
+    "exit": 0,
+    "stdout": "\nenvoy  version: 0ebfcfe5b0484b89ca85b761da9e05ce75dbda8d/1.38.3/Clean/RELEASE/BoringSSL\n\n",
+    "stderr": ""
+  }
+}

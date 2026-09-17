@@ -1,0 +1,82 @@
+{
+  "at": "2026-09-15T05:52:33.540671+00:00",
+  "execution_host": "ubuntu",
+  "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+  "results": [
+    {
+      "pod": "lb02-2b3122-base-client",
+      "label": "deleted-vip-unreachable",
+      "argv": [
+        "/probe",
+        "request",
+        "http://10.233.0.200:8080/?nonce=deleted-vip-01"
+      ],
+      "expect_exit": 2,
+      "at": "2026-09-15T05:52:31.864498+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+        "lb02-2b3122-base-client",
+        "-c",
+        "probe",
+        "--",
+        "/probe",
+        "request",
+        "http://10.233.0.200:8080/?nonce=deleted-vip-01"
+      ],
+      "exit": 2,
+      "stdout": "Get \"http://10.233.0.200:8080/?nonce=deleted-vip-01\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)\n",
+      "stderr": "command terminated with exit code 2\n",
+      "pass": true
+    },
+    {
+      "pod": "lb02-2b3122-base-client",
+      "label": "backend-positive-control",
+      "argv": [
+        "/probe",
+        "request",
+        "http://10.233.1.2:8080/?nonce=deleted-vip-positive-01"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"instance_id\":\"lb02-2b3122-base-a\"",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"nonce\":\"deleted-vip-positive-01\""
+      ],
+      "at": "2026-09-15T05:52:33.540650+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+        "lb02-2b3122-base-client",
+        "-c",
+        "probe",
+        "--",
+        "/probe",
+        "request",
+        "http://10.233.1.2:8080/?nonce=deleted-vip-positive-01"
+      ],
+      "exit": 0,
+      "stdout": "status 200\n{\"fixture_id\":\"lb02-09141908-2b3122\",\"hostname\":\"lb02-2b3122-base-a\",\"instance_id\":\"lb02-2b3122-base-a\",\"nonce\":\"deleted-vip-positive-01\",\"port\":\"8080\"}\n",
+      "stderr": "",
+      "pass": true
+    }
+  ],
+  "input_file": "docs/execution/records/NET-VPC-LB-02/device-registration-20260915/private-after-delete-probes-planned.json",
+  "result": "pass"
+}

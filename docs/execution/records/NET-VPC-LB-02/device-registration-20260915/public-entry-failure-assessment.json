@@ -1,0 +1,30 @@
+{
+  "at": "2026-09-15T10:11:12.523998+00:00",
+  "source_run": "20260915T074304Z-31ea8959",
+  "result": "fail",
+  "scope": "pure Public LB literal EIP entry in laboratory, without VPC Public SNAT",
+  "public_eip": "172.16.102.194",
+  "load_balancer_id": "lb_bd6f74b7445b4c5a815763d38a995f14",
+  "traffic": "public-lb-external-no-snat-assessment.json",
+  "no_snat": "public-lb-no-public-snat-final.json",
+  "positive_controls": [
+    "public-entry-controls.json",
+    "public-envoy-diagnostic.json"
+  ],
+  "packet_headers": "public-entry-packet-capture.json",
+  "read_only_diagnostics": [
+    "public-northbound-read.json",
+    "public-northbound-related-read.json",
+    "public-entry-ovn-trace-new.json"
+  ],
+  "observations": [
+    "24 external direct EIP requests timed out. A Public-subnet workload also timed out to the EIP.",
+    "Same external client reaches the direct Public workload. Direct Envoy endpoints return actual backend identity. These are controls, not LB acceptance.",
+    "EIP ARP reply and repeated TCP SYN were visible on ens35; no SYN-ACK in the bounded capture.",
+    "OVN NB maps the EIP to both Envoy addresses, correct Public gateway_port, and VPC router LB group.",
+    "OVN logical simulation with new-connection state reaches an Envoy logical port; this does not establish actual OVS packet delivery or return path."
+  ],
+  "root_cause": "not_verified",
+  "boundary": "No change to shared kc/Envoy processes, OVN DB, host routes/firewall, controller-owned Deployment or Pod specs. Product Delete is used to continue EIP release/rebind acceptance.",
+  "later_action": "public-lb-delete.json"
+}

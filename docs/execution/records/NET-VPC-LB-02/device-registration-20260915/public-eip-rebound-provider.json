@@ -1,0 +1,328 @@
+{
+  "at": "2026-09-15T10:19:17.222015+00:00",
+  "execution_host": "ubuntu",
+  "command": [
+    "bash",
+    "-c",
+    "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+    "kubectl",
+    "--kubeconfig",
+    "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/kubeconfig.json",
+    "--request-timeout=20s",
+    "get",
+    "vpcs.networking.kubercloud.com,eips.networking.kubercloud.com,snats.networking.kubercloud.com,nats.networking.kubercloud.com",
+    "-n",
+    "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+    "-o",
+    "json"
+  ],
+  "exit": 0,
+  "objects": {
+    "apiVersion": "v1",
+    "items": [
+      {
+        "apiVersion": "networking.kubercloud.com/v1",
+        "kind": "VPC",
+        "metadata": {
+          "creationTimestamp": "2026-09-15T04:02:59Z",
+          "finalizers": [
+            "networking.kubercloud.com/finalizer"
+          ],
+          "generation": 1,
+          "labels": {
+            "network.ani.io/binding-id": "5225208e-046f-42a6-8be8-c0f05810bc4e",
+            "network.ani.io/managed-by": "ani-network-service",
+            "network.ani.io/resource-id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "network.ani.io/tenant-id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad"
+          },
+          "name": "vpc-d06f28e82fe847f7bf2cedd57dad82f4",
+          "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+          "resourceVersion": "381655",
+          "uid": "a4e27d33-c63b-459c-a939-16e61b9c19de"
+        },
+        "spec": {
+          "allowedNamespaces": {
+            "from": "Same"
+          },
+          "cidrBlock": "10.233.0.0/20",
+          "ipVersion": "IPv4"
+        },
+        "status": {
+          "boundResources": {
+            "chassisNode": "ani-01",
+            "router": "vpc.lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad.vpc-d06f28e82fe847f7bf2cedd57dad82f4"
+          },
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-09-15T04:02:59Z",
+              "message": "",
+              "reason": "Valid",
+              "status": "True",
+              "type": "Valid"
+            },
+            {
+              "lastTransitionTime": "2026-09-15T04:02:59Z",
+              "message": "",
+              "reason": "Initialized",
+              "status": "True",
+              "type": "Initialized"
+            },
+            {
+              "lastTransitionTime": "2026-09-15T04:02:59Z",
+              "message": "",
+              "reason": "Ready",
+              "status": "True",
+              "type": "Ready"
+            }
+          ],
+          "eips": {
+            "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad/eip-c428922594b94429a405305c6c781897": "10.242.252.2",
+            "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad/eip-fdab288a3b1846138806e8e5e14529a9": "172.16.102.194"
+          },
+          "observedGeneration": 1,
+          "subnets": {
+            "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad/subnet-2a3f02dc6b444cc4b708a38d345a88c7": "10.233.1.0/24",
+            "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad/subnet-f74d90cbb5484f7fb37f8a8f6782da1d": "10.233.0.0/24"
+          }
+        }
+      },
+      {
+        "apiVersion": "networking.kubercloud.com/v1",
+        "kind": "EIP",
+        "metadata": {
+          "creationTimestamp": "2026-09-15T04:05:18Z",
+          "finalizers": [
+            "networking.kubercloud.com/finalizer"
+          ],
+          "generation": 2,
+          "labels": {
+            "network.ani.io/binding-id": "da81b942-3d80-4bef-882d-cddc05c35063",
+            "network.ani.io/managed-by": "ani-network-service",
+            "network.ani.io/resource-id": "eip_c428922594b94429a405305c6c781897",
+            "network.ani.io/tenant-id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad"
+          },
+          "name": "eip-c428922594b94429a405305c6c781897",
+          "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+          "resourceVersion": "273472",
+          "uid": "9c33ae20-a87e-4810-b141-f968c68c9f50"
+        },
+        "spec": {
+          "ipAddress": "10.242.252.2",
+          "ipVersion": "IPv4",
+          "subnet": "kcn-system/pool-f6c078d198ae4ea1be6f43cfad8f9934"
+        },
+        "status": {
+          "boundResource": {
+            "disabled": false,
+            "nodeName": "ani-01",
+            "observedGeneration": 1,
+            "resource": "snat-3cbc9e4d07b44c0291a541d50bd4b43e",
+            "resourceType": "Snat",
+            "vpc": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad/vpc-d06f28e82fe847f7bf2cedd57dad82f4"
+          },
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-09-15T04:05:18Z",
+              "message": "",
+              "reason": "Initialized",
+              "status": "True",
+              "type": "Initialized"
+            },
+            {
+              "lastTransitionTime": "2026-09-15T04:05:18Z",
+              "message": "",
+              "reason": "Valid",
+              "status": "True",
+              "type": "Valid"
+            }
+          ],
+          "gateway": "kcn-system/kcn-cluster",
+          "phase": "Bound"
+        }
+      },
+      {
+        "apiVersion": "networking.kubercloud.com/v1",
+        "kind": "EIP",
+        "metadata": {
+          "creationTimestamp": "2026-09-15T09:16:10Z",
+          "finalizers": [
+            "networking.kubercloud.com/finalizer"
+          ],
+          "generation": 2,
+          "labels": {
+            "network.ani.io/binding-id": "c3542496-cdfd-4a32-9c38-3959d3c1f707",
+            "network.ani.io/managed-by": "ani-network-service",
+            "network.ani.io/resource-id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+            "network.ani.io/tenant-id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad"
+          },
+          "name": "eip-f20581cca5d34cc7a25af17cd95dc4cb",
+          "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+          "resourceVersion": "377666",
+          "uid": "92c89380-ef23-46a1-bb4c-ec6c15c640cb"
+        },
+        "spec": {
+          "ipAddress": "172.16.102.195",
+          "ipVersion": "IPv4",
+          "subnet": "kcn-system/pool-f28b9d470c0147f6a66646b8976c36f9"
+        },
+        "status": {
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-09-15T09:16:10Z",
+              "message": "",
+              "reason": "Initialized",
+              "status": "True",
+              "type": "Initialized"
+            },
+            {
+              "lastTransitionTime": "2026-09-15T09:16:10Z",
+              "message": "",
+              "reason": "Valid",
+              "status": "True",
+              "type": "Valid"
+            }
+          ],
+          "gateway": "egw-386dc165a8744951bc624ab55c439681",
+          "phase": "Available"
+        }
+      },
+      {
+        "apiVersion": "networking.kubercloud.com/v1",
+        "kind": "EIP",
+        "metadata": {
+          "creationTimestamp": "2026-09-15T09:09:15Z",
+          "finalizers": [
+            "networking.kubercloud.com/finalizer"
+          ],
+          "generation": 2,
+          "labels": {
+            "network.ani.io/binding-id": "9be43963-2c7e-4d15-b92e-32798bce36e3",
+            "network.ani.io/managed-by": "ani-network-service",
+            "network.ani.io/resource-id": "eip_fdab288a3b1846138806e8e5e14529a9",
+            "network.ani.io/tenant-id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad"
+          },
+          "name": "eip-fdab288a3b1846138806e8e5e14529a9",
+          "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+          "resourceVersion": "381653",
+          "uid": "a878f5da-22c4-4288-bc4c-2edc4084ca2c"
+        },
+        "spec": {
+          "ipAddress": "172.16.102.194",
+          "ipVersion": "IPv4",
+          "subnet": "kcn-system/pool-f28b9d470c0147f6a66646b8976c36f9"
+        },
+        "status": {
+          "boundResource": {
+            "disabled": false,
+            "nodeName": "ani-01",
+            "observedGeneration": 1,
+            "resource": "snat-69b2441cc70147a4adfeb22c8c0659fc",
+            "resourceType": "Snat",
+            "vpc": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad/vpc-d06f28e82fe847f7bf2cedd57dad82f4"
+          },
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-09-15T09:09:15Z",
+              "message": "",
+              "reason": "Initialized",
+              "status": "True",
+              "type": "Initialized"
+            },
+            {
+              "lastTransitionTime": "2026-09-15T09:09:15Z",
+              "message": "",
+              "reason": "Valid",
+              "status": "True",
+              "type": "Valid"
+            }
+          ],
+          "gateway": "egw-386dc165a8744951bc624ab55c439681",
+          "phase": "Bound"
+        }
+      },
+      {
+        "apiVersion": "networking.kubercloud.com/v1",
+        "kind": "Snat",
+        "metadata": {
+          "creationTimestamp": "2026-09-15T04:12:04Z",
+          "finalizers": [
+            "networking.kubercloud.com/finalizer"
+          ],
+          "generation": 1,
+          "labels": {
+            "network.ani.io/binding-id": "22511e42-21ea-492f-abf8-0a7f24dcd022",
+            "network.ani.io/managed-by": "ani-network-service",
+            "network.ani.io/resource-id": "snat_3cbc9e4d07b44c0291a541d50bd4b43e",
+            "network.ani.io/tenant-id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad"
+          },
+          "name": "snat-3cbc9e4d07b44c0291a541d50bd4b43e",
+          "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+          "resourceVersion": "273473",
+          "uid": "5f639975-62af-4f31-bc3e-fc781657ae1f"
+        },
+        "spec": {
+          "disable": false,
+          "eip": "eip-c428922594b94429a405305c6c781897",
+          "vpc": "vpc-d06f28e82fe847f7bf2cedd57dad82f4"
+        },
+        "status": {
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-09-15T04:12:04Z",
+              "message": "",
+              "reason": "Valid",
+              "status": "True",
+              "type": "Valid"
+            }
+          ],
+          "eipAddress": "10.242.252.2",
+          "phase": "Bound"
+        }
+      },
+      {
+        "apiVersion": "networking.kubercloud.com/v1",
+        "kind": "Snat",
+        "metadata": {
+          "creationTimestamp": "2026-09-15T10:16:13Z",
+          "finalizers": [
+            "networking.kubercloud.com/finalizer"
+          ],
+          "generation": 1,
+          "labels": {
+            "network.ani.io/binding-id": "d81b21fc-9063-4d86-a726-2b54fa40574b",
+            "network.ani.io/managed-by": "ani-network-service",
+            "network.ani.io/resource-id": "snat_69b2441cc70147a4adfeb22c8c0659fc",
+            "network.ani.io/tenant-id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad"
+          },
+          "name": "snat-69b2441cc70147a4adfeb22c8c0659fc",
+          "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+          "resourceVersion": "381654",
+          "uid": "6b38ad95-09d8-4874-85d8-cb843b66950a"
+        },
+        "spec": {
+          "disable": false,
+          "eip": "eip-fdab288a3b1846138806e8e5e14529a9",
+          "vpc": "vpc-d06f28e82fe847f7bf2cedd57dad82f4"
+        },
+        "status": {
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-09-15T10:16:13Z",
+              "message": "",
+              "reason": "Valid",
+              "status": "True",
+              "type": "Valid"
+            }
+          ],
+          "eipAddress": "172.16.102.194",
+          "phase": "Bound"
+        }
+      }
+    ],
+    "kind": "List",
+    "metadata": {
+      "resourceVersion": ""
+    }
+  },
+  "stderr": ""
+}

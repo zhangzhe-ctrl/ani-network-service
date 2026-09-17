@@ -1,0 +1,56 @@
+{
+  "at": "2026-09-14T19:38:31.758677+00:00",
+  "hypothesis": "complete audit exceeds 5 second provider call timeout; test with 10 second calls and 40 second lease within existing validation bounds",
+  "exit": 0,
+  "records": [
+    {
+      "metrics_before": [
+        "ani_network_observation_audit_collection_max_seconds 5.942543018",
+        "ani_network_observation_audit_evidence_age_seconds 11.215000378",
+        "ani_network_observation_audit_failures_total 0",
+        "ani_network_observation_source_synced 1",
+        "ani_network_observation_watch_errors_total 0"
+      ]
+    },
+    {
+      "stop_exit": 0,
+      "stderr": ""
+    },
+    {
+      "processes_after_stop": {
+        "at": "2026-09-14T19:33:09.102231+00:00",
+        "run": "lb02-09141908-2b3122",
+        "state": "stopped",
+        "processes": [
+          {
+            "name": "owner",
+            "pid": 1824064,
+            "start_ticks": "643320029"
+          },
+          {
+            "name": "network",
+            "pid": 1824065,
+            "start_ticks": "643320029"
+          },
+          {
+            "name": "tenant-a",
+            "pid": 1824066,
+            "start_ticks": "643320029"
+          },
+          {
+            "name": "tenant-b",
+            "pid": 1824067,
+            "start_ticks": "643320029"
+          },
+          {
+            "name": "platform",
+            "pid": 1824083,
+            "start_ticks": "643320029"
+          }
+        ],
+        "stopped_at": "2026-09-14T19:38:31.720036+00:00"
+      }
+    }
+  ],
+  "stderr": ""
+}

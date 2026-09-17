@@ -1,0 +1,38 @@
+{
+  "at": "2026-09-14T17:06:38.224562+00:00",
+  "source": "docs/execution/records/NET-VPC-LB-02/continuation-02-kind-preflight.json",
+  "nodes": [
+    {
+      "name": "kc062-control-plane",
+      "taints": [
+        {
+          "effect": "NoSchedule",
+          "key": "node-role.kubernetes.io/control-plane"
+        }
+      ],
+      "cpu_allocatable": 4.0,
+      "cpu_requested": 1.71,
+      "cpu_remaining": 2.29,
+      "memory_remaining_mib": 4145.62109375
+    },
+    {
+      "name": "kc062-worker",
+      "taints": [],
+      "cpu_allocatable": 4.0,
+      "cpu_requested": 3.97,
+      "cpu_remaining": 0.03,
+      "memory_remaining_mib": 3290.62109375
+    },
+    {
+      "name": "kc062-worker2",
+      "taints": [],
+      "cpu_allocatable": 4.0,
+      "cpu_requested": 3.965,
+      "cpu_remaining": 0.035,
+      "memory_remaining_mib": 2235.2424926757812
+    }
+  ],
+  "pending_pods": [],
+  "small_cpu_per_replica": 1.01,
+  "small_replica_count": 2
+}

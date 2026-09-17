@@ -1,0 +1,983 @@
+{
+  "execution_host": "ubuntu",
+  "command": [
+    "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/lb-api",
+    "call",
+    "-target",
+    "unix:///home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-a.sock",
+    "-service",
+    "TenantEgressService",
+    "-method",
+    "GetEIP"
+  ],
+  "request": {
+    "eip_id": "eip_f20581cca5d34cc7a25af17cd95dc4cb"
+  },
+  "expected": {
+    "response.eip.state": "RESOURCE_STATE_AVAILABLE",
+    "response.eip.observation_stale": false
+  },
+  "result": "fail",
+  "records": [
+    {
+      "at": "2026-09-15T09:15:42.191177+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "eip": {
+            "id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-public-snat-eip",
+            "description": "U09 separately owned Public SNAT EIP",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "",
+            "reason_message": "",
+            "version": "1",
+            "created_at": "2026-09-15T09:14:43.444708Z",
+            "updated_at": "2026-09-15T09:14:43.444708Z",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "3951ae98-20bb-4c59-b9b9-b88c0b5884a9",
+            "address": "",
+            "binding_id": "",
+            "binding_state": "unbound",
+            "binding_target": null,
+            "scope": "public",
+            "managed_by": "tenant"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T09:15:47.202397+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "eip": {
+            "id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-public-snat-eip",
+            "description": "U09 separately owned Public SNAT EIP",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "",
+            "reason_message": "",
+            "version": "1",
+            "created_at": "2026-09-15T09:14:43.444708Z",
+            "updated_at": "2026-09-15T09:14:43.444708Z",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "3951ae98-20bb-4c59-b9b9-b88c0b5884a9",
+            "address": "",
+            "binding_id": "",
+            "binding_state": "unbound",
+            "binding_target": null,
+            "scope": "public",
+            "managed_by": "tenant"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T09:15:52.213078+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "eip": {
+            "id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-public-snat-eip",
+            "description": "U09 separately owned Public SNAT EIP",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "",
+            "reason_message": "",
+            "version": "1",
+            "created_at": "2026-09-15T09:14:43.444708Z",
+            "updated_at": "2026-09-15T09:14:43.444708Z",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "3951ae98-20bb-4c59-b9b9-b88c0b5884a9",
+            "address": "",
+            "binding_id": "",
+            "binding_state": "unbound",
+            "binding_target": null,
+            "scope": "public",
+            "managed_by": "tenant"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T09:15:57.227815+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "eip": {
+            "id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-public-snat-eip",
+            "description": "U09 separately owned Public SNAT EIP",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "",
+            "reason_message": "",
+            "version": "1",
+            "created_at": "2026-09-15T09:14:43.444708Z",
+            "updated_at": "2026-09-15T09:14:43.444708Z",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "3951ae98-20bb-4c59-b9b9-b88c0b5884a9",
+            "address": "",
+            "binding_id": "",
+            "binding_state": "unbound",
+            "binding_target": null,
+            "scope": "public",
+            "managed_by": "tenant"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T09:16:02.242368+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "eip": {
+            "id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-public-snat-eip",
+            "description": "U09 separately owned Public SNAT EIP",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "",
+            "reason_message": "",
+            "version": "1",
+            "created_at": "2026-09-15T09:14:43.444708Z",
+            "updated_at": "2026-09-15T09:14:43.444708Z",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "3951ae98-20bb-4c59-b9b9-b88c0b5884a9",
+            "address": "",
+            "binding_id": "",
+            "binding_state": "unbound",
+            "binding_target": null,
+            "scope": "public",
+            "managed_by": "tenant"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T09:16:07.254539+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "eip": {
+            "id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-public-snat-eip",
+            "description": "U09 separately owned Public SNAT EIP",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "",
+            "reason_message": "",
+            "version": "1",
+            "created_at": "2026-09-15T09:14:43.444708Z",
+            "updated_at": "2026-09-15T09:14:43.444708Z",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "3951ae98-20bb-4c59-b9b9-b88c0b5884a9",
+            "address": "",
+            "binding_id": "",
+            "binding_state": "unbound",
+            "binding_target": null,
+            "scope": "public",
+            "managed_by": "tenant"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T09:16:12.264965+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "eip": {
+            "id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-public-snat-eip",
+            "description": "U09 separately owned Public SNAT EIP",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "",
+            "reason_message": "",
+            "version": "1",
+            "created_at": "2026-09-15T09:14:43.444708Z",
+            "updated_at": "2026-09-15T09:14:43.444708Z",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "3951ae98-20bb-4c59-b9b9-b88c0b5884a9",
+            "address": "",
+            "binding_id": "",
+            "binding_state": "unbound",
+            "binding_target": null,
+            "scope": "public",
+            "managed_by": "tenant"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T09:16:17.277067+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "eip": {
+            "id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-public-snat-eip",
+            "description": "U09 separately owned Public SNAT EIP",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "",
+            "reason_message": "",
+            "version": "1",
+            "created_at": "2026-09-15T09:14:43.444708Z",
+            "updated_at": "2026-09-15T09:14:43.444708Z",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "3951ae98-20bb-4c59-b9b9-b88c0b5884a9",
+            "address": "",
+            "binding_id": "",
+            "binding_state": "unbound",
+            "binding_target": null,
+            "scope": "public",
+            "managed_by": "tenant"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T09:16:22.289274+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "eip": {
+            "id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-public-snat-eip",
+            "description": "U09 separately owned Public SNAT EIP",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_RESULT_UNKNOWN",
+            "reason_message": "The external request result is unknown; Network is observing the original request.",
+            "version": "2",
+            "created_at": "2026-09-15T09:14:43.444708Z",
+            "updated_at": "2026-09-15T09:16:20.459491Z",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "3951ae98-20bb-4c59-b9b9-b88c0b5884a9",
+            "address": "",
+            "binding_id": "",
+            "binding_state": "unbound",
+            "binding_target": null,
+            "scope": "public",
+            "managed_by": "tenant"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T09:16:27.301589+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "eip": {
+            "id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-public-snat-eip",
+            "description": "U09 separately owned Public SNAT EIP",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_RESULT_UNKNOWN",
+            "reason_message": "The external request result is unknown; Network is observing the original request.",
+            "version": "2",
+            "created_at": "2026-09-15T09:14:43.444708Z",
+            "updated_at": "2026-09-15T09:16:20.459491Z",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "3951ae98-20bb-4c59-b9b9-b88c0b5884a9",
+            "address": "",
+            "binding_id": "",
+            "binding_state": "unbound",
+            "binding_target": null,
+            "scope": "public",
+            "managed_by": "tenant"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T09:16:32.312867+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "eip": {
+            "id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-public-snat-eip",
+            "description": "U09 separately owned Public SNAT EIP",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_RESULT_UNKNOWN",
+            "reason_message": "The external request result is unknown; Network is observing the original request.",
+            "version": "2",
+            "created_at": "2026-09-15T09:14:43.444708Z",
+            "updated_at": "2026-09-15T09:16:20.459491Z",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "3951ae98-20bb-4c59-b9b9-b88c0b5884a9",
+            "address": "",
+            "binding_id": "",
+            "binding_state": "unbound",
+            "binding_target": null,
+            "scope": "public",
+            "managed_by": "tenant"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T09:16:37.325117+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "eip": {
+            "id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-public-snat-eip",
+            "description": "U09 separately owned Public SNAT EIP",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_RESULT_UNKNOWN",
+            "reason_message": "The external request result is unknown; Network is observing the original request.",
+            "version": "2",
+            "created_at": "2026-09-15T09:14:43.444708Z",
+            "updated_at": "2026-09-15T09:16:20.459491Z",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "3951ae98-20bb-4c59-b9b9-b88c0b5884a9",
+            "address": "",
+            "binding_id": "",
+            "binding_state": "unbound",
+            "binding_target": null,
+            "scope": "public",
+            "managed_by": "tenant"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T09:16:42.335810+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "eip": {
+            "id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-public-snat-eip",
+            "description": "U09 separately owned Public SNAT EIP",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_RESULT_UNKNOWN",
+            "reason_message": "The external request result is unknown; Network is observing the original request.",
+            "version": "2",
+            "created_at": "2026-09-15T09:14:43.444708Z",
+            "updated_at": "2026-09-15T09:16:20.459491Z",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "3951ae98-20bb-4c59-b9b9-b88c0b5884a9",
+            "address": "",
+            "binding_id": "",
+            "binding_state": "unbound",
+            "binding_target": null,
+            "scope": "public",
+            "managed_by": "tenant"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T09:16:47.350522+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "eip": {
+            "id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-public-snat-eip",
+            "description": "U09 separately owned Public SNAT EIP",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_RESULT_UNKNOWN",
+            "reason_message": "The external request result is unknown; Network is observing the original request.",
+            "version": "2",
+            "created_at": "2026-09-15T09:14:43.444708Z",
+            "updated_at": "2026-09-15T09:16:20.459491Z",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "3951ae98-20bb-4c59-b9b9-b88c0b5884a9",
+            "address": "",
+            "binding_id": "",
+            "binding_state": "unbound",
+            "binding_target": null,
+            "scope": "public",
+            "managed_by": "tenant"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T09:16:52.362076+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "eip": {
+            "id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-public-snat-eip",
+            "description": "U09 separately owned Public SNAT EIP",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_RESULT_UNKNOWN",
+            "reason_message": "The external request result is unknown; Network is observing the original request.",
+            "version": "2",
+            "created_at": "2026-09-15T09:14:43.444708Z",
+            "updated_at": "2026-09-15T09:16:20.459491Z",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "3951ae98-20bb-4c59-b9b9-b88c0b5884a9",
+            "address": "",
+            "binding_id": "",
+            "binding_state": "unbound",
+            "binding_target": null,
+            "scope": "public",
+            "managed_by": "tenant"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T09:16:57.373878+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "eip": {
+            "id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-public-snat-eip",
+            "description": "U09 separately owned Public SNAT EIP",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_RESULT_UNKNOWN",
+            "reason_message": "The external request result is unknown; Network is observing the original request.",
+            "version": "2",
+            "created_at": "2026-09-15T09:14:43.444708Z",
+            "updated_at": "2026-09-15T09:16:20.459491Z",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "3951ae98-20bb-4c59-b9b9-b88c0b5884a9",
+            "address": "",
+            "binding_id": "",
+            "binding_state": "unbound",
+            "binding_target": null,
+            "scope": "public",
+            "managed_by": "tenant"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T09:17:02.385697+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "eip": {
+            "id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-public-snat-eip",
+            "description": "U09 separately owned Public SNAT EIP",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_RESULT_UNKNOWN",
+            "reason_message": "The external request result is unknown; Network is observing the original request.",
+            "version": "2",
+            "created_at": "2026-09-15T09:14:43.444708Z",
+            "updated_at": "2026-09-15T09:16:20.459491Z",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "3951ae98-20bb-4c59-b9b9-b88c0b5884a9",
+            "address": "",
+            "binding_id": "",
+            "binding_state": "unbound",
+            "binding_target": null,
+            "scope": "public",
+            "managed_by": "tenant"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T09:17:07.397542+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "eip": {
+            "id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-public-snat-eip",
+            "description": "U09 separately owned Public SNAT EIP",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_RESULT_UNKNOWN",
+            "reason_message": "The external request result is unknown; Network is observing the original request.",
+            "version": "2",
+            "created_at": "2026-09-15T09:14:43.444708Z",
+            "updated_at": "2026-09-15T09:16:20.459491Z",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "3951ae98-20bb-4c59-b9b9-b88c0b5884a9",
+            "address": "",
+            "binding_id": "",
+            "binding_state": "unbound",
+            "binding_target": null,
+            "scope": "public",
+            "managed_by": "tenant"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T09:17:12.409441+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "eip": {
+            "id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-public-snat-eip",
+            "description": "U09 separately owned Public SNAT EIP",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_RESULT_UNKNOWN",
+            "reason_message": "The external request result is unknown; Network is observing the original request.",
+            "version": "2",
+            "created_at": "2026-09-15T09:14:43.444708Z",
+            "updated_at": "2026-09-15T09:16:20.459491Z",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "3951ae98-20bb-4c59-b9b9-b88c0b5884a9",
+            "address": "",
+            "binding_id": "",
+            "binding_state": "unbound",
+            "binding_target": null,
+            "scope": "public",
+            "managed_by": "tenant"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T09:17:17.421741+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "eip": {
+            "id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-public-snat-eip",
+            "description": "U09 separately owned Public SNAT EIP",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_RESULT_UNKNOWN",
+            "reason_message": "The external request result is unknown; Network is observing the original request.",
+            "version": "2",
+            "created_at": "2026-09-15T09:14:43.444708Z",
+            "updated_at": "2026-09-15T09:16:20.459491Z",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "3951ae98-20bb-4c59-b9b9-b88c0b5884a9",
+            "address": "",
+            "binding_id": "",
+            "binding_state": "unbound",
+            "binding_target": null,
+            "scope": "public",
+            "managed_by": "tenant"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T09:17:22.432685+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "eip": {
+            "id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-public-snat-eip",
+            "description": "U09 separately owned Public SNAT EIP",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_RESULT_UNKNOWN",
+            "reason_message": "The external request result is unknown; Network is observing the original request.",
+            "version": "2",
+            "created_at": "2026-09-15T09:14:43.444708Z",
+            "updated_at": "2026-09-15T09:16:20.459491Z",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "3951ae98-20bb-4c59-b9b9-b88c0b5884a9",
+            "address": "",
+            "binding_id": "",
+            "binding_state": "unbound",
+            "binding_target": null,
+            "scope": "public",
+            "managed_by": "tenant"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T09:17:27.444745+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "eip": {
+            "id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-public-snat-eip",
+            "description": "U09 separately owned Public SNAT EIP",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_RESULT_UNKNOWN",
+            "reason_message": "The external request result is unknown; Network is observing the original request.",
+            "version": "2",
+            "created_at": "2026-09-15T09:14:43.444708Z",
+            "updated_at": "2026-09-15T09:16:20.459491Z",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "3951ae98-20bb-4c59-b9b9-b88c0b5884a9",
+            "address": "",
+            "binding_id": "",
+            "binding_state": "unbound",
+            "binding_target": null,
+            "scope": "public",
+            "managed_by": "tenant"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T09:17:32.457966+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "eip": {
+            "id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-public-snat-eip",
+            "description": "U09 separately owned Public SNAT EIP",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_RESULT_UNKNOWN",
+            "reason_message": "The external request result is unknown; Network is observing the original request.",
+            "version": "2",
+            "created_at": "2026-09-15T09:14:43.444708Z",
+            "updated_at": "2026-09-15T09:16:20.459491Z",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "3951ae98-20bb-4c59-b9b9-b88c0b5884a9",
+            "address": "",
+            "binding_id": "",
+            "binding_state": "unbound",
+            "binding_target": null,
+            "scope": "public",
+            "managed_by": "tenant"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T09:17:37.471517+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "eip": {
+            "id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-public-snat-eip",
+            "description": "U09 separately owned Public SNAT EIP",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_RESULT_UNKNOWN",
+            "reason_message": "The external request result is unknown; Network is observing the original request.",
+            "version": "2",
+            "created_at": "2026-09-15T09:14:43.444708Z",
+            "updated_at": "2026-09-15T09:16:20.459491Z",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "3951ae98-20bb-4c59-b9b9-b88c0b5884a9",
+            "address": "",
+            "binding_id": "",
+            "binding_state": "unbound",
+            "binding_target": null,
+            "scope": "public",
+            "managed_by": "tenant"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T09:17:42.485357+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "eip": {
+            "id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-public-snat-eip",
+            "description": "U09 separately owned Public SNAT EIP",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_RESULT_UNKNOWN",
+            "reason_message": "The external request result is unknown; Network is observing the original request.",
+            "version": "2",
+            "created_at": "2026-09-15T09:14:43.444708Z",
+            "updated_at": "2026-09-15T09:16:20.459491Z",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "3951ae98-20bb-4c59-b9b9-b88c0b5884a9",
+            "address": "",
+            "binding_id": "",
+            "binding_state": "unbound",
+            "binding_target": null,
+            "scope": "public",
+            "managed_by": "tenant"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T09:17:47.496754+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "eip": {
+            "id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-public-snat-eip",
+            "description": "U09 separately owned Public SNAT EIP",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_RESULT_UNKNOWN",
+            "reason_message": "The external request result is unknown; Network is observing the original request.",
+            "version": "2",
+            "created_at": "2026-09-15T09:14:43.444708Z",
+            "updated_at": "2026-09-15T09:16:20.459491Z",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "3951ae98-20bb-4c59-b9b9-b88c0b5884a9",
+            "address": "",
+            "binding_id": "",
+            "binding_state": "unbound",
+            "binding_target": null,
+            "scope": "public",
+            "managed_by": "tenant"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T09:17:52.509074+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "eip": {
+            "id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-public-snat-eip",
+            "description": "U09 separately owned Public SNAT EIP",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "version": "3",
+            "created_at": "2026-09-15T09:14:43.444708Z",
+            "updated_at": "2026-09-15T09:17:50.688001Z",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "3951ae98-20bb-4c59-b9b9-b88c0b5884a9",
+            "address": "",
+            "binding_id": "",
+            "binding_state": "unbound",
+            "binding_target": null,
+            "scope": "public",
+            "managed_by": "tenant"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T09:17:57.520873+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "eip": {
+            "id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-public-snat-eip",
+            "description": "U09 separately owned Public SNAT EIP",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "version": "3",
+            "created_at": "2026-09-15T09:14:43.444708Z",
+            "updated_at": "2026-09-15T09:17:50.688001Z",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "3951ae98-20bb-4c59-b9b9-b88c0b5884a9",
+            "address": "",
+            "binding_id": "",
+            "binding_state": "unbound",
+            "binding_target": null,
+            "scope": "public",
+            "managed_by": "tenant"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T09:18:02.533322+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "eip": {
+            "id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-public-snat-eip",
+            "description": "U09 separately owned Public SNAT EIP",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "version": "3",
+            "created_at": "2026-09-15T09:14:43.444708Z",
+            "updated_at": "2026-09-15T09:17:50.688001Z",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "3951ae98-20bb-4c59-b9b9-b88c0b5884a9",
+            "address": "",
+            "binding_id": "",
+            "binding_state": "unbound",
+            "binding_target": null,
+            "scope": "public",
+            "managed_by": "tenant"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T09:18:07.545147+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "eip": {
+            "id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-public-snat-eip",
+            "description": "U09 separately owned Public SNAT EIP",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "version": "3",
+            "created_at": "2026-09-15T09:14:43.444708Z",
+            "updated_at": "2026-09-15T09:17:50.688001Z",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "3951ae98-20bb-4c59-b9b9-b88c0b5884a9",
+            "address": "",
+            "binding_id": "",
+            "binding_state": "unbound",
+            "binding_target": null,
+            "scope": "public",
+            "managed_by": "tenant"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    }
+  ]
+}

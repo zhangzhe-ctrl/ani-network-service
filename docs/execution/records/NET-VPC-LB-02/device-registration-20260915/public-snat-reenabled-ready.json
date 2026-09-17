@@ -1,0 +1,201 @@
+{
+  "execution_host": "ubuntu",
+  "command": [
+    "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/lb-api",
+    "call",
+    "-target",
+    "unix:///home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-a.sock",
+    "-service",
+    "TenantEgressService",
+    "-method",
+    "GetVPCSnatBinding"
+  ],
+  "request": {
+    "binding_id": "snat_c2e679a19be64badbc78877d8323451d"
+  },
+  "expected": {
+    "response.binding.state": "RESOURCE_STATE_AVAILABLE",
+    "response.binding.desired_enabled": true,
+    "response.binding.applied_enabled": true,
+    "response.binding.observation_stale": false
+  },
+  "result": "pass",
+  "records": [
+    {
+      "at": "2026-09-15T09:59:33.583746+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "binding": {
+            "id": "snat_c2e679a19be64badbc78877d8323451d",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "eip_id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "",
+            "reason_message": "",
+            "version": "55",
+            "created_at": "2026-09-15T09:36:41.450199Z",
+            "updated_at": "2026-09-15T09:58:59.081444Z",
+            "observed_at": "2026-09-15T09:58:44.136905Z",
+            "observation_stale": false,
+            "last_operation_id": "51880c18-4664-49cc-b901-56a065aeb110",
+            "eip_address": "172.16.102.195",
+            "desired_enabled": true,
+            "purpose": "public"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T09:59:38.597040+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "binding": {
+            "id": "snat_c2e679a19be64badbc78877d8323451d",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "eip_id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "",
+            "reason_message": "",
+            "version": "55",
+            "created_at": "2026-09-15T09:36:41.450199Z",
+            "updated_at": "2026-09-15T09:58:59.081444Z",
+            "observed_at": "2026-09-15T09:58:44.136905Z",
+            "observation_stale": false,
+            "last_operation_id": "51880c18-4664-49cc-b901-56a065aeb110",
+            "eip_address": "172.16.102.195",
+            "desired_enabled": true,
+            "purpose": "public"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T09:59:43.609275+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "binding": {
+            "id": "snat_c2e679a19be64badbc78877d8323451d",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "eip_id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "",
+            "reason_message": "",
+            "version": "55",
+            "created_at": "2026-09-15T09:36:41.450199Z",
+            "updated_at": "2026-09-15T09:58:59.081444Z",
+            "observed_at": "2026-09-15T09:58:44.136905Z",
+            "observation_stale": false,
+            "last_operation_id": "51880c18-4664-49cc-b901-56a065aeb110",
+            "eip_address": "172.16.102.195",
+            "desired_enabled": true,
+            "purpose": "public"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T09:59:48.620923+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "binding": {
+            "id": "snat_c2e679a19be64badbc78877d8323451d",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "eip_id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "",
+            "reason_message": "",
+            "version": "55",
+            "created_at": "2026-09-15T09:36:41.450199Z",
+            "updated_at": "2026-09-15T09:58:59.081444Z",
+            "observed_at": "2026-09-15T09:58:44.136905Z",
+            "observation_stale": true,
+            "last_operation_id": "51880c18-4664-49cc-b901-56a065aeb110",
+            "eip_address": "172.16.102.195",
+            "desired_enabled": true,
+            "purpose": "public"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T09:59:53.635292+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "binding": {
+            "id": "snat_c2e679a19be64badbc78877d8323451d",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "eip_id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+            "state": "RESOURCE_STATE_AVAILABLE",
+            "reason": "",
+            "reason_message": "",
+            "version": "56",
+            "created_at": "2026-09-15T09:36:41.450199Z",
+            "updated_at": "2026-09-15T09:59:50.748423Z",
+            "observed_at": "2026-09-15T09:59:40.764258Z",
+            "observation_stale": false,
+            "last_operation_id": "51880c18-4664-49cc-b901-56a065aeb110",
+            "eip_address": "172.16.102.195",
+            "desired_enabled": true,
+            "applied_enabled": true,
+            "purpose": "public"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": true
+    },
+    {
+      "at": "2026-09-15T09:59:58.647387+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "binding": {
+            "id": "snat_c2e679a19be64badbc78877d8323451d",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "eip_id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+            "state": "RESOURCE_STATE_AVAILABLE",
+            "reason": "",
+            "reason_message": "",
+            "version": "56",
+            "created_at": "2026-09-15T09:36:41.450199Z",
+            "updated_at": "2026-09-15T09:59:50.748423Z",
+            "observed_at": "2026-09-15T09:59:40.764258Z",
+            "observation_stale": false,
+            "last_operation_id": "51880c18-4664-49cc-b901-56a065aeb110",
+            "eip_address": "172.16.102.195",
+            "desired_enabled": true,
+            "applied_enabled": true,
+            "purpose": "public"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": true
+    }
+  ]
+}

@@ -1,0 +1,465 @@
+{
+  "at": "2026-09-15T09:09:46.987705+00:00",
+  "execution_host": "ubuntu",
+  "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+  "results": [
+    {
+      "pod": "lb02-2b3122-base-client",
+      "label": "private-vip-after-r16-recovery-0",
+      "argv": [
+        "/probe",
+        "request",
+        "http://10.233.0.200:8080/?nonce=lb02-private-vip-after-r16-recovery-0"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"nonce\":\"lb02-private-vip-after-r16-recovery-0\""
+      ],
+      "at": "2026-09-15T09:09:34.057964+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+        "lb02-2b3122-base-client",
+        "-c",
+        "probe",
+        "--",
+        "/probe",
+        "request",
+        "http://10.233.0.200:8080/?nonce=lb02-private-vip-after-r16-recovery-0"
+      ],
+      "exit": 0,
+      "stdout": "status 200\n{\"fixture_id\":\"lb02-09141908-2b3122\",\"hostname\":\"lb02-2b3122-base-b\",\"instance_id\":\"lb02-2b3122-base-b\",\"nonce\":\"lb02-private-vip-after-r16-recovery-0\",\"port\":\"8080\"}\n",
+      "stderr": "",
+      "pass": true
+    },
+    {
+      "pod": "lb02-2b3122-base-client",
+      "label": "private-vip-after-r16-recovery-1",
+      "argv": [
+        "/probe",
+        "request",
+        "http://10.233.0.200:8080/?nonce=lb02-private-vip-after-r16-recovery-1"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"nonce\":\"lb02-private-vip-after-r16-recovery-1\""
+      ],
+      "at": "2026-09-15T09:09:35.128119+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+        "lb02-2b3122-base-client",
+        "-c",
+        "probe",
+        "--",
+        "/probe",
+        "request",
+        "http://10.233.0.200:8080/?nonce=lb02-private-vip-after-r16-recovery-1"
+      ],
+      "exit": 0,
+      "stdout": "status 200\n{\"fixture_id\":\"lb02-09141908-2b3122\",\"hostname\":\"lb02-2b3122-base-b\",\"instance_id\":\"lb02-2b3122-base-b\",\"nonce\":\"lb02-private-vip-after-r16-recovery-1\",\"port\":\"8080\"}\n",
+      "stderr": "",
+      "pass": true
+    },
+    {
+      "pod": "lb02-2b3122-base-client",
+      "label": "private-vip-after-r16-recovery-2",
+      "argv": [
+        "/probe",
+        "request",
+        "http://10.233.0.200:8080/?nonce=lb02-private-vip-after-r16-recovery-2"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"nonce\":\"lb02-private-vip-after-r16-recovery-2\""
+      ],
+      "at": "2026-09-15T09:09:36.161388+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+        "lb02-2b3122-base-client",
+        "-c",
+        "probe",
+        "--",
+        "/probe",
+        "request",
+        "http://10.233.0.200:8080/?nonce=lb02-private-vip-after-r16-recovery-2"
+      ],
+      "exit": 0,
+      "stdout": "status 200\n{\"fixture_id\":\"lb02-09141908-2b3122\",\"hostname\":\"lb02-2b3122-base-a\",\"instance_id\":\"lb02-2b3122-base-a\",\"nonce\":\"lb02-private-vip-after-r16-recovery-2\",\"port\":\"8080\"}\n",
+      "stderr": "",
+      "pass": true
+    },
+    {
+      "pod": "lb02-2b3122-base-client",
+      "label": "private-vip-after-r16-recovery-3",
+      "argv": [
+        "/probe",
+        "request",
+        "http://10.233.0.200:8080/?nonce=lb02-private-vip-after-r16-recovery-3"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"nonce\":\"lb02-private-vip-after-r16-recovery-3\""
+      ],
+      "at": "2026-09-15T09:09:37.262295+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+        "lb02-2b3122-base-client",
+        "-c",
+        "probe",
+        "--",
+        "/probe",
+        "request",
+        "http://10.233.0.200:8080/?nonce=lb02-private-vip-after-r16-recovery-3"
+      ],
+      "exit": 0,
+      "stdout": "status 200\n{\"fixture_id\":\"lb02-09141908-2b3122\",\"hostname\":\"lb02-2b3122-base-a\",\"instance_id\":\"lb02-2b3122-base-a\",\"nonce\":\"lb02-private-vip-after-r16-recovery-3\",\"port\":\"8080\"}\n",
+      "stderr": "",
+      "pass": true
+    },
+    {
+      "pod": "lb02-2b3122-base-client",
+      "label": "private-vip-after-r16-recovery-4",
+      "argv": [
+        "/probe",
+        "request",
+        "http://10.233.0.200:8080/?nonce=lb02-private-vip-after-r16-recovery-4"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"nonce\":\"lb02-private-vip-after-r16-recovery-4\""
+      ],
+      "at": "2026-09-15T09:09:38.294240+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+        "lb02-2b3122-base-client",
+        "-c",
+        "probe",
+        "--",
+        "/probe",
+        "request",
+        "http://10.233.0.200:8080/?nonce=lb02-private-vip-after-r16-recovery-4"
+      ],
+      "exit": 0,
+      "stdout": "status 200\n{\"fixture_id\":\"lb02-09141908-2b3122\",\"hostname\":\"lb02-2b3122-base-b\",\"instance_id\":\"lb02-2b3122-base-b\",\"nonce\":\"lb02-private-vip-after-r16-recovery-4\",\"port\":\"8080\"}\n",
+      "stderr": "",
+      "pass": true
+    },
+    {
+      "pod": "lb02-2b3122-base-client",
+      "label": "private-vip-after-r16-recovery-5",
+      "argv": [
+        "/probe",
+        "request",
+        "http://10.233.0.200:8080/?nonce=lb02-private-vip-after-r16-recovery-5"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"nonce\":\"lb02-private-vip-after-r16-recovery-5\""
+      ],
+      "at": "2026-09-15T09:09:39.579984+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+        "lb02-2b3122-base-client",
+        "-c",
+        "probe",
+        "--",
+        "/probe",
+        "request",
+        "http://10.233.0.200:8080/?nonce=lb02-private-vip-after-r16-recovery-5"
+      ],
+      "exit": 0,
+      "stdout": "status 200\n{\"fixture_id\":\"lb02-09141908-2b3122\",\"hostname\":\"lb02-2b3122-base-b\",\"instance_id\":\"lb02-2b3122-base-b\",\"nonce\":\"lb02-private-vip-after-r16-recovery-5\",\"port\":\"8080\"}\n",
+      "stderr": "",
+      "pass": true
+    },
+    {
+      "pod": "lb02-2b3122-base-client",
+      "label": "private-vip-after-r16-recovery-6",
+      "argv": [
+        "/probe",
+        "request",
+        "http://10.233.0.200:8080/?nonce=lb02-private-vip-after-r16-recovery-6"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"nonce\":\"lb02-private-vip-after-r16-recovery-6\""
+      ],
+      "at": "2026-09-15T09:09:40.782567+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+        "lb02-2b3122-base-client",
+        "-c",
+        "probe",
+        "--",
+        "/probe",
+        "request",
+        "http://10.233.0.200:8080/?nonce=lb02-private-vip-after-r16-recovery-6"
+      ],
+      "exit": 0,
+      "stdout": "status 200\n{\"fixture_id\":\"lb02-09141908-2b3122\",\"hostname\":\"lb02-2b3122-base-a\",\"instance_id\":\"lb02-2b3122-base-a\",\"nonce\":\"lb02-private-vip-after-r16-recovery-6\",\"port\":\"8080\"}\n",
+      "stderr": "",
+      "pass": true
+    },
+    {
+      "pod": "lb02-2b3122-base-client",
+      "label": "private-vip-after-r16-recovery-7",
+      "argv": [
+        "/probe",
+        "request",
+        "http://10.233.0.200:8080/?nonce=lb02-private-vip-after-r16-recovery-7"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"nonce\":\"lb02-private-vip-after-r16-recovery-7\""
+      ],
+      "at": "2026-09-15T09:09:42.299664+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+        "lb02-2b3122-base-client",
+        "-c",
+        "probe",
+        "--",
+        "/probe",
+        "request",
+        "http://10.233.0.200:8080/?nonce=lb02-private-vip-after-r16-recovery-7"
+      ],
+      "exit": 0,
+      "stdout": "status 200\n{\"fixture_id\":\"lb02-09141908-2b3122\",\"hostname\":\"lb02-2b3122-base-a\",\"instance_id\":\"lb02-2b3122-base-a\",\"nonce\":\"lb02-private-vip-after-r16-recovery-7\",\"port\":\"8080\"}\n",
+      "stderr": "",
+      "pass": true
+    },
+    {
+      "pod": "lb02-2b3122-base-client",
+      "label": "private-vip-after-r16-recovery-8",
+      "argv": [
+        "/probe",
+        "request",
+        "http://10.233.0.200:8080/?nonce=lb02-private-vip-after-r16-recovery-8"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"nonce\":\"lb02-private-vip-after-r16-recovery-8\""
+      ],
+      "at": "2026-09-15T09:09:43.501984+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+        "lb02-2b3122-base-client",
+        "-c",
+        "probe",
+        "--",
+        "/probe",
+        "request",
+        "http://10.233.0.200:8080/?nonce=lb02-private-vip-after-r16-recovery-8"
+      ],
+      "exit": 0,
+      "stdout": "status 200\n{\"fixture_id\":\"lb02-09141908-2b3122\",\"hostname\":\"lb02-2b3122-base-b\",\"instance_id\":\"lb02-2b3122-base-b\",\"nonce\":\"lb02-private-vip-after-r16-recovery-8\",\"port\":\"8080\"}\n",
+      "stderr": "",
+      "pass": true
+    },
+    {
+      "pod": "lb02-2b3122-base-client",
+      "label": "private-vip-after-r16-recovery-9",
+      "argv": [
+        "/probe",
+        "request",
+        "http://10.233.0.200:8080/?nonce=lb02-private-vip-after-r16-recovery-9"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"nonce\":\"lb02-private-vip-after-r16-recovery-9\""
+      ],
+      "at": "2026-09-15T09:09:44.822759+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+        "lb02-2b3122-base-client",
+        "-c",
+        "probe",
+        "--",
+        "/probe",
+        "request",
+        "http://10.233.0.200:8080/?nonce=lb02-private-vip-after-r16-recovery-9"
+      ],
+      "exit": 0,
+      "stdout": "status 200\n{\"fixture_id\":\"lb02-09141908-2b3122\",\"hostname\":\"lb02-2b3122-base-a\",\"instance_id\":\"lb02-2b3122-base-a\",\"nonce\":\"lb02-private-vip-after-r16-recovery-9\",\"port\":\"8080\"}\n",
+      "stderr": "",
+      "pass": true
+    },
+    {
+      "pod": "lb02-2b3122-base-client",
+      "label": "private-vip-after-r16-recovery-10",
+      "argv": [
+        "/probe",
+        "request",
+        "http://10.233.0.200:8080/?nonce=lb02-private-vip-after-r16-recovery-10"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"nonce\":\"lb02-private-vip-after-r16-recovery-10\""
+      ],
+      "at": "2026-09-15T09:09:45.883836+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+        "lb02-2b3122-base-client",
+        "-c",
+        "probe",
+        "--",
+        "/probe",
+        "request",
+        "http://10.233.0.200:8080/?nonce=lb02-private-vip-after-r16-recovery-10"
+      ],
+      "exit": 0,
+      "stdout": "status 200\n{\"fixture_id\":\"lb02-09141908-2b3122\",\"hostname\":\"lb02-2b3122-base-b\",\"instance_id\":\"lb02-2b3122-base-b\",\"nonce\":\"lb02-private-vip-after-r16-recovery-10\",\"port\":\"8080\"}\n",
+      "stderr": "",
+      "pass": true
+    },
+    {
+      "pod": "lb02-2b3122-base-client",
+      "label": "private-vip-after-r16-recovery-11",
+      "argv": [
+        "/probe",
+        "request",
+        "http://10.233.0.200:8080/?nonce=lb02-private-vip-after-r16-recovery-11"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"nonce\":\"lb02-private-vip-after-r16-recovery-11\""
+      ],
+      "at": "2026-09-15T09:09:46.987681+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+        "lb02-2b3122-base-client",
+        "-c",
+        "probe",
+        "--",
+        "/probe",
+        "request",
+        "http://10.233.0.200:8080/?nonce=lb02-private-vip-after-r16-recovery-11"
+      ],
+      "exit": 0,
+      "stdout": "status 200\n{\"fixture_id\":\"lb02-09141908-2b3122\",\"hostname\":\"lb02-2b3122-base-b\",\"instance_id\":\"lb02-2b3122-base-b\",\"nonce\":\"lb02-private-vip-after-r16-recovery-11\",\"port\":\"8080\"}\n",
+      "stderr": "",
+      "pass": true
+    }
+  ],
+  "input_file": "docs/execution/records/NET-VPC-LB-02/device-registration-20260915/private-vip-after-r16-recovery-planned.json",
+  "result": "pass"
+}

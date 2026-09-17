@@ -1,0 +1,111 @@
+#!/usr/bin/env python3
+"""Read-only NET-VPC-LB-02 snapshot. Run on ubuntu with the pinned env loaded.
+
+Never changes context, installs components, or writes Kubernetes objects.
+Only projects network facts; kubeconfig, Secrets and workload env are excluded.
+"""
+import datetime
+import argparse
+import json
+import subprocess
+import sys
+
+CONTEXT = "kind-kc062"
+KUBECTL = "kubectl"
+KUBECONFIG = None
+
+
+def command(args):
+    try:
+        p = subprocess.run(args, capture_output=True, text=True, timeout=25)
+        return {"command": args, "exit": p.returncode,
+                "stdout": p.stdout, "stderr": p.stderr}
+    except subprocess.TimeoutExpired:
+        return {"command": args, "exit": 124, "stderr": "timeout"}
+
+
+def kube(*args):
+    prefix = [KUBECTL, "--context", CONTEXT, "--request-timeout=20s"]
+    if KUBECONFIG:
+        prefix += ["--kubeconfig", KUBECONFIG]
+    return command([*prefix, *args])
+
+
+def identity(obj):
+    return {k: obj.get("metadata", {}).get(k) for k in
+            ("namespace", "name", "uid", "generation", "resourceVersion", "ownerReferences")}
+
+
+def main():
+    global CONTEXT, KUBECTL, KUBECONFIG
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--context", default=CONTEXT)
+    parser.add_argument("--kubectl", default=KUBECTL)
+    parser.add_argument("--kubeconfig")
+    parser.add_argument("--permission-namespace", default="lb-strict-0911")
+    options = parser.parse_args()
+    CONTEXT, KUBECTL, KUBECONFIG = options.context, options.kubectl, options.kubeconfig
+    result = {"at": datetime.datetime.now(datetime.timezone.utc).isoformat(),
+              "host": command(["hostname"]), "context": CONTEXT, "mode": "read_only",
+              "memory": command(["free", "-m"]), "load": command(["cat", "/proc/loadavg"]),
+              "checks": []}
+    for args in [("config", "current-context"),
+                 ("config", "view", "--minify", "-o", "jsonpath={.clusters[0].cluster.server}"),
+                 ("get", "namespace", "kube-system", "-o", "jsonpath={.metadata.uid}"),
+                 ("auth", "can-i", "create", "tokenreviews.authentication.k8s.io",
+                  "--as=system:serviceaccount:envoy-gateway-system:envoy-gateway"),
+                 ("auth", "can-i", "create", "deployments.apps", "-n", options.permission_namespace,
+                  "--as=system:serviceaccount:envoy-gateway-system:envoy-gateway")]:
+        result["checks"].append(kube(*args))
+    for resource in ("nodes", "pods", "deployments.apps", "services", "endpointslices.discovery.k8s.io",
+                     "customresourcedefinitions.apiextensions.k8s.io",
+                     "vpcs.networking.kubercloud.com", "subnets.networking.kubercloud.com",
+                     "eips.networking.kubercloud.com", "snats.networking.kubercloud.com",
+                     "eipgateways.networking.kubercloud.com", "gatewayclasses.gateway.networking.k8s.io",
+                     "gateways.gateway.networking.k8s.io", "envoyproxies.gateway.envoyproxy.io",
+                     "httproutes.gateway.networking.k8s.io", "backends.gateway.envoyproxy.io",
+                     "backendtrafficpolicies.gateway.envoyproxy.io", "servicecidrs.networking.k8s.io"):
+        record = kube("get", resource, "-A", "-o", "json")
+        if record["exit"] == 0:
+            items = []
+            for obj in json.loads(record.pop("stdout"))["items"]:
+                item = {"identity": identity(obj)}
+                if resource == "pods":
+                    spec = obj.get("spec", {})
+                    item.update(node=spec.get("nodeName"), overhead=spec.get("overhead", {}),
+                                initContainers=[{k: c.get(k) for k in ("name", "image", "resources", "restartPolicy")} for c in spec.get("initContainers", [])], containers=[{
+                        k: c.get(k) for k in ("name", "image", "resources")
+                    } for c in spec.get("containers", [])], status=obj.get("status"))
+                elif resource == "endpointslices.discovery.k8s.io":
+                    item.update(addressType=obj.get("addressType"), ports=obj.get("ports", []),
+                                endpoints=obj.get("endpoints", []))
+                elif resource == "customresourcedefinitions.apiextensions.k8s.io":
+                    item.update(versions=[{k: v.get(k) for k in ("name", "served", "storage")}
+                                          for v in obj.get("spec", {}).get("versions", [])],
+                                conditions=obj.get("status", {}).get("conditions", []))
+                elif resource == "deployments.apps":
+                    spec = obj.get("spec", {})
+                    item.update(replicas=spec.get("replicas"), status=obj.get("status"), containers=[{
+                        "name": c.get("name"), "image": c.get("image"),
+                        "resources": c.get("resources"),
+                        "cluster_router_args": [a for a in c.get("args", []) if a.startswith("--cluster-router")]
+                    } for c in spec.get("template", {}).get("spec", {}).get("containers", [])])
+                else:
+                    item.update(spec=obj.get("spec"), status=obj.get("status"))
+                items.append(item)
+            record["items"] = items
+        result["checks"].append(record)
+    for namespace, name, keys in [
+        ("kcn-system", "kcn-config", ("intranetNetworks", "clusterRouter")),
+        ("envoy-gateway-system", "envoy-gateway-config", ("envoy-gateway.yaml",))]:
+        record = kube("get", "configmap", name, "-n", namespace, "-o", "json")
+        if record["exit"] == 0:
+            obj = json.loads(record.pop("stdout"))
+            record.update(identity=identity(obj), data={k: obj.get("data", {}).get(k) for k in keys})
+        result["checks"].append(record)
+    json.dump(result, sys.stdout, indent=2)
+    print()
+
+
+if __name__ == "__main__":
+    main()

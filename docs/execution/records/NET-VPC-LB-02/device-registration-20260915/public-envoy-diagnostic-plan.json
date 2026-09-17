@@ -1,0 +1,31 @@
+{
+  "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+  "commands": [
+    {
+      "pod": "lb02-2b3122-base-client",
+      "label": "diagnostic-direct-envoy-only-10.233.0.7",
+      "argv": [
+        "/probe",
+        "request",
+        "http://10.233.0.7:8080/?nonce=lb02-public-envoy-diagnostic"
+      ],
+      "expect_contains": [
+        "status 200",
+        "lb02-09141908-2b3122"
+      ]
+    },
+    {
+      "pod": "lb02-2b3122-base-client",
+      "label": "diagnostic-direct-envoy-only-10.233.0.8",
+      "argv": [
+        "/probe",
+        "request",
+        "http://10.233.0.8:8080/?nonce=lb02-public-envoy-diagnostic"
+      ],
+      "expect_contains": [
+        "status 200",
+        "lb02-09141908-2b3122"
+      ]
+    }
+  ]
+}

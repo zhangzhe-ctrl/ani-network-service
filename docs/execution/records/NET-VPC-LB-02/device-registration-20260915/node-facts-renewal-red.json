@@ -1,0 +1,15 @@
+{
+  "at": "2026-09-15T03:44:00.904757+00:00",
+  "source_run": "20260915T034110Z-15d154af",
+  "archive_sha256": "affe75aba5e51420f8a5027c28325d8e753ee6f3c6d933fd63d676d2ba2b3a0d",
+  "manifest_sha256": "e6a2052c9168943f0bd805b6aaa4ee6fd13d1ce696e7ccc4d22caefe55739da7",
+  "exit": 1,
+  "unit_red": "fresh renewal invalidates an otherwise valid audit",
+  "real_pg_red_seconds": 8.6,
+  "real_pg_reason": "stable facts renewed during audit starved VLAN: provisioning/PROVIDER_UNAVAILABLE",
+  "live_pair": "node-facts-renewal-pair-02.json",
+  "live_difference": "only collected_at and each interface ObservedAt changed on all three nodes; Node/ConfigMap identity and interface facts unchanged",
+  "initial_pair_note": "node-facts-renewal-pair.json used an incorrect label selector and returned no items; no environment conclusion derives from it",
+  "runtime": "r9 stopped for serialized corrective gates; database and resource identities preserved",
+  "next": "coalesce only fresh monotonic same-fact renewals; retain original evidence time and all material/source-boundary invalidations"
+}

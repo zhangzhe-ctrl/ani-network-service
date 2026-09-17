@@ -1,0 +1,172 @@
+status 200
+{"fixture_id":"pubdebug-20260917","hostname":"backend-b","instance_id":"backend-b","nonce":"backend-fix-final-public-a","port":"8080"}
+Get "http://172.16.102.194:8080/?nonce=backend-fix-final-public-b": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+apiVersion: v1
+items:
+- apiVersion: gateway.envoyproxy.io/v1alpha1
+  kind: Backend
+  metadata:
+    creationTimestamp: "2026-09-17T04:17:59Z"
+    generation: 1
+    labels:
+      manual.ani.io/run: pubdebug-20260917
+    name: backend-a
+    namespace: pubdebug-20260917
+    resourceVersion: "1121340"
+    uid: 0ddeaffc-d506-473a-b30a-c77236036ede
+  spec:
+    endpoints:
+    - ip:
+        address: 10.233.1.2
+        port: 8080
+    type: Endpoints
+  status:
+    conditions:
+    - lastTransitionTime: "2026-09-17T04:17:59Z"
+      message: The Backend was accepted
+      observedGeneration: 1
+      reason: Accepted
+      status: "True"
+      type: Accepted
+- apiVersion: gateway.envoyproxy.io/v1alpha1
+  kind: Backend
+  metadata:
+    creationTimestamp: "2026-09-17T04:17:59Z"
+    generation: 1
+    labels:
+      manual.ani.io/run: pubdebug-20260917
+    name: backend-b
+    namespace: pubdebug-20260917
+    resourceVersion: "1121342"
+    uid: 852586dc-a121-4267-83db-9973b9b3b39d
+  spec:
+    endpoints:
+    - ip:
+        address: 10.233.1.3
+        port: 8080
+    type: Endpoints
+  status:
+    conditions:
+    - lastTransitionTime: "2026-09-17T04:17:59Z"
+      message: The Backend was accepted
+      observedGeneration: 1
+      reason: Accepted
+      status: "True"
+      type: Accepted
+- apiVersion: gateway.networking.k8s.io/v1
+  kind: HTTPRoute
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"gateway.networking.k8s.io/v1","kind":"HTTPRoute","metadata":{"annotations":{},"labels":{"manual.ani.io/run":"pubdebug-20260917"},"name":"public-lb","namespace":"pubdebug-20260917"},"spec":{"parentRefs":[{"name":"public-lb","sectionName":"http"}],"rules":[{"backendRefs":[{"group":"gateway.envoyproxy.io","kind":"Backend","name":"backend-a","port":8080,"weight":1},{"group":"gateway.envoyproxy.io","kind":"Backend","name":"backend-b","port":8080,"weight":1}],"matches":[{"path":{"type":"PathPrefix","value":"/"}}]}]}}
+    creationTimestamp: "2026-09-17T02:42:58Z"
+    generation: 1
+    labels:
+      manual.ani.io/run: pubdebug-20260917
+    name: public-lb
+    namespace: pubdebug-20260917
+    resourceVersion: "1121343"
+    uid: 949d1fb5-929a-464c-a177-db3cbb2d7a7f
+  spec:
+    parentRefs:
+    - group: gateway.networking.k8s.io
+      kind: Gateway
+      name: public-lb
+      sectionName: http
+    rules:
+    - backendRefs:
+      - group: gateway.envoyproxy.io
+        kind: Backend
+        name: backend-a
+        port: 8080
+        weight: 1
+      - group: gateway.envoyproxy.io
+        kind: Backend
+        name: backend-b
+        port: 8080
+        weight: 1
+      matches:
+      - path:
+          type: PathPrefix
+          value: /
+  status:
+    parents:
+    - conditions:
+      - lastTransitionTime: "2026-09-17T04:17:59Z"
+        message: Route is accepted
+        observedGeneration: 1
+        reason: Accepted
+        status: "True"
+        type: Accepted
+      - lastTransitionTime: "2026-09-17T04:17:59Z"
+        message: Resolved all the Object references for the Route
+        observedGeneration: 1
+        reason: ResolvedRefs
+        status: "True"
+        type: ResolvedRefs
+      controllerName: gateway.envoyproxy.io/gatewayclass-controller
+      parentRef:
+        group: gateway.networking.k8s.io
+        kind: Gateway
+        name: public-lb
+        sectionName: http
+- apiVersion: gateway.envoyproxy.io/v1alpha1
+  kind: BackendTrafficPolicy
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"gateway.envoyproxy.io/v1alpha1","kind":"BackendTrafficPolicy","metadata":{"annotations":{},"labels":{"manual.ani.io/run":"pubdebug-20260917"},"name":"public-lb-policy","namespace":"pubdebug-20260917"},"spec":{"healthCheck":{"active":{"healthyThreshold":1,"interval":"5s","overrides":{"port":8080},"tcp":{},"timeout":"3s","type":"TCP","unhealthyThreshold":3},"panicThreshold":0},"loadBalancer":{"type":"RoundRobin"},"targetRefs":[{"group":"gateway.networking.k8s.io","kind":"HTTPRoute","name":"public-lb"}]}}
+    creationTimestamp: "2026-09-17T02:42:58Z"
+    generation: 2
+    labels:
+      manual.ani.io/run: pubdebug-20260917
+    name: public-lb-policy
+    namespace: pubdebug-20260917
+    resourceVersion: "1111338"
+    uid: 84064b7d-430b-4bc3-9cb2-f075a7662066
+  spec:
+    healthCheck:
+      active:
+        healthyThreshold: 1
+        interval: 5s
+        overrides:
+          port: 8080
+        tcp: {}
+        timeout: 3s
+        type: TCP
+        unhealthyThreshold: 3
+      panicThreshold: 0
+    loadBalancer:
+      type: RoundRobin
+    targetRefs:
+    - group: gateway.networking.k8s.io
+      kind: HTTPRoute
+      name: public-lb
+  status:
+    ancestors:
+    - ancestorRef:
+        group: gateway.networking.k8s.io
+        kind: Gateway
+        name: public-lb
+        namespace: pubdebug-20260917
+        sectionName: http
+      conditions:
+      - lastTransitionTime: "2026-09-17T03:44:27Z"
+        message: Policy has been accepted.
+        observedGeneration: 2
+        reason: Accepted
+        status: "True"
+        type: Accepted
+      controllerName: gateway.envoyproxy.io/gatewayclass-controller
+kind: List
+metadata:
+  resourceVersion: ""
+39619c25-703e-4db2-a35a-d44ee2acb780{":authority":"172.16.102.194:8080","bytes_received":0,"bytes_sent":0,"connection_termination_details":null,"downstream_local_address":"10.233.0.2:8080","downstream_remote_address":"172.16.102.192:47626","duration":0,"method":"GET","protocol":"HTTP/1.1","requested_server_name":null,"response_code":503,"response_code_details":"cluster_not_found","response_flags":"NC","route_name":"httproute/pubdebug-20260917/public-lb/rule/0/match/0/*","start_time":"2026-09-17T04:18:09.259Z","upstream_cluster":null,"upstream_host":null,"upstream_local_address":null,"upstream_transport_failure_reason":null,"user-agent":"Go-http-client/1.1","x-envoy-origin-path":"/?nonce=backend-fix-public-a-2","x-envoy-upstream-service-time":null,"x-forwarded-for":"172.16.102.192","x-request-id":"18de8e94-9e96-4a89-ac87-888858824a26"}
+{":authority":"172.16.102.194:8080","bytes_received":0,"bytes_sent":0,"connection_termination_details":null,"downstream_local_address":"10.233.0.2:8080","downstream_remote_address":"172.16.102.192:47650","duration":0,"method":"GET","protocol":"HTTP/1.1","requested_server_name":null,"response_code":503,"response_code_details":"cluster_not_found","response_flags":"NC","route_name":"httproute/pubdebug-20260917/public-lb/rule/0/match/0/*","start_time":"2026-09-17T04:18:10.251Z","upstream_cluster":null,"upstream_host":null,"upstream_local_address":null,"upstream_transport_failure_reason":null,"user-agent":"Go-http-client/1.1","x-envoy-origin-path":"/?nonce=backend-fix-public-a-4","x-envoy-upstream-service-time":null,"x-forwarded-for":"172.16.102.192","x-request-id":"d329d2c9-716a-40ee-bc81-fdda8f31e730"}
+[2026-09-17 04:18:14.847][1][warning][config] [source/extensions/config_subscription/grpc/grpc_subscription_impl.cc:130] gRPC config: initial fetch timed out for type.googleapis.com/envoy.config.endpoint.v3.ClusterLoadAssignment
+[2026-09-17 04:18:14.847][1][warning][config] [source/extensions/config_subscription/grpc/grpc_subscription_impl.cc:130] gRPC config: initial fetch timed out for type.googleapis.com/envoy.config.endpoint.v3.ClusterLoadAssignment
+{":authority":"172.16.102.194:8080","bytes_received":0,"bytes_sent":0,"connection_termination_details":null,"downstream_local_address":"10.233.0.3:8080","downstream_remote_address":"172.16.102.192:45858","duration":0,"method":"GET","protocol":"HTTP/1.1","requested_server_name":null,"response_code":503,"response_code_details":"cluster_not_found","response_flags":"NC","route_name":"httproute/pubdebug-20260917/public-lb/rule/0/match/0/*","start_time":"2026-09-17T04:18:02.999Z","upstream_cluster":null,"upstream_host":null,"upstream_local_address":null,"upstream_transport_failure_reason":null,"user-agent":"Go-http-client/1.1","x-envoy-origin-path":"/?nonce=backend-fix-1","x-envoy-upstream-service-time":null,"x-forwarded-for":"172.16.102.192","x-request-id":"937f703b-e384-494e-8692-41d9028a0638"}
+{":authority":"172.16.102.194:8080","bytes_received":0,"bytes_sent":0,"connection_termination_details":null,"downstream_local_address":"10.233.0.3:8080","downstream_remote_address":"172.16.102.192:47624","duration":0,"method":"GET","protocol":"HTTP/1.1","requested_server_name":null,"response_code":503,"response_code_details":"cluster_not_found","response_flags":"NC","route_name":"httproute/pubdebug-20260917/public-lb/rule/0/match/0/*","start_time":"2026-09-17T04:18:08.776Z","upstream_cluster":null,"upstream_host":null,"upstream_local_address":null,"upstream_transport_failure_reason":null,"user-agent":"Go-http-client/1.1","x-envoy-origin-path":"/?nonce=backend-fix-public-a-1","x-envoy-upstream-service-time":null,"x-forwarded-for":"172.16.102.192","x-request-id":"f19d931b-eb1b-4dcc-8fcd-0f4ad8a1040a"}
+{":authority":"172.16.102.194:8080","bytes_received":0,"bytes_sent":0,"connection_termination_details":null,"downstream_local_address":"10.233.0.3:8080","downstream_remote_address":"172.16.102.192:47634","duration":0,"method":"GET","protocol":"HTTP/1.1","requested_server_name":null,"response_code":503,"response_code_details":"cluster_not_found","response_flags":"NC","route_name":"httproute/pubdebug-20260917/public-lb/rule/0/match/0/*","start_time":"2026-09-17T04:18:09.683Z","upstream_cluster":null,"upstream_host":null,"upstream_local_address":null,"upstream_transport_failure_reason":null,"user-agent":"Go-http-client/1.1","x-envoy-origin-path":"/?nonce=backend-fix-public-a-3","x-envoy-upstream-service-time":null,"x-forwarded-for":"172.16.102.192","x-request-id":"c1dbc73c-a74d-4747-90a7-14a830507772"}
+[2026-09-17 04:18:14.869][1][warning][config] [source/extensions/config_subscription/grpc/grpc_subscription_impl.cc:130] gRPC config: initial fetch timed out for type.googleapis.com/envoy.config.endpoint.v3.ClusterLoadAssignment
+[2026-09-17 04:18:14.870][1][warning][config] [source/extensions/config_subscription/grpc/grpc_subscription_impl.cc:130] gRPC config: initial fetch timed out for type.googleapis.com/envoy.config.endpoint.v3.ClusterLoadAssignment

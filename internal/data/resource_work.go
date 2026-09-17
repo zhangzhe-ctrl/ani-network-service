@@ -42,6 +42,8 @@ func claimResource(ctx context.Context, q *sqlcgen.Queries) (biz.ResourceWork, e
 			}
 		}
 		switch c.ResourceKind {
+		case "load_balancer":
+			return lockLBWork(ctx, q, c.TenantID, c.ResourceID)
 		case "vpc":
 			return vpcWork(v), nil
 		case "subnet":
@@ -71,6 +73,9 @@ func snatWork(s sqlcgen.NetworkSnatBinding) biz.ResourceWork {
 	return biz.ResourceWork{ID: s.SnatID, TenantID: s.TenantID, Kind: "snat", VPCID: s.VpcID, SystemManaged: s.Purpose == "intranet", State: biz.ResourceState(s.State), Reason: biz.Reason(s.Reason), Version: s.Version, UpdatedAt: s.UpdatedAt, ObservedAt: s.ObservedAt, LastOperationID: s.LastOperationID, Egress: &biz.EgressWorkSpec{EIPID: s.EipID, DesiredEnabled: s.DesiredEnabled, TargetGeneration: s.TargetGeneration}}
 }
 func lockResource(ctx context.Context, q *sqlcgen.Queries, r biz.ResourceWork) (biz.ResourceWork, error) {
+	if r.Kind == "load_balancer" {
+		return lockLBWork(ctx, q, r.TenantID, r.ID)
+	}
 	if r.Kind == "eip" {
 		if r.VPCID != "" {
 			if _, err := q.LockVPC(ctx, sqlcgen.LockVPCParams{TenantID: r.TenantID, VpcID: r.VPCID}); err != nil {
@@ -118,6 +123,18 @@ func lockResource(ctx context.Context, q *sqlcgen.Queries, r biz.ResourceWork) (
 	return subnetWork(s), err
 }
 func advanceResource(ctx context.Context, q *sqlcgen.Queries, r biz.ResourceWork, p biz.Progress) (biz.ResourceWork, error) {
+	if r.Kind == "load_balancer" {
+		occupied, absence := "", ""
+		state := "unknown"
+		applied := int64(0)
+		if p.LoadBalancer != nil && p.Observed {
+			state = p.LoadBalancer.ConfigurationState
+			applied = p.LoadBalancer.AppliedVersion
+			occupied, absence = p.LoadBalancer.VIPOccupiedRevision, p.LoadBalancer.VIPAbsenceRevision
+		}
+		v, err := q.AdvanceLB(ctx, sqlcgen.AdvanceLBParams{TenantID: r.TenantID, LbID: r.ID, Version: r.Version, State: string(p.State), Reason: string(p.Reason), Observed: p.Observed, ObservedAt: proofTime(p.Observed, p.Proof), ConfigurationState: state, AppliedVersion: applied, VipOccupiedRevision: occupied, VipAbsenceRevision: absence})
+		return lbWork(v), err
+	}
 	facts := biz.EgressAppliedFacts{}
 	if p.Egress != nil && p.Observed {
 		facts = *p.Egress

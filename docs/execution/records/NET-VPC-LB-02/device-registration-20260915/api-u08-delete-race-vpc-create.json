@@ -1,0 +1,37 @@
+{
+  "at": "2026-09-15T05:42:02.329134+00:00",
+  "execution_host": "ubuntu",
+  "context": "tenant-b",
+  "command": "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/lb-api call -target unix:///home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-b.sock -service NetworkService -method CreateVPC",
+  "request": {
+    "name": "lb02-2b3122-u08-delete-race",
+    "cidr": "10.233.48.0/20",
+    "description": "Run-owned legacy fixture for U08 admission/delete competition, no workloads",
+    "idempotency_key": "lb02-2b3122-u08-delete-race"
+  },
+  "exit": 0,
+  "response": {
+    "code": "OK",
+    "response": {
+      "vpc": {
+        "id": "vpc_af937bb766324a5a8a41a08d55c39062",
+        "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+        "name": "lb02-2b3122-u08-delete-race",
+        "description": "Run-owned legacy fixture for U08 admission/delete competition, no workloads",
+        "cidr": "10.233.48.0/20",
+        "state": "RESOURCE_STATE_PROVISIONING",
+        "reason": "",
+        "created_at": "2026-09-15T05:42:02.300930Z",
+        "updated_at": "2026-09-15T05:42:02.300930Z",
+        "version": "1",
+        "observed_at": null,
+        "observation_stale": true,
+        "last_operation_id": "2d84ab97-1b75-484f-a8db-0c2fbd0ab021",
+        "subnet_count": "0",
+        "reason_message": "",
+        "base_connectivity": null
+      }
+    }
+  },
+  "stderr": ""
+}

@@ -1,0 +1,88 @@
+{
+  "at": "2026-09-15T06:55:12.301574+00:00",
+  "evidence_type": "post_create_read",
+  "command": [
+    "sudo",
+    "-n",
+    "/usr/local/bin/kubectl",
+    "--kubeconfig",
+    "/etc/kubernetes/admin.conf",
+    "--context",
+    "kubernetes-admin@ani-platform",
+    "--request-timeout=15s",
+    "get",
+    "role,rolebinding",
+    "-n",
+    "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+    "--field-selector",
+    "metadata.name=lb02-2b3122-foreign-service-fixture",
+    "-o",
+    "json"
+  ],
+  "exit": 0,
+  "objects": {
+    "apiVersion": "v1",
+    "items": [
+      {
+        "apiVersion": "rbac.authorization.k8s.io/v1",
+        "kind": "Role",
+        "metadata": {
+          "creationTimestamp": "2026-09-15T06:54:20Z",
+          "labels": {
+            "network.ani.io/test-run": "lb02-09141908-2b3122"
+          },
+          "name": "lb02-2b3122-foreign-service-fixture",
+          "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+          "resourceVersion": "321874",
+          "uid": "4ef6af6f-f563-4738-accb-65e630f33413"
+        },
+        "rules": [
+          {
+            "apiGroups": [
+              ""
+            ],
+            "resources": [
+              "services"
+            ],
+            "verbs": [
+              "create",
+              "get",
+              "delete"
+            ]
+          }
+        ]
+      },
+      {
+        "apiVersion": "rbac.authorization.k8s.io/v1",
+        "kind": "RoleBinding",
+        "metadata": {
+          "creationTimestamp": "2026-09-15T06:54:20Z",
+          "labels": {
+            "network.ani.io/test-run": "lb02-09141908-2b3122"
+          },
+          "name": "lb02-2b3122-foreign-service-fixture",
+          "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+          "resourceVersion": "321875",
+          "uid": "f69d4d76-24f5-44f9-87cd-c206244868f1"
+        },
+        "roleRef": {
+          "apiGroup": "rbac.authorization.k8s.io",
+          "kind": "Role",
+          "name": "lb02-2b3122-foreign-service-fixture"
+        },
+        "subjects": [
+          {
+            "kind": "ServiceAccount",
+            "name": "lb02-2b3122-workload-owner",
+            "namespace": "lb02-09141908-2b3122"
+          }
+        ]
+      }
+    ],
+    "kind": "List",
+    "metadata": {
+      "resourceVersion": ""
+    }
+  },
+  "note": "Precheck found zero matching Role/RoleBinding. create -f List returned concatenated JSON; local receipt decoding failed after server creation. This read verifies both exact planned objects. Creation was not repeated."
+}

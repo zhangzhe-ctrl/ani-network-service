@@ -1,0 +1,19 @@
+{
+  "command": [
+    "docker",
+    "exec",
+    "9f2bb4f4cf4177a1b21dd555d1f79d16356c738c842d5c2c1b37d110edb7eefb",
+    "psql",
+    "-X",
+    "-U",
+    "postgres",
+    "-d",
+    "net_vpc_lb_02_a91701",
+    "-c",
+    "SELECT version,checksum,applied_at FROM network_schema_version ORDER BY version;\nSELECT lb_id,config_version,health_check_port FROM network_lb_configurations;\nSELECT lb_id,port FROM network_lb_listeners;\nSELECT lb_id,address,port FROM network_lb_members;\nSELECT kind,state,attempt FROM network_operations ORDER BY created_at;"
+  ],
+  "exit": 0,
+  "stdout": " version |                             checksum                             |          applied_at           \n---------+------------------------------------------------------------------+-------------------------------\n       1 | c9c99dd3cfba59f5a6fcf8025e7d0d433a8bd322df1088c58912a44d1e32736a | 2026-09-17 11:21:18.973676+00\n       2 | ab5dfbc25cc9f2323d2fbee2dbb109d28115597a6f8322e1242f4484dc6a5fdb | 2026-09-17 11:21:18.998201+00\n       3 | 9617a45668d6f0a4c0590f07f36889acbd56c4b966dcd0c9f2b3d1f093ee69dd | 2026-09-17 11:21:19.00829+00\n       4 | 6ff6142ba197f3a8e62e6433daf2deb672c3f125d634d4f63441f3b11e9c58b6 | 2026-09-17 11:21:19.013605+00\n       5 | 03391a468313dbf64050840dda02a2d9da4845fdf864364bc34aade4069818e6 | 2026-09-17 11:21:19.087093+00\n       6 | bf8918f6a357850bd54f3d1b4e6120d7cfcb9b9be76a5e2825436bd19be3ef13 | 2026-09-17 11:21:19.136163+00\n       7 | d19d3204acf4a0c41358b7bfbcd413685596a25568086fd63afb86e549d8ab77 | 2026-09-17 11:21:19.195974+00\n       8 | 4cec6755827dd7be87759f31a6d4c7accc9089c4b4f96ffd0197cd23ded2e0b5 | 2026-09-17 11:21:19.197105+00\n(8 rows)\n\n                lb_id                | config_version | health_check_port \n-------------------------------------+----------------+-------------------\n lb_76040497f6ea42c49c5ed95cbbc6931e |              1 |              8080\n(1 row)\n\n                lb_id                | port \n-------------------------------------+------\n lb_76040497f6ea42c49c5ed95cbbc6931e | 8081\n(1 row)\n\n                lb_id                |  address   | port \n-------------------------------------+------------+------\n lb_76040497f6ea42c49c5ed95cbbc6931e | 10.235.1.2 | 8080\n lb_76040497f6ea42c49c5ed95cbbc6931e | 10.235.1.3 | 8080\n(2 rows)\n\n         kind         |   state   | attempt \n----------------------+-----------+---------\n create_vpc           | succeeded |      15\n bind_snat            | succeeded |      25\n create_eip           | succeeded |       5\n create_subnet        | succeeded |       3\n create_subnet        | succeeded |       4\n create_load_balancer | succeeded |       7\n(6 rows)\n\n",
+  "stderr": "",
+  "at": "2026-09-17T11:31:34.222081+00:00"
+}

@@ -1,0 +1,33 @@
+{
+  "at": "2026-09-15T14:08:28.752400+00:00",
+  "result": "pass",
+  "source_run": "20260915T132645Z-482e616d",
+  "runtime": "r27",
+  "original_service_uid": "cbbfbc82-49c0-4bbc-96f3-a3924f685421",
+  "fixture_service_uid": "c5181c98-a534-4666-824a-051746559eaf",
+  "checks": {
+    "original_uid_was_not_replaced_in_network": true,
+    "new_uid_is_distinct": true,
+    "new_uid_preserved": true,
+    "foreign_service_spec_preserved": true,
+    "foreign_owner_refs_preserved": true,
+    "delete_operation_blocked_for_ownership": true,
+    "deleting_claims_retained": true
+  },
+  "claims": {
+    "lb_state": "deleting",
+    "registered_service_uids": [
+      "cbbfbc82-49c0-4bbc-96f3-a3924f685421"
+    ],
+    "active_eip_claims": 1,
+    "active_vip_intents": 1,
+    "active_subnet_refs": 2
+  },
+  "scope": "actual same-name Service with different UID while normal product deletion is pending; foreign fixture is not an Envoy-generated replacement",
+  "evidence": [
+    "same-name-service-uid-create.json",
+    "same-name-service-uid-get.json",
+    "same-name-service-uid-product-protected.json",
+    "same-name-service-uid-protected-claims.json"
+  ]
+}

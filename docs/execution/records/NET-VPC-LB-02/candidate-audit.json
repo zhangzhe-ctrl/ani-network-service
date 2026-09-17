@@ -1,0 +1,132 @@
+{
+  "at": "2026-09-14T16:58:49.269574+00:00",
+  "repositories": [
+    {
+      "path": "/home/chabking/workspace/.worktrees/network-vpc-lb-02",
+      "head": "e534bb0e8ef83055e18e91d1d41a6c821348a887",
+      "branch": "codex/net-vpc-lb-02",
+      "status": [
+        " M cmd/ani-network-service/app.go",
+        " M docs/START-HERE.md",
+        " M docs/execution/status.md",
+        " M internal/biz/network.go",
+        " M internal/biz/vpc.go",
+        " M internal/biz/worker.go",
+        " M internal/conf/v1/conf.pb.go",
+        " M internal/conf/v1/conf.proto",
+        " M internal/conf/v1/validate.go",
+        " M internal/conf/v1/validate_test.go",
+        " M internal/data/base_schema_integration_test.go",
+        " M internal/data/kc.go",
+        " M internal/data/kc_attachment.go",
+        " M internal/data/kc_egress.go",
+        " M internal/data/kc_index.go",
+        " M internal/data/kc_observation.go",
+        " M internal/data/migrate.go",
+        " M internal/data/observation_upgrade_integration_test.go",
+        " M internal/data/platform_capabilities.go",
+        " M internal/data/postgres.go",
+        " M internal/data/process_integration_test.go",
+        " M internal/data/queries/base_connectivity.sql",
+        " M internal/data/queries/egress.sql",
+        " M internal/data/queries/observation.sql",
+        " M internal/data/queries/vpcs.sql",
+        " M internal/data/queries/worker.sql",
+        " M internal/data/resource_work.go",
+        " M internal/data/sqlcgen/base_connectivity.sql.go",
+        " M internal/data/sqlcgen/egress.sql.go",
+        " M internal/data/sqlcgen/models.go",
+        " M internal/data/sqlcgen/observation.sql.go",
+        " M internal/data/sqlcgen/subnets.sql.go",
+        " M internal/data/sqlcgen/vpcs.sql.go",
+        " M internal/data/sqlcgen/worker.sql.go",
+        " M internal/data/subnet_upgrade_integration_test.go",
+        " M internal/data/worker.go",
+        " M internal/service/network.go",
+        "?? deployments/load-balancer/",
+        "?? docs/execution/records/NET-VPC-LB-02/",
+        "?? internal/biz/load_balancer.go",
+        "?? internal/biz/load_balancer_test.go",
+        "?? internal/biz/load_balancer_worker.go",
+        "?? internal/biz/worker_test.go",
+        "?? internal/data/kc_load_balancer.go",
+        "?? internal/data/kc_load_balancer_capability.go",
+        "?? internal/data/kc_load_balancer_eip.go",
+        "?? internal/data/kc_load_balancer_generated.go",
+        "?? internal/data/load_balancer_capability_integration_test.go",
+        "?? internal/data/load_balancer_composition_integration_test.go",
+        "?? internal/data/load_balancer_concurrency_integration_test.go",
+        "?? internal/data/load_balancer_lifecycle_integration_test.go",
+        "?? internal/data/load_balancer_ownership_integration_test.go",
+        "?? internal/data/load_balancer_process_integration_test.go",
+        "?? internal/data/load_balancer_schema_integration_test.go",
+        "?? internal/data/load_balancer_update_integration_test.go",
+        "?? internal/data/load_balancer_worker.go",
+        "?? internal/data/load_balancers.go",
+        "?? internal/data/load_balancers_integration_test.go",
+        "?? internal/data/queries/load_balancers.sql",
+        "?? internal/data/sqlcgen/load_balancers.sql.go",
+        "?? internal/service/load_balancer.go",
+        "?? internal/service/load_balancer_test.go",
+        "?? migrations/0007_load_balancers.sql",
+        "?? scripts/check-vpc-lb-contracts",
+        "?? scripts/lb-api/",
+        "?? scripts/lb-preflight",
+        "?? scripts/lb-scheduler-budget"
+      ],
+      "staged_paths": []
+    },
+    {
+      "path": "/home/chabking/workspace/.worktrees/network-vpc-base-01",
+      "head": "e534bb0e8ef83055e18e91d1d41a6c821348a887",
+      "branch": "codex/net-vpc-base-01",
+      "status": [],
+      "staged_paths": []
+    },
+    {
+      "path": "/home/chabking/workspace/ani-network-service",
+      "head": "e481e968d3cc2f17bc4c6a736c438428519b09a0",
+      "branch": "main",
+      "status": [
+        " M docs/START-HERE.md",
+        "?? docs/execution/records/PLATFORM-20260914-EXTENSION/",
+        "?? docs/execution/records/PLATFORM-20260914/",
+        "?? docs/runbooks/"
+      ],
+      "staged_paths": []
+    }
+  ],
+  "historical_migrations": [
+    {
+      "path": "migrations/0001_vpc.sql",
+      "sha256": "c9c99dd3cfba59f5a6fcf8025e7d0d433a8bd322df1088c58912a44d1e32736a",
+      "equals_baseline": true
+    },
+    {
+      "path": "migrations/0002_subnet.sql",
+      "sha256": "ab5dfbc25cc9f2323d2fbee2dbb109d28115597a6f8322e1242f4484dc6a5fdb",
+      "equals_baseline": true
+    },
+    {
+      "path": "migrations/0003_attachment.sql",
+      "sha256": "9617a45668d6f0a4c0590f07f36889acbd56c4b966dcd0c9f2b3d1f093ee69dd",
+      "equals_baseline": true
+    },
+    {
+      "path": "migrations/0004_observation.sql",
+      "sha256": "6ff6142ba197f3a8e62e6433daf2deb672c3f125d634d4f63441f3b11e9c58b6",
+      "equals_baseline": true
+    },
+    {
+      "path": "migrations/0005_vpc_egress.sql",
+      "sha256": "03391a468313dbf64050840dda02a2d9da4845fdf864364bc34aade4069818e6",
+      "equals_baseline": true
+    },
+    {
+      "path": "migrations/0006_vpc_base_connectivity.sql",
+      "sha256": "bf8918f6a357850bd54f3d1b4e6120d7cfcb9b9be76a5e2825436bd19be3ef13",
+      "equals_baseline": true
+    }
+  ],
+  "source_scope": "only isolated network-vpc-lb-02 modified; no commit, push, merge or deployment"
+}

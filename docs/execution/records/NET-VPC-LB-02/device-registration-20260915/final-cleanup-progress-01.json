@@ -1,0 +1,12 @@
+{
+  "at": "2026-09-15T14:25:36.026582+00:00",
+  "execution_host": "ubuntu",
+  "transport_exit": 0,
+  "result": {
+    "query": "SELECT json_build_object('private_lb',(SELECT json_build_object('state',state,'reason',reason) FROM network_load_balancers WHERE lb_id='lb_cc562f7d8be147afae8144555aa7243b'),'public_eips',(SELECT json_agg(json_build_object('id',eip_id,'state',state,'reason',reason)) FROM network_eips WHERE eip_id IN ('eip_fdab288a3b1846138806e8e5e14529a9','eip_f20581cca5d34cc7a25af17cd95dc4cb')),'legacy_attachments',(SELECT json_agg(json_build_object('id',attachment_id,'state',state,'reason',reason)) FROM network_attachments WHERE attachment_id IN ('att_e17cd1ca47b741e6a637c44fbc7789cb','att_c3ecbb00f69442868d10004d061a5ffe','att_27718b5a92e64f669739aec7a5c51f8a')));",
+    "exit": 0,
+    "stdout": "BEGIN\n{\"private_lb\" : {\"state\" : \"deleted\", \"reason\" : \"\"}, \"public_eips\" : [{\"id\" : \"eip_f20581cca5d34cc7a25af17cd95dc4cb\", \"state\" : \"deleted\", \"reason\" : \"\"}, {\"id\" : \"eip_fdab288a3b1846138806e8e5e14529a9\", \"state\" : \"deleted\", \"reason\" : \"\"}], \"legacy_attachments\" : [{\"id\" : \"att_27718b5a92e64f669739aec7a5c51f8a\", \"state\" : \"released\", \"reason\" : \"\"}, {\"id\" : \"att_c3ecbb00f69442868d10004d061a5ffe\", \"state\" : \"released\", \"reason\" : \"\"}, {\"id\" : \"att_e17cd1ca47b741e6a637c44fbc7789cb\", \"state\" : \"released\", \"reason\" : \"\"}]}\nROLLBACK\n",
+    "stderr": ""
+  },
+  "stderr": ""
+}

@@ -1,0 +1,53 @@
+[
+  {
+    "at": "2026-09-15T01:05:32.781023+00:00",
+    "argv": [
+      "ssh",
+      "-F",
+      "/home/chabking/.ssh/config",
+      "-o",
+      "BatchMode=yes",
+      "-o",
+      "ConnectTimeout=8",
+      "ani-test-1",
+      "sudo -n /usr/local/bin/kubectl --kubeconfig /etc/kubernetes/admin.conf --context kubernetes-admin@ani-platform -n kcn-system get cm kcn-config -o json"
+    ],
+    "exit_code": 0,
+    "stdout": "{\n    \"apiVersion\": \"v1\",\n    \"data\": {\n        \"enablePortSecurity\": \"false\",\n        \"encapNetworks\": \"172.16.101.0/24\",\n        \"hasMultusCNI\": \"false\",\n        \"intranetNetworks\": \"- 172.16.101.0/24\\n- 172.16.201.0/24\\n- 172.16.202.0/24\\n- 10.96.0.0/16\\n\",\n        \"isDefaultCNI\": \"true\",\n        \"managedDevices\": \"ens35\",\n        \"nadDefaultNamespace\": \"kube-system\"\n    },\n    \"kind\": \"ConfigMap\",\n    \"metadata\": {\n        \"creationTimestamp\": \"2026-09-14T12:26:10Z\",\n        \"name\": \"kcn-config\",\n        \"namespace\": \"kcn-system\",\n        \"resourceVersion\": \"39661\",\n        \"uid\": \"dcca6e9e-db3f-4ebe-8b27-8898e3a2939e\"\n    }\n}\n",
+    "stderr": ""
+  },
+  {
+    "at": "2026-09-15T01:05:33.362925+00:00",
+    "argv": [
+      "ssh",
+      "-F",
+      "/home/chabking/.ssh/config",
+      "-o",
+      "BatchMode=yes",
+      "-o",
+      "ConnectTimeout=8",
+      "ani-test-1",
+      "sudo -n /usr/local/bin/kubectl --kubeconfig /etc/kubernetes/admin.conf --context kubernetes-admin@ani-platform -n kcn-system get cm -l network.ani.io/managed-by=ani-network-node-facts -o json"
+    ],
+    "exit_code": 0,
+    "stdout": "{\n    \"apiVersion\": \"v1\",\n    \"items\": [],\n    \"kind\": \"List\",\n    \"metadata\": {\n        \"resourceVersion\": \"\"\n    }\n}\n",
+    "stderr": ""
+  },
+  {
+    "at": "2026-09-15T01:05:33.913911+00:00",
+    "argv": [
+      "ssh",
+      "-F",
+      "/home/chabking/.ssh/config",
+      "-o",
+      "BatchMode=yes",
+      "-o",
+      "ConnectTimeout=8",
+      "ani-test-1",
+      "ip -j addr show br-ens35; ip -j neigh show dev br-ens35; ip -j route show; sudo -n /usr/local/bin/kubectl --kubeconfig /etc/kubernetes/admin.conf --context kubernetes-admin@ani-platform get vlannetworks,eipgateways -A -o json"
+    ],
+    "exit_code": 0,
+    "stdout": "[{\"ifindex\":9,\"ifname\":\"br-ens35\",\"flags\":[\"BROADCAST\",\"MULTICAST\"],\"mtu\":1500,\"qdisc\":\"noqueue\",\"operstate\":\"DOWN\",\"group\":\"default\",\"txqlen\":1000,\"link_type\":\"ether\",\"address\":\"00:0c:29:e2:f0:2b\",\"broadcast\":\"ff:ff:ff:ff:ff:ff\",\"addr_info\":[]}]\n[]\n[{\"dst\":\"default\",\"gateway\":\"172.16.101.1\",\"dev\":\"ens34\",\"protocol\":\"static\",\"flags\":[]},{\"dst\":\"10.16.0.0/16\",\"gateway\":\"100.64.0.1\",\"dev\":\"ovn0\",\"prefsrc\":\"100.64.0.2\",\"flags\":[]},{\"dst\":\"10.242.252.0/24\",\"gateway\":\"100.64.0.1\",\"dev\":\"ovn0\",\"prefsrc\":\"100.64.0.2\",\"flags\":[]},{\"dst\":\"100.64.0.0/17\",\"dev\":\"ovn0\",\"scope\":\"link\",\"flags\":[]},{\"dst\":\"100.64.128.0/17\",\"dev\":\"ovn0\",\"scope\":\"link\",\"flags\":[]},{\"dst\":\"172.16.101.0/24\",\"dev\":\"ens34\",\"protocol\":\"kernel\",\"scope\":\"link\",\"prefsrc\":\"172.16.101.10\",\"flags\":[]},{\"dst\":\"172.16.202.0/24\",\"dev\":\"ens36\",\"protocol\":\"kernel\",\"scope\":\"link\",\"prefsrc\":\"172.16.202.10\",\"flags\":[]}]\n{\n    \"apiVersion\": \"v1\",\n    \"items\": [],\n    \"kind\": \"List\",\n    \"metadata\": {\n        \"resourceVersion\": \"\"\n    }\n}\n",
+    "stderr": ""
+  }
+]

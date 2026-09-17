@@ -1,0 +1,321 @@
+{
+  "at": "2026-09-14T16:22:55.469532+00:00",
+  "scope": "existing manually created default-VPC LB; not Network API U09 acceptance",
+  "results": [
+    {
+      "alias": "ani-test-1",
+      "exit": 0,
+      "result": {
+        "host": "ani-01",
+        "probes": [
+          {
+            "command": [
+              "curl",
+              "--noproxy",
+              "*",
+              "--connect-timeout",
+              "2",
+              "--max-time",
+              "4",
+              "-sS",
+              "-i",
+              "-H",
+              "Host: lb-test.ani.internal",
+              "http://10.16.250.9:8080/"
+            ],
+            "exit": 0,
+            "response": "HTTP/1.1 200 OK\nserver: nginx/1.31.4\ndate: Mon, 14 Sep 2026 16:22:52 GMT\ncontent-type: text/plain\ncontent-length: 51\n\nBACKEND-B XFF=[100.64.0.2] RemoteAddr=[10.16.0.43]\n",
+            "stderr": ""
+          },
+          {
+            "command": [
+              "curl",
+              "--noproxy",
+              "*",
+              "--connect-timeout",
+              "2",
+              "--max-time",
+              "4",
+              "-sS",
+              "-i",
+              "-H",
+              "Host: lb-test.ani.internal",
+              "http://10.16.250.9:8080/"
+            ],
+            "exit": 0,
+            "response": "HTTP/1.1 200 OK\nserver: nginx/1.31.4\ndate: Mon, 14 Sep 2026 16:22:52 GMT\ncontent-type: text/plain\ncontent-length: 51\n\nBACKEND-B XFF=[100.64.0.2] RemoteAddr=[10.16.0.43]\n",
+            "stderr": ""
+          },
+          {
+            "command": [
+              "curl",
+              "--noproxy",
+              "*",
+              "--connect-timeout",
+              "2",
+              "--max-time",
+              "4",
+              "-sS",
+              "-i",
+              "-H",
+              "Host: lb-test.ani.internal",
+              "http://10.16.250.9:8080/"
+            ],
+            "exit": 0,
+            "response": "HTTP/1.1 200 OK\nserver: nginx/1.31.4\ndate: Mon, 14 Sep 2026 16:22:52 GMT\ncontent-type: text/plain\ncontent-length: 51\n\nBACKEND-B XFF=[100.64.0.2] RemoteAddr=[10.16.0.42]\n",
+            "stderr": ""
+          },
+          {
+            "command": [
+              "curl",
+              "--noproxy",
+              "*",
+              "--connect-timeout",
+              "2",
+              "--max-time",
+              "4",
+              "-sS",
+              "-i",
+              "-H",
+              "Host: lb-test.ani.internal",
+              "http://10.16.250.9:8080/"
+            ],
+            "exit": 0,
+            "response": "HTTP/1.1 200 OK\nserver: nginx/1.31.4\ndate: Mon, 14 Sep 2026 16:22:52 GMT\ncontent-type: text/plain\ncontent-length: 51\n\nBACKEND-A XFF=[100.64.0.2] RemoteAddr=[10.16.0.42]\n",
+            "stderr": ""
+          },
+          {
+            "command": [
+              "curl",
+              "--noproxy",
+              "*",
+              "--connect-timeout",
+              "2",
+              "--max-time",
+              "4",
+              "-sS",
+              "-i",
+              "-H",
+              "Host: lb-test.ani.internal",
+              "http://10.16.250.9:9090/"
+            ],
+            "exit": 0,
+            "response": "HTTP/1.1 200 OK\nserver: nginx/1.31.4\ndate: Mon, 14 Sep 2026 16:22:52 GMT\ncontent-type: text/plain\ncontent-length: 51\n\nBACKEND-B XFF=[100.64.0.2] RemoteAddr=[10.16.0.42]\n",
+            "stderr": ""
+          }
+        ]
+      },
+      "stderr": ""
+    },
+    {
+      "alias": "ani-test-2",
+      "exit": 0,
+      "result": {
+        "host": "ani-02",
+        "probes": [
+          {
+            "command": [
+              "curl",
+              "--noproxy",
+              "*",
+              "--connect-timeout",
+              "2",
+              "--max-time",
+              "4",
+              "-sS",
+              "-i",
+              "-H",
+              "Host: lb-test.ani.internal",
+              "http://10.16.250.9:8080/"
+            ],
+            "exit": 0,
+            "response": "HTTP/1.1 200 OK\nserver: nginx/1.31.4\ndate: Mon, 14 Sep 2026 16:22:53 GMT\ncontent-type: text/plain\ncontent-length: 51\n\nBACKEND-A XFF=[100.64.0.5] RemoteAddr=[10.16.0.43]\n",
+            "stderr": ""
+          },
+          {
+            "command": [
+              "curl",
+              "--noproxy",
+              "*",
+              "--connect-timeout",
+              "2",
+              "--max-time",
+              "4",
+              "-sS",
+              "-i",
+              "-H",
+              "Host: lb-test.ani.internal",
+              "http://10.16.250.9:8080/"
+            ],
+            "exit": 0,
+            "response": "HTTP/1.1 200 OK\nserver: nginx/1.31.4\ndate: Mon, 14 Sep 2026 16:22:53 GMT\ncontent-type: text/plain\ncontent-length: 51\n\nBACKEND-A XFF=[100.64.0.5] RemoteAddr=[10.16.0.43]\n",
+            "stderr": ""
+          },
+          {
+            "command": [
+              "curl",
+              "--noproxy",
+              "*",
+              "--connect-timeout",
+              "2",
+              "--max-time",
+              "4",
+              "-sS",
+              "-i",
+              "-H",
+              "Host: lb-test.ani.internal",
+              "http://10.16.250.9:8080/"
+            ],
+            "exit": 0,
+            "response": "HTTP/1.1 200 OK\nserver: nginx/1.31.4\ndate: Mon, 14 Sep 2026 16:22:53 GMT\ncontent-type: text/plain\ncontent-length: 51\n\nBACKEND-B XFF=[100.64.0.5] RemoteAddr=[10.16.0.42]\n",
+            "stderr": ""
+          },
+          {
+            "command": [
+              "curl",
+              "--noproxy",
+              "*",
+              "--connect-timeout",
+              "2",
+              "--max-time",
+              "4",
+              "-sS",
+              "-i",
+              "-H",
+              "Host: lb-test.ani.internal",
+              "http://10.16.250.9:8080/"
+            ],
+            "exit": 0,
+            "response": "HTTP/1.1 200 OK\nserver: nginx/1.31.4\ndate: Mon, 14 Sep 2026 16:22:54 GMT\ncontent-type: text/plain\ncontent-length: 51\n\nBACKEND-A XFF=[100.64.0.5] RemoteAddr=[10.16.0.42]\n",
+            "stderr": ""
+          },
+          {
+            "command": [
+              "curl",
+              "--noproxy",
+              "*",
+              "--connect-timeout",
+              "2",
+              "--max-time",
+              "4",
+              "-sS",
+              "-i",
+              "-H",
+              "Host: lb-test.ani.internal",
+              "http://10.16.250.9:9090/"
+            ],
+            "exit": 0,
+            "response": "HTTP/1.1 200 OK\nserver: nginx/1.31.4\ndate: Mon, 14 Sep 2026 16:22:54 GMT\ncontent-type: text/plain\ncontent-length: 51\n\nBACKEND-B XFF=[100.64.0.5] RemoteAddr=[10.16.0.43]\n",
+            "stderr": ""
+          }
+        ]
+      },
+      "stderr": ""
+    },
+    {
+      "alias": "ani-test-3",
+      "exit": 0,
+      "result": {
+        "host": "ani-03",
+        "probes": [
+          {
+            "command": [
+              "curl",
+              "--noproxy",
+              "*",
+              "--connect-timeout",
+              "2",
+              "--max-time",
+              "4",
+              "-sS",
+              "-i",
+              "-H",
+              "Host: lb-test.ani.internal",
+              "http://10.16.250.9:8080/"
+            ],
+            "exit": 0,
+            "response": "HTTP/1.1 200 OK\nserver: nginx/1.31.4\ndate: Mon, 14 Sep 2026 16:22:55 GMT\ncontent-type: text/plain\ncontent-length: 51\n\nBACKEND-B XFF=[100.64.0.4] RemoteAddr=[10.16.0.43]\n",
+            "stderr": ""
+          },
+          {
+            "command": [
+              "curl",
+              "--noproxy",
+              "*",
+              "--connect-timeout",
+              "2",
+              "--max-time",
+              "4",
+              "-sS",
+              "-i",
+              "-H",
+              "Host: lb-test.ani.internal",
+              "http://10.16.250.9:8080/"
+            ],
+            "exit": 0,
+            "response": "HTTP/1.1 200 OK\nserver: nginx/1.31.4\ndate: Mon, 14 Sep 2026 16:22:55 GMT\ncontent-type: text/plain\ncontent-length: 51\n\nBACKEND-B XFF=[100.64.0.4] RemoteAddr=[10.16.0.42]\n",
+            "stderr": ""
+          },
+          {
+            "command": [
+              "curl",
+              "--noproxy",
+              "*",
+              "--connect-timeout",
+              "2",
+              "--max-time",
+              "4",
+              "-sS",
+              "-i",
+              "-H",
+              "Host: lb-test.ani.internal",
+              "http://10.16.250.9:8080/"
+            ],
+            "exit": 0,
+            "response": "HTTP/1.1 200 OK\nserver: nginx/1.31.4\ndate: Mon, 14 Sep 2026 16:22:55 GMT\ncontent-type: text/plain\ncontent-length: 51\n\nBACKEND-A XFF=[100.64.0.4] RemoteAddr=[10.16.0.42]\n",
+            "stderr": ""
+          },
+          {
+            "command": [
+              "curl",
+              "--noproxy",
+              "*",
+              "--connect-timeout",
+              "2",
+              "--max-time",
+              "4",
+              "-sS",
+              "-i",
+              "-H",
+              "Host: lb-test.ani.internal",
+              "http://10.16.250.9:8080/"
+            ],
+            "exit": 0,
+            "response": "HTTP/1.1 200 OK\nserver: nginx/1.31.4\ndate: Mon, 14 Sep 2026 16:22:55 GMT\ncontent-type: text/plain\ncontent-length: 51\n\nBACKEND-A XFF=[100.64.0.4] RemoteAddr=[10.16.0.43]\n",
+            "stderr": ""
+          },
+          {
+            "command": [
+              "curl",
+              "--noproxy",
+              "*",
+              "--connect-timeout",
+              "2",
+              "--max-time",
+              "4",
+              "-sS",
+              "-i",
+              "-H",
+              "Host: lb-test.ani.internal",
+              "http://10.16.250.9:9090/"
+            ],
+            "exit": 0,
+            "response": "HTTP/1.1 200 OK\nserver: nginx/1.31.4\ndate: Mon, 14 Sep 2026 16:22:55 GMT\ncontent-type: text/plain\ncontent-length: 51\n\nBACKEND-B XFF=[100.64.0.4] RemoteAddr=[10.16.0.42]\n",
+            "stderr": ""
+          }
+        ]
+      },
+      "stderr": ""
+    }
+  ]
+}

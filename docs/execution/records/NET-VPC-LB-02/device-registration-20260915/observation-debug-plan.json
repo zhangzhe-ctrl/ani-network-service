@@ -1,0 +1,17 @@
+{
+  "at": "2026-09-15T11:23:43.311367+00:00",
+  "purpose": "Temporary diagnostics only; exact original source preserved, no changed acceptance or worker behavior",
+  "source_run": "20260915T074304Z-31ea8959",
+  "files": {
+    "internal/data/kc_egress.go": "9066d0c78faaa4d002c1d3f5585b7c0e0b9380976262b2097c5a21457f5ced8e",
+    "internal/data/kc_load_balancer.go": "ed9e159e17c3a1254224e3ce3861d1ed9ae9947d3a4cb3f4079edaec13b836e4",
+    "internal/data/base_connectivity.go": "343311584e1c027eba5f1d1855ac5da65e58b09dfc5d0e8c1429bb94ac142091",
+    "internal/data/kc_observation.go": "0c7618d6b71fd151b7b77470b0c73244aa9c8f3b0a814ca0f033903ebad0a137"
+  },
+  "hypotheses": [
+    "related event invalidates audit snapshot",
+    "base SNAT fact stale or degraded",
+    "Attachment observation fails before immutable Provider UID checks"
+  ],
+  "marker": "[DEBUG-lb02-observation]"
+}

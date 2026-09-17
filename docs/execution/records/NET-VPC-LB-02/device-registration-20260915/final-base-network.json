@@ -1,0 +1,835 @@
+{
+  "at": "2026-09-15T07:09:34.261049+00:00",
+  "execution_host": "ubuntu",
+  "command": [
+    "bash",
+    "-c",
+    "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+    "kubectl",
+    "--kubeconfig",
+    "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/kubeconfig.json",
+    "--request-timeout=20s",
+    "get",
+    "eips.networking.kubercloud.com,snats.networking.kubercloud.com,vnicips.networking.kubercloud.com,vnics.networking.kubercloud.com,subnets.networking.kubercloud.com",
+    "-n",
+    "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+    "-o",
+    "json"
+  ],
+  "exit": 0,
+  "objects": {
+    "apiVersion": "v1",
+    "items": [
+      {
+        "apiVersion": "networking.kubercloud.com/v1",
+        "kind": "EIP",
+        "metadata": {
+          "creationTimestamp": "2026-09-15T04:05:18Z",
+          "finalizers": [
+            "networking.kubercloud.com/finalizer"
+          ],
+          "generation": 2,
+          "labels": {
+            "network.ani.io/binding-id": "da81b942-3d80-4bef-882d-cddc05c35063",
+            "network.ani.io/managed-by": "ani-network-service",
+            "network.ani.io/resource-id": "eip_c428922594b94429a405305c6c781897",
+            "network.ani.io/tenant-id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad"
+          },
+          "name": "eip-c428922594b94429a405305c6c781897",
+          "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+          "resourceVersion": "273472",
+          "uid": "9c33ae20-a87e-4810-b141-f968c68c9f50"
+        },
+        "spec": {
+          "ipAddress": "10.242.252.2",
+          "ipVersion": "IPv4",
+          "subnet": "kcn-system/pool-f6c078d198ae4ea1be6f43cfad8f9934"
+        },
+        "status": {
+          "boundResource": {
+            "disabled": false,
+            "nodeName": "ani-01",
+            "observedGeneration": 1,
+            "resource": "snat-3cbc9e4d07b44c0291a541d50bd4b43e",
+            "resourceType": "Snat",
+            "vpc": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad/vpc-d06f28e82fe847f7bf2cedd57dad82f4"
+          },
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-09-15T04:05:18Z",
+              "message": "",
+              "reason": "Initialized",
+              "status": "True",
+              "type": "Initialized"
+            },
+            {
+              "lastTransitionTime": "2026-09-15T04:05:18Z",
+              "message": "",
+              "reason": "Valid",
+              "status": "True",
+              "type": "Valid"
+            }
+          ],
+          "gateway": "kcn-system/kcn-cluster",
+          "phase": "Bound"
+        }
+      },
+      {
+        "apiVersion": "networking.kubercloud.com/v1",
+        "kind": "Snat",
+        "metadata": {
+          "creationTimestamp": "2026-09-15T04:12:04Z",
+          "finalizers": [
+            "networking.kubercloud.com/finalizer"
+          ],
+          "generation": 1,
+          "labels": {
+            "network.ani.io/binding-id": "22511e42-21ea-492f-abf8-0a7f24dcd022",
+            "network.ani.io/managed-by": "ani-network-service",
+            "network.ani.io/resource-id": "snat_3cbc9e4d07b44c0291a541d50bd4b43e",
+            "network.ani.io/tenant-id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad"
+          },
+          "name": "snat-3cbc9e4d07b44c0291a541d50bd4b43e",
+          "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+          "resourceVersion": "273473",
+          "uid": "5f639975-62af-4f31-bc3e-fc781657ae1f"
+        },
+        "spec": {
+          "disable": false,
+          "eip": "eip-c428922594b94429a405305c6c781897",
+          "vpc": "vpc-d06f28e82fe847f7bf2cedd57dad82f4"
+        },
+        "status": {
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-09-15T04:12:04Z",
+              "message": "",
+              "reason": "Valid",
+              "status": "True",
+              "type": "Valid"
+            }
+          ],
+          "eipAddress": "10.242.252.2",
+          "phase": "Bound"
+        }
+      },
+      {
+        "apiVersion": "networking.kubercloud.com/v1",
+        "kind": "VNicIP",
+        "metadata": {
+          "creationTimestamp": "2026-09-15T05:55:54Z",
+          "finalizers": [
+            "networking.kubercloud.com/finalizer"
+          ],
+          "generation": 2,
+          "name": "auto-lb-cc562f7d8be147afae8144555aa7243b-86-vnic-5pwwb",
+          "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+          "ownerReferences": [
+            {
+              "apiVersion": "networking.kubercloud.com/v1",
+              "kind": "VNic",
+              "name": "auto-lb-cc562f7d8be147afae8144555aa7243b-86-vnic-5pwwb",
+              "uid": "4efc4a82-20de-49d2-840b-3030ac72a6b8"
+            }
+          ],
+          "resourceVersion": "304516",
+          "uid": "496f3a62-21ba-4877-bd34-412b6143f278"
+        },
+        "spec": {
+          "ipAddress": "10.233.0.5",
+          "subnet": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad/subnet-f74d90cbb5484f7fb37f8a8f6782da1d",
+          "vNic": "auto-lb-cc562f7d8be147afae8144555aa7243b-86-vnic-5pwwb"
+        },
+        "status": {
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-09-15T05:55:54Z",
+              "message": "",
+              "reason": "Initialized",
+              "status": "True",
+              "type": "Initialized"
+            },
+            {
+              "lastTransitionTime": "2026-09-15T05:55:54Z",
+              "message": "",
+              "reason": "Valid",
+              "status": "True",
+              "type": "Valid"
+            }
+          ],
+          "vNic": "auto-lb-cc562f7d8be147afae8144555aa7243b-86-vnic-5pwwb"
+        }
+      },
+      {
+        "apiVersion": "networking.kubercloud.com/v1",
+        "kind": "VNicIP",
+        "metadata": {
+          "creationTimestamp": "2026-09-15T05:55:54Z",
+          "finalizers": [
+            "networking.kubercloud.com/finalizer"
+          ],
+          "generation": 2,
+          "name": "auto-lb-cc562f7d8be147afae8144555aa7243b-86-vnic-lwbjq",
+          "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+          "ownerReferences": [
+            {
+              "apiVersion": "networking.kubercloud.com/v1",
+              "kind": "VNic",
+              "name": "auto-lb-cc562f7d8be147afae8144555aa7243b-86-vnic-lwbjq",
+              "uid": "824f73f7-bf35-4b63-8642-11cfa0ddc5b8"
+            }
+          ],
+          "resourceVersion": "304518",
+          "uid": "ebbaa471-f7eb-40bb-97ee-32a2f608186b"
+        },
+        "spec": {
+          "ipAddress": "10.233.0.6",
+          "subnet": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad/subnet-f74d90cbb5484f7fb37f8a8f6782da1d",
+          "vNic": "auto-lb-cc562f7d8be147afae8144555aa7243b-86-vnic-lwbjq"
+        },
+        "status": {
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-09-15T05:55:54Z",
+              "message": "",
+              "reason": "Initialized",
+              "status": "True",
+              "type": "Initialized"
+            },
+            {
+              "lastTransitionTime": "2026-09-15T05:55:54Z",
+              "message": "",
+              "reason": "Valid",
+              "status": "True",
+              "type": "Valid"
+            }
+          ],
+          "vNic": "auto-lb-cc562f7d8be147afae8144555aa7243b-86-vnic-lwbjq"
+        }
+      },
+      {
+        "apiVersion": "networking.kubercloud.com/v1",
+        "kind": "VNicIP",
+        "metadata": {
+          "creationTimestamp": "2026-09-15T04:22:58Z",
+          "finalizers": [
+            "networking.kubercloud.com/finalizer"
+          ],
+          "generation": 2,
+          "name": "auto-lb02-2b3122-base-a-vnic-z7rvp",
+          "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+          "ownerReferences": [
+            {
+              "apiVersion": "networking.kubercloud.com/v1",
+              "kind": "VNic",
+              "name": "auto-lb02-2b3122-base-a-vnic-z7rvp",
+              "uid": "0b650c18-839a-49ac-97d9-7157a50c224c"
+            }
+          ],
+          "resourceVersion": "276797",
+          "uid": "bc194f0b-fc1b-489d-8873-296e1b639146"
+        },
+        "spec": {
+          "ipAddress": "10.233.1.2",
+          "subnet": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad/subnet-2a3f02dc6b444cc4b708a38d345a88c7",
+          "vNic": "auto-lb02-2b3122-base-a-vnic-z7rvp"
+        },
+        "status": {
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-09-15T04:22:58Z",
+              "message": "",
+              "reason": "Initialized",
+              "status": "True",
+              "type": "Initialized"
+            },
+            {
+              "lastTransitionTime": "2026-09-15T04:22:58Z",
+              "message": "",
+              "reason": "Valid",
+              "status": "True",
+              "type": "Valid"
+            }
+          ],
+          "vNic": "auto-lb02-2b3122-base-a-vnic-z7rvp"
+        }
+      },
+      {
+        "apiVersion": "networking.kubercloud.com/v1",
+        "kind": "VNicIP",
+        "metadata": {
+          "creationTimestamp": "2026-09-15T04:22:59Z",
+          "finalizers": [
+            "networking.kubercloud.com/finalizer"
+          ],
+          "generation": 2,
+          "name": "auto-lb02-2b3122-base-b-vnic-hcfzg",
+          "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+          "ownerReferences": [
+            {
+              "apiVersion": "networking.kubercloud.com/v1",
+              "kind": "VNic",
+              "name": "auto-lb02-2b3122-base-b-vnic-hcfzg",
+              "uid": "f23738b9-c1a7-43ad-a724-e1b867ef0d52"
+            }
+          ],
+          "resourceVersion": "276826",
+          "uid": "eaaa4210-f200-4009-82ca-b2137ffb491b"
+        },
+        "spec": {
+          "ipAddress": "10.233.1.3",
+          "subnet": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad/subnet-2a3f02dc6b444cc4b708a38d345a88c7",
+          "vNic": "auto-lb02-2b3122-base-b-vnic-hcfzg"
+        },
+        "status": {
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-09-15T04:22:59Z",
+              "message": "",
+              "reason": "Initialized",
+              "status": "True",
+              "type": "Initialized"
+            },
+            {
+              "lastTransitionTime": "2026-09-15T04:22:59Z",
+              "message": "",
+              "reason": "Valid",
+              "status": "True",
+              "type": "Valid"
+            }
+          ],
+          "vNic": "auto-lb02-2b3122-base-b-vnic-hcfzg"
+        }
+      },
+      {
+        "apiVersion": "networking.kubercloud.com/v1",
+        "kind": "VNicIP",
+        "metadata": {
+          "creationTimestamp": "2026-09-15T04:22:59Z",
+          "finalizers": [
+            "networking.kubercloud.com/finalizer"
+          ],
+          "generation": 2,
+          "name": "auto-lb02-2b3122-base-client-vnic-bg976",
+          "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+          "ownerReferences": [
+            {
+              "apiVersion": "networking.kubercloud.com/v1",
+              "kind": "VNic",
+              "name": "auto-lb02-2b3122-base-client-vnic-bg976",
+              "uid": "6f9ad5ea-9c79-4c71-aaa0-ab0d5ebc1b23"
+            }
+          ],
+          "resourceVersion": "276850",
+          "uid": "00004194-92d0-4a69-a9bb-67bc2a55c3ad"
+        },
+        "spec": {
+          "ipAddress": "10.233.0.2",
+          "subnet": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad/subnet-f74d90cbb5484f7fb37f8a8f6782da1d",
+          "vNic": "auto-lb02-2b3122-base-client-vnic-bg976"
+        },
+        "status": {
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-09-15T04:22:59Z",
+              "message": "",
+              "reason": "Initialized",
+              "status": "True",
+              "type": "Initialized"
+            },
+            {
+              "lastTransitionTime": "2026-09-15T04:22:59Z",
+              "message": "",
+              "reason": "Valid",
+              "status": "True",
+              "type": "Valid"
+            }
+          ],
+          "vNic": "auto-lb02-2b3122-base-client-vnic-bg976"
+        }
+      },
+      {
+        "apiVersion": "networking.kubercloud.com/v1",
+        "kind": "VNic",
+        "metadata": {
+          "annotations": {
+            "networking.kubercloud.com/allocate_ip_with_dhcp": "false",
+            "networking.kubercloud.com/allocated_vnicip": "auto-lb-cc562f7d8be147afae8144555aa7243b-86-vnic-5pwwb",
+            "pod.networking.kubercloud.com/lb-cc562f7d8be147afae8144555aa7243b-8647f8484-l8vth": "ani-03/eth0"
+          },
+          "creationTimestamp": "2026-09-15T05:55:54Z",
+          "finalizers": [
+            "networking.kubercloud.com/finalizer"
+          ],
+          "generation": 2,
+          "labels": {
+            "node.networking.kubercloud.com/ani-03": ""
+          },
+          "name": "auto-lb-cc562f7d8be147afae8144555aa7243b-86-vnic-5pwwb",
+          "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+          "ownerReferences": [
+            {
+              "apiVersion": "v1",
+              "kind": "Pod",
+              "name": "lb-cc562f7d8be147afae8144555aa7243b-8647f8484-l8vth",
+              "uid": "d321a191-e66b-4782-8375-d0ec1fed3880"
+            }
+          ],
+          "resourceVersion": "304526",
+          "uid": "4efc4a82-20de-49d2-840b-3030ac72a6b8"
+        },
+        "spec": {
+          "macAddress": "fa:00:63:8f:e1:3c",
+          "subnet": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad/subnet-f74d90cbb5484f7fb37f8a8f6782da1d",
+          "type": "VETH"
+        },
+        "status": {
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-09-15T05:55:54Z",
+              "message": "",
+              "reason": "Initialized",
+              "status": "True",
+              "type": "Initialized"
+            },
+            {
+              "lastTransitionTime": "2026-09-15T05:55:54Z",
+              "message": "",
+              "reason": "Valid",
+              "status": "True",
+              "type": "Valid"
+            },
+            {
+              "lastTransitionTime": "2026-09-15T05:55:54Z",
+              "message": "",
+              "reason": "Ready",
+              "status": "True",
+              "type": "Ready"
+            }
+          ],
+          "dstNic": "",
+          "gateway": "",
+          "ips": {
+            "auto-lb-cc562f7d8be147afae8144555aa7243b-86-vnic-5pwwb": "10.233.0.5"
+          },
+          "nic": "kcn-system/nic-lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad-lb-cc-k2plp",
+          "nodeName": "ani-03",
+          "primaryIP": "10.233.0.5"
+        }
+      },
+      {
+        "apiVersion": "networking.kubercloud.com/v1",
+        "kind": "VNic",
+        "metadata": {
+          "annotations": {
+            "networking.kubercloud.com/allocate_ip_with_dhcp": "false",
+            "networking.kubercloud.com/allocated_vnicip": "auto-lb-cc562f7d8be147afae8144555aa7243b-86-vnic-lwbjq",
+            "pod.networking.kubercloud.com/lb-cc562f7d8be147afae8144555aa7243b-8647f8484-f4gqb": "ani-01/eth0"
+          },
+          "creationTimestamp": "2026-09-15T05:55:54Z",
+          "finalizers": [
+            "networking.kubercloud.com/finalizer"
+          ],
+          "generation": 2,
+          "labels": {
+            "node.networking.kubercloud.com/ani-01": ""
+          },
+          "name": "auto-lb-cc562f7d8be147afae8144555aa7243b-86-vnic-lwbjq",
+          "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+          "ownerReferences": [
+            {
+              "apiVersion": "v1",
+              "kind": "Pod",
+              "name": "lb-cc562f7d8be147afae8144555aa7243b-8647f8484-f4gqb",
+              "uid": "02205640-fe52-4523-8673-5641e32d9029"
+            }
+          ],
+          "resourceVersion": "304525",
+          "uid": "824f73f7-bf35-4b63-8642-11cfa0ddc5b8"
+        },
+        "spec": {
+          "macAddress": "fa:00:3e:5e:00:97",
+          "subnet": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad/subnet-f74d90cbb5484f7fb37f8a8f6782da1d",
+          "type": "VETH"
+        },
+        "status": {
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-09-15T05:55:54Z",
+              "message": "",
+              "reason": "Ready",
+              "status": "True",
+              "type": "Ready"
+            },
+            {
+              "lastTransitionTime": "2026-09-15T05:55:54Z",
+              "message": "",
+              "reason": "Initialized",
+              "status": "True",
+              "type": "Initialized"
+            },
+            {
+              "lastTransitionTime": "2026-09-15T05:55:54Z",
+              "message": "",
+              "reason": "Valid",
+              "status": "True",
+              "type": "Valid"
+            }
+          ],
+          "dstNic": "",
+          "gateway": "",
+          "ips": {
+            "auto-lb-cc562f7d8be147afae8144555aa7243b-86-vnic-lwbjq": "10.233.0.6"
+          },
+          "nic": "kcn-system/nic-lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad-lb-cc-qjp5r",
+          "nodeName": "ani-01",
+          "primaryIP": "10.233.0.6"
+        }
+      },
+      {
+        "apiVersion": "networking.kubercloud.com/v1",
+        "kind": "VNic",
+        "metadata": {
+          "annotations": {
+            "networking.kubercloud.com/allocate_ip_with_dhcp": "false",
+            "networking.kubercloud.com/allocated_vnicip": "auto-lb02-2b3122-base-a-vnic-z7rvp",
+            "pod.networking.kubercloud.com/lb02-2b3122-base-a": "ani-02/eth0"
+          },
+          "creationTimestamp": "2026-09-15T04:22:58Z",
+          "finalizers": [
+            "networking.kubercloud.com/finalizer"
+          ],
+          "generation": 2,
+          "labels": {
+            "node.networking.kubercloud.com/ani-02": ""
+          },
+          "name": "auto-lb02-2b3122-base-a-vnic-z7rvp",
+          "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+          "ownerReferences": [
+            {
+              "apiVersion": "v1",
+              "kind": "Pod",
+              "name": "lb02-2b3122-base-a",
+              "uid": "a0fb8a3c-9025-43b4-a45f-5114ffc5f3b5"
+            }
+          ],
+          "resourceVersion": "276802",
+          "uid": "0b650c18-839a-49ac-97d9-7157a50c224c"
+        },
+        "spec": {
+          "macAddress": "fa:00:8b:e6:07:dd",
+          "subnet": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad/subnet-2a3f02dc6b444cc4b708a38d345a88c7",
+          "type": "VETH"
+        },
+        "status": {
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-09-15T04:22:58Z",
+              "message": "",
+              "reason": "Ready",
+              "status": "True",
+              "type": "Ready"
+            },
+            {
+              "lastTransitionTime": "2026-09-15T04:22:58Z",
+              "message": "",
+              "reason": "Initialized",
+              "status": "True",
+              "type": "Initialized"
+            },
+            {
+              "lastTransitionTime": "2026-09-15T04:22:58Z",
+              "message": "",
+              "reason": "Valid",
+              "status": "True",
+              "type": "Valid"
+            }
+          ],
+          "dstNic": "",
+          "gateway": "",
+          "ips": {
+            "auto-lb02-2b3122-base-a-vnic-z7rvp": "10.233.1.2"
+          },
+          "nic": "kcn-system/nic-lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad-lb02--hlc9x",
+          "nodeName": "ani-02",
+          "primaryIP": "10.233.1.2"
+        }
+      },
+      {
+        "apiVersion": "networking.kubercloud.com/v1",
+        "kind": "VNic",
+        "metadata": {
+          "annotations": {
+            "networking.kubercloud.com/allocate_ip_with_dhcp": "false",
+            "networking.kubercloud.com/allocated_vnicip": "auto-lb02-2b3122-base-b-vnic-hcfzg",
+            "pod.networking.kubercloud.com/lb02-2b3122-base-b": "ani-03/eth0"
+          },
+          "creationTimestamp": "2026-09-15T04:22:59Z",
+          "finalizers": [
+            "networking.kubercloud.com/finalizer"
+          ],
+          "generation": 2,
+          "labels": {
+            "node.networking.kubercloud.com/ani-03": ""
+          },
+          "name": "auto-lb02-2b3122-base-b-vnic-hcfzg",
+          "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+          "ownerReferences": [
+            {
+              "apiVersion": "v1",
+              "kind": "Pod",
+              "name": "lb02-2b3122-base-b",
+              "uid": "e4c49404-afc1-4ff5-9e22-08521633d69c"
+            }
+          ],
+          "resourceVersion": "276858",
+          "uid": "f23738b9-c1a7-43ad-a724-e1b867ef0d52"
+        },
+        "spec": {
+          "macAddress": "fa:00:25:56:6e:af",
+          "subnet": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad/subnet-2a3f02dc6b444cc4b708a38d345a88c7",
+          "type": "VETH"
+        },
+        "status": {
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-09-15T04:22:59Z",
+              "message": "",
+              "reason": "Ready",
+              "status": "True",
+              "type": "Ready"
+            },
+            {
+              "lastTransitionTime": "2026-09-15T04:22:59Z",
+              "message": "",
+              "reason": "Initialized",
+              "status": "True",
+              "type": "Initialized"
+            },
+            {
+              "lastTransitionTime": "2026-09-15T04:22:59Z",
+              "message": "",
+              "reason": "Valid",
+              "status": "True",
+              "type": "Valid"
+            }
+          ],
+          "dstNic": "",
+          "gateway": "",
+          "ips": {
+            "auto-lb02-2b3122-base-b-vnic-hcfzg": "10.233.1.3"
+          },
+          "nic": "kcn-system/nic-lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad-lb02--bnv4p",
+          "nodeName": "ani-03",
+          "primaryIP": "10.233.1.3"
+        }
+      },
+      {
+        "apiVersion": "networking.kubercloud.com/v1",
+        "kind": "VNic",
+        "metadata": {
+          "annotations": {
+            "networking.kubercloud.com/allocate_ip_with_dhcp": "false",
+            "networking.kubercloud.com/allocated_vnicip": "auto-lb02-2b3122-base-client-vnic-bg976",
+            "pod.networking.kubercloud.com/lb02-2b3122-base-client": "ani-02/eth0"
+          },
+          "creationTimestamp": "2026-09-15T04:22:59Z",
+          "finalizers": [
+            "networking.kubercloud.com/finalizer"
+          ],
+          "generation": 2,
+          "labels": {
+            "node.networking.kubercloud.com/ani-02": ""
+          },
+          "name": "auto-lb02-2b3122-base-client-vnic-bg976",
+          "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+          "ownerReferences": [
+            {
+              "apiVersion": "v1",
+              "kind": "Pod",
+              "name": "lb02-2b3122-base-client",
+              "uid": "6e3cfa90-d485-4311-a451-b8fa798acb7a"
+            }
+          ],
+          "resourceVersion": "276868",
+          "uid": "6f9ad5ea-9c79-4c71-aaa0-ab0d5ebc1b23"
+        },
+        "spec": {
+          "macAddress": "fa:00:7d:39:90:7e",
+          "subnet": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad/subnet-f74d90cbb5484f7fb37f8a8f6782da1d",
+          "type": "VETH"
+        },
+        "status": {
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-09-15T04:22:59Z",
+              "message": "",
+              "reason": "Ready",
+              "status": "True",
+              "type": "Ready"
+            },
+            {
+              "lastTransitionTime": "2026-09-15T04:22:59Z",
+              "message": "",
+              "reason": "Initialized",
+              "status": "True",
+              "type": "Initialized"
+            },
+            {
+              "lastTransitionTime": "2026-09-15T04:22:59Z",
+              "message": "",
+              "reason": "Valid",
+              "status": "True",
+              "type": "Valid"
+            }
+          ],
+          "dstNic": "",
+          "gateway": "",
+          "ips": {
+            "auto-lb02-2b3122-base-client-vnic-bg976": "10.233.0.2"
+          },
+          "nic": "kcn-system/nic-lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad-lb02--75khc",
+          "nodeName": "ani-02",
+          "primaryIP": "10.233.0.2"
+        }
+      },
+      {
+        "apiVersion": "networking.kubercloud.com/v1",
+        "kind": "Subnet",
+        "metadata": {
+          "creationTimestamp": "2026-09-15T04:21:11Z",
+          "finalizers": [
+            "networking.kubercloud.com/finalizer"
+          ],
+          "generation": 1,
+          "labels": {
+            "network.ani.io/binding-id": "efc7b48c-6cbb-4813-be1b-e96cd1298e19",
+            "network.ani.io/managed-by": "ani-network-service",
+            "network.ani.io/resource-id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+            "network.ani.io/tenant-id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad"
+          },
+          "name": "subnet-2a3f02dc6b444cc4b708a38d345a88c7",
+          "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+          "resourceVersion": "276825",
+          "uid": "c34aebb8-1253-4d9d-aaa1-563b0ff53332"
+        },
+        "spec": {
+          "allowedNamespaces": {
+            "from": "Same"
+          },
+          "cidrBlock": "10.233.1.0/24",
+          "gateway": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad/vpc-d06f28e82fe847f7bf2cedd57dad82f4",
+          "gatewayIP": "10.233.1.1",
+          "ipVersion": "IPv4",
+          "type": "VPC"
+        },
+        "status": {
+          "boundResources": {
+            "gatewayPort": "vpc.lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad.vpc-d06f28e82fe847f7bf2cedd57dad82f4-lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad.subnet-2a3f02dc6b444cc4b708a38d345a88c7",
+            "switch": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad.subnet-2a3f02dc6b444cc4b708a38d345a88c7"
+          },
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-09-15T04:21:11Z",
+              "message": "",
+              "reason": "Initialized",
+              "status": "True",
+              "type": "Initialized"
+            },
+            {
+              "lastTransitionTime": "2026-09-15T04:21:11Z",
+              "message": "",
+              "reason": "Valid",
+              "status": "True",
+              "type": "Valid"
+            },
+            {
+              "lastTransitionTime": "2026-09-15T04:21:11Z",
+              "message": "",
+              "reason": "Ready",
+              "status": "True",
+              "type": "Ready"
+            }
+          ],
+          "gatewayMac": "fa:00:d7:b7:03:c3",
+          "observedGeneration": 1,
+          "v4availableIPrange": "10.233.1.4-10.233.1.254",
+          "v4availableIPs": 251,
+          "v4usingIPrange": "10.233.1.2-10.233.1.3",
+          "v4usingIPs": 2
+        }
+      },
+      {
+        "apiVersion": "networking.kubercloud.com/v1",
+        "kind": "Subnet",
+        "metadata": {
+          "creationTimestamp": "2026-09-15T04:21:07Z",
+          "finalizers": [
+            "networking.kubercloud.com/finalizer"
+          ],
+          "generation": 1,
+          "labels": {
+            "network.ani.io/binding-id": "ec2e5d9e-d9ee-4a36-8a1b-1c17f414c9fa",
+            "network.ani.io/managed-by": "ani-network-service",
+            "network.ani.io/resource-id": "subnet_f74d90cbb5484f7fb37f8a8f6782da1d",
+            "network.ani.io/tenant-id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad"
+          },
+          "name": "subnet-f74d90cbb5484f7fb37f8a8f6782da1d",
+          "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+          "resourceVersion": "304511",
+          "uid": "bda32245-03a3-479c-8972-0ed0ab39e4dc"
+        },
+        "spec": {
+          "allowedNamespaces": {
+            "from": "Same"
+          },
+          "cidrBlock": "10.233.0.0/24",
+          "gateway": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad/vpc-d06f28e82fe847f7bf2cedd57dad82f4",
+          "gatewayIP": "10.233.0.1",
+          "ipVersion": "IPv4",
+          "type": "VPC"
+        },
+        "status": {
+          "boundResources": {
+            "gatewayPort": "vpc.lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad.vpc-d06f28e82fe847f7bf2cedd57dad82f4-lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad.subnet-f74d90cbb5484f7fb37f8a8f6782da1d",
+            "switch": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad.subnet-f74d90cbb5484f7fb37f8a8f6782da1d"
+          },
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-09-15T04:21:07Z",
+              "message": "",
+              "reason": "Initialized",
+              "status": "True",
+              "type": "Initialized"
+            },
+            {
+              "lastTransitionTime": "2026-09-15T04:21:07Z",
+              "message": "",
+              "reason": "Valid",
+              "status": "True",
+              "type": "Valid"
+            },
+            {
+              "lastTransitionTime": "2026-09-15T04:21:07Z",
+              "message": "",
+              "reason": "Ready",
+              "status": "True",
+              "type": "Ready"
+            }
+          ],
+          "gatewayMac": "fa:00:c1:10:0c:77",
+          "observedGeneration": 1,
+          "v4availableIPrange": "10.233.0.3-10.233.0.4,10.233.0.7-10.233.0.199,10.233.0.201-10.233.0.254",
+          "v4availableIPs": 249,
+          "v4usingIPrange": "10.233.0.2,10.233.0.5-10.233.0.6,10.233.0.200",
+          "v4usingIPs": 4
+        }
+      }
+    ],
+    "kind": "List",
+    "metadata": {
+      "resourceVersion": ""
+    }
+  },
+  "stderr": ""
+}

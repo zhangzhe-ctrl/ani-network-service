@@ -1,0 +1,21 @@
+{
+  "at": "2026-09-15T13:46:12.225574+00:00",
+  "result": "fixture_error",
+  "cause": "expected JSON paths omitted RPC response wrapper; actual responses kept",
+  "actual_states": [
+    {
+      "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_DEGRADED",
+      "reason": "PROVIDER_NOT_READY",
+      "stale": false,
+      "count": 6
+    },
+    {
+      "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_CONFIGURED",
+      "reason": "",
+      "stale": false,
+      "count": 24
+    }
+  ],
+  "evidence": "attachment-retry-r26-initial-ready.json",
+  "corrected_read": "attachment-retry-r26-initial-ready-corrected.json"
+}

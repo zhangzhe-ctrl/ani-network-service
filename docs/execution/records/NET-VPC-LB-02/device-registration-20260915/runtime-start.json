@@ -1,0 +1,10 @@
+{
+  "at": "2026-09-15T02:06:22.468040+00:00",
+  "unit": "ani-net-lb02-2b3122-r4.service",
+  "command": "systemd-run --user --unit ani-net-lb02-2b3122-r4.service -p Type=exec -p Restart=no -p CPUQuota=200% -p MemoryMax=2300M -p MemorySwapMax=0 --setenv=GOMAXPROCS=2 --setenv=GOFLAGS=-p=2 --setenv=GOMEMLIMIT=1500MiB flock -n /home/ubuntu/.local/share/ani-network-service/net05a-heavy.lock python3 /home/ubuntu/workspace/ani-network-service-runs/snat-20260915T015026Z-4c15866e/source/scripts/lb-live-runtime serve --directory /home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private",
+  "exit": 0,
+  "stdout": "",
+  "stderr": "Running as unit: ani-net-lb02-2b3122-r4.service; invocation ID: 4519461ae01b4c6dbf41d60737598162\n",
+  "source_run": "20260915T015026Z-4c15866e",
+  "database_preserved": true
+}

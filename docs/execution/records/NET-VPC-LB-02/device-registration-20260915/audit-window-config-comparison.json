@@ -1,0 +1,27 @@
+{
+  "at": "2026-09-15T10:48:33.987433+00:00",
+  "execution_host": "ubuntu",
+  "config_before_sha256": "6d8fbd80f3ffd70c6d1a6aee0a4ea1c740d74d6934fe3be924787c6e44f06bbb",
+  "config_after_sha256": "d9e2a71e0582f6f51db963568e0e675adfc8124b736aa2440f77829949ff5a1e",
+  "only_changes": {
+    "network.worker.lease": [
+      "80s",
+      "240s"
+    ],
+    "network.worker.request_timeout": [
+      "20s",
+      "60s"
+    ],
+    "network.observation.audit_timeout": [
+      "10s",
+      "20s"
+    ]
+  },
+  "freshness_unchanged": "60s",
+  "workers_per_kind_unchanged": 4,
+  "source_unchanged": true,
+  "resource_limits_unchanged": true,
+  "private_backup": "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/config.before-audit-window.yaml",
+  "purpose": "bounded comparison; successful audit was near 10s timeout and critical calls wait for a new complete collection",
+  "assessment_required": "fixed 30 observations plus collection failure counter; does not establish causality by configuration alone"
+}

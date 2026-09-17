@@ -87,8 +87,11 @@ type Network struct {
 	// Fixed instance owner RPC target. Empty keeps attachments conservatively occupied.
 	InstanceConsumerEndpoint string       `protobuf:"bytes,7,opt,name=instance_consumer_endpoint,json=instanceConsumerEndpoint,proto3" json:"instance_consumer_endpoint,omitempty"`
 	Observation              *Observation `protobuf:"bytes,8,opt,name=observation,proto3" json:"observation,omitempty"`
-	unknownFields            protoimpl.UnknownFields
-	sizeCache                protoimpl.SizeCache
+	// The isolated acceptance instance only. Runtime recovery stays enabled
+	// for accepted LB tasks even when this RPC admission switch is closed.
+	LoadBalancer  *LoadBalancer `protobuf:"bytes,9,opt,name=load_balancer,json=loadBalancer,proto3" json:"load_balancer,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *Network) Reset() {
@@ -177,6 +180,97 @@ func (x *Network) GetObservation() *Observation {
 	return nil
 }
 
+func (x *Network) GetLoadBalancer() *LoadBalancer {
+	if x != nil {
+		return x.LoadBalancer
+	}
+	return nil
+}
+
+type LoadBalancer struct {
+	state                   protoimpl.MessageState `protogen:"open.v1"`
+	EnableIsolatedApi       bool                   `protobuf:"varint,1,opt,name=enable_isolated_api,json=enableIsolatedApi,proto3" json:"enable_isolated_api,omitempty"`
+	InstallationFingerprint string                 `protobuf:"bytes,2,opt,name=installation_fingerprint,json=installationFingerprint,proto3" json:"installation_fingerprint,omitempty"`
+	ControllerImageId       string                 `protobuf:"bytes,3,opt,name=controller_image_id,json=controllerImageId,proto3" json:"controller_image_id,omitempty"`
+	EnvoyImageId            string                 `protobuf:"bytes,4,opt,name=envoy_image_id,json=envoyImageId,proto3" json:"envoy_image_id,omitempty"`
+	ShutdownImageId         string                 `protobuf:"bytes,5,opt,name=shutdown_image_id,json=shutdownImageId,proto3" json:"shutdown_image_id,omitempty"`
+	KcImageId               string                 `protobuf:"bytes,6,opt,name=kc_image_id,json=kcImageId,proto3" json:"kc_image_id,omitempty"`
+	unknownFields           protoimpl.UnknownFields
+	sizeCache               protoimpl.SizeCache
+}
+
+func (x *LoadBalancer) Reset() {
+	*x = LoadBalancer{}
+	mi := &file_conf_v1_conf_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *LoadBalancer) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*LoadBalancer) ProtoMessage() {}
+
+func (x *LoadBalancer) ProtoReflect() protoreflect.Message {
+	mi := &file_conf_v1_conf_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use LoadBalancer.ProtoReflect.Descriptor instead.
+func (*LoadBalancer) Descriptor() ([]byte, []int) {
+	return file_conf_v1_conf_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *LoadBalancer) GetEnableIsolatedApi() bool {
+	if x != nil {
+		return x.EnableIsolatedApi
+	}
+	return false
+}
+
+func (x *LoadBalancer) GetInstallationFingerprint() string {
+	if x != nil {
+		return x.InstallationFingerprint
+	}
+	return ""
+}
+
+func (x *LoadBalancer) GetControllerImageId() string {
+	if x != nil {
+		return x.ControllerImageId
+	}
+	return ""
+}
+
+func (x *LoadBalancer) GetEnvoyImageId() string {
+	if x != nil {
+		return x.EnvoyImageId
+	}
+	return ""
+}
+
+func (x *LoadBalancer) GetShutdownImageId() string {
+	if x != nil {
+		return x.ShutdownImageId
+	}
+	return ""
+}
+
+func (x *LoadBalancer) GetKcImageId() string {
+	if x != nil {
+		return x.KcImageId
+	}
+	return ""
+}
+
 type Observation struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
 	AuditInterval  *durationpb.Duration   `protobuf:"bytes,1,opt,name=audit_interval,json=auditInterval,proto3" json:"audit_interval,omitempty"`
@@ -193,7 +287,7 @@ type Observation struct {
 
 func (x *Observation) Reset() {
 	*x = Observation{}
-	mi := &file_conf_v1_conf_proto_msgTypes[2]
+	mi := &file_conf_v1_conf_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -205,7 +299,7 @@ func (x *Observation) String() string {
 func (*Observation) ProtoMessage() {}
 
 func (x *Observation) ProtoReflect() protoreflect.Message {
-	mi := &file_conf_v1_conf_proto_msgTypes[2]
+	mi := &file_conf_v1_conf_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -218,7 +312,7 @@ func (x *Observation) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Observation.ProtoReflect.Descriptor instead.
 func (*Observation) Descriptor() ([]byte, []int) {
-	return file_conf_v1_conf_proto_rawDescGZIP(), []int{2}
+	return file_conf_v1_conf_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *Observation) GetAuditInterval() *durationpb.Duration {
@@ -292,7 +386,7 @@ type Worker struct {
 
 func (x *Worker) Reset() {
 	*x = Worker{}
-	mi := &file_conf_v1_conf_proto_msgTypes[3]
+	mi := &file_conf_v1_conf_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -304,7 +398,7 @@ func (x *Worker) String() string {
 func (*Worker) ProtoMessage() {}
 
 func (x *Worker) ProtoReflect() protoreflect.Message {
-	mi := &file_conf_v1_conf_proto_msgTypes[3]
+	mi := &file_conf_v1_conf_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -317,7 +411,7 @@ func (x *Worker) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Worker.ProtoReflect.Descriptor instead.
 func (*Worker) Descriptor() ([]byte, []int) {
-	return file_conf_v1_conf_proto_rawDescGZIP(), []int{3}
+	return file_conf_v1_conf_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *Worker) GetLease() *durationpb.Duration {
@@ -380,7 +474,7 @@ type Server struct {
 
 func (x *Server) Reset() {
 	*x = Server{}
-	mi := &file_conf_v1_conf_proto_msgTypes[4]
+	mi := &file_conf_v1_conf_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -392,7 +486,7 @@ func (x *Server) String() string {
 func (*Server) ProtoMessage() {}
 
 func (x *Server) ProtoReflect() protoreflect.Message {
-	mi := &file_conf_v1_conf_proto_msgTypes[4]
+	mi := &file_conf_v1_conf_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -405,7 +499,7 @@ func (x *Server) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Server.ProtoReflect.Descriptor instead.
 func (*Server) Descriptor() ([]byte, []int) {
-	return file_conf_v1_conf_proto_rawDescGZIP(), []int{4}
+	return file_conf_v1_conf_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *Server) GetGrpc() *Server_GRPC {
@@ -440,7 +534,7 @@ type Server_GRPC struct {
 
 func (x *Server_GRPC) Reset() {
 	*x = Server_GRPC{}
-	mi := &file_conf_v1_conf_proto_msgTypes[5]
+	mi := &file_conf_v1_conf_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -452,7 +546,7 @@ func (x *Server_GRPC) String() string {
 func (*Server_GRPC) ProtoMessage() {}
 
 func (x *Server_GRPC) ProtoReflect() protoreflect.Message {
-	mi := &file_conf_v1_conf_proto_msgTypes[5]
+	mi := &file_conf_v1_conf_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -465,7 +559,7 @@ func (x *Server_GRPC) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Server_GRPC.ProtoReflect.Descriptor instead.
 func (*Server_GRPC) Descriptor() ([]byte, []int) {
-	return file_conf_v1_conf_proto_rawDescGZIP(), []int{4, 0}
+	return file_conf_v1_conf_proto_rawDescGZIP(), []int{5, 0}
 }
 
 func (x *Server_GRPC) GetNetwork() string {
@@ -500,7 +594,7 @@ type Server_Admin struct {
 
 func (x *Server_Admin) Reset() {
 	*x = Server_Admin{}
-	mi := &file_conf_v1_conf_proto_msgTypes[6]
+	mi := &file_conf_v1_conf_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -512,7 +606,7 @@ func (x *Server_Admin) String() string {
 func (*Server_Admin) ProtoMessage() {}
 
 func (x *Server_Admin) ProtoReflect() protoreflect.Message {
-	mi := &file_conf_v1_conf_proto_msgTypes[6]
+	mi := &file_conf_v1_conf_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -525,7 +619,7 @@ func (x *Server_Admin) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Server_Admin.ProtoReflect.Descriptor instead.
 func (*Server_Admin) Descriptor() ([]byte, []int) {
-	return file_conf_v1_conf_proto_rawDescGZIP(), []int{4, 1}
+	return file_conf_v1_conf_proto_rawDescGZIP(), []int{5, 1}
 }
 
 func (x *Server_Admin) GetNetwork() string {
@@ -556,7 +650,7 @@ const file_conf_v1_conf_proto_rawDesc = "" +
 	"\x12conf/v1/conf.proto\x12\aconf.v1\x1a\x1egoogle/protobuf/duration.proto\"`\n" +
 	"\tBootstrap\x12'\n" +
 	"\x06server\x18\x01 \x01(\v2\x0f.conf.v1.ServerR\x06server\x12*\n" +
-	"\anetwork\x18\x02 \x01(\v2\x10.conf.v1.NetworkR\anetwork\"\xe3\x02\n" +
+	"\anetwork\x18\x02 \x01(\v2\x10.conf.v1.NetworkR\anetwork\"\x9f\x03\n" +
 	"\aNetwork\x12!\n" +
 	"\fdatabase_dsn\x18\x01 \x01(\tR\vdatabaseDsn\x12\x1e\n" +
 	"\n" +
@@ -568,7 +662,15 @@ const file_conf_v1_conf_proto_rawDesc = "" +
 	"\x12cursor_signing_key\x18\x05 \x01(\tR\x10cursorSigningKey\x12'\n" +
 	"\x06worker\x18\x06 \x01(\v2\x0f.conf.v1.WorkerR\x06worker\x12<\n" +
 	"\x1ainstance_consumer_endpoint\x18\a \x01(\tR\x18instanceConsumerEndpoint\x126\n" +
-	"\vobservation\x18\b \x01(\v2\x14.conf.v1.ObservationR\vobservation\"\xa6\x03\n" +
+	"\vobservation\x18\b \x01(\v2\x14.conf.v1.ObservationR\vobservation\x12:\n" +
+	"\rload_balancer\x18\t \x01(\v2\x15.conf.v1.LoadBalancerR\floadBalancer\"\x9b\x02\n" +
+	"\fLoadBalancer\x12.\n" +
+	"\x13enable_isolated_api\x18\x01 \x01(\bR\x11enableIsolatedApi\x129\n" +
+	"\x18installation_fingerprint\x18\x02 \x01(\tR\x17installationFingerprint\x12.\n" +
+	"\x13controller_image_id\x18\x03 \x01(\tR\x11controllerImageId\x12$\n" +
+	"\x0eenvoy_image_id\x18\x04 \x01(\tR\fenvoyImageId\x12*\n" +
+	"\x11shutdown_image_id\x18\x05 \x01(\tR\x0fshutdownImageId\x12\x1e\n" +
+	"\vkc_image_id\x18\x06 \x01(\tR\tkcImageId\"\xa6\x03\n" +
 	"\vObservation\x12@\n" +
 	"\x0eaudit_interval\x18\x01 \x01(\v2\x19.google.protobuf.DurationR\rauditInterval\x12<\n" +
 	"\faudit_jitter\x18\x02 \x01(\v2\x19.google.protobuf.DurationR\vauditJitter\x12>\n" +
@@ -613,43 +715,45 @@ func file_conf_v1_conf_proto_rawDescGZIP() []byte {
 	return file_conf_v1_conf_proto_rawDescData
 }
 
-var file_conf_v1_conf_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
+var file_conf_v1_conf_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
 var file_conf_v1_conf_proto_goTypes = []any{
 	(*Bootstrap)(nil),           // 0: conf.v1.Bootstrap
 	(*Network)(nil),             // 1: conf.v1.Network
-	(*Observation)(nil),         // 2: conf.v1.Observation
-	(*Worker)(nil),              // 3: conf.v1.Worker
-	(*Server)(nil),              // 4: conf.v1.Server
-	(*Server_GRPC)(nil),         // 5: conf.v1.Server.GRPC
-	(*Server_Admin)(nil),        // 6: conf.v1.Server.Admin
-	(*durationpb.Duration)(nil), // 7: google.protobuf.Duration
+	(*LoadBalancer)(nil),        // 2: conf.v1.LoadBalancer
+	(*Observation)(nil),         // 3: conf.v1.Observation
+	(*Worker)(nil),              // 4: conf.v1.Worker
+	(*Server)(nil),              // 5: conf.v1.Server
+	(*Server_GRPC)(nil),         // 6: conf.v1.Server.GRPC
+	(*Server_Admin)(nil),        // 7: conf.v1.Server.Admin
+	(*durationpb.Duration)(nil), // 8: google.protobuf.Duration
 }
 var file_conf_v1_conf_proto_depIdxs = []int32{
-	4,  // 0: conf.v1.Bootstrap.server:type_name -> conf.v1.Server
+	5,  // 0: conf.v1.Bootstrap.server:type_name -> conf.v1.Server
 	1,  // 1: conf.v1.Bootstrap.network:type_name -> conf.v1.Network
-	3,  // 2: conf.v1.Network.worker:type_name -> conf.v1.Worker
-	2,  // 3: conf.v1.Network.observation:type_name -> conf.v1.Observation
-	7,  // 4: conf.v1.Observation.audit_interval:type_name -> google.protobuf.Duration
-	7,  // 5: conf.v1.Observation.audit_jitter:type_name -> google.protobuf.Duration
-	7,  // 6: conf.v1.Observation.audit_timeout:type_name -> google.protobuf.Duration
-	7,  // 7: conf.v1.Observation.flush_interval:type_name -> google.protobuf.Duration
-	7,  // 8: conf.v1.Worker.lease:type_name -> google.protobuf.Duration
-	7,  // 9: conf.v1.Worker.request_timeout:type_name -> google.protobuf.Duration
-	7,  // 10: conf.v1.Worker.observe_every:type_name -> google.protobuf.Duration
-	7,  // 11: conf.v1.Worker.stale_after:type_name -> google.protobuf.Duration
-	7,  // 12: conf.v1.Worker.retry_min:type_name -> google.protobuf.Duration
-	7,  // 13: conf.v1.Worker.retry_max:type_name -> google.protobuf.Duration
-	7,  // 14: conf.v1.Worker.poll_interval:type_name -> google.protobuf.Duration
-	5,  // 15: conf.v1.Server.grpc:type_name -> conf.v1.Server.GRPC
-	6,  // 16: conf.v1.Server.admin:type_name -> conf.v1.Server.Admin
-	7,  // 17: conf.v1.Server.shutdown_timeout:type_name -> google.protobuf.Duration
-	7,  // 18: conf.v1.Server.GRPC.timeout:type_name -> google.protobuf.Duration
-	7,  // 19: conf.v1.Server.Admin.timeout:type_name -> google.protobuf.Duration
-	20, // [20:20] is the sub-list for method output_type
-	20, // [20:20] is the sub-list for method input_type
-	20, // [20:20] is the sub-list for extension type_name
-	20, // [20:20] is the sub-list for extension extendee
-	0,  // [0:20] is the sub-list for field type_name
+	4,  // 2: conf.v1.Network.worker:type_name -> conf.v1.Worker
+	3,  // 3: conf.v1.Network.observation:type_name -> conf.v1.Observation
+	2,  // 4: conf.v1.Network.load_balancer:type_name -> conf.v1.LoadBalancer
+	8,  // 5: conf.v1.Observation.audit_interval:type_name -> google.protobuf.Duration
+	8,  // 6: conf.v1.Observation.audit_jitter:type_name -> google.protobuf.Duration
+	8,  // 7: conf.v1.Observation.audit_timeout:type_name -> google.protobuf.Duration
+	8,  // 8: conf.v1.Observation.flush_interval:type_name -> google.protobuf.Duration
+	8,  // 9: conf.v1.Worker.lease:type_name -> google.protobuf.Duration
+	8,  // 10: conf.v1.Worker.request_timeout:type_name -> google.protobuf.Duration
+	8,  // 11: conf.v1.Worker.observe_every:type_name -> google.protobuf.Duration
+	8,  // 12: conf.v1.Worker.stale_after:type_name -> google.protobuf.Duration
+	8,  // 13: conf.v1.Worker.retry_min:type_name -> google.protobuf.Duration
+	8,  // 14: conf.v1.Worker.retry_max:type_name -> google.protobuf.Duration
+	8,  // 15: conf.v1.Worker.poll_interval:type_name -> google.protobuf.Duration
+	6,  // 16: conf.v1.Server.grpc:type_name -> conf.v1.Server.GRPC
+	7,  // 17: conf.v1.Server.admin:type_name -> conf.v1.Server.Admin
+	8,  // 18: conf.v1.Server.shutdown_timeout:type_name -> google.protobuf.Duration
+	8,  // 19: conf.v1.Server.GRPC.timeout:type_name -> google.protobuf.Duration
+	8,  // 20: conf.v1.Server.Admin.timeout:type_name -> google.protobuf.Duration
+	21, // [21:21] is the sub-list for method output_type
+	21, // [21:21] is the sub-list for method input_type
+	21, // [21:21] is the sub-list for extension type_name
+	21, // [21:21] is the sub-list for extension extendee
+	0,  // [0:21] is the sub-list for field type_name
 }
 
 func init() { file_conf_v1_conf_proto_init() }
@@ -663,7 +767,7 @@ func file_conf_v1_conf_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_conf_v1_conf_proto_rawDesc), len(file_conf_v1_conf_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   7,
+			NumMessages:   8,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

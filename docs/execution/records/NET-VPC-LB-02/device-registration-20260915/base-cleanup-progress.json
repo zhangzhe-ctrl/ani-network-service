@@ -1,0 +1,40 @@
+{
+  "at": "2026-09-15T05:44:47.505399+00:00",
+  "execution_host": "ubuntu",
+  "context": "tenant-b",
+  "command": "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/lb-api call -target unix:///home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-b.sock -service NetworkService -method GetVPC",
+  "request": {
+    "vpc_id": "vpc_a43ae8279bd54524bcf3f7f137e6a2d4"
+  },
+  "exit": 0,
+  "response": {
+    "code": "OK",
+    "response": {
+      "vpc": {
+        "id": "vpc_a43ae8279bd54524bcf3f7f137e6a2d4",
+        "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+        "name": "lb02-2b3122-base-cleanup",
+        "description": "Run-owned U09 system base cleanup fixture, no workloads",
+        "cidr": "10.233.32.0/20",
+        "state": "RESOURCE_STATE_PROVISIONING",
+        "reason": "PROVIDER_UNAVAILABLE",
+        "created_at": "2026-09-15T05:41:39.724183Z",
+        "updated_at": "2026-09-15T05:44:31.101874Z",
+        "version": "18",
+        "observed_at": "2026-09-15T05:44:31.019784Z",
+        "observation_stale": false,
+        "last_operation_id": "2e80c443-6189-4bf9-a2f4-895f331e1fd2",
+        "subnet_count": "0",
+        "reason_message": "The network provider is temporarily unavailable.",
+        "base_connectivity": {
+          "state": "pending",
+          "reason": "PROVIDER_UNAVAILABLE",
+          "observed_at": null,
+          "observation_stale": true,
+          "reason_message": "The network provider is temporarily unavailable."
+        }
+      }
+    }
+  },
+  "stderr": ""
+}

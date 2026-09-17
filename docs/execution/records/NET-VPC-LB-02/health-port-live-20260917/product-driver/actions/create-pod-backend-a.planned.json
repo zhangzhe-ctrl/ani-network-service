@@ -1,0 +1,95 @@
+{
+  "at": "2026-09-17T11:28:23.060905+00:00",
+  "intent": {
+    "body": {
+      "apiVersion": "v1",
+      "kind": "Pod",
+      "metadata": {
+        "annotations": {
+          "networking.kubercloud.com/subnet": "lbhp-3c8a15c8-b679-4af8-a9fa-ca3703a1609f/subnet-f62092f8d80046cab425c122e9da2684"
+        },
+        "labels": {
+          "network.ani.io/attachment-id": "att_23f2e993565946689c21db2f4be71f5f",
+          "network.ani.io/generation": "1",
+          "network.ani.io/instance-id": "a22c9bee-2f88-4811-92a7-42e342ffbd95",
+          "network.ani.io/submission-id": "e7c56f30-38af-4b68-a478-3d24089c8071",
+          "network.ani.io/tenant-id": "3c8a15c8-b679-4af8-a9fa-ca3703a1609f",
+          "network.ani.io/test-run": "lbhealth-0917"
+        },
+        "name": "lbhealth-0917-backend-a",
+        "namespace": "lbhp-3c8a15c8-b679-4af8-a9fa-ca3703a1609f"
+      },
+      "spec": {
+        "automountServiceAccountToken": false,
+        "containers": [
+          {
+            "env": [
+              {
+                "name": "NET05_ID",
+                "value": "lbhealth-0917"
+              },
+              {
+                "name": "ANI_WORKLOAD_ID",
+                "value": "a22c9bee-2f88-4811-92a7-42e342ffbd95"
+              },
+              {
+                "name": "NET05_PORT",
+                "value": "8080"
+              }
+            ],
+            "image": "localhost/lb02-2b3122-probe@sha256:647c2acd8e115511a18506014995ec01b7d0d62fbc05f2a6e51a5c65c2a3fcce",
+            "imagePullPolicy": "Never",
+            "name": "probe",
+            "ports": [
+              {
+                "containerPort": 8080
+              }
+            ],
+            "resources": {
+              "limits": {
+                "cpu": "100m",
+                "memory": "64Mi"
+              },
+              "requests": {
+                "cpu": "10m",
+                "memory": "32Mi"
+              }
+            },
+            "securityContext": {
+              "allowPrivilegeEscalation": false,
+              "capabilities": {
+                "drop": [
+                  "ALL"
+                ]
+              },
+              "readOnlyRootFilesystem": true
+            }
+          }
+        ],
+        "nodeSelector": {
+          "kubernetes.io/hostname": "ani-02"
+        },
+        "restartPolicy": "Always",
+        "securityContext": {
+          "runAsGroup": 65532,
+          "runAsNonRoot": true,
+          "runAsUser": 65532,
+          "seccompProfile": {
+            "type": "RuntimeDefault"
+          }
+        }
+      }
+    },
+    "command": [
+      "/home/chabking/workspace/ani-network-service-runs/lb-health-e2e-20260917/private/runtime/bin/kubectl",
+      "--kubeconfig",
+      "/home/chabking/workspace/ani-network-service-runs/lb-health-e2e-20260917/private/runtime/owner-kubeconfig.json",
+      "--request-timeout=20s",
+      "create",
+      "-f",
+      "-",
+      "-o",
+      "json"
+    ]
+  }
+}

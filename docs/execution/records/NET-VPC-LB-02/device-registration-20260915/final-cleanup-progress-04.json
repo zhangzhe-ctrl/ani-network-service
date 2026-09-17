@@ -1,0 +1,12 @@
+{
+  "at": "2026-09-15T14:44:08.890264+00:00",
+  "execution_host": "ubuntu",
+  "transport_exit": 0,
+  "result": {
+    "query": "SELECT json_build_object('vpcs',(SELECT json_agg(json_build_object('id',vpc_id,'state',state,'reason',reason)) FROM network_vpcs WHERE state<>'deleted'),'subnets',(SELECT count(*) FROM network_subnets WHERE state<>'deleted'),'eips',(SELECT json_agg(json_build_object('id',eip_id,'state',state,'reason',reason)) FROM network_eips WHERE state<>'deleted'),'snats',(SELECT count(*) FROM network_snat_bindings WHERE state<>'deleted'),'platform',(SELECT json_agg(json_build_object('id',resource_id,'kind',kind,'state',state,'reason',reason)) FROM network_platform_resources WHERE state<>'deleted'));",
+    "exit": 0,
+    "stdout": "BEGIN\n{\"vpcs\" : [{\"id\" : \"vpc_1004994c0bde496f9ff64a4c812c9607\", \"state\" : \"deleting\", \"reason\" : \"CLEANUP_PENDING\"}, {\"id\" : \"vpc_d06f28e82fe847f7bf2cedd57dad82f4\", \"state\" : \"deleting\", \"reason\" : \"CLEANUP_PENDING\"}], \"subnets\" : 0, \"eips\" : [{\"id\" : \"eip_c428922594b94429a405305c6c781897\", \"state\" : \"available\", \"reason\" : \"BASE_CONNECTIVITY_NOT_READY\"}], \"snats\" : 1, \"platform\" : [{\"id\" : \"vlan_9b12fcb230ef4bc08ba1d497ebe44009\", \"kind\" : \"vlan\", \"state\" : \"available\", \"reason\" : \"\"}, {\"id\" : \"egw_386dc165a8744951bc624ab55c439681\", \"kind\" : \"egress_gateway\", \"state\" : \"available\", \"reason\" : \"\"}, {\"id\" : \"pool_f6c078d198ae4ea1be6f43cfad8f9934\", \"kind\" : \"public_pool\", \"state\" : \"available\", \"reason\" : \"\"}, {\"id\" : \"device_3290174cfb644473b5b5e260bcea085c\", \"kind\" : \"device\", \"state\" : \"available\", \"reason\" : \"\"}]}\nROLLBACK\n",
+    "stderr": ""
+  },
+  "stderr": ""
+}

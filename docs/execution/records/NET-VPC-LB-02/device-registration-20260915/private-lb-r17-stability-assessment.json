@@ -1,0 +1,29 @@
+{
+  "at": "2026-09-15T10:20:57.633275+00:00",
+  "result": "fail",
+  "source_run": "20260915T074304Z-31ea8959",
+  "runtime": "r17, workers_per_kind 4",
+  "criterion": "all 30 fixed-interval samples configured and not stale",
+  "samples": [
+    {
+      "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_DEGRADED",
+      "reason": "PROVIDER_NOT_READY",
+      "observation_stale": false,
+      "count": 12
+    },
+    {
+      "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_UNKNOWN",
+      "reason": "PROVIDER_UNAVAILABLE",
+      "observation_stale": false,
+      "count": 9
+    },
+    {
+      "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_UNKNOWN",
+      "reason": "PROVIDER_UNAVAILABLE",
+      "observation_stale": true,
+      "count": 9
+    }
+  ],
+  "evidence": "private-lb-r17-stability.json",
+  "causality": "Changing worker concurrency to 4 has not established stable observations; no claim of shared Provider or Network root cause from these samples alone."
+}

@@ -1,0 +1,921 @@
+{
+  "at": "2026-09-15T09:31:36.577812+00:00",
+  "execution_host": "ubuntu",
+  "namespace": "lb02-09141908-2b3122",
+  "results": [
+    {
+      "pod": "lb02-2b3122-outside-observer",
+      "label": "public-lb-external-no-snat-0",
+      "argv": [
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-0"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"nonce\":\"lb02-public-lb-external-no-snat-0\""
+      ],
+      "at": "2026-09-15T09:30:04.235253+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb02-09141908-2b3122",
+        "lb02-2b3122-outside-observer",
+        "-c",
+        "probe",
+        "--",
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-0"
+      ],
+      "exit": 2,
+      "stdout": "Get \"http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-0\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)\n",
+      "stderr": "command terminated with exit code 2\n",
+      "pass": false
+    },
+    {
+      "pod": "lb02-2b3122-outside-observer",
+      "label": "public-lb-external-no-snat-1",
+      "argv": [
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-1"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"nonce\":\"lb02-public-lb-external-no-snat-1\""
+      ],
+      "at": "2026-09-15T09:30:08.281452+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb02-09141908-2b3122",
+        "lb02-2b3122-outside-observer",
+        "-c",
+        "probe",
+        "--",
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-1"
+      ],
+      "exit": 2,
+      "stdout": "Get \"http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-1\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)\n",
+      "stderr": "command terminated with exit code 2\n",
+      "pass": false
+    },
+    {
+      "pod": "lb02-2b3122-outside-observer",
+      "label": "public-lb-external-no-snat-2",
+      "argv": [
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-2"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"nonce\":\"lb02-public-lb-external-no-snat-2\""
+      ],
+      "at": "2026-09-15T09:30:12.296840+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb02-09141908-2b3122",
+        "lb02-2b3122-outside-observer",
+        "-c",
+        "probe",
+        "--",
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-2"
+      ],
+      "exit": 2,
+      "stdout": "Get \"http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-2\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)\n",
+      "stderr": "command terminated with exit code 2\n",
+      "pass": false
+    },
+    {
+      "pod": "lb02-2b3122-outside-observer",
+      "label": "public-lb-external-no-snat-3",
+      "argv": [
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-3"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"nonce\":\"lb02-public-lb-external-no-snat-3\""
+      ],
+      "at": "2026-09-15T09:30:16.158023+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb02-09141908-2b3122",
+        "lb02-2b3122-outside-observer",
+        "-c",
+        "probe",
+        "--",
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-3"
+      ],
+      "exit": 2,
+      "stdout": "Get \"http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-3\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)\n",
+      "stderr": "command terminated with exit code 2\n",
+      "pass": false
+    },
+    {
+      "pod": "lb02-2b3122-outside-observer",
+      "label": "public-lb-external-no-snat-4",
+      "argv": [
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-4"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"nonce\":\"lb02-public-lb-external-no-snat-4\""
+      ],
+      "at": "2026-09-15T09:30:20.052908+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb02-09141908-2b3122",
+        "lb02-2b3122-outside-observer",
+        "-c",
+        "probe",
+        "--",
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-4"
+      ],
+      "exit": 2,
+      "stdout": "Get \"http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-4\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)\n",
+      "stderr": "command terminated with exit code 2\n",
+      "pass": false
+    },
+    {
+      "pod": "lb02-2b3122-outside-observer",
+      "label": "public-lb-external-no-snat-5",
+      "argv": [
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-5"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"nonce\":\"lb02-public-lb-external-no-snat-5\""
+      ],
+      "at": "2026-09-15T09:30:24.066310+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb02-09141908-2b3122",
+        "lb02-2b3122-outside-observer",
+        "-c",
+        "probe",
+        "--",
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-5"
+      ],
+      "exit": 2,
+      "stdout": "Get \"http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-5\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)\n",
+      "stderr": "command terminated with exit code 2\n",
+      "pass": false
+    },
+    {
+      "pod": "lb02-2b3122-outside-observer",
+      "label": "public-lb-external-no-snat-6",
+      "argv": [
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-6"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"nonce\":\"lb02-public-lb-external-no-snat-6\""
+      ],
+      "at": "2026-09-15T09:30:27.937570+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb02-09141908-2b3122",
+        "lb02-2b3122-outside-observer",
+        "-c",
+        "probe",
+        "--",
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-6"
+      ],
+      "exit": 2,
+      "stdout": "Get \"http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-6\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)\n",
+      "stderr": "command terminated with exit code 2\n",
+      "pass": false
+    },
+    {
+      "pod": "lb02-2b3122-outside-observer",
+      "label": "public-lb-external-no-snat-7",
+      "argv": [
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-7"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"nonce\":\"lb02-public-lb-external-no-snat-7\""
+      ],
+      "at": "2026-09-15T09:30:31.954525+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb02-09141908-2b3122",
+        "lb02-2b3122-outside-observer",
+        "-c",
+        "probe",
+        "--",
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-7"
+      ],
+      "exit": 2,
+      "stdout": "Get \"http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-7\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)\n",
+      "stderr": "command terminated with exit code 2\n",
+      "pass": false
+    },
+    {
+      "pod": "lb02-2b3122-outside-observer",
+      "label": "public-lb-external-no-snat-8",
+      "argv": [
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-8"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"nonce\":\"lb02-public-lb-external-no-snat-8\""
+      ],
+      "at": "2026-09-15T09:30:36.049274+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb02-09141908-2b3122",
+        "lb02-2b3122-outside-observer",
+        "-c",
+        "probe",
+        "--",
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-8"
+      ],
+      "exit": 2,
+      "stdout": "Get \"http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-8\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)\n",
+      "stderr": "command terminated with exit code 2\n",
+      "pass": false
+    },
+    {
+      "pod": "lb02-2b3122-outside-observer",
+      "label": "public-lb-external-no-snat-9",
+      "argv": [
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-9"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"nonce\":\"lb02-public-lb-external-no-snat-9\""
+      ],
+      "at": "2026-09-15T09:30:39.978099+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb02-09141908-2b3122",
+        "lb02-2b3122-outside-observer",
+        "-c",
+        "probe",
+        "--",
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-9"
+      ],
+      "exit": 2,
+      "stdout": "Get \"http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-9\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)\n",
+      "stderr": "command terminated with exit code 2\n",
+      "pass": false
+    },
+    {
+      "pod": "lb02-2b3122-outside-observer",
+      "label": "public-lb-external-no-snat-10",
+      "argv": [
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-10"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"nonce\":\"lb02-public-lb-external-no-snat-10\""
+      ],
+      "at": "2026-09-15T09:30:44.756903+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb02-09141908-2b3122",
+        "lb02-2b3122-outside-observer",
+        "-c",
+        "probe",
+        "--",
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-10"
+      ],
+      "exit": 2,
+      "stdout": "Get \"http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-10\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)\n",
+      "stderr": "command terminated with exit code 2\n",
+      "pass": false
+    },
+    {
+      "pod": "lb02-2b3122-outside-observer",
+      "label": "public-lb-external-no-snat-11",
+      "argv": [
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-11"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"nonce\":\"lb02-public-lb-external-no-snat-11\""
+      ],
+      "at": "2026-09-15T09:30:48.687724+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb02-09141908-2b3122",
+        "lb02-2b3122-outside-observer",
+        "-c",
+        "probe",
+        "--",
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-11"
+      ],
+      "exit": 2,
+      "stdout": "Get \"http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-11\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)\n",
+      "stderr": "command terminated with exit code 2\n",
+      "pass": false
+    },
+    {
+      "pod": "lb02-2b3122-outside-observer",
+      "label": "public-lb-external-no-snat-12",
+      "argv": [
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-12"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"nonce\":\"lb02-public-lb-external-no-snat-12\""
+      ],
+      "at": "2026-09-15T09:30:52.855933+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb02-09141908-2b3122",
+        "lb02-2b3122-outside-observer",
+        "-c",
+        "probe",
+        "--",
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-12"
+      ],
+      "exit": 2,
+      "stdout": "Get \"http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-12\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)\n",
+      "stderr": "command terminated with exit code 2\n",
+      "pass": false
+    },
+    {
+      "pod": "lb02-2b3122-outside-observer",
+      "label": "public-lb-external-no-snat-13",
+      "argv": [
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-13"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"nonce\":\"lb02-public-lb-external-no-snat-13\""
+      ],
+      "at": "2026-09-15T09:30:56.756874+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb02-09141908-2b3122",
+        "lb02-2b3122-outside-observer",
+        "-c",
+        "probe",
+        "--",
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-13"
+      ],
+      "exit": 2,
+      "stdout": "Get \"http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-13\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)\n",
+      "stderr": "command terminated with exit code 2\n",
+      "pass": false
+    },
+    {
+      "pod": "lb02-2b3122-outside-observer",
+      "label": "public-lb-external-no-snat-14",
+      "argv": [
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-14"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"nonce\":\"lb02-public-lb-external-no-snat-14\""
+      ],
+      "at": "2026-09-15T09:31:00.684667+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb02-09141908-2b3122",
+        "lb02-2b3122-outside-observer",
+        "-c",
+        "probe",
+        "--",
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-14"
+      ],
+      "exit": 2,
+      "stdout": "Get \"http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-14\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)\n",
+      "stderr": "command terminated with exit code 2\n",
+      "pass": false
+    },
+    {
+      "pod": "lb02-2b3122-outside-observer",
+      "label": "public-lb-external-no-snat-15",
+      "argv": [
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-15"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"nonce\":\"lb02-public-lb-external-no-snat-15\""
+      ],
+      "at": "2026-09-15T09:31:04.638128+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb02-09141908-2b3122",
+        "lb02-2b3122-outside-observer",
+        "-c",
+        "probe",
+        "--",
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-15"
+      ],
+      "exit": 2,
+      "stdout": "Get \"http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-15\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)\n",
+      "stderr": "command terminated with exit code 2\n",
+      "pass": false
+    },
+    {
+      "pod": "lb02-2b3122-outside-observer",
+      "label": "public-lb-external-no-snat-16",
+      "argv": [
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-16"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"nonce\":\"lb02-public-lb-external-no-snat-16\""
+      ],
+      "at": "2026-09-15T09:31:08.735440+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb02-09141908-2b3122",
+        "lb02-2b3122-outside-observer",
+        "-c",
+        "probe",
+        "--",
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-16"
+      ],
+      "exit": 2,
+      "stdout": "Get \"http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-16\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)\n",
+      "stderr": "command terminated with exit code 2\n",
+      "pass": false
+    },
+    {
+      "pod": "lb02-2b3122-outside-observer",
+      "label": "public-lb-external-no-snat-17",
+      "argv": [
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-17"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"nonce\":\"lb02-public-lb-external-no-snat-17\""
+      ],
+      "at": "2026-09-15T09:31:12.553444+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb02-09141908-2b3122",
+        "lb02-2b3122-outside-observer",
+        "-c",
+        "probe",
+        "--",
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-17"
+      ],
+      "exit": 2,
+      "stdout": "Get \"http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-17\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)\n",
+      "stderr": "command terminated with exit code 2\n",
+      "pass": false
+    },
+    {
+      "pod": "lb02-2b3122-outside-observer",
+      "label": "public-lb-external-no-snat-18",
+      "argv": [
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-18"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"nonce\":\"lb02-public-lb-external-no-snat-18\""
+      ],
+      "at": "2026-09-15T09:31:16.537083+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb02-09141908-2b3122",
+        "lb02-2b3122-outside-observer",
+        "-c",
+        "probe",
+        "--",
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-18"
+      ],
+      "exit": 2,
+      "stdout": "Get \"http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-18\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)\n",
+      "stderr": "command terminated with exit code 2\n",
+      "pass": false
+    },
+    {
+      "pod": "lb02-2b3122-outside-observer",
+      "label": "public-lb-external-no-snat-19",
+      "argv": [
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-19"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"nonce\":\"lb02-public-lb-external-no-snat-19\""
+      ],
+      "at": "2026-09-15T09:31:20.857443+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb02-09141908-2b3122",
+        "lb02-2b3122-outside-observer",
+        "-c",
+        "probe",
+        "--",
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-19"
+      ],
+      "exit": 2,
+      "stdout": "Get \"http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-19\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)\n",
+      "stderr": "command terminated with exit code 2\n",
+      "pass": false
+    },
+    {
+      "pod": "lb02-2b3122-outside-observer",
+      "label": "public-lb-external-no-snat-20",
+      "argv": [
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-20"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"nonce\":\"lb02-public-lb-external-no-snat-20\""
+      ],
+      "at": "2026-09-15T09:31:24.863789+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb02-09141908-2b3122",
+        "lb02-2b3122-outside-observer",
+        "-c",
+        "probe",
+        "--",
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-20"
+      ],
+      "exit": 2,
+      "stdout": "Get \"http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-20\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)\n",
+      "stderr": "command terminated with exit code 2\n",
+      "pass": false
+    },
+    {
+      "pod": "lb02-2b3122-outside-observer",
+      "label": "public-lb-external-no-snat-21",
+      "argv": [
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-21"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"nonce\":\"lb02-public-lb-external-no-snat-21\""
+      ],
+      "at": "2026-09-15T09:31:28.765261+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb02-09141908-2b3122",
+        "lb02-2b3122-outside-observer",
+        "-c",
+        "probe",
+        "--",
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-21"
+      ],
+      "exit": 2,
+      "stdout": "Get \"http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-21\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)\n",
+      "stderr": "command terminated with exit code 2\n",
+      "pass": false
+    },
+    {
+      "pod": "lb02-2b3122-outside-observer",
+      "label": "public-lb-external-no-snat-22",
+      "argv": [
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-22"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"nonce\":\"lb02-public-lb-external-no-snat-22\""
+      ],
+      "at": "2026-09-15T09:31:32.760666+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb02-09141908-2b3122",
+        "lb02-2b3122-outside-observer",
+        "-c",
+        "probe",
+        "--",
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-22"
+      ],
+      "exit": 2,
+      "stdout": "Get \"http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-22\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)\n",
+      "stderr": "command terminated with exit code 2\n",
+      "pass": false
+    },
+    {
+      "pod": "lb02-2b3122-outside-observer",
+      "label": "public-lb-external-no-snat-23",
+      "argv": [
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-23"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"nonce\":\"lb02-public-lb-external-no-snat-23\""
+      ],
+      "at": "2026-09-15T09:31:36.577787+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb02-09141908-2b3122",
+        "lb02-2b3122-outside-observer",
+        "-c",
+        "probe",
+        "--",
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-23"
+      ],
+      "exit": 2,
+      "stdout": "Get \"http://172.16.102.194:8080/?nonce=lb02-public-lb-external-no-snat-23\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)\n",
+      "stderr": "command terminated with exit code 2\n",
+      "pass": false
+    }
+  ],
+  "input_file": "docs/execution/records/NET-VPC-LB-02/device-registration-20260915/public-lb-external-no-snat-planned.json",
+  "result": "fail"
+}

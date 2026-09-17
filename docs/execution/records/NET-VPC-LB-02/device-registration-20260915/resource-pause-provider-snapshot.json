@@ -1,0 +1,60 @@
+{
+  "at": "2026-09-15T03:02:55.526768+00:00",
+  "command": "sudo -n /usr/local/bin/kubectl --kubeconfig /etc/kubernetes/admin.conf --context kubernetes-admin@ani-platform get vlannetworks.networking.kubercloud.com,eipgateways.networking.kubercloud.com -o json",
+  "actual_task_objects": [
+    {
+      "apiVersion": "networking.kubercloud.com/v1",
+      "kind": "EIPGateway",
+      "metadata": {
+        "creationTimestamp": "2026-09-15T02:26:20Z",
+        "finalizers": [
+          "networking.kubercloud.com/finalizer"
+        ],
+        "generation": 1,
+        "labels": {
+          "network.ani.io/binding-id": "304189d8-333f-4dfe-9bf0-2069bcafb87d",
+          "network.ani.io/managed-by": "ani-network-service",
+          "network.ani.io/resource-id": "egw_386dc165a8744951bc624ab55c439681"
+        },
+        "name": "egw-386dc165a8744951bc624ab55c439681",
+        "resourceVersion": "242323",
+        "uid": "8b295080-461e-4403-a750-2e89ad1a5652"
+      },
+      "spec": {
+        "egressType": "Host",
+        "scope": "Public"
+      },
+      "status": {
+        "boundResources": {
+          "router": "gw.egw-386dc165a8744951bc624ab55c439681"
+        },
+        "conditions": [
+          {
+            "lastTransitionTime": "2026-09-15T02:26:20Z",
+            "message": "",
+            "reason": "Valid",
+            "status": "True",
+            "type": "Valid"
+          },
+          {
+            "lastTransitionTime": "2026-09-15T02:26:20Z",
+            "message": "",
+            "reason": "Initialized",
+            "status": "True",
+            "type": "Initialized"
+          },
+          {
+            "lastTransitionTime": "2026-09-15T02:26:20Z",
+            "message": "",
+            "reason": "Ready",
+            "status": "True",
+            "type": "Ready"
+          }
+        ],
+        "localIP": "100.64.0.8"
+      }
+    }
+  ],
+  "expected_vlan_present": false,
+  "scope": "read-only provider snapshot while product processes paused; no readiness fabricated"
+}

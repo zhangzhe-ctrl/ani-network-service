@@ -1,0 +1,16 @@
+{
+  "at": "2026-09-15T12:43:19.233542+00:00",
+  "scope": "temporary read-only diagnostics for two run-owned backend Attachments",
+  "marker": "[DEBUG-lb02-attachment]",
+  "qualified_source_run": "20260915T121305Z-1e089142",
+  "original_files": {
+    "internal/data/kc_observed_provider.go": "14d8dc66f1a98c4e2b4653c17510531aa0c243e077a7d9c8262eb283040d3197"
+  },
+  "hypotheses": [
+    "invalid cached audit or pending-generation coverage not recovered inside two attempts",
+    "related object notification invalidates view during inspection",
+    "snapshot/refresh or adapter database request fails or times out"
+  ],
+  "behavior_changes": false,
+  "public_forwarding_probes": false
+}

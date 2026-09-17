@@ -1,0 +1,12 @@
+{
+  "at": "2026-09-15T10:20:35.930469+00:00",
+  "execution_host": "ubuntu",
+  "transport_exit": 0,
+  "result": {
+    "query": "SELECT row_to_json(o) FROM network_operations o WHERE operation_id='18447cd2-6a31-48f5-bc5f-b7b225c16374'; SELECT row_to_json(r) FROM network_reconciliations r WHERE lb_id='lb_74f96109961444a48b26c31601e6131f';",
+    "exit": 0,
+    "stdout": "BEGIN\n{\"tenant_id\":\"d896f754-ab06-4cbe-a7fd-53148d16d0ad\",\"operation_id\":\"18447cd2-6a31-48f5-bc5f-b7b225c16374\",\"vpc_id\":null,\"kind\":\"create_load_balancer\",\"state\":\"retrying\",\"reason\":\"PROVIDER_NOT_READY\",\"attempt\":7,\"execution_epoch\":7,\"created_at\":\"2026-09-15T10:15:22.365334+00:00\",\"updated_at\":\"2026-09-15T10:20:00.737813+00:00\",\"completed_at\":null,\"next_attempt_at\":\"2026-09-15T10:20:30.737814+00:00\",\"subnet_id\":null,\"eip_id\":null,\"snat_id\":null,\"lb_id\":\"lb_74f96109961444a48b26c31601e6131f\"}\n{\"tenant_id\":\"d896f754-ab06-4cbe-a7fd-53148d16d0ad\",\"vpc_id\":null,\"next_run_at\":\"2026-09-15T10:20:30.73876+00:00\",\"lease_owner\":null,\"lease_until\":null,\"lease_epoch\":7,\"subnet_id\":null,\"reconciliation_id\":\"18c8b2ae-ef43-41ba-81a2-c441fc9ab334\",\"requested_generation\":26,\"processed_generation\":25,\"retry_not_before\":\"2026-09-15T10:20:30.73876+00:00\",\"evidence_hash\":\"91dbb7bdeb3a8025c47916502b8f4862863a9b049a0848773a05bc952ea05ac2\",\"evidence_applied_at\":\"2026-09-15T10:20:00.73876+00:00\",\"eip_id\":null,\"snat_id\":null,\"retired\":false,\"lb_id\":\"lb_74f96109961444a48b26c31601e6131f\"}\nROLLBACK\n",
+    "stderr": ""
+  },
+  "stderr": ""
+}

@@ -1,0 +1,68 @@
+{
+  "at": "2026-09-15T09:35:58.721167+00:00",
+  "capture_execution_hosts": "three lab nodes, local SSH orchestration as authorized for ens35 diagnostics",
+  "traffic_execution_host": "ubuntu through owner fixture",
+  "scope": "passive headers only for own experimental EIP; tcpdump -p avoids enabling promiscuous mode",
+  "filter": "(arp and host 172.16.102.194) or (tcp and host 172.16.102.194 and port 8080)",
+  "nodes": [
+    {
+      "host": "ani-test-1",
+      "started_at": "2026-09-15T09:35:35.232543+00:00",
+      "finished_at": "2026-09-15T09:35:58.258772+00:00",
+      "command": [
+        "ssh",
+        "-F",
+        "/home/chabking/.ssh/config",
+        "-o",
+        "BatchMode=yes",
+        "-o",
+        "ConnectTimeout=5",
+        "ani-test-1",
+        "sudo -n timeout 22 tcpdump -p -i ens35 -nn -e -tttt -l -c 80 '(arp and host 172.16.102.194) or (tcp and host 172.16.102.194 and port 8080)'"
+      ],
+      "exit": 124,
+      "stdout": "2026-09-15 17:35:43.160212 fa:00:9f:21:b1:ea > fa:00:07:fb:48:c4, ethertype IPv4 (0x0800), length 74: 172.16.102.192.54692 > 172.16.102.194.8080: Flags [S], seq 575175829, win 65280, options [mss 1360,sackOK,TS val 4188123283 ecr 0,nop,wscale 10], length 0\n2026-09-15 17:35:44.169597 fa:00:9f:21:b1:ea > fa:00:07:fb:48:c4, ethertype IPv4 (0x0800), length 74: 172.16.102.192.54692 > 172.16.102.194.8080: Flags [S], seq 575175829, win 65280, options [mss 1360,sackOK,TS val 4188124293 ecr 0,nop,wscale 10], length 0\n2026-09-15 17:35:45.192747 fa:00:9f:21:b1:ea > fa:00:07:fb:48:c4, ethertype IPv4 (0x0800), length 74: 172.16.102.192.54692 > 172.16.102.194.8080: Flags [S], seq 575175829, win 65280, options [mss 1360,sackOK,TS val 4188125316 ecr 0,nop,wscale 10], length 0\n2026-09-15 17:35:48.329065 fa:00:9f:21:b1:ea > fa:00:07:fb:48:c4, ethertype ARP (0x0806), length 60: Request who-has 172.16.102.194 tell 172.16.102.192, length 46\n2026-09-15 17:35:48.329675 fa:00:07:fb:48:c4 > fa:00:9f:21:b1:ea, ethertype ARP (0x0806), length 60: Reply 172.16.102.194 is-at fa:00:07:fb:48:c4, length 46\n\n",
+      "stderr": "tcpdump: verbose output suppressed, use -v[v]... for full protocol decode\nlistening on ens35, link-type EN10MB (Ethernet), snapshot length 262144 bytes\n5 packets captured\n5 packets received by filter\n0 packets dropped by kernel\n"
+    },
+    {
+      "host": "ani-test-2",
+      "started_at": "2026-09-15T09:35:35.234473+00:00",
+      "finished_at": "2026-09-15T09:35:58.633604+00:00",
+      "command": [
+        "ssh",
+        "-F",
+        "/home/chabking/.ssh/config",
+        "-o",
+        "BatchMode=yes",
+        "-o",
+        "ConnectTimeout=5",
+        "ani-test-2",
+        "sudo -n timeout 22 tcpdump -p -i ens35 -nn -e -tttt -l -c 80 '(arp and host 172.16.102.194) or (tcp and host 172.16.102.194 and port 8080)'"
+      ],
+      "exit": 124,
+      "stdout": "2026-09-15 17:35:43.131370 fa:00:9f:21:b1:ea > fa:00:07:fb:48:c4, ethertype IPv4 (0x0800), length 74: 172.16.102.192.54692 > 172.16.102.194.8080: Flags [S], seq 575175829, win 65280, options [mss 1360,sackOK,TS val 4188123283 ecr 0,nop,wscale 10], length 0\n2026-09-15 17:35:44.140759 fa:00:9f:21:b1:ea > fa:00:07:fb:48:c4, ethertype IPv4 (0x0800), length 74: 172.16.102.192.54692 > 172.16.102.194.8080: Flags [S], seq 575175829, win 65280, options [mss 1360,sackOK,TS val 4188124293 ecr 0,nop,wscale 10], length 0\n2026-09-15 17:35:45.163859 fa:00:9f:21:b1:ea > fa:00:07:fb:48:c4, ethertype IPv4 (0x0800), length 74: 172.16.102.192.54692 > 172.16.102.194.8080: Flags [S], seq 575175829, win 65280, options [mss 1360,sackOK,TS val 4188125316 ecr 0,nop,wscale 10], length 0\n2026-09-15 17:35:48.300229 fa:00:9f:21:b1:ea > fa:00:07:fb:48:c4, ethertype ARP (0x0806), length 42: Request who-has 172.16.102.194 tell 172.16.102.192, length 28\n2026-09-15 17:35:48.591560 fa:00:07:fb:48:c4 > fa:00:9f:21:b1:ea, ethertype ARP (0x0806), length 60: Reply 172.16.102.194 is-at fa:00:07:fb:48:c4, length 46\n\n",
+      "stderr": "tcpdump: verbose output suppressed, use -v[v]... for full protocol decode\nlistening on ens35, link-type EN10MB (Ethernet), snapshot length 262144 bytes\n5 packets captured\n5 packets received by filter\n0 packets dropped by kernel\n"
+    },
+    {
+      "host": "ani-test-3",
+      "started_at": "2026-09-15T09:35:35.247705+00:00",
+      "finished_at": "2026-09-15T09:35:58.719400+00:00",
+      "command": [
+        "ssh",
+        "-F",
+        "/home/chabking/.ssh/config",
+        "-o",
+        "BatchMode=yes",
+        "-o",
+        "ConnectTimeout=5",
+        "ani-test-3",
+        "sudo -n timeout 22 tcpdump -p -i ens35 -nn -e -tttt -l -c 80 '(arp and host 172.16.102.194) or (tcp and host 172.16.102.194 and port 8080)'"
+      ],
+      "exit": 124,
+      "stdout": "2026-09-15 17:35:43.149321 fa:00:9f:21:b1:ea > fa:00:07:fb:48:c4, ethertype IPv4 (0x0800), length 74: 172.16.102.192.54692 > 172.16.102.194.8080: Flags [S], seq 575175829, win 65280, options [mss 1360,sackOK,TS val 4188123283 ecr 0,nop,wscale 10], length 0\n2026-09-15 17:35:44.158691 fa:00:9f:21:b1:ea > fa:00:07:fb:48:c4, ethertype IPv4 (0x0800), length 74: 172.16.102.192.54692 > 172.16.102.194.8080: Flags [S], seq 575175829, win 65280, options [mss 1360,sackOK,TS val 4188124293 ecr 0,nop,wscale 10], length 0\n2026-09-15 17:35:45.181853 fa:00:9f:21:b1:ea > fa:00:07:fb:48:c4, ethertype IPv4 (0x0800), length 74: 172.16.102.192.54692 > 172.16.102.194.8080: Flags [S], seq 575175829, win 65280, options [mss 1360,sackOK,TS val 4188125316 ecr 0,nop,wscale 10], length 0\n2026-09-15 17:35:48.318162 fa:00:9f:21:b1:ea > fa:00:07:fb:48:c4, ethertype ARP (0x0806), length 60: Request who-has 172.16.102.194 tell 172.16.102.192, length 46\n2026-09-15 17:35:48.318810 fa:00:07:fb:48:c4 > fa:00:9f:21:b1:ea, ethertype ARP (0x0806), length 60: Reply 172.16.102.194 is-at fa:00:07:fb:48:c4, length 46\n\n",
+      "stderr": "tcpdump: verbose output suppressed, use -v[v]... for full protocol decode\nlistening on ens35, link-type EN10MB (Ethernet), snapshot length 262144 bytes\n5 packets captured\n5 packets received by filter\n0 packets dropped by kernel\n"
+    }
+  ],
+  "probe_stdout": "fail [('lb02-2b3122-outside-observer', 'captured-eip-request', 2, False, 'Get \"http://172.16.102.194:8080/?nonce=lb02-eip-capture-lb02-2b3122-outside-observer\": context deadl'), ('lb02-2b3122-public-probe-a', 'captured-eip-request', 2, False, 'Get \"http://172.16.102.194:8080/?nonce=lb02-eip-capture-lb02-2b3122-public-probe-a\": context deadlin')]\n",
+  "probe_exit": 0
+}

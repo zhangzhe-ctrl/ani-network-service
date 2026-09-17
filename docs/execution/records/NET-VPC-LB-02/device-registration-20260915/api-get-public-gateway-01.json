@@ -1,0 +1,32 @@
+{
+  "at": "2026-09-15T02:23:25.556602+00:00",
+  "execution_host": "ubuntu",
+  "context": "platform",
+  "command": "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/lb-api call -target unix:///home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/platform.sock -service PlatformNetworkService -method GetEgressGateway",
+  "request": {
+    "gateway_id": "egw_386dc165a8744951bc624ab55c439681"
+  },
+  "exit": 0,
+  "response": {
+    "code": "OK",
+    "response": {
+      "resource": {
+        "id": "egw_386dc165a8744951bc624ab55c439681",
+        "cluster_id": "lb02-09141908-2b3122",
+        "name": "lb02-2b3122-public",
+        "description": "U09 isolated Public Host egress gateway",
+        "state": "RESOURCE_STATE_PROVISIONING",
+        "reason": "PROVIDER_UNAVAILABLE",
+        "reason_message": "The network provider is temporarily unavailable.",
+        "version": "2",
+        "created_at": "2026-09-15T02:23:03.481170Z",
+        "updated_at": "2026-09-15T02:23:24.946223Z",
+        "observed_at": null,
+        "observation_stale": true,
+        "last_operation_id": "687cbe26-9916-47aa-81b1-e0e68aba50a6",
+        "gateway": {}
+      }
+    }
+  },
+  "stderr": ""
+}

@@ -1,0 +1,23 @@
+{
+  "at": "2026-09-17T11:35:47.651675+00:00",
+  "command": [
+    "/home/chabking/workspace/ani-network-service-runs/lb-health-e2e-20260917/private/runtime/bin/lb-api",
+    "call",
+    "-target",
+    "unix:///home/chabking/.local/state/lbhp0917/sockets/tenant-a.sock",
+    "-service",
+    "NetworkService",
+    "-method",
+    "GetSubnet"
+  ],
+  "completed_at": "2026-09-17T11:35:47.661357+00:00",
+  "exit": 0,
+  "phase": "cleanup",
+  "request": {
+    "subnet_id": "subnet_922c1a9941bd4fde9795074e8b0ab021",
+    "tenant_id": "3c8a15c8-b679-4af8-a9fa-ca3703a1609f"
+  },
+  "stderr": "",
+  "stdout": "{\"code\":\"OK\",\"response\":{\"subnet\":{\"id\":\"subnet_922c1a9941bd4fde9795074e8b0ab021\",\"tenant_id\":\"3c8a15c8-b679-4af8-a9fa-ca3703a1609f\",\"name\":\"lbhealth-0917-entry-subnet\",\"description\":\"\",\"cidr\":\"10.235.0.0/24\",\"state\":\"RESOURCE_STATE_DELETED\",\"reason\":\"\",\"created_at\":\"2026-09-17T11:27:14.535191Z\",\"updated_at\":\"2026-09-17T11:35:40.635508Z\",\"version\":\"125\",\"observed_at\":\"2026-09-17T11:35:35.151037Z\",\"observation_stale\":false,\"last_operation_id\":\"036acaf3-394c-4534-9e2e-16d501575b2a\",\"vpc_id\":\"vpc_2a9a072c542c4ceea744cba5eb17130f\",\"reason_message\":\"\",\"gateway\":\"10.235.0.1\"}}}\n",
+  "step": "vpc"
+}

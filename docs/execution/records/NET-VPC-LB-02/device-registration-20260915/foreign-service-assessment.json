@@ -1,0 +1,47 @@
+{
+  "at": "2026-09-15T07:13:06.018580+00:00",
+  "result": "pass",
+  "source_run": "20260915T051609Z-70cbcaa3",
+  "lb_id": "lb_8cb0fe0e03064f829a7dac0b70cc6b61",
+  "create_operation": "6909fd05-99fa-4420-8b48-d8a18d4cba6c",
+  "delete_operation": "5738b5ed-c889-459e-8ca1-ae365498da54",
+  "service": {
+    "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+    "name": "lb-8cb0fe0e03064f829a7dac0b70cc6b61",
+    "uid": "e5ba8646-254e-4c10-aa16-48867a562be0"
+  },
+  "worker_pause_seconds": 0.9021225534379482,
+  "worker_resumed": true,
+  "create_blocked_for_foreign_owner": true,
+  "delete_blocked_for_foreign_owner": true,
+  "service_uid_spec_owner_and_labels_preserved": true,
+  "service_stable_between_protection_read_and_owner_delete": true,
+  "product_components_never_dispatched": true,
+  "owner_uid_precondition_delete": true,
+  "product_delete_completed_after_foreign_service_removed": true,
+  "vip_and_subnet_refs_released": true,
+  "additional_rbac_removed": true,
+  "existing_private_vip_probe": "private-vip-after-foreign-fault-assessment.json",
+  "assessment_corrections": [
+    "Initial poll expected non-existent PROVIDER_OWNERSHIP; raw failure retained and corrected to existing PROVIDER_OWNERSHIP_CONFLICT.",
+    "An initial local assessment assumed the entire Service equalled the create receipt and failed before writing output. Actual difference: default-VPC annotation, KcnValid/KcnReady conditions and resourceVersion appeared after creation. The ownership-protection contract checks UID/spec/owner/labels and absence of deletion; the later two full objects are identical. No claim that metadata/status never changed."
+  ],
+  "initial_service_resource_version": "323215",
+  "protected_service_resource_version": "323217",
+  "limitations": [
+    "First create rejected BASE_CONNECTIVITY_NOT_READY before admission; same idempotency key retried after normal recovery.",
+    "Public EIP and wrong namespace/UID occupant cases remain separate."
+  ],
+  "evidence": [
+    "foreign-service-injection.json",
+    "foreign-service-injection-02.json",
+    "foreign-service-create-reason-correction.json",
+    "foreign-service-create-protected.json",
+    "foreign-service-delete-blocked.json",
+    "foreign-service-owner-delete.json",
+    "foreign-service-delete-completed.json",
+    "foreign-service-final-release.json",
+    "foreign-service-final-provider.json",
+    "foreign-service-rbac-cleanup.json"
+  ]
+}

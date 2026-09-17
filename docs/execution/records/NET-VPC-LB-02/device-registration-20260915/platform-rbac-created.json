@@ -1,0 +1,113 @@
+{
+    "apiVersion": "rbac.authorization.k8s.io/v1",
+    "kind": "Role",
+    "metadata": {
+        "creationTimestamp": "2026-09-15T02:06:39Z",
+        "labels": {
+            "network.ani.io/test-run": "lb02-09141908-2b3122"
+        },
+        "name": "lb02-09141908-2b3122-device-registration",
+        "namespace": "kcn-system",
+        "resourceVersion": "236515",
+        "uid": "09554f46-620f-4ed6-9183-5034ce24d789"
+    },
+    "rules": [
+        {
+            "apiGroups": [
+                ""
+            ],
+            "resourceNames": [
+                "kcn-config"
+            ],
+            "resources": [
+                "configmaps"
+            ],
+            "verbs": [
+                "get",
+                "patch"
+            ]
+        }
+    ]
+}
+{
+    "apiVersion": "rbac.authorization.k8s.io/v1",
+    "kind": "RoleBinding",
+    "metadata": {
+        "creationTimestamp": "2026-09-15T02:06:39Z",
+        "labels": {
+            "network.ani.io/test-run": "lb02-09141908-2b3122"
+        },
+        "name": "lb02-09141908-2b3122-device-registration",
+        "namespace": "kcn-system",
+        "resourceVersion": "236516",
+        "uid": "1db4b97c-dbca-4263-bec8-c33903c1b43e"
+    },
+    "roleRef": {
+        "apiGroup": "rbac.authorization.k8s.io",
+        "kind": "Role",
+        "name": "lb02-09141908-2b3122-device-registration"
+    },
+    "subjects": [
+        {
+            "kind": "ServiceAccount",
+            "name": "network",
+            "namespace": "lb02-09141908-2b3122"
+        }
+    ]
+}
+{
+    "apiVersion": "rbac.authorization.k8s.io/v1",
+    "kind": "ClusterRole",
+    "metadata": {
+        "creationTimestamp": "2026-09-15T02:06:39Z",
+        "labels": {
+            "network.ani.io/test-run": "lb02-09141908-2b3122"
+        },
+        "name": "lb02-09141908-2b3122-device-registration",
+        "resourceVersion": "236517",
+        "uid": "ccdca94c-e942-4b08-9df4-4394f42262cd"
+    },
+    "rules": [
+        {
+            "apiGroups": [
+                "networking.kubercloud.com"
+            ],
+            "resources": [
+                "eipgateways",
+                "vlannetworks"
+            ],
+            "verbs": [
+                "get",
+                "list",
+                "watch",
+                "create",
+                "delete"
+            ]
+        }
+    ]
+}
+{
+    "apiVersion": "rbac.authorization.k8s.io/v1",
+    "kind": "ClusterRoleBinding",
+    "metadata": {
+        "creationTimestamp": "2026-09-15T02:06:39Z",
+        "labels": {
+            "network.ani.io/test-run": "lb02-09141908-2b3122"
+        },
+        "name": "lb02-09141908-2b3122-device-registration",
+        "resourceVersion": "236518",
+        "uid": "98c3ac7d-6594-4d45-82fe-9e441055bde5"
+    },
+    "roleRef": {
+        "apiGroup": "rbac.authorization.k8s.io",
+        "kind": "ClusterRole",
+        "name": "lb02-09141908-2b3122-device-registration"
+    },
+    "subjects": [
+        {
+            "kind": "ServiceAccount",
+            "name": "network",
+            "namespace": "lb02-09141908-2b3122"
+        }
+    ]
+}

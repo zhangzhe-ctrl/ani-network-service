@@ -1,0 +1,46 @@
+{
+  "at": "2026-09-15T10:40:17.867103+00:00",
+  "records": [
+    {
+      "command": [
+        "ssh",
+        "-F",
+        "/home/chabking/.ssh/config",
+        "-S",
+        "/home/chabking/workspace/.worktrees/network-vpc-lb-02/.work/ubuntu-control",
+        "-O",
+        "check",
+        "ubuntu"
+      ],
+      "exit": 255,
+      "stdout": "",
+      "stderr": "Control socket connect(/home/chabking/workspace/.worktrees/network-vpc-lb-02/.work/ubuntu-control): No such file or directory\n"
+    },
+    {
+      "command": [
+        "ssh",
+        "-F",
+        "/home/chabking/.ssh/config",
+        "-o",
+        "BatchMode=yes",
+        "-M",
+        "-S",
+        "/home/chabking/workspace/.worktrees/network-vpc-lb-02/.work/ubuntu-control",
+        "-o",
+        "ServerAliveInterval=15",
+        "-o",
+        "ServerAliveCountMax=3",
+        "-o",
+        "ControlPersist=no",
+        "-fNT",
+        "ubuntu"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "runtime": "r18 was still active",
+  "api_relay": "Separate 127.0.0.1:38443 control-only relay remained listening; no relay recreation needed",
+  "interrupted_read": "public-private-ready-r18: SSH reset by peer; helper did not save partial samples; not a completed readiness result"
+}

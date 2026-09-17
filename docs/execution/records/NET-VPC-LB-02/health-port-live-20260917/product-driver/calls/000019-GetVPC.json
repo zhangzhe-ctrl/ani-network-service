@@ -1,0 +1,23 @@
+{
+  "at": "2026-09-17T11:27:28.879441+00:00",
+  "command": [
+    "/home/chabking/workspace/ani-network-service-runs/lb-health-e2e-20260917/private/runtime/bin/lb-api",
+    "call",
+    "-target",
+    "unix:///home/chabking/.local/state/lbhp0917/sockets/tenant-a.sock",
+    "-service",
+    "NetworkService",
+    "-method",
+    "GetVPC"
+  ],
+  "completed_at": "2026-09-17T11:27:28.890760+00:00",
+  "exit": 0,
+  "phase": "create-business",
+  "request": {
+    "tenant_id": "3c8a15c8-b679-4af8-a9fa-ca3703a1609f",
+    "vpc_id": "vpc_2a9a072c542c4ceea744cba5eb17130f"
+  },
+  "stderr": "",
+  "stdout": "{\"code\":\"OK\",\"response\":{\"vpc\":{\"id\":\"vpc_2a9a072c542c4ceea744cba5eb17130f\",\"tenant_id\":\"3c8a15c8-b679-4af8-a9fa-ca3703a1609f\",\"name\":\"lbhealth-0917-vpc\",\"description\":\"\",\"cidr\":\"10.235.0.0/16\",\"state\":\"RESOURCE_STATE_DEGRADED\",\"reason\":\"BASE_CONNECTIVITY_NOT_READY\",\"created_at\":\"2026-09-17T11:23:22.577277Z\",\"updated_at\":\"2026-09-17T11:27:28.322950Z\",\"version\":\"55\",\"observed_at\":\"2026-09-17T11:27:28.134606Z\",\"observation_stale\":false,\"last_operation_id\":\"a8b75844-da9a-4f0d-9d7c-12be8a12b5aa\",\"subnet_count\":\"2\",\"reason_message\":\"VPC base connectivity is not ready\",\"base_connectivity\":{\"state\":\"degraded\",\"reason\":\"BASE_CONNECTIVITY_NOT_READY\",\"observed_at\":null,\"observation_stale\":true,\"reason_message\":\"VPC base connectivity is not ready\"}}}}\n",
+  "step": "attachments"
+}

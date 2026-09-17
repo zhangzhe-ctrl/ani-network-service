@@ -1,0 +1,68 @@
+{
+  "at": "2026-09-15T13:26:44.646746+00:00",
+  "execution_host": "ubuntu",
+  "source_run": "20260915T132517Z-9c4813ef",
+  "archive_sha256": "618d907793da22c7e7f5585ae4806101f23bdab0b6bef3dc78c9c6b81899f8a3",
+  "manifest_sha256": "8fa10752b267673f157b9128540baebf3ab992d18896c88e76a7cdefff707600",
+  "command": [
+    "bash",
+    "-e",
+    "-c",
+    "validation_tmp=$(mktemp -d /var/tmp/nlb2.XXXXXX); chmod 700 \"$validation_tmp\"; export TMPDIR=\"$validation_tmp\"; scripts/integration -race ./internal/data -run \"^(TestAttachmentFinishesFreshAuditAfterConsecutiveWatchBoundaries|TestNET05ACriticalAuditFollowsCollectionStartedBeforeItsBoundary|TestNET05AReleaseAuditMustStartAfterOwnerClosureResponse)$\" -count 2 -timeout 3m -json"
+  ],
+  "conclusion": "PASS: two race repetitions of the isolated consecutive-Watch regression, caller deadline, VNicIP UID rejection, owner closure boundary and critical collection boundary. No production UID or epoch checks relaxed.",
+  "test_results": [
+    {
+      "Test": "TestAttachmentFinishesFreshAuditAfterConsecutiveWatchBoundaries",
+      "Action": "pass",
+      "Elapsed": 5.32
+    },
+    {
+      "Test": "TestNET05AReleaseAuditMustStartAfterOwnerClosureResponse/false",
+      "Action": "pass",
+      "Elapsed": 0.6
+    },
+    {
+      "Test": "TestNET05AReleaseAuditMustStartAfterOwnerClosureResponse/true",
+      "Action": "pass",
+      "Elapsed": 0.63
+    },
+    {
+      "Test": "TestNET05AReleaseAuditMustStartAfterOwnerClosureResponse",
+      "Action": "pass",
+      "Elapsed": 1.23
+    },
+    {
+      "Test": "TestNET05ACriticalAuditFollowsCollectionStartedBeforeItsBoundary",
+      "Action": "pass",
+      "Elapsed": 0.69
+    },
+    {
+      "Test": "TestAttachmentFinishesFreshAuditAfterConsecutiveWatchBoundaries",
+      "Action": "pass",
+      "Elapsed": 5.73
+    },
+    {
+      "Test": "TestNET05AReleaseAuditMustStartAfterOwnerClosureResponse/false",
+      "Action": "pass",
+      "Elapsed": 0.52
+    },
+    {
+      "Test": "TestNET05AReleaseAuditMustStartAfterOwnerClosureResponse/true",
+      "Action": "pass",
+      "Elapsed": 0.69
+    },
+    {
+      "Test": "TestNET05AReleaseAuditMustStartAfterOwnerClosureResponse",
+      "Action": "pass",
+      "Elapsed": 1.21
+    },
+    {
+      "Test": "TestNET05ACriticalAuditFollowsCollectionStartedBeforeItsBoundary",
+      "Action": "pass",
+      "Elapsed": 0.55
+    }
+  ],
+  "log": "attachment-retry-green-isolated-command.txt",
+  "log_sha256": "311cb0c8901622d669f1f2d9f1f119e1da7aafe0c3be14517a823b5346fcdf75"
+}

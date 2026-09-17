@@ -1,0 +1,14 @@
+{
+  "at": "2026-09-15T11:00:05.762171+00:00",
+  "result": "not_verified",
+  "scope": "observation stability under rejected r19 configuration",
+  "raw_command_result": "fail",
+  "samples": 30,
+  "all_transport_unavailable": true,
+  "cause": "network startup rejected lease above configured maximum; no running Network observation process",
+  "evidence": [
+    "private-lb-r19-stability.json",
+    "r19-startup-diagnostic.json"
+  ],
+  "correction": "Do not classify these connection failures as ProviderNotReady or observation instability."
+}

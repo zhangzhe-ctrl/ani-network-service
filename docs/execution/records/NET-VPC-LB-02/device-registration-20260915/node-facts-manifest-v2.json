@@ -1,0 +1,741 @@
+{
+  "apiVersion": "v1",
+  "kind": "List",
+  "items": [
+    {
+      "apiVersion": "v1",
+      "kind": "ServiceAccount",
+      "metadata": {
+        "name": "ani-node-facts-51a80915f0169d9a92ce6bf0",
+        "namespace": "kcn-system",
+        "labels": {
+          "network.ani.io/managed-by": "ani-network-node-facts",
+          "network.ani.io/node-uid": "3693178a-d4d4-4fb3-a39a-82b7d875391d"
+        }
+      },
+      "automountServiceAccountToken": false
+    },
+    {
+      "apiVersion": "v1",
+      "kind": "ConfigMap",
+      "metadata": {
+        "name": "ani-node-facts-51a80915f0169d9a92ce6bf0",
+        "namespace": "kcn-system",
+        "labels": {
+          "network.ani.io/managed-by": "ani-network-node-facts",
+          "network.ani.io/node-uid": "3693178a-d4d4-4fb3-a39a-82b7d875391d"
+        }
+      },
+      "data": {}
+    },
+    {
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "Role",
+      "metadata": {
+        "name": "ani-node-facts-51a80915f0169d9a92ce6bf0",
+        "namespace": "kcn-system",
+        "labels": {
+          "network.ani.io/managed-by": "ani-network-node-facts",
+          "network.ani.io/node-uid": "3693178a-d4d4-4fb3-a39a-82b7d875391d"
+        }
+      },
+      "rules": [
+        {
+          "apiGroups": [
+            ""
+          ],
+          "resources": [
+            "configmaps"
+          ],
+          "resourceNames": [
+            "ani-node-facts-51a80915f0169d9a92ce6bf0"
+          ],
+          "verbs": [
+            "get",
+            "patch"
+          ]
+        }
+      ]
+    },
+    {
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "RoleBinding",
+      "metadata": {
+        "name": "ani-node-facts-51a80915f0169d9a92ce6bf0",
+        "namespace": "kcn-system",
+        "labels": {
+          "network.ani.io/managed-by": "ani-network-node-facts",
+          "network.ani.io/node-uid": "3693178a-d4d4-4fb3-a39a-82b7d875391d"
+        }
+      },
+      "roleRef": {
+        "apiGroup": "rbac.authorization.k8s.io",
+        "kind": "Role",
+        "name": "ani-node-facts-51a80915f0169d9a92ce6bf0"
+      },
+      "subjects": [
+        {
+          "kind": "ServiceAccount",
+          "name": "ani-node-facts-51a80915f0169d9a92ce6bf0",
+          "namespace": "kcn-system"
+        }
+      ]
+    },
+    {
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "ClusterRole",
+      "metadata": {
+        "name": "ani-node-facts-51a80915f0169d9a92ce6bf0",
+        "labels": {
+          "network.ani.io/managed-by": "ani-network-node-facts",
+          "network.ani.io/node-uid": "3693178a-d4d4-4fb3-a39a-82b7d875391d"
+        }
+      },
+      "rules": [
+        {
+          "apiGroups": [
+            ""
+          ],
+          "resources": [
+            "nodes"
+          ],
+          "resourceNames": [
+            "ani-01"
+          ],
+          "verbs": [
+            "get"
+          ]
+        }
+      ]
+    },
+    {
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "ClusterRoleBinding",
+      "metadata": {
+        "name": "ani-node-facts-51a80915f0169d9a92ce6bf0",
+        "labels": {
+          "network.ani.io/managed-by": "ani-network-node-facts",
+          "network.ani.io/node-uid": "3693178a-d4d4-4fb3-a39a-82b7d875391d"
+        }
+      },
+      "roleRef": {
+        "apiGroup": "rbac.authorization.k8s.io",
+        "kind": "ClusterRole",
+        "name": "ani-node-facts-51a80915f0169d9a92ce6bf0"
+      },
+      "subjects": [
+        {
+          "kind": "ServiceAccount",
+          "name": "ani-node-facts-51a80915f0169d9a92ce6bf0",
+          "namespace": "kcn-system"
+        }
+      ]
+    },
+    {
+      "apiVersion": "apps/v1",
+      "kind": "Deployment",
+      "metadata": {
+        "name": "ani-node-facts-51a80915f0169d9a92ce6bf0",
+        "namespace": "kcn-system",
+        "labels": {
+          "network.ani.io/managed-by": "ani-network-node-facts",
+          "network.ani.io/node-uid": "3693178a-d4d4-4fb3-a39a-82b7d875391d"
+        }
+      },
+      "spec": {
+        "replicas": 1,
+        "strategy": {
+          "type": "Recreate"
+        },
+        "selector": {
+          "matchLabels": {
+            "app": "ani-node-facts-51a80915f0169d9a92ce6bf0"
+          }
+        },
+        "template": {
+          "metadata": {
+            "labels": {
+              "app": "ani-node-facts-51a80915f0169d9a92ce6bf0"
+            }
+          },
+          "spec": {
+            "nodeName": "ani-01",
+            "hostNetwork": true,
+            "dnsPolicy": "ClusterFirstWithHostNet",
+            "serviceAccountName": "ani-node-facts-51a80915f0169d9a92ce6bf0",
+            "automountServiceAccountToken": true,
+            "terminationGracePeriodSeconds": 15,
+            "tolerations": [
+              {
+                "operator": "Exists"
+              }
+            ],
+            "securityContext": {
+              "seccompProfile": {
+                "type": "RuntimeDefault"
+              }
+            },
+            "containers": [
+              {
+                "name": "facts",
+                "image": "localhost/ani-node-facts@sha256:fe7aaee4509778b464121fb7c536e59675dee821a74c1ced62ca6da6ff9ab0c9",
+                "args": [
+                  "-node-facts"
+                ],
+                "env": [
+                  {
+                    "name": "NETWORK_FACTS_NODE_NAME",
+                    "value": "ani-01"
+                  },
+                  {
+                    "name": "NETWORK_FACTS_NODE_UID",
+                    "value": "3693178a-d4d4-4fb3-a39a-82b7d875391d"
+                  }
+                ],
+                "securityContext": {
+                  "runAsUser": 65534,
+                  "runAsNonRoot": true,
+                  "allowPrivilegeEscalation": false,
+                  "readOnlyRootFilesystem": true,
+                  "capabilities": {
+                    "drop": [
+                      "ALL"
+                    ]
+                  }
+                },
+                "resources": {
+                  "requests": {
+                    "cpu": "10m",
+                    "memory": "32Mi"
+                  },
+                  "limits": {
+                    "cpu": "100m",
+                    "memory": "96Mi"
+                  }
+                },
+                "volumeMounts": [
+                  {
+                    "name": "sys",
+                    "mountPath": "/sys",
+                    "readOnly": true
+                  },
+                  {
+                    "name": "ovs",
+                    "mountPath": "/var/run/openvswitch",
+                    "readOnly": true
+                  }
+                ]
+              }
+            ],
+            "volumes": [
+              {
+                "name": "sys",
+                "hostPath": {
+                  "path": "/sys",
+                  "type": "Directory"
+                }
+              },
+              {
+                "name": "ovs",
+                "hostPath": {
+                  "path": "/var/run/openvswitch",
+                  "type": "Directory"
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "apiVersion": "v1",
+      "kind": "ServiceAccount",
+      "metadata": {
+        "name": "ani-node-facts-7b398d4ee406a252345c20ca",
+        "namespace": "kcn-system",
+        "labels": {
+          "network.ani.io/managed-by": "ani-network-node-facts",
+          "network.ani.io/node-uid": "2f954d6f-31d0-49d9-83ee-2f8888408236"
+        }
+      },
+      "automountServiceAccountToken": false
+    },
+    {
+      "apiVersion": "v1",
+      "kind": "ConfigMap",
+      "metadata": {
+        "name": "ani-node-facts-7b398d4ee406a252345c20ca",
+        "namespace": "kcn-system",
+        "labels": {
+          "network.ani.io/managed-by": "ani-network-node-facts",
+          "network.ani.io/node-uid": "2f954d6f-31d0-49d9-83ee-2f8888408236"
+        }
+      },
+      "data": {}
+    },
+    {
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "Role",
+      "metadata": {
+        "name": "ani-node-facts-7b398d4ee406a252345c20ca",
+        "namespace": "kcn-system",
+        "labels": {
+          "network.ani.io/managed-by": "ani-network-node-facts",
+          "network.ani.io/node-uid": "2f954d6f-31d0-49d9-83ee-2f8888408236"
+        }
+      },
+      "rules": [
+        {
+          "apiGroups": [
+            ""
+          ],
+          "resources": [
+            "configmaps"
+          ],
+          "resourceNames": [
+            "ani-node-facts-7b398d4ee406a252345c20ca"
+          ],
+          "verbs": [
+            "get",
+            "patch"
+          ]
+        }
+      ]
+    },
+    {
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "RoleBinding",
+      "metadata": {
+        "name": "ani-node-facts-7b398d4ee406a252345c20ca",
+        "namespace": "kcn-system",
+        "labels": {
+          "network.ani.io/managed-by": "ani-network-node-facts",
+          "network.ani.io/node-uid": "2f954d6f-31d0-49d9-83ee-2f8888408236"
+        }
+      },
+      "roleRef": {
+        "apiGroup": "rbac.authorization.k8s.io",
+        "kind": "Role",
+        "name": "ani-node-facts-7b398d4ee406a252345c20ca"
+      },
+      "subjects": [
+        {
+          "kind": "ServiceAccount",
+          "name": "ani-node-facts-7b398d4ee406a252345c20ca",
+          "namespace": "kcn-system"
+        }
+      ]
+    },
+    {
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "ClusterRole",
+      "metadata": {
+        "name": "ani-node-facts-7b398d4ee406a252345c20ca",
+        "labels": {
+          "network.ani.io/managed-by": "ani-network-node-facts",
+          "network.ani.io/node-uid": "2f954d6f-31d0-49d9-83ee-2f8888408236"
+        }
+      },
+      "rules": [
+        {
+          "apiGroups": [
+            ""
+          ],
+          "resources": [
+            "nodes"
+          ],
+          "resourceNames": [
+            "ani-02"
+          ],
+          "verbs": [
+            "get"
+          ]
+        }
+      ]
+    },
+    {
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "ClusterRoleBinding",
+      "metadata": {
+        "name": "ani-node-facts-7b398d4ee406a252345c20ca",
+        "labels": {
+          "network.ani.io/managed-by": "ani-network-node-facts",
+          "network.ani.io/node-uid": "2f954d6f-31d0-49d9-83ee-2f8888408236"
+        }
+      },
+      "roleRef": {
+        "apiGroup": "rbac.authorization.k8s.io",
+        "kind": "ClusterRole",
+        "name": "ani-node-facts-7b398d4ee406a252345c20ca"
+      },
+      "subjects": [
+        {
+          "kind": "ServiceAccount",
+          "name": "ani-node-facts-7b398d4ee406a252345c20ca",
+          "namespace": "kcn-system"
+        }
+      ]
+    },
+    {
+      "apiVersion": "apps/v1",
+      "kind": "Deployment",
+      "metadata": {
+        "name": "ani-node-facts-7b398d4ee406a252345c20ca",
+        "namespace": "kcn-system",
+        "labels": {
+          "network.ani.io/managed-by": "ani-network-node-facts",
+          "network.ani.io/node-uid": "2f954d6f-31d0-49d9-83ee-2f8888408236"
+        }
+      },
+      "spec": {
+        "replicas": 1,
+        "strategy": {
+          "type": "Recreate"
+        },
+        "selector": {
+          "matchLabels": {
+            "app": "ani-node-facts-7b398d4ee406a252345c20ca"
+          }
+        },
+        "template": {
+          "metadata": {
+            "labels": {
+              "app": "ani-node-facts-7b398d4ee406a252345c20ca"
+            }
+          },
+          "spec": {
+            "nodeName": "ani-02",
+            "hostNetwork": true,
+            "dnsPolicy": "ClusterFirstWithHostNet",
+            "serviceAccountName": "ani-node-facts-7b398d4ee406a252345c20ca",
+            "automountServiceAccountToken": true,
+            "terminationGracePeriodSeconds": 15,
+            "tolerations": [
+              {
+                "operator": "Exists"
+              }
+            ],
+            "securityContext": {
+              "seccompProfile": {
+                "type": "RuntimeDefault"
+              }
+            },
+            "containers": [
+              {
+                "name": "facts",
+                "image": "localhost/ani-node-facts@sha256:fe7aaee4509778b464121fb7c536e59675dee821a74c1ced62ca6da6ff9ab0c9",
+                "args": [
+                  "-node-facts"
+                ],
+                "env": [
+                  {
+                    "name": "NETWORK_FACTS_NODE_NAME",
+                    "value": "ani-02"
+                  },
+                  {
+                    "name": "NETWORK_FACTS_NODE_UID",
+                    "value": "2f954d6f-31d0-49d9-83ee-2f8888408236"
+                  }
+                ],
+                "securityContext": {
+                  "runAsUser": 65534,
+                  "runAsNonRoot": true,
+                  "allowPrivilegeEscalation": false,
+                  "readOnlyRootFilesystem": true,
+                  "capabilities": {
+                    "drop": [
+                      "ALL"
+                    ]
+                  }
+                },
+                "resources": {
+                  "requests": {
+                    "cpu": "10m",
+                    "memory": "32Mi"
+                  },
+                  "limits": {
+                    "cpu": "100m",
+                    "memory": "96Mi"
+                  }
+                },
+                "volumeMounts": [
+                  {
+                    "name": "sys",
+                    "mountPath": "/sys",
+                    "readOnly": true
+                  },
+                  {
+                    "name": "ovs",
+                    "mountPath": "/var/run/openvswitch",
+                    "readOnly": true
+                  }
+                ]
+              }
+            ],
+            "volumes": [
+              {
+                "name": "sys",
+                "hostPath": {
+                  "path": "/sys",
+                  "type": "Directory"
+                }
+              },
+              {
+                "name": "ovs",
+                "hostPath": {
+                  "path": "/var/run/openvswitch",
+                  "type": "Directory"
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "apiVersion": "v1",
+      "kind": "ServiceAccount",
+      "metadata": {
+        "name": "ani-node-facts-ab0e432da17dfce745d60958",
+        "namespace": "kcn-system",
+        "labels": {
+          "network.ani.io/managed-by": "ani-network-node-facts",
+          "network.ani.io/node-uid": "2507940b-6901-44c6-aadd-ba1bb6875bde"
+        }
+      },
+      "automountServiceAccountToken": false
+    },
+    {
+      "apiVersion": "v1",
+      "kind": "ConfigMap",
+      "metadata": {
+        "name": "ani-node-facts-ab0e432da17dfce745d60958",
+        "namespace": "kcn-system",
+        "labels": {
+          "network.ani.io/managed-by": "ani-network-node-facts",
+          "network.ani.io/node-uid": "2507940b-6901-44c6-aadd-ba1bb6875bde"
+        }
+      },
+      "data": {}
+    },
+    {
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "Role",
+      "metadata": {
+        "name": "ani-node-facts-ab0e432da17dfce745d60958",
+        "namespace": "kcn-system",
+        "labels": {
+          "network.ani.io/managed-by": "ani-network-node-facts",
+          "network.ani.io/node-uid": "2507940b-6901-44c6-aadd-ba1bb6875bde"
+        }
+      },
+      "rules": [
+        {
+          "apiGroups": [
+            ""
+          ],
+          "resources": [
+            "configmaps"
+          ],
+          "resourceNames": [
+            "ani-node-facts-ab0e432da17dfce745d60958"
+          ],
+          "verbs": [
+            "get",
+            "patch"
+          ]
+        }
+      ]
+    },
+    {
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "RoleBinding",
+      "metadata": {
+        "name": "ani-node-facts-ab0e432da17dfce745d60958",
+        "namespace": "kcn-system",
+        "labels": {
+          "network.ani.io/managed-by": "ani-network-node-facts",
+          "network.ani.io/node-uid": "2507940b-6901-44c6-aadd-ba1bb6875bde"
+        }
+      },
+      "roleRef": {
+        "apiGroup": "rbac.authorization.k8s.io",
+        "kind": "Role",
+        "name": "ani-node-facts-ab0e432da17dfce745d60958"
+      },
+      "subjects": [
+        {
+          "kind": "ServiceAccount",
+          "name": "ani-node-facts-ab0e432da17dfce745d60958",
+          "namespace": "kcn-system"
+        }
+      ]
+    },
+    {
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "ClusterRole",
+      "metadata": {
+        "name": "ani-node-facts-ab0e432da17dfce745d60958",
+        "labels": {
+          "network.ani.io/managed-by": "ani-network-node-facts",
+          "network.ani.io/node-uid": "2507940b-6901-44c6-aadd-ba1bb6875bde"
+        }
+      },
+      "rules": [
+        {
+          "apiGroups": [
+            ""
+          ],
+          "resources": [
+            "nodes"
+          ],
+          "resourceNames": [
+            "ani-03"
+          ],
+          "verbs": [
+            "get"
+          ]
+        }
+      ]
+    },
+    {
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "ClusterRoleBinding",
+      "metadata": {
+        "name": "ani-node-facts-ab0e432da17dfce745d60958",
+        "labels": {
+          "network.ani.io/managed-by": "ani-network-node-facts",
+          "network.ani.io/node-uid": "2507940b-6901-44c6-aadd-ba1bb6875bde"
+        }
+      },
+      "roleRef": {
+        "apiGroup": "rbac.authorization.k8s.io",
+        "kind": "ClusterRole",
+        "name": "ani-node-facts-ab0e432da17dfce745d60958"
+      },
+      "subjects": [
+        {
+          "kind": "ServiceAccount",
+          "name": "ani-node-facts-ab0e432da17dfce745d60958",
+          "namespace": "kcn-system"
+        }
+      ]
+    },
+    {
+      "apiVersion": "apps/v1",
+      "kind": "Deployment",
+      "metadata": {
+        "name": "ani-node-facts-ab0e432da17dfce745d60958",
+        "namespace": "kcn-system",
+        "labels": {
+          "network.ani.io/managed-by": "ani-network-node-facts",
+          "network.ani.io/node-uid": "2507940b-6901-44c6-aadd-ba1bb6875bde"
+        }
+      },
+      "spec": {
+        "replicas": 1,
+        "strategy": {
+          "type": "Recreate"
+        },
+        "selector": {
+          "matchLabels": {
+            "app": "ani-node-facts-ab0e432da17dfce745d60958"
+          }
+        },
+        "template": {
+          "metadata": {
+            "labels": {
+              "app": "ani-node-facts-ab0e432da17dfce745d60958"
+            }
+          },
+          "spec": {
+            "nodeName": "ani-03",
+            "hostNetwork": true,
+            "dnsPolicy": "ClusterFirstWithHostNet",
+            "serviceAccountName": "ani-node-facts-ab0e432da17dfce745d60958",
+            "automountServiceAccountToken": true,
+            "terminationGracePeriodSeconds": 15,
+            "tolerations": [
+              {
+                "operator": "Exists"
+              }
+            ],
+            "securityContext": {
+              "seccompProfile": {
+                "type": "RuntimeDefault"
+              }
+            },
+            "containers": [
+              {
+                "name": "facts",
+                "image": "localhost/ani-node-facts@sha256:fe7aaee4509778b464121fb7c536e59675dee821a74c1ced62ca6da6ff9ab0c9",
+                "args": [
+                  "-node-facts"
+                ],
+                "env": [
+                  {
+                    "name": "NETWORK_FACTS_NODE_NAME",
+                    "value": "ani-03"
+                  },
+                  {
+                    "name": "NETWORK_FACTS_NODE_UID",
+                    "value": "2507940b-6901-44c6-aadd-ba1bb6875bde"
+                  }
+                ],
+                "securityContext": {
+                  "runAsUser": 65534,
+                  "runAsNonRoot": true,
+                  "allowPrivilegeEscalation": false,
+                  "readOnlyRootFilesystem": true,
+                  "capabilities": {
+                    "drop": [
+                      "ALL"
+                    ]
+                  }
+                },
+                "resources": {
+                  "requests": {
+                    "cpu": "10m",
+                    "memory": "32Mi"
+                  },
+                  "limits": {
+                    "cpu": "100m",
+                    "memory": "96Mi"
+                  }
+                },
+                "volumeMounts": [
+                  {
+                    "name": "sys",
+                    "mountPath": "/sys",
+                    "readOnly": true
+                  },
+                  {
+                    "name": "ovs",
+                    "mountPath": "/var/run/openvswitch",
+                    "readOnly": true
+                  }
+                ]
+              }
+            ],
+            "volumes": [
+              {
+                "name": "sys",
+                "hostPath": {
+                  "path": "/sys",
+                  "type": "Directory"
+                }
+              },
+              {
+                "name": "ovs",
+                "hostPath": {
+                  "path": "/var/run/openvswitch",
+                  "type": "Directory"
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

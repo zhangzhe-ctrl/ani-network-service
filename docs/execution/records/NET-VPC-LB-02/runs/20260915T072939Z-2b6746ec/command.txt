@@ -1,0 +1,22 @@
+ControlSocket /home/chabking/workspace/.worktrees/network-vpc-lb-02/.work/ubuntu.sock already exists, disabling multiplexing
+source.tar.gz: OK
+verified source files: 2020
+go version go1.26.7 linux/amd64
+1.60.0
+v1.31.1
+127.0.0.1:5432 - accepting connections
+PostgreSQL image=docker.io/library/postgres@sha256:4ef4dbc939d61acea57712655ddb4b4ab27419c913f94cca0cd57cb3ea3c2280 container=bcdd23fdf557e77c68b3ceaa05dc67161dc3c6c4cc0c791fb9763d79e49330e0
+=== RUN   TestKCPlatformShutdownBeforePostPersistsNoWriteOutcome
+--- PASS: TestKCPlatformShutdownBeforePostPersistsNoWriteOutcome (0.57s)
+=== RUN   TestPlatformCancellationPreservesDefinitiveMutationOutcome
+=== RUN   TestPlatformCancellationPreservesDefinitiveMutationOutcome/definitive_pre_send_failure
+=== RUN   TestPlatformCancellationPreservesDefinitiveMutationOutcome/uncertain_send_remains_pending
+=== RUN   TestPlatformCancellationPreservesDefinitiveMutationOutcome/expired_lease_cannot_clear_pending
+--- PASS: TestPlatformCancellationPreservesDefinitiveMutationOutcome (5.04s)
+    --- PASS: TestPlatformCancellationPreservesDefinitiveMutationOutcome/definitive_pre_send_failure (0.47s)
+    --- PASS: TestPlatformCancellationPreservesDefinitiveMutationOutcome/uncertain_send_remains_pending (1.73s)
+    --- PASS: TestPlatformCancellationPreservesDefinitiveMutationOutcome/expired_lease_cannot_clear_pending (2.84s)
+PASS
+ok  	github.com/zhangzhe-ctrl/ani-network-service/internal/data	6.676s
+removed task container=bcdd23fdf557e77c68b3ceaa05dc67161dc3c6c4cc0c791fb9763d79e49330e0
+REMOTE_COMMAND_EXIT=0

@@ -1,0 +1,37 @@
+{
+  "at": "2026-09-15T06:00:02.113677+00:00",
+  "execution_host": "ubuntu",
+  "context": "tenant-b",
+  "command": "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/lb-api call -target unix:///home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-b.sock -service NetworkService -method CreateVPC",
+  "request": {
+    "name": "lb02-2b3122-u08-continuous",
+    "cidr": "10.233.48.0/20",
+    "description": "Run-owned legacy fixture for sampled continuous traffic during U08 backfill",
+    "idempotency_key": "lb02-2b3122-u08-continuous"
+  },
+  "exit": 0,
+  "response": {
+    "code": "OK",
+    "response": {
+      "vpc": {
+        "id": "vpc_1f6fbd7f85cd4baba0b0382770aa480e",
+        "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+        "name": "lb02-2b3122-u08-continuous",
+        "description": "Run-owned legacy fixture for sampled continuous traffic during U08 backfill",
+        "cidr": "10.233.48.0/20",
+        "state": "RESOURCE_STATE_PROVISIONING",
+        "reason": "",
+        "created_at": "2026-09-15T06:00:02.083976Z",
+        "updated_at": "2026-09-15T06:00:02.083976Z",
+        "version": "1",
+        "observed_at": null,
+        "observation_stale": true,
+        "last_operation_id": "3aff395e-6a04-497e-b2b0-44da83f8408a",
+        "subnet_count": "0",
+        "reason_message": "",
+        "base_connectivity": null
+      }
+    }
+  },
+  "stderr": ""
+}

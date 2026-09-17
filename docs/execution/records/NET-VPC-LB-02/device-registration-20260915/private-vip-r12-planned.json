@@ -1,0 +1,173 @@
+{
+  "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+  "commands": [
+    {
+      "pod": "lb02-2b3122-base-client",
+      "label": "private-vip-0",
+      "argv": [
+        "/probe",
+        "request",
+        "http://10.233.0.200:8080/?nonce=lb02-private-r12-0"
+      ],
+      "expect_contains": [
+        "status 200",
+        "lb02-09141908-2b3122",
+        "lb02-2b3122-base-"
+      ]
+    },
+    {
+      "pod": "lb02-2b3122-base-client",
+      "label": "private-vip-1",
+      "argv": [
+        "/probe",
+        "request",
+        "http://10.233.0.200:8080/?nonce=lb02-private-r12-1"
+      ],
+      "expect_contains": [
+        "status 200",
+        "lb02-09141908-2b3122",
+        "lb02-2b3122-base-"
+      ]
+    },
+    {
+      "pod": "lb02-2b3122-base-client",
+      "label": "private-vip-2",
+      "argv": [
+        "/probe",
+        "request",
+        "http://10.233.0.200:8080/?nonce=lb02-private-r12-2"
+      ],
+      "expect_contains": [
+        "status 200",
+        "lb02-09141908-2b3122",
+        "lb02-2b3122-base-"
+      ]
+    },
+    {
+      "pod": "lb02-2b3122-base-client",
+      "label": "private-vip-3",
+      "argv": [
+        "/probe",
+        "request",
+        "http://10.233.0.200:8080/?nonce=lb02-private-r12-3"
+      ],
+      "expect_contains": [
+        "status 200",
+        "lb02-09141908-2b3122",
+        "lb02-2b3122-base-"
+      ]
+    },
+    {
+      "pod": "lb02-2b3122-base-client",
+      "label": "private-vip-4",
+      "argv": [
+        "/probe",
+        "request",
+        "http://10.233.0.200:8080/?nonce=lb02-private-r12-4"
+      ],
+      "expect_contains": [
+        "status 200",
+        "lb02-09141908-2b3122",
+        "lb02-2b3122-base-"
+      ]
+    },
+    {
+      "pod": "lb02-2b3122-base-client",
+      "label": "private-vip-5",
+      "argv": [
+        "/probe",
+        "request",
+        "http://10.233.0.200:8080/?nonce=lb02-private-r12-5"
+      ],
+      "expect_contains": [
+        "status 200",
+        "lb02-09141908-2b3122",
+        "lb02-2b3122-base-"
+      ]
+    },
+    {
+      "pod": "lb02-2b3122-base-client",
+      "label": "private-vip-6",
+      "argv": [
+        "/probe",
+        "request",
+        "http://10.233.0.200:8080/?nonce=lb02-private-r12-6"
+      ],
+      "expect_contains": [
+        "status 200",
+        "lb02-09141908-2b3122",
+        "lb02-2b3122-base-"
+      ]
+    },
+    {
+      "pod": "lb02-2b3122-base-client",
+      "label": "private-vip-7",
+      "argv": [
+        "/probe",
+        "request",
+        "http://10.233.0.200:8080/?nonce=lb02-private-r12-7"
+      ],
+      "expect_contains": [
+        "status 200",
+        "lb02-09141908-2b3122",
+        "lb02-2b3122-base-"
+      ]
+    },
+    {
+      "pod": "lb02-2b3122-base-client",
+      "label": "private-vip-8",
+      "argv": [
+        "/probe",
+        "request",
+        "http://10.233.0.200:8080/?nonce=lb02-private-r12-8"
+      ],
+      "expect_contains": [
+        "status 200",
+        "lb02-09141908-2b3122",
+        "lb02-2b3122-base-"
+      ]
+    },
+    {
+      "pod": "lb02-2b3122-base-client",
+      "label": "private-vip-9",
+      "argv": [
+        "/probe",
+        "request",
+        "http://10.233.0.200:8080/?nonce=lb02-private-r12-9"
+      ],
+      "expect_contains": [
+        "status 200",
+        "lb02-09141908-2b3122",
+        "lb02-2b3122-base-"
+      ]
+    },
+    {
+      "pod": "lb02-2b3122-base-client",
+      "label": "private-vip-10",
+      "argv": [
+        "/probe",
+        "request",
+        "http://10.233.0.200:8080/?nonce=lb02-private-r12-10"
+      ],
+      "expect_contains": [
+        "status 200",
+        "lb02-09141908-2b3122",
+        "lb02-2b3122-base-"
+      ]
+    },
+    {
+      "pod": "lb02-2b3122-base-client",
+      "label": "private-vip-11",
+      "argv": [
+        "/probe",
+        "request",
+        "http://10.233.0.200:8080/?nonce=lb02-private-r12-11"
+      ],
+      "expect_contains": [
+        "status 200",
+        "lb02-09141908-2b3122",
+        "lb02-2b3122-base-"
+      ]
+    }
+  ]
+}

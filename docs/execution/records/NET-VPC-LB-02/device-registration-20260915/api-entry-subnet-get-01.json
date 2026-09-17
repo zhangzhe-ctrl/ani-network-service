@@ -1,0 +1,35 @@
+{
+  "at": "2026-09-15T04:21:48.631413+00:00",
+  "execution_host": "ubuntu",
+  "context": "tenant-a",
+  "command": "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/lb-api call -target unix:///home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-a.sock -service NetworkService -method GetSubnet",
+  "request": {
+    "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+    "subnet_id": "subnet_f74d90cbb5484f7fb37f8a8f6782da1d"
+  },
+  "exit": 0,
+  "response": {
+    "code": "OK",
+    "response": {
+      "subnet": {
+        "id": "subnet_f74d90cbb5484f7fb37f8a8f6782da1d",
+        "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+        "name": "lb02-2b3122-entry",
+        "description": "",
+        "cidr": "10.233.0.0/24",
+        "state": "RESOURCE_STATE_AVAILABLE",
+        "reason": "",
+        "created_at": "2026-09-15T04:20:52.560451Z",
+        "updated_at": "2026-09-15T04:21:38.103413Z",
+        "version": "9",
+        "observed_at": "2026-09-15T04:21:38.012660Z",
+        "observation_stale": false,
+        "last_operation_id": "cae9e578-dfbd-4083-900f-4974c3b30964",
+        "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+        "reason_message": "",
+        "gateway": "10.233.0.1"
+      }
+    }
+  },
+  "stderr": ""
+}

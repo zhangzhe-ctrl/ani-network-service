@@ -23,6 +23,18 @@ message Network {
   // Fixed instance owner RPC target. Empty keeps attachments conservatively occupied.
   string instance_consumer_endpoint = 7;
   Observation observation = 8;
+  // The isolated acceptance instance only. Runtime recovery stays enabled
+  // for accepted LB tasks even when this RPC admission switch is closed.
+  LoadBalancer load_balancer = 9;
+}
+
+message LoadBalancer {
+  bool enable_isolated_api = 1;
+  string installation_fingerprint = 2;
+  string controller_image_id = 3;
+  string envoy_image_id = 4;
+  string shutdown_image_id = 5;
+  string kc_image_id = 6;
 }
 
 message Observation {

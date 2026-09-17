@@ -1,0 +1,16 @@
+{
+  "at": "2026-09-15T09:02:08.989981+00:00",
+  "unit": "ani-net-lb02-2b3122-r15.service",
+  "execution_host": "ubuntu",
+  "result": "resource_guard_stop",
+  "unit_exit": 75,
+  "resource_guard": {
+    "mem_available_kib": 2685476,
+    "swap_used_kib": 3850868,
+    "load1": 8.42041015625,
+    "disk_free_bytes": 22531481600
+  },
+  "source": "journalctl --user -u ani-net-lb02-2b3122-r15.service -n 20 --no-pager -o cat",
+  "backup": "after-r15-guard-0905.json",
+  "database_and_cluster_resources_preserved": true
+}

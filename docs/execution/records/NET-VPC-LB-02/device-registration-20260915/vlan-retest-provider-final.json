@@ -1,0 +1,220 @@
+{
+  "at": "2026-09-15T08:26:40.166487+00:00",
+  "execution_host": "ubuntu",
+  "results": [
+    {
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/kubeconfig.json",
+        "--request-timeout=20s",
+        "get",
+        "vlannetworks.networking.kubercloud.com",
+        "-o",
+        "json"
+      ],
+      "exit": 0,
+      "object": {
+        "apiVersion": "v1",
+        "items": [
+          {
+            "apiVersion": "networking.kubercloud.com/v1",
+            "kind": "VlanNetwork",
+            "metadata": {
+              "creationTimestamp": "2026-09-15T08:15:11Z",
+              "finalizers": [
+                "networking.kubercloud.com/finalizer"
+              ],
+              "generation": 1,
+              "labels": {
+                "network.ani.io/binding-id": "05b05731-14a7-42cc-97cf-107ff70363a0",
+                "network.ani.io/managed-by": "ani-network-service",
+                "network.ani.io/resource-id": "vlan_9b12fcb230ef4bc08ba1d497ebe44009"
+              },
+              "name": "vlan-9b12fcb230ef4bc08ba1d497ebe44009",
+              "resourceVersion": "347377",
+              "uid": "dd503df8-1760-4208-bca5-6062f86224eb"
+            },
+            "spec": {
+              "devName": "ens35",
+              "vlanID": 0
+            },
+            "status": {
+              "conditions": [
+                {
+                  "lastTransitionTime": "2026-09-15T08:15:11Z",
+                  "message": "",
+                  "reason": "Valid",
+                  "status": "True",
+                  "type": "Valid"
+                },
+                {
+                  "lastTransitionTime": "2026-09-15T08:15:11Z",
+                  "message": "",
+                  "reason": "Ready",
+                  "status": "True",
+                  "type": "Ready"
+                }
+              ],
+              "subnet": "kcn-system/pool-f28b9d470c0147f6a66646b8976c36f9"
+            }
+          }
+        ],
+        "kind": "List",
+        "metadata": {
+          "resourceVersion": ""
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/kubeconfig.json",
+        "--request-timeout=20s",
+        "get",
+        "configmap",
+        "kcn-config",
+        "-n",
+        "kcn-system",
+        "-o",
+        "json"
+      ],
+      "exit": 0,
+      "object": {
+        "apiVersion": "v1",
+        "data": {
+          "enablePortSecurity": "false",
+          "encapNetworks": "172.16.101.0/24",
+          "hasMultusCNI": "false",
+          "intranetNetworks": "- 172.16.101.0/24\n- 172.16.201.0/24\n- 172.16.202.0/24\n- 10.96.0.0/16\n",
+          "isDefaultCNI": "true",
+          "managedDevices": "ens35",
+          "nadDefaultNamespace": "kube-system"
+        },
+        "kind": "ConfigMap",
+        "metadata": {
+          "annotations": {
+            "network.ani.io/device-adoption-2f5c91188d083599": "a1fdc522-a807-40b7-89a6-986b0039ff43"
+          },
+          "creationTimestamp": "2026-09-14T12:26:10Z",
+          "name": "kcn-config",
+          "namespace": "kcn-system",
+          "resourceVersion": "240845",
+          "uid": "dcca6e9e-db3f-4ebe-8b27-8898e3a2939e"
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/kubeconfig.json",
+        "--request-timeout=20s",
+        "get",
+        "subnets.networking.kubercloud.com",
+        "pool-f28b9d470c0147f6a66646b8976c36f9",
+        "-n",
+        "kcn-system",
+        "-o",
+        "json"
+      ],
+      "exit": 0,
+      "object": {
+        "apiVersion": "networking.kubercloud.com/v1",
+        "kind": "Subnet",
+        "metadata": {
+          "creationTimestamp": "2026-09-15T08:20:54Z",
+          "finalizers": [
+            "networking.kubercloud.com/finalizer"
+          ],
+          "generation": 1,
+          "labels": {
+            "network.ani.io/binding-id": "de160fa5-5ab2-4556-b96d-6cfc143b2819",
+            "network.ani.io/managed-by": "ani-network-service",
+            "network.ani.io/resource-id": "pool_f28b9d470c0147f6a66646b8976c36f9",
+            "networking.kubercloud.com/gateway": "kcn-system.pool-f28b9d470c0147f6a66646b8976c36f9"
+          },
+          "name": "pool-f28b9d470c0147f6a66646b8976c36f9",
+          "namespace": "kcn-system",
+          "resourceVersion": "348688",
+          "uid": "d4bfe5d5-2e9f-4f32-b1b1-6704184ad800"
+        },
+        "spec": {
+          "allowedNamespaces": {
+            "from": "All"
+          },
+          "cidrBlock": "172.16.102.0/24",
+          "enableDHCP": false,
+          "excludeIPs": [
+            "172.16.102.1",
+            "172.16.102.1..172.16.102.191",
+            "172.16.102.2",
+            "172.16.102.208..172.16.102.254"
+          ],
+          "gateway": "egw-386dc165a8744951bc624ab55c439681",
+          "gatewayIP": "172.16.102.2",
+          "ipVersion": "IPv4",
+          "natOutgoing": false,
+          "type": "Public",
+          "underlayConfig": {
+            "gatewayIP": "172.16.102.1",
+            "vlanNetwork": "vlan-9b12fcb230ef4bc08ba1d497ebe44009"
+          }
+        },
+        "status": {
+          "boundResources": {
+            "gatewayPort": "gw.egw-386dc165a8744951bc624ab55c439681-kcn-system.pool-f28b9d470c0147f6a66646b8976c36f9",
+            "switch": "kcn-system.pool-f28b9d470c0147f6a66646b8976c36f9"
+          },
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-09-15T08:20:54Z",
+              "message": "",
+              "reason": "Initialized",
+              "status": "True",
+              "type": "Initialized"
+            },
+            {
+              "lastTransitionTime": "2026-09-15T08:20:54Z",
+              "message": "",
+              "reason": "Valid",
+              "status": "True",
+              "type": "Valid"
+            },
+            {
+              "lastTransitionTime": "2026-09-15T08:20:54Z",
+              "message": "",
+              "reason": "Ready",
+              "status": "True",
+              "type": "Ready"
+            }
+          ],
+          "gatewayMac": "fa:00:c8:b7:d1:b5",
+          "observedGeneration": 1,
+          "underlayState": {
+            "chassisNode": "ani-02",
+            "ready": true,
+            "vlanNetwork": "vlan-9b12fcb230ef4bc08ba1d497ebe44009"
+          },
+          "v4availableIPrange": "172.16.102.194-172.16.102.207",
+          "v4availableIPs": 14,
+          "v4usingIPrange": "172.16.102.192-172.16.102.193",
+          "v4usingIPs": 2
+        }
+      },
+      "stderr": ""
+    }
+  ]
+}

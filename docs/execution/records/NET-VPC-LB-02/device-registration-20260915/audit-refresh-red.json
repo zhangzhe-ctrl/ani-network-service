@@ -1,0 +1,28 @@
+{
+  "at": "2026-09-15T12:00:34.093731+00:00",
+  "execution_host": "ubuntu",
+  "source_run": "20260915T115703Z-780568f6",
+  "archive_sha256": "4d7a6c92955bd530438c7bfc1eacd3ccc43526e5229d2ba419f0a3284cb9292d",
+  "manifest_sha256": "c1a21661ae5e9f649bb5b40606df7ac85645ebbb20a42587661df3ae581b21e0",
+  "command": [
+    "bash",
+    "-e",
+    "-c",
+    "validation_tmp=$(mktemp -d /var/tmp/nlb2.XXXXXX); chmod 700 \"$validation_tmp\"; export TMPDIR=\"$validation_tmp\"; scripts/integration ./internal/data -run \"^(TestEgressRefreshesInvalidAuditWithoutLosingAppliedFacts|TestLBRefreshesInvalidAuditAndStillRejectsReusedBackendIdentity)$\" -timeout 3m -json"
+  ],
+  "conclusion": "Both tests reached the intended cached-audit invalidation path and failed on one actual adapter call. No implementation fix present.",
+  "test_results": [
+    {
+      "Test": "TestEgressRefreshesInvalidAuditWithoutLosingAppliedFacts",
+      "Action": "fail",
+      "Elapsed": 0.99
+    },
+    {
+      "Test": "TestLBRefreshesInvalidAuditAndStillRejectsReusedBackendIdentity",
+      "Action": "fail",
+      "Elapsed": 1.03
+    }
+  ],
+  "log": "audit-refresh-red-command.txt",
+  "log_sha256": "998d687ce61cd9be4a4b8617d5c09201f5f91445edb19cdd3b6e5b6492a90d04"
+}

@@ -1,0 +1,24 @@
+{
+  "at": "2026-09-15T05:49:50.528643+00:00",
+  "result": "pass",
+  "source_run": "20260915T051609Z-70cbcaa3",
+  "vpc_id": "vpc_af937bb766324a5a8a41a08d55c39062",
+  "plan_run": "95211933-dbcf-445e-a875-7e675f9fd493",
+  "plan_sha256": "bfd38e1395161f3c37a783a41dfee358652416e4d06a43a4d441fd5dce80785e",
+  "observed_order": "delete admitted first; competing backfill returned conflict RESOURCE_BUSY",
+  "ensure_operation_created": false,
+  "provider_vpc_absent": true,
+  "base_eip_snat_counts": [
+    0,
+    0,
+    0
+  ],
+  "historical_create_completed_at": "2026-09-15T05:42:31.682276+00:00",
+  "evidence": [
+    "u08-delete-race-dispatch-delete.json",
+    "u08-delete-race-status.json",
+    "u08-delete-race-cleanup-sql.json",
+    "base-provider-before-cleanup.json"
+  ],
+  "limitations": "This live race observed delete-first only; both lock orders remain covered by qualified PG tests."
+}

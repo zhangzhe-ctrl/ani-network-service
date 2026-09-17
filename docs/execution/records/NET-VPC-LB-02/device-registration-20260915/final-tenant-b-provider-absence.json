@@ -1,0 +1,29 @@
+{
+  "at": "2026-09-15T14:54:54.237019+00:00",
+  "execution_host": "ubuntu",
+  "command": [
+    "bash",
+    "-c",
+    "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+    "kubectl",
+    "--kubeconfig",
+    "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/kubeconfig.json",
+    "--request-timeout=20s",
+    "get",
+    "gateways.gateway.networking.k8s.io,httproutes.gateway.networking.k8s.io,backends.gateway.envoyproxy.io,backendtrafficpolicies.gateway.envoyproxy.io,services,deployments,replicasets,endpointslices,pods,vpcs.networking.kubercloud.com,eips.networking.kubercloud.com,snats.networking.kubercloud.com,nats.networking.kubercloud.com,subnets.networking.kubercloud.com,vnics.networking.kubercloud.com,vnicips.networking.kubercloud.com",
+    "-n",
+    "lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832",
+    "-o",
+    "json"
+  ],
+  "exit": 0,
+  "objects": {
+    "apiVersion": "v1",
+    "items": [],
+    "kind": "List",
+    "metadata": {
+      "resourceVersion": ""
+    }
+  },
+  "stderr": ""
+}

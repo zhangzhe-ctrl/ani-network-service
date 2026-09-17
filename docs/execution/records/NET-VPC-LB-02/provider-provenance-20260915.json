@@ -1,0 +1,169 @@
+{
+  "at": "2026-09-14T18:59:34.875118+00:00",
+  "cluster_uid": "be57b911-892c-4e75-aa9d-4a05d819c59e",
+  "kc": {
+    "running_image_id": "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4",
+    "embedded_commit": "git-735abf8",
+    "resolved_commit": "735abf81cb728f30bd0f15e1885dcd7f88b56ab0",
+    "resolution_source": "/home/chabking/workspace/kc-networking",
+    "embedded_version": "v0.6.2",
+    "embedded_build_time": "2026/09/04-15:44:02",
+    "go_version": "go1.26.3",
+    "evidence": "continuation-kc-version-symbols-20260915.json",
+    "link_result": "pass_for_embedded_build_origin_and_unique_local_commit_resolution",
+    "reference_source_head": "a2245883eb2b46a998f041feb3ad0ed3f6cf7c60",
+    "diff_from_reference": [
+      "config/controller/patches/phy-env.yaml",
+      "docs/usage.md"
+    ],
+    "selected_source_files": [
+      {
+        "path": "Makefile",
+        "sha256": "85772707d1469a780834b63712ee6dd5030f6c44d0f2d7615c2acb21c5576e92"
+      },
+      {
+        "path": "versions/version.go",
+        "sha256": "df838b9ae675dc4c7005a4d027261513c3ccb2d3178a38b576e5874c6833dc3d"
+      },
+      {
+        "path": "cmd/controller/controller.go",
+        "sha256": "052fc9e12d699cc10a2d95d0931fa9e98c4811074b22da642598bccf3029cb9e"
+      },
+      {
+        "path": "cmd/cmdmain.go",
+        "sha256": "a9b6508b3b8b786944a141a298ed464339db9fda0a03c5d68ddcde7e9d3cdeef"
+      },
+      {
+        "path": "internal/controller/handlers/gateway_handler.go",
+        "sha256": "022eb83856da19f520ba8759d07f1a7104d9f4c31e73ea71d0153819c3807821"
+      },
+      {
+        "path": "internal/controller/networking/eip_controller.go",
+        "sha256": "4828ac84758cb9e809e0e23181e85a7a8da79508cf8151107a620ddd6a8ec1cf"
+      },
+      {
+        "path": "internal/controller/handlers/service_lb.go",
+        "sha256": "0ced83dd291d1610fd2e29e8811c5c032d5dc2934deb5584d4b756c3620c7000"
+      }
+    ],
+    "reproducible_build_or_signed_attestation": "not_verified",
+    "dirty_build_state": "not_recorded_by_file_based_go_build",
+    "known_runtime_defects_fixed": "not_verified; current required API and flow tests remain decisive"
+  },
+  "envoy_gateway": {
+    "running_image_id": "sha256:6f1bf5d9c9b108b0aa98986e187d8a62366bb38d19ed7e15e50863b30de9d755",
+    "embedded_revision": "94850d4323922cba7c67b5b5ad23de9c715f8048",
+    "embedded_module": "github.com/envoyproxy/gateway v1.8.3",
+    "embedded_vcs_modified": false,
+    "go_version": "go1.26.5",
+    "evidence": "resume-provider-buildinfo-20260915.json",
+    "link_result": "pass_for_running_binary_embedded_build_origin"
+  },
+  "running_install_images": [
+    {
+      "namespace": "envoy-gateway-system",
+      "pod": "envoy-gateway-5b96b44f6-zkzr2",
+      "pod_uid": "fa880ece-fb88-4023-aa50-1a275a5a4c78",
+      "container": "envoy-gateway",
+      "image": "docker.changqingyun.cn/kubercloud/gateway:v1.8.3",
+      "image_id": "sha256:6f1bf5d9c9b108b0aa98986e187d8a62366bb38d19ed7e15e50863b30de9d755"
+    },
+    {
+      "namespace": "kcn-system",
+      "pod": "kcn-cni-ds-fvmvz",
+      "pod_uid": "08409e5b-eb26-4e28-a2b4-90793c818ecf",
+      "container": "kcn-cni-server",
+      "image": "docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2",
+      "image_id": "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4"
+    },
+    {
+      "namespace": "kcn-system",
+      "pod": "kcn-cni-ds-mvzwp",
+      "pod_uid": "0a587912-80b9-4744-b172-44e43b720971",
+      "container": "kcn-cni-server",
+      "image": "docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2",
+      "image_id": "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4"
+    },
+    {
+      "namespace": "kcn-system",
+      "pod": "kcn-cni-ds-vbh2w",
+      "pod_uid": "90d7f59a-abb8-4520-9930-44b98b1a654d",
+      "container": "kcn-cni-server",
+      "image": "docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2",
+      "image_id": "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4"
+    },
+    {
+      "namespace": "kcn-system",
+      "pod": "kcn-controller-7d98bdb568-4c4mv",
+      "pod_uid": "1b12aeed-f60b-41d7-aae0-ac6a2b342391",
+      "container": "kcn-controller",
+      "image": "docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2",
+      "image_id": "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4"
+    },
+    {
+      "namespace": "kcn-system",
+      "pod": "kcn-controller-7d98bdb568-5bptk",
+      "pod_uid": "26446096-58f8-4a2b-8c04-e7da5571bc93",
+      "container": "kcn-controller",
+      "image": "docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2",
+      "image_id": "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4"
+    },
+    {
+      "namespace": "kcn-system",
+      "pod": "kcn-controller-7d98bdb568-gd82q",
+      "pod_uid": "79b571a2-973c-4f68-a694-d8963b7a0e23",
+      "container": "kcn-controller",
+      "image": "docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2",
+      "image_id": "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4"
+    },
+    {
+      "namespace": "kcn-system",
+      "pod": "kcn-ovn-central-5dfc477ffc-5477j",
+      "pod_uid": "cdea4914-2857-4948-91ac-91de53fdc4db",
+      "container": "ovn-central",
+      "image": "docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2",
+      "image_id": "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4"
+    },
+    {
+      "namespace": "kcn-system",
+      "pod": "kcn-ovn-central-5dfc477ffc-6gllk",
+      "pod_uid": "2ca506b2-c58b-4914-bce2-a293afef3dad",
+      "container": "ovn-central",
+      "image": "docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2",
+      "image_id": "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4"
+    },
+    {
+      "namespace": "kcn-system",
+      "pod": "kcn-ovn-central-5dfc477ffc-9w7tz",
+      "pod_uid": "43370b58-f1d5-4f0e-9a86-9c64f5529cb5",
+      "container": "ovn-central",
+      "image": "docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2",
+      "image_id": "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4"
+    },
+    {
+      "namespace": "kcn-system",
+      "pod": "kcn-ovs-ds-7hfv8",
+      "pod_uid": "aceecdf6-6145-480c-bfbb-6d98bbfacbbe",
+      "container": "openvswitch",
+      "image": "docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2",
+      "image_id": "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4"
+    },
+    {
+      "namespace": "kcn-system",
+      "pod": "kcn-ovs-ds-hzz8g",
+      "pod_uid": "85be255d-ab59-4769-8b67-cc3b26467d45",
+      "container": "openvswitch",
+      "image": "docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2",
+      "image_id": "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4"
+    },
+    {
+      "namespace": "kcn-system",
+      "pod": "kcn-ovs-ds-n4vt8",
+      "pod_uid": "2a2da57b-11c6-430e-be79-3bc1f8f5d1a5",
+      "container": "openvswitch",
+      "image": "docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2",
+      "image_id": "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4"
+    }
+  ],
+  "note": "Build metadata reports the build origin of the exact running binary; it is not a new reproducible build, signature verification or proof that a Provider defect is fixed. No Provider source tree, image or shared controller was changed."
+}

@@ -16,3 +16,47 @@ regexes = [
   '''^\s*"key": "(?:inst_ac7f45b4\-3e85\-47e8\-ade5\-f7dddb9ac962|inst_d3692f18\-e8b4\-4e0c\-a4be\-481ae29412b8|vpc_ae61aaf508aa4ef6897deea2eedbe9fb|vpc_c35109dc7d274dffbba3cee1aa9454d6|vpc_d5b0309262ef4446a253e1d316295bf6|vpc_ee98515d77d64f3d9d4d991237eb85a6)",?\s*$''',
   '''^\s*"request_key": "(?:net05a\-1fae0bbf\-a1s1\-p3|net05a\-1fae0bbf\-a1s1\-p4|net05a\-1fae0bbf\-a1s2\-p1|net05a\-1fae0bbf\-p2|net05a\-1fae0bbf\-placement\-0|net05a\-1fae0bbf\-relocated\-a1s1\-p3|net05a\-1fae0bbf\-relocated\-a1s1\-p4|net05a\-1fae0bbf\-relocated\-a1s2\-p1|net05a\-1fae0bbf\-relocated\-a2\-p1|net05a\-1fae0bbf\-relocated\-a2\-p2|net05a\-1fae0bbf\-relocated\-b1\-p1|net05a\-1fae0bbf\-relocated\-b1\-p2|net05a\-1fae0bbf\-relocated\-p1|net05a\-1fae0bbf\-relocated\-p2)",?\s*$''',
 ]
+
+[[allowlists]]
+description = "Reviewed NET-VPC-LB-02 public binary/source hashes and fixture request identifiers"
+targetRules = ["generic-api-key"]
+condition = "AND"
+paths = ['''^docs/execution/records/NET-VPC-LB-02/''']
+regexTarget = "secret"
+regexes = [
+  '''^11c5924d3982b749daa5e653d8f2f096ccf97e96778ba7b0c374e55b0106acab$''',
+  '''^2520330535ee5250f7d2dd66cc4d30d353632aa3a061f6d257af783e1ae83da0$''',
+  '''^476ddf0b47a43f8df4c0420ad39ff044da3fdb85795d585af7e49fbce7fe0854$''',
+  '''^58db3dce5dbecbbe2e9a7770f9147dc2514c4722e568a88574036e9a14fe58d0$''',
+  '''^85833a6ba829ed4a094b73dac6422285a75c76a578a20603c9d9d07e9b05b2b6$''',
+  '''^8774eaa6698b067eb54869af1b582ce053c5c955703dd0dbe8d0825312fcd9a4$''',
+  '''^a6a9140190b27cf55aef48bc5df425a7e782ca603a36619326f3b0193d9e8fb8$''',
+  '''^b59a7b5ce3363f7cfec878450f7360a961994990a6ee1f7c501e28cd6bc2440e$''',
+  '''^c42ff0ac4e8b0782d24f05c2c2960692020738b7f00ce3410284707f6ce5a741$''',
+  '''^d39b956bc52f0b0762085086b8766e9edafdfd5282e64eb114590b2e96d7a711$''',
+  '''^f6b79432129fc2d978705776443d59305d440d6c20873a9ad4b12ae79390ae81$''',
+  '''^f993cc52a1cd01eb11c8d211e07c2127601675da325ccd1e9434885ede013ddd$''',
+  '''^lb02\-2b3122\-continuous\-a$''',
+  '''^lb02\-2b3122\-continuous\-b$''',
+  '''^lb02\-2b3122\-legacy\-subnet$''',
+  '''^lb02\-2b3122\-legacy\-vpc$''',
+  '''^lb02\-2b3122\-private$''',
+  '''^lb02\-2b3122\-private\-reuse$''',
+  '''^lb02\-2b3122\-private\-vip\-collision$''',
+  '''^lb02\-2b3122\-u08\-continuous$''',
+  '''^lb02\-2b3122\-u08\-continuous\-subnet$''',
+  '''^lb02\-2b3122\-untagged\-retest\-01$''',
+]
+
+[[allowlists]]
+description = "Reviewed health-port live fixture keys and built binary SHA"
+targetRules = ["generic-api-key"]
+condition = "AND"
+paths = ['''^docs/execution/records/NET-VPC-LB-02/health-port-live-20260917/''']
+regexTarget = "secret"
+regexes = [
+  '''^694b5f80db05672e463ebc6c4322517d5e98a8441f8792c53aef1c3cda37eb50$''',
+  '''^lbhealth\-0917\-intranet$''',
+  '''^lbhealth\-0917\-private_lb$''',
+  '''^lbhealth\-0917\-vpc$''',
+]

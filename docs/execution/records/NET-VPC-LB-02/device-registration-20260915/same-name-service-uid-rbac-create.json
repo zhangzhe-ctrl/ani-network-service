@@ -1,0 +1,211 @@
+{
+  "result": "pass",
+  "phase": "rbac-create",
+  "execution_host": "ani-01, task fixture RBAC only",
+  "records": [
+    {
+      "at": "2026-09-15T14:00:59.641041+00:00",
+      "command": [
+        "sudo",
+        "kubectl",
+        "--request-timeout=15s",
+        "get",
+        "Role",
+        "-n",
+        "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+        "lb02-2b3122-service-uid-owner",
+        "--ignore-not-found",
+        "-o",
+        "json"
+      ],
+      "request": null,
+      "exit": 0,
+      "response": null,
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-15T14:01:00.084880+00:00",
+      "command": [
+        "sudo",
+        "kubectl",
+        "--request-timeout=15s",
+        "get",
+        "RoleBinding",
+        "-n",
+        "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+        "lb02-2b3122-service-uid-owner",
+        "--ignore-not-found",
+        "-o",
+        "json"
+      ],
+      "request": null,
+      "exit": 0,
+      "response": null,
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-15T14:01:00.580640+00:00",
+      "command": [
+        "sudo",
+        "kubectl",
+        "--request-timeout=15s",
+        "create",
+        "-f",
+        "-",
+        "-o",
+        "json"
+      ],
+      "request": {
+        "apiVersion": "rbac.authorization.k8s.io/v1",
+        "kind": "Role",
+        "metadata": {
+          "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+          "name": "lb02-2b3122-service-uid-owner",
+          "labels": {
+            "network.ani.io/test-run": "lb02-09141908-2b3122",
+            "network.ani.io/test-role": "same-name-service-uid-fault"
+          }
+        },
+        "rules": [
+          {
+            "apiGroups": [
+              ""
+            ],
+            "resources": [
+              "services"
+            ],
+            "verbs": [
+              "create"
+            ]
+          },
+          {
+            "apiGroups": [
+              ""
+            ],
+            "resources": [
+              "services"
+            ],
+            "resourceNames": [
+              "lb-74f96109961444a48b26c31601e6131f"
+            ],
+            "verbs": [
+              "get",
+              "delete"
+            ]
+          }
+        ]
+      },
+      "exit": 0,
+      "response": {
+        "apiVersion": "rbac.authorization.k8s.io/v1",
+        "kind": "Role",
+        "metadata": {
+          "creationTimestamp": "2026-09-15T14:01:00Z",
+          "labels": {
+            "network.ani.io/test-role": "same-name-service-uid-fault",
+            "network.ani.io/test-run": "lb02-09141908-2b3122"
+          },
+          "name": "lb02-2b3122-service-uid-owner",
+          "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+          "resourceVersion": "449190",
+          "uid": "f934207e-3c94-4a85-95ce-584c8f73e0aa"
+        },
+        "rules": [
+          {
+            "apiGroups": [
+              ""
+            ],
+            "resources": [
+              "services"
+            ],
+            "verbs": [
+              "create"
+            ]
+          },
+          {
+            "apiGroups": [
+              ""
+            ],
+            "resourceNames": [
+              "lb-74f96109961444a48b26c31601e6131f"
+            ],
+            "resources": [
+              "services"
+            ],
+            "verbs": [
+              "get",
+              "delete"
+            ]
+          }
+        ]
+      },
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-15T14:01:01.141849+00:00",
+      "command": [
+        "sudo",
+        "kubectl",
+        "--request-timeout=15s",
+        "create",
+        "-f",
+        "-",
+        "-o",
+        "json"
+      ],
+      "request": {
+        "apiVersion": "rbac.authorization.k8s.io/v1",
+        "kind": "RoleBinding",
+        "metadata": {
+          "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+          "name": "lb02-2b3122-service-uid-owner",
+          "labels": {
+            "network.ani.io/test-run": "lb02-09141908-2b3122",
+            "network.ani.io/test-role": "same-name-service-uid-fault"
+          }
+        },
+        "subjects": [
+          {
+            "kind": "ServiceAccount",
+            "namespace": "lb02-09141908-2b3122",
+            "name": "lb02-2b3122-workload-owner"
+          }
+        ],
+        "roleRef": {
+          "apiGroup": "rbac.authorization.k8s.io",
+          "kind": "Role",
+          "name": "lb02-2b3122-service-uid-owner"
+        }
+      },
+      "exit": 0,
+      "response": {
+        "apiVersion": "rbac.authorization.k8s.io/v1",
+        "kind": "RoleBinding",
+        "metadata": {
+          "creationTimestamp": "2026-09-15T14:01:01Z",
+          "labels": {
+            "network.ani.io/test-role": "same-name-service-uid-fault",
+            "network.ani.io/test-run": "lb02-09141908-2b3122"
+          },
+          "name": "lb02-2b3122-service-uid-owner",
+          "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+          "resourceVersion": "449196",
+          "uid": "5e4a6e17-529e-4b78-8a4c-18c365e06719"
+        },
+        "roleRef": {
+          "apiGroup": "rbac.authorization.k8s.io",
+          "kind": "Role",
+          "name": "lb02-2b3122-service-uid-owner"
+        },
+        "subjects": [
+          {
+            "kind": "ServiceAccount",
+            "name": "lb02-2b3122-workload-owner",
+            "namespace": "lb02-09141908-2b3122"
+          }
+        ]
+      },
+      "stderr": ""
+    }
+  ]
+}

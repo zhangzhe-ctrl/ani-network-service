@@ -1,0 +1,39 @@
+{
+  "at": "2026-09-15T08:56:43.723340+00:00",
+  "execution_host": "ubuntu",
+  "context": "tenant-a",
+  "command": "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/lb-api call -target unix:///home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-a.sock -service TenantEgressService -method CreateEIP",
+  "request": {
+    "name": "lb02-2b3122-public-lb-eip",
+    "description": "U09 public LB entry, separately owned EIP",
+    "idempotency_key": "lb02-2b3122-public-lb-eip-01"
+  },
+  "exit": 0,
+  "response": {
+    "code": "OK",
+    "response": {
+      "eip": {
+        "id": "eip_fdab288a3b1846138806e8e5e14529a9",
+        "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+        "name": "lb02-2b3122-public-lb-eip",
+        "description": "U09 public LB entry, separately owned EIP",
+        "state": "RESOURCE_STATE_PROVISIONING",
+        "reason": "",
+        "reason_message": "",
+        "version": "1",
+        "created_at": "2026-09-15T08:56:43.580547Z",
+        "updated_at": "2026-09-15T08:56:43.580547Z",
+        "observed_at": null,
+        "observation_stale": true,
+        "last_operation_id": "08488aea-b150-49e6-a8cc-f4bf300bf166",
+        "address": "",
+        "binding_id": "",
+        "binding_state": "unbound",
+        "binding_target": null,
+        "scope": "public",
+        "managed_by": "tenant"
+      }
+    }
+  },
+  "stderr": ""
+}

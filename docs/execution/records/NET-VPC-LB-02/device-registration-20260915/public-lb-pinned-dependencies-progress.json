@@ -1,0 +1,12 @@
+{
+  "at": "2026-09-15T09:22:54.646114+00:00",
+  "execution_host": "ubuntu",
+  "transport_exit": 0,
+  "result": {
+    "query": "SELECT lb_id,state,reason,version,configuration_state FROM network_load_balancers WHERE lb_id='lb_bd6f74b7445b4c5a815763d38a995f14'; SELECT eip_id,state,reason,observed_at,clock_timestamp()-observed_at AS age FROM network_eips WHERE eip_id='eip_fdab288a3b1846138806e8e5e14529a9'; SELECT attachment_id,state,reason,observed_at,clock_timestamp()-observed_at AS age FROM network_attachments WHERE attachment_id IN ('att_7d08b61f4038432a842d2fda525607b9','att_a6172d5ee5be434087f939001a435c9e');",
+    "exit": 0,
+    "stdout": "BEGIN\nlb_bd6f74b7445b4c5a815763d38a995f14|provisioning|PROVIDER_UNAVAILABLE|8|unknown\neip_fdab288a3b1846138806e8e5e14529a9|degraded|PROVIDER_UNAVAILABLE|2026-09-15 09:20:34.609213+00|00:02:19.971389\natt_a6172d5ee5be434087f939001a435c9e|attached||2026-09-15 09:22:42.910401+00|00:00:11.671099\natt_7d08b61f4038432a842d2fda525607b9|attached||2026-09-15 09:22:42.910401+00|00:00:11.671116\nROLLBACK\n",
+    "stderr": ""
+  },
+  "stderr": ""
+}

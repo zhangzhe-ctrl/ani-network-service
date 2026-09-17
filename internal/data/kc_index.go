@@ -29,6 +29,12 @@ func relationshipKeys(value any) ([]string, error) {
 		return nil, nil
 	}
 	keys := []string{"object:" + o.GetKind() + "/" + o.GetNamespace() + "/" + o.GetName(), "uid:" + string(o.GetUID())}
+	if o.GetLabels()[resourceLabel] != "" {
+		keys = append(keys, "load-balancer:"+o.GetNamespace()+"/"+o.GetLabels()[resourceLabel])
+	}
+	if o.GetNamespace() == "envoy-gateway-system" || o.GetKind() == "GatewayClass" || o.GetKind() == "CustomResourceDefinition" || (o.GetKind() == "Pod" && o.GetNamespace() == kcSystemNamespace) {
+		keys = append(keys, "lb-capability")
+	}
 	if a := o.GetLabels()[attachmentLabel]; a != "" {
 		keys = append(keys, "attachment:"+a)
 	}

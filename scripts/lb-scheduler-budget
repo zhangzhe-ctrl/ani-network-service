@@ -1,0 +1,76 @@
+#!/usr/bin/env python3
+"""Compute requests (including init sidecars and overhead) from lb-preflight JSON.
+
+Read-only. This is a scheduler request budget, not a live memory/CPU benchmark.
+"""
+import argparse
+import decimal
+import json
+import re
+
+D = decimal.Decimal
+
+
+def quantity(value):
+    if value is None:
+        return D(0)
+    match = re.fullmatch(r'([+-]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?)([a-zA-Z]*)', str(value))
+    if not match:
+        raise ValueError('invalid Kubernetes resource quantity')
+    scale = {'': D(1), 'n': D('1e-9'), 'u': D('1e-6'), 'm': D('1e-3'),
+             'k': D(1000), 'K': D(1000), 'M': D(10)**6, 'G': D(10)**9,
+             'T': D(10)**12, 'P': D(10)**15, 'E': D(10)**18,
+             'Ki': D(2)**10, 'Mi': D(2)**20, 'Gi': D(2)**30,
+             'Ti': D(2)**40, 'Pi': D(2)**50, 'Ei': D(2)**60}
+    return D(match[1]) * scale[match[2]]
+
+
+def requests(pod, resource):
+    def container(c):
+        return quantity((c.get('resources') or {}).get('requests', {}).get(resource))
+    sidecars = D(0)
+    peak_init = D(0)
+    for c in pod.get('initContainers', []):
+        current = container(c)
+        if c.get('restartPolicy') == 'Always':
+            sidecars += current
+            peak_init = max(peak_init, sidecars)
+        else:
+            peak_init = max(peak_init, sidecars + current)
+    apps = sum((container(c) for c in pod.get('containers', [])), D(0)) + sidecars
+    return max(apps, peak_init) + quantity((pod.get('overhead') or {}).get(resource))
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('snapshot')
+    args = parser.parse_args()
+    with open(args.snapshot) as source:
+        snapshot = json.load(source)
+    objects = {}
+    for record in snapshot['checks']:
+        command = record.get('command', [])
+        if 'get' in command:
+            resource = command[command.index('get') + 1]
+            if resource in ('nodes', 'pods'):
+                if record['exit'] != 0:
+                    raise ValueError('incomplete scheduler input')
+                objects[resource] = record['items']
+    nodes = []
+    active = [p for p in objects['pods'] if (p.get('status') or {}).get('phase') not in ('Succeeded', 'Failed')]
+    for node in objects['nodes']:
+        name = node['identity']['name']
+        allocatable = node['status']['allocatable']
+        cpu = sum((requests(p, 'cpu') for p in active if p.get('node') == name), D(0))
+        memory = sum((requests(p, 'memory') for p in active if p.get('node') == name), D(0))
+        nodes.append({'name': name, 'taints': (node.get('spec') or {}).get('taints', []),
+                      'cpu_allocatable': float(quantity(allocatable['cpu'])), 'cpu_requested': float(cpu),
+                      'cpu_remaining': float(quantity(allocatable['cpu']) - cpu),
+                      'memory_remaining_mib': float((quantity(allocatable['memory']) - memory) / D(2)**20)})
+    print(json.dumps({'at': snapshot['at'], 'source': args.snapshot, 'nodes': nodes,
+                      'pending_pods': [p['identity'] for p in active if not p.get('node')],
+                      'small_cpu_per_replica': 1.01, 'small_replica_count': 2}, indent=2))
+
+
+if __name__ == '__main__':
+    main()

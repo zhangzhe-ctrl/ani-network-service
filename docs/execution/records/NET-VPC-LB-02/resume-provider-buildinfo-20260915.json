@@ -1,0 +1,67 @@
+{
+  "at": "2026-09-14T18:48:50.977730+00:00",
+  "mode": "read_only selected ELF build metadata; no executable or credential transfer",
+  "checks": [
+    {
+      "alias": "ani-test-1",
+      "exit": 0,
+      "facts": [
+        {
+          "container_id": "a2755afbae3b21435849bea630a41e847028ace503fead8f5a088cf70cb581b2",
+          "container_name": "kcn-controller",
+          "pid": 292363,
+          "executable": "/kc-networking/kcn-cmd",
+          "image": {
+            "image": "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4",
+            "annotations": {},
+            "userSpecifiedImage": "docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2",
+            "runtimeHandler": ""
+          },
+          "image_ref": "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4",
+          "go_version": "go1.26.3",
+          "build_info_fields": [
+            "path\tcommand-line-arguments",
+            "build\tCGO_ENABLED=0",
+            "build\tGOARCH=amd64",
+            "build\tGOOS=linux"
+          ],
+          "build_info_sha256": "e9f3b2f6803fe89e6db5246e8dcffacf8b60165dd8eaf4a622900293ad4dc356"
+        }
+      ],
+      "stderr": ""
+    },
+    {
+      "alias": "ani-test-3",
+      "exit": 0,
+      "facts": [
+        {
+          "container_id": "893a64dfb4b17ea64f2a0eff20e26c5bf3053b64208ca6e7df732a6c116cd5b6",
+          "container_name": "envoy-gateway",
+          "pid": 270727,
+          "executable": "/usr/local/bin/envoy-gateway",
+          "image": {
+            "image": "sha256:6f1bf5d9c9b108b0aa98986e187d8a62366bb38d19ed7e15e50863b30de9d755",
+            "annotations": {},
+            "userSpecifiedImage": "docker.changqingyun.cn/kubercloud/gateway:v1.8.3",
+            "runtimeHandler": ""
+          },
+          "image_ref": "sha256:6f1bf5d9c9b108b0aa98986e187d8a62366bb38d19ed7e15e50863b30de9d755",
+          "go_version": "go1.26.5",
+          "build_info_fields": [
+            "path\tgithub.com/envoyproxy/gateway/cmd/envoy-gateway",
+            "mod\tgithub.com/envoyproxy/gateway\tv1.8.3\t",
+            "build\tCGO_ENABLED=0",
+            "build\tGOARCH=amd64",
+            "build\tGOOS=linux",
+            "build\tvcs=git",
+            "build\tvcs.revision=94850d4323922cba7c67b5b5ad23de9c715f8048",
+            "build\tvcs.time=2026-07-22T13:17:10Z",
+            "build\tvcs.modified=false"
+          ],
+          "build_info_sha256": "c0ea9ead2e5ce16198273a9e7135224fa9768030caa41f3a4615a3d71e6d4705"
+        }
+      ],
+      "stderr": ""
+    }
+  ]
+}

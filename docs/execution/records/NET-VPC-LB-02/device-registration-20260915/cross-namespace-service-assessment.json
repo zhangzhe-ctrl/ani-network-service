@@ -1,0 +1,41 @@
+{
+  "at": "2026-09-15T11:22:40.543676+00:00",
+  "result": "pass",
+  "scope": "foreign Service in tenant B namespace referencing tenant A dual LB EIP; own fixtures only",
+  "foreign_service_uid": "12ee2a49-342f-4c82-bbbb-39c3b69597c4",
+  "foreign_service_unchanged_until_owner_delete": true,
+  "generated_resources_preserved": [
+    {
+      "kind": "Gateway",
+      "uid": "2deefbdc-ca81-4701-8725-dccb8ee18d66",
+      "same_uid_and_spec": true
+    },
+    {
+      "kind": "Service",
+      "uid": "cbbfbc82-49c0-4bbc-96f3-a3924f685421",
+      "same_uid_and_spec": true
+    },
+    {
+      "kind": "Deployment",
+      "uid": "74c76b1a-6020-471c-b9fd-ab0f7a51ca09",
+      "same_uid_and_spec": true
+    }
+  ],
+  "recovered_by_normal_worker": true,
+  "service_and_two_rbac_objects_absent": true,
+  "evidence": [
+    "cross-namespace-service-plan.json",
+    "cross-namespace-service-create.json",
+    "cross-namespace-service-get.json",
+    "cross-namespace-lb-protected.json",
+    "cross-namespace-protected-provider.json",
+    "cross-namespace-service-delete.json",
+    "cross-namespace-lb-recovered.json",
+    "cross-namespace-recovered-provider.json",
+    "cross-namespace-service-rbac-cleanup.json"
+  ],
+  "limitations": [
+    "This is not replacement of an existing generated Service UID.",
+    "Two consecutive configured reads prove recovery at those times, not full observation stability."
+  ]
+}

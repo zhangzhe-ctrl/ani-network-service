@@ -1,0 +1,114 @@
+{
+  "at": "2026-09-15T03:57:20.455904+00:00",
+  "result": "pass",
+  "execution_host": "ubuntu",
+  "source_run": "20260915T034538Z-b890832c",
+  "archive_sha256": "fc01f175058b55eb89399d615fb2dda6e7927460369690217e490515dbb6d5c4",
+  "manifest_sha256": "fb268e3604a3cb0937e8a76255802abd76825602d5dd6eb938ce3fa5e3f04570",
+  "make_verify": "pass",
+  "fixed_baseline_contracts": "pass",
+  "postgres_race": "pass in one complete invocation",
+  "command": [
+    "bash",
+    "-e",
+    "-c",
+    "validation_tmp=$(mktemp -d /var/tmp/nlb2.XXXXXX); chmod 700 \"$validation_tmp\"; export TMPDIR=\"$validation_tmp\"; printf \"%s\\n\" \"$TMPDIR\" > ../test-tmpdir.txt; make verify && scripts/check-vpc-lb-contracts && go test -race -list \"^Test\" ./internal/data > ../audit-data-test-list.txt && scripts/integration -race ./... -timeout 12m -json && mkdir ../artifacts && go build -trimpath -o ../artifacts/lb-api ./scripts/lb-api && go build -trimpath -o ../artifacts/network ./cmd/ani-network-service && sha256sum ../artifacts/lb-api ../artifacts/network"
+  ],
+  "exit": 0,
+  "log": "renewal-candidate-command.txt",
+  "log_sha256": "70549fd254c91dba3b82655775d16e8aa73559a86ad3d40bbc854d0384ca458f",
+  "data_top_level_expected": 115,
+  "data_top_level_passed": 114,
+  "explicit_out_of_scope_skips": [
+    "TestNET05ACapacity"
+  ],
+  "unique_passing_test_and_subtest_events": 404,
+  "package_results": [
+    {
+      "Package": "github.com/zhangzhe-ctrl/ani-network-service/api/network/v1",
+      "Action": "skip",
+      "Elapsed": 0
+    },
+    {
+      "Package": "github.com/zhangzhe-ctrl/ani-network-service/internal/biz",
+      "Action": "pass",
+      "Elapsed": 1.039
+    },
+    {
+      "Package": "github.com/zhangzhe-ctrl/ani-network-service/internal/conf/v1",
+      "Action": "pass",
+      "Elapsed": 1.05
+    },
+    {
+      "Package": "github.com/zhangzhe-ctrl/ani-network-service/cmd/ani-network-service",
+      "Action": "pass",
+      "Elapsed": 5.781
+    },
+    {
+      "Package": "github.com/zhangzhe-ctrl/ani-network-service/internal/data/sqlcgen",
+      "Action": "skip",
+      "Elapsed": 0
+    },
+    {
+      "Package": "github.com/zhangzhe-ctrl/ani-network-service/internal/server",
+      "Action": "pass",
+      "Elapsed": 3.064
+    },
+    {
+      "Package": "github.com/zhangzhe-ctrl/ani-network-service/internal/service",
+      "Action": "pass",
+      "Elapsed": 1.034
+    },
+    {
+      "Package": "github.com/zhangzhe-ctrl/ani-network-service/migrations",
+      "Action": "skip",
+      "Elapsed": 0
+    },
+    {
+      "Package": "github.com/zhangzhe-ctrl/ani-network-service/scripts/lb-api",
+      "Action": "pass",
+      "Elapsed": 1.037
+    },
+    {
+      "Package": "github.com/zhangzhe-ctrl/ani-network-service/tests/net05",
+      "Action": "skip",
+      "Elapsed": 0
+    },
+    {
+      "Package": "github.com/zhangzhe-ctrl/ani-network-service/tests/net05/relay",
+      "Action": "skip",
+      "Elapsed": 0
+    },
+    {
+      "Package": "github.com/zhangzhe-ctrl/ani-network-service/tests/net05/rpc",
+      "Action": "skip",
+      "Elapsed": 0
+    },
+    {
+      "Package": "github.com/zhangzhe-ctrl/ani-network-service/tests/net05a/provider",
+      "Action": "pass",
+      "Elapsed": 1.039
+    },
+    {
+      "Package": "github.com/zhangzhe-ctrl/ani-network-service/tests/runtime",
+      "Action": "pass",
+      "Elapsed": 1.1280000000000001
+    },
+    {
+      "Package": "github.com/zhangzhe-ctrl/ani-network-service/tests/testenv",
+      "Action": "pass",
+      "Elapsed": 1.034
+    },
+    {
+      "Package": "github.com/zhangzhe-ctrl/ani-network-service/internal/data",
+      "Action": "pass",
+      "Elapsed": 573.688
+    }
+  ],
+  "artifact_sha256": {
+    "lb-api": "8774eaa6698b067eb54869af1b582ce053c5c955703dd0dbe8d0825312fcd9a4",
+    "network": "1090c7326266b2c7c928ae2edff6b47f15745ddd0f6ce448282e63043e308442"
+  },
+  "current_runtime_source_drift": [],
+  "live_u09": "not_verified"
+}

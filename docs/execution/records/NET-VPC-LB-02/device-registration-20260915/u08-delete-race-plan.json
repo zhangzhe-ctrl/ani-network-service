@@ -1,0 +1,19 @@
+{
+  "at": "2026-09-15T05:43:15.393807+00:00",
+  "execution_host": "ubuntu",
+  "database": "net_vpc_lb_02_2b3122",
+  "command": [
+    "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/network",
+    "-base-connectivity",
+    "plan",
+    "-base-pool",
+    "pool_f6c078d198ae4ea1be6f43cfad8f9934"
+  ],
+  "request": {
+    "action": "plan",
+    "pool": "pool_f6c078d198ae4ea1be6f43cfad8f9934"
+  },
+  "exit": 1,
+  "stdout": "{\"time\":\"2026-09-15T13:43:15.392348111+08:00\",\"level\":\"ERROR\",\"source\":{\"function\":\"main.main\",\"file\":\"github.com/zhangzhe-ctrl/ani-network-service/cmd/ani-network-service/main.go\",\"line\":65},\"msg\":\"service terminated\",\"service.id\":\"i-8yg2l7u8\",\"service.name\":\"ani-network-service\",\"service.version\":\"dev\",\"error\":\"INVALID_ARGUMENT: a canonical nonzero backfill run UUID is required\",\"trace_id\":\"\",\"span_id\":\"\"}\n",
+  "stderr": ""
+}

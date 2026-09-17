@@ -1,0 +1,143 @@
+{
+  "at": "2026-09-15T07:07:04.276471+00:00",
+  "transport_exit": 0,
+  "response": {
+    "at": "2026-09-15T07:07:03.138284+00:00",
+    "execution_host": "i-8yg2l7u8",
+    "service_uid": "e5ba8646-254e-4c10-aa16-48867a562be0",
+    "actions": [
+      {
+        "command": [
+          "bash",
+          "-c",
+          "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+          "kubectl",
+          "--kubeconfig",
+          "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+          "--request-timeout=15s",
+          "get",
+          "service",
+          "lb-8cb0fe0e03064f829a7dac0b70cc6b61",
+          "-n",
+          "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+          "-o",
+          "json"
+        ],
+        "request": null,
+        "exit": 0,
+        "stdout": "{\n    \"apiVersion\": \"v1\",\n    \"kind\": \"Service\",\n    \"metadata\": {\n        \"annotations\": {\n            \"networking.kubercloud.com/lb_vpc\": \"kcn-system/kcn-cluster\"\n        },\n        \"creationTimestamp\": \"2026-09-15T06:58:53Z\",\n        \"labels\": {\n            \"network.ani.io/test-role\": \"foreign-service\",\n            \"network.ani.io/test-run\": \"lb02-09141908-2b3122\"\n        },\n        \"name\": \"lb-8cb0fe0e03064f829a7dac0b70cc6b61\",\n        \"namespace\": \"lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad\",\n        \"resourceVersion\": \"323217\",\n        \"uid\": \"e5ba8646-254e-4c10-aa16-48867a562be0\"\n    },\n    \"spec\": {\n        \"clusterIP\": \"10.96.183.251\",\n        \"clusterIPs\": [\n            \"10.96.183.251\"\n        ],\n        \"internalTrafficPolicy\": \"Cluster\",\n        \"ipFamilies\": [\n            \"IPv4\"\n        ],\n        \"ipFamilyPolicy\": \"SingleStack\",\n        \"ports\": [\n            {\n                \"name\": \"http\",\n                \"port\": 8080,\n                \"protocol\": \"TCP\",\n                \"targetPort\": 8080\n            }\n        ],\n        \"sessionAffinity\": \"None\",\n        \"type\": \"ClusterIP\"\n    },\n    \"status\": {\n        \"conditions\": [\n            {\n                \"lastTransitionTime\": \"2026-09-15T06:58:53Z\",\n                \"message\": \"\",\n                \"reason\": \"Valid\",\n                \"status\": \"True\",\n                \"type\": \"KcnValid\"\n            },\n            {\n                \"lastTransitionTime\": \"2026-09-15T06:58:53Z\",\n                \"message\": \"\",\n                \"reason\": \"Ready\",\n                \"status\": \"True\",\n                \"type\": \"KcnReady\"\n            }\n        ],\n        \"loadBalancer\": {}\n    }\n}\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "bash",
+          "-c",
+          "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+          "kubectl",
+          "--kubeconfig",
+          "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+          "--request-timeout=15s",
+          "delete",
+          "--raw",
+          "/api/v1/namespaces/lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad/services/lb-8cb0fe0e03064f829a7dac0b70cc6b61",
+          "-f",
+          "-"
+        ],
+        "request": {
+          "apiVersion": "v1",
+          "kind": "DeleteOptions",
+          "preconditions": {
+            "uid": "e5ba8646-254e-4c10-aa16-48867a562be0"
+          }
+        },
+        "exit": 0,
+        "stdout": "{\"kind\":\"Service\",\"apiVersion\":\"v1\",\"metadata\":{\"name\":\"lb-8cb0fe0e03064f829a7dac0b70cc6b61\",\"namespace\":\"lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad\",\"uid\":\"e5ba8646-254e-4c10-aa16-48867a562be0\",\"resourceVersion\":\"325627\",\"creationTimestamp\":\"2026-09-15T06:58:53Z\",\"labels\":{\"network.ani.io/test-role\":\"foreign-service\",\"network.ani.io/test-run\":\"lb02-09141908-2b3122\"},\"annotations\":{\"networking.kubercloud.com/lb_vpc\":\"kcn-system/kcn-cluster\"},\"managedFields\":[{\"manager\":\"kc-networking-controller\",\"operation\":\"Update\",\"apiVersion\":\"v1\",\"time\":\"2026-09-15T06:58:53Z\",\"fieldsType\":\"FieldsV1\",\"fieldsV1\":{\"f:metadata\":{\"f:annotations\":{\".\":{},\"f:networking.kubercloud.com/lb_vpc\":{}}}}},{\"manager\":\"kc-networking-controller\",\"operation\":\"Update\",\"apiVersion\":\"v1\",\"time\":\"2026-09-15T06:58:53Z\",\"fieldsType\":\"FieldsV1\",\"fieldsV1\":{\"f:status\":{\"f:conditions\":{\".\":{},\"k:{\\\"type\\\":\\\"KcnReady\\\"}\":{\".\":{},\"f:lastTransitionTime\":{},\"f:message\":{},\"f:reason\":{},\"f:status\":{},\"f:type\":{}},\"k:{\\\"type\\\":\\\"KcnValid\\\"}\":{\".\":{},\"f:lastTransitionTime\":{},\"f:message\":{},\"f:reason\":{},\"f:status\":{},\"f:type\":{}}}}},\"subresource\":\"status\"},{\"manager\":\"kubectl-create\",\"operation\":\"Update\",\"apiVersion\":\"v1\",\"time\":\"2026-09-15T06:58:53Z\",\"fieldsType\":\"FieldsV1\",\"fieldsV1\":{\"f:metadata\":{\"f:labels\":{\".\":{},\"f:network.ani.io/test-role\":{},\"f:network.ani.io/test-run\":{}}},\"f:spec\":{\"f:internalTrafficPolicy\":{},\"f:ports\":{\".\":{},\"k:{\\\"port\\\":8080,\\\"protocol\\\":\\\"TCP\\\"}\":{\".\":{},\"f:name\":{},\"f:port\":{},\"f:protocol\":{},\"f:targetPort\":{}}},\"f:sessionAffinity\":{},\"f:type\":{}}}}]},\"spec\":{\"ports\":[{\"name\":\"http\",\"protocol\":\"TCP\",\"port\":8080,\"targetPort\":8080}],\"clusterIP\":\"10.96.183.251\",\"clusterIPs\":[\"10.96.183.251\"],\"type\":\"ClusterIP\",\"sessionAffinity\":\"None\",\"ipFamilies\":[\"IPv4\"],\"ipFamilyPolicy\":\"SingleStack\",\"internalTrafficPolicy\":\"Cluster\"},\"status\":{\"loadBalancer\":{},\"conditions\":[{\"type\":\"KcnValid\",\"status\":\"True\",\"lastTransitionTime\":\"2026-09-15T06:58:53Z\",\"reason\":\"Valid\",\"message\":\"\"},{\"type\":\"KcnReady\",\"status\":\"True\",\"lastTransitionTime\":\"2026-09-15T06:58:53Z\",\"reason\":\"Ready\",\"message\":\"\"}]}}\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "bash",
+          "-c",
+          "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+          "kubectl",
+          "--kubeconfig",
+          "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+          "--request-timeout=15s",
+          "get",
+          "service",
+          "lb-8cb0fe0e03064f829a7dac0b70cc6b61",
+          "-n",
+          "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+          "--ignore-not-found",
+          "-o",
+          "json"
+        ],
+        "request": null,
+        "exit": 0,
+        "stdout": "",
+        "stderr": ""
+      }
+    ],
+    "service_before_owner_delete": {
+      "apiVersion": "v1",
+      "kind": "Service",
+      "metadata": {
+        "annotations": {
+          "networking.kubercloud.com/lb_vpc": "kcn-system/kcn-cluster"
+        },
+        "creationTimestamp": "2026-09-15T06:58:53Z",
+        "labels": {
+          "network.ani.io/test-role": "foreign-service",
+          "network.ani.io/test-run": "lb02-09141908-2b3122"
+        },
+        "name": "lb-8cb0fe0e03064f829a7dac0b70cc6b61",
+        "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+        "resourceVersion": "323217",
+        "uid": "e5ba8646-254e-4c10-aa16-48867a562be0"
+      },
+      "spec": {
+        "clusterIP": "10.96.183.251",
+        "clusterIPs": [
+          "10.96.183.251"
+        ],
+        "internalTrafficPolicy": "Cluster",
+        "ipFamilies": [
+          "IPv4"
+        ],
+        "ipFamilyPolicy": "SingleStack",
+        "ports": [
+          {
+            "name": "http",
+            "port": 8080,
+            "protocol": "TCP",
+            "targetPort": 8080
+          }
+        ],
+        "sessionAffinity": "None",
+        "type": "ClusterIP"
+      },
+      "status": {
+        "conditions": [
+          {
+            "lastTransitionTime": "2026-09-15T06:58:53Z",
+            "message": "",
+            "reason": "Valid",
+            "status": "True",
+            "type": "KcnValid"
+          },
+          {
+            "lastTransitionTime": "2026-09-15T06:58:53Z",
+            "message": "",
+            "reason": "Ready",
+            "status": "True",
+            "type": "KcnReady"
+          }
+        ],
+        "loadBalancer": {}
+      }
+    },
+    "result": "pass",
+    "service_absent": true
+  },
+  "stderr": ""
+}

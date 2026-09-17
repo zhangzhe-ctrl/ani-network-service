@@ -1,0 +1,49 @@
+{
+  "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+  "commands": [
+    {
+      "pod": "lb02-2b3122-base-a",
+      "label": "restore-test-listener",
+      "argv": [
+        "/bin/sh",
+        "-c",
+        "kill -USR2 1; sleep 2"
+      ]
+    },
+    {
+      "pod": "lb02-2b3122-base-a",
+      "label": "listener-restored-loopback",
+      "argv": [
+        "/probe",
+        "request",
+        "http://127.0.0.1:8080/?nonce=lb02-health-restored"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"instance_id\":\"lb02-2b3122-base-a\""
+      ]
+    },
+    {
+      "pod": "lb02-2b3122-base-b",
+      "label": "restore-test-listener",
+      "argv": [
+        "/bin/sh",
+        "-c",
+        "kill -USR2 1; sleep 2"
+      ]
+    },
+    {
+      "pod": "lb02-2b3122-base-b",
+      "label": "listener-restored-loopback",
+      "argv": [
+        "/probe",
+        "request",
+        "http://127.0.0.1:8080/?nonce=lb02-health-restored"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"instance_id\":\"lb02-2b3122-base-b\""
+      ]
+    }
+  ]
+}

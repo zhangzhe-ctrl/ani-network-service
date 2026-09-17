@@ -1,0 +1,28 @@
+{
+  "at": "2026-09-15T13:24:12.663851+00:00",
+  "execution_host": "ubuntu",
+  "source_run": "20260915T131758Z-dce7a2e7",
+  "archive_sha256": "65a172e5ce6c5da7cdce7117cfc770563f2857bbe622b78cb6471796208e78b1",
+  "manifest_sha256": "7076140d4c992864fe8923fdf74e6622002e2bcfbb89a715d50899013418cee7",
+  "command": [
+    "bash",
+    "-e",
+    "-c",
+    "validation_tmp=$(mktemp -d /var/tmp/nlb2.XXXXXX); chmod 700 \"$validation_tmp\"; export TMPDIR=\"$validation_tmp\"; scripts/integration ./internal/data -run \"^TestAttachmentFinishesFreshAuditAfterConsecutiveWatchBoundaries$\" -count 2 -timeout 2m -json"
+  ],
+  "conclusion": "Original qualified implementation fails both isolated runs after exactly two Watch boundaries; collections=2, premature ProviderTemporary within the 12-second caller budget.",
+  "test_results": [
+    {
+      "Test": "TestAttachmentFinishesFreshAuditAfterConsecutiveWatchBoundaries",
+      "Action": "fail",
+      "Elapsed": 2.35
+    },
+    {
+      "Test": "TestAttachmentFinishesFreshAuditAfterConsecutiveWatchBoundaries",
+      "Action": "fail",
+      "Elapsed": 1.81
+    }
+  ],
+  "log": "attachment-retry-red-isolated-command.txt",
+  "log_sha256": "a34e54bebf23523c2c4ba296c7483de6bb8bec2773d6ec79d835c8e63df291ed"
+}

@@ -1,0 +1,12 @@
+{
+  "at": "2026-09-15T05:46:50.126457+00:00",
+  "execution_host": "ubuntu",
+  "transport_exit": 0,
+  "result": {
+    "query": "SELECT jsonb_build_object('vpc',(SELECT to_jsonb(v) FROM network_vpcs v WHERE vpc_id='vpc_af937bb766324a5a8a41a08d55c39062'),'operations',(SELECT jsonb_agg(jsonb_build_object('id',operation_id,'kind',kind,'state',state,'completed_at',completed_at)) FROM network_operations WHERE vpc_id='vpc_af937bb766324a5a8a41a08d55c39062'),'base_count',(SELECT count(*) FROM network_vpc_base_connectivity WHERE vpc_id='vpc_af937bb766324a5a8a41a08d55c39062'),'eip_count',(SELECT count(*) FROM network_eips WHERE system_owner_vpc='vpc_af937bb766324a5a8a41a08d55c39062'),'snat_count',(SELECT count(*) FROM network_snat_bindings WHERE system_owner_vpc='vpc_af937bb766324a5a8a41a08d55c39062'));",
+    "exit": 0,
+    "stdout": "BEGIN\n{\"vpc\": {\"cidr\": \"10.233.48.0/20\", \"name\": \"lb02-2b3122-u08-delete-race\", \"state\": \"deleted\", \"reason\": \"PROVIDER_UNAVAILABLE\", \"vpc_id\": \"vpc_af937bb766324a5a8a41a08d55c39062\", \"version\": 19, \"tenant_id\": \"93b06aeb-e445-4823-ade8-e7b7d8e19832\", \"created_at\": \"2026-09-15T05:42:02.30093+00:00\", \"updated_at\": \"2026-09-15T05:46:20.418236+00:00\", \"description\": \"Run-owned legacy fixture for U08 admission/delete competition, no workloads\", \"observed_at\": \"2026-09-15T05:45:48.637394+00:00\", \"last_operation_id\": \"c3da0a29-bb3a-40d9-9f3f-462220127d49\", \"base_connectivity_required\": false}, \"eip_count\": 0, \"base_count\": 0, \"operations\": [{\"id\": \"c3da0a29-bb3a-40d9-9f3f-462220127d49\", \"kind\": \"delete_vpc\", \"state\": \"succeeded\", \"completed_at\": \"2026-09-15T05:45:25.353674+00:00\"}, {\"id\": \"2d84ab97-1b75-484f-a8db-0c2fbd0ab021\", \"kind\": \"create_vpc\", \"state\": \"succeeded\", \"completed_at\": \"2026-09-15T05:42:31.682276+00:00\"}], \"snat_count\": 0}\nROLLBACK\n",
+    "stderr": ""
+  },
+  "stderr": ""
+}

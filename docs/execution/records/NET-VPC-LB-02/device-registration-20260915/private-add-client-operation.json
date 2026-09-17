@@ -1,0 +1,172 @@
+{
+  "execution_host": "ubuntu",
+  "command": [
+    "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/lb-api",
+    "call",
+    "-target",
+    "unix:///home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-a.sock",
+    "-service",
+    "NetworkService",
+    "-method",
+    "GetOperation"
+  ],
+  "request": {
+    "operation_id": "5ddfeea3-15fb-4949-a155-8a2daafc1f88"
+  },
+  "expected": {
+    "response.operation.state": "OPERATION_STATE_SUCCEEDED"
+  },
+  "result": "pass",
+  "records": [
+    {
+      "at": "2026-09-15T05:39:39.863633+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "5ddfeea3-15fb-4949-a155-8a2daafc1f88",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "resource_id": "lb_d9f847eef7eb453a8388672718959ec8",
+            "kind": "OPERATION_KIND_UPDATE_LOAD_BALANCER",
+            "state": "OPERATION_STATE_RUNNING",
+            "reason": "PROVIDER_NOT_READY",
+            "created_at": "2026-09-15T05:39:30.747464Z",
+            "updated_at": "2026-09-15T05:39:35.411976Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T05:39:36.191889Z",
+            "resource_type": "RESOURCE_TYPE_LOAD_BALANCER",
+            "reason_message": "The requested configuration is not ready yet."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:39:44.877029+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "5ddfeea3-15fb-4949-a155-8a2daafc1f88",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "resource_id": "lb_d9f847eef7eb453a8388672718959ec8",
+            "kind": "OPERATION_KIND_UPDATE_LOAD_BALANCER",
+            "state": "OPERATION_STATE_RUNNING",
+            "reason": "PROVIDER_NOT_READY",
+            "created_at": "2026-09-15T05:39:30.747464Z",
+            "updated_at": "2026-09-15T05:39:40.774359Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T05:39:41.461444Z",
+            "resource_type": "RESOURCE_TYPE_LOAD_BALANCER",
+            "reason_message": "The requested configuration is not ready yet."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:39:49.888575+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "5ddfeea3-15fb-4949-a155-8a2daafc1f88",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "resource_id": "lb_d9f847eef7eb453a8388672718959ec8",
+            "kind": "OPERATION_KIND_UPDATE_LOAD_BALANCER",
+            "state": "OPERATION_STATE_RUNNING",
+            "reason": "PROVIDER_NOT_READY",
+            "created_at": "2026-09-15T05:39:30.747464Z",
+            "updated_at": "2026-09-15T05:39:46.627531Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T05:39:46.811282Z",
+            "resource_type": "RESOURCE_TYPE_LOAD_BALANCER",
+            "reason_message": "The requested configuration is not ready yet."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:39:54.900224+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "5ddfeea3-15fb-4949-a155-8a2daafc1f88",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "resource_id": "lb_d9f847eef7eb453a8388672718959ec8",
+            "kind": "OPERATION_KIND_UPDATE_LOAD_BALANCER",
+            "state": "OPERATION_STATE_RUNNING",
+            "reason": "PROVIDER_NOT_READY",
+            "created_at": "2026-09-15T05:39:30.747464Z",
+            "updated_at": "2026-09-15T05:39:46.627531Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T05:39:46.811282Z",
+            "resource_type": "RESOURCE_TYPE_LOAD_BALANCER",
+            "reason_message": "The requested configuration is not ready yet."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:39:59.911093+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "5ddfeea3-15fb-4949-a155-8a2daafc1f88",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "resource_id": "lb_d9f847eef7eb453a8388672718959ec8",
+            "kind": "OPERATION_KIND_UPDATE_LOAD_BALANCER",
+            "state": "OPERATION_STATE_SUCCEEDED",
+            "reason": "",
+            "created_at": "2026-09-15T05:39:30.747464Z",
+            "updated_at": "2026-09-15T05:39:58.862740Z",
+            "completed_at": "2026-09-15T05:39:58.862740Z",
+            "next_attempt_at": null,
+            "resource_type": "RESOURCE_TYPE_LOAD_BALANCER",
+            "reason_message": ""
+          }
+        }
+      },
+      "stderr": "",
+      "matches": true
+    },
+    {
+      "at": "2026-09-15T05:40:04.925690+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "5ddfeea3-15fb-4949-a155-8a2daafc1f88",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "resource_id": "lb_d9f847eef7eb453a8388672718959ec8",
+            "kind": "OPERATION_KIND_UPDATE_LOAD_BALANCER",
+            "state": "OPERATION_STATE_SUCCEEDED",
+            "reason": "",
+            "created_at": "2026-09-15T05:39:30.747464Z",
+            "updated_at": "2026-09-15T05:39:58.862740Z",
+            "completed_at": "2026-09-15T05:39:58.862740Z",
+            "next_attempt_at": null,
+            "resource_type": "RESOURCE_TYPE_LOAD_BALANCER",
+            "reason_message": ""
+          }
+        }
+      },
+      "stderr": "",
+      "matches": true
+    }
+  ]
+}

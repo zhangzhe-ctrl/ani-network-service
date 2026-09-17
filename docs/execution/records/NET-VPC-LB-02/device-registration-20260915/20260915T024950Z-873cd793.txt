@@ -1,0 +1,27 @@
+source.tar.gz: OK
+verified source files: 1558
+go version go1.26.7 linux/amd64
+1.60.0
+v1.31.1
+127.0.0.1:5432 - accepting connections
+PostgreSQL image=docker.io/library/postgres@sha256:4ef4dbc939d61acea57712655ddb4b4ab27419c913f94cca0cd57cb3ea3c2280 container=8a6309219abe7fe734a12f75fc9c6e2e1d77b1700732faaeef474959ce6a3e25
+=== RUN   TestEgressKCDeviceAdoptionPartialFactsAndUntaggedVlan
+--- PASS: TestEgressKCDeviceAdoptionPartialFactsAndUntaggedVlan (0.69s)
+=== RUN   TestEgressKCPreManagedDeviceRegistrationAndUntaggedVlan
+--- PASS: TestEgressKCPreManagedDeviceRegistrationAndUntaggedVlan (0.65s)
+=== RUN   TestEgressKCPreManagedRegistrationFencesConfigurationChanges
+=== RUN   TestEgressKCPreManagedRegistrationFencesConfigurationChanges/config_replaced
+=== RUN   TestEgressKCPreManagedRegistrationFencesConfigurationChanges/device_removed
+=== RUN   TestEgressKCPreManagedRegistrationFencesConfigurationChanges/unrelated_annotation
+--- PASS: TestEgressKCPreManagedRegistrationFencesConfigurationChanges (1.17s)
+    --- PASS: TestEgressKCPreManagedRegistrationFencesConfigurationChanges/config_replaced (0.37s)
+    --- PASS: TestEgressKCPreManagedRegistrationFencesConfigurationChanges/device_removed (0.37s)
+    --- PASS: TestEgressKCPreManagedRegistrationFencesConfigurationChanges/unrelated_annotation (0.43s)
+=== RUN   TestEgressKCManagedVlanWithAuditLongerThanRefreshInterval
+--- PASS: TestEgressKCManagedVlanWithAuditLongerThanRefreshInterval (2.61s)
+=== RUN   TestEgressKCDeviceFactsCompletedDuringReadAreFresh
+--- PASS: TestEgressKCDeviceFactsCompletedDuringReadAreFresh (0.69s)
+PASS
+ok  	github.com/zhangzhe-ctrl/ani-network-service/internal/data	6.860s
+removed task container=8a6309219abe7fe734a12f75fc9c6e2e1d77b1700732faaeef474959ce6a3e25
+REMOTE_COMMAND_EXIT=0

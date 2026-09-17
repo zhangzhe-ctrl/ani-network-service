@@ -1,0 +1,23 @@
+{
+  "at": "2026-09-17T11:38:06.174600+00:00",
+  "command": [
+    "/home/chabking/workspace/ani-network-service-runs/lb-health-e2e-20260917/private/runtime/bin/lb-api",
+    "call",
+    "-target",
+    "unix:///home/chabking/.local/state/lbhp0917/sockets/tenant-a.sock",
+    "-service",
+    "NetworkService",
+    "-method",
+    "GetAttachment"
+  ],
+  "completed_at": "2026-09-17T11:38:06.183392+00:00",
+  "exit": 0,
+  "phase": "snapshot",
+  "request": {
+    "attachment_id": "att_23f2e993565946689c21db2f4be71f5f",
+    "tenant_id": "3c8a15c8-b679-4af8-a9fa-ca3703a1609f"
+  },
+  "stderr": "",
+  "stdout": "{\"code\":\"OK\",\"response\":{\"attachment\":{\"id\":\"att_23f2e993565946689c21db2f4be71f5f\",\"tenant_id\":\"3c8a15c8-b679-4af8-a9fa-ca3703a1609f\",\"vpc_id\":\"vpc_2a9a072c542c4ceea744cba5eb17130f\",\"subnet_id\":\"subnet_f62092f8d80046cab425c122e9da2684\",\"instance_id\":\"a22c9bee-2f88-4811-92a7-42e342ffbd95\",\"slot\":\"primary\",\"submission_id\":\"e7c56f30-38af-4b68-a478-3d24089c8071\",\"generation\":\"1\",\"cluster_id\":\"lbhealth-0917\",\"namespace\":\"lbhp-3c8a15c8-b679-4af8-a9fa-ca3703a1609f\",\"binding_revision\":\"0838aca3-f11c-4cf2-848a-407ffad478fe:761f4283-743a-44b9-883c-6a452167eca1\",\"state\":\"ATTACHMENT_STATE_RELEASED\",\"reason\":\"\",\"version\":\"106\",\"pod_primary\":null,\"pod_name\":\"lbhealth-0917-backend-a\",\"pod_uid\":\"590b0520-f57a-435c-9743-f8c221a16c96\",\"consumer_finalization_id\":\"fb6a4c1d-0ed0-4366-b5e8-a3f7dc1227b3\",\"created_at\":\"2026-09-17T11:28:08.797715Z\",\"updated_at\":\"2026-09-17T11:38:01.501841Z\",\"observed_at\":\"2026-09-17T11:37:58.086308Z\",\"released_at\":\"2026-09-17T11:35:23.013910Z\"}}}\n",
+  "step": null
+}

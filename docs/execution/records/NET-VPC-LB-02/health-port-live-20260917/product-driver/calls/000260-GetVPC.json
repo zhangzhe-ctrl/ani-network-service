@@ -1,0 +1,23 @@
+{
+  "at": "2026-09-17T11:38:21.470893+00:00",
+  "command": [
+    "/home/chabking/workspace/ani-network-service-runs/lb-health-e2e-20260917/private/runtime/bin/lb-api",
+    "call",
+    "-target",
+    "unix:///home/chabking/.local/state/lbhp0917/sockets/tenant-a.sock",
+    "-service",
+    "NetworkService",
+    "-method",
+    "GetVPC"
+  ],
+  "completed_at": "2026-09-17T11:38:21.481388+00:00",
+  "exit": 0,
+  "phase": "snapshot",
+  "request": {
+    "tenant_id": "3c8a15c8-b679-4af8-a9fa-ca3703a1609f",
+    "vpc_id": "vpc_2a9a072c542c4ceea744cba5eb17130f"
+  },
+  "stderr": "",
+  "stdout": "{\"code\":\"OK\",\"response\":{\"vpc\":{\"id\":\"vpc_2a9a072c542c4ceea744cba5eb17130f\",\"tenant_id\":\"3c8a15c8-b679-4af8-a9fa-ca3703a1609f\",\"name\":\"lbhealth-0917-vpc\",\"description\":\"\",\"cidr\":\"10.235.0.0/16\",\"state\":\"RESOURCE_STATE_DELETING\",\"reason\":\"PROVIDER_UNAVAILABLE\",\"created_at\":\"2026-09-17T11:23:22.577277Z\",\"updated_at\":\"2026-09-17T11:37:54.488859Z\",\"version\":\"243\",\"observed_at\":\"2026-09-17T11:37:10.548138Z\",\"observation_stale\":true,\"last_operation_id\":\"dedc80f7-87df-4907-8597-f19d88643b47\",\"subnet_count\":\"0\",\"reason_message\":\"The network provider is temporarily unavailable.\",\"base_connectivity\":{\"state\":\"deleting\",\"reason\":\"PROVIDER_UNAVAILABLE\",\"observed_at\":null,\"observation_stale\":true,\"reason_message\":\"The network provider is temporarily unavailable.\"}}}}\n",
+  "step": null
+}

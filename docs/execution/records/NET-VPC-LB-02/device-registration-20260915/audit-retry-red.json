@@ -1,0 +1,46 @@
+{
+  "at": "2026-09-15T02:51:28.411763+00:00",
+  "hypothesis": "nested complete audit for a dependent device starves VLAN work when audit duration exceeds refresh interval",
+  "runs": [
+    {
+      "run": "20260915T024058Z-5e0d6ccd",
+      "archive_sha256": "7710c6a099e4c175fc28a854b0d4e50d9a6a696ff3326ee53a4f05817ab9bc6a",
+      "manifest_sha256": "cca74cd3827c912df3d9e51a315c5641b902023f18c39db47a230bf81aa0fb8e",
+      "exit": 1,
+      "command": [
+        "scripts/integration",
+        "-race",
+        "-p",
+        "2",
+        "-run",
+        "^TestEgressKCManagedVlanWithAuditLongerThanRefreshInterval$",
+        "./internal/data"
+      ]
+    },
+    {
+      "run": "20260915T024706Z-33fda15f",
+      "archive_sha256": "9282e65c265325e087c0c7bc5305ee04aec4aa7c2a38221304034a74a428f432",
+      "manifest_sha256": "8f3d19a3bab133abefd1e5dcaefd47622437f11604eff1cb76b05b58ed2467a7",
+      "exit": 1,
+      "command": [
+        "scripts/integration",
+        "-race",
+        "-p",
+        "2",
+        "-run",
+        "^TestEgressKCManagedVlanWithAuditLongerThanRefreshInterval$",
+        "./internal/data"
+      ]
+    }
+  ],
+  "authoritative_reproduction": "20260915T024706Z-33fda15f",
+  "bounded_red_seconds": 8.57,
+  "reason": "PROVIDER_UNAVAILABLE before collector freshness expires",
+  "initial_red_note": "The initial 500-step helper ran 210.62 seconds; the bounded replay removes eventual stale-fact effects as an alternative explanation.",
+  "live_trace": [
+    "vlan-debug-01.txt",
+    "vlan-debug-03.txt"
+  ],
+  "change": "reuse the enclosing audit for dependent device facts and retain end-of-read change fences; check future timestamps against database time after reading facts",
+  "candidate_gate": "pending"
+}

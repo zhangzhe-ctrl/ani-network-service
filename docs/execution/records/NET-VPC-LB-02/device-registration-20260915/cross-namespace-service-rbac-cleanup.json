@@ -1,0 +1,240 @@
+{
+  "result": "pass",
+  "execution_host": "ani-01, fixture RBAC cleanup only",
+  "records": [
+    {
+      "at": "2026-09-15T11:17:52.652050+00:00",
+      "command": [
+        "sudo",
+        "kubectl",
+        "--request-timeout=15s",
+        "get",
+        "service",
+        "-n",
+        "lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832",
+        "lb02-2b3122-crossns-eip",
+        "--ignore-not-found",
+        "-o",
+        "json"
+      ],
+      "request": null,
+      "exit": 0,
+      "response": null,
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-15T11:17:54.016173+00:00",
+      "command": [
+        "sudo",
+        "kubectl",
+        "--request-timeout=15s",
+        "get",
+        "RoleBinding",
+        "-n",
+        "lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832",
+        "lb02-2b3122-crossns-eip-owner",
+        "-o",
+        "json"
+      ],
+      "request": null,
+      "exit": 0,
+      "response": {
+        "apiVersion": "rbac.authorization.k8s.io/v1",
+        "kind": "RoleBinding",
+        "metadata": {
+          "creationTimestamp": "2026-09-15T11:06:06Z",
+          "labels": {
+            "network.ani.io/test-role": "crossns-eip-fault",
+            "network.ani.io/test-run": "lb02-09141908-2b3122"
+          },
+          "name": "lb02-2b3122-crossns-eip-owner",
+          "namespace": "lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832",
+          "resourceVersion": "396468",
+          "uid": "f11a0f21-dea9-47c7-874a-70a913f01386"
+        },
+        "roleRef": {
+          "apiGroup": "rbac.authorization.k8s.io",
+          "kind": "Role",
+          "name": "lb02-2b3122-crossns-eip-owner"
+        },
+        "subjects": [
+          {
+            "kind": "ServiceAccount",
+            "name": "lb02-2b3122-workload-owner",
+            "namespace": "lb02-09141908-2b3122"
+          }
+        ]
+      },
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-15T11:17:55.486722+00:00",
+      "command": [
+        "sudo",
+        "kubectl",
+        "--request-timeout=15s",
+        "delete",
+        "--raw",
+        "/apis/rbac.authorization.k8s.io/v1/namespaces/lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832/rolebindings/lb02-2b3122-crossns-eip-owner",
+        "-f",
+        "-"
+      ],
+      "request": {
+        "apiVersion": "v1",
+        "kind": "DeleteOptions",
+        "preconditions": {
+          "uid": "f11a0f21-dea9-47c7-874a-70a913f01386"
+        }
+      },
+      "exit": 0,
+      "response": {
+        "kind": "Status",
+        "apiVersion": "v1",
+        "metadata": {},
+        "status": "Success",
+        "details": {
+          "name": "lb02-2b3122-crossns-eip-owner",
+          "group": "rbac.authorization.k8s.io",
+          "kind": "rolebindings",
+          "uid": "f11a0f21-dea9-47c7-874a-70a913f01386"
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-15T11:17:55.968322+00:00",
+      "command": [
+        "sudo",
+        "kubectl",
+        "--request-timeout=15s",
+        "get",
+        "RoleBinding",
+        "-n",
+        "lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832",
+        "lb02-2b3122-crossns-eip-owner",
+        "--ignore-not-found",
+        "-o",
+        "json"
+      ],
+      "request": null,
+      "exit": 0,
+      "response": null,
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-15T11:17:56.666523+00:00",
+      "command": [
+        "sudo",
+        "kubectl",
+        "--request-timeout=15s",
+        "get",
+        "Role",
+        "-n",
+        "lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832",
+        "lb02-2b3122-crossns-eip-owner",
+        "-o",
+        "json"
+      ],
+      "request": null,
+      "exit": 0,
+      "response": {
+        "apiVersion": "rbac.authorization.k8s.io/v1",
+        "kind": "Role",
+        "metadata": {
+          "creationTimestamp": "2026-09-15T11:06:06Z",
+          "labels": {
+            "network.ani.io/test-role": "crossns-eip-fault",
+            "network.ani.io/test-run": "lb02-09141908-2b3122"
+          },
+          "name": "lb02-2b3122-crossns-eip-owner",
+          "namespace": "lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832",
+          "resourceVersion": "396465",
+          "uid": "81f55ec8-c7a8-4785-93ba-4fb4f2454404"
+        },
+        "rules": [
+          {
+            "apiGroups": [
+              ""
+            ],
+            "resources": [
+              "services"
+            ],
+            "verbs": [
+              "create"
+            ]
+          },
+          {
+            "apiGroups": [
+              ""
+            ],
+            "resourceNames": [
+              "lb02-2b3122-crossns-eip"
+            ],
+            "resources": [
+              "services"
+            ],
+            "verbs": [
+              "get",
+              "delete"
+            ]
+          }
+        ]
+      },
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-15T11:17:57.246846+00:00",
+      "command": [
+        "sudo",
+        "kubectl",
+        "--request-timeout=15s",
+        "delete",
+        "--raw",
+        "/apis/rbac.authorization.k8s.io/v1/namespaces/lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832/roles/lb02-2b3122-crossns-eip-owner",
+        "-f",
+        "-"
+      ],
+      "request": {
+        "apiVersion": "v1",
+        "kind": "DeleteOptions",
+        "preconditions": {
+          "uid": "81f55ec8-c7a8-4785-93ba-4fb4f2454404"
+        }
+      },
+      "exit": 0,
+      "response": {
+        "kind": "Status",
+        "apiVersion": "v1",
+        "metadata": {},
+        "status": "Success",
+        "details": {
+          "name": "lb02-2b3122-crossns-eip-owner",
+          "group": "rbac.authorization.k8s.io",
+          "kind": "roles",
+          "uid": "81f55ec8-c7a8-4785-93ba-4fb4f2454404"
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-15T11:17:57.861082+00:00",
+      "command": [
+        "sudo",
+        "kubectl",
+        "--request-timeout=15s",
+        "get",
+        "Role",
+        "-n",
+        "lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832",
+        "lb02-2b3122-crossns-eip-owner",
+        "--ignore-not-found",
+        "-o",
+        "json"
+      ],
+      "request": null,
+      "exit": 0,
+      "response": null,
+      "stderr": ""
+    }
+  ]
+}

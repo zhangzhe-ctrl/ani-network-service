@@ -1,0 +1,46 @@
+{
+  "at": "2026-09-17T11:29:25.656791+00:00",
+  "command": [
+    "/home/chabking/workspace/ani-network-service-runs/lb-health-e2e-20260917/private/runtime/bin/lb-api",
+    "call",
+    "-target",
+    "unix:///home/chabking/.local/state/lbhp0917/sockets/tenant-a.sock",
+    "-service",
+    "TenantLoadBalancerService",
+    "-method",
+    "CreateLoadBalancer"
+  ],
+  "completed_at": "2026-09-17T11:29:25.709286+00:00",
+  "exit": 0,
+  "phase": "create-lbs",
+  "request": {
+    "backends": [
+      {
+        "address": "10.235.1.2",
+        "port": 8080,
+        "subnet_id": "subnet_f62092f8d80046cab425c122e9da2684"
+      },
+      {
+        "address": "10.235.1.3",
+        "port": 8080,
+        "subnet_id": "subnet_f62092f8d80046cab425c122e9da2684"
+      }
+    ],
+    "exposure": "LOAD_BALANCER_EXPOSURE_PRIVATE",
+    "flavor": "small",
+    "health_check": {
+      "port": 8080
+    },
+    "idempotency_key": "lbhealth-0917-private_lb",
+    "listener": {
+      "port": 8081
+    },
+    "name": "lbhealth-0917-private-lb",
+    "private_ip": "10.235.0.200",
+    "subnet_id": "subnet_922c1a9941bd4fde9795074e8b0ab021",
+    "vpc_id": "vpc_2a9a072c542c4ceea744cba5eb17130f"
+  },
+  "stderr": "",
+  "stdout": "{\"code\":\"OK\",\"response\":{\"load_balancer\":{\"id\":\"lb_76040497f6ea42c49c5ed95cbbc6931e\",\"tenant_id\":\"3c8a15c8-b679-4af8-a9fa-ca3703a1609f\",\"vpc_id\":\"vpc_2a9a072c542c4ceea744cba5eb17130f\",\"subnet_id\":\"subnet_922c1a9941bd4fde9795074e8b0ab021\",\"name\":\"lbhealth-0917-private-lb\",\"description\":\"\",\"exposure\":\"LOAD_BALANCER_EXPOSURE_PRIVATE\",\"flavor\":\"small\",\"public_eip_id\":\"\",\"private_ip\":\"10.235.0.200\",\"listener\":{\"id\":\"f9c86268-3b28-44c1-aa15-1c5fb0bb0c63\",\"protocol\":\"LOAD_BALANCER_LISTENER_PROTOCOL_HTTP\",\"port\":8081},\"backends\":[{\"id\":\"11b460fb-22e4-4b57-af69-54c275d95710\",\"subnet_id\":\"subnet_f62092f8d80046cab425c122e9da2684\",\"address\":\"10.235.1.2\",\"port\":8080,\"weight\":1,\"attachment_id\":\"att_23f2e993565946689c21db2f4be71f5f\",\"state\":\"available\",\"reason\":\"\",\"observed_at\":\"2026-09-17T11:29:17.938915Z\",\"observation_stale\":false},{\"id\":\"8ceafd16-7b90-4adb-a201-a23112281a06\",\"subnet_id\":\"subnet_f62092f8d80046cab425c122e9da2684\",\"address\":\"10.235.1.3\",\"port\":8080,\"weight\":1,\"attachment_id\":\"att_c948bdb059a24bc29bc8011e6d7b1659\",\"state\":\"available\",\"reason\":\"\",\"observed_at\":\"2026-09-17T11:29:17.938915Z\",\"observation_stale\":false}],\"health_check\":{\"protocol\":\"LOAD_BALANCER_HEALTH_CHECK_PROTOCOL_TCP\",\"interval_seconds\":5,\"timeout_seconds\":3,\"unhealthy_threshold\":3,\"healthy_threshold\":1,\"port\":8080},\"algorithm\":\"LOAD_BALANCER_ALGORITHM_ROUND_ROBIN\",\"state\":\"RESOURCE_STATE_PROVISIONING\",\"reason\":\"\",\"reason_message\":\"\",\"version\":\"1\",\"desired_version\":\"1\",\"applied_version\":\"0\",\"configuration_state\":\"LOAD_BALANCER_CONFIGURATION_STATE_PENDING\",\"data_plane_state\":\"LOAD_BALANCER_DATA_PLANE_STATE_UNKNOWN\",\"observed_at\":null,\"observation_stale\":true,\"created_at\":\"2026-09-17T11:29:25.671133Z\",\"updated_at\":\"2026-09-17T11:29:25.671133Z\",\"last_operation_id\":\"bfd21248-c6f0-43b4-9b52-9b026987d721\",\"public_address\":\"\",\"data_plane_observed_at\":null},\"operation\":{\"id\":\"bfd21248-c6f0-43b4-9b52-9b026987d721\",\"tenant_id\":\"3c8a15c8-b679-4af8-a9fa-ca3703a1609f\",\"resource_id\":\"lb_76040497f6ea42c49c5ed95cbbc6931e\",\"kind\":\"OPERATION_KIND_CREATE_LOAD_BALANCER\",\"state\":\"OPERATION_STATE_QUEUED\",\"reason\":\"\",\"created_at\":\"2026-09-17T11:29:25.671133Z\",\"updated_at\":\"2026-09-17T11:29:25.671133Z\",\"completed_at\":null,\"next_attempt_at\":\"2026-09-17T11:29:25.671133Z\",\"resource_type\":\"RESOURCE_TYPE_LOAD_BALANCER\",\"reason_message\":\"\"}}}\n",
+  "step": "lbs"
+}

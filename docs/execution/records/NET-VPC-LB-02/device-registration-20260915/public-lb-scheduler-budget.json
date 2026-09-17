@@ -1,0 +1,62 @@
+{
+  "at": "2026-09-15T08:46:00.350721+00:00",
+  "execution_host": "ubuntu",
+  "commands": [
+    [
+      "bash",
+      "-c",
+      "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+      "kubectl",
+      "--kubeconfig",
+      "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/kubeconfig.json",
+      "--request-timeout=20s",
+      "get",
+      "nodes",
+      "-o",
+      "json"
+    ],
+    [
+      "bash",
+      "-c",
+      "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+      "kubectl",
+      "--kubeconfig",
+      "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/kubeconfig.json",
+      "--request-timeout=20s",
+      "get",
+      "pods",
+      "-o",
+      "json",
+      "-A"
+    ]
+  ],
+  "nodes": [
+    {
+      "node": "ani-01",
+      "node_uid": "3693178a-d4d4-4fb3-a39a-82b7d875391d",
+      "taints": [],
+      "cpu_remaining": 9.96,
+      "memory_remaining_mib": 20717.348804473877,
+      "active_pod_count": 25
+    },
+    {
+      "node": "ani-02",
+      "node_uid": "2f954d6f-31d0-49d9-83ee-2f8888408236",
+      "taints": [],
+      "cpu_remaining": 9.92,
+      "memory_remaining_mib": 20045.35622692108,
+      "active_pod_count": 32
+    },
+    {
+      "node": "ani-03",
+      "node_uid": "2507940b-6901-44c6-aadd-ba1bb6875bde",
+      "taints": [],
+      "cpu_remaining": 10.1,
+      "memory_remaining_mib": 20577.348804473877,
+      "active_pod_count": 28
+    }
+  ],
+  "small_cpu_per_replica": 1.01,
+  "replicas": 2,
+  "pending_pods": []
+}

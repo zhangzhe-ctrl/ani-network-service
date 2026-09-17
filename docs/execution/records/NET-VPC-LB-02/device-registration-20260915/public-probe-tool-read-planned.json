@@ -1,0 +1,15 @@
+{
+  "namespace": "lb02-09141908-2b3122",
+  "commands": [
+    {
+      "pod": "lb02-2b3122-public-probe-a",
+      "label": "available-connection-tools",
+      "argv": [
+        "/bin/sh",
+        "-c",
+        "command -v bash; command -v nc; command -v python3; command -v curl; command -v timeout; true"
+      ],
+      "expect_contains": []
+    }
+  ]
+}

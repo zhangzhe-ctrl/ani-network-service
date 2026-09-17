@@ -1,0 +1,12 @@
+{
+  "at": "2026-09-15T08:53:31.097678+00:00",
+  "execution_host": "ubuntu",
+  "transport_exit": 0,
+  "result": {
+    "query": "SELECT resource_id,kind,state,reason,observed_at,clock_timestamp()-observed_at AS age,version FROM network_platform_resources WHERE resource_id IN ('device_3290174cfb644473b5b5e260bcea085c','egw_386dc165a8744951bc624ab55c439681','vlan_9b12fcb230ef4bc08ba1d497ebe44009','pool_f28b9d470c0147f6a66646b8976c36f9');",
+    "exit": 0,
+    "stdout": "BEGIN\npool_f28b9d470c0147f6a66646b8976c36f9|public_pool|available||2026-09-15 08:53:15.616236+00|00:00:15.420094|105\negw_386dc165a8744951bc624ab55c439681|egress_gateway|available||2026-09-15 08:53:15.616236+00|00:00:15.420395|967\nvlan_9b12fcb230ef4bc08ba1d497ebe44009|vlan|available||2026-09-15 08:53:21.705395+00|00:00:09.331242|119\ndevice_3290174cfb644473b5b5e260bcea085c|device|available||2026-09-15 08:53:21.705395+00|00:00:09.331243|760\nROLLBACK\n",
+    "stderr": ""
+  },
+  "stderr": ""
+}

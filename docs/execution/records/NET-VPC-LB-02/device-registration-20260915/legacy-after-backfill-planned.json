@@ -1,0 +1,91 @@
+{
+  "namespace": "lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832",
+  "commands": [
+    {
+      "pod": "lb02-2b3122-legacy-client",
+      "label": "legacy-http-after-backfill",
+      "argv": [
+        "/probe",
+        "request",
+        "http://10.233.16.2:8080/?nonce=lb02-after-backfill"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"instance_id\":\"lb02-2b3122-legacy-a\"",
+        "\"nonce\":\"lb02-after-backfill\""
+      ]
+    },
+    {
+      "pod": "lb02-2b3122-legacy-client",
+      "label": "legacy-http-after-backfill",
+      "argv": [
+        "/probe",
+        "request",
+        "http://10.233.16.3:8080/?nonce=lb02-after-backfill"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"instance_id\":\"lb02-2b3122-legacy-b\"",
+        "\"nonce\":\"lb02-after-backfill\""
+      ]
+    },
+    {
+      "pod": "lb02-2b3122-legacy-a",
+      "label": "legacy-http-after-backfill",
+      "argv": [
+        "/probe",
+        "request",
+        "http://10.233.16.3:8080/?nonce=lb02-after-backfill"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"instance_id\":\"lb02-2b3122-legacy-b\"",
+        "\"nonce\":\"lb02-after-backfill\""
+      ]
+    },
+    {
+      "pod": "lb02-2b3122-legacy-b",
+      "label": "legacy-http-after-backfill",
+      "argv": [
+        "/probe",
+        "request",
+        "http://10.233.16.2:8080/?nonce=lb02-after-backfill"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"instance_id\":\"lb02-2b3122-legacy-a\"",
+        "\"nonce\":\"lb02-after-backfill\""
+      ]
+    },
+    {
+      "pod": "lb02-2b3122-legacy-a",
+      "label": "legacy-intranet-after-backfill",
+      "argv": [
+        "/probe",
+        "request",
+        "http://10.96.0.10:9153/metrics?nonce=lb02-after-backfill"
+      ],
+      "expect_contains": [
+        "status 200",
+        "# HELP"
+      ]
+    },
+    {
+      "pod": "lb02-2b3122-legacy-b",
+      "label": "legacy-intranet-after-backfill",
+      "argv": [
+        "/probe",
+        "request",
+        "http://10.96.0.10:9153/metrics?nonce=lb02-after-backfill"
+      ],
+      "expect_contains": [
+        "status 200",
+        "# HELP"
+      ]
+    }
+  ]
+}

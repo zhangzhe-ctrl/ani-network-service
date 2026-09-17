@@ -1,0 +1,29 @@
+{
+  "at": "2026-09-14T18:51:05.778101+00:00",
+  "run": "20260914T184655Z-be9fd699",
+  "host": "ubuntu",
+  "result": "pass",
+  "commands": [
+    "bash",
+    "-c",
+    "make verify && go test -race -count=1 ./scripts/lb-api && mkdir ../artifacts && go build -trimpath -o ../artifacts/lb-api ./scripts/lb-api && go build -trimpath -o ../artifacts/network ./cmd/ani-network-service && sha256sum ../artifacts/lb-api ../artifacts/network"
+  ],
+  "exit": 0,
+  "source_manifest_sha256": "3c653e7eb2ea9672b17563b5d4e4a232f3ea2e9076cddea733b78fdee3460b9b",
+  "archive_sha256": "22a6b1a550b3d3721f68dbc25c3aae842bd2d4cb5e80a6fffcd061f8c303f91d",
+  "source_file_count": 1395,
+  "make_verify": "pass",
+  "lb_api_race": "pass",
+  "new_identity_negatives": [
+    "old context rejected before any API request",
+    "old cluster UID under new context rejected before bundle read or evidence creation"
+  ],
+  "artifact_sha256": {
+    "lb-api": "476ddf0b47a43f8df4c0420ad39ff044da3fdb85795d585af7e49fbce7fe0854",
+    "network": "a1099786989510ccafc2b02237f9e614512064894e448f3ae0e8da886a7203c3"
+  },
+  "postgres_race": "not_repeated: unchanged product/database/adapter/process source retains prior full-run evidence",
+  "prior_full_postgres_race_run": "20260914T164316Z-37824ac9",
+  "u09_live_product_api": "not_verified",
+  "evidence": "runs/20260914T184655Z-be9fd699/command.txt"
+}

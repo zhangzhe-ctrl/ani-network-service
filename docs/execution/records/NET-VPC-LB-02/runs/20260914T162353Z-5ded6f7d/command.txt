@@ -1,0 +1,15 @@
+source.tar.gz: OK
+verified source files: 1322
+go version go1.26.7 linux/amd64
+1.60.0
+v1.31.1
+Traceback (most recent call last):
+  File "/home/ubuntu/workspace/ani-network-service-runs/snat-20260914T162353Z-5ded6f7d/source/scripts/net05a-resource-guard", line 12, in <module>
+    child=subprocess.Popen(sys.argv[1:],start_new_session=True)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 1026, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "/usr/lib/python3.12/subprocess.py", line 1955, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+FileNotFoundError: [Errno 2] No such file or directory: 'scripts/integration -race -count=1 -v -run "TestNET05AMigrationUpgradesAllThreeHistoricalChecksums|TestSubnetMigrationUpgradesNET01WithoutChangingDurableFacts" ./internal/data && make verify && scripts/check-vpc-lb-contracts'
+REMOTE_COMMAND_EXIT=1

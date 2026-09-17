@@ -68,6 +68,7 @@ var ErrLeaseLost = errors.New("resource execution lease lost")
 // ResourceWork is the immutable resource snapshot used by the shared lifecycle
 // worker. Resource kinds are closed at the repository boundary.
 type ResourceWork struct {
+	LoadBalancer                                              *LoadBalancerWork
 	BaseRequired                                              bool
 	SystemManaged                                             bool
 	Egress                                                    *EgressWorkSpec
@@ -96,6 +97,7 @@ type Work struct {
 }
 
 type Progress struct {
+	LoadBalancer   *LoadBalancerObservation
 	Egress         *EgressAppliedFacts
 	Proof          ObservationProof
 	Backoff        bool
@@ -152,12 +154,23 @@ func NewWorker(repository WorkRepository, provider ResourceProvider, owner strin
 
 // Step advances at most one durable resource. Callers may stop forever after
 // this returns; unfinished work and its due time remain in the repository.
-func (w *Worker) Step(ctx context.Context) (bool, error) {
+func (w *Worker) Step(ctx context.Context) (worked bool, stepErr error) {
+	// Admission or a fresher observation may fence any completion, including
+	// never-dispatched cancellation and dependency gates. The durable task
+	// remains recoverable; losing ownership must not terminate the service.
+	defer func() {
+		if errors.Is(stepErr, ErrLeaseLost) {
+			stepErr = nil
+		}
+	}()
 	ctx, cancelStep := context.WithTimeout(ctx, w.policy.Lease)
 	defer cancelStep()
 	work, found, err := w.repository.Claim(ctx, w.owner, w.policy.Lease)
 	if err != nil || !found {
 		return found, err
+	}
+	if work.Resource.Kind == "load_balancer" {
+		return true, w.stepLoadBalancer(ctx, work)
 	}
 	progress := Progress{State: work.Resource.State, Identity: work.KnownIdentity, NextDelay: w.policy.ObserveEvery}
 	if work.ActiveOperation {
@@ -169,13 +182,13 @@ func (w *Worker) Step(ctx context.Context) (bool, error) {
 	if work.CancelUnsent {
 		progress.State, progress.OperationState, progress.ClearPending = Deleted, Succeeded, true
 		progress.Reason = ""
-		return true, w.repository.Finish(ctx, work, progress)
+		return true, w.finish(ctx, work, progress)
 	}
 	if work.GateReason != "" {
 		progress.Reason = work.GateReason
 		progress.Backoff = true
 		progress.NextDelay = w.policy.RetryMin
-		return true, w.repository.Finish(ctx, work, progress)
+		return true, w.finish(ctx, work, progress)
 	}
 	target := ProviderTarget{
 		TenantID: work.Resource.TenantID, ResourceID: work.Resource.ID, BindingID: work.BindingID, Egress: work.Resource.Egress,
@@ -229,15 +242,24 @@ func (w *Worker) Step(ctx context.Context) (bool, error) {
 		progress.NextDelay = w.retryDelay(work.Attempt)
 	}
 	if err == nil {
-		err = w.repository.Finish(ctx, work, progress)
+		err = w.finish(ctx, work, progress)
 	}
 	if w.observer != nil {
 		w.observer(ctx, work, progress, err)
 	}
-	if errors.Is(err, ErrLeaseLost) {
-		return true, nil
-	}
 	return true, err
+}
+
+// A service shutdown may cancel a Provider preflight before any write was
+// sent. Persist its definitive result with a separate bounded context, or an
+// already committed pending marker would lose that result forever. Completion
+// still checks the original lease, epoch, resource version and observation
+// fence in the repository; this does not permit another Provider request or
+// resolve an uncertain mutation from absence.
+func (w *Worker) finish(ctx context.Context, work Work, progress Progress) error {
+	completionCtx, cancel := context.WithTimeout(context.WithoutCancel(ctx), w.policy.RequestTimeout)
+	defer cancel()
+	return w.repository.Finish(completionCtx, work, progress)
 }
 
 func (w *Worker) ensure(ctx context.Context, work Work, target ProviderTarget, observed ProviderObservation, progress Progress) (Progress, error) {

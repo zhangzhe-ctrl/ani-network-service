@@ -1,0 +1,238 @@
+{
+  "at": "2026-09-15T14:43:29.727201+00:00",
+  "result": "pass",
+  "execution_host": "ani-01, exact task RBAC cleanup",
+  "records": [
+    {
+      "at": "2026-09-15T14:43:26.982099+00:00",
+      "command": [
+        "sudo",
+        "kubectl",
+        "--request-timeout=15s",
+        "get",
+        "RoleBinding",
+        "-n",
+        "lb02-09141908-2b3122",
+        "lb02-2b3122-public-probe-owner",
+        "-o",
+        "json"
+      ],
+      "request": null,
+      "exit": 0,
+      "response": {
+        "apiVersion": "rbac.authorization.k8s.io/v1",
+        "kind": "RoleBinding",
+        "metadata": {
+          "creationTimestamp": "2026-09-15T08:24:19Z",
+          "labels": {
+            "network.ani.io/test-run": "lb02-09141908-2b3122"
+          },
+          "name": "lb02-2b3122-public-probe-owner",
+          "namespace": "lb02-09141908-2b3122",
+          "resourceVersion": "348384",
+          "uid": "19cb4bd2-8b62-4e76-9b16-06637b57d8d6"
+        },
+        "roleRef": {
+          "apiGroup": "rbac.authorization.k8s.io",
+          "kind": "Role",
+          "name": "lb02-2b3122-public-probe-owner"
+        },
+        "subjects": [
+          {
+            "kind": "ServiceAccount",
+            "name": "lb02-2b3122-workload-owner",
+            "namespace": "lb02-09141908-2b3122"
+          }
+        ]
+      },
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-15T14:43:27.529101+00:00",
+      "command": [
+        "sudo",
+        "kubectl",
+        "--request-timeout=15s",
+        "delete",
+        "--raw",
+        "/apis/rbac.authorization.k8s.io/v1/namespaces/lb02-09141908-2b3122/rolebindings/lb02-2b3122-public-probe-owner",
+        "-f",
+        "-"
+      ],
+      "request": {
+        "apiVersion": "v1",
+        "kind": "DeleteOptions",
+        "preconditions": {
+          "uid": "19cb4bd2-8b62-4e76-9b16-06637b57d8d6"
+        }
+      },
+      "exit": 0,
+      "response": {
+        "kind": "Status",
+        "apiVersion": "v1",
+        "metadata": {},
+        "status": "Success",
+        "details": {
+          "name": "lb02-2b3122-public-probe-owner",
+          "group": "rbac.authorization.k8s.io",
+          "kind": "rolebindings",
+          "uid": "19cb4bd2-8b62-4e76-9b16-06637b57d8d6"
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-15T14:43:28.145394+00:00",
+      "command": [
+        "sudo",
+        "kubectl",
+        "--request-timeout=15s",
+        "get",
+        "RoleBinding",
+        "-n",
+        "lb02-09141908-2b3122",
+        "lb02-2b3122-public-probe-owner",
+        "--ignore-not-found",
+        "-o",
+        "json"
+      ],
+      "request": null,
+      "exit": 0,
+      "response": null,
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-15T14:43:28.669901+00:00",
+      "command": [
+        "sudo",
+        "kubectl",
+        "--request-timeout=15s",
+        "get",
+        "Role",
+        "-n",
+        "lb02-09141908-2b3122",
+        "lb02-2b3122-public-probe-owner",
+        "-o",
+        "json"
+      ],
+      "request": null,
+      "exit": 0,
+      "response": {
+        "apiVersion": "rbac.authorization.k8s.io/v1",
+        "kind": "Role",
+        "metadata": {
+          "creationTimestamp": "2026-09-15T08:24:19Z",
+          "labels": {
+            "network.ani.io/test-run": "lb02-09141908-2b3122"
+          },
+          "name": "lb02-2b3122-public-probe-owner",
+          "namespace": "lb02-09141908-2b3122",
+          "resourceVersion": "348377",
+          "uid": "63cd5df5-528d-4f67-890b-537702442649"
+        },
+        "rules": [
+          {
+            "apiGroups": [
+              ""
+            ],
+            "resources": [
+              "pods"
+            ],
+            "verbs": [
+              "create"
+            ]
+          },
+          {
+            "apiGroups": [
+              ""
+            ],
+            "resourceNames": [
+              "lb02-2b3122-public-probe-a",
+              "lb02-2b3122-public-probe-b",
+              "lb02-2b3122-outside-observer"
+            ],
+            "resources": [
+              "pods"
+            ],
+            "verbs": [
+              "get",
+              "delete"
+            ]
+          },
+          {
+            "apiGroups": [
+              ""
+            ],
+            "resourceNames": [
+              "lb02-2b3122-public-probe-a",
+              "lb02-2b3122-public-probe-b",
+              "lb02-2b3122-outside-observer"
+            ],
+            "resources": [
+              "pods/exec"
+            ],
+            "verbs": [
+              "get",
+              "create"
+            ]
+          }
+        ]
+      },
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-15T14:43:29.190180+00:00",
+      "command": [
+        "sudo",
+        "kubectl",
+        "--request-timeout=15s",
+        "delete",
+        "--raw",
+        "/apis/rbac.authorization.k8s.io/v1/namespaces/lb02-09141908-2b3122/roles/lb02-2b3122-public-probe-owner",
+        "-f",
+        "-"
+      ],
+      "request": {
+        "apiVersion": "v1",
+        "kind": "DeleteOptions",
+        "preconditions": {
+          "uid": "63cd5df5-528d-4f67-890b-537702442649"
+        }
+      },
+      "exit": 0,
+      "response": {
+        "kind": "Status",
+        "apiVersion": "v1",
+        "metadata": {},
+        "status": "Success",
+        "details": {
+          "name": "lb02-2b3122-public-probe-owner",
+          "group": "rbac.authorization.k8s.io",
+          "kind": "roles",
+          "uid": "63cd5df5-528d-4f67-890b-537702442649"
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-15T14:43:29.726604+00:00",
+      "command": [
+        "sudo",
+        "kubectl",
+        "--request-timeout=15s",
+        "get",
+        "Role",
+        "-n",
+        "lb02-09141908-2b3122",
+        "lb02-2b3122-public-probe-owner",
+        "--ignore-not-found",
+        "-o",
+        "json"
+      ],
+      "request": null,
+      "exit": 0,
+      "response": null,
+      "stderr": ""
+    }
+  ]
+}

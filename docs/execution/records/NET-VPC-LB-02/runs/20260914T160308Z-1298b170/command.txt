@@ -1,0 +1,31 @@
+source.tar.gz: OK
+verified source files: 1262
+go version go1.26.7 linux/amd64
+1.60.0
+v1.31.1
+127.0.0.1:5432 - accepting connections
+PostgreSQL image=docker.io/library/postgres@sha256:4ef4dbc939d61acea57712655ddb4b4ab27419c913f94cca0cd57cb3ea3c2280 container=4c2d2e82d845df58c00522c6f39fed4a873896892ebb16f8aebc1cd4aeed178c
+=== RUN   TestLBActualAdapterDeletePartialCreationWithoutGeneratedService
+=== RUN   TestLBActualAdapterDeletePartialCreationWithoutGeneratedService/backend
+=== RUN   TestLBActualAdapterDeletePartialCreationWithoutGeneratedService/gateway
+--- PASS: TestLBActualAdapterDeletePartialCreationWithoutGeneratedService (5.08s)
+    --- PASS: TestLBActualAdapterDeletePartialCreationWithoutGeneratedService/backend (2.15s)
+    --- PASS: TestLBActualAdapterDeletePartialCreationWithoutGeneratedService/gateway (2.93s)
+=== RUN   TestLBForeignOccupantsAndUIDReplacementRemainConflicts
+=== RUN   TestLBForeignOccupantsAndUIDReplacementRemainConflicts/service
+=== RUN   TestLBForeignOccupantsAndUIDReplacementRemainConflicts/foreign-namespace
+=== RUN   TestLBForeignOccupantsAndUIDReplacementRemainConflicts/nat
+=== RUN   TestLBForeignOccupantsAndUIDReplacementRemainConflicts/snat
+=== RUN   TestLBForeignOccupantsAndUIDReplacementRemainConflicts/service-uid
+--- PASS: TestLBForeignOccupantsAndUIDReplacementRemainConflicts (27.17s)
+    --- PASS: TestLBForeignOccupantsAndUIDReplacementRemainConflicts/service (5.63s)
+    --- PASS: TestLBForeignOccupantsAndUIDReplacementRemainConflicts/foreign-namespace (5.97s)
+    --- PASS: TestLBForeignOccupantsAndUIDReplacementRemainConflicts/nat (5.23s)
+    --- PASS: TestLBForeignOccupantsAndUIDReplacementRemainConflicts/snat (5.35s)
+    --- PASS: TestLBForeignOccupantsAndUIDReplacementRemainConflicts/service-uid (4.99s)
+=== RUN   TestLBSchemaFrom0006PreservesAllOldColumnsAndDormantReservations
+--- PASS: TestLBSchemaFrom0006PreservesAllOldColumnsAndDormantReservations (0.39s)
+PASS
+ok  	github.com/zhangzhe-ctrl/ani-network-service/internal/data	33.709s
+removed task container=4c2d2e82d845df58c00522c6f39fed4a873896892ebb16f8aebc1cd4aeed178c
+REMOTE_COMMAND_EXIT=0

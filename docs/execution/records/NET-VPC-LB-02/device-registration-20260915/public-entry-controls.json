@@ -1,0 +1,83 @@
+{
+  "at": "2026-09-15T09:31:59.193235+00:00",
+  "execution_host": "ubuntu",
+  "namespace": "lb02-09141908-2b3122",
+  "results": [
+    {
+      "pod": "lb02-2b3122-outside-observer",
+      "label": "outside-public-subnet-control",
+      "argv": [
+        "/probe",
+        "request",
+        "http://172.16.102.192:8080/?nonce=lb02-public-control-0931"
+      ],
+      "expect_contains": [
+        "status 200",
+        "lb02-2b3122-public-probe-a"
+      ],
+      "at": "2026-09-15T09:31:55.257163+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb02-09141908-2b3122",
+        "lb02-2b3122-outside-observer",
+        "-c",
+        "probe",
+        "--",
+        "/probe",
+        "request",
+        "http://172.16.102.192:8080/?nonce=lb02-public-control-0931"
+      ],
+      "exit": 0,
+      "stdout": "status 200\n{\"fixture_id\":\"lb02-09141908-2b3122\",\"hostname\":\"lb02-2b3122-public-probe-a\",\"instance_id\":\"lb02-2b3122-public-probe-a\",\"nonce\":\"lb02-public-control-0931\",\"port\":\"8080\"}\n",
+      "stderr": "",
+      "pass": true
+    },
+    {
+      "pod": "lb02-2b3122-public-probe-a",
+      "label": "public-pool-to-public-lb-eip",
+      "argv": [
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-public-pool-entry-0931"
+      ],
+      "expect_contains": [
+        "status 200",
+        "lb02-09141908-2b3122"
+      ],
+      "at": "2026-09-15T09:31:59.193209+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb02-09141908-2b3122",
+        "lb02-2b3122-public-probe-a",
+        "-c",
+        "probe",
+        "--",
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-public-pool-entry-0931"
+      ],
+      "exit": 2,
+      "stdout": "Get \"http://172.16.102.194:8080/?nonce=lb02-public-pool-entry-0931\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)\n",
+      "stderr": "command terminated with exit code 2\n",
+      "pass": false
+    }
+  ],
+  "input_file": "docs/execution/records/NET-VPC-LB-02/device-registration-20260915/public-entry-control-plan.json",
+  "result": "fail"
+}

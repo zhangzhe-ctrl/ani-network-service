@@ -1,0 +1,36 @@
+{
+  "load_balancer_id": "lb_d9f847eef7eb453a8388672718959ec8",
+  "expected_version": "100",
+  "idempotency_key": "lb02-private-add-client-01",
+  "name": "lb02-2b3122-private",
+  "description": "",
+  "backends": [
+    {
+      "id": "921f84d6-dda1-4373-a25d-3aae356a32bc",
+      "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+      "address": "10.233.1.3",
+      "port": 8080,
+      "weight": 1
+    },
+    {
+      "id": "ff95c238-ae88-41ad-8f10-8a01162683b0",
+      "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+      "address": "10.233.1.2",
+      "port": 8080,
+      "weight": 1
+    },
+    {
+      "subnet_id": "subnet_f74d90cbb5484f7fb37f8a8f6782da1d",
+      "address": "10.233.0.2",
+      "port": 8080,
+      "weight": 1
+    }
+  ],
+  "health_check": {
+    "protocol": "LOAD_BALANCER_HEALTH_CHECK_PROTOCOL_TCP",
+    "interval_seconds": 5,
+    "timeout_seconds": 3,
+    "unhealthy_threshold": 3,
+    "healthy_threshold": 1
+  }
+}

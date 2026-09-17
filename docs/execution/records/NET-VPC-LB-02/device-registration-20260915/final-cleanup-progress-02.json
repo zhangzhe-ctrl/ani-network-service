@@ -1,0 +1,12 @@
+{
+  "at": "2026-09-15T14:33:17.438111+00:00",
+  "execution_host": "ubuntu",
+  "transport_exit": 0,
+  "result": {
+    "query": "SELECT json_build_object('active_attachments',(SELECT count(*) FROM network_attachments WHERE state<>'released'),'active_lb_refs',(SELECT count(*) FROM network_lb_subnet_refs WHERE released_at IS NULL),'subnets',(SELECT json_agg(json_build_object('id',subnet_id,'state',state)) FROM network_subnets WHERE state<>'deleted'));",
+    "exit": 0,
+    "stdout": "BEGIN\n{\"active_attachments\" : 0, \"active_lb_refs\" : 0, \"subnets\" : [{\"id\" : \"subnet_f74d90cbb5484f7fb37f8a8f6782da1d\", \"state\" : \"available\"}, {\"id\" : \"subnet_2a3f02dc6b444cc4b708a38d345a88c7\", \"state\" : \"available\"}]}\nROLLBACK\n",
+    "stderr": ""
+  },
+  "stderr": ""
+}

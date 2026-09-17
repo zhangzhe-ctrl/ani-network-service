@@ -1,0 +1,17 @@
+source.tar.gz: OK
+verified source files: 1557
+go version go1.26.7 linux/amd64
+1.60.0
+v1.31.1
+127.0.0.1:5432 - accepting connections
+PostgreSQL image=docker.io/library/postgres@sha256:4ef4dbc939d61acea57712655ddb4b4ab27419c913f94cca0cd57cb3ea3c2280 container=e90429b140cc0bb3c1e58714d0e848fda9640e801a3ef1142595166a34396bf2
+--- FAIL: TestEgressKCManagedVlanWithAuditLongerThanRefreshInterval (210.62s)
+    egress_device_integration_test.go:304: network_platform_resources [{"state": "provisioning", "reason": "PROVIDER_UNAVAILABLE", "version": 251, "last_operation_id": "015a1013-f2e9-4082-9277-9c6e3fa608be"}, {"state": "degraded", "reason": "PROVIDER_NOT_READY", "version": 252, "last_operation_id": "0a19fe2e-3f7f-4a99-b2d9-424105fe6831"}]
+    egress_device_integration_test.go:304: network_eips []
+    egress_device_integration_test.go:304: network_snat_bindings []
+    egress_device_integration_test.go:304: egress worker did not converge
+FAIL
+FAIL	github.com/zhangzhe-ctrl/ani-network-service/internal/data	210.670s
+FAIL
+removed task container=e90429b140cc0bb3c1e58714d0e848fda9640e801a3ef1142595166a34396bf2
+REMOTE_COMMAND_EXIT=1

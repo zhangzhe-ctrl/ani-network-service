@@ -1,0 +1,12 @@
+{
+  "at": "2026-09-15T11:20:50.405031+00:00",
+  "execution_host": "ubuntu",
+  "transport_exit": 0,
+  "result": {
+    "query": "SELECT clock_timestamp(),row_to_json(b) FROM network_vpc_base_connectivity b WHERE vpc_id='vpc_d06f28e82fe847f7bf2cedd57dad82f4'; SELECT snat_id,state,reason,observed_at,applied_enabled FROM network_snat_bindings WHERE snat_id='snat_3cbc9e4d07b44c0291a541d50bd4b43e'; SELECT attachment_id,state,reason,observed_at FROM network_attachments WHERE attachment_id IN ('att_7d08b61f4038432a842d2fda525607b9','att_a6172d5ee5be434087f939001a435c9e');",
+    "exit": 0,
+    "stdout": "BEGIN\n2026-09-15 11:20:50.432737+00|{\"tenant_id\":\"d896f754-ab06-4cbe-a7fd-53148d16d0ad\",\"vpc_id\":\"vpc_d06f28e82fe847f7bf2cedd57dad82f4\",\"cluster_id\":\"lb02-09141908-2b3122\",\"namespace\":\"lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad\",\"pool_id\":\"pool_f6c078d198ae4ea1be6f43cfad8f9934\",\"pool_revision\":1,\"purpose\":\"intranet\",\"eip_id\":\"eip_c428922594b94429a405305c6c781897\",\"snat_id\":\"snat_3cbc9e4d07b44c0291a541d50bd4b43e\",\"operation_id\":\"099f288a-56db-4ae1-8ba9-2a1efb473412\",\"state\":\"ready\",\"reason\":\"\",\"provider_ready\":true,\"provider_observed_at\":\"2026-09-15T11:20:19.446428+00:00\",\"observed_at\":\"2026-09-15T11:19:49.926228+00:00\",\"terminating\":false,\"version\":1053,\"created_at\":\"2026-09-15T04:02:40.395116+00:00\"}\nsnat_3cbc9e4d07b44c0291a541d50bd4b43e|available||2026-09-15 11:20:19.446428+00|t\natt_a6172d5ee5be434087f939001a435c9e|attached||2026-09-15 11:20:42.543908+00\natt_7d08b61f4038432a842d2fda525607b9|attached||2026-09-15 11:20:42.543908+00\nROLLBACK\n",
+    "stderr": ""
+  },
+  "stderr": ""
+}

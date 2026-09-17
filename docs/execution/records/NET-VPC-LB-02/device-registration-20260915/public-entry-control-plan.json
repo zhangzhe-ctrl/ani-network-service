@@ -1,0 +1,31 @@
+{
+  "namespace": "lb02-09141908-2b3122",
+  "commands": [
+    {
+      "pod": "lb02-2b3122-outside-observer",
+      "label": "outside-public-subnet-control",
+      "argv": [
+        "/probe",
+        "request",
+        "http://172.16.102.192:8080/?nonce=lb02-public-control-0931"
+      ],
+      "expect_contains": [
+        "status 200",
+        "lb02-2b3122-public-probe-a"
+      ]
+    },
+    {
+      "pod": "lb02-2b3122-public-probe-a",
+      "label": "public-pool-to-public-lb-eip",
+      "argv": [
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-public-pool-entry-0931"
+      ],
+      "expect_contains": [
+        "status 200",
+        "lb02-09141908-2b3122"
+      ]
+    }
+  ]
+}

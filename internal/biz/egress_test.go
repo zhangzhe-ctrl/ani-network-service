@@ -116,6 +116,41 @@ func TestNodeInterfaceFactsDoNotTreatManagementOrStaleLinksAsCandidates(t *testi
 		})
 	}
 }
+
+func TestPreManagedDeviceRequiresCompleteKCProof(t *testing.T) {
+	now := time.Now().UTC()
+	fresh := NodeInterface{NodeName: "ani-01", NodeUID: "node-1", Name: "ens35", Kind: "device", MAC: "00:0c:29:e2:f0:2b", Master: "ovs-system", OVSManaged: true, KCManaged: true, KCConfigured: true, KCBridgeReady: true, KCConfigUID: "config-uid", LinkUp: true, Carrier: true, ObservedAt: now}
+	if !FilterNodeInterfaces([]NodeInterface{fresh}, now, time.Minute)[0].Selectable {
+		t.Fatal("already prepared kc device is not selectable for registration")
+	}
+	cases := []struct {
+		name   string
+		change func(*NodeInterface)
+	}{
+		{"unconfigured", func(v *NodeInterface) { v.KCConfigured = false }},
+		{"not_managed", func(v *NodeInterface) { v.KCManaged = false }},
+		{"unknown_config", func(v *NodeInterface) { v.KCConfigUID = "" }},
+		{"wrong_bridge_or_mapping", func(v *NodeInterface) { v.KCBridgeReady = false }},
+		{"another_owner", func(v *NodeInterface) { v.KCDeviceOwner = "foreign-binding" }},
+		{"bond", func(v *NodeInterface) { v.Master = "bond0" }},
+		{"no_mac", func(v *NodeInterface) { v.MAC = "" }},
+		{"link_down", func(v *NodeInterface) { v.LinkUp = false }},
+		{"no_carrier", func(v *NodeInterface) { v.Carrier = false }},
+		{"management_bridge", func(v *NodeInterface) { v.Management = true }},
+		{"address", func(v *NodeInterface) { v.Addresses = []string{"172.16.102.200/24"} }},
+		{"stale", func(v *NodeInterface) { v.ObservedAt = now.Add(-2 * time.Minute) }},
+		{"external_vlan", func(v *NodeInterface) { v.UnavailableReasons = []string{"provider_vlan_in_use"} }},
+	}
+	for _, tc := range cases {
+		t.Run(tc.name, func(t *testing.T) {
+			v := fresh
+			tc.change(&v)
+			if FilterNodeInterfaces([]NodeInterface{v}, now, time.Minute)[0].Selectable {
+				t.Fatal("unsafe pre-managed device accepted", v)
+			}
+		})
+	}
+}
 func TestEgressFingerprintsPreserveIntentAndIgnoreInfrastructureRefresh(t *testing.T) {
 	i := EgressIntent{TenantID: "tenant", Kind: "create_eip", Name: "eip", IdempotencyKey: "one"}
 	h := i.Fingerprint()

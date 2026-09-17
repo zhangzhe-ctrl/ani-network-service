@@ -5,6 +5,7 @@ import (
 	"encoding/base64"
 	"fmt"
 	"net"
+	"regexp"
 	"strconv"
 	"strings"
 	"time"
@@ -81,6 +82,16 @@ func (c *Bootstrap) Validate() error {
 		}
 		if o.QueueCapacity < 16 || o.QueueCapacity > 65536 || o.WorkersPerKind < 1 || o.WorkersPerKind > 4 || o.AuditInterval.AsDuration()+o.AuditJitter.AsDuration()+o.AuditTimeout.AsDuration() >= w.StaleAfter.AsDuration() {
 			return fmt.Errorf("invalid observation capacity or freshness budget")
+		}
+	}
+	if lb := c.Network.LoadBalancer; lb != nil {
+		if !regexp.MustCompile(`^[a-f0-9]{64}$`).MatchString(lb.InstallationFingerprint) {
+			return fmt.Errorf("load_balancer requires the pinned installation fingerprint")
+		}
+		for _, id := range []string{lb.ControllerImageId, lb.EnvoyImageId, lb.ShutdownImageId, lb.KcImageId} {
+			if !regexp.MustCompile(`^(?:[^\s@]+@)?sha256:[a-f0-9]{64}$`).MatchString(id) {
+				return fmt.Errorf("load_balancer requires fixed running image IDs")
+			}
 		}
 	}
 	return nil

@@ -1,0 +1,52 @@
+{
+  "at": "2026-09-15T11:42:02.763185+00:00",
+  "result": "fail",
+  "scope": "fixed 30 observations plus bounded diagnostic run; no product semantic change",
+  "source_run": "20260915T112356Z-8a8f27c9",
+  "qualified_source_run": "20260915T074304Z-31ea8959",
+  "counts": [
+    {
+      "rpc_code": "OK",
+      "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_CONFIGURED",
+      "reason": "",
+      "observation_stale": false,
+      "count": 27
+    },
+    {
+      "rpc_code": "OK",
+      "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_UNKNOWN",
+      "reason": "PROVIDER_UNAVAILABLE",
+      "observation_stale": false,
+      "count": 3
+    }
+  ],
+  "observed_failure_chain": [
+    {
+      "at": "2026-09-15T11:33:35.258878974Z",
+      "stage": "readEgressSet rejects invalid audit view before applying any new SNAT evidence"
+    },
+    {
+      "at": "2026-09-15T11:33:35.46442987Z",
+      "stage": "base dependency check sees SNAT reason PROVIDER_UNAVAILABLE and applied_enabled=null; LB dependencies fail"
+    }
+  ],
+  "snapshot_rejection_count": 3,
+  "logged_related_invalidation_keys": [
+    "node-facts"
+  ],
+  "root_cause_limits": [
+    "Exact origin of each invalidation (epoch boundary versus related event) is not fully captured; do not attribute all samples to one trigger.",
+    "BackendIdentityMismatch from r20 was not reproduced in this diagnostic window.",
+    "No proof of actual packet loss during the status transitions; earlier private VIP traffic passed.",
+    "No fix applied; temporary instrumentation removed, original source/binaries restored."
+  ],
+  "evidence": [
+    "observation-debug-r22-stability.json",
+    "observation-debug-stopped.json",
+    "observation-debug-plan.json",
+    "observation-debug-install.json",
+    "observation-debug-registration.json",
+    "observation-debug-restored.json",
+    "after-observation-debug-1140.json"
+  ]
+}

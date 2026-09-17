@@ -1,0 +1,29 @@
+{
+  "at": "2026-09-15T14:56:11.527657+00:00",
+  "execution_host": "ubuntu",
+  "command": [
+    "bash",
+    "-c",
+    "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+    "kubectl",
+    "--kubeconfig",
+    "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/kubeconfig.json",
+    "--request-timeout=20s",
+    "get",
+    "clusterroles,clusterrolebindings",
+    "-l",
+    "network.ani.io/test-run=lb02-09141908-2b3122",
+    "-o",
+    "json"
+  ],
+  "exit": 1,
+  "objects": {
+    "apiVersion": "v1",
+    "items": [],
+    "kind": "List",
+    "metadata": {
+      "resourceVersion": ""
+    }
+  },
+  "stderr": "Error from server (Forbidden): clusterroles.rbac.authorization.k8s.io is forbidden: User \"system:serviceaccount:lb02-09141908-2b3122:network\" cannot list resource \"clusterroles\" in API group \"rbac.authorization.k8s.io\" at the cluster scope\nError from server (Forbidden): clusterrolebindings.rbac.authorization.k8s.io is forbidden: User \"system:serviceaccount:lb02-09141908-2b3122:network\" cannot list resource \"clusterrolebindings\" in API group \"rbac.authorization.k8s.io\" at the cluster scope\n"
+}

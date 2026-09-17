@@ -1,0 +1,661 @@
+{
+  "at": "2026-09-15T08:28:10.213520+00:00",
+  "execution_host": "ubuntu",
+  "pods": [
+    {
+      "exit": 0,
+      "object": {
+        "apiVersion": "v1",
+        "kind": "Pod",
+        "metadata": {
+          "annotations": {
+            "networking.kubercloud.com/subnet": "kcn-system/pool-f28b9d470c0147f6a66646b8976c36f9",
+            "networking.kubercloud.com/vnic": "auto-lb02-2b3122-public-probe-a-vnic-5bv2m"
+          },
+          "creationTimestamp": "2026-09-15T08:25:14Z",
+          "generation": 1,
+          "labels": {
+            "network.ani.io/fixture-scope": "platform-public-qualification",
+            "network.ani.io/test-run": "lb02-09141908-2b3122"
+          },
+          "name": "lb02-2b3122-public-probe-a",
+          "namespace": "lb02-09141908-2b3122",
+          "resourceVersion": "348718",
+          "uid": "eb83e56b-b6d3-496d-bc30-3f8b03a4fa20"
+        },
+        "spec": {
+          "automountServiceAccountToken": false,
+          "containers": [
+            {
+              "env": [
+                {
+                  "name": "NET05_ID",
+                  "value": "lb02-09141908-2b3122"
+                },
+                {
+                  "name": "ANI_WORKLOAD_ID",
+                  "value": "lb02-2b3122-public-probe-a"
+                },
+                {
+                  "name": "NET05_PORT",
+                  "value": "8080"
+                }
+              ],
+              "image": "localhost/lb02-2b3122-probe@sha256:647c2acd8e115511a18506014995ec01b7d0d62fbc05f2a6e51a5c65c2a3fcce",
+              "imagePullPolicy": "Never",
+              "name": "probe",
+              "ports": [
+                {
+                  "containerPort": 8080,
+                  "protocol": "TCP"
+                }
+              ],
+              "readinessProbe": {
+                "failureThreshold": 3,
+                "httpGet": {
+                  "path": "/",
+                  "port": 8080,
+                  "scheme": "HTTP"
+                },
+                "periodSeconds": 2,
+                "successThreshold": 1,
+                "timeoutSeconds": 1
+              },
+              "resources": {
+                "limits": {
+                  "cpu": "100m",
+                  "memory": "64Mi"
+                },
+                "requests": {
+                  "cpu": "10m",
+                  "memory": "32Mi"
+                }
+              },
+              "securityContext": {
+                "allowPrivilegeEscalation": false,
+                "capabilities": {
+                  "drop": [
+                    "ALL"
+                  ]
+                },
+                "readOnlyRootFilesystem": true
+              },
+              "terminationMessagePath": "/dev/termination-log",
+              "terminationMessagePolicy": "File"
+            }
+          ],
+          "dnsPolicy": "ClusterFirst",
+          "enableServiceLinks": true,
+          "nodeName": "ani-02",
+          "nodeSelector": {
+            "kubernetes.io/hostname": "ani-02"
+          },
+          "preemptionPolicy": "PreemptLowerPriority",
+          "priority": 0,
+          "restartPolicy": "Always",
+          "schedulerName": "default-scheduler",
+          "securityContext": {
+            "runAsGroup": 65532,
+            "runAsNonRoot": true,
+            "runAsUser": 65532,
+            "seccompProfile": {
+              "type": "RuntimeDefault"
+            }
+          },
+          "serviceAccount": "default",
+          "serviceAccountName": "default",
+          "terminationGracePeriodSeconds": 30,
+          "tolerations": [
+            {
+              "effect": "NoExecute",
+              "key": "node.kubernetes.io/not-ready",
+              "operator": "Exists",
+              "tolerationSeconds": 300
+            },
+            {
+              "effect": "NoExecute",
+              "key": "node.kubernetes.io/unreachable",
+              "operator": "Exists",
+              "tolerationSeconds": 300
+            }
+          ]
+        },
+        "status": {
+          "conditions": [
+            {
+              "lastProbeTime": null,
+              "lastTransitionTime": "2026-09-15T08:25:15Z",
+              "observedGeneration": 1,
+              "status": "True",
+              "type": "PodReadyToStartContainers"
+            },
+            {
+              "lastProbeTime": null,
+              "lastTransitionTime": "2026-09-15T08:25:14Z",
+              "observedGeneration": 1,
+              "status": "True",
+              "type": "Initialized"
+            },
+            {
+              "lastProbeTime": null,
+              "lastTransitionTime": "2026-09-15T08:25:16Z",
+              "observedGeneration": 1,
+              "status": "True",
+              "type": "Ready"
+            },
+            {
+              "lastProbeTime": null,
+              "lastTransitionTime": "2026-09-15T08:25:16Z",
+              "observedGeneration": 1,
+              "status": "True",
+              "type": "ContainersReady"
+            },
+            {
+              "lastProbeTime": null,
+              "lastTransitionTime": "2026-09-15T08:25:14Z",
+              "observedGeneration": 1,
+              "status": "True",
+              "type": "PodScheduled"
+            }
+          ],
+          "containerStatuses": [
+            {
+              "allocatedResources": {
+                "cpu": "10m",
+                "memory": "32Mi"
+              },
+              "containerID": "containerd://fa318da2cfc4f6c1153fd56a435b883d5927d260ea3bbc3a04fae6b6acf1820c",
+              "image": "localhost/lb02-2b3122-probe:20260915",
+              "imageID": "docker.io/library/import-2026-09-15@sha256:6dc16949364cbd67c142d6d0ca3aa6353146917816936e63beb672621fcb9295",
+              "lastState": {},
+              "name": "probe",
+              "ready": true,
+              "resources": {
+                "limits": {
+                  "cpu": "100m",
+                  "memory": "64Mi"
+                },
+                "requests": {
+                  "cpu": "10m",
+                  "memory": "32Mi"
+                }
+              },
+              "restartCount": 0,
+              "started": true,
+              "state": {
+                "running": {
+                  "startedAt": "2026-09-15T08:25:15Z"
+                }
+              },
+              "user": {
+                "linux": {
+                  "gid": 65532,
+                  "supplementalGroups": [
+                    65532
+                  ],
+                  "uid": 65532
+                }
+              }
+            }
+          ],
+          "hostIP": "172.16.101.11",
+          "hostIPs": [
+            {
+              "ip": "172.16.101.11"
+            }
+          ],
+          "observedGeneration": 1,
+          "phase": "Running",
+          "podIP": "172.16.102.192",
+          "podIPs": [
+            {
+              "ip": "172.16.102.192"
+            }
+          ],
+          "qosClass": "Burstable",
+          "startTime": "2026-09-15T08:25:14Z"
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "exit": 0,
+      "object": {
+        "apiVersion": "v1",
+        "kind": "Pod",
+        "metadata": {
+          "annotations": {
+            "networking.kubercloud.com/subnet": "kcn-system/pool-f28b9d470c0147f6a66646b8976c36f9",
+            "networking.kubercloud.com/vnic": "auto-lb02-2b3122-public-probe-b-vnic-v65tt"
+          },
+          "creationTimestamp": "2026-09-15T08:25:14Z",
+          "generation": 1,
+          "labels": {
+            "network.ani.io/fixture-scope": "platform-public-qualification",
+            "network.ani.io/test-run": "lb02-09141908-2b3122"
+          },
+          "name": "lb02-2b3122-public-probe-b",
+          "namespace": "lb02-09141908-2b3122",
+          "resourceVersion": "348925",
+          "uid": "584da836-3185-4828-8fbf-06806b0784aa"
+        },
+        "spec": {
+          "automountServiceAccountToken": false,
+          "containers": [
+            {
+              "env": [
+                {
+                  "name": "NET05_ID",
+                  "value": "lb02-09141908-2b3122"
+                },
+                {
+                  "name": "ANI_WORKLOAD_ID",
+                  "value": "lb02-2b3122-public-probe-b"
+                },
+                {
+                  "name": "NET05_PORT",
+                  "value": "8080"
+                }
+              ],
+              "image": "localhost/lb02-2b3122-probe@sha256:647c2acd8e115511a18506014995ec01b7d0d62fbc05f2a6e51a5c65c2a3fcce",
+              "imagePullPolicy": "Never",
+              "name": "probe",
+              "ports": [
+                {
+                  "containerPort": 8080,
+                  "protocol": "TCP"
+                }
+              ],
+              "readinessProbe": {
+                "failureThreshold": 3,
+                "httpGet": {
+                  "path": "/",
+                  "port": 8080,
+                  "scheme": "HTTP"
+                },
+                "periodSeconds": 2,
+                "successThreshold": 1,
+                "timeoutSeconds": 1
+              },
+              "resources": {
+                "limits": {
+                  "cpu": "100m",
+                  "memory": "64Mi"
+                },
+                "requests": {
+                  "cpu": "10m",
+                  "memory": "32Mi"
+                }
+              },
+              "securityContext": {
+                "allowPrivilegeEscalation": false,
+                "capabilities": {
+                  "drop": [
+                    "ALL"
+                  ]
+                },
+                "readOnlyRootFilesystem": true
+              },
+              "terminationMessagePath": "/dev/termination-log",
+              "terminationMessagePolicy": "File"
+            }
+          ],
+          "dnsPolicy": "ClusterFirst",
+          "enableServiceLinks": true,
+          "nodeName": "ani-03",
+          "nodeSelector": {
+            "kubernetes.io/hostname": "ani-03"
+          },
+          "preemptionPolicy": "PreemptLowerPriority",
+          "priority": 0,
+          "restartPolicy": "Always",
+          "schedulerName": "default-scheduler",
+          "securityContext": {
+            "runAsGroup": 65532,
+            "runAsNonRoot": true,
+            "runAsUser": 65532,
+            "seccompProfile": {
+              "type": "RuntimeDefault"
+            }
+          },
+          "serviceAccount": "default",
+          "serviceAccountName": "default",
+          "terminationGracePeriodSeconds": 30,
+          "tolerations": [
+            {
+              "effect": "NoExecute",
+              "key": "node.kubernetes.io/not-ready",
+              "operator": "Exists",
+              "tolerationSeconds": 300
+            },
+            {
+              "effect": "NoExecute",
+              "key": "node.kubernetes.io/unreachable",
+              "operator": "Exists",
+              "tolerationSeconds": 300
+            }
+          ]
+        },
+        "status": {
+          "conditions": [
+            {
+              "lastProbeTime": null,
+              "lastTransitionTime": "2026-09-15T08:25:17Z",
+              "observedGeneration": 1,
+              "status": "True",
+              "type": "PodReadyToStartContainers"
+            },
+            {
+              "lastProbeTime": null,
+              "lastTransitionTime": "2026-09-15T08:25:14Z",
+              "observedGeneration": 1,
+              "status": "True",
+              "type": "Initialized"
+            },
+            {
+              "lastProbeTime": null,
+              "lastTransitionTime": "2026-09-15T08:25:55Z",
+              "message": "containers with unready status: [probe]",
+              "observedGeneration": 1,
+              "reason": "ContainersNotReady",
+              "status": "False",
+              "type": "Ready"
+            },
+            {
+              "lastProbeTime": null,
+              "lastTransitionTime": "2026-09-15T08:25:55Z",
+              "message": "containers with unready status: [probe]",
+              "observedGeneration": 1,
+              "reason": "ContainersNotReady",
+              "status": "False",
+              "type": "ContainersReady"
+            },
+            {
+              "lastProbeTime": null,
+              "lastTransitionTime": "2026-09-15T08:25:14Z",
+              "observedGeneration": 1,
+              "status": "True",
+              "type": "PodScheduled"
+            }
+          ],
+          "containerStatuses": [
+            {
+              "allocatedResources": {
+                "cpu": "10m",
+                "memory": "32Mi"
+              },
+              "containerID": "containerd://f8e4c49471adf8ae9a9faf8a225e91212fbdb0cc0dcd63ec36b90178565197d9",
+              "image": "localhost/lb02-2b3122-probe:20260915",
+              "imageID": "docker.io/library/import-2026-09-15@sha256:6dc16949364cbd67c142d6d0ca3aa6353146917816936e63beb672621fcb9295",
+              "lastState": {},
+              "name": "probe",
+              "ready": false,
+              "resources": {
+                "limits": {
+                  "cpu": "100m",
+                  "memory": "64Mi"
+                },
+                "requests": {
+                  "cpu": "10m",
+                  "memory": "32Mi"
+                }
+              },
+              "restartCount": 0,
+              "started": true,
+              "state": {
+                "running": {
+                  "startedAt": "2026-09-15T08:25:17Z"
+                }
+              },
+              "user": {
+                "linux": {
+                  "gid": 65532,
+                  "supplementalGroups": [
+                    65532
+                  ],
+                  "uid": 65532
+                }
+              }
+            }
+          ],
+          "hostIP": "172.16.101.12",
+          "hostIPs": [
+            {
+              "ip": "172.16.101.12"
+            }
+          ],
+          "observedGeneration": 1,
+          "phase": "Running",
+          "podIP": "172.16.102.193",
+          "podIPs": [
+            {
+              "ip": "172.16.102.193"
+            }
+          ],
+          "qosClass": "Burstable",
+          "startTime": "2026-09-15T08:25:14Z"
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "exit": 0,
+      "object": {
+        "apiVersion": "v1",
+        "kind": "Pod",
+        "metadata": {
+          "creationTimestamp": "2026-09-15T08:25:15Z",
+          "generation": 1,
+          "labels": {
+            "network.ani.io/fixture-scope": "platform-public-qualification",
+            "network.ani.io/test-run": "lb02-09141908-2b3122"
+          },
+          "name": "lb02-2b3122-outside-observer",
+          "namespace": "lb02-09141908-2b3122",
+          "resourceVersion": "348726",
+          "uid": "a7a6cefc-efff-4692-947a-cd731be30633"
+        },
+        "spec": {
+          "automountServiceAccountToken": false,
+          "containers": [
+            {
+              "env": [
+                {
+                  "name": "NET05_ID",
+                  "value": "lb02-09141908-2b3122"
+                },
+                {
+                  "name": "ANI_WORKLOAD_ID",
+                  "value": "lb02-2b3122-outside-observer"
+                },
+                {
+                  "name": "NET05_PORT",
+                  "value": "18808"
+                }
+              ],
+              "image": "localhost/lb02-2b3122-probe@sha256:647c2acd8e115511a18506014995ec01b7d0d62fbc05f2a6e51a5c65c2a3fcce",
+              "imagePullPolicy": "Never",
+              "name": "probe",
+              "ports": [
+                {
+                  "containerPort": 18808,
+                  "hostPort": 18808,
+                  "protocol": "TCP"
+                }
+              ],
+              "readinessProbe": {
+                "failureThreshold": 3,
+                "httpGet": {
+                  "path": "/",
+                  "port": 18808,
+                  "scheme": "HTTP"
+                },
+                "periodSeconds": 2,
+                "successThreshold": 1,
+                "timeoutSeconds": 1
+              },
+              "resources": {
+                "limits": {
+                  "cpu": "100m",
+                  "memory": "64Mi"
+                },
+                "requests": {
+                  "cpu": "10m",
+                  "memory": "32Mi"
+                }
+              },
+              "securityContext": {
+                "allowPrivilegeEscalation": false,
+                "capabilities": {
+                  "drop": [
+                    "ALL"
+                  ]
+                },
+                "readOnlyRootFilesystem": true
+              },
+              "terminationMessagePath": "/dev/termination-log",
+              "terminationMessagePolicy": "File"
+            }
+          ],
+          "dnsPolicy": "ClusterFirstWithHostNet",
+          "enableServiceLinks": true,
+          "hostNetwork": true,
+          "nodeName": "ani-01",
+          "nodeSelector": {
+            "kubernetes.io/hostname": "ani-01"
+          },
+          "preemptionPolicy": "PreemptLowerPriority",
+          "priority": 0,
+          "restartPolicy": "Always",
+          "schedulerName": "default-scheduler",
+          "securityContext": {
+            "runAsGroup": 65532,
+            "runAsNonRoot": true,
+            "runAsUser": 65532,
+            "seccompProfile": {
+              "type": "RuntimeDefault"
+            }
+          },
+          "serviceAccount": "default",
+          "serviceAccountName": "default",
+          "terminationGracePeriodSeconds": 30,
+          "tolerations": [
+            {
+              "effect": "NoSchedule",
+              "key": "node-role.kubernetes.io/control-plane",
+              "operator": "Exists"
+            },
+            {
+              "effect": "NoExecute",
+              "key": "node.kubernetes.io/not-ready",
+              "operator": "Exists",
+              "tolerationSeconds": 300
+            },
+            {
+              "effect": "NoExecute",
+              "key": "node.kubernetes.io/unreachable",
+              "operator": "Exists",
+              "tolerationSeconds": 300
+            }
+          ]
+        },
+        "status": {
+          "conditions": [
+            {
+              "lastProbeTime": null,
+              "lastTransitionTime": "2026-09-15T08:25:17Z",
+              "observedGeneration": 1,
+              "status": "True",
+              "type": "PodReadyToStartContainers"
+            },
+            {
+              "lastProbeTime": null,
+              "lastTransitionTime": "2026-09-15T08:25:15Z",
+              "observedGeneration": 1,
+              "status": "True",
+              "type": "Initialized"
+            },
+            {
+              "lastProbeTime": null,
+              "lastTransitionTime": "2026-09-15T08:25:17Z",
+              "observedGeneration": 1,
+              "status": "True",
+              "type": "Ready"
+            },
+            {
+              "lastProbeTime": null,
+              "lastTransitionTime": "2026-09-15T08:25:17Z",
+              "observedGeneration": 1,
+              "status": "True",
+              "type": "ContainersReady"
+            },
+            {
+              "lastProbeTime": null,
+              "lastTransitionTime": "2026-09-15T08:25:15Z",
+              "observedGeneration": 1,
+              "status": "True",
+              "type": "PodScheduled"
+            }
+          ],
+          "containerStatuses": [
+            {
+              "allocatedResources": {
+                "cpu": "10m",
+                "memory": "32Mi"
+              },
+              "containerID": "containerd://e74f74172db57813194d2367e1b3479309cdd66c62f7a2b469463e252c3b8a02",
+              "image": "localhost/lb02-2b3122-probe:20260915",
+              "imageID": "docker.io/library/import-2026-09-15@sha256:6dc16949364cbd67c142d6d0ca3aa6353146917816936e63beb672621fcb9295",
+              "lastState": {},
+              "name": "probe",
+              "ready": true,
+              "resources": {
+                "limits": {
+                  "cpu": "100m",
+                  "memory": "64Mi"
+                },
+                "requests": {
+                  "cpu": "10m",
+                  "memory": "32Mi"
+                }
+              },
+              "restartCount": 0,
+              "started": true,
+              "state": {
+                "running": {
+                  "startedAt": "2026-09-15T08:25:16Z"
+                }
+              },
+              "user": {
+                "linux": {
+                  "gid": 65532,
+                  "supplementalGroups": [
+                    65532
+                  ],
+                  "uid": 65532
+                }
+              }
+            }
+          ],
+          "hostIP": "172.16.101.10",
+          "hostIPs": [
+            {
+              "ip": "172.16.101.10"
+            }
+          ],
+          "observedGeneration": 1,
+          "phase": "Running",
+          "podIP": "172.16.101.10",
+          "podIPs": [
+            {
+              "ip": "172.16.101.10"
+            }
+          ],
+          "qosClass": "Burstable",
+          "startTime": "2026-09-15T08:25:15Z"
+        }
+      },
+      "stderr": ""
+    }
+  ]
+}

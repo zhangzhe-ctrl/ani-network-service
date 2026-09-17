@@ -1,0 +1,302 @@
+{
+  "execution_host": "ubuntu",
+  "command": [
+    "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/lb-api",
+    "call",
+    "-target",
+    "unix:///home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-b.sock",
+    "-service",
+    "NetworkService",
+    "-method",
+    "GetVPC"
+  ],
+  "request": {
+    "vpc_id": "vpc_a43ae8279bd54524bcf3f7f137e6a2d4"
+  },
+  "expected": {
+    "response.vpc.base_connectivity.state": "ready"
+  },
+  "result": "pass",
+  "records": [
+    {
+      "at": "2026-09-15T05:47:12.474364+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_a43ae8279bd54524bcf3f7f137e6a2d4",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "name": "lb02-2b3122-base-cleanup",
+            "description": "Run-owned U09 system base cleanup fixture, no workloads",
+            "cidr": "10.233.32.0/20",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_RESULT_UNKNOWN",
+            "created_at": "2026-09-15T05:41:39.724183Z",
+            "updated_at": "2026-09-15T05:47:08.144246Z",
+            "version": "26",
+            "observed_at": "2026-09-15T05:47:07.837603Z",
+            "observation_stale": false,
+            "last_operation_id": "2e80c443-6189-4bf9-a2f4-895f331e1fd2",
+            "subnet_count": "0",
+            "reason_message": "The external request result is unknown; Network is observing the original request.",
+            "base_connectivity": {
+              "state": "pending",
+              "reason": "PROVIDER_RESULT_UNKNOWN",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": "The external request result is unknown; Network is observing the original request."
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:47:17.486450+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_a43ae8279bd54524bcf3f7f137e6a2d4",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "name": "lb02-2b3122-base-cleanup",
+            "description": "Run-owned U09 system base cleanup fixture, no workloads",
+            "cidr": "10.233.32.0/20",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_RESULT_UNKNOWN",
+            "created_at": "2026-09-15T05:41:39.724183Z",
+            "updated_at": "2026-09-15T05:47:13.696938Z",
+            "version": "27",
+            "observed_at": "2026-09-15T05:47:13.575269Z",
+            "observation_stale": false,
+            "last_operation_id": "2e80c443-6189-4bf9-a2f4-895f331e1fd2",
+            "subnet_count": "0",
+            "reason_message": "The external request result is unknown; Network is observing the original request.",
+            "base_connectivity": {
+              "state": "pending",
+              "reason": "PROVIDER_RESULT_UNKNOWN",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": "The external request result is unknown; Network is observing the original request."
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:47:22.497153+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_a43ae8279bd54524bcf3f7f137e6a2d4",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "name": "lb02-2b3122-base-cleanup",
+            "description": "Run-owned U09 system base cleanup fixture, no workloads",
+            "cidr": "10.233.32.0/20",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_RESULT_UNKNOWN",
+            "created_at": "2026-09-15T05:41:39.724183Z",
+            "updated_at": "2026-09-15T05:47:19.458023Z",
+            "version": "28",
+            "observed_at": "2026-09-15T05:47:19.371956Z",
+            "observation_stale": false,
+            "last_operation_id": "2e80c443-6189-4bf9-a2f4-895f331e1fd2",
+            "subnet_count": "0",
+            "reason_message": "The external request result is unknown; Network is observing the original request.",
+            "base_connectivity": {
+              "state": "pending",
+              "reason": "PROVIDER_RESULT_UNKNOWN",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": "The external request result is unknown; Network is observing the original request."
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:47:27.509594+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_a43ae8279bd54524bcf3f7f137e6a2d4",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "name": "lb02-2b3122-base-cleanup",
+            "description": "Run-owned U09 system base cleanup fixture, no workloads",
+            "cidr": "10.233.32.0/20",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_RESULT_UNKNOWN",
+            "created_at": "2026-09-15T05:41:39.724183Z",
+            "updated_at": "2026-09-15T05:47:19.458023Z",
+            "version": "28",
+            "observed_at": "2026-09-15T05:47:19.371956Z",
+            "observation_stale": false,
+            "last_operation_id": "2e80c443-6189-4bf9-a2f4-895f331e1fd2",
+            "subnet_count": "0",
+            "reason_message": "The external request result is unknown; Network is observing the original request.",
+            "base_connectivity": {
+              "state": "pending",
+              "reason": "PROVIDER_RESULT_UNKNOWN",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": "The external request result is unknown; Network is observing the original request."
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:47:32.522769+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_a43ae8279bd54524bcf3f7f137e6a2d4",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "name": "lb02-2b3122-base-cleanup",
+            "description": "Run-owned U09 system base cleanup fixture, no workloads",
+            "cidr": "10.233.32.0/20",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_RESULT_UNKNOWN",
+            "created_at": "2026-09-15T05:41:39.724183Z",
+            "updated_at": "2026-09-15T05:47:30.497533Z",
+            "version": "29",
+            "observed_at": "2026-09-15T05:47:30.368649Z",
+            "observation_stale": false,
+            "last_operation_id": "2e80c443-6189-4bf9-a2f4-895f331e1fd2",
+            "subnet_count": "0",
+            "reason_message": "The external request result is unknown; Network is observing the original request.",
+            "base_connectivity": {
+              "state": "pending",
+              "reason": "PROVIDER_RESULT_UNKNOWN",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": "The external request result is unknown; Network is observing the original request."
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:47:37.535248+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_a43ae8279bd54524bcf3f7f137e6a2d4",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "name": "lb02-2b3122-base-cleanup",
+            "description": "Run-owned U09 system base cleanup fixture, no workloads",
+            "cidr": "10.233.32.0/20",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_RESULT_UNKNOWN",
+            "created_at": "2026-09-15T05:41:39.724183Z",
+            "updated_at": "2026-09-15T05:47:30.497533Z",
+            "version": "29",
+            "observed_at": "2026-09-15T05:47:30.368649Z",
+            "observation_stale": false,
+            "last_operation_id": "2e80c443-6189-4bf9-a2f4-895f331e1fd2",
+            "subnet_count": "0",
+            "reason_message": "The external request result is unknown; Network is observing the original request.",
+            "base_connectivity": {
+              "state": "pending",
+              "reason": "PROVIDER_RESULT_UNKNOWN",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": "The external request result is unknown; Network is observing the original request."
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:47:42.546696+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_a43ae8279bd54524bcf3f7f137e6a2d4",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "name": "lb02-2b3122-base-cleanup",
+            "description": "Run-owned U09 system base cleanup fixture, no workloads",
+            "cidr": "10.233.32.0/20",
+            "state": "RESOURCE_STATE_AVAILABLE",
+            "reason": "",
+            "created_at": "2026-09-15T05:41:39.724183Z",
+            "updated_at": "2026-09-15T05:47:41.111975Z",
+            "version": "30",
+            "observed_at": "2026-09-15T05:47:40.991881Z",
+            "observation_stale": false,
+            "last_operation_id": "2e80c443-6189-4bf9-a2f4-895f331e1fd2",
+            "subnet_count": "0",
+            "reason_message": "",
+            "base_connectivity": {
+              "state": "ready",
+              "reason": "",
+              "observed_at": "2026-09-15T05:47:25.664362Z",
+              "observation_stale": false,
+              "reason_message": ""
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": true
+    },
+    {
+      "at": "2026-09-15T05:47:47.556688+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_a43ae8279bd54524bcf3f7f137e6a2d4",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "name": "lb02-2b3122-base-cleanup",
+            "description": "Run-owned U09 system base cleanup fixture, no workloads",
+            "cidr": "10.233.32.0/20",
+            "state": "RESOURCE_STATE_AVAILABLE",
+            "reason": "",
+            "created_at": "2026-09-15T05:41:39.724183Z",
+            "updated_at": "2026-09-15T05:47:47.380735Z",
+            "version": "31",
+            "observed_at": "2026-09-15T05:47:47.278524Z",
+            "observation_stale": false,
+            "last_operation_id": "2e80c443-6189-4bf9-a2f4-895f331e1fd2",
+            "subnet_count": "0",
+            "reason_message": "",
+            "base_connectivity": {
+              "state": "ready",
+              "reason": "",
+              "observed_at": "2026-09-15T05:47:34.860852Z",
+              "observation_stale": false,
+              "reason_message": ""
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": true
+    }
+  ]
+}

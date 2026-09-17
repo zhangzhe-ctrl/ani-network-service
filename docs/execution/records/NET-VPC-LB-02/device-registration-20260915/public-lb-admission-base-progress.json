@@ -1,0 +1,12 @@
+{
+  "at": "2026-09-15T09:13:54.717540+00:00",
+  "execution_host": "ubuntu",
+  "transport_exit": 0,
+  "result": {
+    "query": "SELECT row_to_json(b) FROM network_vpc_base_connectivity b WHERE vpc_id='vpc_d06f28e82fe847f7bf2cedd57dad82f4'; SELECT resource_id,kind,state,reason,clock_timestamp()-observed_at AS age FROM network_platform_resources WHERE state NOT IN ('deleted','deleting');",
+    "exit": 0,
+    "stdout": "BEGIN\n{\"tenant_id\":\"d896f754-ab06-4cbe-a7fd-53148d16d0ad\",\"vpc_id\":\"vpc_d06f28e82fe847f7bf2cedd57dad82f4\",\"cluster_id\":\"lb02-09141908-2b3122\",\"namespace\":\"lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad\",\"pool_id\":\"pool_f6c078d198ae4ea1be6f43cfad8f9934\",\"pool_revision\":1,\"purpose\":\"intranet\",\"eip_id\":\"eip_c428922594b94429a405305c6c781897\",\"snat_id\":\"snat_3cbc9e4d07b44c0291a541d50bd4b43e\",\"operation_id\":\"099f288a-56db-4ae1-8ba9-2a1efb473412\",\"state\":\"ready\",\"reason\":\"\",\"provider_ready\":true,\"provider_observed_at\":\"2026-09-15T09:12:59.9016+00:00\",\"observed_at\":\"2026-09-15T09:12:20.82603+00:00\",\"terminating\":false,\"version\":833,\"created_at\":\"2026-09-15T04:02:40.395116+00:00\"}\npool_f6c078d198ae4ea1be6f43cfad8f9934|public_pool|available||00:00:23.313644\negw_386dc165a8744951bc624ab55c439681|egress_gateway|available||00:00:18.234874\ndevice_3290174cfb644473b5b5e260bcea085c|device|available||00:00:18.234875\nvlan_9b12fcb230ef4bc08ba1d497ebe44009|vlan|available||00:00:10.049765\npool_f28b9d470c0147f6a66646b8976c36f9|public_pool|available||00:00:05.396411\nROLLBACK\n",
+    "stderr": ""
+  },
+  "stderr": ""
+}

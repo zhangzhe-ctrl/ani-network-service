@@ -1,0 +1,12 @@
+{
+  "at": "2026-09-15T06:12:20.071531+00:00",
+  "execution_host": "ubuntu",
+  "transport_exit": 0,
+  "result": {
+    "query": "SELECT jsonb_build_object('eip',(SELECT jsonb_build_object('state',state,'reason',reason,'address',address,'last_operation_id',last_operation_id,'observed_at',observed_at) FROM network_eips WHERE eip_id='eip_19dc90906e7a4461a9a5ad5c050de3ba'),'snat',(SELECT jsonb_build_object('state',state,'reason',reason,'last_operation_id',last_operation_id,'observed_at',observed_at) FROM network_snat_bindings WHERE snat_id='snat_b07400cca95a4ccaa44bac0ced0d7ffb'),'bindings',(SELECT jsonb_agg(jsonb_build_object('kind',resource_kind,'uid',provider_uid,'pending',pending_action,'pending_since',pending_since)) FROM network_provider_bindings WHERE eip_id='eip_19dc90906e7a4461a9a5ad5c050de3ba' OR snat_id='snat_b07400cca95a4ccaa44bac0ced0d7ffb'));",
+    "exit": 0,
+    "stdout": "BEGIN\n{\"eip\": {\"state\": \"available\", \"reason\": \"\", \"address\": \"10.242.252.5\", \"observed_at\": \"2026-09-15T06:11:37.467521+00:00\", \"last_operation_id\": \"58a6493a-ef2e-4e24-a1d0-f2567522d8df\"}, \"snat\": {\"state\": \"provisioning\", \"reason\": \"PROVIDER_UNAVAILABLE\", \"observed_at\": null, \"last_operation_id\": \"a8aaf131-5213-4dd7-a948-0ffa6a779d9a\"}, \"bindings\": [{\"uid\": \"33f1fb13-d6db-470b-a3b4-8a7c255dee6d\", \"kind\": \"eip\", \"pending\": \"\", \"pending_since\": null}, {\"uid\": \"\", \"kind\": \"snat\", \"pending\": \"create\", \"pending_since\": \"2026-09-15T06:12:16.35134+00:00\"}]}\nROLLBACK\n",
+    "stderr": ""
+  },
+  "stderr": ""
+}

@@ -1,0 +1,688 @@
+{
+  "execution_host": "ubuntu",
+  "command": [
+    "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/lb-api",
+    "call",
+    "-target",
+    "unix:///home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-b.sock",
+    "-service",
+    "NetworkService",
+    "-method",
+    "GetVPC"
+  ],
+  "request": {
+    "vpc_id": "vpc_1f6fbd7f85cd4baba0b0382770aa480e"
+  },
+  "expected": {
+    "response.vpc.state": "RESOURCE_STATE_AVAILABLE",
+    "response.vpc.observation_stale": false
+  },
+  "result": "pass",
+  "records": [
+    {
+      "at": "2026-09-15T06:00:27.488470+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_1f6fbd7f85cd4baba0b0382770aa480e",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "name": "lb02-2b3122-u08-continuous",
+            "description": "Run-owned legacy fixture for sampled continuous traffic during U08 backfill",
+            "cidr": "10.233.48.0/20",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "",
+            "created_at": "2026-09-15T06:00:02.083976Z",
+            "updated_at": "2026-09-15T06:00:02.083976Z",
+            "version": "1",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "3aff395e-6a04-497e-b2b0-44da83f8408a",
+            "subnet_count": "0",
+            "reason_message": "",
+            "base_connectivity": {
+              "state": "missing",
+              "reason": "",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": ""
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T06:00:32.499414+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_1f6fbd7f85cd4baba0b0382770aa480e",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "name": "lb02-2b3122-u08-continuous",
+            "description": "Run-owned legacy fixture for sampled continuous traffic during U08 backfill",
+            "cidr": "10.233.48.0/20",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "",
+            "created_at": "2026-09-15T06:00:02.083976Z",
+            "updated_at": "2026-09-15T06:00:02.083976Z",
+            "version": "1",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "3aff395e-6a04-497e-b2b0-44da83f8408a",
+            "subnet_count": "0",
+            "reason_message": "",
+            "base_connectivity": {
+              "state": "missing",
+              "reason": "",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": ""
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T06:00:37.514479+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_1f6fbd7f85cd4baba0b0382770aa480e",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "name": "lb02-2b3122-u08-continuous",
+            "description": "Run-owned legacy fixture for sampled continuous traffic during U08 backfill",
+            "cidr": "10.233.48.0/20",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "",
+            "created_at": "2026-09-15T06:00:02.083976Z",
+            "updated_at": "2026-09-15T06:00:02.083976Z",
+            "version": "1",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "3aff395e-6a04-497e-b2b0-44da83f8408a",
+            "subnet_count": "0",
+            "reason_message": "",
+            "base_connectivity": {
+              "state": "missing",
+              "reason": "",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": ""
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T06:00:42.525483+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_1f6fbd7f85cd4baba0b0382770aa480e",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "name": "lb02-2b3122-u08-continuous",
+            "description": "Run-owned legacy fixture for sampled continuous traffic during U08 backfill",
+            "cidr": "10.233.48.0/20",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "created_at": "2026-09-15T06:00:02.083976Z",
+            "updated_at": "2026-09-15T06:00:41.939186Z",
+            "version": "2",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "3aff395e-6a04-497e-b2b0-44da83f8408a",
+            "subnet_count": "0",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "base_connectivity": {
+              "state": "missing",
+              "reason": "",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": ""
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T06:00:47.537116+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_1f6fbd7f85cd4baba0b0382770aa480e",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "name": "lb02-2b3122-u08-continuous",
+            "description": "Run-owned legacy fixture for sampled continuous traffic during U08 backfill",
+            "cidr": "10.233.48.0/20",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "created_at": "2026-09-15T06:00:02.083976Z",
+            "updated_at": "2026-09-15T06:00:41.939186Z",
+            "version": "2",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "3aff395e-6a04-497e-b2b0-44da83f8408a",
+            "subnet_count": "0",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "base_connectivity": {
+              "state": "missing",
+              "reason": "",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": ""
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T06:00:52.548830+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_1f6fbd7f85cd4baba0b0382770aa480e",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "name": "lb02-2b3122-u08-continuous",
+            "description": "Run-owned legacy fixture for sampled continuous traffic during U08 backfill",
+            "cidr": "10.233.48.0/20",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "created_at": "2026-09-15T06:00:02.083976Z",
+            "updated_at": "2026-09-15T06:00:41.939186Z",
+            "version": "2",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "3aff395e-6a04-497e-b2b0-44da83f8408a",
+            "subnet_count": "0",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "base_connectivity": {
+              "state": "missing",
+              "reason": "",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": ""
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T06:00:57.559492+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_1f6fbd7f85cd4baba0b0382770aa480e",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "name": "lb02-2b3122-u08-continuous",
+            "description": "Run-owned legacy fixture for sampled continuous traffic during U08 backfill",
+            "cidr": "10.233.48.0/20",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "created_at": "2026-09-15T06:00:02.083976Z",
+            "updated_at": "2026-09-15T06:00:41.939186Z",
+            "version": "2",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "3aff395e-6a04-497e-b2b0-44da83f8408a",
+            "subnet_count": "0",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "base_connectivity": {
+              "state": "missing",
+              "reason": "",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": ""
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T06:01:02.570598+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_1f6fbd7f85cd4baba0b0382770aa480e",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "name": "lb02-2b3122-u08-continuous",
+            "description": "Run-owned legacy fixture for sampled continuous traffic during U08 backfill",
+            "cidr": "10.233.48.0/20",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "created_at": "2026-09-15T06:00:02.083976Z",
+            "updated_at": "2026-09-15T06:00:41.939186Z",
+            "version": "2",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "3aff395e-6a04-497e-b2b0-44da83f8408a",
+            "subnet_count": "0",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "base_connectivity": {
+              "state": "missing",
+              "reason": "",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": ""
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T06:01:07.582374+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_1f6fbd7f85cd4baba0b0382770aa480e",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "name": "lb02-2b3122-u08-continuous",
+            "description": "Run-owned legacy fixture for sampled continuous traffic during U08 backfill",
+            "cidr": "10.233.48.0/20",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "created_at": "2026-09-15T06:00:02.083976Z",
+            "updated_at": "2026-09-15T06:00:41.939186Z",
+            "version": "2",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "3aff395e-6a04-497e-b2b0-44da83f8408a",
+            "subnet_count": "0",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "base_connectivity": {
+              "state": "missing",
+              "reason": "",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": ""
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T06:01:12.594640+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_1f6fbd7f85cd4baba0b0382770aa480e",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "name": "lb02-2b3122-u08-continuous",
+            "description": "Run-owned legacy fixture for sampled continuous traffic during U08 backfill",
+            "cidr": "10.233.48.0/20",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "created_at": "2026-09-15T06:00:02.083976Z",
+            "updated_at": "2026-09-15T06:00:41.939186Z",
+            "version": "2",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "3aff395e-6a04-497e-b2b0-44da83f8408a",
+            "subnet_count": "0",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "base_connectivity": {
+              "state": "missing",
+              "reason": "",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": ""
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T06:01:17.606588+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_1f6fbd7f85cd4baba0b0382770aa480e",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "name": "lb02-2b3122-u08-continuous",
+            "description": "Run-owned legacy fixture for sampled continuous traffic during U08 backfill",
+            "cidr": "10.233.48.0/20",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "created_at": "2026-09-15T06:00:02.083976Z",
+            "updated_at": "2026-09-15T06:00:41.939186Z",
+            "version": "2",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "3aff395e-6a04-497e-b2b0-44da83f8408a",
+            "subnet_count": "0",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "base_connectivity": {
+              "state": "missing",
+              "reason": "",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": ""
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T06:01:22.617472+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_1f6fbd7f85cd4baba0b0382770aa480e",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "name": "lb02-2b3122-u08-continuous",
+            "description": "Run-owned legacy fixture for sampled continuous traffic during U08 backfill",
+            "cidr": "10.233.48.0/20",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_NOT_READY",
+            "created_at": "2026-09-15T06:00:02.083976Z",
+            "updated_at": "2026-09-15T06:01:17.755279Z",
+            "version": "3",
+            "observed_at": "2026-09-15T06:01:08.220582Z",
+            "observation_stale": false,
+            "last_operation_id": "3aff395e-6a04-497e-b2b0-44da83f8408a",
+            "subnet_count": "0",
+            "reason_message": "The requested configuration is not ready yet.",
+            "base_connectivity": {
+              "state": "missing",
+              "reason": "",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": ""
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T06:01:27.628705+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_1f6fbd7f85cd4baba0b0382770aa480e",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "name": "lb02-2b3122-u08-continuous",
+            "description": "Run-owned legacy fixture for sampled continuous traffic during U08 backfill",
+            "cidr": "10.233.48.0/20",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_NOT_READY",
+            "created_at": "2026-09-15T06:00:02.083976Z",
+            "updated_at": "2026-09-15T06:01:17.755279Z",
+            "version": "3",
+            "observed_at": "2026-09-15T06:01:08.220582Z",
+            "observation_stale": false,
+            "last_operation_id": "3aff395e-6a04-497e-b2b0-44da83f8408a",
+            "subnet_count": "0",
+            "reason_message": "The requested configuration is not ready yet.",
+            "base_connectivity": {
+              "state": "missing",
+              "reason": "",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": ""
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T06:01:32.640475+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_1f6fbd7f85cd4baba0b0382770aa480e",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "name": "lb02-2b3122-u08-continuous",
+            "description": "Run-owned legacy fixture for sampled continuous traffic during U08 backfill",
+            "cidr": "10.233.48.0/20",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_NOT_READY",
+            "created_at": "2026-09-15T06:00:02.083976Z",
+            "updated_at": "2026-09-15T06:01:17.755279Z",
+            "version": "3",
+            "observed_at": "2026-09-15T06:01:08.220582Z",
+            "observation_stale": false,
+            "last_operation_id": "3aff395e-6a04-497e-b2b0-44da83f8408a",
+            "subnet_count": "0",
+            "reason_message": "The requested configuration is not ready yet.",
+            "base_connectivity": {
+              "state": "missing",
+              "reason": "",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": ""
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T06:01:37.650350+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_1f6fbd7f85cd4baba0b0382770aa480e",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "name": "lb02-2b3122-u08-continuous",
+            "description": "Run-owned legacy fixture for sampled continuous traffic during U08 backfill",
+            "cidr": "10.233.48.0/20",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_NOT_READY",
+            "created_at": "2026-09-15T06:00:02.083976Z",
+            "updated_at": "2026-09-15T06:01:17.755279Z",
+            "version": "3",
+            "observed_at": "2026-09-15T06:01:08.220582Z",
+            "observation_stale": false,
+            "last_operation_id": "3aff395e-6a04-497e-b2b0-44da83f8408a",
+            "subnet_count": "0",
+            "reason_message": "The requested configuration is not ready yet.",
+            "base_connectivity": {
+              "state": "missing",
+              "reason": "",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": ""
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T06:01:42.661155+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_1f6fbd7f85cd4baba0b0382770aa480e",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "name": "lb02-2b3122-u08-continuous",
+            "description": "Run-owned legacy fixture for sampled continuous traffic during U08 backfill",
+            "cidr": "10.233.48.0/20",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_NOT_READY",
+            "created_at": "2026-09-15T06:00:02.083976Z",
+            "updated_at": "2026-09-15T06:01:17.755279Z",
+            "version": "3",
+            "observed_at": "2026-09-15T06:01:08.220582Z",
+            "observation_stale": false,
+            "last_operation_id": "3aff395e-6a04-497e-b2b0-44da83f8408a",
+            "subnet_count": "0",
+            "reason_message": "The requested configuration is not ready yet.",
+            "base_connectivity": {
+              "state": "missing",
+              "reason": "",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": ""
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T06:01:47.672886+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_1f6fbd7f85cd4baba0b0382770aa480e",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "name": "lb02-2b3122-u08-continuous",
+            "description": "Run-owned legacy fixture for sampled continuous traffic during U08 backfill",
+            "cidr": "10.233.48.0/20",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_NOT_READY",
+            "created_at": "2026-09-15T06:00:02.083976Z",
+            "updated_at": "2026-09-15T06:01:17.755279Z",
+            "version": "3",
+            "observed_at": "2026-09-15T06:01:08.220582Z",
+            "observation_stale": false,
+            "last_operation_id": "3aff395e-6a04-497e-b2b0-44da83f8408a",
+            "subnet_count": "0",
+            "reason_message": "The requested configuration is not ready yet.",
+            "base_connectivity": {
+              "state": "missing",
+              "reason": "",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": ""
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T06:01:52.683240+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_1f6fbd7f85cd4baba0b0382770aa480e",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "name": "lb02-2b3122-u08-continuous",
+            "description": "Run-owned legacy fixture for sampled continuous traffic during U08 backfill",
+            "cidr": "10.233.48.0/20",
+            "state": "RESOURCE_STATE_AVAILABLE",
+            "reason": "",
+            "created_at": "2026-09-15T06:00:02.083976Z",
+            "updated_at": "2026-09-15T06:01:51.362314Z",
+            "version": "4",
+            "observed_at": "2026-09-15T06:01:51.237481Z",
+            "observation_stale": false,
+            "last_operation_id": "3aff395e-6a04-497e-b2b0-44da83f8408a",
+            "subnet_count": "0",
+            "reason_message": "",
+            "base_connectivity": {
+              "state": "missing",
+              "reason": "",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": ""
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": true
+    },
+    {
+      "at": "2026-09-15T06:01:57.692907+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_1f6fbd7f85cd4baba0b0382770aa480e",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "name": "lb02-2b3122-u08-continuous",
+            "description": "Run-owned legacy fixture for sampled continuous traffic during U08 backfill",
+            "cidr": "10.233.48.0/20",
+            "state": "RESOURCE_STATE_AVAILABLE",
+            "reason": "",
+            "created_at": "2026-09-15T06:00:02.083976Z",
+            "updated_at": "2026-09-15T06:01:51.362314Z",
+            "version": "4",
+            "observed_at": "2026-09-15T06:01:51.237481Z",
+            "observation_stale": false,
+            "last_operation_id": "3aff395e-6a04-497e-b2b0-44da83f8408a",
+            "subnet_count": "0",
+            "reason_message": "",
+            "base_connectivity": {
+              "state": "missing",
+              "reason": "",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": ""
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": true
+    }
+  ]
+}

@@ -1,0 +1,183 @@
+{
+  "phase": "create",
+  "records": [
+    {
+      "at": "2026-09-15T14:03:27.293264+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/kubeconfig.json",
+        "--request-timeout=15s",
+        "get",
+        "gateway.gateway.networking.k8s.io",
+        "-n",
+        "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+        "lb-74f96109961444a48b26c31601e6131f",
+        "--ignore-not-found",
+        "-o",
+        "json"
+      ],
+      "request": null,
+      "exit": 0,
+      "response": null,
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-15T14:03:27.663054+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/kubeconfig.json",
+        "--request-timeout=15s",
+        "get",
+        "service",
+        "-n",
+        "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+        "lb-74f96109961444a48b26c31601e6131f",
+        "--ignore-not-found",
+        "-o",
+        "json"
+      ],
+      "request": null,
+      "exit": 0,
+      "response": null,
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-15T14:03:28.527548+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=15s",
+        "create",
+        "-f",
+        "-",
+        "-o",
+        "json"
+      ],
+      "request": {
+        "apiVersion": "v1",
+        "kind": "Service",
+        "metadata": {
+          "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+          "name": "lb-74f96109961444a48b26c31601e6131f",
+          "labels": {
+            "network.ani.io/test-run": "lb02-09141908-2b3122",
+            "network.ani.io/test-role": "same-name-service-uid-fault"
+          }
+        },
+        "spec": {
+          "type": "ClusterIP",
+          "ports": [
+            {
+              "name": "http",
+              "port": 8080,
+              "protocol": "TCP",
+              "targetPort": 8080
+            }
+          ]
+        }
+      },
+      "exit": 0,
+      "response": {
+        "apiVersion": "v1",
+        "kind": "Service",
+        "metadata": {
+          "creationTimestamp": "2026-09-15T14:03:28Z",
+          "labels": {
+            "network.ani.io/test-role": "same-name-service-uid-fault",
+            "network.ani.io/test-run": "lb02-09141908-2b3122"
+          },
+          "name": "lb-74f96109961444a48b26c31601e6131f",
+          "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+          "resourceVersion": "449991",
+          "uid": "c5181c98-a534-4666-824a-051746559eaf"
+        },
+        "spec": {
+          "clusterIP": "10.96.98.25",
+          "clusterIPs": [
+            "10.96.98.25"
+          ],
+          "internalTrafficPolicy": "Cluster",
+          "ipFamilies": [
+            "IPv4"
+          ],
+          "ipFamilyPolicy": "SingleStack",
+          "ports": [
+            {
+              "name": "http",
+              "port": 8080,
+              "protocol": "TCP",
+              "targetPort": 8080
+            }
+          ],
+          "sessionAffinity": "None",
+          "type": "ClusterIP"
+        },
+        "status": {
+          "loadBalancer": {}
+        }
+      },
+      "stderr": ""
+    }
+  ],
+  "created": {
+    "apiVersion": "v1",
+    "kind": "Service",
+    "metadata": {
+      "creationTimestamp": "2026-09-15T14:03:28Z",
+      "labels": {
+        "network.ani.io/test-role": "same-name-service-uid-fault",
+        "network.ani.io/test-run": "lb02-09141908-2b3122"
+      },
+      "name": "lb-74f96109961444a48b26c31601e6131f",
+      "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+      "resourceVersion": "449991",
+      "uid": "c5181c98-a534-4666-824a-051746559eaf"
+    },
+    "spec": {
+      "clusterIP": "10.96.98.25",
+      "clusterIPs": [
+        "10.96.98.25"
+      ],
+      "internalTrafficPolicy": "Cluster",
+      "ipFamilies": [
+        "IPv4"
+      ],
+      "ipFamilyPolicy": "SingleStack",
+      "ports": [
+        {
+          "name": "http",
+          "port": 8080,
+          "protocol": "TCP",
+          "targetPort": 8080
+        }
+      ],
+      "sessionAffinity": "None",
+      "type": "ClusterIP"
+    },
+    "status": {
+      "loadBalancer": {}
+    }
+  },
+  "prerequisites": {
+    "state": "deleting",
+    "original_uid": "cbbfbc82-49c0-4bbc-96f3-a3924f685421",
+    "active_claims": 1,
+    "active_vips": 1
+  },
+  "result": "pass",
+  "at": "2026-09-15T14:03:28.527854+00:00",
+  "execution_host": "ubuntu",
+  "original_generated_service_uid": "cbbfbc82-49c0-4bbc-96f3-a3924f685421"
+}

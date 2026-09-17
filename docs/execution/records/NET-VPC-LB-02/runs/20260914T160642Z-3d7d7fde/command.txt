@@ -1,0 +1,32 @@
+source.tar.gz: OK
+verified source files: 1311
+go version go1.26.7 linux/amd64
+1.60.0
+v1.31.1
+127.0.0.1:5432 - accepting connections
+PostgreSQL image=docker.io/library/postgres@sha256:4ef4dbc939d61acea57712655ddb4b4ab27419c913f94cca0cd57cb3ea3c2280 container=ac89cbbe830526936419cd59b659f407856805fa4e3287a2af037c028eb0a5d3
+=== RUN   TestLBPinsExistingAddressesAcrossBothDefaultPoolSwitchesAndClosure
+    load_balancer_composition_integration_test.go:67: PUBLIC_EGRESS_NOT_READY: network parents are not ready
+--- FAIL: TestLBPinsExistingAddressesAcrossBothDefaultPoolSwitchesAndClosure (6.39s)
+=== RUN   TestLBAndPublicBindingCoexistWithBackfillPauseResumeAndDeleteRace
+    load_balancer_composition_integration_test.go:138: backfill/Public coexistence {dadcff29-a088-45bd-84fd-d33164c0c870 accepted c01e7331-5535-48c4-8d40-2a4de6bcc450 vpc_915b3f263dae42f694be3e66c6c1efb0 690b00d7-044e-4c83-9317-8bfac8c52bf1  0} [<nil> BASE_CONNECTIVITY_NOT_READY: VPC base connectivity has not been ensured]
+--- FAIL: TestLBAndPublicBindingCoexistWithBackfillPauseResumeAndDeleteRace (2.67s)
+=== RUN   TestLBForeignOccupantsAndUIDReplacementRemainConflicts
+=== RUN   TestLBForeignOccupantsAndUIDReplacementRemainConflicts/service
+=== RUN   TestLBForeignOccupantsAndUIDReplacementRemainConflicts/foreign-namespace
+=== RUN   TestLBForeignOccupantsAndUIDReplacementRemainConflicts/nat
+=== RUN   TestLBForeignOccupantsAndUIDReplacementRemainConflicts/snat
+=== RUN   TestLBForeignOccupantsAndUIDReplacementRemainConflicts/service-uid
+--- PASS: TestLBForeignOccupantsAndUIDReplacementRemainConflicts (24.72s)
+    --- PASS: TestLBForeignOccupantsAndUIDReplacementRemainConflicts/service (4.97s)
+    --- PASS: TestLBForeignOccupantsAndUIDReplacementRemainConflicts/foreign-namespace (5.36s)
+    --- PASS: TestLBForeignOccupantsAndUIDReplacementRemainConflicts/nat (5.11s)
+    --- PASS: TestLBForeignOccupantsAndUIDReplacementRemainConflicts/snat (4.48s)
+    --- PASS: TestLBForeignOccupantsAndUIDReplacementRemainConflicts/service-uid (4.80s)
+=== RUN   TestLBInvalidMemberWithdrawsDespiteGeneratedOwnershipConflict
+--- PASS: TestLBInvalidMemberWithdrawsDespiteGeneratedOwnershipConflict (3.68s)
+FAIL
+FAIL	github.com/zhangzhe-ctrl/ani-network-service/internal/data	37.543s
+FAIL
+removed task container=ac89cbbe830526936419cd59b659f407856805fa4e3287a2af037c028eb0a5d3
+REMOTE_COMMAND_EXIT=1

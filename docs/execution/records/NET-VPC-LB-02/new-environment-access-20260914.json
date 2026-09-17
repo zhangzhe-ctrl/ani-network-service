@@ -1,0 +1,55 @@
+{
+  "at": "2026-09-14T16:34:58.457111+00:00",
+  "mode": "read_only",
+  "local_host": "fedora",
+  "targets": [
+    {
+      "host": "172.16.101.10",
+      "ssh_alias": "ani-test-1",
+      "ports": {
+        "22": "open",
+        "6443": "open"
+      }
+    },
+    {
+      "host": "172.16.101.11",
+      "ssh_alias": "ani-test-2",
+      "ports": {
+        "22": "open",
+        "6443": "open"
+      }
+    },
+    {
+      "host": "172.16.101.12",
+      "ssh_alias": "ani-test-3",
+      "ports": {
+        "22": "open",
+        "6443": "open"
+      }
+    }
+  ],
+  "ubuntu_execution_host": {
+    "exit": 0,
+    "result": {
+      "host": "i-8yg2l7u8",
+      "checks": [
+        {
+          "host": "172.16.101.10",
+          "22": "open",
+          "6443": "open"
+        },
+        {
+          "host": "172.16.101.11",
+          "22": "open",
+          "6443": "open"
+        },
+        {
+          "host": "172.16.101.12",
+          "22": "open",
+          "6443": "open"
+        }
+      ]
+    },
+    "stderr": ""
+  }
+}

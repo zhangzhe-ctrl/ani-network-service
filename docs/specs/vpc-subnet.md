@@ -362,6 +362,8 @@ NET-01 的具体 SQL 只建立 VPC 及其 operation/reconciliation/idempotency/p
 
 T3 前额外持久化 `pending_action`。VPC POST 超时或结果未知后，只观察原映射；一次 NotFound 不会清除该标记或触发第二个 POST，创建继续 blocked，因此也不准入删除。若对象随后出现并通过归属校验，Network 记录原 UID 并继续。若进程恰好在标记提交后、真正发送 POST 前退出，无法与外部迟到 POST 区分，首版同样保持 blocked；不自动丢弃意图。需要后续以 Provider 的可查询请求结果/持久执行凭据安全解除这种不确定性，不在本包添加不安全的“强制成功”开关。
 
+服务正常退出取消 Provider 调用后，worker 仍在独立、受 `request_timeout` 限制的 context 内尝试保存已返回的执行结果。完成事务继续核对原 lease/epoch、资源版本与观察 fence；不能借此续租或发送新的 Provider 请求。确定的发送前失败可以清除本次 pending；真正未知的发送结果仍保留，进程被强杀或 lease 已失效时也不推断未发送。此规则不追认旧记录中缺失的执行回执。
+
 DELETE 每次重新检查归属、status 中子资源和实际 Subnet 引用列表，用 UID/resourceVersion Preconditions 和 Orphan 策略请求删除，不移除 finalizer。请求被接受仍保持 deleting；之后观察缺失才成功，未知 DELETE 可按原 UID 重查/重试。子资源列表与 VPC DELETE 并非跨对象事务；并发外部写入的 Kubernetes/kc 保证仍需 NET-05 验证，NET-02 将负责服务内父子锁定。namespace 为租户多个资源共享而保留，不作为删除 VPC 的级联目标。
 
 已记录 UID 的对象若意外消失，资源 degraded 并报告 `PROVIDER_OBJECT_MISSING`，不会自动创建另一 UID；明确删除可以完成缺失对象清理。墓碑继续观察原映射，清理迟到的同一归属/UID 对象并报告原因；同名换 UID 只报告冲突、不误删。历史 succeeded operation 在这些观察中保持原终态与完成时间。

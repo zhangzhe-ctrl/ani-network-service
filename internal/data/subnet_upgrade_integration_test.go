@@ -79,11 +79,17 @@ func TestSubnetMigrationUpgradesNET01WithoutChangingDurableFacts(t *testing.T) {
 	})
 	for _, table := range tables {
 		var row string
-		if err := fixture.Owner.QueryRow(ctx, "SELECT (to_jsonb(t)-'eip_id'-'snat_id'-'subnet_id'-'resource_kind'-'reconciliation_id'-'requested_generation'-'processed_generation'-'retry_not_before'-'evidence_hash'-'evidence_applied_at'-'base_connectivity_required'-'create_dispatched'-'retired')::text FROM "+table+" t WHERE tenant_id=$1", tenant).Scan(&row); err != nil {
+		if err := fixture.Owner.QueryRow(ctx, "SELECT (to_jsonb(t)-'eip_id'-'snat_id'-'lb_id'-'subnet_id'-'resource_kind'-'reconciliation_id'-'requested_generation'-'processed_generation'-'retry_not_before'-'evidence_hash'-'evidence_applied_at'-'base_connectivity_required'-'create_dispatched'-'retired')::text FROM "+table+" t WHERE tenant_id=$1", tenant).Scan(&row); err != nil {
 			t.Fatal(err)
 		}
 		if row != before[table] {
 			t.Fatalf("upgrade changed original %s row", table)
+		}
+		if table != "network_vpcs" {
+			var lbReferences int
+			if err := fixture.Owner.QueryRow(ctx, "SELECT count(*) FROM "+table+" WHERE tenant_id=$1 AND lb_id IS NOT NULL", tenant).Scan(&lbReferences); err != nil || lbReferences != 0 {
+				t.Fatalf("upgrade invented LB references in %s: %d %v", table, lbReferences, err)
+			}
 		}
 	}
 	n := newNetwork(t, fixture.Repository, time.Minute)

@@ -1,0 +1,37 @@
+{
+  "at": "2026-09-15T04:38:24.778605+00:00",
+  "result": "pass",
+  "entry": "http://10.233.0.200:8080/",
+  "caller_pod": "lb02-2b3122-base-client",
+  "source_run": "20260915T034538Z-b890832c",
+  "response_count": 12,
+  "backend_counts": {
+    "lb02-2b3122-base-b": 6,
+    "lb02-2b3122-base-a": 6
+  },
+  "backend_nodes": {
+    "lb02-2b3122-base-a": "ani-02",
+    "lb02-2b3122-base-b": "ani-03"
+  },
+  "unique_echoed_nonces": [
+    "lb02-private-initial-0",
+    "lb02-private-initial-1",
+    "lb02-private-initial-2",
+    "lb02-private-initial-3",
+    "lb02-private-initial-4",
+    "lb02-private-initial-5",
+    "lb02-private-initial-6",
+    "lb02-private-initial-7",
+    "lb02-private-initial-8",
+    "lb02-private-initial-9",
+    "lb02-private-initial-10",
+    "lb02-private-initial-11"
+  ],
+  "request_evidence": "private-vip-initial.json",
+  "admission_evidence": "api-private-lb-create-02.json",
+  "configuration_evidence": "api-private-lb-get-02.json",
+  "limits": [
+    "Initial direct private VIP traffic only; updates, weight zero, health failure/recovery and deletion not yet verified.",
+    "Product data_plane_state remains unknown; these probes are not a continuous health source."
+  ]
+}

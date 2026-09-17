@@ -71,6 +71,16 @@ func (p *Postgres) GetPlatformCapabilities(ctx context.Context, freshness time.D
 			return result, err
 		}
 	}
-	// LB runtime is deliberately not configured/implemented in this batch.
+	lb, err := q.GetLBCapability(ctx, sqlcgen.GetLBCapabilityParams{ClusterID: p.placement.ClusterID})
+	if err != nil && !errors.Is(err, pgx.ErrNoRows) {
+		return result, databaseFailure(err)
+	}
+	if err == nil {
+		stale := lb.ObservedAt.After(now) || now.Sub(lb.ObservedAt) > freshness
+		result.LoadBalancer = biz.CapabilityObservation{Ready: lb.Ready && !stale, Reason: biz.Reason(lb.Reason), ObservedAt: &lb.ObservedAt, ObservationStale: stale}
+		if stale {
+			result.LoadBalancer.Reason = biz.Reason("OBSERVATION_STALE")
+		}
+	}
 	return result, nil
 }

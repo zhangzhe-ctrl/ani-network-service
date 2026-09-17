@@ -1,0 +1,1947 @@
+{
+  "execution_host": "ubuntu",
+  "command": [
+    "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/lb-api",
+    "call",
+    "-target",
+    "unix:///home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-a.sock",
+    "-service",
+    "TenantLoadBalancerService",
+    "-method",
+    "GetLoadBalancer"
+  ],
+  "request": {
+    "load_balancer_id": "lb_bd6f74b7445b4c5a815763d38a995f14"
+  },
+  "expected": {
+    "response.load_balancer.state": "RESOURCE_STATE_DELETED"
+  },
+  "result": "pass",
+  "records": [
+    {
+      "at": "2026-09-15T10:10:27.450099+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "load_balancer": {
+            "id": "lb_bd6f74b7445b4c5a815763d38a995f14",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "subnet_id": "subnet_f74d90cbb5484f7fb37f8a8f6782da1d",
+            "name": "lb02-2b3122-public",
+            "description": "U09 direct external EIP entry without VPC Public SNAT",
+            "exposure": "LOAD_BALANCER_EXPOSURE_PUBLIC",
+            "flavor": "small",
+            "public_eip_id": "eip_fdab288a3b1846138806e8e5e14529a9",
+            "private_ip": "",
+            "listener": {
+              "id": "ad55eb28-47e1-4c6e-bcdd-63f2b4cf9247",
+              "protocol": "LOAD_BALANCER_LISTENER_PROTOCOL_HTTP",
+              "port": 8080
+            },
+            "backends": [
+              {
+                "id": "15250ca5-84c0-44a1-a655-c30ca7b640c5",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.2",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_7d08b61f4038432a842d2fda525607b9",
+                "state": "unknown",
+                "reason": "",
+                "observed_at": "2026-09-15T10:09:23.493627Z",
+                "observation_stale": true
+              },
+              {
+                "id": "69a4a09d-f2a2-49f2-bde5-c9f34bada414",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.3",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_a6172d5ee5be434087f939001a435c9e",
+                "state": "unknown",
+                "reason": "",
+                "observed_at": "2026-09-15T10:09:23.493627Z",
+                "observation_stale": true
+              }
+            ],
+            "health_check": {
+              "protocol": "LOAD_BALANCER_HEALTH_CHECK_PROTOCOL_TCP",
+              "interval_seconds": 5,
+              "timeout_seconds": 3,
+              "unhealthy_threshold": 3,
+              "healthy_threshold": 1
+            },
+            "algorithm": "LOAD_BALANCER_ALGORITHM_ROUND_ROBIN",
+            "state": "RESOURCE_STATE_DELETING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "version": "99",
+            "desired_version": "1",
+            "applied_version": "1",
+            "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_UNKNOWN",
+            "data_plane_state": "LOAD_BALANCER_DATA_PLANE_STATE_UNKNOWN",
+            "observed_at": "2026-09-15T10:09:23.493627Z",
+            "observation_stale": true,
+            "created_at": "2026-09-15T09:13:07.496475Z",
+            "updated_at": "2026-09-15T10:09:53.559665Z",
+            "last_operation_id": "39a79ebf-ea8b-4a35-b76e-ec1e3553c94a",
+            "public_address": "172.16.102.194",
+            "data_plane_observed_at": null
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T10:10:32.463237+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "load_balancer": {
+            "id": "lb_bd6f74b7445b4c5a815763d38a995f14",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "subnet_id": "subnet_f74d90cbb5484f7fb37f8a8f6782da1d",
+            "name": "lb02-2b3122-public",
+            "description": "U09 direct external EIP entry without VPC Public SNAT",
+            "exposure": "LOAD_BALANCER_EXPOSURE_PUBLIC",
+            "flavor": "small",
+            "public_eip_id": "eip_fdab288a3b1846138806e8e5e14529a9",
+            "private_ip": "",
+            "listener": {
+              "id": "ad55eb28-47e1-4c6e-bcdd-63f2b4cf9247",
+              "protocol": "LOAD_BALANCER_LISTENER_PROTOCOL_HTTP",
+              "port": 8080
+            },
+            "backends": [
+              {
+                "id": "15250ca5-84c0-44a1-a655-c30ca7b640c5",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.2",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_7d08b61f4038432a842d2fda525607b9",
+                "state": "unknown",
+                "reason": "",
+                "observed_at": "2026-09-15T10:09:23.493627Z",
+                "observation_stale": true
+              },
+              {
+                "id": "69a4a09d-f2a2-49f2-bde5-c9f34bada414",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.3",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_a6172d5ee5be434087f939001a435c9e",
+                "state": "unknown",
+                "reason": "",
+                "observed_at": "2026-09-15T10:09:23.493627Z",
+                "observation_stale": true
+              }
+            ],
+            "health_check": {
+              "protocol": "LOAD_BALANCER_HEALTH_CHECK_PROTOCOL_TCP",
+              "interval_seconds": 5,
+              "timeout_seconds": 3,
+              "unhealthy_threshold": 3,
+              "healthy_threshold": 1
+            },
+            "algorithm": "LOAD_BALANCER_ALGORITHM_ROUND_ROBIN",
+            "state": "RESOURCE_STATE_DELETING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "version": "99",
+            "desired_version": "1",
+            "applied_version": "1",
+            "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_UNKNOWN",
+            "data_plane_state": "LOAD_BALANCER_DATA_PLANE_STATE_UNKNOWN",
+            "observed_at": "2026-09-15T10:09:23.493627Z",
+            "observation_stale": true,
+            "created_at": "2026-09-15T09:13:07.496475Z",
+            "updated_at": "2026-09-15T10:09:53.559665Z",
+            "last_operation_id": "39a79ebf-ea8b-4a35-b76e-ec1e3553c94a",
+            "public_address": "172.16.102.194",
+            "data_plane_observed_at": null
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T10:10:37.476586+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "load_balancer": {
+            "id": "lb_bd6f74b7445b4c5a815763d38a995f14",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "subnet_id": "subnet_f74d90cbb5484f7fb37f8a8f6782da1d",
+            "name": "lb02-2b3122-public",
+            "description": "U09 direct external EIP entry without VPC Public SNAT",
+            "exposure": "LOAD_BALANCER_EXPOSURE_PUBLIC",
+            "flavor": "small",
+            "public_eip_id": "eip_fdab288a3b1846138806e8e5e14529a9",
+            "private_ip": "",
+            "listener": {
+              "id": "ad55eb28-47e1-4c6e-bcdd-63f2b4cf9247",
+              "protocol": "LOAD_BALANCER_LISTENER_PROTOCOL_HTTP",
+              "port": 8080
+            },
+            "backends": [
+              {
+                "id": "15250ca5-84c0-44a1-a655-c30ca7b640c5",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.2",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_7d08b61f4038432a842d2fda525607b9",
+                "state": "unknown",
+                "reason": "",
+                "observed_at": "2026-09-15T10:09:23.493627Z",
+                "observation_stale": true
+              },
+              {
+                "id": "69a4a09d-f2a2-49f2-bde5-c9f34bada414",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.3",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_a6172d5ee5be434087f939001a435c9e",
+                "state": "unknown",
+                "reason": "",
+                "observed_at": "2026-09-15T10:09:23.493627Z",
+                "observation_stale": true
+              }
+            ],
+            "health_check": {
+              "protocol": "LOAD_BALANCER_HEALTH_CHECK_PROTOCOL_TCP",
+              "interval_seconds": 5,
+              "timeout_seconds": 3,
+              "unhealthy_threshold": 3,
+              "healthy_threshold": 1
+            },
+            "algorithm": "LOAD_BALANCER_ALGORITHM_ROUND_ROBIN",
+            "state": "RESOURCE_STATE_DELETING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "version": "99",
+            "desired_version": "1",
+            "applied_version": "1",
+            "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_UNKNOWN",
+            "data_plane_state": "LOAD_BALANCER_DATA_PLANE_STATE_UNKNOWN",
+            "observed_at": "2026-09-15T10:09:23.493627Z",
+            "observation_stale": true,
+            "created_at": "2026-09-15T09:13:07.496475Z",
+            "updated_at": "2026-09-15T10:09:53.559665Z",
+            "last_operation_id": "39a79ebf-ea8b-4a35-b76e-ec1e3553c94a",
+            "public_address": "172.16.102.194",
+            "data_plane_observed_at": null
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T10:10:42.487720+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "load_balancer": {
+            "id": "lb_bd6f74b7445b4c5a815763d38a995f14",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "subnet_id": "subnet_f74d90cbb5484f7fb37f8a8f6782da1d",
+            "name": "lb02-2b3122-public",
+            "description": "U09 direct external EIP entry without VPC Public SNAT",
+            "exposure": "LOAD_BALANCER_EXPOSURE_PUBLIC",
+            "flavor": "small",
+            "public_eip_id": "eip_fdab288a3b1846138806e8e5e14529a9",
+            "private_ip": "",
+            "listener": {
+              "id": "ad55eb28-47e1-4c6e-bcdd-63f2b4cf9247",
+              "protocol": "LOAD_BALANCER_LISTENER_PROTOCOL_HTTP",
+              "port": 8080
+            },
+            "backends": [
+              {
+                "id": "15250ca5-84c0-44a1-a655-c30ca7b640c5",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.2",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_7d08b61f4038432a842d2fda525607b9",
+                "state": "unknown",
+                "reason": "",
+                "observed_at": "2026-09-15T10:09:23.493627Z",
+                "observation_stale": true
+              },
+              {
+                "id": "69a4a09d-f2a2-49f2-bde5-c9f34bada414",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.3",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_a6172d5ee5be434087f939001a435c9e",
+                "state": "unknown",
+                "reason": "",
+                "observed_at": "2026-09-15T10:09:23.493627Z",
+                "observation_stale": true
+              }
+            ],
+            "health_check": {
+              "protocol": "LOAD_BALANCER_HEALTH_CHECK_PROTOCOL_TCP",
+              "interval_seconds": 5,
+              "timeout_seconds": 3,
+              "unhealthy_threshold": 3,
+              "healthy_threshold": 1
+            },
+            "algorithm": "LOAD_BALANCER_ALGORITHM_ROUND_ROBIN",
+            "state": "RESOURCE_STATE_DELETING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "version": "99",
+            "desired_version": "1",
+            "applied_version": "1",
+            "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_UNKNOWN",
+            "data_plane_state": "LOAD_BALANCER_DATA_PLANE_STATE_UNKNOWN",
+            "observed_at": "2026-09-15T10:09:23.493627Z",
+            "observation_stale": true,
+            "created_at": "2026-09-15T09:13:07.496475Z",
+            "updated_at": "2026-09-15T10:09:53.559665Z",
+            "last_operation_id": "39a79ebf-ea8b-4a35-b76e-ec1e3553c94a",
+            "public_address": "172.16.102.194",
+            "data_plane_observed_at": null
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T10:10:47.499568+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "load_balancer": {
+            "id": "lb_bd6f74b7445b4c5a815763d38a995f14",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "subnet_id": "subnet_f74d90cbb5484f7fb37f8a8f6782da1d",
+            "name": "lb02-2b3122-public",
+            "description": "U09 direct external EIP entry without VPC Public SNAT",
+            "exposure": "LOAD_BALANCER_EXPOSURE_PUBLIC",
+            "flavor": "small",
+            "public_eip_id": "eip_fdab288a3b1846138806e8e5e14529a9",
+            "private_ip": "",
+            "listener": {
+              "id": "ad55eb28-47e1-4c6e-bcdd-63f2b4cf9247",
+              "protocol": "LOAD_BALANCER_LISTENER_PROTOCOL_HTTP",
+              "port": 8080
+            },
+            "backends": [
+              {
+                "id": "15250ca5-84c0-44a1-a655-c30ca7b640c5",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.2",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_7d08b61f4038432a842d2fda525607b9",
+                "state": "unknown",
+                "reason": "",
+                "observed_at": "2026-09-15T10:09:23.493627Z",
+                "observation_stale": true
+              },
+              {
+                "id": "69a4a09d-f2a2-49f2-bde5-c9f34bada414",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.3",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_a6172d5ee5be434087f939001a435c9e",
+                "state": "unknown",
+                "reason": "",
+                "observed_at": "2026-09-15T10:09:23.493627Z",
+                "observation_stale": true
+              }
+            ],
+            "health_check": {
+              "protocol": "LOAD_BALANCER_HEALTH_CHECK_PROTOCOL_TCP",
+              "interval_seconds": 5,
+              "timeout_seconds": 3,
+              "unhealthy_threshold": 3,
+              "healthy_threshold": 1
+            },
+            "algorithm": "LOAD_BALANCER_ALGORITHM_ROUND_ROBIN",
+            "state": "RESOURCE_STATE_DELETING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "version": "99",
+            "desired_version": "1",
+            "applied_version": "1",
+            "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_UNKNOWN",
+            "data_plane_state": "LOAD_BALANCER_DATA_PLANE_STATE_UNKNOWN",
+            "observed_at": "2026-09-15T10:09:23.493627Z",
+            "observation_stale": true,
+            "created_at": "2026-09-15T09:13:07.496475Z",
+            "updated_at": "2026-09-15T10:09:53.559665Z",
+            "last_operation_id": "39a79ebf-ea8b-4a35-b76e-ec1e3553c94a",
+            "public_address": "172.16.102.194",
+            "data_plane_observed_at": null
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T10:10:52.511695+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "load_balancer": {
+            "id": "lb_bd6f74b7445b4c5a815763d38a995f14",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "subnet_id": "subnet_f74d90cbb5484f7fb37f8a8f6782da1d",
+            "name": "lb02-2b3122-public",
+            "description": "U09 direct external EIP entry without VPC Public SNAT",
+            "exposure": "LOAD_BALANCER_EXPOSURE_PUBLIC",
+            "flavor": "small",
+            "public_eip_id": "eip_fdab288a3b1846138806e8e5e14529a9",
+            "private_ip": "",
+            "listener": {
+              "id": "ad55eb28-47e1-4c6e-bcdd-63f2b4cf9247",
+              "protocol": "LOAD_BALANCER_LISTENER_PROTOCOL_HTTP",
+              "port": 8080
+            },
+            "backends": [
+              {
+                "id": "15250ca5-84c0-44a1-a655-c30ca7b640c5",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.2",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_7d08b61f4038432a842d2fda525607b9",
+                "state": "unknown",
+                "reason": "",
+                "observed_at": "2026-09-15T10:09:23.493627Z",
+                "observation_stale": true
+              },
+              {
+                "id": "69a4a09d-f2a2-49f2-bde5-c9f34bada414",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.3",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_a6172d5ee5be434087f939001a435c9e",
+                "state": "unknown",
+                "reason": "",
+                "observed_at": "2026-09-15T10:09:23.493627Z",
+                "observation_stale": true
+              }
+            ],
+            "health_check": {
+              "protocol": "LOAD_BALANCER_HEALTH_CHECK_PROTOCOL_TCP",
+              "interval_seconds": 5,
+              "timeout_seconds": 3,
+              "unhealthy_threshold": 3,
+              "healthy_threshold": 1
+            },
+            "algorithm": "LOAD_BALANCER_ALGORITHM_ROUND_ROBIN",
+            "state": "RESOURCE_STATE_DELETING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "version": "99",
+            "desired_version": "1",
+            "applied_version": "1",
+            "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_UNKNOWN",
+            "data_plane_state": "LOAD_BALANCER_DATA_PLANE_STATE_UNKNOWN",
+            "observed_at": "2026-09-15T10:09:23.493627Z",
+            "observation_stale": true,
+            "created_at": "2026-09-15T09:13:07.496475Z",
+            "updated_at": "2026-09-15T10:09:53.559665Z",
+            "last_operation_id": "39a79ebf-ea8b-4a35-b76e-ec1e3553c94a",
+            "public_address": "172.16.102.194",
+            "data_plane_observed_at": null
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T10:10:57.523862+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "load_balancer": {
+            "id": "lb_bd6f74b7445b4c5a815763d38a995f14",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "subnet_id": "subnet_f74d90cbb5484f7fb37f8a8f6782da1d",
+            "name": "lb02-2b3122-public",
+            "description": "U09 direct external EIP entry without VPC Public SNAT",
+            "exposure": "LOAD_BALANCER_EXPOSURE_PUBLIC",
+            "flavor": "small",
+            "public_eip_id": "eip_fdab288a3b1846138806e8e5e14529a9",
+            "private_ip": "",
+            "listener": {
+              "id": "ad55eb28-47e1-4c6e-bcdd-63f2b4cf9247",
+              "protocol": "LOAD_BALANCER_LISTENER_PROTOCOL_HTTP",
+              "port": 8080
+            },
+            "backends": [
+              {
+                "id": "15250ca5-84c0-44a1-a655-c30ca7b640c5",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.2",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_7d08b61f4038432a842d2fda525607b9",
+                "state": "unknown",
+                "reason": "",
+                "observed_at": "2026-09-15T10:09:23.493627Z",
+                "observation_stale": true
+              },
+              {
+                "id": "69a4a09d-f2a2-49f2-bde5-c9f34bada414",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.3",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_a6172d5ee5be434087f939001a435c9e",
+                "state": "unknown",
+                "reason": "",
+                "observed_at": "2026-09-15T10:09:23.493627Z",
+                "observation_stale": true
+              }
+            ],
+            "health_check": {
+              "protocol": "LOAD_BALANCER_HEALTH_CHECK_PROTOCOL_TCP",
+              "interval_seconds": 5,
+              "timeout_seconds": 3,
+              "unhealthy_threshold": 3,
+              "healthy_threshold": 1
+            },
+            "algorithm": "LOAD_BALANCER_ALGORITHM_ROUND_ROBIN",
+            "state": "RESOURCE_STATE_DELETING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "version": "100",
+            "desired_version": "1",
+            "applied_version": "1",
+            "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_UNKNOWN",
+            "data_plane_state": "LOAD_BALANCER_DATA_PLANE_STATE_UNKNOWN",
+            "observed_at": "2026-09-15T10:09:23.493627Z",
+            "observation_stale": true,
+            "created_at": "2026-09-15T09:13:07.496475Z",
+            "updated_at": "2026-09-15T10:10:57.504145Z",
+            "last_operation_id": "39a79ebf-ea8b-4a35-b76e-ec1e3553c94a",
+            "public_address": "172.16.102.194",
+            "data_plane_observed_at": null
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T10:11:02.535171+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "load_balancer": {
+            "id": "lb_bd6f74b7445b4c5a815763d38a995f14",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "subnet_id": "subnet_f74d90cbb5484f7fb37f8a8f6782da1d",
+            "name": "lb02-2b3122-public",
+            "description": "U09 direct external EIP entry without VPC Public SNAT",
+            "exposure": "LOAD_BALANCER_EXPOSURE_PUBLIC",
+            "flavor": "small",
+            "public_eip_id": "eip_fdab288a3b1846138806e8e5e14529a9",
+            "private_ip": "",
+            "listener": {
+              "id": "ad55eb28-47e1-4c6e-bcdd-63f2b4cf9247",
+              "protocol": "LOAD_BALANCER_LISTENER_PROTOCOL_HTTP",
+              "port": 8080
+            },
+            "backends": [
+              {
+                "id": "15250ca5-84c0-44a1-a655-c30ca7b640c5",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.2",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_7d08b61f4038432a842d2fda525607b9",
+                "state": "unknown",
+                "reason": "",
+                "observed_at": "2026-09-15T10:09:23.493627Z",
+                "observation_stale": true
+              },
+              {
+                "id": "69a4a09d-f2a2-49f2-bde5-c9f34bada414",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.3",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_a6172d5ee5be434087f939001a435c9e",
+                "state": "unknown",
+                "reason": "",
+                "observed_at": "2026-09-15T10:09:23.493627Z",
+                "observation_stale": true
+              }
+            ],
+            "health_check": {
+              "protocol": "LOAD_BALANCER_HEALTH_CHECK_PROTOCOL_TCP",
+              "interval_seconds": 5,
+              "timeout_seconds": 3,
+              "unhealthy_threshold": 3,
+              "healthy_threshold": 1
+            },
+            "algorithm": "LOAD_BALANCER_ALGORITHM_ROUND_ROBIN",
+            "state": "RESOURCE_STATE_DELETING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "version": "100",
+            "desired_version": "1",
+            "applied_version": "1",
+            "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_UNKNOWN",
+            "data_plane_state": "LOAD_BALANCER_DATA_PLANE_STATE_UNKNOWN",
+            "observed_at": "2026-09-15T10:09:23.493627Z",
+            "observation_stale": true,
+            "created_at": "2026-09-15T09:13:07.496475Z",
+            "updated_at": "2026-09-15T10:10:57.504145Z",
+            "last_operation_id": "39a79ebf-ea8b-4a35-b76e-ec1e3553c94a",
+            "public_address": "172.16.102.194",
+            "data_plane_observed_at": null
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T10:11:07.547657+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "load_balancer": {
+            "id": "lb_bd6f74b7445b4c5a815763d38a995f14",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "subnet_id": "subnet_f74d90cbb5484f7fb37f8a8f6782da1d",
+            "name": "lb02-2b3122-public",
+            "description": "U09 direct external EIP entry without VPC Public SNAT",
+            "exposure": "LOAD_BALANCER_EXPOSURE_PUBLIC",
+            "flavor": "small",
+            "public_eip_id": "eip_fdab288a3b1846138806e8e5e14529a9",
+            "private_ip": "",
+            "listener": {
+              "id": "ad55eb28-47e1-4c6e-bcdd-63f2b4cf9247",
+              "protocol": "LOAD_BALANCER_LISTENER_PROTOCOL_HTTP",
+              "port": 8080
+            },
+            "backends": [
+              {
+                "id": "15250ca5-84c0-44a1-a655-c30ca7b640c5",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.2",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_7d08b61f4038432a842d2fda525607b9",
+                "state": "unknown",
+                "reason": "",
+                "observed_at": "2026-09-15T10:09:23.493627Z",
+                "observation_stale": true
+              },
+              {
+                "id": "69a4a09d-f2a2-49f2-bde5-c9f34bada414",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.3",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_a6172d5ee5be434087f939001a435c9e",
+                "state": "unknown",
+                "reason": "",
+                "observed_at": "2026-09-15T10:09:23.493627Z",
+                "observation_stale": true
+              }
+            ],
+            "health_check": {
+              "protocol": "LOAD_BALANCER_HEALTH_CHECK_PROTOCOL_TCP",
+              "interval_seconds": 5,
+              "timeout_seconds": 3,
+              "unhealthy_threshold": 3,
+              "healthy_threshold": 1
+            },
+            "algorithm": "LOAD_BALANCER_ALGORITHM_ROUND_ROBIN",
+            "state": "RESOURCE_STATE_DELETING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "version": "100",
+            "desired_version": "1",
+            "applied_version": "1",
+            "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_UNKNOWN",
+            "data_plane_state": "LOAD_BALANCER_DATA_PLANE_STATE_UNKNOWN",
+            "observed_at": "2026-09-15T10:09:23.493627Z",
+            "observation_stale": true,
+            "created_at": "2026-09-15T09:13:07.496475Z",
+            "updated_at": "2026-09-15T10:10:57.504145Z",
+            "last_operation_id": "39a79ebf-ea8b-4a35-b76e-ec1e3553c94a",
+            "public_address": "172.16.102.194",
+            "data_plane_observed_at": null
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T10:11:12.560794+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "load_balancer": {
+            "id": "lb_bd6f74b7445b4c5a815763d38a995f14",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "subnet_id": "subnet_f74d90cbb5484f7fb37f8a8f6782da1d",
+            "name": "lb02-2b3122-public",
+            "description": "U09 direct external EIP entry without VPC Public SNAT",
+            "exposure": "LOAD_BALANCER_EXPOSURE_PUBLIC",
+            "flavor": "small",
+            "public_eip_id": "eip_fdab288a3b1846138806e8e5e14529a9",
+            "private_ip": "",
+            "listener": {
+              "id": "ad55eb28-47e1-4c6e-bcdd-63f2b4cf9247",
+              "protocol": "LOAD_BALANCER_LISTENER_PROTOCOL_HTTP",
+              "port": 8080
+            },
+            "backends": [
+              {
+                "id": "15250ca5-84c0-44a1-a655-c30ca7b640c5",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.2",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_7d08b61f4038432a842d2fda525607b9",
+                "state": "unknown",
+                "reason": "",
+                "observed_at": "2026-09-15T10:09:23.493627Z",
+                "observation_stale": true
+              },
+              {
+                "id": "69a4a09d-f2a2-49f2-bde5-c9f34bada414",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.3",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_a6172d5ee5be434087f939001a435c9e",
+                "state": "unknown",
+                "reason": "",
+                "observed_at": "2026-09-15T10:09:23.493627Z",
+                "observation_stale": true
+              }
+            ],
+            "health_check": {
+              "protocol": "LOAD_BALANCER_HEALTH_CHECK_PROTOCOL_TCP",
+              "interval_seconds": 5,
+              "timeout_seconds": 3,
+              "unhealthy_threshold": 3,
+              "healthy_threshold": 1
+            },
+            "algorithm": "LOAD_BALANCER_ALGORITHM_ROUND_ROBIN",
+            "state": "RESOURCE_STATE_DELETING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "version": "100",
+            "desired_version": "1",
+            "applied_version": "1",
+            "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_UNKNOWN",
+            "data_plane_state": "LOAD_BALANCER_DATA_PLANE_STATE_UNKNOWN",
+            "observed_at": "2026-09-15T10:09:23.493627Z",
+            "observation_stale": true,
+            "created_at": "2026-09-15T09:13:07.496475Z",
+            "updated_at": "2026-09-15T10:10:57.504145Z",
+            "last_operation_id": "39a79ebf-ea8b-4a35-b76e-ec1e3553c94a",
+            "public_address": "172.16.102.194",
+            "data_plane_observed_at": null
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T10:11:17.573051+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "load_balancer": {
+            "id": "lb_bd6f74b7445b4c5a815763d38a995f14",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "subnet_id": "subnet_f74d90cbb5484f7fb37f8a8f6782da1d",
+            "name": "lb02-2b3122-public",
+            "description": "U09 direct external EIP entry without VPC Public SNAT",
+            "exposure": "LOAD_BALANCER_EXPOSURE_PUBLIC",
+            "flavor": "small",
+            "public_eip_id": "eip_fdab288a3b1846138806e8e5e14529a9",
+            "private_ip": "",
+            "listener": {
+              "id": "ad55eb28-47e1-4c6e-bcdd-63f2b4cf9247",
+              "protocol": "LOAD_BALANCER_LISTENER_PROTOCOL_HTTP",
+              "port": 8080
+            },
+            "backends": [
+              {
+                "id": "15250ca5-84c0-44a1-a655-c30ca7b640c5",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.2",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_7d08b61f4038432a842d2fda525607b9",
+                "state": "unknown",
+                "reason": "",
+                "observed_at": "2026-09-15T10:09:23.493627Z",
+                "observation_stale": true
+              },
+              {
+                "id": "69a4a09d-f2a2-49f2-bde5-c9f34bada414",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.3",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_a6172d5ee5be434087f939001a435c9e",
+                "state": "unknown",
+                "reason": "",
+                "observed_at": "2026-09-15T10:09:23.493627Z",
+                "observation_stale": true
+              }
+            ],
+            "health_check": {
+              "protocol": "LOAD_BALANCER_HEALTH_CHECK_PROTOCOL_TCP",
+              "interval_seconds": 5,
+              "timeout_seconds": 3,
+              "unhealthy_threshold": 3,
+              "healthy_threshold": 1
+            },
+            "algorithm": "LOAD_BALANCER_ALGORITHM_ROUND_ROBIN",
+            "state": "RESOURCE_STATE_DELETING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "version": "100",
+            "desired_version": "1",
+            "applied_version": "1",
+            "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_UNKNOWN",
+            "data_plane_state": "LOAD_BALANCER_DATA_PLANE_STATE_UNKNOWN",
+            "observed_at": "2026-09-15T10:09:23.493627Z",
+            "observation_stale": true,
+            "created_at": "2026-09-15T09:13:07.496475Z",
+            "updated_at": "2026-09-15T10:10:57.504145Z",
+            "last_operation_id": "39a79ebf-ea8b-4a35-b76e-ec1e3553c94a",
+            "public_address": "172.16.102.194",
+            "data_plane_observed_at": null
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T10:11:22.586188+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "load_balancer": {
+            "id": "lb_bd6f74b7445b4c5a815763d38a995f14",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "subnet_id": "subnet_f74d90cbb5484f7fb37f8a8f6782da1d",
+            "name": "lb02-2b3122-public",
+            "description": "U09 direct external EIP entry without VPC Public SNAT",
+            "exposure": "LOAD_BALANCER_EXPOSURE_PUBLIC",
+            "flavor": "small",
+            "public_eip_id": "eip_fdab288a3b1846138806e8e5e14529a9",
+            "private_ip": "",
+            "listener": {
+              "id": "ad55eb28-47e1-4c6e-bcdd-63f2b4cf9247",
+              "protocol": "LOAD_BALANCER_LISTENER_PROTOCOL_HTTP",
+              "port": 8080
+            },
+            "backends": [
+              {
+                "id": "15250ca5-84c0-44a1-a655-c30ca7b640c5",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.2",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_7d08b61f4038432a842d2fda525607b9",
+                "state": "unknown",
+                "reason": "",
+                "observed_at": "2026-09-15T10:09:23.493627Z",
+                "observation_stale": true
+              },
+              {
+                "id": "69a4a09d-f2a2-49f2-bde5-c9f34bada414",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.3",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_a6172d5ee5be434087f939001a435c9e",
+                "state": "unknown",
+                "reason": "",
+                "observed_at": "2026-09-15T10:09:23.493627Z",
+                "observation_stale": true
+              }
+            ],
+            "health_check": {
+              "protocol": "LOAD_BALANCER_HEALTH_CHECK_PROTOCOL_TCP",
+              "interval_seconds": 5,
+              "timeout_seconds": 3,
+              "unhealthy_threshold": 3,
+              "healthy_threshold": 1
+            },
+            "algorithm": "LOAD_BALANCER_ALGORITHM_ROUND_ROBIN",
+            "state": "RESOURCE_STATE_DELETING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "version": "100",
+            "desired_version": "1",
+            "applied_version": "1",
+            "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_UNKNOWN",
+            "data_plane_state": "LOAD_BALANCER_DATA_PLANE_STATE_UNKNOWN",
+            "observed_at": "2026-09-15T10:09:23.493627Z",
+            "observation_stale": true,
+            "created_at": "2026-09-15T09:13:07.496475Z",
+            "updated_at": "2026-09-15T10:10:57.504145Z",
+            "last_operation_id": "39a79ebf-ea8b-4a35-b76e-ec1e3553c94a",
+            "public_address": "172.16.102.194",
+            "data_plane_observed_at": null
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T10:11:27.601673+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "load_balancer": {
+            "id": "lb_bd6f74b7445b4c5a815763d38a995f14",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "subnet_id": "subnet_f74d90cbb5484f7fb37f8a8f6782da1d",
+            "name": "lb02-2b3122-public",
+            "description": "U09 direct external EIP entry without VPC Public SNAT",
+            "exposure": "LOAD_BALANCER_EXPOSURE_PUBLIC",
+            "flavor": "small",
+            "public_eip_id": "eip_fdab288a3b1846138806e8e5e14529a9",
+            "private_ip": "",
+            "listener": {
+              "id": "ad55eb28-47e1-4c6e-bcdd-63f2b4cf9247",
+              "protocol": "LOAD_BALANCER_LISTENER_PROTOCOL_HTTP",
+              "port": 8080
+            },
+            "backends": [
+              {
+                "id": "15250ca5-84c0-44a1-a655-c30ca7b640c5",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.2",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_7d08b61f4038432a842d2fda525607b9",
+                "state": "unknown",
+                "reason": "",
+                "observed_at": "2026-09-15T10:09:23.493627Z",
+                "observation_stale": true
+              },
+              {
+                "id": "69a4a09d-f2a2-49f2-bde5-c9f34bada414",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.3",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_a6172d5ee5be434087f939001a435c9e",
+                "state": "unknown",
+                "reason": "",
+                "observed_at": "2026-09-15T10:09:23.493627Z",
+                "observation_stale": true
+              }
+            ],
+            "health_check": {
+              "protocol": "LOAD_BALANCER_HEALTH_CHECK_PROTOCOL_TCP",
+              "interval_seconds": 5,
+              "timeout_seconds": 3,
+              "unhealthy_threshold": 3,
+              "healthy_threshold": 1
+            },
+            "algorithm": "LOAD_BALANCER_ALGORITHM_ROUND_ROBIN",
+            "state": "RESOURCE_STATE_DELETING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "version": "100",
+            "desired_version": "1",
+            "applied_version": "1",
+            "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_UNKNOWN",
+            "data_plane_state": "LOAD_BALANCER_DATA_PLANE_STATE_UNKNOWN",
+            "observed_at": "2026-09-15T10:09:23.493627Z",
+            "observation_stale": true,
+            "created_at": "2026-09-15T09:13:07.496475Z",
+            "updated_at": "2026-09-15T10:10:57.504145Z",
+            "last_operation_id": "39a79ebf-ea8b-4a35-b76e-ec1e3553c94a",
+            "public_address": "172.16.102.194",
+            "data_plane_observed_at": null
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T10:11:32.615135+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "load_balancer": {
+            "id": "lb_bd6f74b7445b4c5a815763d38a995f14",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "subnet_id": "subnet_f74d90cbb5484f7fb37f8a8f6782da1d",
+            "name": "lb02-2b3122-public",
+            "description": "U09 direct external EIP entry without VPC Public SNAT",
+            "exposure": "LOAD_BALANCER_EXPOSURE_PUBLIC",
+            "flavor": "small",
+            "public_eip_id": "eip_fdab288a3b1846138806e8e5e14529a9",
+            "private_ip": "",
+            "listener": {
+              "id": "ad55eb28-47e1-4c6e-bcdd-63f2b4cf9247",
+              "protocol": "LOAD_BALANCER_LISTENER_PROTOCOL_HTTP",
+              "port": 8080
+            },
+            "backends": [
+              {
+                "id": "15250ca5-84c0-44a1-a655-c30ca7b640c5",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.2",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_7d08b61f4038432a842d2fda525607b9",
+                "state": "unknown",
+                "reason": "",
+                "observed_at": "2026-09-15T10:09:23.493627Z",
+                "observation_stale": true
+              },
+              {
+                "id": "69a4a09d-f2a2-49f2-bde5-c9f34bada414",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.3",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_a6172d5ee5be434087f939001a435c9e",
+                "state": "unknown",
+                "reason": "",
+                "observed_at": "2026-09-15T10:09:23.493627Z",
+                "observation_stale": true
+              }
+            ],
+            "health_check": {
+              "protocol": "LOAD_BALANCER_HEALTH_CHECK_PROTOCOL_TCP",
+              "interval_seconds": 5,
+              "timeout_seconds": 3,
+              "unhealthy_threshold": 3,
+              "healthy_threshold": 1
+            },
+            "algorithm": "LOAD_BALANCER_ALGORITHM_ROUND_ROBIN",
+            "state": "RESOURCE_STATE_DELETING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "version": "100",
+            "desired_version": "1",
+            "applied_version": "1",
+            "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_UNKNOWN",
+            "data_plane_state": "LOAD_BALANCER_DATA_PLANE_STATE_UNKNOWN",
+            "observed_at": "2026-09-15T10:09:23.493627Z",
+            "observation_stale": true,
+            "created_at": "2026-09-15T09:13:07.496475Z",
+            "updated_at": "2026-09-15T10:10:57.504145Z",
+            "last_operation_id": "39a79ebf-ea8b-4a35-b76e-ec1e3553c94a",
+            "public_address": "172.16.102.194",
+            "data_plane_observed_at": null
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T10:11:37.628706+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "load_balancer": {
+            "id": "lb_bd6f74b7445b4c5a815763d38a995f14",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "subnet_id": "subnet_f74d90cbb5484f7fb37f8a8f6782da1d",
+            "name": "lb02-2b3122-public",
+            "description": "U09 direct external EIP entry without VPC Public SNAT",
+            "exposure": "LOAD_BALANCER_EXPOSURE_PUBLIC",
+            "flavor": "small",
+            "public_eip_id": "eip_fdab288a3b1846138806e8e5e14529a9",
+            "private_ip": "",
+            "listener": {
+              "id": "ad55eb28-47e1-4c6e-bcdd-63f2b4cf9247",
+              "protocol": "LOAD_BALANCER_LISTENER_PROTOCOL_HTTP",
+              "port": 8080
+            },
+            "backends": [
+              {
+                "id": "15250ca5-84c0-44a1-a655-c30ca7b640c5",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.2",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_7d08b61f4038432a842d2fda525607b9",
+                "state": "unknown",
+                "reason": "",
+                "observed_at": "2026-09-15T10:09:23.493627Z",
+                "observation_stale": true
+              },
+              {
+                "id": "69a4a09d-f2a2-49f2-bde5-c9f34bada414",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.3",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_a6172d5ee5be434087f939001a435c9e",
+                "state": "unknown",
+                "reason": "",
+                "observed_at": "2026-09-15T10:09:23.493627Z",
+                "observation_stale": true
+              }
+            ],
+            "health_check": {
+              "protocol": "LOAD_BALANCER_HEALTH_CHECK_PROTOCOL_TCP",
+              "interval_seconds": 5,
+              "timeout_seconds": 3,
+              "unhealthy_threshold": 3,
+              "healthy_threshold": 1
+            },
+            "algorithm": "LOAD_BALANCER_ALGORITHM_ROUND_ROBIN",
+            "state": "RESOURCE_STATE_DELETING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "version": "100",
+            "desired_version": "1",
+            "applied_version": "1",
+            "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_UNKNOWN",
+            "data_plane_state": "LOAD_BALANCER_DATA_PLANE_STATE_UNKNOWN",
+            "observed_at": "2026-09-15T10:09:23.493627Z",
+            "observation_stale": true,
+            "created_at": "2026-09-15T09:13:07.496475Z",
+            "updated_at": "2026-09-15T10:10:57.504145Z",
+            "last_operation_id": "39a79ebf-ea8b-4a35-b76e-ec1e3553c94a",
+            "public_address": "172.16.102.194",
+            "data_plane_observed_at": null
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T10:11:42.641351+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "load_balancer": {
+            "id": "lb_bd6f74b7445b4c5a815763d38a995f14",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "subnet_id": "subnet_f74d90cbb5484f7fb37f8a8f6782da1d",
+            "name": "lb02-2b3122-public",
+            "description": "U09 direct external EIP entry without VPC Public SNAT",
+            "exposure": "LOAD_BALANCER_EXPOSURE_PUBLIC",
+            "flavor": "small",
+            "public_eip_id": "eip_fdab288a3b1846138806e8e5e14529a9",
+            "private_ip": "",
+            "listener": {
+              "id": "ad55eb28-47e1-4c6e-bcdd-63f2b4cf9247",
+              "protocol": "LOAD_BALANCER_LISTENER_PROTOCOL_HTTP",
+              "port": 8080
+            },
+            "backends": [
+              {
+                "id": "15250ca5-84c0-44a1-a655-c30ca7b640c5",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.2",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_7d08b61f4038432a842d2fda525607b9",
+                "state": "unknown",
+                "reason": "",
+                "observed_at": "2026-09-15T10:09:23.493627Z",
+                "observation_stale": true
+              },
+              {
+                "id": "69a4a09d-f2a2-49f2-bde5-c9f34bada414",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.3",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_a6172d5ee5be434087f939001a435c9e",
+                "state": "unknown",
+                "reason": "",
+                "observed_at": "2026-09-15T10:09:23.493627Z",
+                "observation_stale": true
+              }
+            ],
+            "health_check": {
+              "protocol": "LOAD_BALANCER_HEALTH_CHECK_PROTOCOL_TCP",
+              "interval_seconds": 5,
+              "timeout_seconds": 3,
+              "unhealthy_threshold": 3,
+              "healthy_threshold": 1
+            },
+            "algorithm": "LOAD_BALANCER_ALGORITHM_ROUND_ROBIN",
+            "state": "RESOURCE_STATE_DELETING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "version": "100",
+            "desired_version": "1",
+            "applied_version": "1",
+            "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_UNKNOWN",
+            "data_plane_state": "LOAD_BALANCER_DATA_PLANE_STATE_UNKNOWN",
+            "observed_at": "2026-09-15T10:09:23.493627Z",
+            "observation_stale": true,
+            "created_at": "2026-09-15T09:13:07.496475Z",
+            "updated_at": "2026-09-15T10:10:57.504145Z",
+            "last_operation_id": "39a79ebf-ea8b-4a35-b76e-ec1e3553c94a",
+            "public_address": "172.16.102.194",
+            "data_plane_observed_at": null
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T10:11:47.653636+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "load_balancer": {
+            "id": "lb_bd6f74b7445b4c5a815763d38a995f14",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "subnet_id": "subnet_f74d90cbb5484f7fb37f8a8f6782da1d",
+            "name": "lb02-2b3122-public",
+            "description": "U09 direct external EIP entry without VPC Public SNAT",
+            "exposure": "LOAD_BALANCER_EXPOSURE_PUBLIC",
+            "flavor": "small",
+            "public_eip_id": "eip_fdab288a3b1846138806e8e5e14529a9",
+            "private_ip": "",
+            "listener": {
+              "id": "ad55eb28-47e1-4c6e-bcdd-63f2b4cf9247",
+              "protocol": "LOAD_BALANCER_LISTENER_PROTOCOL_HTTP",
+              "port": 8080
+            },
+            "backends": [
+              {
+                "id": "15250ca5-84c0-44a1-a655-c30ca7b640c5",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.2",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_7d08b61f4038432a842d2fda525607b9",
+                "state": "unknown",
+                "reason": "",
+                "observed_at": "2026-09-15T10:09:23.493627Z",
+                "observation_stale": true
+              },
+              {
+                "id": "69a4a09d-f2a2-49f2-bde5-c9f34bada414",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.3",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_a6172d5ee5be434087f939001a435c9e",
+                "state": "unknown",
+                "reason": "",
+                "observed_at": "2026-09-15T10:09:23.493627Z",
+                "observation_stale": true
+              }
+            ],
+            "health_check": {
+              "protocol": "LOAD_BALANCER_HEALTH_CHECK_PROTOCOL_TCP",
+              "interval_seconds": 5,
+              "timeout_seconds": 3,
+              "unhealthy_threshold": 3,
+              "healthy_threshold": 1
+            },
+            "algorithm": "LOAD_BALANCER_ALGORITHM_ROUND_ROBIN",
+            "state": "RESOURCE_STATE_DELETING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "version": "100",
+            "desired_version": "1",
+            "applied_version": "1",
+            "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_UNKNOWN",
+            "data_plane_state": "LOAD_BALANCER_DATA_PLANE_STATE_UNKNOWN",
+            "observed_at": "2026-09-15T10:09:23.493627Z",
+            "observation_stale": true,
+            "created_at": "2026-09-15T09:13:07.496475Z",
+            "updated_at": "2026-09-15T10:10:57.504145Z",
+            "last_operation_id": "39a79ebf-ea8b-4a35-b76e-ec1e3553c94a",
+            "public_address": "172.16.102.194",
+            "data_plane_observed_at": null
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T10:11:52.666257+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "load_balancer": {
+            "id": "lb_bd6f74b7445b4c5a815763d38a995f14",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "subnet_id": "subnet_f74d90cbb5484f7fb37f8a8f6782da1d",
+            "name": "lb02-2b3122-public",
+            "description": "U09 direct external EIP entry without VPC Public SNAT",
+            "exposure": "LOAD_BALANCER_EXPOSURE_PUBLIC",
+            "flavor": "small",
+            "public_eip_id": "eip_fdab288a3b1846138806e8e5e14529a9",
+            "private_ip": "",
+            "listener": {
+              "id": "ad55eb28-47e1-4c6e-bcdd-63f2b4cf9247",
+              "protocol": "LOAD_BALANCER_LISTENER_PROTOCOL_HTTP",
+              "port": 8080
+            },
+            "backends": [
+              {
+                "id": "15250ca5-84c0-44a1-a655-c30ca7b640c5",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.2",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_7d08b61f4038432a842d2fda525607b9",
+                "state": "available",
+                "reason": "",
+                "observed_at": "2026-09-15T10:11:47.922150Z",
+                "observation_stale": false
+              },
+              {
+                "id": "69a4a09d-f2a2-49f2-bde5-c9f34bada414",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.3",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_a6172d5ee5be434087f939001a435c9e",
+                "state": "available",
+                "reason": "",
+                "observed_at": "2026-09-15T10:11:47.922150Z",
+                "observation_stale": false
+              }
+            ],
+            "health_check": {
+              "protocol": "LOAD_BALANCER_HEALTH_CHECK_PROTOCOL_TCP",
+              "interval_seconds": 5,
+              "timeout_seconds": 3,
+              "unhealthy_threshold": 3,
+              "healthy_threshold": 1
+            },
+            "algorithm": "LOAD_BALANCER_ALGORITHM_ROUND_ROBIN",
+            "state": "RESOURCE_STATE_DELETING",
+            "reason": "PROVIDER_NOT_READY",
+            "reason_message": "The requested configuration is not ready yet.",
+            "version": "101",
+            "desired_version": "1",
+            "applied_version": "1",
+            "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_APPLYING",
+            "data_plane_state": "LOAD_BALANCER_DATA_PLANE_STATE_UNKNOWN",
+            "observed_at": "2026-09-15T10:11:47.922150Z",
+            "observation_stale": false,
+            "created_at": "2026-09-15T09:13:07.496475Z",
+            "updated_at": "2026-09-15T10:11:52.067340Z",
+            "last_operation_id": "39a79ebf-ea8b-4a35-b76e-ec1e3553c94a",
+            "public_address": "172.16.102.194",
+            "data_plane_observed_at": null
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T10:11:57.678078+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "load_balancer": {
+            "id": "lb_bd6f74b7445b4c5a815763d38a995f14",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "subnet_id": "subnet_f74d90cbb5484f7fb37f8a8f6782da1d",
+            "name": "lb02-2b3122-public",
+            "description": "U09 direct external EIP entry without VPC Public SNAT",
+            "exposure": "LOAD_BALANCER_EXPOSURE_PUBLIC",
+            "flavor": "small",
+            "public_eip_id": "eip_fdab288a3b1846138806e8e5e14529a9",
+            "private_ip": "",
+            "listener": {
+              "id": "ad55eb28-47e1-4c6e-bcdd-63f2b4cf9247",
+              "protocol": "LOAD_BALANCER_LISTENER_PROTOCOL_HTTP",
+              "port": 8080
+            },
+            "backends": [
+              {
+                "id": "15250ca5-84c0-44a1-a655-c30ca7b640c5",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.2",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_7d08b61f4038432a842d2fda525607b9",
+                "state": "available",
+                "reason": "",
+                "observed_at": "2026-09-15T10:11:47.922150Z",
+                "observation_stale": false
+              },
+              {
+                "id": "69a4a09d-f2a2-49f2-bde5-c9f34bada414",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.3",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_a6172d5ee5be434087f939001a435c9e",
+                "state": "available",
+                "reason": "",
+                "observed_at": "2026-09-15T10:11:47.922150Z",
+                "observation_stale": false
+              }
+            ],
+            "health_check": {
+              "protocol": "LOAD_BALANCER_HEALTH_CHECK_PROTOCOL_TCP",
+              "interval_seconds": 5,
+              "timeout_seconds": 3,
+              "unhealthy_threshold": 3,
+              "healthy_threshold": 1
+            },
+            "algorithm": "LOAD_BALANCER_ALGORITHM_ROUND_ROBIN",
+            "state": "RESOURCE_STATE_DELETING",
+            "reason": "PROVIDER_NOT_READY",
+            "reason_message": "The requested configuration is not ready yet.",
+            "version": "101",
+            "desired_version": "1",
+            "applied_version": "1",
+            "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_APPLYING",
+            "data_plane_state": "LOAD_BALANCER_DATA_PLANE_STATE_UNKNOWN",
+            "observed_at": "2026-09-15T10:11:47.922150Z",
+            "observation_stale": false,
+            "created_at": "2026-09-15T09:13:07.496475Z",
+            "updated_at": "2026-09-15T10:11:52.067340Z",
+            "last_operation_id": "39a79ebf-ea8b-4a35-b76e-ec1e3553c94a",
+            "public_address": "172.16.102.194",
+            "data_plane_observed_at": null
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T10:12:02.690166+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "load_balancer": {
+            "id": "lb_bd6f74b7445b4c5a815763d38a995f14",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "subnet_id": "subnet_f74d90cbb5484f7fb37f8a8f6782da1d",
+            "name": "lb02-2b3122-public",
+            "description": "U09 direct external EIP entry without VPC Public SNAT",
+            "exposure": "LOAD_BALANCER_EXPOSURE_PUBLIC",
+            "flavor": "small",
+            "public_eip_id": "eip_fdab288a3b1846138806e8e5e14529a9",
+            "private_ip": "",
+            "listener": {
+              "id": "ad55eb28-47e1-4c6e-bcdd-63f2b4cf9247",
+              "protocol": "LOAD_BALANCER_LISTENER_PROTOCOL_HTTP",
+              "port": 8080
+            },
+            "backends": [
+              {
+                "id": "15250ca5-84c0-44a1-a655-c30ca7b640c5",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.2",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_7d08b61f4038432a842d2fda525607b9",
+                "state": "available",
+                "reason": "",
+                "observed_at": "2026-09-15T10:11:47.922150Z",
+                "observation_stale": false
+              },
+              {
+                "id": "69a4a09d-f2a2-49f2-bde5-c9f34bada414",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.3",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_a6172d5ee5be434087f939001a435c9e",
+                "state": "available",
+                "reason": "",
+                "observed_at": "2026-09-15T10:11:47.922150Z",
+                "observation_stale": false
+              }
+            ],
+            "health_check": {
+              "protocol": "LOAD_BALANCER_HEALTH_CHECK_PROTOCOL_TCP",
+              "interval_seconds": 5,
+              "timeout_seconds": 3,
+              "unhealthy_threshold": 3,
+              "healthy_threshold": 1
+            },
+            "algorithm": "LOAD_BALANCER_ALGORITHM_ROUND_ROBIN",
+            "state": "RESOURCE_STATE_DELETING",
+            "reason": "PROVIDER_NOT_READY",
+            "reason_message": "The requested configuration is not ready yet.",
+            "version": "101",
+            "desired_version": "1",
+            "applied_version": "1",
+            "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_APPLYING",
+            "data_plane_state": "LOAD_BALANCER_DATA_PLANE_STATE_UNKNOWN",
+            "observed_at": "2026-09-15T10:11:47.922150Z",
+            "observation_stale": false,
+            "created_at": "2026-09-15T09:13:07.496475Z",
+            "updated_at": "2026-09-15T10:11:52.067340Z",
+            "last_operation_id": "39a79ebf-ea8b-4a35-b76e-ec1e3553c94a",
+            "public_address": "172.16.102.194",
+            "data_plane_observed_at": null
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T10:12:07.703295+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "load_balancer": {
+            "id": "lb_bd6f74b7445b4c5a815763d38a995f14",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "subnet_id": "subnet_f74d90cbb5484f7fb37f8a8f6782da1d",
+            "name": "lb02-2b3122-public",
+            "description": "U09 direct external EIP entry without VPC Public SNAT",
+            "exposure": "LOAD_BALANCER_EXPOSURE_PUBLIC",
+            "flavor": "small",
+            "public_eip_id": "eip_fdab288a3b1846138806e8e5e14529a9",
+            "private_ip": "",
+            "listener": {
+              "id": "ad55eb28-47e1-4c6e-bcdd-63f2b4cf9247",
+              "protocol": "LOAD_BALANCER_LISTENER_PROTOCOL_HTTP",
+              "port": 8080
+            },
+            "backends": [
+              {
+                "id": "15250ca5-84c0-44a1-a655-c30ca7b640c5",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.2",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_7d08b61f4038432a842d2fda525607b9",
+                "state": "available",
+                "reason": "",
+                "observed_at": "2026-09-15T10:11:47.922150Z",
+                "observation_stale": false
+              },
+              {
+                "id": "69a4a09d-f2a2-49f2-bde5-c9f34bada414",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.3",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_a6172d5ee5be434087f939001a435c9e",
+                "state": "available",
+                "reason": "",
+                "observed_at": "2026-09-15T10:11:47.922150Z",
+                "observation_stale": false
+              }
+            ],
+            "health_check": {
+              "protocol": "LOAD_BALANCER_HEALTH_CHECK_PROTOCOL_TCP",
+              "interval_seconds": 5,
+              "timeout_seconds": 3,
+              "unhealthy_threshold": 3,
+              "healthy_threshold": 1
+            },
+            "algorithm": "LOAD_BALANCER_ALGORITHM_ROUND_ROBIN",
+            "state": "RESOURCE_STATE_DELETING",
+            "reason": "PROVIDER_NOT_READY",
+            "reason_message": "The requested configuration is not ready yet.",
+            "version": "101",
+            "desired_version": "1",
+            "applied_version": "1",
+            "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_APPLYING",
+            "data_plane_state": "LOAD_BALANCER_DATA_PLANE_STATE_UNKNOWN",
+            "observed_at": "2026-09-15T10:11:47.922150Z",
+            "observation_stale": false,
+            "created_at": "2026-09-15T09:13:07.496475Z",
+            "updated_at": "2026-09-15T10:11:52.067340Z",
+            "last_operation_id": "39a79ebf-ea8b-4a35-b76e-ec1e3553c94a",
+            "public_address": "172.16.102.194",
+            "data_plane_observed_at": null
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T10:12:12.714703+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "load_balancer": {
+            "id": "lb_bd6f74b7445b4c5a815763d38a995f14",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "subnet_id": "subnet_f74d90cbb5484f7fb37f8a8f6782da1d",
+            "name": "lb02-2b3122-public",
+            "description": "U09 direct external EIP entry without VPC Public SNAT",
+            "exposure": "LOAD_BALANCER_EXPOSURE_PUBLIC",
+            "flavor": "small",
+            "public_eip_id": "eip_fdab288a3b1846138806e8e5e14529a9",
+            "private_ip": "",
+            "listener": {
+              "id": "ad55eb28-47e1-4c6e-bcdd-63f2b4cf9247",
+              "protocol": "LOAD_BALANCER_LISTENER_PROTOCOL_HTTP",
+              "port": 8080
+            },
+            "backends": [
+              {
+                "id": "15250ca5-84c0-44a1-a655-c30ca7b640c5",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.2",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_7d08b61f4038432a842d2fda525607b9",
+                "state": "available",
+                "reason": "",
+                "observed_at": "2026-09-15T10:11:47.922150Z",
+                "observation_stale": false
+              },
+              {
+                "id": "69a4a09d-f2a2-49f2-bde5-c9f34bada414",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.3",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_a6172d5ee5be434087f939001a435c9e",
+                "state": "available",
+                "reason": "",
+                "observed_at": "2026-09-15T10:11:47.922150Z",
+                "observation_stale": false
+              }
+            ],
+            "health_check": {
+              "protocol": "LOAD_BALANCER_HEALTH_CHECK_PROTOCOL_TCP",
+              "interval_seconds": 5,
+              "timeout_seconds": 3,
+              "unhealthy_threshold": 3,
+              "healthy_threshold": 1
+            },
+            "algorithm": "LOAD_BALANCER_ALGORITHM_ROUND_ROBIN",
+            "state": "RESOURCE_STATE_DELETING",
+            "reason": "PROVIDER_NOT_READY",
+            "reason_message": "The requested configuration is not ready yet.",
+            "version": "101",
+            "desired_version": "1",
+            "applied_version": "1",
+            "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_APPLYING",
+            "data_plane_state": "LOAD_BALANCER_DATA_PLANE_STATE_UNKNOWN",
+            "observed_at": "2026-09-15T10:11:47.922150Z",
+            "observation_stale": false,
+            "created_at": "2026-09-15T09:13:07.496475Z",
+            "updated_at": "2026-09-15T10:11:52.067340Z",
+            "last_operation_id": "39a79ebf-ea8b-4a35-b76e-ec1e3553c94a",
+            "public_address": "172.16.102.194",
+            "data_plane_observed_at": null
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T10:12:17.727982+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "load_balancer": {
+            "id": "lb_bd6f74b7445b4c5a815763d38a995f14",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "subnet_id": "subnet_f74d90cbb5484f7fb37f8a8f6782da1d",
+            "name": "lb02-2b3122-public",
+            "description": "U09 direct external EIP entry without VPC Public SNAT",
+            "exposure": "LOAD_BALANCER_EXPOSURE_PUBLIC",
+            "flavor": "small",
+            "public_eip_id": "eip_fdab288a3b1846138806e8e5e14529a9",
+            "private_ip": "",
+            "listener": {
+              "id": "ad55eb28-47e1-4c6e-bcdd-63f2b4cf9247",
+              "protocol": "LOAD_BALANCER_LISTENER_PROTOCOL_HTTP",
+              "port": 8080
+            },
+            "backends": [
+              {
+                "id": "15250ca5-84c0-44a1-a655-c30ca7b640c5",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.2",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_7d08b61f4038432a842d2fda525607b9",
+                "state": "available",
+                "reason": "",
+                "observed_at": "2026-09-15T10:11:47.922150Z",
+                "observation_stale": false
+              },
+              {
+                "id": "69a4a09d-f2a2-49f2-bde5-c9f34bada414",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.3",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_a6172d5ee5be434087f939001a435c9e",
+                "state": "available",
+                "reason": "",
+                "observed_at": "2026-09-15T10:11:47.922150Z",
+                "observation_stale": false
+              }
+            ],
+            "health_check": {
+              "protocol": "LOAD_BALANCER_HEALTH_CHECK_PROTOCOL_TCP",
+              "interval_seconds": 5,
+              "timeout_seconds": 3,
+              "unhealthy_threshold": 3,
+              "healthy_threshold": 1
+            },
+            "algorithm": "LOAD_BALANCER_ALGORITHM_ROUND_ROBIN",
+            "state": "RESOURCE_STATE_DELETING",
+            "reason": "PROVIDER_NOT_READY",
+            "reason_message": "The requested configuration is not ready yet.",
+            "version": "101",
+            "desired_version": "1",
+            "applied_version": "1",
+            "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_APPLYING",
+            "data_plane_state": "LOAD_BALANCER_DATA_PLANE_STATE_UNKNOWN",
+            "observed_at": "2026-09-15T10:11:47.922150Z",
+            "observation_stale": false,
+            "created_at": "2026-09-15T09:13:07.496475Z",
+            "updated_at": "2026-09-15T10:11:52.067340Z",
+            "last_operation_id": "39a79ebf-ea8b-4a35-b76e-ec1e3553c94a",
+            "public_address": "172.16.102.194",
+            "data_plane_observed_at": null
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T10:12:22.742525+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "load_balancer": {
+            "id": "lb_bd6f74b7445b4c5a815763d38a995f14",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "subnet_id": "subnet_f74d90cbb5484f7fb37f8a8f6782da1d",
+            "name": "lb02-2b3122-public",
+            "description": "U09 direct external EIP entry without VPC Public SNAT",
+            "exposure": "LOAD_BALANCER_EXPOSURE_PUBLIC",
+            "flavor": "small",
+            "public_eip_id": "eip_fdab288a3b1846138806e8e5e14529a9",
+            "private_ip": "",
+            "listener": {
+              "id": "ad55eb28-47e1-4c6e-bcdd-63f2b4cf9247",
+              "protocol": "LOAD_BALANCER_LISTENER_PROTOCOL_HTTP",
+              "port": 8080
+            },
+            "backends": [
+              {
+                "id": "15250ca5-84c0-44a1-a655-c30ca7b640c5",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.2",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_7d08b61f4038432a842d2fda525607b9",
+                "state": "available",
+                "reason": "",
+                "observed_at": "2026-09-15T10:12:13.527735Z",
+                "observation_stale": false
+              },
+              {
+                "id": "69a4a09d-f2a2-49f2-bde5-c9f34bada414",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.3",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_a6172d5ee5be434087f939001a435c9e",
+                "state": "available",
+                "reason": "",
+                "observed_at": "2026-09-15T10:12:13.527735Z",
+                "observation_stale": false
+              }
+            ],
+            "health_check": {
+              "protocol": "LOAD_BALANCER_HEALTH_CHECK_PROTOCOL_TCP",
+              "interval_seconds": 5,
+              "timeout_seconds": 3,
+              "unhealthy_threshold": 3,
+              "healthy_threshold": 1
+            },
+            "algorithm": "LOAD_BALANCER_ALGORITHM_ROUND_ROBIN",
+            "state": "RESOURCE_STATE_DELETED",
+            "reason": "",
+            "reason_message": "",
+            "version": "102",
+            "desired_version": "1",
+            "applied_version": "1",
+            "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_APPLYING",
+            "data_plane_state": "LOAD_BALANCER_DATA_PLANE_STATE_UNKNOWN",
+            "observed_at": "2026-09-15T10:12:13.527735Z",
+            "observation_stale": false,
+            "created_at": "2026-09-15T09:13:07.496475Z",
+            "updated_at": "2026-09-15T10:12:18.402771Z",
+            "last_operation_id": "39a79ebf-ea8b-4a35-b76e-ec1e3553c94a",
+            "public_address": "172.16.102.194",
+            "data_plane_observed_at": null
+          }
+        }
+      },
+      "stderr": "",
+      "matches": true
+    },
+    {
+      "at": "2026-09-15T10:12:27.754203+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "load_balancer": {
+            "id": "lb_bd6f74b7445b4c5a815763d38a995f14",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "subnet_id": "subnet_f74d90cbb5484f7fb37f8a8f6782da1d",
+            "name": "lb02-2b3122-public",
+            "description": "U09 direct external EIP entry without VPC Public SNAT",
+            "exposure": "LOAD_BALANCER_EXPOSURE_PUBLIC",
+            "flavor": "small",
+            "public_eip_id": "eip_fdab288a3b1846138806e8e5e14529a9",
+            "private_ip": "",
+            "listener": {
+              "id": "ad55eb28-47e1-4c6e-bcdd-63f2b4cf9247",
+              "protocol": "LOAD_BALANCER_LISTENER_PROTOCOL_HTTP",
+              "port": 8080
+            },
+            "backends": [
+              {
+                "id": "15250ca5-84c0-44a1-a655-c30ca7b640c5",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.2",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_7d08b61f4038432a842d2fda525607b9",
+                "state": "available",
+                "reason": "",
+                "observed_at": "2026-09-15T10:12:13.527735Z",
+                "observation_stale": false
+              },
+              {
+                "id": "69a4a09d-f2a2-49f2-bde5-c9f34bada414",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.3",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_a6172d5ee5be434087f939001a435c9e",
+                "state": "available",
+                "reason": "",
+                "observed_at": "2026-09-15T10:12:13.527735Z",
+                "observation_stale": false
+              }
+            ],
+            "health_check": {
+              "protocol": "LOAD_BALANCER_HEALTH_CHECK_PROTOCOL_TCP",
+              "interval_seconds": 5,
+              "timeout_seconds": 3,
+              "unhealthy_threshold": 3,
+              "healthy_threshold": 1
+            },
+            "algorithm": "LOAD_BALANCER_ALGORITHM_ROUND_ROBIN",
+            "state": "RESOURCE_STATE_DELETED",
+            "reason": "",
+            "reason_message": "",
+            "version": "102",
+            "desired_version": "1",
+            "applied_version": "1",
+            "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_APPLYING",
+            "data_plane_state": "LOAD_BALANCER_DATA_PLANE_STATE_UNKNOWN",
+            "observed_at": "2026-09-15T10:12:13.527735Z",
+            "observation_stale": false,
+            "created_at": "2026-09-15T09:13:07.496475Z",
+            "updated_at": "2026-09-15T10:12:18.402771Z",
+            "last_operation_id": "39a79ebf-ea8b-4a35-b76e-ec1e3553c94a",
+            "public_address": "172.16.102.194",
+            "data_plane_observed_at": null
+          }
+        }
+      },
+      "stderr": "",
+      "matches": true
+    }
+  ]
+}

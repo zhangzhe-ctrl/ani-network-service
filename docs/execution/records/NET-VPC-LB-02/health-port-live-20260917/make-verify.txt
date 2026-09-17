@@ -1,0 +1,53 @@
+test "$(/home/chabking/workspace/ani-network-service-runs/lb-health-e2e-20260917/source/.tools/bin/buf --version)" = "1.60.0"
+test "$(go version -m /home/chabking/workspace/ani-network-service-runs/lb-health-e2e-20260917/source/.tools/bin/buf | awk '$1 == "mod" {print $2 "@" $3; exit}')" = "github.com/bufbuild/buf@v1.60.0"
+test "$(/home/chabking/workspace/ani-network-service-runs/lb-health-e2e-20260917/source/.tools/bin/sqlc version)" = "v1.31.1"
+test "$(go version -m /home/chabking/workspace/ani-network-service-runs/lb-health-e2e-20260917/source/.tools/bin/sqlc | awk '$1 == "mod" {print $2 "@" $3; exit}')" = "github.com/sqlc-dev/sqlc@v1.31.1"
+./scripts/verify-source /home/chabking/workspace/ani-network-service-runs/lb-health-e2e-20260917/source/.tools/bin/buf /home/chabking/workspace/ani-network-service-runs/lb-health-e2e-20260917/source/.tools/bin/sqlc
+./scripts/verify-boundaries
+domain and repository ownership boundaries verified
+go mod tidy -diff
+go: downloading github.com/google/go-cmp v0.7.0
+go: downloading github.com/stretchr/testify v1.11.1
+go: downloading github.com/klauspost/compress v1.19.1
+go: downloading go.uber.org/goleak v1.3.0
+go: downloading k8s.io/api v0.36.0
+go: downloading go.opentelemetry.io/otel/metric/x v0.66.0
+go: downloading github.com/golang/protobuf v1.5.4
+go: downloading github.com/prashantv/gostub v1.1.0
+go: downloading github.com/kylelemons/godebug v1.1.0
+go: downloading github.com/stretchr/objx v0.5.2
+go: downloading gopkg.in/check.v1 v1.0.0-20201130134442-10cb98267c6c
+go: downloading github.com/envoyproxy/go-control-plane/envoy v1.37.0
+go: downloading github.com/go-playground/assert/v2 v2.2.0
+go: downloading gonum.org/v1/gonum v0.17.0
+go: downloading github.com/kr/pretty v0.3.1
+go: downloading github.com/emicklei/go-restful/v3 v3.13.0
+go: downloading github.com/kr/text v0.2.0
+go: downloading github.com/rogpeppe/go-internal v1.14.1
+go: downloading github.com/envoyproxy/go-control-plane v0.14.0
+go: downloading github.com/cncf/xds/go v0.0.0-20260202195803-dba9d589def2
+go: downloading github.com/planetscale/vtprotobuf v0.6.1-0.20240319094008-0393e58bdf10
+go: downloading github.com/envoyproxy/protoc-gen-validate v1.3.3
+go: downloading cel.dev/expr v0.25.2
+go test -count=1 ./...
+?   	github.com/zhangzhe-ctrl/ani-network-service/api/network/v1	[no test files]
+ok  	github.com/zhangzhe-ctrl/ani-network-service/cmd/ani-network-service	0.013s
+ok  	github.com/zhangzhe-ctrl/ani-network-service/internal/biz	0.009s
+ok  	github.com/zhangzhe-ctrl/ani-network-service/internal/conf/v1	0.011s
+ok  	github.com/zhangzhe-ctrl/ani-network-service/internal/data	0.028s
+?   	github.com/zhangzhe-ctrl/ani-network-service/internal/data/sqlcgen	[no test files]
+ok  	github.com/zhangzhe-ctrl/ani-network-service/internal/server	2.027s
+ok  	github.com/zhangzhe-ctrl/ani-network-service/internal/service	0.006s
+?   	github.com/zhangzhe-ctrl/ani-network-service/migrations	[no test files]
+ok  	github.com/zhangzhe-ctrl/ani-network-service/scripts/lb-api	0.012s
+?   	github.com/zhangzhe-ctrl/ani-network-service/tests/net05	[no test files]
+?   	github.com/zhangzhe-ctrl/ani-network-service/tests/net05/relay	[no test files]
+?   	github.com/zhangzhe-ctrl/ani-network-service/tests/net05/rpc	[no test files]
+ok  	github.com/zhangzhe-ctrl/ani-network-service/tests/net05a/provider	0.010s
+ok  	github.com/zhangzhe-ctrl/ani-network-service/tests/runtime	0.047s
+ok  	github.com/zhangzhe-ctrl/ani-network-service/tests/testenv	0.008s
+go vet ./...
+go build -trimpath ./...
+go mod verify
+all modules verified
+git diff --check

@@ -1,0 +1,151 @@
+{
+  "at": "2026-09-15T13:58:17.264995+00:00",
+  "source_run": "20260915T132645Z-482e616d",
+  "runtime": "r26",
+  "window_start": "2026-09-15T13:45:11.795596+00:00",
+  "window_end": "2026-09-15T13:57:11.813843+00:00",
+  "source_boundary_delta": 41.0,
+  "audit_failures_delta": 0.0,
+  "watch_errors_delta": 0.0,
+  "overall_configuration_stability": "fail",
+  "per_lb": {
+    "lb_cc562f7d8be147afae8144555aa7243b": {
+      "states": [
+        {
+          "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_CONFIGURED",
+          "reason": "",
+          "stale": false,
+          "count": 144
+        }
+      ],
+      "max_observation_age_seconds": 53.141116,
+      "result": "pass"
+    },
+    "lb_74f96109961444a48b26c31601e6131f": {
+      "states": [
+        {
+          "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_CONFIGURED",
+          "reason": "",
+          "stale": false,
+          "count": 111
+        },
+        {
+          "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_DEGRADED",
+          "reason": "PROVIDER_NOT_READY",
+          "stale": false,
+          "count": 22
+        },
+        {
+          "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_UNKNOWN",
+          "reason": "PROVIDER_UNAVAILABLE",
+          "stale": false,
+          "count": 4
+        },
+        {
+          "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_UNKNOWN",
+          "reason": "PROVIDER_UNAVAILABLE",
+          "stale": true,
+          "count": 7
+        }
+      ],
+      "max_observation_age_seconds": 94.864237,
+      "result": "fail"
+    }
+  },
+  "actual_window_traffic_result": "pass",
+  "actual_window_traffic": [
+    {
+      "at": "2026-09-15T13:45:12.698388+00:00",
+      "sample": 0,
+      "result": "pass",
+      "instance_id": "lb02-2b3122-base-a",
+      "nonce": "lb02-r26-watch-0"
+    },
+    {
+      "at": "2026-09-15T13:46:12.943842+00:00",
+      "sample": 12,
+      "result": "pass",
+      "instance_id": "lb02-2b3122-base-a",
+      "nonce": "lb02-r26-watch-12"
+    },
+    {
+      "at": "2026-09-15T13:47:12.673967+00:00",
+      "sample": 24,
+      "result": "pass",
+      "instance_id": "lb02-2b3122-base-a",
+      "nonce": "lb02-r26-watch-24"
+    },
+    {
+      "at": "2026-09-15T13:48:12.748670+00:00",
+      "sample": 36,
+      "result": "pass",
+      "instance_id": "lb02-2b3122-base-a",
+      "nonce": "lb02-r26-watch-36"
+    },
+    {
+      "at": "2026-09-15T13:49:12.866473+00:00",
+      "sample": 48,
+      "result": "pass",
+      "instance_id": "lb02-2b3122-base-b",
+      "nonce": "lb02-r26-watch-48"
+    },
+    {
+      "at": "2026-09-15T13:50:12.762168+00:00",
+      "sample": 60,
+      "result": "pass",
+      "instance_id": "lb02-2b3122-base-a",
+      "nonce": "lb02-r26-watch-60"
+    },
+    {
+      "at": "2026-09-15T13:51:12.684798+00:00",
+      "sample": 72,
+      "result": "pass",
+      "instance_id": "lb02-2b3122-base-a",
+      "nonce": "lb02-r26-watch-72"
+    },
+    {
+      "at": "2026-09-15T13:52:12.883064+00:00",
+      "sample": 84,
+      "result": "pass",
+      "instance_id": "lb02-2b3122-base-b",
+      "nonce": "lb02-r26-watch-84"
+    },
+    {
+      "at": "2026-09-15T13:53:12.773952+00:00",
+      "sample": 96,
+      "result": "pass",
+      "instance_id": "lb02-2b3122-base-a",
+      "nonce": "lb02-r26-watch-96"
+    },
+    {
+      "at": "2026-09-15T13:54:12.597392+00:00",
+      "sample": 108,
+      "result": "pass",
+      "instance_id": "lb02-2b3122-base-b",
+      "nonce": "lb02-r26-watch-108"
+    },
+    {
+      "at": "2026-09-15T13:55:12.768173+00:00",
+      "sample": 120,
+      "result": "pass",
+      "instance_id": "lb02-2b3122-base-a",
+      "nonce": "lb02-r26-watch-120"
+    },
+    {
+      "at": "2026-09-15T13:56:12.694096+00:00",
+      "sample": 132,
+      "result": "pass",
+      "instance_id": "lb02-2b3122-base-b",
+      "nonce": "lb02-r26-watch-132"
+    }
+  ],
+  "backend_counts": {
+    "lb02-2b3122-base-a": 8,
+    "lb02-2b3122-base-b": 4
+  },
+  "separate_12_request_burst": "private-vip-attachment-retry-r26-assessment.json",
+  "raw_window": "attachment-retry-r26-watch-window.json",
+  "raw_traffic_evaluator_error": "attachment-retry-r26-traffic-evaluation-correction.json",
+  "expected_identifiers_from_existing_evidence": "private-vip-audit-refresh-r24-assessment.json",
+  "scope": "private configuration stable through actual Watch boundaries; dual transient ProviderNotReady remains separate; actual finite private traffic samples validated by original run ID, full owner identities and request nonce; no Public forwarding probes"
+}

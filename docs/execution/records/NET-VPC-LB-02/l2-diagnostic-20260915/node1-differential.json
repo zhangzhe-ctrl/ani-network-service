@@ -1,0 +1,181 @@
+{
+  "at": "2026-09-15T00:48:56.259376+00:00",
+  "command": [
+    "ssh",
+    "-F",
+    "/home/chabking/.ssh/config",
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "ConnectTimeout=8",
+    "ani-test-1",
+    "sudo -n python3 -"
+  ],
+  "script_sha256": "c941a528a97b7003c7fce8324ac5f01f0f12023a31a8bc524090a6a0e5b43e48",
+  "exit": 0,
+  "probe": {
+    "at": "2026-09-15T00:48:56.242773+00:00",
+    "interface": "ens35",
+    "mac": "00:0c:29:e2:f0:2b",
+    "cases": [
+      {
+        "target": "172.16.102.1",
+        "source_field": "0.0.0.0",
+        "transmit_vlan": 102,
+        "frames_sent": 2,
+        "incoming_frames_seen": 0,
+        "replies": [],
+        "nic_delta": {
+          "tx_packets": 2,
+          "rx_packets": 0,
+          "tx_errors": 0,
+          "rx_errors": 0,
+          "tx_dropped": 0,
+          "rx_dropped": 0
+        },
+        "result": "not_verified"
+      },
+      {
+        "target": "172.16.102.1",
+        "source_field": "0.0.0.0",
+        "transmit_vlan": null,
+        "frames_sent": 2,
+        "incoming_frames_seen": 0,
+        "replies": [],
+        "nic_delta": {
+          "tx_packets": 2,
+          "rx_packets": 0,
+          "tx_errors": 0,
+          "rx_errors": 0,
+          "tx_dropped": 0,
+          "rx_dropped": 0
+        },
+        "result": "not_verified"
+      },
+      {
+        "target": "172.16.102.1",
+        "source_field": "172.16.102.200",
+        "transmit_vlan": 102,
+        "frames_sent": 2,
+        "incoming_frames_seen": 0,
+        "replies": [],
+        "nic_delta": {
+          "tx_packets": 2,
+          "rx_packets": 0,
+          "tx_errors": 0,
+          "rx_errors": 0,
+          "tx_dropped": 0,
+          "rx_dropped": 0
+        },
+        "result": "not_verified"
+      },
+      {
+        "target": "172.16.102.1",
+        "source_field": "172.16.102.200",
+        "transmit_vlan": null,
+        "frames_sent": 2,
+        "incoming_frames_seen": 2,
+        "replies": [
+          {
+            "sender": "172.16.102.1",
+            "sender_mac": "00:1e:08:2f:bb:17",
+            "received_vlan": null
+          }
+        ],
+        "nic_delta": {
+          "tx_packets": 2,
+          "rx_packets": 2,
+          "tx_errors": 0,
+          "rx_errors": 0,
+          "tx_dropped": 0,
+          "rx_dropped": 0
+        },
+        "result": "pass"
+      },
+      {
+        "target": "172.16.102.30",
+        "source_field": "0.0.0.0",
+        "transmit_vlan": 102,
+        "frames_sent": 2,
+        "incoming_frames_seen": 0,
+        "replies": [],
+        "nic_delta": {
+          "tx_packets": 2,
+          "rx_packets": 0,
+          "tx_errors": 0,
+          "rx_errors": 0,
+          "tx_dropped": 0,
+          "rx_dropped": 0
+        },
+        "result": "not_verified"
+      },
+      {
+        "target": "172.16.102.30",
+        "source_field": "0.0.0.0",
+        "transmit_vlan": null,
+        "frames_sent": 2,
+        "incoming_frames_seen": 2,
+        "replies": [
+          {
+            "sender": "172.16.102.30",
+            "sender_mac": "00:0c:29:91:aa:5c",
+            "received_vlan": null
+          }
+        ],
+        "nic_delta": {
+          "tx_packets": 2,
+          "rx_packets": 2,
+          "tx_errors": 0,
+          "rx_errors": 0,
+          "tx_dropped": 0,
+          "rx_dropped": 0
+        },
+        "result": "pass"
+      },
+      {
+        "target": "172.16.102.30",
+        "source_field": "172.16.102.200",
+        "transmit_vlan": 102,
+        "frames_sent": 2,
+        "incoming_frames_seen": 0,
+        "replies": [],
+        "nic_delta": {
+          "tx_packets": 2,
+          "rx_packets": 0,
+          "tx_errors": 0,
+          "rx_errors": 0,
+          "tx_dropped": 0,
+          "rx_dropped": 0
+        },
+        "result": "not_verified"
+      },
+      {
+        "target": "172.16.102.30",
+        "source_field": "172.16.102.200",
+        "transmit_vlan": null,
+        "frames_sent": 2,
+        "incoming_frames_seen": 2,
+        "replies": [
+          {
+            "sender": "172.16.102.30",
+            "sender_mac": "00:0c:29:91:aa:5c",
+            "received_vlan": null
+          }
+        ],
+        "nic_delta": {
+          "tx_packets": 2,
+          "rx_packets": 2,
+          "tx_errors": 0,
+          "rx_errors": 0,
+          "tx_dropped": 0,
+          "rx_dropped": 0
+        },
+        "result": "pass"
+      }
+    ],
+    "host_configuration_changes": 0,
+    "source_address_assigned": false,
+    "interpretation": "No reply is inconclusive; normal source field is diagnostic only, not proof of address reservation."
+  },
+  "stderr": ""
+}

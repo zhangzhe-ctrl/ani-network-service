@@ -1,0 +1,22 @@
+{
+  "at": "2026-09-15T14:56:11.679697+00:00",
+  "execution_host": "ubuntu",
+  "command": [
+    "bash",
+    "-c",
+    "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+    "kubectl",
+    "--kubeconfig",
+    "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/kubeconfig.json",
+    "--request-timeout=20s",
+    "get",
+    "eipgateways.networking.kubercloud.com,eippools.networking.kubercloud.com,vpcs.networking.kubercloud.com,eips.networking.kubercloud.com,snats.networking.kubercloud.com,subnets.networking.kubercloud.com,vnics.networking.kubercloud.com,vnicips.networking.kubercloud.com,pods,roles,rolebindings,serviceaccounts,configmaps",
+    "-n",
+    "lb02-09141908-2b3122",
+    "-o",
+    "json"
+  ],
+  "exit": 1,
+  "objects": null,
+  "stderr": "error: the server doesn't have a resource type \"eippools\" in group \"networking.kubercloud.com\"\n"
+}

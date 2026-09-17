@@ -1,0 +1,74 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: dual-lb
+  labels:
+    manual.ani.io/run: pubdebug-20260917
+  namespace: pubdebug-20260917
+spec:
+  gatewayClassName: lb-small
+  infrastructure:
+    annotations:
+      networking.kubercloud.com/lb_eips: dual-eip
+      networking.kubercloud.com/lb_vip_address: 10.233.0.201
+      networking.kubercloud.com/lb_vpc: pubdebug-20260917/tenant
+      networking.kubercloud.com/subnet: pubdebug-20260917/entry
+  listeners:
+  - name: http
+    protocol: HTTP
+    port: 8080
+    allowedRoutes:
+      namespaces:
+        from: Same
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: dual-lb
+  labels:
+    manual.ani.io/run: pubdebug-20260917
+  namespace: pubdebug-20260917
+spec:
+  parentRefs:
+  - name: dual-lb
+    sectionName: http
+  rules:
+  - matches:
+    - path:
+        type: PathPrefix
+        value: /
+    backendRefs:
+    - group: gateway.envoyproxy.io
+      kind: Backend
+      name: backend-a
+      port: 8080
+      weight: 1
+    - group: gateway.envoyproxy.io
+      kind: Backend
+      name: backend-b
+      port: 8080
+      weight: 1
+---
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: BackendTrafficPolicy
+metadata:
+  name: dual-lb-policy
+  labels:
+    manual.ani.io/run: pubdebug-20260917
+  namespace: pubdebug-20260917
+spec:
+  targetRefs:
+  - group: gateway.networking.k8s.io
+    kind: HTTPRoute
+    name: dual-lb
+  loadBalancer:
+    type: RoundRobin
+  healthCheck:
+    active:
+      type: TCP
+      tcp: {}
+      interval: 5s
+      timeout: 3s
+      unhealthyThreshold: 3
+      healthyThreshold: 1
+    panicThreshold: 0

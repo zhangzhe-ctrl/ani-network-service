@@ -1,0 +1,41 @@
+{
+  "at": "2026-09-14T14:57:40.253960+00:00",
+  "source": "docs/execution/records/NET-VPC-LB-02/preflight-budget.json",
+  "nodes": [
+    {
+      "name": "kc062-control-plane",
+      "taints": [
+        {
+          "effect": "NoSchedule",
+          "key": "node-role.kubernetes.io/control-plane"
+        }
+      ],
+      "cpu_allocatable": 4.0,
+      "memory_allocatable_mib": 7935.62109375,
+      "cpu_requested": 1.7099999999999997,
+      "memory_requested_mib": 3790.0,
+      "cpu_remaining": 2.29,
+      "memory_remaining_mib": 4145.62109375
+    },
+    {
+      "name": "kc062-worker",
+      "taints": [],
+      "cpu_allocatable": 4.0,
+      "memory_allocatable_mib": 7935.62109375,
+      "cpu_requested": 3.9699999999999998,
+      "memory_requested_mib": 4645.0,
+      "cpu_remaining": 0.03000000000000025,
+      "memory_remaining_mib": 3290.62109375
+    },
+    {
+      "name": "kc062-worker2",
+      "taints": [],
+      "cpu_allocatable": 4.0,
+      "memory_allocatable_mib": 7935.62109375,
+      "cpu_requested": 3.965,
+      "memory_requested_mib": 5700.378601074219,
+      "cpu_remaining": 0.03500000000000014,
+      "memory_remaining_mib": 2235.2424926757812
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+source.tar.gz: OK
+verified source files: 1209
+go version go1.26.7 linux/amd64
+1.60.0
+v1.31.1
+ok  	github.com/zhangzhe-ctrl/ani-network-service/internal/conf/v1	0.009s
+ok  	github.com/zhangzhe-ctrl/ani-network-service/cmd/ani-network-service	0.011s
+127.0.0.1:5432 - accepting connections
+PostgreSQL image=docker.io/library/postgres@sha256:4ef4dbc939d61acea57712655ddb4b4ab27419c913f94cca0cd57cb3ea3c2280 container=6a40d1eaebf3156bd01e544b84af12ff68e8c14db71aa887d9fd60af0691c9b1
+=== RUN   TestLBActualAdapterThreeExposuresUpdateAndDelete
+=== RUN   TestLBActualAdapterThreeExposuresUpdateAndDelete/private
+=== RUN   TestLBActualAdapterThreeExposuresUpdateAndDelete/public
+=== RUN   TestLBActualAdapterThreeExposuresUpdateAndDelete/public_private
+--- PASS: TestLBActualAdapterThreeExposuresUpdateAndDelete (5.94s)
+    --- PASS: TestLBActualAdapterThreeExposuresUpdateAndDelete/private (1.68s)
+    --- PASS: TestLBActualAdapterThreeExposuresUpdateAndDelete/public (2.16s)
+    --- PASS: TestLBActualAdapterThreeExposuresUpdateAndDelete/public_private (2.09s)
+=== RUN   TestLBActualAdapterIdentityLossRemovesRouteAndRetainsAppliedVersion
+--- PASS: TestLBActualAdapterIdentityLossRemovesRouteAndRetainsAppliedVersion (1.63s)
+=== RUN   TestLBActualAdapterFinalizerAndNeverSentDelete
+=== RUN   TestLBActualAdapterFinalizerAndNeverSentDelete/true
+=== RUN   TestLBActualAdapterFinalizerAndNeverSentDelete/false
+--- PASS: TestLBActualAdapterFinalizerAndNeverSentDelete (2.47s)
+    --- PASS: TestLBActualAdapterFinalizerAndNeverSentDelete/true (0.98s)
+    --- PASS: TestLBActualAdapterFinalizerAndNeverSentDelete/false (1.49s)
+=== RUN   TestLBAdmissionAtomicIdentityReplayAndParentOccupancy
+--- PASS: TestLBAdmissionAtomicIdentityReplayAndParentOccupancy (0.82s)
+=== RUN   TestLBAdmissionRejectsCIDROnlyBackendAndDuplicateVIP
+--- PASS: TestLBAdmissionRejectsCIDROnlyBackendAndDuplicateVIP (0.98s)
+=== RUN   TestLBAdmissionCompetesWithSNATForOneClaimBothOrders
+=== RUN   TestLBAdmissionCompetesWithSNATForOneClaimBothOrders/snat
+=== RUN   TestLBAdmissionCompetesWithSNATForOneClaimBothOrders/lb
+--- PASS: TestLBAdmissionCompetesWithSNATForOneClaimBothOrders (2.23s)
+    --- PASS: TestLBAdmissionCompetesWithSNATForOneClaimBothOrders/snat (1.08s)
+    --- PASS: TestLBAdmissionCompetesWithSNATForOneClaimBothOrders/lb (1.15s)
+PASS
+ok  	github.com/zhangzhe-ctrl/ani-network-service/internal/data	14.084s
+removed task container=6a40d1eaebf3156bd01e544b84af12ff68e8c14db71aa887d9fd60af0691c9b1
+REMOTE_COMMAND_EXIT=0

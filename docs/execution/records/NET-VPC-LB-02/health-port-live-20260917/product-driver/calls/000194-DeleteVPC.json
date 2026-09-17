@@ -1,0 +1,23 @@
+{
+  "at": "2026-09-17T11:36:02.847798+00:00",
+  "command": [
+    "/home/chabking/workspace/ani-network-service-runs/lb-health-e2e-20260917/private/runtime/bin/lb-api",
+    "call",
+    "-target",
+    "unix:///home/chabking/.local/state/lbhp0917/sockets/tenant-a.sock",
+    "-service",
+    "NetworkService",
+    "-method",
+    "DeleteVPC"
+  ],
+  "completed_at": "2026-09-17T11:36:02.862978+00:00",
+  "exit": 0,
+  "phase": "cleanup",
+  "request": {
+    "tenant_id": "3c8a15c8-b679-4af8-a9fa-ca3703a1609f",
+    "vpc_id": "vpc_2a9a072c542c4ceea744cba5eb17130f"
+  },
+  "stderr": "",
+  "stdout": "{\"code\":\"OK\",\"response\":{\"vpc\":{\"id\":\"vpc_2a9a072c542c4ceea744cba5eb17130f\",\"tenant_id\":\"3c8a15c8-b679-4af8-a9fa-ca3703a1609f\",\"name\":\"lbhealth-0917-vpc\",\"description\":\"\",\"cidr\":\"10.235.0.0/16\",\"state\":\"RESOURCE_STATE_DELETING\",\"reason\":\"\",\"created_at\":\"2026-09-17T11:23:22.577277Z\",\"updated_at\":\"2026-09-17T11:36:02.860359Z\",\"version\":\"189\",\"observed_at\":\"2026-09-17T11:35:57.820158Z\",\"observation_stale\":false,\"last_operation_id\":\"dedc80f7-87df-4907-8597-f19d88643b47\",\"subnet_count\":\"0\",\"reason_message\":\"\",\"base_connectivity\":null}}}\n",
+  "step": "vpc"
+}

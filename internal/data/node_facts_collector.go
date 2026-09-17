@@ -172,6 +172,25 @@ func (c *NodeFactsCollector) Collect(ctx context.Context) (NodeFactsDocument, er
 	if len(doc.Interfaces) == 0 {
 		return doc, fmt.Errorf("node returned no links")
 	}
+	for i := range doc.Interfaces {
+		iface := &doc.Interfaces[i]
+		if iface.Kind != "device" || !iface.OVSManaged {
+			continue
+		}
+		bridge, verified, err := c.collectKCBridge(ctx, iface.Name)
+		if err != nil {
+			return doc, err
+		}
+		iface.KCBridgeReady = verified
+		// A default route/address on the internal bridge also uses this device.
+		iface.Management = iface.Management || defaultRoute[bridge]
+		for _, address := range addresses[bridge] {
+			prefix, _ := netip.ParsePrefix(address)
+			if !prefix.Addr().IsLinkLocalUnicast() {
+				iface.Management = true
+			}
+		}
+	}
 	slices.SortFunc(doc.Interfaces, func(a, b biz.NodeInterface) int { return strings.Compare(a.Name, b.Name) })
 	return doc, nil
 }

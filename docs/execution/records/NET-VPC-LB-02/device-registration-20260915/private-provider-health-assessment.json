@@ -1,0 +1,99 @@
+{
+  "at": "2026-09-15T05:09:23.678882+00:00",
+  "result": "pass",
+  "source": "private-provider-health-01.json",
+  "gateway_uid": "db5cdfed-737a-4f35-b4e0-0a20d00cb999",
+  "route_uid": "9d0d1573-2033-4bfe-8e90-8260dadf667b",
+  "policy_uid": "bc2add8c-becc-498a-b973-0a940efeeeca",
+  "route_spec": {
+    "parentRefs": [
+      {
+        "group": "gateway.networking.k8s.io",
+        "kind": "Gateway",
+        "name": "lb-d9f847eef7eb453a8388672718959ec8",
+        "sectionName": "http"
+      }
+    ],
+    "rules": [
+      {
+        "backendRefs": [
+          {
+            "group": "gateway.envoyproxy.io",
+            "kind": "Backend",
+            "name": "lb-backend-d098437f16424fdaa55e3e0e538683be",
+            "port": 8080,
+            "weight": 1
+          },
+          {
+            "group": "gateway.envoyproxy.io",
+            "kind": "Backend",
+            "name": "lb-backend-a5819fe9f7a94fc7922b0b0863cc2ed4",
+            "port": 8080,
+            "weight": 1
+          }
+        ],
+        "matches": [
+          {
+            "path": {
+              "type": "PathPrefix",
+              "value": "/"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "policy_spec": {
+    "healthCheck": {
+      "active": {
+        "healthyThreshold": 1,
+        "interval": "5s",
+        "tcp": {},
+        "timeout": "3s",
+        "type": "TCP",
+        "unhealthyThreshold": 3
+      },
+      "panicThreshold": 0
+    },
+    "loadBalancer": {
+      "type": "RoundRobin"
+    },
+    "targetRefs": [
+      {
+        "group": "gateway.networking.k8s.io",
+        "kind": "HTTPRoute",
+        "name": "lb-route-c64076dbffb74ab3a87a39336fee1f3d"
+      }
+    ]
+  },
+  "service_type": "ClusterIP",
+  "deployment_replicas": 2,
+  "envoy_container_resources": [
+    {
+      "name": "envoy",
+      "image": "docker.changqingyun.cn/kubercloud/envoy:distroless-v1.38.3",
+      "resources": {
+        "limits": {
+          "cpu": "2",
+          "memory": "2Gi"
+        },
+        "requests": {
+          "cpu": "1",
+          "memory": "1Gi"
+        }
+      }
+    },
+    {
+      "name": "shutdown-manager",
+      "image": "docker.changqingyun.cn/kubercloud/gateway-dev:latest",
+      "resources": {
+        "requests": {
+          "cpu": "10m",
+          "memory": "32Mi"
+        }
+      }
+    }
+  ],
+  "backend_pod_uid_preserved": true,
+  "limits": "Configuration identity and declared policy; health transfer behavior is recorded separately by direct VIP traffic."
+}

@@ -1,0 +1,269 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: backend-a
+  labels:
+    manual.ani.io/run: pubdebug-20260917
+  namespace: pubdebug-20260917
+  annotations:
+    networking.kubercloud.com/subnet: pubdebug-20260917/backend-net
+spec:
+  automountServiceAccountToken: false
+  nodeSelector:
+    kubernetes.io/hostname: ani-02
+  securityContext:
+    runAsNonRoot: true
+    runAsUser: 65532
+    runAsGroup: 65532
+    seccompProfile:
+      type: RuntimeDefault
+  containers:
+  - name: probe
+    image: localhost/lb02-2b3122-probe@sha256:647c2acd8e115511a18506014995ec01b7d0d62fbc05f2a6e51a5c65c2a3fcce
+    imagePullPolicy: Never
+    env:
+    - name: NET05_ID
+      value: pubdebug-20260917
+    - name: ANI_WORKLOAD_ID
+      value: backend-a
+    - name: NET05_PORT
+      value: '8080'
+    ports:
+    - containerPort: 8080
+    resources:
+      requests:
+        cpu: 10m
+        memory: 32Mi
+      limits:
+        cpu: 100m
+        memory: 64Mi
+    securityContext:
+      allowPrivilegeEscalation: false
+      readOnlyRootFilesystem: true
+      capabilities:
+        drop:
+        - ALL
+    readinessProbe:
+      exec:
+        command:
+        - /probe
+        - request
+        - http://127.0.0.1:8080/
+      periodSeconds: 5
+      timeoutSeconds: 4
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: backend-b
+  labels:
+    manual.ani.io/run: pubdebug-20260917
+  namespace: pubdebug-20260917
+  annotations:
+    networking.kubercloud.com/subnet: pubdebug-20260917/backend-net
+spec:
+  automountServiceAccountToken: false
+  nodeSelector:
+    kubernetes.io/hostname: ani-03
+  securityContext:
+    runAsNonRoot: true
+    runAsUser: 65532
+    runAsGroup: 65532
+    seccompProfile:
+      type: RuntimeDefault
+  containers:
+  - name: probe
+    image: localhost/lb02-2b3122-probe@sha256:647c2acd8e115511a18506014995ec01b7d0d62fbc05f2a6e51a5c65c2a3fcce
+    imagePullPolicy: Never
+    env:
+    - name: NET05_ID
+      value: pubdebug-20260917
+    - name: ANI_WORKLOAD_ID
+      value: backend-b
+    - name: NET05_PORT
+      value: '8080'
+    ports:
+    - containerPort: 8080
+    resources:
+      requests:
+        cpu: 10m
+        memory: 32Mi
+      limits:
+        cpu: 100m
+        memory: 64Mi
+    securityContext:
+      allowPrivilegeEscalation: false
+      readOnlyRootFilesystem: true
+      capabilities:
+        drop:
+        - ALL
+    readinessProbe:
+      exec:
+        command:
+        - /probe
+        - request
+        - http://127.0.0.1:8080/
+      periodSeconds: 5
+      timeoutSeconds: 4
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: client
+  labels:
+    manual.ani.io/run: pubdebug-20260917
+  namespace: pubdebug-20260917
+  annotations:
+    networking.kubercloud.com/subnet: pubdebug-20260917/entry
+spec:
+  automountServiceAccountToken: false
+  nodeSelector:
+    kubernetes.io/hostname: ani-02
+  securityContext:
+    runAsNonRoot: true
+    runAsUser: 65532
+    runAsGroup: 65532
+    seccompProfile:
+      type: RuntimeDefault
+  containers:
+  - name: probe
+    image: localhost/lb02-2b3122-probe@sha256:647c2acd8e115511a18506014995ec01b7d0d62fbc05f2a6e51a5c65c2a3fcce
+    imagePullPolicy: Never
+    env:
+    - name: NET05_ID
+      value: pubdebug-20260917
+    - name: ANI_WORKLOAD_ID
+      value: client
+    - name: NET05_PORT
+      value: '8080'
+    ports:
+    - containerPort: 8080
+    resources:
+      requests:
+        cpu: 10m
+        memory: 32Mi
+      limits:
+        cpu: 100m
+        memory: 64Mi
+    securityContext:
+      allowPrivilegeEscalation: false
+      readOnlyRootFilesystem: true
+      capabilities:
+        drop:
+        - ALL
+    readinessProbe:
+      exec:
+        command:
+        - /probe
+        - request
+        - http://127.0.0.1:8080/
+      periodSeconds: 5
+      timeoutSeconds: 4
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: public-a
+  labels:
+    manual.ani.io/run: pubdebug-20260917
+  namespace: pubdebug-20260917
+  annotations:
+    networking.kubercloud.com/subnet: kcn-system/pubdebug-20260917-public
+spec:
+  automountServiceAccountToken: false
+  nodeSelector:
+    kubernetes.io/hostname: ani-02
+  securityContext:
+    runAsNonRoot: true
+    runAsUser: 65532
+    runAsGroup: 65532
+    seccompProfile:
+      type: RuntimeDefault
+  containers:
+  - name: probe
+    image: localhost/lb02-2b3122-probe@sha256:647c2acd8e115511a18506014995ec01b7d0d62fbc05f2a6e51a5c65c2a3fcce
+    imagePullPolicy: Never
+    env:
+    - name: NET05_ID
+      value: pubdebug-20260917
+    - name: ANI_WORKLOAD_ID
+      value: public-a
+    - name: NET05_PORT
+      value: '8080'
+    ports:
+    - containerPort: 8080
+    resources:
+      requests:
+        cpu: 10m
+        memory: 32Mi
+      limits:
+        cpu: 100m
+        memory: 64Mi
+    securityContext:
+      allowPrivilegeEscalation: false
+      readOnlyRootFilesystem: true
+      capabilities:
+        drop:
+        - ALL
+    readinessProbe:
+      exec:
+        command:
+        - /probe
+        - request
+        - http://127.0.0.1:8080/
+      periodSeconds: 5
+      timeoutSeconds: 4
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: public-b
+  labels:
+    manual.ani.io/run: pubdebug-20260917
+  namespace: pubdebug-20260917
+  annotations:
+    networking.kubercloud.com/subnet: kcn-system/pubdebug-20260917-public
+spec:
+  automountServiceAccountToken: false
+  nodeSelector:
+    kubernetes.io/hostname: ani-03
+  securityContext:
+    runAsNonRoot: true
+    runAsUser: 65532
+    runAsGroup: 65532
+    seccompProfile:
+      type: RuntimeDefault
+  containers:
+  - name: probe
+    image: localhost/lb02-2b3122-probe@sha256:647c2acd8e115511a18506014995ec01b7d0d62fbc05f2a6e51a5c65c2a3fcce
+    imagePullPolicy: Never
+    env:
+    - name: NET05_ID
+      value: pubdebug-20260917
+    - name: ANI_WORKLOAD_ID
+      value: public-b
+    - name: NET05_PORT
+      value: '8080'
+    ports:
+    - containerPort: 8080
+    resources:
+      requests:
+        cpu: 10m
+        memory: 32Mi
+      limits:
+        cpu: 100m
+        memory: 64Mi
+    securityContext:
+      allowPrivilegeEscalation: false
+      readOnlyRootFilesystem: true
+      capabilities:
+        drop:
+        - ALL
+    readinessProbe:
+      exec:
+        command:
+        - /probe
+        - request
+        - http://127.0.0.1:8080/
+      periodSeconds: 5
+      timeoutSeconds: 4

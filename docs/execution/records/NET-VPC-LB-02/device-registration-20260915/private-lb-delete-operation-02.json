@@ -1,0 +1,447 @@
+{
+  "execution_host": "ubuntu",
+  "command": [
+    "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/lb-api",
+    "call",
+    "-target",
+    "unix:///home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-a.sock",
+    "-service",
+    "NetworkService",
+    "-method",
+    "GetOperation"
+  ],
+  "request": {
+    "operation_id": "91f27903-b9c6-4a9b-8365-13b138e5ba1d"
+  },
+  "expected": {
+    "response.operation.state": "OPERATION_STATE_SUCCEEDED"
+  },
+  "result": "pass",
+  "records": [
+    {
+      "at": "2026-09-15T05:49:48.306692+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "91f27903-b9c6-4a9b-8365-13b138e5ba1d",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "resource_id": "lb_d9f847eef7eb453a8388672718959ec8",
+            "kind": "OPERATION_KIND_DELETE_LOAD_BALANCER",
+            "state": "OPERATION_STATE_RETRYING",
+            "reason": "PROVIDER_NOT_READY",
+            "created_at": "2026-09-15T05:45:17.497413Z",
+            "updated_at": "2026-09-15T05:49:42.128511Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T05:49:43.128511Z",
+            "resource_type": "RESOURCE_TYPE_LOAD_BALANCER",
+            "reason_message": "The requested configuration is not ready yet."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:49:53.318540+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "91f27903-b9c6-4a9b-8365-13b138e5ba1d",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "resource_id": "lb_d9f847eef7eb453a8388672718959ec8",
+            "kind": "OPERATION_KIND_DELETE_LOAD_BALANCER",
+            "state": "OPERATION_STATE_RUNNING",
+            "reason": "PROVIDER_NOT_READY",
+            "created_at": "2026-09-15T05:45:17.497413Z",
+            "updated_at": "2026-09-15T05:49:53.020773Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T05:49:43.128511Z",
+            "resource_type": "RESOURCE_TYPE_LOAD_BALANCER",
+            "reason_message": "The requested configuration is not ready yet."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:49:58.328741+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "91f27903-b9c6-4a9b-8365-13b138e5ba1d",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "resource_id": "lb_d9f847eef7eb453a8388672718959ec8",
+            "kind": "OPERATION_KIND_DELETE_LOAD_BALANCER",
+            "state": "OPERATION_STATE_RUNNING",
+            "reason": "PROVIDER_NOT_READY",
+            "created_at": "2026-09-15T05:45:17.497413Z",
+            "updated_at": "2026-09-15T05:49:53.020773Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T05:49:43.128511Z",
+            "resource_type": "RESOURCE_TYPE_LOAD_BALANCER",
+            "reason_message": "The requested configuration is not ready yet."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:50:03.340888+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "91f27903-b9c6-4a9b-8365-13b138e5ba1d",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "resource_id": "lb_d9f847eef7eb453a8388672718959ec8",
+            "kind": "OPERATION_KIND_DELETE_LOAD_BALANCER",
+            "state": "OPERATION_STATE_RUNNING",
+            "reason": "PROVIDER_NOT_READY",
+            "created_at": "2026-09-15T05:45:17.497413Z",
+            "updated_at": "2026-09-15T05:49:53.020773Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T05:49:43.128511Z",
+            "resource_type": "RESOURCE_TYPE_LOAD_BALANCER",
+            "reason_message": "The requested configuration is not ready yet."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:50:08.351775+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "91f27903-b9c6-4a9b-8365-13b138e5ba1d",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "resource_id": "lb_d9f847eef7eb453a8388672718959ec8",
+            "kind": "OPERATION_KIND_DELETE_LOAD_BALANCER",
+            "state": "OPERATION_STATE_BLOCKED",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "created_at": "2026-09-15T05:45:17.497413Z",
+            "updated_at": "2026-09-15T05:50:04.899012Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T05:50:31.088571Z",
+            "resource_type": "RESOURCE_TYPE_LOAD_BALANCER",
+            "reason_message": "The network provider is temporarily unavailable."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:50:13.363392+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "91f27903-b9c6-4a9b-8365-13b138e5ba1d",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "resource_id": "lb_d9f847eef7eb453a8388672718959ec8",
+            "kind": "OPERATION_KIND_DELETE_LOAD_BALANCER",
+            "state": "OPERATION_STATE_BLOCKED",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "created_at": "2026-09-15T05:45:17.497413Z",
+            "updated_at": "2026-09-15T05:50:04.899012Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T05:50:31.088571Z",
+            "resource_type": "RESOURCE_TYPE_LOAD_BALANCER",
+            "reason_message": "The network provider is temporarily unavailable."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:50:18.376146+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "91f27903-b9c6-4a9b-8365-13b138e5ba1d",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "resource_id": "lb_d9f847eef7eb453a8388672718959ec8",
+            "kind": "OPERATION_KIND_DELETE_LOAD_BALANCER",
+            "state": "OPERATION_STATE_BLOCKED",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "created_at": "2026-09-15T05:45:17.497413Z",
+            "updated_at": "2026-09-15T05:50:04.899012Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T05:50:31.088571Z",
+            "resource_type": "RESOURCE_TYPE_LOAD_BALANCER",
+            "reason_message": "The network provider is temporarily unavailable."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:50:23.387239+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "91f27903-b9c6-4a9b-8365-13b138e5ba1d",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "resource_id": "lb_d9f847eef7eb453a8388672718959ec8",
+            "kind": "OPERATION_KIND_DELETE_LOAD_BALANCER",
+            "state": "OPERATION_STATE_BLOCKED",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "created_at": "2026-09-15T05:45:17.497413Z",
+            "updated_at": "2026-09-15T05:50:04.899012Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T05:50:31.088571Z",
+            "resource_type": "RESOURCE_TYPE_LOAD_BALANCER",
+            "reason_message": "The network provider is temporarily unavailable."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:50:28.399031+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "91f27903-b9c6-4a9b-8365-13b138e5ba1d",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "resource_id": "lb_d9f847eef7eb453a8388672718959ec8",
+            "kind": "OPERATION_KIND_DELETE_LOAD_BALANCER",
+            "state": "OPERATION_STATE_BLOCKED",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "created_at": "2026-09-15T05:45:17.497413Z",
+            "updated_at": "2026-09-15T05:50:04.899012Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T05:50:31.088571Z",
+            "resource_type": "RESOURCE_TYPE_LOAD_BALANCER",
+            "reason_message": "The network provider is temporarily unavailable."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:50:33.410979+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "91f27903-b9c6-4a9b-8365-13b138e5ba1d",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "resource_id": "lb_d9f847eef7eb453a8388672718959ec8",
+            "kind": "OPERATION_KIND_DELETE_LOAD_BALANCER",
+            "state": "OPERATION_STATE_BLOCKED",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "created_at": "2026-09-15T05:45:17.497413Z",
+            "updated_at": "2026-09-15T05:50:04.899012Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T05:50:31.088571Z",
+            "resource_type": "RESOURCE_TYPE_LOAD_BALANCER",
+            "reason_message": "The network provider is temporarily unavailable."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:50:38.423346+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "91f27903-b9c6-4a9b-8365-13b138e5ba1d",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "resource_id": "lb_d9f847eef7eb453a8388672718959ec8",
+            "kind": "OPERATION_KIND_DELETE_LOAD_BALANCER",
+            "state": "OPERATION_STATE_RUNNING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "created_at": "2026-09-15T05:45:17.497413Z",
+            "updated_at": "2026-09-15T05:50:34.171912Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T05:50:31.088571Z",
+            "resource_type": "RESOURCE_TYPE_LOAD_BALANCER",
+            "reason_message": "The network provider is temporarily unavailable."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:50:43.436794+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "91f27903-b9c6-4a9b-8365-13b138e5ba1d",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "resource_id": "lb_d9f847eef7eb453a8388672718959ec8",
+            "kind": "OPERATION_KIND_DELETE_LOAD_BALANCER",
+            "state": "OPERATION_STATE_RUNNING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "created_at": "2026-09-15T05:45:17.497413Z",
+            "updated_at": "2026-09-15T05:50:34.171912Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T05:50:31.088571Z",
+            "resource_type": "RESOURCE_TYPE_LOAD_BALANCER",
+            "reason_message": "The network provider is temporarily unavailable."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:50:48.447963+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "91f27903-b9c6-4a9b-8365-13b138e5ba1d",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "resource_id": "lb_d9f847eef7eb453a8388672718959ec8",
+            "kind": "OPERATION_KIND_DELETE_LOAD_BALANCER",
+            "state": "OPERATION_STATE_RETRYING",
+            "reason": "PROVIDER_NOT_READY",
+            "created_at": "2026-09-15T05:45:17.497413Z",
+            "updated_at": "2026-09-15T05:50:45.193838Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T05:50:46.193839Z",
+            "resource_type": "RESOURCE_TYPE_LOAD_BALANCER",
+            "reason_message": "The requested configuration is not ready yet."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:50:53.460001+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "91f27903-b9c6-4a9b-8365-13b138e5ba1d",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "resource_id": "lb_d9f847eef7eb453a8388672718959ec8",
+            "kind": "OPERATION_KIND_DELETE_LOAD_BALANCER",
+            "state": "OPERATION_STATE_RETRYING",
+            "reason": "PROVIDER_NOT_READY",
+            "created_at": "2026-09-15T05:45:17.497413Z",
+            "updated_at": "2026-09-15T05:50:45.193838Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T05:50:46.193839Z",
+            "resource_type": "RESOURCE_TYPE_LOAD_BALANCER",
+            "reason_message": "The requested configuration is not ready yet."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:50:58.470619+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "91f27903-b9c6-4a9b-8365-13b138e5ba1d",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "resource_id": "lb_d9f847eef7eb453a8388672718959ec8",
+            "kind": "OPERATION_KIND_DELETE_LOAD_BALANCER",
+            "state": "OPERATION_STATE_RUNNING",
+            "reason": "PROVIDER_NOT_READY",
+            "created_at": "2026-09-15T05:45:17.497413Z",
+            "updated_at": "2026-09-15T05:50:54.842362Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T05:50:46.193839Z",
+            "resource_type": "RESOURCE_TYPE_LOAD_BALANCER",
+            "reason_message": "The requested configuration is not ready yet."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:51:03.484565+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "91f27903-b9c6-4a9b-8365-13b138e5ba1d",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "resource_id": "lb_d9f847eef7eb453a8388672718959ec8",
+            "kind": "OPERATION_KIND_DELETE_LOAD_BALANCER",
+            "state": "OPERATION_STATE_SUCCEEDED",
+            "reason": "",
+            "created_at": "2026-09-15T05:45:17.497413Z",
+            "updated_at": "2026-09-15T05:51:03.467950Z",
+            "completed_at": "2026-09-15T05:51:03.467950Z",
+            "next_attempt_at": null,
+            "resource_type": "RESOURCE_TYPE_LOAD_BALANCER",
+            "reason_message": ""
+          }
+        }
+      },
+      "stderr": "",
+      "matches": true
+    },
+    {
+      "at": "2026-09-15T05:51:08.496484+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "91f27903-b9c6-4a9b-8365-13b138e5ba1d",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "resource_id": "lb_d9f847eef7eb453a8388672718959ec8",
+            "kind": "OPERATION_KIND_DELETE_LOAD_BALANCER",
+            "state": "OPERATION_STATE_SUCCEEDED",
+            "reason": "",
+            "created_at": "2026-09-15T05:45:17.497413Z",
+            "updated_at": "2026-09-15T05:51:03.467950Z",
+            "completed_at": "2026-09-15T05:51:03.467950Z",
+            "next_attempt_at": null,
+            "resource_type": "RESOURCE_TYPE_LOAD_BALANCER",
+            "reason_message": ""
+          }
+        }
+      },
+      "stderr": "",
+      "matches": true
+    }
+  ]
+}

@@ -1,0 +1,176 @@
+{
+  "namespace": "lb02-09141908-2b3122",
+  "commands": [
+    {
+      "pod": "lb02-2b3122-public-probe-a",
+      "label": "binary-and-interface-lb02-2b3122-public-probe-a",
+      "argv": [
+        "/bin/sh",
+        "-c",
+        "sha256sum /probe; /probe inspect"
+      ],
+      "expect_contains": [
+        "ffcf0c98acaedd82d52d8b9b9f981a8bbc8b1fbc4499be94947d9040f0014bed"
+      ]
+    },
+    {
+      "pod": "lb02-2b3122-public-probe-b",
+      "label": "binary-and-interface-lb02-2b3122-public-probe-b",
+      "argv": [
+        "/bin/sh",
+        "-c",
+        "sha256sum /probe; /probe inspect"
+      ],
+      "expect_contains": [
+        "ffcf0c98acaedd82d52d8b9b9f981a8bbc8b1fbc4499be94947d9040f0014bed"
+      ]
+    },
+    {
+      "pod": "lb02-2b3122-outside-observer",
+      "label": "binary-and-interface-lb02-2b3122-outside-observer",
+      "argv": [
+        "/bin/sh",
+        "-c",
+        "sha256sum /probe; /probe inspect"
+      ],
+      "expect_contains": [
+        "ffcf0c98acaedd82d52d8b9b9f981a8bbc8b1fbc4499be94947d9040f0014bed"
+      ]
+    },
+    {
+      "pod": "lb02-2b3122-public-probe-a",
+      "label": "public-qualification-01-0",
+      "argv": [
+        "/probe",
+        "request",
+        "http://127.0.0.1:8080/?nonce=public-qualification-01-0"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"instance_id\":\"lb02-2b3122-public-probe-a\"",
+        "\"nonce\":\"public-qualification-01-0\""
+      ]
+    },
+    {
+      "pod": "lb02-2b3122-public-probe-b",
+      "label": "public-qualification-01-1",
+      "argv": [
+        "/probe",
+        "request",
+        "http://127.0.0.1:8080/?nonce=public-qualification-01-1"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"instance_id\":\"lb02-2b3122-public-probe-b\"",
+        "\"nonce\":\"public-qualification-01-1\""
+      ]
+    },
+    {
+      "pod": "lb02-2b3122-outside-observer",
+      "label": "public-qualification-01-2",
+      "argv": [
+        "/probe",
+        "request",
+        "http://127.0.0.1:18808/?nonce=public-qualification-01-2"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"instance_id\":\"lb02-2b3122-outside-observer\"",
+        "\"nonce\":\"public-qualification-01-2\""
+      ]
+    },
+    {
+      "pod": "lb02-2b3122-public-probe-a",
+      "label": "public-qualification-01-3",
+      "argv": [
+        "/probe",
+        "request",
+        "http://172.16.101.10:18808/?nonce=public-qualification-01-3"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"instance_id\":\"lb02-2b3122-outside-observer\"",
+        "\"nonce\":\"public-qualification-01-3\""
+      ]
+    },
+    {
+      "pod": "lb02-2b3122-public-probe-b",
+      "label": "public-qualification-01-4",
+      "argv": [
+        "/probe",
+        "request",
+        "http://172.16.101.10:18808/?nonce=public-qualification-01-4"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"instance_id\":\"lb02-2b3122-outside-observer\"",
+        "\"nonce\":\"public-qualification-01-4\""
+      ]
+    },
+    {
+      "pod": "lb02-2b3122-outside-observer",
+      "label": "public-qualification-01-5",
+      "argv": [
+        "/probe",
+        "request",
+        "http://172.16.102.192:8080/?nonce=public-qualification-01-5"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"instance_id\":\"lb02-2b3122-public-probe-a\"",
+        "\"nonce\":\"public-qualification-01-5\""
+      ]
+    },
+    {
+      "pod": "lb02-2b3122-outside-observer",
+      "label": "public-qualification-01-6",
+      "argv": [
+        "/probe",
+        "request",
+        "http://172.16.102.193:8080/?nonce=public-qualification-01-6"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"instance_id\":\"lb02-2b3122-public-probe-b\"",
+        "\"nonce\":\"public-qualification-01-6\""
+      ]
+    },
+    {
+      "pod": "lb02-2b3122-public-probe-a",
+      "label": "public-qualification-01-7",
+      "argv": [
+        "/probe",
+        "request",
+        "http://172.16.102.193:8080/?nonce=public-qualification-01-7"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"instance_id\":\"lb02-2b3122-public-probe-b\"",
+        "\"nonce\":\"public-qualification-01-7\""
+      ]
+    },
+    {
+      "pod": "lb02-2b3122-public-probe-b",
+      "label": "public-qualification-01-8",
+      "argv": [
+        "/probe",
+        "request",
+        "http://172.16.102.192:8080/?nonce=public-qualification-01-8"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"instance_id\":\"lb02-2b3122-public-probe-a\"",
+        "\"nonce\":\"public-qualification-01-8\""
+      ]
+    }
+  ]
+}

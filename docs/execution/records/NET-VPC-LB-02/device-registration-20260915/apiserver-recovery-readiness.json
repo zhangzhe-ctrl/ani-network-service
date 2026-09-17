@@ -1,0 +1,173 @@
+{
+  "at": "2026-09-15T07:50:57.950953+00:00",
+  "purpose": "read-only scope review for proposed unknown-create recovery; no maintenance or recovery authorized/executed",
+  "health": [
+    {
+      "server": "172.16.101.10",
+      "command": "sudo -n /usr/local/bin/kubectl --kubeconfig /etc/kubernetes/admin.conf --context kubernetes-admin@ani-platform --request-timeout=20s --server=https://172.16.101.10:6443 --tls-server-name=api.ani.internal get --raw /readyz",
+      "exit": 0,
+      "stdout": "ok",
+      "stderr": ""
+    },
+    {
+      "server": "172.16.101.11",
+      "command": "sudo -n /usr/local/bin/kubectl --kubeconfig /etc/kubernetes/admin.conf --context kubernetes-admin@ani-platform --request-timeout=20s --server=https://172.16.101.11:6443 --tls-server-name=api.ani.internal get --raw /readyz",
+      "exit": 0,
+      "stdout": "ok",
+      "stderr": ""
+    },
+    {
+      "server": "172.16.101.12",
+      "command": "sudo -n /usr/local/bin/kubectl --kubeconfig /etc/kubernetes/admin.conf --context kubernetes-admin@ani-platform --request-timeout=20s --server=https://172.16.101.12:6443 --tls-server-name=api.ani.internal get --raw /readyz",
+      "exit": 0,
+      "stdout": "ok",
+      "stderr": ""
+    }
+  ],
+  "control_plane": [
+    {
+      "component": "etcd",
+      "name": "etcd-ani-01",
+      "uid": "d3b4bc95-da43-498b-a8e0-cbd1e9111b16",
+      "node": "ani-01",
+      "host_ip": "172.16.101.10",
+      "containers": [
+        {
+          "name": "etcd",
+          "containerID": "containerd://ee5720d9e436c91403c8fc77cc63cfe026f462a2d374f3c79f72c2b9011056ff",
+          "restartCount": 0,
+          "state": {
+            "running": {
+              "startedAt": "2026-09-14T12:23:03Z"
+            }
+          },
+          "ready": true
+        }
+      ],
+      "relevant_arguments": [
+        "--initial-cluster=ani-01=https://172.16.101.10:2380",
+        "--name=ani-01"
+      ]
+    },
+    {
+      "component": "etcd",
+      "name": "etcd-ani-02",
+      "uid": "49665abb-4809-4e6c-bc07-75543665f34a",
+      "node": "ani-02",
+      "host_ip": "172.16.101.11",
+      "containers": [
+        {
+          "name": "etcd",
+          "containerID": "containerd://57474c217a0a4ffc83e4c7cb5e512f15835a339cdeaa011fd06da3ea9dbab457",
+          "restartCount": 0,
+          "state": {
+            "running": {
+              "startedAt": "2026-09-14T12:25:35Z"
+            }
+          },
+          "ready": true
+        }
+      ],
+      "relevant_arguments": [
+        "--initial-cluster=ani-01=https://172.16.101.10:2380,ani-02=https://172.16.101.11:2380",
+        "--name=ani-02"
+      ]
+    },
+    {
+      "component": "etcd",
+      "name": "etcd-ani-03",
+      "uid": "2a1fd8ae-1273-4b41-818c-3012e667816e",
+      "node": "ani-03",
+      "host_ip": "172.16.101.12",
+      "containers": [
+        {
+          "name": "etcd",
+          "containerID": "containerd://a5e2bf5fbb4c7cc826097b2eb09dc906d516155a30861e965aef6525b2337953",
+          "restartCount": 0,
+          "state": {
+            "running": {
+              "startedAt": "2026-09-14T12:26:39Z"
+            }
+          },
+          "ready": true
+        }
+      ],
+      "relevant_arguments": [
+        "--initial-cluster=ani-01=https://172.16.101.10:2380,ani-02=https://172.16.101.11:2380,ani-03=https://172.16.101.12:2380",
+        "--name=ani-03"
+      ]
+    },
+    {
+      "component": "kube-apiserver",
+      "name": "kube-apiserver-ani-01",
+      "uid": "3a710c5e-cd9f-47fe-b18d-aad9196c3be8",
+      "node": "ani-01",
+      "host_ip": "172.16.101.10",
+      "containers": [
+        {
+          "name": "kube-apiserver",
+          "containerID": "containerd://5ade05c37b378f2812f2be8893c726c129bac200c78d78b6fb705088a5875e77",
+          "restartCount": 6,
+          "state": {
+            "running": {
+              "startedAt": "2026-09-14T12:23:03Z"
+            }
+          },
+          "ready": true
+        }
+      ],
+      "relevant_arguments": [
+        "--advertise-address=172.16.101.10",
+        "--etcd-servers=https://127.0.0.1:2379"
+      ]
+    },
+    {
+      "component": "kube-apiserver",
+      "name": "kube-apiserver-ani-02",
+      "uid": "db6436e5-b6c8-480f-9ea3-04b02d85005b",
+      "node": "ani-02",
+      "host_ip": "172.16.101.11",
+      "containers": [
+        {
+          "name": "kube-apiserver",
+          "containerID": "containerd://30e40af196fb381ce29df189534bafbe9841efb6457d7d2eafcfe52763e2256e",
+          "restartCount": 0,
+          "state": {
+            "running": {
+              "startedAt": "2026-09-14T12:25:35Z"
+            }
+          },
+          "ready": true
+        }
+      ],
+      "relevant_arguments": [
+        "--advertise-address=172.16.101.11",
+        "--etcd-servers=https://127.0.0.1:2379"
+      ]
+    },
+    {
+      "component": "kube-apiserver",
+      "name": "kube-apiserver-ani-03",
+      "uid": "940e7dcd-c18c-411f-a195-af50389dd073",
+      "node": "ani-03",
+      "host_ip": "172.16.101.12",
+      "containers": [
+        {
+          "name": "kube-apiserver",
+          "containerID": "containerd://2a50cb923a771c20ae66507efd12623d917a3b5080791b4a3e537bb6dd92bb42",
+          "restartCount": 0,
+          "state": {
+            "running": {
+              "startedAt": "2026-09-14T12:26:39Z"
+            }
+          },
+          "ready": true
+        }
+      ],
+      "relevant_arguments": [
+        "--advertise-address=172.16.101.12",
+        "--etcd-servers=https://127.0.0.1:2379"
+      ]
+    }
+  ]
+}

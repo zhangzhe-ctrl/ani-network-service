@@ -1,0 +1,179 @@
+{
+  "at": "2026-09-15T09:56:49.648711+00:00",
+  "command": [
+    "ssh",
+    "-F",
+    "/home/chabking/.ssh/config",
+    "-o",
+    "BatchMode=yes",
+    "ani-test-1",
+    "sudo kubectl -n kcn-system get pods -o json"
+  ],
+  "items": [
+    {
+      "name": "ani-node-facts-51a80915f0169d9a92ce6bf0-5f67ffbfbf-l7mmt",
+      "uid": "ef5b1a7e-6db3-4c1e-b538-5b5b7ee23607",
+      "node": "ani-01",
+      "containers": [
+        {
+          "name": "facts",
+          "image": "localhost/ani-node-facts@sha256:fe7aaee4509778b464121fb7c536e59675dee821a74c1ced62ca6da6ff9ab0c9"
+        }
+      ]
+    },
+    {
+      "name": "ani-node-facts-7b398d4ee406a252345c20ca-55d8965b9c-6bc6l",
+      "uid": "8cef1fd6-fd1c-4fb7-8d37-4aeaca518e82",
+      "node": "ani-02",
+      "containers": [
+        {
+          "name": "facts",
+          "image": "localhost/ani-node-facts@sha256:fe7aaee4509778b464121fb7c536e59675dee821a74c1ced62ca6da6ff9ab0c9"
+        }
+      ]
+    },
+    {
+      "name": "ani-node-facts-ab0e432da17dfce745d60958-5cf45bbbdd-ptlt2",
+      "uid": "b217e742-44d3-4540-832f-8e68244f579b",
+      "node": "ani-03",
+      "containers": [
+        {
+          "name": "facts",
+          "image": "localhost/ani-node-facts@sha256:fe7aaee4509778b464121fb7c536e59675dee821a74c1ced62ca6da6ff9ab0c9"
+        }
+      ]
+    },
+    {
+      "name": "kcn-cni-ds-fvmvz",
+      "uid": "08409e5b-eb26-4e28-a2b4-90793c818ecf",
+      "node": "ani-03",
+      "containers": [
+        {
+          "name": "kcn-cni-server",
+          "image": "docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2"
+        }
+      ]
+    },
+    {
+      "name": "kcn-cni-ds-mvzwp",
+      "uid": "0a587912-80b9-4744-b172-44e43b720971",
+      "node": "ani-01",
+      "containers": [
+        {
+          "name": "kcn-cni-server",
+          "image": "docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2"
+        }
+      ]
+    },
+    {
+      "name": "kcn-cni-ds-vbh2w",
+      "uid": "90d7f59a-abb8-4520-9930-44b98b1a654d",
+      "node": "ani-02",
+      "containers": [
+        {
+          "name": "kcn-cni-server",
+          "image": "docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2"
+        }
+      ]
+    },
+    {
+      "name": "kcn-controller-7d98bdb568-4c4mv",
+      "uid": "1b12aeed-f60b-41d7-aae0-ac6a2b342391",
+      "node": "ani-01",
+      "containers": [
+        {
+          "name": "kcn-controller",
+          "image": "docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2"
+        }
+      ]
+    },
+    {
+      "name": "kcn-controller-7d98bdb568-5bptk",
+      "uid": "26446096-58f8-4a2b-8c04-e7da5571bc93",
+      "node": "ani-02",
+      "containers": [
+        {
+          "name": "kcn-controller",
+          "image": "docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2"
+        }
+      ]
+    },
+    {
+      "name": "kcn-controller-7d98bdb568-gd82q",
+      "uid": "79b571a2-973c-4f68-a694-d8963b7a0e23",
+      "node": "ani-03",
+      "containers": [
+        {
+          "name": "kcn-controller",
+          "image": "docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2"
+        }
+      ]
+    },
+    {
+      "name": "kcn-ovn-central-5dfc477ffc-5477j",
+      "uid": "cdea4914-2857-4948-91ac-91de53fdc4db",
+      "node": "ani-02",
+      "containers": [
+        {
+          "name": "ovn-central",
+          "image": "docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2"
+        }
+      ]
+    },
+    {
+      "name": "kcn-ovn-central-5dfc477ffc-6gllk",
+      "uid": "2ca506b2-c58b-4914-bce2-a293afef3dad",
+      "node": "ani-03",
+      "containers": [
+        {
+          "name": "ovn-central",
+          "image": "docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2"
+        }
+      ]
+    },
+    {
+      "name": "kcn-ovn-central-5dfc477ffc-9w7tz",
+      "uid": "43370b58-f1d5-4f0e-9a86-9c64f5529cb5",
+      "node": "ani-01",
+      "containers": [
+        {
+          "name": "ovn-central",
+          "image": "docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2"
+        }
+      ]
+    },
+    {
+      "name": "kcn-ovs-ds-7hfv8",
+      "uid": "aceecdf6-6145-480c-bfbb-6d98bbfacbbe",
+      "node": "ani-01",
+      "containers": [
+        {
+          "name": "openvswitch",
+          "image": "docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2"
+        }
+      ]
+    },
+    {
+      "name": "kcn-ovs-ds-hzz8g",
+      "uid": "85be255d-ab59-4769-8b67-cc3b26467d45",
+      "node": "ani-02",
+      "containers": [
+        {
+          "name": "openvswitch",
+          "image": "docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2"
+        }
+      ]
+    },
+    {
+      "name": "kcn-ovs-ds-n4vt8",
+      "uid": "2a2da57b-11c6-430e-be79-3bc1f8f5d1a5",
+      "node": "ani-03",
+      "containers": [
+        {
+          "name": "openvswitch",
+          "image": "docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+  "commands": [
+    {
+      "pod": "lb02-2b3122-base-client",
+      "label": "private-vip-health-both-down-0",
+      "argv": [
+        "/probe",
+        "request",
+        "http://10.233.0.200:8080/?nonce=lb02-private-vip-health-both-down-0"
+      ],
+      "expect_contains": [
+        "status 503",
+        "no healthy upstream"
+      ]
+    },
+    {
+      "pod": "lb02-2b3122-base-client",
+      "label": "private-vip-health-both-down-1",
+      "argv": [
+        "/probe",
+        "request",
+        "http://10.233.0.200:8080/?nonce=lb02-private-vip-health-both-down-1"
+      ],
+      "expect_contains": [
+        "status 503",
+        "no healthy upstream"
+      ]
+    },
+    {
+      "pod": "lb02-2b3122-base-client",
+      "label": "private-vip-health-both-down-2",
+      "argv": [
+        "/probe",
+        "request",
+        "http://10.233.0.200:8080/?nonce=lb02-private-vip-health-both-down-2"
+      ],
+      "expect_contains": [
+        "status 503",
+        "no healthy upstream"
+      ]
+    },
+    {
+      "pod": "lb02-2b3122-base-client",
+      "label": "private-vip-health-both-down-3",
+      "argv": [
+        "/probe",
+        "request",
+        "http://10.233.0.200:8080/?nonce=lb02-private-vip-health-both-down-3"
+      ],
+      "expect_contains": [
+        "status 503",
+        "no healthy upstream"
+      ]
+    },
+    {
+      "pod": "lb02-2b3122-base-client",
+      "label": "private-vip-health-both-down-4",
+      "argv": [
+        "/probe",
+        "request",
+        "http://10.233.0.200:8080/?nonce=lb02-private-vip-health-both-down-4"
+      ],
+      "expect_contains": [
+        "status 503",
+        "no healthy upstream"
+      ]
+    },
+    {
+      "pod": "lb02-2b3122-base-client",
+      "label": "private-vip-health-both-down-5",
+      "argv": [
+        "/probe",
+        "request",
+        "http://10.233.0.200:8080/?nonce=lb02-private-vip-health-both-down-5"
+      ],
+      "expect_contains": [
+        "status 503",
+        "no healthy upstream"
+      ]
+    }
+  ]
+}

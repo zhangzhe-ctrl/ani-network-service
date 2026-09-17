@@ -1,0 +1,311 @@
+{
+  "at": "2026-09-15T14:42:02.094264+00:00",
+  "execution_host": "ubuntu",
+  "result": "pass",
+  "results": [
+    {
+      "scope": "Public",
+      "pool_id": "pool_f28b9d470c0147f6a66646b8976c36f9",
+      "accepted": true
+    },
+    {
+      "scope": "Intranet",
+      "pool_id": "pool_f6c078d198ae4ea1be6f43cfad8f9934",
+      "accepted": true
+    }
+  ],
+  "records": [
+    {
+      "at": "2026-09-15T14:42:02.039528+00:00",
+      "command": [
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/lb-api",
+        "call",
+        "-target",
+        "unix:///home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/platform.sock",
+        "-service",
+        "PlatformNetworkService",
+        "-method",
+        "GetPublicAddressPool"
+      ],
+      "request": {
+        "pool_id": "pool_f28b9d470c0147f6a66646b8976c36f9"
+      },
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "resource": {
+            "id": "pool_f28b9d470c0147f6a66646b8976c36f9",
+            "cluster_id": "lb02-09141908-2b3122",
+            "name": "lb02-2b3122-public-untagged",
+            "description": "U09 isolated underlay pool, guest untagged on logical VLAN 102; tenant allocation initially disabled",
+            "state": "RESOURCE_STATE_AVAILABLE",
+            "reason": "",
+            "reason_message": "",
+            "version": "1364",
+            "created_at": "2026-09-15T08:20:28.455726Z",
+            "updated_at": "2026-09-15T14:41:50.715956Z",
+            "observed_at": "2026-09-15T14:41:45.085458Z",
+            "observation_stale": false,
+            "last_operation_id": "6d04c7c2-2f67-44d2-bf9a-fc4cb8a2acb5",
+            "pool": {
+              "mode": "PUBLIC_POOL_MODE_UNDERLAY",
+              "gateway_id": "egw_386dc165a8744951bc624ab55c439681",
+              "cidr": "172.16.102.0/24",
+              "ovn_gateway_ip": "172.16.102.2",
+              "excluded_ips": [
+                "172.16.102.1",
+                "172.16.102.1..172.16.102.191",
+                "172.16.102.2",
+                "172.16.102.208..172.16.102.254"
+              ],
+              "vlan_network_id": "vlan_9b12fcb230ef4bc08ba1d497ebe44009",
+              "upstream_gateway_ip": "172.16.102.1",
+              "allocation_enabled": true,
+              "is_default": true,
+              "config_revision": "1",
+              "verification": {
+                "provider_source_revision": "735abf81cb728f30bd0f15e1885dcd7f88b56ab0",
+                "provider_image_digests": [
+                  "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4"
+                ],
+                "topology_fingerprint": "301586ecb248d176a80e3fb733198c09198df8b29196ba92b35c9f5725b361c6",
+                "evidence_reference": "NET-VPC-LB-02/device-registration-20260915/public-pool-qualification-assessment.json#sha256=06fd07bfdf4703da0a322b8dfd24a66721e91c10d30b4a14cf260f047d1d20c5",
+                "scope": "underlay_lab_direct_workload_egress_return",
+                "verified_at": "2026-09-15T08:38:54.409181Z",
+                "expires_at": "2026-09-15T14:41:06.728059Z"
+              },
+              "topology_fingerprint": "301586ecb248d176a80e3fb733198c09198df8b29196ba92b35c9f5725b361c6",
+              "observed_provider_images": [
+                "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4"
+              ],
+              "scope": "public"
+            }
+          }
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-15T14:42:02.064165+00:00",
+      "command": [
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/lb-api",
+        "call",
+        "-target",
+        "unix:///home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/platform.sock",
+        "-service",
+        "PlatformNetworkService",
+        "-method",
+        "SetPublicPoolAllocationEnabled"
+      ],
+      "request": {
+        "pool_id": "pool_f28b9d470c0147f6a66646b8976c36f9",
+        "enabled": false,
+        "expected_version": "1364",
+        "idempotency_key": "lb02-final-close-public-pool"
+      },
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "resource": {
+            "id": "pool_f28b9d470c0147f6a66646b8976c36f9",
+            "cluster_id": "lb02-09141908-2b3122",
+            "name": "lb02-2b3122-public-untagged",
+            "description": "U09 isolated underlay pool, guest untagged on logical VLAN 102; tenant allocation initially disabled",
+            "state": "RESOURCE_STATE_AVAILABLE",
+            "reason": "",
+            "reason_message": "",
+            "version": "1365",
+            "created_at": "2026-09-15T08:20:28.455726Z",
+            "updated_at": "2026-09-15T14:42:02.056Z",
+            "observed_at": "2026-09-15T14:41:45.085458Z",
+            "observation_stale": false,
+            "last_operation_id": "333a408a-c9fd-4a21-83d6-10f34dfef593",
+            "pool": {
+              "mode": "PUBLIC_POOL_MODE_UNDERLAY",
+              "gateway_id": "egw_386dc165a8744951bc624ab55c439681",
+              "cidr": "172.16.102.0/24",
+              "ovn_gateway_ip": "172.16.102.2",
+              "excluded_ips": [
+                "172.16.102.1",
+                "172.16.102.1..172.16.102.191",
+                "172.16.102.2",
+                "172.16.102.208..172.16.102.254"
+              ],
+              "vlan_network_id": "vlan_9b12fcb230ef4bc08ba1d497ebe44009",
+              "upstream_gateway_ip": "172.16.102.1",
+              "allocation_enabled": false,
+              "is_default": true,
+              "config_revision": "1",
+              "verification": {
+                "provider_source_revision": "735abf81cb728f30bd0f15e1885dcd7f88b56ab0",
+                "provider_image_digests": [
+                  "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4"
+                ],
+                "topology_fingerprint": "301586ecb248d176a80e3fb733198c09198df8b29196ba92b35c9f5725b361c6",
+                "evidence_reference": "NET-VPC-LB-02/device-registration-20260915/public-pool-qualification-assessment.json#sha256=06fd07bfdf4703da0a322b8dfd24a66721e91c10d30b4a14cf260f047d1d20c5",
+                "scope": "underlay_lab_direct_workload_egress_return",
+                "verified_at": "2026-09-15T08:38:54.409181Z",
+                "expires_at": "2026-09-15T14:41:06.728059Z"
+              },
+              "topology_fingerprint": "301586ecb248d176a80e3fb733198c09198df8b29196ba92b35c9f5725b361c6",
+              "observed_provider_images": [
+                "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4"
+              ],
+              "scope": "public"
+            }
+          }
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-15T14:42:02.076746+00:00",
+      "command": [
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/lb-api",
+        "call",
+        "-target",
+        "unix:///home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/platform.sock",
+        "-service",
+        "PlatformNetworkService",
+        "-method",
+        "GetIntranetAddressPool"
+      ],
+      "request": {
+        "pool_id": "pool_f6c078d198ae4ea1be6f43cfad8f9934"
+      },
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "resource": {
+            "id": "pool_f6c078d198ae4ea1be6f43cfad8f9934",
+            "cluster_id": "lb02-09141908-2b3122",
+            "name": "lb02-09141908-2b3122-intranet",
+            "description": "NET-VPC-LB-02 isolated API live validation",
+            "state": "RESOURCE_STATE_AVAILABLE",
+            "reason": "",
+            "reason_message": "",
+            "version": "3000",
+            "created_at": "2026-09-14T19:34:54.678021Z",
+            "updated_at": "2026-09-15T14:41:58.874963Z",
+            "observed_at": "2026-09-15T14:41:53.970329Z",
+            "observation_stale": false,
+            "last_operation_id": "f51e95b7-2270-4143-9f17-7f3e71c34feb",
+            "intranet_pool": {
+              "cidr": "10.242.252.0/24",
+              "ovn_gateway_ip": "10.242.252.1",
+              "excluded_ips": [
+                "10.242.252.1"
+              ],
+              "default_vpc_name": "kcn-cluster",
+              "default_vpc_uid": "a852bc64-3d41-4925-b6a1-de3db56e5a76",
+              "intranet_networks": [
+                "10.96.0.0/16",
+                "172.16.101.0/24",
+                "172.16.201.0/24",
+                "172.16.202.0/24"
+              ],
+              "allocation_enabled": true,
+              "is_default": true,
+              "config_revision": "1",
+              "verification": {
+                "provider_source_revision": "735abf81cb728f30bd0f15e1885dcd7f88b56ab0",
+                "provider_image_digests": [
+                  "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4"
+                ],
+                "topology_fingerprint": "b4d5c4d62cbfbd4cad412f92d9e4384419ca7e3f1937d501f2e8bb65ce2e5f52",
+                "evidence_reference": "NET-VPC-LB-02/device-registration-20260915/base-intranet-r15-renewal.json#sha256=463d0b15d3d0744153998bdd74f2e98ed71db920ccd00d9c34c3220aeb6df1b3",
+                "scope": "base_intranet",
+                "verified_at": "2026-09-15T08:57:37.023630Z",
+                "expires_at": "2026-09-15T14:57:37.023630Z"
+              },
+              "topology_fingerprint": "b4d5c4d62cbfbd4cad412f92d9e4384419ca7e3f1937d501f2e8bb65ce2e5f52",
+              "observed_provider_images": [
+                "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4"
+              ],
+              "scope": "intranet"
+            }
+          }
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-15T14:42:02.094236+00:00",
+      "command": [
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/lb-api",
+        "call",
+        "-target",
+        "unix:///home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/platform.sock",
+        "-service",
+        "PlatformNetworkService",
+        "-method",
+        "SetIntranetPoolAllocationEnabled"
+      ],
+      "request": {
+        "pool_id": "pool_f6c078d198ae4ea1be6f43cfad8f9934",
+        "enabled": false,
+        "expected_version": "3000",
+        "idempotency_key": "lb02-final-close-intranet-pool"
+      },
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "resource": {
+            "id": "pool_f6c078d198ae4ea1be6f43cfad8f9934",
+            "cluster_id": "lb02-09141908-2b3122",
+            "name": "lb02-09141908-2b3122-intranet",
+            "description": "NET-VPC-LB-02 isolated API live validation",
+            "state": "RESOURCE_STATE_AVAILABLE",
+            "reason": "",
+            "reason_message": "",
+            "version": "3001",
+            "created_at": "2026-09-14T19:34:54.678021Z",
+            "updated_at": "2026-09-15T14:42:02.087780Z",
+            "observed_at": "2026-09-15T14:41:53.970329Z",
+            "observation_stale": false,
+            "last_operation_id": "7ed2c94b-5a23-4101-a430-6038d2fe0e76",
+            "intranet_pool": {
+              "cidr": "10.242.252.0/24",
+              "ovn_gateway_ip": "10.242.252.1",
+              "excluded_ips": [
+                "10.242.252.1"
+              ],
+              "default_vpc_name": "kcn-cluster",
+              "default_vpc_uid": "a852bc64-3d41-4925-b6a1-de3db56e5a76",
+              "intranet_networks": [
+                "10.96.0.0/16",
+                "172.16.101.0/24",
+                "172.16.201.0/24",
+                "172.16.202.0/24"
+              ],
+              "allocation_enabled": false,
+              "is_default": true,
+              "config_revision": "1",
+              "verification": {
+                "provider_source_revision": "735abf81cb728f30bd0f15e1885dcd7f88b56ab0",
+                "provider_image_digests": [
+                  "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4"
+                ],
+                "topology_fingerprint": "b4d5c4d62cbfbd4cad412f92d9e4384419ca7e3f1937d501f2e8bb65ce2e5f52",
+                "evidence_reference": "NET-VPC-LB-02/device-registration-20260915/base-intranet-r15-renewal.json#sha256=463d0b15d3d0744153998bdd74f2e98ed71db920ccd00d9c34c3220aeb6df1b3",
+                "scope": "base_intranet",
+                "verified_at": "2026-09-15T08:57:37.023630Z",
+                "expires_at": "2026-09-15T14:57:37.023630Z"
+              },
+              "topology_fingerprint": "b4d5c4d62cbfbd4cad412f92d9e4384419ca7e3f1937d501f2e8bb65ce2e5f52",
+              "observed_provider_images": [
+                "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4"
+              ],
+              "scope": "intranet"
+            }
+          }
+        }
+      },
+      "stderr": ""
+    }
+  ]
+}

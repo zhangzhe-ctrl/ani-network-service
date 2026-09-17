@@ -1,0 +1,19 @@
+{
+  "at": "2026-09-15T14:38:37.402880+00:00",
+  "execution_host": "ubuntu",
+  "context": "tenant-a",
+  "command": "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/lb-api call -target unix:///home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-a.sock -service NetworkService -method DeleteVPC",
+  "request": {
+    "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4"
+  },
+  "exit": 1,
+  "response": {
+    "code": "Unavailable",
+    "status": {
+      "code": 14,
+      "message": "connection error: desc = \"transport: Error while dialing: dial unix /home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-a.sock: connect: no such file or directory\"",
+      "details": []
+    }
+  },
+  "stderr": "RPC failed; structured status is in stdout\n"
+}

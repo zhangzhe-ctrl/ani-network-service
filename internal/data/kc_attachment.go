@@ -22,7 +22,14 @@ const subnetAnnotation = "networking.kubercloud.com/subnet"
 
 var pods = schema.GroupVersionResource{Version: "v1", Resource: "pods"}
 
-type attachmentRelation struct{ Kind, Namespace, Name, UID, OwnerUID string }
+type attachmentRelation struct {
+	Kind, Namespace, Name, UID, OwnerUID string
+	// Address eligibility is a fresh identity fact, never traffic health. Old
+	// snapshots lack these fields and cannot authorize an LB until re-observed.
+	Address         string `json:",omitempty"`
+	Current         bool   `json:",omitempty"`
+	AddressEligible bool   `json:",omitempty"`
+}
 
 func (p *KCProvider) listAll(ctx context.Context, resource schema.GroupVersionResource) ([]unstructured.Unstructured, error) {
 	var values []unstructured.Unstructured
@@ -94,6 +101,7 @@ func (p *KCProvider) observeAttachment(ctx context.Context, w biz.AttachmentWork
 	vnicUIDs := map[string]bool{}
 	vnicNames := map[string]string{}
 	for _, r := range prior {
+		r.Current, r.AddressEligible = false, false
 		tracked[relationKey(r.Kind, r.Namespace, r.Name)] = r
 		if r.Kind == "VNic" {
 			vnicUIDs[r.UID] = true
@@ -153,7 +161,7 @@ func (p *KCProvider) observeAttachment(ctx context.Context, w biz.AttachmentWork
 			return conflict()
 		}
 		uid := string(o.GetUID())
-		tracked[key] = attachmentRelation{"VNic", o.GetNamespace(), o.GetName(), uid, owner}
+		tracked[key] = attachmentRelation{Kind: "VNic", Namespace: o.GetNamespace(), Name: o.GetName(), UID: uid, OwnerUID: owner, Current: o.GetDeletionTimestamp() == nil}
 		vnicUIDs[uid] = true
 		vnicNames[o.GetNamespace()+"/"+o.GetName()] = uid
 		liveVNics[o.GetNamespace()+"/"+o.GetName()] = uid
@@ -178,7 +186,14 @@ func (p *KCProvider) observeAttachment(ctx context.Context, w biz.AttachmentWork
 		if !owned || o.GetKind() != "VNicIP" || o.GetAPIVersion() != "networking.kubercloud.com/v1" || o.GetNamespace() != a.Namespace || o.GetUID() == "" || kcRef(subnet, o.GetNamespace()) != plan.PrimaryNetworkRef || (seen && old.UID != string(o.GetUID())) || (ref != "" && vnicNames[kcRef(ref, o.GetNamespace())] != owner) || (statusRef != "" && vnicNames[kcRef(statusRef, o.GetNamespace())] != owner) {
 			return conflict()
 		}
-		tracked[key] = attachmentRelation{"VNicIP", o.GetNamespace(), o.GetName(), string(o.GetUID()), owner}
+		address, _, _ := unstructured.NestedString(o.Object, "spec", "ipAddress")
+		eligible := pod != nil && pod.GetDeletionTimestamp() == nil && o.GetDeletionTimestamp() == nil && liveVNics[kcRef(ref, o.GetNamespace())] == owner && kcRef(statusRef, o.GetNamespace()) == kcRef(ref, o.GetNamespace())
+		podIP := ""
+		if pod != nil {
+			podIP, _, _ = unstructured.NestedString(pod.Object, "status", "podIP")
+		}
+		eligible = eligible && address != "" && podIP == address
+		tracked[key] = attachmentRelation{Kind: "VNicIP", Namespace: o.GetNamespace(), Name: o.GetName(), UID: string(o.GetUID()), OwnerUID: owner, Address: address, Current: o.GetDeletionTimestamp() == nil, AddressEligible: eligible}
 		liveIPs[o.GetNamespace()+"/"+o.GetName()] = string(o.GetUID())
 		result.HasDependencies = true
 	}

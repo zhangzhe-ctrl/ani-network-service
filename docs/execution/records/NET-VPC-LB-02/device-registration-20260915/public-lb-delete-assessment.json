@@ -1,0 +1,46 @@
+{
+  "at": "2026-09-15T10:16:13.251313+00:00",
+  "result": "pass",
+  "source_run": "20260915T074304Z-31ea8959",
+  "scope": "pure Public LB product Delete, provider release, original business backend identity",
+  "lb_id": "lb_bd6f74b7445b4c5a815763d38a995f14",
+  "released": {
+    "lb_state": "deleted",
+    "active_eip_claims": 0,
+    "active_subnet_refs": 0,
+    "remaining_components": 0,
+    "active_generated": 0
+  },
+  "delete_operation": {
+    "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+    "operation_id": "39a79ebf-ea8b-4a35-b76e-ec1e3553c94a",
+    "vpc_id": null,
+    "kind": "delete_load_balancer",
+    "state": "succeeded",
+    "reason": "",
+    "attempt": 12,
+    "execution_epoch": 101,
+    "created_at": "2026-09-15T10:04:14.311415+00:00",
+    "updated_at": "2026-09-15T10:12:18.403301+00:00",
+    "completed_at": "2026-09-15T10:12:18.403301+00:00",
+    "next_attempt_at": null,
+    "subnet_id": null,
+    "eip_id": null,
+    "snat_id": null,
+    "lb_id": "lb_bd6f74b7445b4c5a815763d38a995f14"
+  },
+  "business_pod_uids_preserved": {
+    "lb02-2b3122-base-a": "a0fb8a3c-9025-43b4-a45f-5114ffc5f3b5",
+    "lb02-2b3122-base-b": "e4c49404-afc1-4ff5-9e22-08521633d69c",
+    "lb02-2b3122-base-client": "6e3cfa90-d485-4311-a451-b8fa798acb7a"
+  },
+  "evidence": [
+    "public-lb-deleted-release-sql.json",
+    "public-lb-deleted-provider.json",
+    "public-lb-deleted-ready-02.json",
+    "public-lb-delete-grace-assessment.json"
+  ],
+  "not_yet_verified": [
+    "Public EIP binding to new SNAT target follows in a separate record"
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "at": "2026-09-14T19:46:54.492771+00:00",
+  "previous_goal_turn_classification": "progress: actual tests, user-requested service/relay shutdown, backup, inventory and handoff completed",
+  "this_turn_classification": "no_progress: local blocked-state audit only; no runtime or network probes resumed",
+  "blocked_condition": "required VLAN102 path has no successful recorded post-change ARP or peer-capture evidence; user explicitly requested blocking and no new resumption or environment facts were supplied",
+  "consecutive_goal_turns_with_same_stop_condition": 2,
+  "threshold_required": 3,
+  "goal_status_mutation": "none; strict threshold not yet met",
+  "completion": "not_complete",
+  "u09_required_items": 11,
+  "authority": "../../status.md",
+  "input_records": [
+    {
+      "path": "blocked-20260915.md",
+      "sha256": "c688d7c71db529bb957bb4afa86ba8147dec05f8d27776ae032dfe5366dbf3c6"
+    },
+    {
+      "path": "live-01/blocked-runtime-preservation.json",
+      "sha256": "3773256c4318b4770054b014af49531273a610b0200a736352372da27733e28e"
+    },
+    {
+      "path": "live-01/blocked-database-state.json",
+      "sha256": "46d79b6ba0268e7db3d8ff024a9709a8015062700ed21d4bd269f220e63d14b9"
+    },
+    {
+      "path": "live-01/blocked-cluster-inventory.json",
+      "sha256": "460b5ecdaa02ee69f4fc4a41afb5ff1ddbb4b2959eb8515cabbd868a9e544f5a"
+    },
+    {
+      "path": "live-01/api-relay-stop.json",
+      "sha256": "ec0f278e0793a04a140dd0b7e6ab0d7622d6863514f64974fe38e169dcc5e9f6"
+    },
+    {
+      "path": "gates.json",
+      "sha256": "bbb36250fd3fd2ed5fd89d5630431557c14a9b8adc17b107f6c0974dd16a1be5"
+    }
+  ],
+  "scope": "No SSH, service restart, workload creation, network probe, shared configuration change or repeated heavy gate."
+}

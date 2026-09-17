@@ -89,7 +89,7 @@ func (p *KCProvider) EnableObservation(options ObservationOptions) (*KCObservati
 		return nil, fmt.Errorf("invalid observation lifecycle/options")
 	}
 	o := &KCObservation{provider: p, client: p.watchClient, options: options, pending: map[string]struct{}{}, changes: map[string]uint64{}, done: make(chan struct{})}
-	for _, gvr := range observationGVRs {
+	for _, gvr := range p.observationResources() {
 		resource := o.client.Resource(gvr)
 		informer := cache.NewSharedIndexInformer(&cache.ListWatch{
 			ListWithContextFunc: func(ctx context.Context, opts metav1.ListOptions) (runtime.Object, error) {
@@ -145,6 +145,10 @@ func (o *KCObservation) changed(old, new any) {
 			body, _ := json.Marshal(item.object.Object)
 			o.watchIndexBytes.Add(item.sign * int64(len(body)))
 		}
+	}
+	if unchangedNodeFactsRenewal(before, after, time.Now()) {
+		o.coalesced.Add(1)
+		return
 	}
 	o.mu.Lock()
 	defer o.mu.Unlock()
@@ -216,7 +220,7 @@ func (o *KCObservation) Start(parent context.Context) error {
 			return nil
 		case <-ticker.C:
 			synced := true
-			for _, i := range o.informers {
+			for _, i := range o.informers[:len(observationGVRs)] {
 				synced = synced && i.HasSynced()
 			}
 			o.synced.Store(synced)
@@ -412,6 +416,9 @@ func (o *KCObservation) collect(ctx context.Context) (*auditView, error) {
 		}
 		v.indices[gvr] = index
 	}
+	if err = o.collectLB(ctx, v); err != nil {
+		return nil, err
+	}
 	bind := func(keys []string, t observationTarget) {
 		for _, k := range keys {
 			v.targets[k] = append(v.targets[k], t)
@@ -429,6 +436,9 @@ func (o *KCObservation) collect(ctx context.Context) (*auditView, error) {
 		if r.ResourceKind == "eip" || r.ResourceKind == "snat" {
 			kind = egressCRKind(r.ResourceKind)
 			field = r.ResourceKind
+		}
+		if r.ResourceKind == "load_balancer" {
+			kind, field = "Gateway", "load-balancer"
 		}
 
 		bind([]string{"object:" + kind + "/" + r.Namespace + "/" + r.ProviderName, field + ":" + r.Namespace + "/" + r.ProviderName, "uid:" + r.ProviderUid}, t)
@@ -491,6 +501,13 @@ func (o *KCObservation) collect(ctx context.Context) (*auditView, error) {
 			}
 		}
 		bind(keys, t)
+	}
+	lbEdges, err := o.provider.repository.queries.ObservationLBEdges(ctx, sqlcgen.ObservationLBEdgesParams{ClusterID: o.provider.repository.placement.ClusterID})
+	if err != nil {
+		return nil, err
+	}
+	for _, edge := range lbEdges {
+		bind([]string{edge.RelationKey, "lb-capability"}, observationTarget{edge.TenantID, edge.LbID, "load_balancer"})
 	}
 	return v, nil
 }

@@ -1,0 +1,109 @@
+{
+  "at": "2026-09-14T19:34:34.084481+00:00",
+  "exit": 0,
+  "records": [
+    {
+      "runtime": {
+        "at": "2026-09-14T19:33:09.102231+00:00",
+        "run": "lb02-09141908-2b3122",
+        "state": "running",
+        "processes": [
+          {
+            "name": "owner",
+            "pid": 1824064,
+            "start_ticks": "643320029",
+            "live": true
+          },
+          {
+            "name": "network",
+            "pid": 1824065,
+            "start_ticks": "643320029",
+            "live": true
+          },
+          {
+            "name": "tenant-a",
+            "pid": 1824066,
+            "start_ticks": "643320029",
+            "live": true
+          },
+          {
+            "name": "tenant-b",
+            "pid": 1824067,
+            "start_ticks": "643320029",
+            "live": true
+          },
+          {
+            "name": "platform",
+            "pid": 1824083,
+            "start_ticks": "643320029",
+            "live": true
+          }
+        ]
+      }
+    },
+    {
+      "listeners": {
+        "standard": "127.0.0.1:41585",
+        "admin": "127.0.0.1:50603"
+      }
+    },
+    {
+      "label": "platform-capabilities",
+      "at": "2026-09-14T19:34:34.040530+00:00",
+      "command": [
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/lb-api",
+        "call",
+        "-target",
+        "unix:///home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/platform.sock",
+        "-service",
+        "PlatformNetworkService",
+        "-method",
+        "GetPlatformNetworkCapabilities"
+      ],
+      "request": {},
+      "exit": 0,
+      "stdout": "{\"code\":\"OK\",\"response\":{\"capabilities\":{\"base_connectivity_ready\":false,\"public_address_ready\":false,\"load_balancer_ready\":true,\"base_connectivity\":{\"reason\":\"CAPABILITY_UNKNOWN\",\"reason_message\":\"capability is not configured or verified\",\"observed_at\":null,\"observation_stale\":true},\"public_address\":{\"reason\":\"CAPABILITY_UNKNOWN\",\"reason_message\":\"capability is not configured or verified\",\"observed_at\":null,\"observation_stale\":true},\"load_balancer\":{\"reason\":\"\",\"reason_message\":\"\",\"observed_at\":\"2026-09-14T19:34:27.964870Z\",\"observation_stale\":false}}}}\n",
+      "stderr": ""
+    },
+    {
+      "label": "standard-denies-platform",
+      "at": "2026-09-14T19:34:34.050715+00:00",
+      "command": [
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/lb-api",
+        "call",
+        "-target",
+        "127.0.0.1:41585",
+        "-service",
+        "PlatformNetworkService",
+        "-method",
+        "GetPlatformNetworkCapabilities"
+      ],
+      "request": {},
+      "exit": 1,
+      "stdout": "{\"code\":\"PermissionDenied\",\"status\":{\"code\":7,\"message\":\"platform authorization is required\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.ErrorInfo\",\"reason\":\"PERMISSION_DENIED\",\"domain\":\"network.ani.io\",\"metadata\":{}}]}}\n",
+      "stderr": "RPC failed; structured status is in stdout\n"
+    },
+    {
+      "label": "tenant-a-empty",
+      "at": "2026-09-14T19:34:34.063348+00:00",
+      "command": [
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/lb-api",
+        "call",
+        "-target",
+        "unix:///home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-a.sock",
+        "-service",
+        "NetworkService",
+        "-method",
+        "ListVPCs"
+      ],
+      "request": {
+        "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+        "limit": 20
+      },
+      "exit": 0,
+      "stdout": "{\"code\":\"OK\",\"response\":{\"items\":[],\"next_cursor\":\"\"}}\n",
+      "stderr": ""
+    }
+  ],
+  "stderr": ""
+}

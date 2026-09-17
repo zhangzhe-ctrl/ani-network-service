@@ -1,0 +1,41 @@
+Thu Sep 17 10:37:16 AM UTC 2026
+NAME       READY   STATUS    RESTARTS   AGE     IP               NODE     NOMINATED NODE   READINESS GATES
+public-a   1/1     Running   0          7h53m   172.16.102.192   ani-02   <none>           <none>
+public-b   1/1     Running   0          7h53m   172.16.102.193   ani-03   <none>           <none>
+source=public-a attempt=1
+status 200
+{"fixture_id":"pubdebug-20260917","hostname":"backend-b","instance_id":"backend-b","nonce":"recheck-public-a-1","port":"8080"}
+source=public-b attempt=1
+status 200
+{"fixture_id":"pubdebug-20260917","hostname":"backend-a","instance_id":"backend-a","nonce":"recheck-public-b-1","port":"8080"}
+source=public-a attempt=2
+status 200
+{"fixture_id":"pubdebug-20260917","hostname":"backend-a","instance_id":"backend-a","nonce":"recheck-public-a-2","port":"8080"}
+source=public-b attempt=2
+status 200
+{"fixture_id":"pubdebug-20260917","hostname":"backend-b","instance_id":"backend-b","nonce":"recheck-public-b-2","port":"8080"}
+source=public-a attempt=3
+status 200
+{"fixture_id":"pubdebug-20260917","hostname":"backend-a","instance_id":"backend-a","nonce":"recheck-public-a-3","port":"8080"}
+source=public-b attempt=3
+status 200
+{"fixture_id":"pubdebug-20260917","hostname":"backend-b","instance_id":"backend-b","nonce":"recheck-public-b-3","port":"8080"}
+source=public-a attempt=4
+status 200
+{"fixture_id":"pubdebug-20260917","hostname":"backend-a","instance_id":"backend-a","nonce":"recheck-public-a-4","port":"8080"}
+source=public-b attempt=4
+status 200
+{"fixture_id":"pubdebug-20260917","hostname":"backend-a","instance_id":"backend-a","nonce":"recheck-public-b-4","port":"8080"}
+source=public-a attempt=5
+status 200
+{"fixture_id":"pubdebug-20260917","hostname":"backend-b","instance_id":"backend-b","nonce":"recheck-public-a-5","port":"8080"}
+source=public-b attempt=5
+status 200
+{"fixture_id":"pubdebug-20260917","hostname":"backend-a","instance_id":"backend-a","nonce":"recheck-public-b-5","port":"8080"}
+source=public-a attempt=6
+status 200
+{"fixture_id":"pubdebug-20260917","hostname":"backend-b","instance_id":"backend-b","nonce":"recheck-public-a-6","port":"8080"}
+source=public-b attempt=6
+status 200
+{"fixture_id":"pubdebug-20260917","hostname":"backend-b","instance_id":"backend-b","nonce":"recheck-public-b-6","port":"8080"}
+39619c25-703e-4db2-a35a-d44ee2acb780

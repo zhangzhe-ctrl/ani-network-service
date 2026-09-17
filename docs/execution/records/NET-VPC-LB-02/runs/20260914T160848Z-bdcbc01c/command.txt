@@ -1,0 +1,47 @@
+source.tar.gz: OK
+verified source files: 1311
+go version go1.26.7 linux/amd64
+1.60.0
+v1.31.1
+127.0.0.1:5432 - accepting connections
+PostgreSQL image=docker.io/library/postgres@sha256:4ef4dbc939d61acea57712655ddb4b4ab27419c913f94cca0cd57cb3ea3c2280 container=28e9a7e6f3019b97c9142feef072264d2a709e1810e696611763e07e4a5b76bf
+=== RUN   TestLBPinsExistingAddressesAcrossBothDefaultPoolSwitchesAndClosure
+--- PASS: TestLBPinsExistingAddressesAcrossBothDefaultPoolSwitchesAndClosure (11.82s)
+=== RUN   TestLBAndPublicBindingCoexistWithBackfillPauseResumeAndDeleteRace
+    load_balancer_composition_integration_test.go:173: legacy parent ignored Public claim VPC_SNAT_EXISTS: SNAT binding must be deleted before its VPC
+--- FAIL: TestLBAndPublicBindingCoexistWithBackfillPauseResumeAndDeleteRace (5.68s)
+=== RUN   TestLBNewRelationsRejectCrossTenantSQLAndAPI
+=== RUN   TestLBNewRelationsRejectCrossTenantSQLAndAPI/network_load_balancers
+=== RUN   TestLBNewRelationsRejectCrossTenantSQLAndAPI/network_lb_listeners
+=== RUN   TestLBNewRelationsRejectCrossTenantSQLAndAPI/network_lb_configurations
+=== RUN   TestLBNewRelationsRejectCrossTenantSQLAndAPI/network_lb_members
+=== RUN   TestLBNewRelationsRejectCrossTenantSQLAndAPI/network_lb_configuration_members
+=== RUN   TestLBNewRelationsRejectCrossTenantSQLAndAPI/network_lb_subnet_refs
+=== RUN   TestLBNewRelationsRejectCrossTenantSQLAndAPI/network_lb_components
+=== RUN   TestLBNewRelationsRejectCrossTenantSQLAndAPI/network_lb_generated_resources
+=== RUN   TestLBNewRelationsRejectCrossTenantSQLAndAPI/network_lb_vip_intents
+=== RUN   TestLBNewRelationsRejectCrossTenantSQLAndAPI/network_provider_bindings
+=== RUN   TestLBNewRelationsRejectCrossTenantSQLAndAPI/network_operations
+=== RUN   TestLBNewRelationsRejectCrossTenantSQLAndAPI/network_reconciliations
+=== RUN   TestLBNewRelationsRejectCrossTenantSQLAndAPI/network_idempotency
+=== RUN   TestLBNewRelationsRejectCrossTenantSQLAndAPI/network_resource_history
+--- PASS: TestLBNewRelationsRejectCrossTenantSQLAndAPI (3.58s)
+    --- PASS: TestLBNewRelationsRejectCrossTenantSQLAndAPI/network_load_balancers (0.00s)
+    --- PASS: TestLBNewRelationsRejectCrossTenantSQLAndAPI/network_lb_listeners (0.00s)
+    --- PASS: TestLBNewRelationsRejectCrossTenantSQLAndAPI/network_lb_configurations (0.00s)
+    --- PASS: TestLBNewRelationsRejectCrossTenantSQLAndAPI/network_lb_members (0.00s)
+    --- PASS: TestLBNewRelationsRejectCrossTenantSQLAndAPI/network_lb_configuration_members (0.00s)
+    --- PASS: TestLBNewRelationsRejectCrossTenantSQLAndAPI/network_lb_subnet_refs (0.00s)
+    --- PASS: TestLBNewRelationsRejectCrossTenantSQLAndAPI/network_lb_components (0.00s)
+    --- PASS: TestLBNewRelationsRejectCrossTenantSQLAndAPI/network_lb_generated_resources (0.00s)
+    --- PASS: TestLBNewRelationsRejectCrossTenantSQLAndAPI/network_lb_vip_intents (0.00s)
+    --- PASS: TestLBNewRelationsRejectCrossTenantSQLAndAPI/network_provider_bindings (0.00s)
+    --- PASS: TestLBNewRelationsRejectCrossTenantSQLAndAPI/network_operations (0.00s)
+    --- PASS: TestLBNewRelationsRejectCrossTenantSQLAndAPI/network_reconciliations (0.00s)
+    --- PASS: TestLBNewRelationsRejectCrossTenantSQLAndAPI/network_idempotency (0.00s)
+    --- PASS: TestLBNewRelationsRejectCrossTenantSQLAndAPI/network_resource_history (0.00s)
+FAIL
+FAIL	github.com/zhangzhe-ctrl/ani-network-service/internal/data	21.135s
+FAIL
+removed task container=28e9a7e6f3019b97c9142feef072264d2a709e1810e696611763e07e4a5b76bf
+REMOTE_COMMAND_EXIT=1

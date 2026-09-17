@@ -1,0 +1,149 @@
+{
+  "at": "2026-09-15T05:10:28.642734+00:00",
+  "execution_host": "ubuntu",
+  "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+  "results": [
+    {
+      "pod": "lb02-2b3122-base-a",
+      "label": "restore-test-listener",
+      "argv": [
+        "/bin/sh",
+        "-c",
+        "kill -USR2 1; sleep 2"
+      ],
+      "at": "2026-09-15T05:10:23.686664+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+        "lb02-2b3122-base-a",
+        "-c",
+        "probe",
+        "--",
+        "/bin/sh",
+        "-c",
+        "kill -USR2 1; sleep 2"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": "",
+      "pass": true
+    },
+    {
+      "pod": "lb02-2b3122-base-a",
+      "label": "listener-restored-loopback",
+      "argv": [
+        "/probe",
+        "request",
+        "http://127.0.0.1:8080/?nonce=lb02-health-restored"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"instance_id\":\"lb02-2b3122-base-a\""
+      ],
+      "at": "2026-09-15T05:10:24.490636+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+        "lb02-2b3122-base-a",
+        "-c",
+        "probe",
+        "--",
+        "/probe",
+        "request",
+        "http://127.0.0.1:8080/?nonce=lb02-health-restored"
+      ],
+      "exit": 0,
+      "stdout": "status 200\n{\"fixture_id\":\"lb02-09141908-2b3122\",\"hostname\":\"lb02-2b3122-base-a\",\"instance_id\":\"lb02-2b3122-base-a\",\"nonce\":\"lb02-health-restored\",\"port\":\"8080\"}\n",
+      "stderr": "",
+      "pass": true
+    },
+    {
+      "pod": "lb02-2b3122-base-b",
+      "label": "restore-test-listener",
+      "argv": [
+        "/bin/sh",
+        "-c",
+        "kill -USR2 1; sleep 2"
+      ],
+      "at": "2026-09-15T05:10:27.501599+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+        "lb02-2b3122-base-b",
+        "-c",
+        "probe",
+        "--",
+        "/bin/sh",
+        "-c",
+        "kill -USR2 1; sleep 2"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": "",
+      "pass": true
+    },
+    {
+      "pod": "lb02-2b3122-base-b",
+      "label": "listener-restored-loopback",
+      "argv": [
+        "/probe",
+        "request",
+        "http://127.0.0.1:8080/?nonce=lb02-health-restored"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"instance_id\":\"lb02-2b3122-base-b\""
+      ],
+      "at": "2026-09-15T05:10:28.642707+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+        "lb02-2b3122-base-b",
+        "-c",
+        "probe",
+        "--",
+        "/probe",
+        "request",
+        "http://127.0.0.1:8080/?nonce=lb02-health-restored"
+      ],
+      "exit": 0,
+      "stdout": "status 200\n{\"fixture_id\":\"lb02-09141908-2b3122\",\"hostname\":\"lb02-2b3122-base-b\",\"instance_id\":\"lb02-2b3122-base-b\",\"nonce\":\"lb02-health-restored\",\"port\":\"8080\"}\n",
+      "stderr": "",
+      "pass": true
+    }
+  ],
+  "input_file": "docs/execution/records/NET-VPC-LB-02/device-registration-20260915/health-restore-both-planned.json",
+  "result": "pass"
+}

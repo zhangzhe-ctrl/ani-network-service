@@ -1,0 +1,24 @@
+{
+  "at": "2026-09-15T14:02:03.652310+00:00",
+  "execution_host": "ubuntu",
+  "command": [
+    "bash",
+    "-c",
+    "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+    "kubectl",
+    "--kubeconfig",
+    "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/kubeconfig.json",
+    "--request-timeout=20s",
+    "get",
+    "gateway.gateway.networking.k8s.io,service",
+    "-n",
+    "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+    "lb-74f96109961444a48b26c31601e6131f",
+    "--ignore-not-found",
+    "-o",
+    "json"
+  ],
+  "exit": 0,
+  "objects": null,
+  "stderr": ""
+}

@@ -1,0 +1,17 @@
+source.tar.gz: OK
+verified source files: 1258
+go version go1.26.7 linux/amd64
+1.60.0
+v1.31.1
+127.0.0.1:5432 - accepting connections
+PostgreSQL image=docker.io/library/postgres@sha256:4ef4dbc939d61acea57712655ddb4b4ab27419c913f94cca0cd57cb3ea3c2280 container=b670186538f6ea2e0debd6772d55de3717184302cfec31153f41bcf03d8ba139
+=== RUN   TestLBCapabilityUsesSharedAuditAndKeepsVPCIndependent
+    load_balancer_capability_integration_test.go:159: LB accepted with invalid installation BASE_CONNECTIVITY_NOT_READY: base dependencies are not ready
+--- FAIL: TestLBCapabilityUsesSharedAuditAndKeepsVPCIndependent (5.09s)
+=== RUN   TestLBUpdateRetainsRemovedSubnetUntilRouteAndBackendCleanup
+--- PASS: TestLBUpdateRetainsRemovedSubnetUntilRouteAndBackendCleanup (4.97s)
+FAIL
+FAIL	github.com/zhangzhe-ctrl/ani-network-service/internal/data	10.132s
+FAIL
+removed task container=b670186538f6ea2e0debd6772d55de3717184302cfec31153f41bcf03d8ba139
+REMOTE_COMMAND_EXIT=1

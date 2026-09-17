@@ -1,0 +1,27 @@
+source.tar.gz: OK
+verified source files: 1323
+go version go1.26.7 linux/amd64
+1.60.0
+v1.31.1
+127.0.0.1:5432 - accepting connections
+PostgreSQL image=docker.io/library/postgres@sha256:4ef4dbc939d61acea57712655ddb4b4ab27419c913f94cca0cd57cb3ea3c2280 container=6ceba8bd97c81621c792726cfe12b8ea49e7f3c358c0c1a159435db3f6671065
+=== RUN   TestLBCapabilityUsesSharedAuditAndKeepsVPCIndependent
+--- PASS: TestLBCapabilityUsesSharedAuditAndKeepsVPCIndependent (13.51s)
+=== RUN   TestLBCapabilityImportedRuntimeImagesAndInstallDefaults
+=== RUN   TestLBCapabilityImportedRuntimeImagesAndInstallDefaults/valid
+    load_balancer_capability_integration_test.go:310: capability=false for valid
+=== RUN   TestLBCapabilityImportedRuntimeImagesAndInstallDefaults/wrong-image
+=== RUN   TestLBCapabilityImportedRuntimeImagesAndInstallDefaults/missing-owner-chain
+=== RUN   TestLBCapabilityImportedRuntimeImagesAndInstallDefaults/small-cpu-reduced
+=== RUN   TestLBCapabilityImportedRuntimeImagesAndInstallDefaults/private-service-default
+--- FAIL: TestLBCapabilityImportedRuntimeImagesAndInstallDefaults (10.15s)
+    --- FAIL: TestLBCapabilityImportedRuntimeImagesAndInstallDefaults/valid (2.21s)
+    --- PASS: TestLBCapabilityImportedRuntimeImagesAndInstallDefaults/wrong-image (2.05s)
+    --- PASS: TestLBCapabilityImportedRuntimeImagesAndInstallDefaults/missing-owner-chain (1.84s)
+    --- PASS: TestLBCapabilityImportedRuntimeImagesAndInstallDefaults/small-cpu-reduced (2.19s)
+    --- PASS: TestLBCapabilityImportedRuntimeImagesAndInstallDefaults/private-service-default (1.86s)
+FAIL
+FAIL	github.com/zhangzhe-ctrl/ani-network-service/internal/data	23.740s
+FAIL
+removed task container=6ceba8bd97c81621c792726cfe12b8ea49e7f3c358c0c1a159435db3f6671065
+REMOTE_COMMAND_EXIT=1

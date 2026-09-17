@@ -1,0 +1,3301 @@
+{
+  "at": "2026-09-15T12:36:41.057847+00:00",
+  "execution_host": "ubuntu",
+  "command": [
+    "bash",
+    "-c",
+    "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+    "kubectl",
+    "--kubeconfig",
+    "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/kubeconfig.json",
+    "--request-timeout=20s",
+    "get",
+    "vnics.networking.kubercloud.com,vnicips.networking.kubercloud.com,pods",
+    "-n",
+    "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+    "-o",
+    "json",
+    "-o",
+    "json"
+  ],
+  "exit": 0,
+  "objects": {
+    "apiVersion": "v1",
+    "items": [
+      {
+        "apiVersion": "networking.kubercloud.com/v1",
+        "kind": "VNic",
+        "metadata": {
+          "annotations": {
+            "networking.kubercloud.com/allocate_ip_with_dhcp": "false",
+            "networking.kubercloud.com/allocated_vnicip": "auto-lb-74f96109961444a48b26c31601e6131f-75-vnic-lm8v6",
+            "pod.networking.kubercloud.com/lb-74f96109961444a48b26c31601e6131f-75568698bb-8zg4x": "ani-03/eth0"
+          },
+          "creationTimestamp": "2026-09-15T10:22:06Z",
+          "finalizers": [
+            "networking.kubercloud.com/finalizer"
+          ],
+          "generation": 2,
+          "labels": {
+            "node.networking.kubercloud.com/ani-03": ""
+          },
+          "name": "auto-lb-74f96109961444a48b26c31601e6131f-75-vnic-lm8v6",
+          "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+          "ownerReferences": [
+            {
+              "apiVersion": "v1",
+              "kind": "Pod",
+              "name": "lb-74f96109961444a48b26c31601e6131f-75568698bb-8zg4x",
+              "uid": "ce02fd40-202f-457a-be79-11af94711234"
+            }
+          ],
+          "resourceVersion": "383460",
+          "uid": "4036a0d2-d4a7-4199-80f1-0367577b59de"
+        },
+        "spec": {
+          "macAddress": "fa:00:2a:7a:60:ca",
+          "subnet": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad/subnet-f74d90cbb5484f7fb37f8a8f6782da1d",
+          "type": "VETH"
+        },
+        "status": {
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-09-15T10:22:07Z",
+              "message": "",
+              "reason": "Ready",
+              "status": "True",
+              "type": "Ready"
+            },
+            {
+              "lastTransitionTime": "2026-09-15T10:22:07Z",
+              "message": "",
+              "reason": "Initialized",
+              "status": "True",
+              "type": "Initialized"
+            },
+            {
+              "lastTransitionTime": "2026-09-15T10:22:07Z",
+              "message": "",
+              "reason": "Valid",
+              "status": "True",
+              "type": "Valid"
+            }
+          ],
+          "dstNic": "",
+          "gateway": "",
+          "ips": {
+            "auto-lb-74f96109961444a48b26c31601e6131f-75-vnic-lm8v6": "10.233.0.9"
+          },
+          "nic": "kcn-system/nic-lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad-lb-74-wg9vf",
+          "nodeName": "ani-03",
+          "primaryIP": "10.233.0.9"
+        }
+      },
+      {
+        "apiVersion": "networking.kubercloud.com/v1",
+        "kind": "VNic",
+        "metadata": {
+          "annotations": {
+            "networking.kubercloud.com/allocate_ip_with_dhcp": "false",
+            "networking.kubercloud.com/allocated_vnicip": "auto-lb-74f96109961444a48b26c31601e6131f-75-vnic-sbv4z",
+            "pod.networking.kubercloud.com/lb-74f96109961444a48b26c31601e6131f-75568698bb-vb2fd": "ani-01/eth0"
+          },
+          "creationTimestamp": "2026-09-15T10:22:06Z",
+          "finalizers": [
+            "networking.kubercloud.com/finalizer"
+          ],
+          "generation": 2,
+          "labels": {
+            "node.networking.kubercloud.com/ani-01": ""
+          },
+          "name": "auto-lb-74f96109961444a48b26c31601e6131f-75-vnic-sbv4z",
+          "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+          "ownerReferences": [
+            {
+              "apiVersion": "v1",
+              "kind": "Pod",
+              "name": "lb-74f96109961444a48b26c31601e6131f-75568698bb-vb2fd",
+              "uid": "ad31a52c-1481-48db-bfd1-10e0f50c6cb4"
+            }
+          ],
+          "resourceVersion": "383457",
+          "uid": "e3b33bb2-8636-49ee-918c-9e119e544b5a"
+        },
+        "spec": {
+          "macAddress": "fa:00:9c:d9:69:fa",
+          "subnet": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad/subnet-f74d90cbb5484f7fb37f8a8f6782da1d",
+          "type": "VETH"
+        },
+        "status": {
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-09-15T10:22:07Z",
+              "message": "",
+              "reason": "Ready",
+              "status": "True",
+              "type": "Ready"
+            },
+            {
+              "lastTransitionTime": "2026-09-15T10:22:07Z",
+              "message": "",
+              "reason": "Initialized",
+              "status": "True",
+              "type": "Initialized"
+            },
+            {
+              "lastTransitionTime": "2026-09-15T10:22:07Z",
+              "message": "",
+              "reason": "Valid",
+              "status": "True",
+              "type": "Valid"
+            }
+          ],
+          "dstNic": "",
+          "gateway": "",
+          "ips": {
+            "auto-lb-74f96109961444a48b26c31601e6131f-75-vnic-sbv4z": "10.233.0.10"
+          },
+          "nic": "kcn-system/nic-lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad-lb-74-kp8vq",
+          "nodeName": "ani-01",
+          "primaryIP": "10.233.0.10"
+        }
+      },
+      {
+        "apiVersion": "networking.kubercloud.com/v1",
+        "kind": "VNic",
+        "metadata": {
+          "annotations": {
+            "networking.kubercloud.com/allocate_ip_with_dhcp": "false",
+            "networking.kubercloud.com/allocated_vnicip": "auto-lb-cc562f7d8be147afae8144555aa7243b-86-vnic-5pwwb",
+            "pod.networking.kubercloud.com/lb-cc562f7d8be147afae8144555aa7243b-8647f8484-l8vth": "ani-03/eth0"
+          },
+          "creationTimestamp": "2026-09-15T05:55:54Z",
+          "finalizers": [
+            "networking.kubercloud.com/finalizer"
+          ],
+          "generation": 2,
+          "labels": {
+            "node.networking.kubercloud.com/ani-03": ""
+          },
+          "name": "auto-lb-cc562f7d8be147afae8144555aa7243b-86-vnic-5pwwb",
+          "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+          "ownerReferences": [
+            {
+              "apiVersion": "v1",
+              "kind": "Pod",
+              "name": "lb-cc562f7d8be147afae8144555aa7243b-8647f8484-l8vth",
+              "uid": "d321a191-e66b-4782-8375-d0ec1fed3880"
+            }
+          ],
+          "resourceVersion": "304526",
+          "uid": "4efc4a82-20de-49d2-840b-3030ac72a6b8"
+        },
+        "spec": {
+          "macAddress": "fa:00:63:8f:e1:3c",
+          "subnet": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad/subnet-f74d90cbb5484f7fb37f8a8f6782da1d",
+          "type": "VETH"
+        },
+        "status": {
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-09-15T05:55:54Z",
+              "message": "",
+              "reason": "Initialized",
+              "status": "True",
+              "type": "Initialized"
+            },
+            {
+              "lastTransitionTime": "2026-09-15T05:55:54Z",
+              "message": "",
+              "reason": "Valid",
+              "status": "True",
+              "type": "Valid"
+            },
+            {
+              "lastTransitionTime": "2026-09-15T05:55:54Z",
+              "message": "",
+              "reason": "Ready",
+              "status": "True",
+              "type": "Ready"
+            }
+          ],
+          "dstNic": "",
+          "gateway": "",
+          "ips": {
+            "auto-lb-cc562f7d8be147afae8144555aa7243b-86-vnic-5pwwb": "10.233.0.5"
+          },
+          "nic": "kcn-system/nic-lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad-lb-cc-k2plp",
+          "nodeName": "ani-03",
+          "primaryIP": "10.233.0.5"
+        }
+      },
+      {
+        "apiVersion": "networking.kubercloud.com/v1",
+        "kind": "VNic",
+        "metadata": {
+          "annotations": {
+            "networking.kubercloud.com/allocate_ip_with_dhcp": "false",
+            "networking.kubercloud.com/allocated_vnicip": "auto-lb-cc562f7d8be147afae8144555aa7243b-86-vnic-lwbjq",
+            "pod.networking.kubercloud.com/lb-cc562f7d8be147afae8144555aa7243b-8647f8484-f4gqb": "ani-01/eth0"
+          },
+          "creationTimestamp": "2026-09-15T05:55:54Z",
+          "finalizers": [
+            "networking.kubercloud.com/finalizer"
+          ],
+          "generation": 2,
+          "labels": {
+            "node.networking.kubercloud.com/ani-01": ""
+          },
+          "name": "auto-lb-cc562f7d8be147afae8144555aa7243b-86-vnic-lwbjq",
+          "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+          "ownerReferences": [
+            {
+              "apiVersion": "v1",
+              "kind": "Pod",
+              "name": "lb-cc562f7d8be147afae8144555aa7243b-8647f8484-f4gqb",
+              "uid": "02205640-fe52-4523-8673-5641e32d9029"
+            }
+          ],
+          "resourceVersion": "304525",
+          "uid": "824f73f7-bf35-4b63-8642-11cfa0ddc5b8"
+        },
+        "spec": {
+          "macAddress": "fa:00:3e:5e:00:97",
+          "subnet": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad/subnet-f74d90cbb5484f7fb37f8a8f6782da1d",
+          "type": "VETH"
+        },
+        "status": {
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-09-15T05:55:54Z",
+              "message": "",
+              "reason": "Ready",
+              "status": "True",
+              "type": "Ready"
+            },
+            {
+              "lastTransitionTime": "2026-09-15T05:55:54Z",
+              "message": "",
+              "reason": "Initialized",
+              "status": "True",
+              "type": "Initialized"
+            },
+            {
+              "lastTransitionTime": "2026-09-15T05:55:54Z",
+              "message": "",
+              "reason": "Valid",
+              "status": "True",
+              "type": "Valid"
+            }
+          ],
+          "dstNic": "",
+          "gateway": "",
+          "ips": {
+            "auto-lb-cc562f7d8be147afae8144555aa7243b-86-vnic-lwbjq": "10.233.0.6"
+          },
+          "nic": "kcn-system/nic-lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad-lb-cc-qjp5r",
+          "nodeName": "ani-01",
+          "primaryIP": "10.233.0.6"
+        }
+      },
+      {
+        "apiVersion": "networking.kubercloud.com/v1",
+        "kind": "VNic",
+        "metadata": {
+          "annotations": {
+            "networking.kubercloud.com/allocate_ip_with_dhcp": "false",
+            "networking.kubercloud.com/allocated_vnicip": "auto-lb02-2b3122-base-a-vnic-z7rvp",
+            "pod.networking.kubercloud.com/lb02-2b3122-base-a": "ani-02/eth0"
+          },
+          "creationTimestamp": "2026-09-15T04:22:58Z",
+          "finalizers": [
+            "networking.kubercloud.com/finalizer"
+          ],
+          "generation": 2,
+          "labels": {
+            "node.networking.kubercloud.com/ani-02": ""
+          },
+          "name": "auto-lb02-2b3122-base-a-vnic-z7rvp",
+          "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+          "ownerReferences": [
+            {
+              "apiVersion": "v1",
+              "kind": "Pod",
+              "name": "lb02-2b3122-base-a",
+              "uid": "a0fb8a3c-9025-43b4-a45f-5114ffc5f3b5"
+            }
+          ],
+          "resourceVersion": "276802",
+          "uid": "0b650c18-839a-49ac-97d9-7157a50c224c"
+        },
+        "spec": {
+          "macAddress": "fa:00:8b:e6:07:dd",
+          "subnet": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad/subnet-2a3f02dc6b444cc4b708a38d345a88c7",
+          "type": "VETH"
+        },
+        "status": {
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-09-15T04:22:58Z",
+              "message": "",
+              "reason": "Ready",
+              "status": "True",
+              "type": "Ready"
+            },
+            {
+              "lastTransitionTime": "2026-09-15T04:22:58Z",
+              "message": "",
+              "reason": "Initialized",
+              "status": "True",
+              "type": "Initialized"
+            },
+            {
+              "lastTransitionTime": "2026-09-15T04:22:58Z",
+              "message": "",
+              "reason": "Valid",
+              "status": "True",
+              "type": "Valid"
+            }
+          ],
+          "dstNic": "",
+          "gateway": "",
+          "ips": {
+            "auto-lb02-2b3122-base-a-vnic-z7rvp": "10.233.1.2"
+          },
+          "nic": "kcn-system/nic-lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad-lb02--hlc9x",
+          "nodeName": "ani-02",
+          "primaryIP": "10.233.1.2"
+        }
+      },
+      {
+        "apiVersion": "networking.kubercloud.com/v1",
+        "kind": "VNic",
+        "metadata": {
+          "annotations": {
+            "networking.kubercloud.com/allocate_ip_with_dhcp": "false",
+            "networking.kubercloud.com/allocated_vnicip": "auto-lb02-2b3122-base-b-vnic-hcfzg",
+            "pod.networking.kubercloud.com/lb02-2b3122-base-b": "ani-03/eth0"
+          },
+          "creationTimestamp": "2026-09-15T04:22:59Z",
+          "finalizers": [
+            "networking.kubercloud.com/finalizer"
+          ],
+          "generation": 2,
+          "labels": {
+            "node.networking.kubercloud.com/ani-03": ""
+          },
+          "name": "auto-lb02-2b3122-base-b-vnic-hcfzg",
+          "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+          "ownerReferences": [
+            {
+              "apiVersion": "v1",
+              "kind": "Pod",
+              "name": "lb02-2b3122-base-b",
+              "uid": "e4c49404-afc1-4ff5-9e22-08521633d69c"
+            }
+          ],
+          "resourceVersion": "276858",
+          "uid": "f23738b9-c1a7-43ad-a724-e1b867ef0d52"
+        },
+        "spec": {
+          "macAddress": "fa:00:25:56:6e:af",
+          "subnet": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad/subnet-2a3f02dc6b444cc4b708a38d345a88c7",
+          "type": "VETH"
+        },
+        "status": {
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-09-15T04:22:59Z",
+              "message": "",
+              "reason": "Ready",
+              "status": "True",
+              "type": "Ready"
+            },
+            {
+              "lastTransitionTime": "2026-09-15T04:22:59Z",
+              "message": "",
+              "reason": "Initialized",
+              "status": "True",
+              "type": "Initialized"
+            },
+            {
+              "lastTransitionTime": "2026-09-15T04:22:59Z",
+              "message": "",
+              "reason": "Valid",
+              "status": "True",
+              "type": "Valid"
+            }
+          ],
+          "dstNic": "",
+          "gateway": "",
+          "ips": {
+            "auto-lb02-2b3122-base-b-vnic-hcfzg": "10.233.1.3"
+          },
+          "nic": "kcn-system/nic-lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad-lb02--bnv4p",
+          "nodeName": "ani-03",
+          "primaryIP": "10.233.1.3"
+        }
+      },
+      {
+        "apiVersion": "networking.kubercloud.com/v1",
+        "kind": "VNic",
+        "metadata": {
+          "annotations": {
+            "networking.kubercloud.com/allocate_ip_with_dhcp": "false",
+            "networking.kubercloud.com/allocated_vnicip": "auto-lb02-2b3122-base-client-vnic-bg976",
+            "pod.networking.kubercloud.com/lb02-2b3122-base-client": "ani-02/eth0"
+          },
+          "creationTimestamp": "2026-09-15T04:22:59Z",
+          "finalizers": [
+            "networking.kubercloud.com/finalizer"
+          ],
+          "generation": 2,
+          "labels": {
+            "node.networking.kubercloud.com/ani-02": ""
+          },
+          "name": "auto-lb02-2b3122-base-client-vnic-bg976",
+          "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+          "ownerReferences": [
+            {
+              "apiVersion": "v1",
+              "kind": "Pod",
+              "name": "lb02-2b3122-base-client",
+              "uid": "6e3cfa90-d485-4311-a451-b8fa798acb7a"
+            }
+          ],
+          "resourceVersion": "276868",
+          "uid": "6f9ad5ea-9c79-4c71-aaa0-ab0d5ebc1b23"
+        },
+        "spec": {
+          "macAddress": "fa:00:7d:39:90:7e",
+          "subnet": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad/subnet-f74d90cbb5484f7fb37f8a8f6782da1d",
+          "type": "VETH"
+        },
+        "status": {
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-09-15T04:22:59Z",
+              "message": "",
+              "reason": "Ready",
+              "status": "True",
+              "type": "Ready"
+            },
+            {
+              "lastTransitionTime": "2026-09-15T04:22:59Z",
+              "message": "",
+              "reason": "Initialized",
+              "status": "True",
+              "type": "Initialized"
+            },
+            {
+              "lastTransitionTime": "2026-09-15T04:22:59Z",
+              "message": "",
+              "reason": "Valid",
+              "status": "True",
+              "type": "Valid"
+            }
+          ],
+          "dstNic": "",
+          "gateway": "",
+          "ips": {
+            "auto-lb02-2b3122-base-client-vnic-bg976": "10.233.0.2"
+          },
+          "nic": "kcn-system/nic-lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad-lb02--75khc",
+          "nodeName": "ani-02",
+          "primaryIP": "10.233.0.2"
+        }
+      },
+      {
+        "apiVersion": "networking.kubercloud.com/v1",
+        "kind": "VNicIP",
+        "metadata": {
+          "creationTimestamp": "2026-09-15T10:22:06Z",
+          "finalizers": [
+            "networking.kubercloud.com/finalizer"
+          ],
+          "generation": 2,
+          "name": "auto-lb-74f96109961444a48b26c31601e6131f-75-vnic-lm8v6",
+          "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+          "ownerReferences": [
+            {
+              "apiVersion": "networking.kubercloud.com/v1",
+              "kind": "VNic",
+              "name": "auto-lb-74f96109961444a48b26c31601e6131f-75-vnic-lm8v6",
+              "uid": "4036a0d2-d4a7-4199-80f1-0367577b59de"
+            }
+          ],
+          "resourceVersion": "383447",
+          "uid": "4b957875-ff2f-4c9d-8399-feea6dac5306"
+        },
+        "spec": {
+          "ipAddress": "10.233.0.9",
+          "subnet": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad/subnet-f74d90cbb5484f7fb37f8a8f6782da1d",
+          "vNic": "auto-lb-74f96109961444a48b26c31601e6131f-75-vnic-lm8v6"
+        },
+        "status": {
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-09-15T10:22:06Z",
+              "message": "",
+              "reason": "Initialized",
+              "status": "True",
+              "type": "Initialized"
+            },
+            {
+              "lastTransitionTime": "2026-09-15T10:22:06Z",
+              "message": "",
+              "reason": "Valid",
+              "status": "True",
+              "type": "Valid"
+            }
+          ],
+          "vNic": "auto-lb-74f96109961444a48b26c31601e6131f-75-vnic-lm8v6"
+        }
+      },
+      {
+        "apiVersion": "networking.kubercloud.com/v1",
+        "kind": "VNicIP",
+        "metadata": {
+          "creationTimestamp": "2026-09-15T10:22:06Z",
+          "finalizers": [
+            "networking.kubercloud.com/finalizer"
+          ],
+          "generation": 2,
+          "name": "auto-lb-74f96109961444a48b26c31601e6131f-75-vnic-sbv4z",
+          "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+          "ownerReferences": [
+            {
+              "apiVersion": "networking.kubercloud.com/v1",
+              "kind": "VNic",
+              "name": "auto-lb-74f96109961444a48b26c31601e6131f-75-vnic-sbv4z",
+              "uid": "e3b33bb2-8636-49ee-918c-9e119e544b5a"
+            }
+          ],
+          "resourceVersion": "383448",
+          "uid": "b958294a-d392-45a1-8c3a-a17f17e71924"
+        },
+        "spec": {
+          "ipAddress": "10.233.0.10",
+          "subnet": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad/subnet-f74d90cbb5484f7fb37f8a8f6782da1d",
+          "vNic": "auto-lb-74f96109961444a48b26c31601e6131f-75-vnic-sbv4z"
+        },
+        "status": {
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-09-15T10:22:07Z",
+              "message": "",
+              "reason": "Initialized",
+              "status": "True",
+              "type": "Initialized"
+            },
+            {
+              "lastTransitionTime": "2026-09-15T10:22:07Z",
+              "message": "",
+              "reason": "Valid",
+              "status": "True",
+              "type": "Valid"
+            }
+          ],
+          "vNic": "auto-lb-74f96109961444a48b26c31601e6131f-75-vnic-sbv4z"
+        }
+      },
+      {
+        "apiVersion": "networking.kubercloud.com/v1",
+        "kind": "VNicIP",
+        "metadata": {
+          "creationTimestamp": "2026-09-15T05:55:54Z",
+          "finalizers": [
+            "networking.kubercloud.com/finalizer"
+          ],
+          "generation": 2,
+          "name": "auto-lb-cc562f7d8be147afae8144555aa7243b-86-vnic-5pwwb",
+          "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+          "ownerReferences": [
+            {
+              "apiVersion": "networking.kubercloud.com/v1",
+              "kind": "VNic",
+              "name": "auto-lb-cc562f7d8be147afae8144555aa7243b-86-vnic-5pwwb",
+              "uid": "4efc4a82-20de-49d2-840b-3030ac72a6b8"
+            }
+          ],
+          "resourceVersion": "304516",
+          "uid": "496f3a62-21ba-4877-bd34-412b6143f278"
+        },
+        "spec": {
+          "ipAddress": "10.233.0.5",
+          "subnet": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad/subnet-f74d90cbb5484f7fb37f8a8f6782da1d",
+          "vNic": "auto-lb-cc562f7d8be147afae8144555aa7243b-86-vnic-5pwwb"
+        },
+        "status": {
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-09-15T05:55:54Z",
+              "message": "",
+              "reason": "Initialized",
+              "status": "True",
+              "type": "Initialized"
+            },
+            {
+              "lastTransitionTime": "2026-09-15T05:55:54Z",
+              "message": "",
+              "reason": "Valid",
+              "status": "True",
+              "type": "Valid"
+            }
+          ],
+          "vNic": "auto-lb-cc562f7d8be147afae8144555aa7243b-86-vnic-5pwwb"
+        }
+      },
+      {
+        "apiVersion": "networking.kubercloud.com/v1",
+        "kind": "VNicIP",
+        "metadata": {
+          "creationTimestamp": "2026-09-15T05:55:54Z",
+          "finalizers": [
+            "networking.kubercloud.com/finalizer"
+          ],
+          "generation": 2,
+          "name": "auto-lb-cc562f7d8be147afae8144555aa7243b-86-vnic-lwbjq",
+          "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+          "ownerReferences": [
+            {
+              "apiVersion": "networking.kubercloud.com/v1",
+              "kind": "VNic",
+              "name": "auto-lb-cc562f7d8be147afae8144555aa7243b-86-vnic-lwbjq",
+              "uid": "824f73f7-bf35-4b63-8642-11cfa0ddc5b8"
+            }
+          ],
+          "resourceVersion": "304518",
+          "uid": "ebbaa471-f7eb-40bb-97ee-32a2f608186b"
+        },
+        "spec": {
+          "ipAddress": "10.233.0.6",
+          "subnet": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad/subnet-f74d90cbb5484f7fb37f8a8f6782da1d",
+          "vNic": "auto-lb-cc562f7d8be147afae8144555aa7243b-86-vnic-lwbjq"
+        },
+        "status": {
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-09-15T05:55:54Z",
+              "message": "",
+              "reason": "Initialized",
+              "status": "True",
+              "type": "Initialized"
+            },
+            {
+              "lastTransitionTime": "2026-09-15T05:55:54Z",
+              "message": "",
+              "reason": "Valid",
+              "status": "True",
+              "type": "Valid"
+            }
+          ],
+          "vNic": "auto-lb-cc562f7d8be147afae8144555aa7243b-86-vnic-lwbjq"
+        }
+      },
+      {
+        "apiVersion": "networking.kubercloud.com/v1",
+        "kind": "VNicIP",
+        "metadata": {
+          "creationTimestamp": "2026-09-15T04:22:58Z",
+          "finalizers": [
+            "networking.kubercloud.com/finalizer"
+          ],
+          "generation": 2,
+          "name": "auto-lb02-2b3122-base-a-vnic-z7rvp",
+          "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+          "ownerReferences": [
+            {
+              "apiVersion": "networking.kubercloud.com/v1",
+              "kind": "VNic",
+              "name": "auto-lb02-2b3122-base-a-vnic-z7rvp",
+              "uid": "0b650c18-839a-49ac-97d9-7157a50c224c"
+            }
+          ],
+          "resourceVersion": "276797",
+          "uid": "bc194f0b-fc1b-489d-8873-296e1b639146"
+        },
+        "spec": {
+          "ipAddress": "10.233.1.2",
+          "subnet": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad/subnet-2a3f02dc6b444cc4b708a38d345a88c7",
+          "vNic": "auto-lb02-2b3122-base-a-vnic-z7rvp"
+        },
+        "status": {
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-09-15T04:22:58Z",
+              "message": "",
+              "reason": "Initialized",
+              "status": "True",
+              "type": "Initialized"
+            },
+            {
+              "lastTransitionTime": "2026-09-15T04:22:58Z",
+              "message": "",
+              "reason": "Valid",
+              "status": "True",
+              "type": "Valid"
+            }
+          ],
+          "vNic": "auto-lb02-2b3122-base-a-vnic-z7rvp"
+        }
+      },
+      {
+        "apiVersion": "networking.kubercloud.com/v1",
+        "kind": "VNicIP",
+        "metadata": {
+          "creationTimestamp": "2026-09-15T04:22:59Z",
+          "finalizers": [
+            "networking.kubercloud.com/finalizer"
+          ],
+          "generation": 2,
+          "name": "auto-lb02-2b3122-base-b-vnic-hcfzg",
+          "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+          "ownerReferences": [
+            {
+              "apiVersion": "networking.kubercloud.com/v1",
+              "kind": "VNic",
+              "name": "auto-lb02-2b3122-base-b-vnic-hcfzg",
+              "uid": "f23738b9-c1a7-43ad-a724-e1b867ef0d52"
+            }
+          ],
+          "resourceVersion": "276826",
+          "uid": "eaaa4210-f200-4009-82ca-b2137ffb491b"
+        },
+        "spec": {
+          "ipAddress": "10.233.1.3",
+          "subnet": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad/subnet-2a3f02dc6b444cc4b708a38d345a88c7",
+          "vNic": "auto-lb02-2b3122-base-b-vnic-hcfzg"
+        },
+        "status": {
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-09-15T04:22:59Z",
+              "message": "",
+              "reason": "Initialized",
+              "status": "True",
+              "type": "Initialized"
+            },
+            {
+              "lastTransitionTime": "2026-09-15T04:22:59Z",
+              "message": "",
+              "reason": "Valid",
+              "status": "True",
+              "type": "Valid"
+            }
+          ],
+          "vNic": "auto-lb02-2b3122-base-b-vnic-hcfzg"
+        }
+      },
+      {
+        "apiVersion": "networking.kubercloud.com/v1",
+        "kind": "VNicIP",
+        "metadata": {
+          "creationTimestamp": "2026-09-15T04:22:59Z",
+          "finalizers": [
+            "networking.kubercloud.com/finalizer"
+          ],
+          "generation": 2,
+          "name": "auto-lb02-2b3122-base-client-vnic-bg976",
+          "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+          "ownerReferences": [
+            {
+              "apiVersion": "networking.kubercloud.com/v1",
+              "kind": "VNic",
+              "name": "auto-lb02-2b3122-base-client-vnic-bg976",
+              "uid": "6f9ad5ea-9c79-4c71-aaa0-ab0d5ebc1b23"
+            }
+          ],
+          "resourceVersion": "276850",
+          "uid": "00004194-92d0-4a69-a9bb-67bc2a55c3ad"
+        },
+        "spec": {
+          "ipAddress": "10.233.0.2",
+          "subnet": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad/subnet-f74d90cbb5484f7fb37f8a8f6782da1d",
+          "vNic": "auto-lb02-2b3122-base-client-vnic-bg976"
+        },
+        "status": {
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-09-15T04:22:59Z",
+              "message": "",
+              "reason": "Initialized",
+              "status": "True",
+              "type": "Initialized"
+            },
+            {
+              "lastTransitionTime": "2026-09-15T04:22:59Z",
+              "message": "",
+              "reason": "Valid",
+              "status": "True",
+              "type": "Valid"
+            }
+          ],
+          "vNic": "auto-lb02-2b3122-base-client-vnic-bg976"
+        }
+      },
+      {
+        "apiVersion": "v1",
+        "kind": "Pod",
+        "metadata": {
+          "annotations": {
+            "networking.kubercloud.com/lb_eips": "eip-f20581cca5d34cc7a25af17cd95dc4cb",
+            "networking.kubercloud.com/lb_vip_address": "10.233.0.201",
+            "networking.kubercloud.com/lb_vpc": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad/vpc-d06f28e82fe847f7bf2cedd57dad82f4",
+            "networking.kubercloud.com/subnet": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad/subnet-f74d90cbb5484f7fb37f8a8f6782da1d",
+            "networking.kubercloud.com/vnic": "auto-lb-74f96109961444a48b26c31601e6131f-75-vnic-lm8v6",
+            "prometheus.io/path": "/stats/prometheus",
+            "prometheus.io/port": "19001",
+            "prometheus.io/scrape": "true"
+          },
+          "creationTimestamp": "2026-09-15T10:22:06Z",
+          "generateName": "lb-74f96109961444a48b26c31601e6131f-75568698bb-",
+          "generation": 1,
+          "labels": {
+            "app.kubernetes.io/component": "proxy",
+            "app.kubernetes.io/managed-by": "envoy-gateway",
+            "app.kubernetes.io/name": "envoy",
+            "gateway.envoyproxy.io/owning-gateway-name": "lb-74f96109961444a48b26c31601e6131f",
+            "gateway.envoyproxy.io/owning-gateway-namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "gateway.networking.k8s.io/gateway-name": "lb-74f96109961444a48b26c31601e6131f",
+            "pod-template-hash": "75568698bb"
+          },
+          "name": "lb-74f96109961444a48b26c31601e6131f-75568698bb-8zg4x",
+          "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+          "ownerReferences": [
+            {
+              "apiVersion": "apps/v1",
+              "blockOwnerDeletion": true,
+              "controller": true,
+              "kind": "ReplicaSet",
+              "name": "lb-74f96109961444a48b26c31601e6131f-75568698bb",
+              "uid": "f5a4337d-3daa-4629-990c-41bb0d347de4"
+            }
+          ],
+          "resourceVersion": "383477",
+          "uid": "ce02fd40-202f-457a-be79-11af94711234"
+        },
+        "spec": {
+          "automountServiceAccountToken": false,
+          "containers": [
+            {
+              "args": [
+                "--service-cluster",
+                "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad/lb-74f96109961444a48b26c31601e6131f",
+                "--service-node",
+                "$(ENVOY_POD_NAME)",
+                "--config-yaml",
+                "admin:\n  access_log:\n  - name: envoy.access_loggers.file\n    typed_config:\n      \"@type\": type.googleapis.com/envoy.extensions.access_loggers.file.v3.FileAccessLog\n      path: /dev/null\n  address:\n    socket_address:\n      address: 127.0.0.1\n      port_value: 19000\ncluster_manager:\n  local_cluster_name: lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad/lb-74f96109961444a48b26c31601e6131f\nnode:\n  locality:\n    zone: $(ENVOY_SERVICE_ZONE)\ndeferredStatOptions:\n  enableDeferredCreationStats: true\nstats_config:\n  use_all_default_tags: true\n  stats_tags:\n  - regex: \\.zone(\\.(([^\\.]+)\\.))\n    tag_name: from_zone\n  - regex: \\.zone\\.[^\\.]+\\.(([^\\.]+)\\.)\n    tag_name: to_zone\n  - regex: \"^cluster(\\\\..+\\\\.(.+))\\\\.total_match_count$\"\n    tag_name: socket_match_name\n  - regex: \"circuit_breakers\\\\.((.+?)\\\\.).+\"\n    tag_name: priority\nlayered_runtime:\n  layers:\n  - name: global_config\n    static_layer:\n      envoy.restart_features.use_eds_cache_for_ads: true\n      re2.max_program_size.error_level: 4294967295\n      re2.max_program_size.warn_level: 1000\ndynamic_resources:\n  ads_config:\n    api_type: DELTA_GRPC\n    transport_api_version: V3\n    grpc_services:\n    - envoy_grpc:\n        cluster_name: xds_cluster\n    set_node_on_first_message_only: true\n  lds_config:\n    ads: {}\n    initial_fetch_timeout: 0s\n    resource_api_version: V3\n  cds_config:\n    ads: {}\n    initial_fetch_timeout: 0s\n    resource_api_version: V3\nstatic_resources:\n  listeners:\n  - name: envoy-gateway-proxy-stats-0.0.0.0-19001\n    address:\n      socket_address:\n        address: '0.0.0.0'\n        port_value: 19001\n        protocol: TCP\n    bypass_overload_manager: true\n    filter_chains:\n    - filters:\n      - name: envoy.filters.network.http_connection_manager\n        typed_config:\n          \"@type\": type.googleapis.com/envoy.extensions.filters.network.http_connection_manager.v3.HttpConnectionManager\n          stat_prefix: eg-stats-http\n          normalize_path: true\n          route_config:\n            name: local_route\n            virtual_hosts:\n            - name: prometheus_stats\n              domains:\n              - \"*\"\n              routes:\n              - match:\n                  path: /stats/prometheus\n                  headers:\n                  - name: \":method\"\n                    string_match:\n                      exact: GET\n                route:\n                  cluster: prometheus_stats\n          http_filters:\n          - name: envoy.filters.http.router\n            typed_config:\n              \"@type\": type.googleapis.com/envoy.extensions.filters.http.router.v3.Router\n  clusters:\n  - name: prometheus_stats\n    connect_timeout: 0.250s\n    type: STATIC\n    lb_policy: ROUND_ROBIN\n    load_assignment:\n      cluster_name: prometheus_stats\n      endpoints:\n      - lb_endpoints:\n        - endpoint:\n            address:\n              socket_address:\n                address: 127.0.0.1\n                port_value: 19000\n  - connect_timeout: 10s\n    eds_cluster_config:\n      eds_config:\n        ads: {}\n        resource_api_version: 'V3'\n      service_name: lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad/lb-74f96109961444a48b26c31601e6131f\n    load_balancing_policy:\n      policies:\n      - typed_extension_config:\n          name: 'envoy.load_balancing_policies.least_request'\n          typed_config:\n            '@type': 'type.googleapis.com/envoy.extensions.load_balancing_policies.least_request.v3.LeastRequest'\n            locality_lb_config:\n              zone_aware_lb_config:\n                min_cluster_size: '1'\n    name: lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad/lb-74f96109961444a48b26c31601e6131f\n    type: EDS\n  - connect_timeout: 10s\n    load_assignment:\n      cluster_name: xds_cluster\n      endpoints:\n      - load_balancing_weight: 1\n        lb_endpoints:\n        - load_balancing_weight: 1\n          endpoint:\n            address:\n              socket_address:\n                address: envoy-gateway.envoy-gateway-system.svc.cluster.local.\n                port_value: 18000\n    typed_extension_protocol_options:\n      envoy.extensions.upstreams.http.v3.HttpProtocolOptions:\n        \"@type\": \"type.googleapis.com/envoy.extensions.upstreams.http.v3.HttpProtocolOptions\"\n        explicit_http_config:\n          http2_protocol_options:\n            connection_keepalive:\n              interval: 30s\n              timeout: 5s\n        http_filters:\n        - name: envoy.filters.http.credential_injector\n          typed_config:\n            \"@type\": type.googleapis.com/envoy.extensions.filters.http.credential_injector.v3.CredentialInjector\n            credential:\n              name: envoy.http.injected_credentials.generic\n              typed_config:\n                \"@type\": type.googleapis.com/envoy.extensions.http.injected_credentials.generic.v3.Generic\n                credential:\n                  name: jwt-sa-bearer\n                  sds_config:\n                    path_config_source:\n                      path: /sds/xds_service_account_token.json\n                    resource_api_version: V3\n            overwrite: true\n        - name: envoy.extensions.filters.http.upstream_codec.v3.UpstreamCodec\n          typed_config:\n            \"@type\": type.googleapis.com/envoy.extensions.filters.http.upstream_codec.v3.UpstreamCodec\n    name: xds_cluster\n    type: STRICT_DNS\n    transport_socket:\n      name: envoy.transport_sockets.tls\n      typed_config:\n        \"@type\": type.googleapis.com/envoy.extensions.transport_sockets.tls.v3.UpstreamTlsContext\n        common_tls_context:\n          tls_params:\n            tls_maximum_protocol_version: TLSv1_3\n          validation_context_sds_secret_config:\n            name: xds_trusted_ca\n            sds_config:\n              path_config_source:\n                path: /sds/xds-trusted-ca.json\n              resource_api_version: V3\noverload_manager:\n  refresh_interval: 0.25s\n  resource_monitors:\n  - name: \"envoy.resource_monitors.global_downstream_max_connections\"\n    typed_config:\n      \"@type\": type.googleapis.com/envoy.extensions.resource_monitors.downstream_connections.v3.DownstreamConnectionsConfig\n      max_active_downstream_connections: 50000\n  - name: \"envoy.resource_monitors.fixed_heap\"\n    typed_config:\n      \"@type\": type.googleapis.com/envoy.extensions.resource_monitors.fixed_heap.v3.FixedHeapConfig\n      max_heap_size_bytes: 1717986918\n  actions:\n  - name: \"envoy.overload_actions.shrink_heap\"\n    triggers:\n    - name: \"envoy.resource_monitors.fixed_heap\"\n      threshold:\n        value: 0.95\n  - name: \"envoy.overload_actions.stop_accepting_requests\"\n    triggers:\n    - name: \"envoy.resource_monitors.fixed_heap\"\n      threshold:\n        value: 0.98\n",
+                "--log-level",
+                "warn",
+                "--cpuset-threads",
+                "--drain-strategy",
+                "immediate",
+                "--component-log-level",
+                "misc:error",
+                "--drain-time-s",
+                "60"
+              ],
+              "command": [
+                "envoy"
+              ],
+              "env": [
+                {
+                  "name": "ENVOY_POD_NAMESPACE",
+                  "valueFrom": {
+                    "fieldRef": {
+                      "apiVersion": "v1",
+                      "fieldPath": "metadata.namespace"
+                    }
+                  }
+                },
+                {
+                  "name": "ENVOY_POD_NAME",
+                  "valueFrom": {
+                    "fieldRef": {
+                      "apiVersion": "v1",
+                      "fieldPath": "metadata.name"
+                    }
+                  }
+                },
+                {
+                  "name": "ENVOY_SERVICE_ZONE",
+                  "valueFrom": {
+                    "fieldRef": {
+                      "apiVersion": "v1",
+                      "fieldPath": "metadata.annotations['topology.kubernetes.io/zone']"
+                    }
+                  }
+                }
+              ],
+              "image": "docker.changqingyun.cn/kubercloud/envoy:distroless-v1.38.3",
+              "imagePullPolicy": "IfNotPresent",
+              "lifecycle": {
+                "preStop": {
+                  "httpGet": {
+                    "path": "/shutdown/ready",
+                    "port": 19002,
+                    "scheme": "HTTP"
+                  }
+                }
+              },
+              "name": "envoy",
+              "ports": [
+                {
+                  "containerPort": 19001,
+                  "name": "metrics",
+                  "protocol": "TCP"
+                },
+                {
+                  "containerPort": 19003,
+                  "name": "readiness",
+                  "protocol": "TCP"
+                }
+              ],
+              "resources": {
+                "limits": {
+                  "cpu": "2",
+                  "memory": "2Gi"
+                },
+                "requests": {
+                  "cpu": "1",
+                  "memory": "1Gi"
+                }
+              },
+              "securityContext": {
+                "allowPrivilegeEscalation": false,
+                "capabilities": {
+                  "drop": [
+                    "ALL"
+                  ]
+                },
+                "privileged": false,
+                "runAsGroup": 65532,
+                "runAsNonRoot": true,
+                "runAsUser": 65532,
+                "seccompProfile": {
+                  "type": "RuntimeDefault"
+                }
+              },
+              "terminationMessagePath": "/dev/termination-log",
+              "terminationMessagePolicy": "File",
+              "volumeMounts": [
+                {
+                  "mountPath": "/certs",
+                  "name": "certs",
+                  "readOnly": true
+                },
+                {
+                  "mountPath": "/sds",
+                  "name": "sds"
+                },
+                {
+                  "mountPath": "/var/run/secrets/token",
+                  "name": "sa-token",
+                  "readOnly": true
+                }
+              ]
+            },
+            {
+              "args": [
+                "envoy",
+                "shutdown-manager"
+              ],
+              "command": [
+                "envoy-gateway"
+              ],
+              "env": [
+                {
+                  "name": "ENVOY_POD_NAMESPACE",
+                  "valueFrom": {
+                    "fieldRef": {
+                      "apiVersion": "v1",
+                      "fieldPath": "metadata.namespace"
+                    }
+                  }
+                },
+                {
+                  "name": "ENVOY_POD_NAME",
+                  "valueFrom": {
+                    "fieldRef": {
+                      "apiVersion": "v1",
+                      "fieldPath": "metadata.name"
+                    }
+                  }
+                },
+                {
+                  "name": "ENVOY_SERVICE_ZONE",
+                  "valueFrom": {
+                    "fieldRef": {
+                      "apiVersion": "v1",
+                      "fieldPath": "metadata.annotations['topology.kubernetes.io/zone']"
+                    }
+                  }
+                }
+              ],
+              "image": "docker.changqingyun.cn/kubercloud/gateway-dev:latest",
+              "imagePullPolicy": "IfNotPresent",
+              "lifecycle": {
+                "preStop": {
+                  "exec": {
+                    "command": [
+                      "envoy-gateway",
+                      "envoy",
+                      "shutdown"
+                    ]
+                  }
+                }
+              },
+              "name": "shutdown-manager",
+              "resources": {
+                "requests": {
+                  "cpu": "10m",
+                  "memory": "32Mi"
+                }
+              },
+              "securityContext": {
+                "allowPrivilegeEscalation": false,
+                "capabilities": {
+                  "drop": [
+                    "ALL"
+                  ]
+                },
+                "privileged": false,
+                "runAsGroup": 65532,
+                "runAsNonRoot": true,
+                "runAsUser": 65532,
+                "seccompProfile": {
+                  "type": "RuntimeDefault"
+                }
+              },
+              "terminationMessagePath": "/dev/termination-log",
+              "terminationMessagePolicy": "File"
+            }
+          ],
+          "dnsPolicy": "ClusterFirst",
+          "enableServiceLinks": true,
+          "nodeName": "ani-03",
+          "preemptionPolicy": "PreemptLowerPriority",
+          "priority": 0,
+          "restartPolicy": "Always",
+          "schedulerName": "default-scheduler",
+          "securityContext": {},
+          "serviceAccount": "lb-74f96109961444a48b26c31601e6131f",
+          "serviceAccountName": "lb-74f96109961444a48b26c31601e6131f",
+          "terminationGracePeriodSeconds": 360,
+          "tolerations": [
+            {
+              "effect": "NoExecute",
+              "key": "node.kubernetes.io/not-ready",
+              "operator": "Exists",
+              "tolerationSeconds": 300
+            },
+            {
+              "effect": "NoExecute",
+              "key": "node.kubernetes.io/unreachable",
+              "operator": "Exists",
+              "tolerationSeconds": 300
+            }
+          ],
+          "volumes": [
+            {
+              "name": "sa-token",
+              "projected": {
+                "defaultMode": 420,
+                "sources": [
+                  {
+                    "serviceAccountToken": {
+                      "audience": "envoy-gateway.envoy-gateway-system.svc.cluster.local",
+                      "expirationSeconds": 3600,
+                      "path": "sa-token"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "configMap": {
+                "defaultMode": 420,
+                "items": [
+                  {
+                    "key": "ca.crt",
+                    "path": "ca.crt"
+                  }
+                ],
+                "name": "lb-74f96109961444a48b26c31601e6131f",
+                "optional": false
+              },
+              "name": "certs"
+            },
+            {
+              "configMap": {
+                "defaultMode": 420,
+                "items": [
+                  {
+                    "key": "xds-trusted-ca.json",
+                    "path": "xds-trusted-ca.json"
+                  },
+                  {
+                    "key": "xds_service_account_token.json",
+                    "path": "xds_service_account_token.json"
+                  }
+                ],
+                "name": "lb-74f96109961444a48b26c31601e6131f",
+                "optional": false
+              },
+              "name": "sds"
+            }
+          ]
+        },
+        "status": {
+          "conditions": [
+            {
+              "lastProbeTime": null,
+              "lastTransitionTime": "2026-09-15T10:22:07Z",
+              "observedGeneration": 1,
+              "status": "True",
+              "type": "PodReadyToStartContainers"
+            },
+            {
+              "lastProbeTime": null,
+              "lastTransitionTime": "2026-09-15T10:22:06Z",
+              "observedGeneration": 1,
+              "status": "True",
+              "type": "Initialized"
+            },
+            {
+              "lastProbeTime": null,
+              "lastTransitionTime": "2026-09-15T10:22:07Z",
+              "observedGeneration": 1,
+              "status": "True",
+              "type": "Ready"
+            },
+            {
+              "lastProbeTime": null,
+              "lastTransitionTime": "2026-09-15T10:22:07Z",
+              "observedGeneration": 1,
+              "status": "True",
+              "type": "ContainersReady"
+            },
+            {
+              "lastProbeTime": null,
+              "lastTransitionTime": "2026-09-15T10:22:06Z",
+              "observedGeneration": 1,
+              "status": "True",
+              "type": "PodScheduled"
+            }
+          ],
+          "containerStatuses": [
+            {
+              "allocatedResources": {
+                "cpu": "1",
+                "memory": "1Gi"
+              },
+              "containerID": "containerd://b77489a5c740609376bc2b8d2fc012a3b960b0a08ad7b8a38df6e4981ccaf0e1",
+              "image": "docker.changqingyun.cn/kubercloud/envoy:distroless-v1.38.3",
+              "imageID": "sha256:67f1cf44a5109717285c5aef449d02180762121747cbef3c261fe7e62e934b9a",
+              "lastState": {},
+              "name": "envoy",
+              "ready": true,
+              "resources": {
+                "limits": {
+                  "cpu": "2",
+                  "memory": "2Gi"
+                },
+                "requests": {
+                  "cpu": "1",
+                  "memory": "1Gi"
+                }
+              },
+              "restartCount": 0,
+              "started": true,
+              "state": {
+                "running": {
+                  "startedAt": "2026-09-15T10:22:07Z"
+                }
+              },
+              "user": {
+                "linux": {
+                  "gid": 65532,
+                  "supplementalGroups": [
+                    65532
+                  ],
+                  "uid": 65532
+                }
+              },
+              "volumeMounts": [
+                {
+                  "mountPath": "/certs",
+                  "name": "certs",
+                  "readOnly": true,
+                  "recursiveReadOnly": "Disabled"
+                },
+                {
+                  "mountPath": "/sds",
+                  "name": "sds"
+                },
+                {
+                  "mountPath": "/var/run/secrets/token",
+                  "name": "sa-token",
+                  "readOnly": true,
+                  "recursiveReadOnly": "Disabled"
+                }
+              ]
+            },
+            {
+              "allocatedResources": {
+                "cpu": "10m",
+                "memory": "32Mi"
+              },
+              "containerID": "containerd://d461543761682de983a7652e63a853fce301175fb030a3646d86042622f93049",
+              "image": "docker.changqingyun.cn/kubercloud/gateway-dev:latest",
+              "imageID": "sha256:5f75b495bf07beb23f8ac4f97649e876ed723f1c6d02031bbc7cd23028b490b6",
+              "lastState": {},
+              "name": "shutdown-manager",
+              "ready": true,
+              "resources": {
+                "requests": {
+                  "cpu": "10m",
+                  "memory": "32Mi"
+                }
+              },
+              "restartCount": 0,
+              "started": true,
+              "state": {
+                "running": {
+                  "startedAt": "2026-09-15T10:22:07Z"
+                }
+              },
+              "user": {
+                "linux": {
+                  "gid": 65532,
+                  "supplementalGroups": [
+                    65532
+                  ],
+                  "uid": 65532
+                }
+              }
+            }
+          ],
+          "hostIP": "172.16.101.12",
+          "hostIPs": [
+            {
+              "ip": "172.16.101.12"
+            }
+          ],
+          "observedGeneration": 1,
+          "phase": "Running",
+          "podIP": "10.233.0.9",
+          "podIPs": [
+            {
+              "ip": "10.233.0.9"
+            }
+          ],
+          "qosClass": "Burstable",
+          "startTime": "2026-09-15T10:22:06Z"
+        }
+      },
+      {
+        "apiVersion": "v1",
+        "kind": "Pod",
+        "metadata": {
+          "annotations": {
+            "networking.kubercloud.com/lb_eips": "eip-f20581cca5d34cc7a25af17cd95dc4cb",
+            "networking.kubercloud.com/lb_vip_address": "10.233.0.201",
+            "networking.kubercloud.com/lb_vpc": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad/vpc-d06f28e82fe847f7bf2cedd57dad82f4",
+            "networking.kubercloud.com/subnet": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad/subnet-f74d90cbb5484f7fb37f8a8f6782da1d",
+            "networking.kubercloud.com/vnic": "auto-lb-74f96109961444a48b26c31601e6131f-75-vnic-sbv4z",
+            "prometheus.io/path": "/stats/prometheus",
+            "prometheus.io/port": "19001",
+            "prometheus.io/scrape": "true"
+          },
+          "creationTimestamp": "2026-09-15T10:22:06Z",
+          "generateName": "lb-74f96109961444a48b26c31601e6131f-75568698bb-",
+          "generation": 1,
+          "labels": {
+            "app.kubernetes.io/component": "proxy",
+            "app.kubernetes.io/managed-by": "envoy-gateway",
+            "app.kubernetes.io/name": "envoy",
+            "gateway.envoyproxy.io/owning-gateway-name": "lb-74f96109961444a48b26c31601e6131f",
+            "gateway.envoyproxy.io/owning-gateway-namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "gateway.networking.k8s.io/gateway-name": "lb-74f96109961444a48b26c31601e6131f",
+            "pod-template-hash": "75568698bb"
+          },
+          "name": "lb-74f96109961444a48b26c31601e6131f-75568698bb-vb2fd",
+          "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+          "ownerReferences": [
+            {
+              "apiVersion": "apps/v1",
+              "blockOwnerDeletion": true,
+              "controller": true,
+              "kind": "ReplicaSet",
+              "name": "lb-74f96109961444a48b26c31601e6131f-75568698bb",
+              "uid": "f5a4337d-3daa-4629-990c-41bb0d347de4"
+            }
+          ],
+          "resourceVersion": "383484",
+          "uid": "ad31a52c-1481-48db-bfd1-10e0f50c6cb4"
+        },
+        "spec": {
+          "automountServiceAccountToken": false,
+          "containers": [
+            {
+              "args": [
+                "--service-cluster",
+                "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad/lb-74f96109961444a48b26c31601e6131f",
+                "--service-node",
+                "$(ENVOY_POD_NAME)",
+                "--config-yaml",
+                "admin:\n  access_log:\n  - name: envoy.access_loggers.file\n    typed_config:\n      \"@type\": type.googleapis.com/envoy.extensions.access_loggers.file.v3.FileAccessLog\n      path: /dev/null\n  address:\n    socket_address:\n      address: 127.0.0.1\n      port_value: 19000\ncluster_manager:\n  local_cluster_name: lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad/lb-74f96109961444a48b26c31601e6131f\nnode:\n  locality:\n    zone: $(ENVOY_SERVICE_ZONE)\ndeferredStatOptions:\n  enableDeferredCreationStats: true\nstats_config:\n  use_all_default_tags: true\n  stats_tags:\n  - regex: \\.zone(\\.(([^\\.]+)\\.))\n    tag_name: from_zone\n  - regex: \\.zone\\.[^\\.]+\\.(([^\\.]+)\\.)\n    tag_name: to_zone\n  - regex: \"^cluster(\\\\..+\\\\.(.+))\\\\.total_match_count$\"\n    tag_name: socket_match_name\n  - regex: \"circuit_breakers\\\\.((.+?)\\\\.).+\"\n    tag_name: priority\nlayered_runtime:\n  layers:\n  - name: global_config\n    static_layer:\n      envoy.restart_features.use_eds_cache_for_ads: true\n      re2.max_program_size.error_level: 4294967295\n      re2.max_program_size.warn_level: 1000\ndynamic_resources:\n  ads_config:\n    api_type: DELTA_GRPC\n    transport_api_version: V3\n    grpc_services:\n    - envoy_grpc:\n        cluster_name: xds_cluster\n    set_node_on_first_message_only: true\n  lds_config:\n    ads: {}\n    initial_fetch_timeout: 0s\n    resource_api_version: V3\n  cds_config:\n    ads: {}\n    initial_fetch_timeout: 0s\n    resource_api_version: V3\nstatic_resources:\n  listeners:\n  - name: envoy-gateway-proxy-stats-0.0.0.0-19001\n    address:\n      socket_address:\n        address: '0.0.0.0'\n        port_value: 19001\n        protocol: TCP\n    bypass_overload_manager: true\n    filter_chains:\n    - filters:\n      - name: envoy.filters.network.http_connection_manager\n        typed_config:\n          \"@type\": type.googleapis.com/envoy.extensions.filters.network.http_connection_manager.v3.HttpConnectionManager\n          stat_prefix: eg-stats-http\n          normalize_path: true\n          route_config:\n            name: local_route\n            virtual_hosts:\n            - name: prometheus_stats\n              domains:\n              - \"*\"\n              routes:\n              - match:\n                  path: /stats/prometheus\n                  headers:\n                  - name: \":method\"\n                    string_match:\n                      exact: GET\n                route:\n                  cluster: prometheus_stats\n          http_filters:\n          - name: envoy.filters.http.router\n            typed_config:\n              \"@type\": type.googleapis.com/envoy.extensions.filters.http.router.v3.Router\n  clusters:\n  - name: prometheus_stats\n    connect_timeout: 0.250s\n    type: STATIC\n    lb_policy: ROUND_ROBIN\n    load_assignment:\n      cluster_name: prometheus_stats\n      endpoints:\n      - lb_endpoints:\n        - endpoint:\n            address:\n              socket_address:\n                address: 127.0.0.1\n                port_value: 19000\n  - connect_timeout: 10s\n    eds_cluster_config:\n      eds_config:\n        ads: {}\n        resource_api_version: 'V3'\n      service_name: lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad/lb-74f96109961444a48b26c31601e6131f\n    load_balancing_policy:\n      policies:\n      - typed_extension_config:\n          name: 'envoy.load_balancing_policies.least_request'\n          typed_config:\n            '@type': 'type.googleapis.com/envoy.extensions.load_balancing_policies.least_request.v3.LeastRequest'\n            locality_lb_config:\n              zone_aware_lb_config:\n                min_cluster_size: '1'\n    name: lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad/lb-74f96109961444a48b26c31601e6131f\n    type: EDS\n  - connect_timeout: 10s\n    load_assignment:\n      cluster_name: xds_cluster\n      endpoints:\n      - load_balancing_weight: 1\n        lb_endpoints:\n        - load_balancing_weight: 1\n          endpoint:\n            address:\n              socket_address:\n                address: envoy-gateway.envoy-gateway-system.svc.cluster.local.\n                port_value: 18000\n    typed_extension_protocol_options:\n      envoy.extensions.upstreams.http.v3.HttpProtocolOptions:\n        \"@type\": \"type.googleapis.com/envoy.extensions.upstreams.http.v3.HttpProtocolOptions\"\n        explicit_http_config:\n          http2_protocol_options:\n            connection_keepalive:\n              interval: 30s\n              timeout: 5s\n        http_filters:\n        - name: envoy.filters.http.credential_injector\n          typed_config:\n            \"@type\": type.googleapis.com/envoy.extensions.filters.http.credential_injector.v3.CredentialInjector\n            credential:\n              name: envoy.http.injected_credentials.generic\n              typed_config:\n                \"@type\": type.googleapis.com/envoy.extensions.http.injected_credentials.generic.v3.Generic\n                credential:\n                  name: jwt-sa-bearer\n                  sds_config:\n                    path_config_source:\n                      path: /sds/xds_service_account_token.json\n                    resource_api_version: V3\n            overwrite: true\n        - name: envoy.extensions.filters.http.upstream_codec.v3.UpstreamCodec\n          typed_config:\n            \"@type\": type.googleapis.com/envoy.extensions.filters.http.upstream_codec.v3.UpstreamCodec\n    name: xds_cluster\n    type: STRICT_DNS\n    transport_socket:\n      name: envoy.transport_sockets.tls\n      typed_config:\n        \"@type\": type.googleapis.com/envoy.extensions.transport_sockets.tls.v3.UpstreamTlsContext\n        common_tls_context:\n          tls_params:\n            tls_maximum_protocol_version: TLSv1_3\n          validation_context_sds_secret_config:\n            name: xds_trusted_ca\n            sds_config:\n              path_config_source:\n                path: /sds/xds-trusted-ca.json\n              resource_api_version: V3\noverload_manager:\n  refresh_interval: 0.25s\n  resource_monitors:\n  - name: \"envoy.resource_monitors.global_downstream_max_connections\"\n    typed_config:\n      \"@type\": type.googleapis.com/envoy.extensions.resource_monitors.downstream_connections.v3.DownstreamConnectionsConfig\n      max_active_downstream_connections: 50000\n  - name: \"envoy.resource_monitors.fixed_heap\"\n    typed_config:\n      \"@type\": type.googleapis.com/envoy.extensions.resource_monitors.fixed_heap.v3.FixedHeapConfig\n      max_heap_size_bytes: 1717986918\n  actions:\n  - name: \"envoy.overload_actions.shrink_heap\"\n    triggers:\n    - name: \"envoy.resource_monitors.fixed_heap\"\n      threshold:\n        value: 0.95\n  - name: \"envoy.overload_actions.stop_accepting_requests\"\n    triggers:\n    - name: \"envoy.resource_monitors.fixed_heap\"\n      threshold:\n        value: 0.98\n",
+                "--log-level",
+                "warn",
+                "--cpuset-threads",
+                "--drain-strategy",
+                "immediate",
+                "--component-log-level",
+                "misc:error",
+                "--drain-time-s",
+                "60"
+              ],
+              "command": [
+                "envoy"
+              ],
+              "env": [
+                {
+                  "name": "ENVOY_POD_NAMESPACE",
+                  "valueFrom": {
+                    "fieldRef": {
+                      "apiVersion": "v1",
+                      "fieldPath": "metadata.namespace"
+                    }
+                  }
+                },
+                {
+                  "name": "ENVOY_POD_NAME",
+                  "valueFrom": {
+                    "fieldRef": {
+                      "apiVersion": "v1",
+                      "fieldPath": "metadata.name"
+                    }
+                  }
+                },
+                {
+                  "name": "ENVOY_SERVICE_ZONE",
+                  "valueFrom": {
+                    "fieldRef": {
+                      "apiVersion": "v1",
+                      "fieldPath": "metadata.annotations['topology.kubernetes.io/zone']"
+                    }
+                  }
+                }
+              ],
+              "image": "docker.changqingyun.cn/kubercloud/envoy:distroless-v1.38.3",
+              "imagePullPolicy": "IfNotPresent",
+              "lifecycle": {
+                "preStop": {
+                  "httpGet": {
+                    "path": "/shutdown/ready",
+                    "port": 19002,
+                    "scheme": "HTTP"
+                  }
+                }
+              },
+              "name": "envoy",
+              "ports": [
+                {
+                  "containerPort": 19001,
+                  "name": "metrics",
+                  "protocol": "TCP"
+                },
+                {
+                  "containerPort": 19003,
+                  "name": "readiness",
+                  "protocol": "TCP"
+                }
+              ],
+              "resources": {
+                "limits": {
+                  "cpu": "2",
+                  "memory": "2Gi"
+                },
+                "requests": {
+                  "cpu": "1",
+                  "memory": "1Gi"
+                }
+              },
+              "securityContext": {
+                "allowPrivilegeEscalation": false,
+                "capabilities": {
+                  "drop": [
+                    "ALL"
+                  ]
+                },
+                "privileged": false,
+                "runAsGroup": 65532,
+                "runAsNonRoot": true,
+                "runAsUser": 65532,
+                "seccompProfile": {
+                  "type": "RuntimeDefault"
+                }
+              },
+              "terminationMessagePath": "/dev/termination-log",
+              "terminationMessagePolicy": "File",
+              "volumeMounts": [
+                {
+                  "mountPath": "/certs",
+                  "name": "certs",
+                  "readOnly": true
+                },
+                {
+                  "mountPath": "/sds",
+                  "name": "sds"
+                },
+                {
+                  "mountPath": "/var/run/secrets/token",
+                  "name": "sa-token",
+                  "readOnly": true
+                }
+              ]
+            },
+            {
+              "args": [
+                "envoy",
+                "shutdown-manager"
+              ],
+              "command": [
+                "envoy-gateway"
+              ],
+              "env": [
+                {
+                  "name": "ENVOY_POD_NAMESPACE",
+                  "valueFrom": {
+                    "fieldRef": {
+                      "apiVersion": "v1",
+                      "fieldPath": "metadata.namespace"
+                    }
+                  }
+                },
+                {
+                  "name": "ENVOY_POD_NAME",
+                  "valueFrom": {
+                    "fieldRef": {
+                      "apiVersion": "v1",
+                      "fieldPath": "metadata.name"
+                    }
+                  }
+                },
+                {
+                  "name": "ENVOY_SERVICE_ZONE",
+                  "valueFrom": {
+                    "fieldRef": {
+                      "apiVersion": "v1",
+                      "fieldPath": "metadata.annotations['topology.kubernetes.io/zone']"
+                    }
+                  }
+                }
+              ],
+              "image": "docker.changqingyun.cn/kubercloud/gateway-dev:latest",
+              "imagePullPolicy": "IfNotPresent",
+              "lifecycle": {
+                "preStop": {
+                  "exec": {
+                    "command": [
+                      "envoy-gateway",
+                      "envoy",
+                      "shutdown"
+                    ]
+                  }
+                }
+              },
+              "name": "shutdown-manager",
+              "resources": {
+                "requests": {
+                  "cpu": "10m",
+                  "memory": "32Mi"
+                }
+              },
+              "securityContext": {
+                "allowPrivilegeEscalation": false,
+                "capabilities": {
+                  "drop": [
+                    "ALL"
+                  ]
+                },
+                "privileged": false,
+                "runAsGroup": 65532,
+                "runAsNonRoot": true,
+                "runAsUser": 65532,
+                "seccompProfile": {
+                  "type": "RuntimeDefault"
+                }
+              },
+              "terminationMessagePath": "/dev/termination-log",
+              "terminationMessagePolicy": "File"
+            }
+          ],
+          "dnsPolicy": "ClusterFirst",
+          "enableServiceLinks": true,
+          "nodeName": "ani-01",
+          "preemptionPolicy": "PreemptLowerPriority",
+          "priority": 0,
+          "restartPolicy": "Always",
+          "schedulerName": "default-scheduler",
+          "securityContext": {},
+          "serviceAccount": "lb-74f96109961444a48b26c31601e6131f",
+          "serviceAccountName": "lb-74f96109961444a48b26c31601e6131f",
+          "terminationGracePeriodSeconds": 360,
+          "tolerations": [
+            {
+              "effect": "NoExecute",
+              "key": "node.kubernetes.io/not-ready",
+              "operator": "Exists",
+              "tolerationSeconds": 300
+            },
+            {
+              "effect": "NoExecute",
+              "key": "node.kubernetes.io/unreachable",
+              "operator": "Exists",
+              "tolerationSeconds": 300
+            }
+          ],
+          "volumes": [
+            {
+              "name": "sa-token",
+              "projected": {
+                "defaultMode": 420,
+                "sources": [
+                  {
+                    "serviceAccountToken": {
+                      "audience": "envoy-gateway.envoy-gateway-system.svc.cluster.local",
+                      "expirationSeconds": 3600,
+                      "path": "sa-token"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "configMap": {
+                "defaultMode": 420,
+                "items": [
+                  {
+                    "key": "ca.crt",
+                    "path": "ca.crt"
+                  }
+                ],
+                "name": "lb-74f96109961444a48b26c31601e6131f",
+                "optional": false
+              },
+              "name": "certs"
+            },
+            {
+              "configMap": {
+                "defaultMode": 420,
+                "items": [
+                  {
+                    "key": "xds-trusted-ca.json",
+                    "path": "xds-trusted-ca.json"
+                  },
+                  {
+                    "key": "xds_service_account_token.json",
+                    "path": "xds_service_account_token.json"
+                  }
+                ],
+                "name": "lb-74f96109961444a48b26c31601e6131f",
+                "optional": false
+              },
+              "name": "sds"
+            }
+          ]
+        },
+        "status": {
+          "conditions": [
+            {
+              "lastProbeTime": null,
+              "lastTransitionTime": "2026-09-15T10:22:08Z",
+              "observedGeneration": 1,
+              "status": "True",
+              "type": "PodReadyToStartContainers"
+            },
+            {
+              "lastProbeTime": null,
+              "lastTransitionTime": "2026-09-15T10:22:06Z",
+              "observedGeneration": 1,
+              "status": "True",
+              "type": "Initialized"
+            },
+            {
+              "lastProbeTime": null,
+              "lastTransitionTime": "2026-09-15T10:22:08Z",
+              "observedGeneration": 1,
+              "status": "True",
+              "type": "Ready"
+            },
+            {
+              "lastProbeTime": null,
+              "lastTransitionTime": "2026-09-15T10:22:08Z",
+              "observedGeneration": 1,
+              "status": "True",
+              "type": "ContainersReady"
+            },
+            {
+              "lastProbeTime": null,
+              "lastTransitionTime": "2026-09-15T10:22:06Z",
+              "observedGeneration": 1,
+              "status": "True",
+              "type": "PodScheduled"
+            }
+          ],
+          "containerStatuses": [
+            {
+              "allocatedResources": {
+                "cpu": "1",
+                "memory": "1Gi"
+              },
+              "containerID": "containerd://133e90301c72fdf82493c691998662f207bef8d968cd3138ab332ac2c8718e18",
+              "image": "docker.changqingyun.cn/kubercloud/envoy:distroless-v1.38.3",
+              "imageID": "sha256:67f1cf44a5109717285c5aef449d02180762121747cbef3c261fe7e62e934b9a",
+              "lastState": {},
+              "name": "envoy",
+              "ready": true,
+              "resources": {
+                "limits": {
+                  "cpu": "2",
+                  "memory": "2Gi"
+                },
+                "requests": {
+                  "cpu": "1",
+                  "memory": "1Gi"
+                }
+              },
+              "restartCount": 0,
+              "started": true,
+              "state": {
+                "running": {
+                  "startedAt": "2026-09-15T10:22:07Z"
+                }
+              },
+              "user": {
+                "linux": {
+                  "gid": 65532,
+                  "supplementalGroups": [
+                    65532
+                  ],
+                  "uid": 65532
+                }
+              },
+              "volumeMounts": [
+                {
+                  "mountPath": "/certs",
+                  "name": "certs",
+                  "readOnly": true,
+                  "recursiveReadOnly": "Disabled"
+                },
+                {
+                  "mountPath": "/sds",
+                  "name": "sds"
+                },
+                {
+                  "mountPath": "/var/run/secrets/token",
+                  "name": "sa-token",
+                  "readOnly": true,
+                  "recursiveReadOnly": "Disabled"
+                }
+              ]
+            },
+            {
+              "allocatedResources": {
+                "cpu": "10m",
+                "memory": "32Mi"
+              },
+              "containerID": "containerd://72531afb1fe04749dea794ce199cd80ca1a84febed360262ae30a0536361702d",
+              "image": "docker.changqingyun.cn/kubercloud/gateway-dev:latest",
+              "imageID": "sha256:5f75b495bf07beb23f8ac4f97649e876ed723f1c6d02031bbc7cd23028b490b6",
+              "lastState": {},
+              "name": "shutdown-manager",
+              "ready": true,
+              "resources": {
+                "requests": {
+                  "cpu": "10m",
+                  "memory": "32Mi"
+                }
+              },
+              "restartCount": 0,
+              "started": true,
+              "state": {
+                "running": {
+                  "startedAt": "2026-09-15T10:22:07Z"
+                }
+              },
+              "user": {
+                "linux": {
+                  "gid": 65532,
+                  "supplementalGroups": [
+                    65532
+                  ],
+                  "uid": 65532
+                }
+              }
+            }
+          ],
+          "hostIP": "172.16.101.10",
+          "hostIPs": [
+            {
+              "ip": "172.16.101.10"
+            }
+          ],
+          "observedGeneration": 1,
+          "phase": "Running",
+          "podIP": "10.233.0.10",
+          "podIPs": [
+            {
+              "ip": "10.233.0.10"
+            }
+          ],
+          "qosClass": "Burstable",
+          "startTime": "2026-09-15T10:22:06Z"
+        }
+      },
+      {
+        "apiVersion": "v1",
+        "kind": "Pod",
+        "metadata": {
+          "annotations": {
+            "networking.kubercloud.com/lb_vip_address": "10.233.0.200",
+            "networking.kubercloud.com/lb_vpc": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad/vpc-d06f28e82fe847f7bf2cedd57dad82f4",
+            "networking.kubercloud.com/subnet": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad/subnet-f74d90cbb5484f7fb37f8a8f6782da1d",
+            "networking.kubercloud.com/vnic": "auto-lb-cc562f7d8be147afae8144555aa7243b-86-vnic-lwbjq",
+            "prometheus.io/path": "/stats/prometheus",
+            "prometheus.io/port": "19001",
+            "prometheus.io/scrape": "true"
+          },
+          "creationTimestamp": "2026-09-15T05:55:54Z",
+          "generateName": "lb-cc562f7d8be147afae8144555aa7243b-8647f8484-",
+          "generation": 1,
+          "labels": {
+            "app.kubernetes.io/component": "proxy",
+            "app.kubernetes.io/managed-by": "envoy-gateway",
+            "app.kubernetes.io/name": "envoy",
+            "gateway.envoyproxy.io/owning-gateway-name": "lb-cc562f7d8be147afae8144555aa7243b",
+            "gateway.envoyproxy.io/owning-gateway-namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "gateway.networking.k8s.io/gateway-name": "lb-cc562f7d8be147afae8144555aa7243b",
+            "pod-template-hash": "8647f8484"
+          },
+          "name": "lb-cc562f7d8be147afae8144555aa7243b-8647f8484-f4gqb",
+          "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+          "ownerReferences": [
+            {
+              "apiVersion": "apps/v1",
+              "blockOwnerDeletion": true,
+              "controller": true,
+              "kind": "ReplicaSet",
+              "name": "lb-cc562f7d8be147afae8144555aa7243b-8647f8484",
+              "uid": "0cd6142b-2e33-4fa2-906e-ce3f01ccfd97"
+            }
+          ],
+          "resourceVersion": "304555",
+          "uid": "02205640-fe52-4523-8673-5641e32d9029"
+        },
+        "spec": {
+          "automountServiceAccountToken": false,
+          "containers": [
+            {
+              "args": [
+                "--service-cluster",
+                "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad/lb-cc562f7d8be147afae8144555aa7243b",
+                "--service-node",
+                "$(ENVOY_POD_NAME)",
+                "--config-yaml",
+                "admin:\n  access_log:\n  - name: envoy.access_loggers.file\n    typed_config:\n      \"@type\": type.googleapis.com/envoy.extensions.access_loggers.file.v3.FileAccessLog\n      path: /dev/null\n  address:\n    socket_address:\n      address: 127.0.0.1\n      port_value: 19000\ncluster_manager:\n  local_cluster_name: lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad/lb-cc562f7d8be147afae8144555aa7243b\nnode:\n  locality:\n    zone: $(ENVOY_SERVICE_ZONE)\ndeferredStatOptions:\n  enableDeferredCreationStats: true\nstats_config:\n  use_all_default_tags: true\n  stats_tags:\n  - regex: \\.zone(\\.(([^\\.]+)\\.))\n    tag_name: from_zone\n  - regex: \\.zone\\.[^\\.]+\\.(([^\\.]+)\\.)\n    tag_name: to_zone\n  - regex: \"^cluster(\\\\..+\\\\.(.+))\\\\.total_match_count$\"\n    tag_name: socket_match_name\n  - regex: \"circuit_breakers\\\\.((.+?)\\\\.).+\"\n    tag_name: priority\nlayered_runtime:\n  layers:\n  - name: global_config\n    static_layer:\n      envoy.restart_features.use_eds_cache_for_ads: true\n      re2.max_program_size.error_level: 4294967295\n      re2.max_program_size.warn_level: 1000\ndynamic_resources:\n  ads_config:\n    api_type: DELTA_GRPC\n    transport_api_version: V3\n    grpc_services:\n    - envoy_grpc:\n        cluster_name: xds_cluster\n    set_node_on_first_message_only: true\n  lds_config:\n    ads: {}\n    initial_fetch_timeout: 0s\n    resource_api_version: V3\n  cds_config:\n    ads: {}\n    initial_fetch_timeout: 0s\n    resource_api_version: V3\nstatic_resources:\n  listeners:\n  - name: envoy-gateway-proxy-stats-0.0.0.0-19001\n    address:\n      socket_address:\n        address: '0.0.0.0'\n        port_value: 19001\n        protocol: TCP\n    bypass_overload_manager: true\n    filter_chains:\n    - filters:\n      - name: envoy.filters.network.http_connection_manager\n        typed_config:\n          \"@type\": type.googleapis.com/envoy.extensions.filters.network.http_connection_manager.v3.HttpConnectionManager\n          stat_prefix: eg-stats-http\n          normalize_path: true\n          route_config:\n            name: local_route\n            virtual_hosts:\n            - name: prometheus_stats\n              domains:\n              - \"*\"\n              routes:\n              - match:\n                  path: /stats/prometheus\n                  headers:\n                  - name: \":method\"\n                    string_match:\n                      exact: GET\n                route:\n                  cluster: prometheus_stats\n          http_filters:\n          - name: envoy.filters.http.router\n            typed_config:\n              \"@type\": type.googleapis.com/envoy.extensions.filters.http.router.v3.Router\n  clusters:\n  - name: prometheus_stats\n    connect_timeout: 0.250s\n    type: STATIC\n    lb_policy: ROUND_ROBIN\n    load_assignment:\n      cluster_name: prometheus_stats\n      endpoints:\n      - lb_endpoints:\n        - endpoint:\n            address:\n              socket_address:\n                address: 127.0.0.1\n                port_value: 19000\n  - connect_timeout: 10s\n    eds_cluster_config:\n      eds_config:\n        ads: {}\n        resource_api_version: 'V3'\n      service_name: lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad/lb-cc562f7d8be147afae8144555aa7243b\n    load_balancing_policy:\n      policies:\n      - typed_extension_config:\n          name: 'envoy.load_balancing_policies.least_request'\n          typed_config:\n            '@type': 'type.googleapis.com/envoy.extensions.load_balancing_policies.least_request.v3.LeastRequest'\n            locality_lb_config:\n              zone_aware_lb_config:\n                min_cluster_size: '1'\n    name: lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad/lb-cc562f7d8be147afae8144555aa7243b\n    type: EDS\n  - connect_timeout: 10s\n    load_assignment:\n      cluster_name: xds_cluster\n      endpoints:\n      - load_balancing_weight: 1\n        lb_endpoints:\n        - load_balancing_weight: 1\n          endpoint:\n            address:\n              socket_address:\n                address: envoy-gateway.envoy-gateway-system.svc.cluster.local.\n                port_value: 18000\n    typed_extension_protocol_options:\n      envoy.extensions.upstreams.http.v3.HttpProtocolOptions:\n        \"@type\": \"type.googleapis.com/envoy.extensions.upstreams.http.v3.HttpProtocolOptions\"\n        explicit_http_config:\n          http2_protocol_options:\n            connection_keepalive:\n              interval: 30s\n              timeout: 5s\n        http_filters:\n        - name: envoy.filters.http.credential_injector\n          typed_config:\n            \"@type\": type.googleapis.com/envoy.extensions.filters.http.credential_injector.v3.CredentialInjector\n            credential:\n              name: envoy.http.injected_credentials.generic\n              typed_config:\n                \"@type\": type.googleapis.com/envoy.extensions.http.injected_credentials.generic.v3.Generic\n                credential:\n                  name: jwt-sa-bearer\n                  sds_config:\n                    path_config_source:\n                      path: /sds/xds_service_account_token.json\n                    resource_api_version: V3\n            overwrite: true\n        - name: envoy.extensions.filters.http.upstream_codec.v3.UpstreamCodec\n          typed_config:\n            \"@type\": type.googleapis.com/envoy.extensions.filters.http.upstream_codec.v3.UpstreamCodec\n    name: xds_cluster\n    type: STRICT_DNS\n    transport_socket:\n      name: envoy.transport_sockets.tls\n      typed_config:\n        \"@type\": type.googleapis.com/envoy.extensions.transport_sockets.tls.v3.UpstreamTlsContext\n        common_tls_context:\n          tls_params:\n            tls_maximum_protocol_version: TLSv1_3\n          validation_context_sds_secret_config:\n            name: xds_trusted_ca\n            sds_config:\n              path_config_source:\n                path: /sds/xds-trusted-ca.json\n              resource_api_version: V3\noverload_manager:\n  refresh_interval: 0.25s\n  resource_monitors:\n  - name: \"envoy.resource_monitors.global_downstream_max_connections\"\n    typed_config:\n      \"@type\": type.googleapis.com/envoy.extensions.resource_monitors.downstream_connections.v3.DownstreamConnectionsConfig\n      max_active_downstream_connections: 50000\n  - name: \"envoy.resource_monitors.fixed_heap\"\n    typed_config:\n      \"@type\": type.googleapis.com/envoy.extensions.resource_monitors.fixed_heap.v3.FixedHeapConfig\n      max_heap_size_bytes: 1717986918\n  actions:\n  - name: \"envoy.overload_actions.shrink_heap\"\n    triggers:\n    - name: \"envoy.resource_monitors.fixed_heap\"\n      threshold:\n        value: 0.95\n  - name: \"envoy.overload_actions.stop_accepting_requests\"\n    triggers:\n    - name: \"envoy.resource_monitors.fixed_heap\"\n      threshold:\n        value: 0.98\n",
+                "--log-level",
+                "warn",
+                "--cpuset-threads",
+                "--drain-strategy",
+                "immediate",
+                "--component-log-level",
+                "misc:error",
+                "--drain-time-s",
+                "60"
+              ],
+              "command": [
+                "envoy"
+              ],
+              "env": [
+                {
+                  "name": "ENVOY_POD_NAMESPACE",
+                  "valueFrom": {
+                    "fieldRef": {
+                      "apiVersion": "v1",
+                      "fieldPath": "metadata.namespace"
+                    }
+                  }
+                },
+                {
+                  "name": "ENVOY_POD_NAME",
+                  "valueFrom": {
+                    "fieldRef": {
+                      "apiVersion": "v1",
+                      "fieldPath": "metadata.name"
+                    }
+                  }
+                },
+                {
+                  "name": "ENVOY_SERVICE_ZONE",
+                  "valueFrom": {
+                    "fieldRef": {
+                      "apiVersion": "v1",
+                      "fieldPath": "metadata.annotations['topology.kubernetes.io/zone']"
+                    }
+                  }
+                }
+              ],
+              "image": "docker.changqingyun.cn/kubercloud/envoy:distroless-v1.38.3",
+              "imagePullPolicy": "IfNotPresent",
+              "lifecycle": {
+                "preStop": {
+                  "httpGet": {
+                    "path": "/shutdown/ready",
+                    "port": 19002,
+                    "scheme": "HTTP"
+                  }
+                }
+              },
+              "name": "envoy",
+              "ports": [
+                {
+                  "containerPort": 19001,
+                  "name": "metrics",
+                  "protocol": "TCP"
+                },
+                {
+                  "containerPort": 19003,
+                  "name": "readiness",
+                  "protocol": "TCP"
+                }
+              ],
+              "resources": {
+                "limits": {
+                  "cpu": "2",
+                  "memory": "2Gi"
+                },
+                "requests": {
+                  "cpu": "1",
+                  "memory": "1Gi"
+                }
+              },
+              "securityContext": {
+                "allowPrivilegeEscalation": false,
+                "capabilities": {
+                  "drop": [
+                    "ALL"
+                  ]
+                },
+                "privileged": false,
+                "runAsGroup": 65532,
+                "runAsNonRoot": true,
+                "runAsUser": 65532,
+                "seccompProfile": {
+                  "type": "RuntimeDefault"
+                }
+              },
+              "terminationMessagePath": "/dev/termination-log",
+              "terminationMessagePolicy": "File",
+              "volumeMounts": [
+                {
+                  "mountPath": "/certs",
+                  "name": "certs",
+                  "readOnly": true
+                },
+                {
+                  "mountPath": "/sds",
+                  "name": "sds"
+                },
+                {
+                  "mountPath": "/var/run/secrets/token",
+                  "name": "sa-token",
+                  "readOnly": true
+                }
+              ]
+            },
+            {
+              "args": [
+                "envoy",
+                "shutdown-manager"
+              ],
+              "command": [
+                "envoy-gateway"
+              ],
+              "env": [
+                {
+                  "name": "ENVOY_POD_NAMESPACE",
+                  "valueFrom": {
+                    "fieldRef": {
+                      "apiVersion": "v1",
+                      "fieldPath": "metadata.namespace"
+                    }
+                  }
+                },
+                {
+                  "name": "ENVOY_POD_NAME",
+                  "valueFrom": {
+                    "fieldRef": {
+                      "apiVersion": "v1",
+                      "fieldPath": "metadata.name"
+                    }
+                  }
+                },
+                {
+                  "name": "ENVOY_SERVICE_ZONE",
+                  "valueFrom": {
+                    "fieldRef": {
+                      "apiVersion": "v1",
+                      "fieldPath": "metadata.annotations['topology.kubernetes.io/zone']"
+                    }
+                  }
+                }
+              ],
+              "image": "docker.changqingyun.cn/kubercloud/gateway-dev:latest",
+              "imagePullPolicy": "IfNotPresent",
+              "lifecycle": {
+                "preStop": {
+                  "exec": {
+                    "command": [
+                      "envoy-gateway",
+                      "envoy",
+                      "shutdown"
+                    ]
+                  }
+                }
+              },
+              "name": "shutdown-manager",
+              "resources": {
+                "requests": {
+                  "cpu": "10m",
+                  "memory": "32Mi"
+                }
+              },
+              "securityContext": {
+                "allowPrivilegeEscalation": false,
+                "capabilities": {
+                  "drop": [
+                    "ALL"
+                  ]
+                },
+                "privileged": false,
+                "runAsGroup": 65532,
+                "runAsNonRoot": true,
+                "runAsUser": 65532,
+                "seccompProfile": {
+                  "type": "RuntimeDefault"
+                }
+              },
+              "terminationMessagePath": "/dev/termination-log",
+              "terminationMessagePolicy": "File"
+            }
+          ],
+          "dnsPolicy": "ClusterFirst",
+          "enableServiceLinks": true,
+          "nodeName": "ani-01",
+          "preemptionPolicy": "PreemptLowerPriority",
+          "priority": 0,
+          "restartPolicy": "Always",
+          "schedulerName": "default-scheduler",
+          "securityContext": {},
+          "serviceAccount": "lb-cc562f7d8be147afae8144555aa7243b",
+          "serviceAccountName": "lb-cc562f7d8be147afae8144555aa7243b",
+          "terminationGracePeriodSeconds": 360,
+          "tolerations": [
+            {
+              "effect": "NoExecute",
+              "key": "node.kubernetes.io/not-ready",
+              "operator": "Exists",
+              "tolerationSeconds": 300
+            },
+            {
+              "effect": "NoExecute",
+              "key": "node.kubernetes.io/unreachable",
+              "operator": "Exists",
+              "tolerationSeconds": 300
+            }
+          ],
+          "volumes": [
+            {
+              "name": "sa-token",
+              "projected": {
+                "defaultMode": 420,
+                "sources": [
+                  {
+                    "serviceAccountToken": {
+                      "audience": "envoy-gateway.envoy-gateway-system.svc.cluster.local",
+                      "expirationSeconds": 3600,
+                      "path": "sa-token"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "configMap": {
+                "defaultMode": 420,
+                "items": [
+                  {
+                    "key": "ca.crt",
+                    "path": "ca.crt"
+                  }
+                ],
+                "name": "lb-cc562f7d8be147afae8144555aa7243b",
+                "optional": false
+              },
+              "name": "certs"
+            },
+            {
+              "configMap": {
+                "defaultMode": 420,
+                "items": [
+                  {
+                    "key": "xds-trusted-ca.json",
+                    "path": "xds-trusted-ca.json"
+                  },
+                  {
+                    "key": "xds_service_account_token.json",
+                    "path": "xds_service_account_token.json"
+                  }
+                ],
+                "name": "lb-cc562f7d8be147afae8144555aa7243b",
+                "optional": false
+              },
+              "name": "sds"
+            }
+          ]
+        },
+        "status": {
+          "conditions": [
+            {
+              "lastProbeTime": null,
+              "lastTransitionTime": "2026-09-15T05:55:56Z",
+              "observedGeneration": 1,
+              "status": "True",
+              "type": "PodReadyToStartContainers"
+            },
+            {
+              "lastProbeTime": null,
+              "lastTransitionTime": "2026-09-15T05:55:54Z",
+              "observedGeneration": 1,
+              "status": "True",
+              "type": "Initialized"
+            },
+            {
+              "lastProbeTime": null,
+              "lastTransitionTime": "2026-09-15T05:55:56Z",
+              "observedGeneration": 1,
+              "status": "True",
+              "type": "Ready"
+            },
+            {
+              "lastProbeTime": null,
+              "lastTransitionTime": "2026-09-15T05:55:56Z",
+              "observedGeneration": 1,
+              "status": "True",
+              "type": "ContainersReady"
+            },
+            {
+              "lastProbeTime": null,
+              "lastTransitionTime": "2026-09-15T05:55:54Z",
+              "observedGeneration": 1,
+              "status": "True",
+              "type": "PodScheduled"
+            }
+          ],
+          "containerStatuses": [
+            {
+              "allocatedResources": {
+                "cpu": "1",
+                "memory": "1Gi"
+              },
+              "containerID": "containerd://932d979fbcfebe7123368c5c72025c65f1f038e255d71e229eea138e85eae785",
+              "image": "docker.changqingyun.cn/kubercloud/envoy:distroless-v1.38.3",
+              "imageID": "sha256:67f1cf44a5109717285c5aef449d02180762121747cbef3c261fe7e62e934b9a",
+              "lastState": {},
+              "name": "envoy",
+              "ready": true,
+              "resources": {
+                "limits": {
+                  "cpu": "2",
+                  "memory": "2Gi"
+                },
+                "requests": {
+                  "cpu": "1",
+                  "memory": "1Gi"
+                }
+              },
+              "restartCount": 0,
+              "started": true,
+              "state": {
+                "running": {
+                  "startedAt": "2026-09-15T05:55:55Z"
+                }
+              },
+              "user": {
+                "linux": {
+                  "gid": 65532,
+                  "supplementalGroups": [
+                    65532
+                  ],
+                  "uid": 65532
+                }
+              },
+              "volumeMounts": [
+                {
+                  "mountPath": "/certs",
+                  "name": "certs",
+                  "readOnly": true,
+                  "recursiveReadOnly": "Disabled"
+                },
+                {
+                  "mountPath": "/sds",
+                  "name": "sds"
+                },
+                {
+                  "mountPath": "/var/run/secrets/token",
+                  "name": "sa-token",
+                  "readOnly": true,
+                  "recursiveReadOnly": "Disabled"
+                }
+              ]
+            },
+            {
+              "allocatedResources": {
+                "cpu": "10m",
+                "memory": "32Mi"
+              },
+              "containerID": "containerd://beae9d5eceeac4fab530cde76bf58f0e59c51dbfca6f8fb88c1ff82d443650f7",
+              "image": "docker.changqingyun.cn/kubercloud/gateway-dev:latest",
+              "imageID": "sha256:5f75b495bf07beb23f8ac4f97649e876ed723f1c6d02031bbc7cd23028b490b6",
+              "lastState": {},
+              "name": "shutdown-manager",
+              "ready": true,
+              "resources": {
+                "requests": {
+                  "cpu": "10m",
+                  "memory": "32Mi"
+                }
+              },
+              "restartCount": 0,
+              "started": true,
+              "state": {
+                "running": {
+                  "startedAt": "2026-09-15T05:55:55Z"
+                }
+              },
+              "user": {
+                "linux": {
+                  "gid": 65532,
+                  "supplementalGroups": [
+                    65532
+                  ],
+                  "uid": 65532
+                }
+              }
+            }
+          ],
+          "hostIP": "172.16.101.10",
+          "hostIPs": [
+            {
+              "ip": "172.16.101.10"
+            }
+          ],
+          "observedGeneration": 1,
+          "phase": "Running",
+          "podIP": "10.233.0.6",
+          "podIPs": [
+            {
+              "ip": "10.233.0.6"
+            }
+          ],
+          "qosClass": "Burstable",
+          "startTime": "2026-09-15T05:55:54Z"
+        }
+      },
+      {
+        "apiVersion": "v1",
+        "kind": "Pod",
+        "metadata": {
+          "annotations": {
+            "networking.kubercloud.com/lb_vip_address": "10.233.0.200",
+            "networking.kubercloud.com/lb_vpc": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad/vpc-d06f28e82fe847f7bf2cedd57dad82f4",
+            "networking.kubercloud.com/subnet": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad/subnet-f74d90cbb5484f7fb37f8a8f6782da1d",
+            "networking.kubercloud.com/vnic": "auto-lb-cc562f7d8be147afae8144555aa7243b-86-vnic-5pwwb",
+            "prometheus.io/path": "/stats/prometheus",
+            "prometheus.io/port": "19001",
+            "prometheus.io/scrape": "true"
+          },
+          "creationTimestamp": "2026-09-15T05:55:54Z",
+          "generateName": "lb-cc562f7d8be147afae8144555aa7243b-8647f8484-",
+          "generation": 1,
+          "labels": {
+            "app.kubernetes.io/component": "proxy",
+            "app.kubernetes.io/managed-by": "envoy-gateway",
+            "app.kubernetes.io/name": "envoy",
+            "gateway.envoyproxy.io/owning-gateway-name": "lb-cc562f7d8be147afae8144555aa7243b",
+            "gateway.envoyproxy.io/owning-gateway-namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "gateway.networking.k8s.io/gateway-name": "lb-cc562f7d8be147afae8144555aa7243b",
+            "pod-template-hash": "8647f8484"
+          },
+          "name": "lb-cc562f7d8be147afae8144555aa7243b-8647f8484-l8vth",
+          "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+          "ownerReferences": [
+            {
+              "apiVersion": "apps/v1",
+              "blockOwnerDeletion": true,
+              "controller": true,
+              "kind": "ReplicaSet",
+              "name": "lb-cc562f7d8be147afae8144555aa7243b-8647f8484",
+              "uid": "0cd6142b-2e33-4fa2-906e-ce3f01ccfd97"
+            }
+          ],
+          "resourceVersion": "304549",
+          "uid": "d321a191-e66b-4782-8375-d0ec1fed3880"
+        },
+        "spec": {
+          "automountServiceAccountToken": false,
+          "containers": [
+            {
+              "args": [
+                "--service-cluster",
+                "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad/lb-cc562f7d8be147afae8144555aa7243b",
+                "--service-node",
+                "$(ENVOY_POD_NAME)",
+                "--config-yaml",
+                "admin:\n  access_log:\n  - name: envoy.access_loggers.file\n    typed_config:\n      \"@type\": type.googleapis.com/envoy.extensions.access_loggers.file.v3.FileAccessLog\n      path: /dev/null\n  address:\n    socket_address:\n      address: 127.0.0.1\n      port_value: 19000\ncluster_manager:\n  local_cluster_name: lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad/lb-cc562f7d8be147afae8144555aa7243b\nnode:\n  locality:\n    zone: $(ENVOY_SERVICE_ZONE)\ndeferredStatOptions:\n  enableDeferredCreationStats: true\nstats_config:\n  use_all_default_tags: true\n  stats_tags:\n  - regex: \\.zone(\\.(([^\\.]+)\\.))\n    tag_name: from_zone\n  - regex: \\.zone\\.[^\\.]+\\.(([^\\.]+)\\.)\n    tag_name: to_zone\n  - regex: \"^cluster(\\\\..+\\\\.(.+))\\\\.total_match_count$\"\n    tag_name: socket_match_name\n  - regex: \"circuit_breakers\\\\.((.+?)\\\\.).+\"\n    tag_name: priority\nlayered_runtime:\n  layers:\n  - name: global_config\n    static_layer:\n      envoy.restart_features.use_eds_cache_for_ads: true\n      re2.max_program_size.error_level: 4294967295\n      re2.max_program_size.warn_level: 1000\ndynamic_resources:\n  ads_config:\n    api_type: DELTA_GRPC\n    transport_api_version: V3\n    grpc_services:\n    - envoy_grpc:\n        cluster_name: xds_cluster\n    set_node_on_first_message_only: true\n  lds_config:\n    ads: {}\n    initial_fetch_timeout: 0s\n    resource_api_version: V3\n  cds_config:\n    ads: {}\n    initial_fetch_timeout: 0s\n    resource_api_version: V3\nstatic_resources:\n  listeners:\n  - name: envoy-gateway-proxy-stats-0.0.0.0-19001\n    address:\n      socket_address:\n        address: '0.0.0.0'\n        port_value: 19001\n        protocol: TCP\n    bypass_overload_manager: true\n    filter_chains:\n    - filters:\n      - name: envoy.filters.network.http_connection_manager\n        typed_config:\n          \"@type\": type.googleapis.com/envoy.extensions.filters.network.http_connection_manager.v3.HttpConnectionManager\n          stat_prefix: eg-stats-http\n          normalize_path: true\n          route_config:\n            name: local_route\n            virtual_hosts:\n            - name: prometheus_stats\n              domains:\n              - \"*\"\n              routes:\n              - match:\n                  path: /stats/prometheus\n                  headers:\n                  - name: \":method\"\n                    string_match:\n                      exact: GET\n                route:\n                  cluster: prometheus_stats\n          http_filters:\n          - name: envoy.filters.http.router\n            typed_config:\n              \"@type\": type.googleapis.com/envoy.extensions.filters.http.router.v3.Router\n  clusters:\n  - name: prometheus_stats\n    connect_timeout: 0.250s\n    type: STATIC\n    lb_policy: ROUND_ROBIN\n    load_assignment:\n      cluster_name: prometheus_stats\n      endpoints:\n      - lb_endpoints:\n        - endpoint:\n            address:\n              socket_address:\n                address: 127.0.0.1\n                port_value: 19000\n  - connect_timeout: 10s\n    eds_cluster_config:\n      eds_config:\n        ads: {}\n        resource_api_version: 'V3'\n      service_name: lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad/lb-cc562f7d8be147afae8144555aa7243b\n    load_balancing_policy:\n      policies:\n      - typed_extension_config:\n          name: 'envoy.load_balancing_policies.least_request'\n          typed_config:\n            '@type': 'type.googleapis.com/envoy.extensions.load_balancing_policies.least_request.v3.LeastRequest'\n            locality_lb_config:\n              zone_aware_lb_config:\n                min_cluster_size: '1'\n    name: lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad/lb-cc562f7d8be147afae8144555aa7243b\n    type: EDS\n  - connect_timeout: 10s\n    load_assignment:\n      cluster_name: xds_cluster\n      endpoints:\n      - load_balancing_weight: 1\n        lb_endpoints:\n        - load_balancing_weight: 1\n          endpoint:\n            address:\n              socket_address:\n                address: envoy-gateway.envoy-gateway-system.svc.cluster.local.\n                port_value: 18000\n    typed_extension_protocol_options:\n      envoy.extensions.upstreams.http.v3.HttpProtocolOptions:\n        \"@type\": \"type.googleapis.com/envoy.extensions.upstreams.http.v3.HttpProtocolOptions\"\n        explicit_http_config:\n          http2_protocol_options:\n            connection_keepalive:\n              interval: 30s\n              timeout: 5s\n        http_filters:\n        - name: envoy.filters.http.credential_injector\n          typed_config:\n            \"@type\": type.googleapis.com/envoy.extensions.filters.http.credential_injector.v3.CredentialInjector\n            credential:\n              name: envoy.http.injected_credentials.generic\n              typed_config:\n                \"@type\": type.googleapis.com/envoy.extensions.http.injected_credentials.generic.v3.Generic\n                credential:\n                  name: jwt-sa-bearer\n                  sds_config:\n                    path_config_source:\n                      path: /sds/xds_service_account_token.json\n                    resource_api_version: V3\n            overwrite: true\n        - name: envoy.extensions.filters.http.upstream_codec.v3.UpstreamCodec\n          typed_config:\n            \"@type\": type.googleapis.com/envoy.extensions.filters.http.upstream_codec.v3.UpstreamCodec\n    name: xds_cluster\n    type: STRICT_DNS\n    transport_socket:\n      name: envoy.transport_sockets.tls\n      typed_config:\n        \"@type\": type.googleapis.com/envoy.extensions.transport_sockets.tls.v3.UpstreamTlsContext\n        common_tls_context:\n          tls_params:\n            tls_maximum_protocol_version: TLSv1_3\n          validation_context_sds_secret_config:\n            name: xds_trusted_ca\n            sds_config:\n              path_config_source:\n                path: /sds/xds-trusted-ca.json\n              resource_api_version: V3\noverload_manager:\n  refresh_interval: 0.25s\n  resource_monitors:\n  - name: \"envoy.resource_monitors.global_downstream_max_connections\"\n    typed_config:\n      \"@type\": type.googleapis.com/envoy.extensions.resource_monitors.downstream_connections.v3.DownstreamConnectionsConfig\n      max_active_downstream_connections: 50000\n  - name: \"envoy.resource_monitors.fixed_heap\"\n    typed_config:\n      \"@type\": type.googleapis.com/envoy.extensions.resource_monitors.fixed_heap.v3.FixedHeapConfig\n      max_heap_size_bytes: 1717986918\n  actions:\n  - name: \"envoy.overload_actions.shrink_heap\"\n    triggers:\n    - name: \"envoy.resource_monitors.fixed_heap\"\n      threshold:\n        value: 0.95\n  - name: \"envoy.overload_actions.stop_accepting_requests\"\n    triggers:\n    - name: \"envoy.resource_monitors.fixed_heap\"\n      threshold:\n        value: 0.98\n",
+                "--log-level",
+                "warn",
+                "--cpuset-threads",
+                "--drain-strategy",
+                "immediate",
+                "--component-log-level",
+                "misc:error",
+                "--drain-time-s",
+                "60"
+              ],
+              "command": [
+                "envoy"
+              ],
+              "env": [
+                {
+                  "name": "ENVOY_POD_NAMESPACE",
+                  "valueFrom": {
+                    "fieldRef": {
+                      "apiVersion": "v1",
+                      "fieldPath": "metadata.namespace"
+                    }
+                  }
+                },
+                {
+                  "name": "ENVOY_POD_NAME",
+                  "valueFrom": {
+                    "fieldRef": {
+                      "apiVersion": "v1",
+                      "fieldPath": "metadata.name"
+                    }
+                  }
+                },
+                {
+                  "name": "ENVOY_SERVICE_ZONE",
+                  "valueFrom": {
+                    "fieldRef": {
+                      "apiVersion": "v1",
+                      "fieldPath": "metadata.annotations['topology.kubernetes.io/zone']"
+                    }
+                  }
+                }
+              ],
+              "image": "docker.changqingyun.cn/kubercloud/envoy:distroless-v1.38.3",
+              "imagePullPolicy": "IfNotPresent",
+              "lifecycle": {
+                "preStop": {
+                  "httpGet": {
+                    "path": "/shutdown/ready",
+                    "port": 19002,
+                    "scheme": "HTTP"
+                  }
+                }
+              },
+              "name": "envoy",
+              "ports": [
+                {
+                  "containerPort": 19001,
+                  "name": "metrics",
+                  "protocol": "TCP"
+                },
+                {
+                  "containerPort": 19003,
+                  "name": "readiness",
+                  "protocol": "TCP"
+                }
+              ],
+              "resources": {
+                "limits": {
+                  "cpu": "2",
+                  "memory": "2Gi"
+                },
+                "requests": {
+                  "cpu": "1",
+                  "memory": "1Gi"
+                }
+              },
+              "securityContext": {
+                "allowPrivilegeEscalation": false,
+                "capabilities": {
+                  "drop": [
+                    "ALL"
+                  ]
+                },
+                "privileged": false,
+                "runAsGroup": 65532,
+                "runAsNonRoot": true,
+                "runAsUser": 65532,
+                "seccompProfile": {
+                  "type": "RuntimeDefault"
+                }
+              },
+              "terminationMessagePath": "/dev/termination-log",
+              "terminationMessagePolicy": "File",
+              "volumeMounts": [
+                {
+                  "mountPath": "/certs",
+                  "name": "certs",
+                  "readOnly": true
+                },
+                {
+                  "mountPath": "/sds",
+                  "name": "sds"
+                },
+                {
+                  "mountPath": "/var/run/secrets/token",
+                  "name": "sa-token",
+                  "readOnly": true
+                }
+              ]
+            },
+            {
+              "args": [
+                "envoy",
+                "shutdown-manager"
+              ],
+              "command": [
+                "envoy-gateway"
+              ],
+              "env": [
+                {
+                  "name": "ENVOY_POD_NAMESPACE",
+                  "valueFrom": {
+                    "fieldRef": {
+                      "apiVersion": "v1",
+                      "fieldPath": "metadata.namespace"
+                    }
+                  }
+                },
+                {
+                  "name": "ENVOY_POD_NAME",
+                  "valueFrom": {
+                    "fieldRef": {
+                      "apiVersion": "v1",
+                      "fieldPath": "metadata.name"
+                    }
+                  }
+                },
+                {
+                  "name": "ENVOY_SERVICE_ZONE",
+                  "valueFrom": {
+                    "fieldRef": {
+                      "apiVersion": "v1",
+                      "fieldPath": "metadata.annotations['topology.kubernetes.io/zone']"
+                    }
+                  }
+                }
+              ],
+              "image": "docker.changqingyun.cn/kubercloud/gateway-dev:latest",
+              "imagePullPolicy": "IfNotPresent",
+              "lifecycle": {
+                "preStop": {
+                  "exec": {
+                    "command": [
+                      "envoy-gateway",
+                      "envoy",
+                      "shutdown"
+                    ]
+                  }
+                }
+              },
+              "name": "shutdown-manager",
+              "resources": {
+                "requests": {
+                  "cpu": "10m",
+                  "memory": "32Mi"
+                }
+              },
+              "securityContext": {
+                "allowPrivilegeEscalation": false,
+                "capabilities": {
+                  "drop": [
+                    "ALL"
+                  ]
+                },
+                "privileged": false,
+                "runAsGroup": 65532,
+                "runAsNonRoot": true,
+                "runAsUser": 65532,
+                "seccompProfile": {
+                  "type": "RuntimeDefault"
+                }
+              },
+              "terminationMessagePath": "/dev/termination-log",
+              "terminationMessagePolicy": "File"
+            }
+          ],
+          "dnsPolicy": "ClusterFirst",
+          "enableServiceLinks": true,
+          "nodeName": "ani-03",
+          "preemptionPolicy": "PreemptLowerPriority",
+          "priority": 0,
+          "restartPolicy": "Always",
+          "schedulerName": "default-scheduler",
+          "securityContext": {},
+          "serviceAccount": "lb-cc562f7d8be147afae8144555aa7243b",
+          "serviceAccountName": "lb-cc562f7d8be147afae8144555aa7243b",
+          "terminationGracePeriodSeconds": 360,
+          "tolerations": [
+            {
+              "effect": "NoExecute",
+              "key": "node.kubernetes.io/not-ready",
+              "operator": "Exists",
+              "tolerationSeconds": 300
+            },
+            {
+              "effect": "NoExecute",
+              "key": "node.kubernetes.io/unreachable",
+              "operator": "Exists",
+              "tolerationSeconds": 300
+            }
+          ],
+          "volumes": [
+            {
+              "name": "sa-token",
+              "projected": {
+                "defaultMode": 420,
+                "sources": [
+                  {
+                    "serviceAccountToken": {
+                      "audience": "envoy-gateway.envoy-gateway-system.svc.cluster.local",
+                      "expirationSeconds": 3600,
+                      "path": "sa-token"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "configMap": {
+                "defaultMode": 420,
+                "items": [
+                  {
+                    "key": "ca.crt",
+                    "path": "ca.crt"
+                  }
+                ],
+                "name": "lb-cc562f7d8be147afae8144555aa7243b",
+                "optional": false
+              },
+              "name": "certs"
+            },
+            {
+              "configMap": {
+                "defaultMode": 420,
+                "items": [
+                  {
+                    "key": "xds-trusted-ca.json",
+                    "path": "xds-trusted-ca.json"
+                  },
+                  {
+                    "key": "xds_service_account_token.json",
+                    "path": "xds_service_account_token.json"
+                  }
+                ],
+                "name": "lb-cc562f7d8be147afae8144555aa7243b",
+                "optional": false
+              },
+              "name": "sds"
+            }
+          ]
+        },
+        "status": {
+          "conditions": [
+            {
+              "lastProbeTime": null,
+              "lastTransitionTime": "2026-09-15T05:55:56Z",
+              "observedGeneration": 1,
+              "status": "True",
+              "type": "PodReadyToStartContainers"
+            },
+            {
+              "lastProbeTime": null,
+              "lastTransitionTime": "2026-09-15T05:55:54Z",
+              "observedGeneration": 1,
+              "status": "True",
+              "type": "Initialized"
+            },
+            {
+              "lastProbeTime": null,
+              "lastTransitionTime": "2026-09-15T05:55:56Z",
+              "observedGeneration": 1,
+              "status": "True",
+              "type": "Ready"
+            },
+            {
+              "lastProbeTime": null,
+              "lastTransitionTime": "2026-09-15T05:55:56Z",
+              "observedGeneration": 1,
+              "status": "True",
+              "type": "ContainersReady"
+            },
+            {
+              "lastProbeTime": null,
+              "lastTransitionTime": "2026-09-15T05:55:54Z",
+              "observedGeneration": 1,
+              "status": "True",
+              "type": "PodScheduled"
+            }
+          ],
+          "containerStatuses": [
+            {
+              "allocatedResources": {
+                "cpu": "1",
+                "memory": "1Gi"
+              },
+              "containerID": "containerd://d8a537c580aed0896b7bc2b17249981fb270553547cf45edeef409747e8011e1",
+              "image": "docker.changqingyun.cn/kubercloud/envoy:distroless-v1.38.3",
+              "imageID": "sha256:67f1cf44a5109717285c5aef449d02180762121747cbef3c261fe7e62e934b9a",
+              "lastState": {},
+              "name": "envoy",
+              "ready": true,
+              "resources": {
+                "limits": {
+                  "cpu": "2",
+                  "memory": "2Gi"
+                },
+                "requests": {
+                  "cpu": "1",
+                  "memory": "1Gi"
+                }
+              },
+              "restartCount": 0,
+              "started": true,
+              "state": {
+                "running": {
+                  "startedAt": "2026-09-15T05:55:55Z"
+                }
+              },
+              "user": {
+                "linux": {
+                  "gid": 65532,
+                  "supplementalGroups": [
+                    65532
+                  ],
+                  "uid": 65532
+                }
+              },
+              "volumeMounts": [
+                {
+                  "mountPath": "/certs",
+                  "name": "certs",
+                  "readOnly": true,
+                  "recursiveReadOnly": "Disabled"
+                },
+                {
+                  "mountPath": "/sds",
+                  "name": "sds"
+                },
+                {
+                  "mountPath": "/var/run/secrets/token",
+                  "name": "sa-token",
+                  "readOnly": true,
+                  "recursiveReadOnly": "Disabled"
+                }
+              ]
+            },
+            {
+              "allocatedResources": {
+                "cpu": "10m",
+                "memory": "32Mi"
+              },
+              "containerID": "containerd://128fd718ce63726b6195d9754e04d746dac58ab813da392a397bffa556dfb7bb",
+              "image": "docker.changqingyun.cn/kubercloud/gateway-dev:latest",
+              "imageID": "sha256:5f75b495bf07beb23f8ac4f97649e876ed723f1c6d02031bbc7cd23028b490b6",
+              "lastState": {},
+              "name": "shutdown-manager",
+              "ready": true,
+              "resources": {
+                "requests": {
+                  "cpu": "10m",
+                  "memory": "32Mi"
+                }
+              },
+              "restartCount": 0,
+              "started": true,
+              "state": {
+                "running": {
+                  "startedAt": "2026-09-15T05:55:55Z"
+                }
+              },
+              "user": {
+                "linux": {
+                  "gid": 65532,
+                  "supplementalGroups": [
+                    65532
+                  ],
+                  "uid": 65532
+                }
+              }
+            }
+          ],
+          "hostIP": "172.16.101.12",
+          "hostIPs": [
+            {
+              "ip": "172.16.101.12"
+            }
+          ],
+          "observedGeneration": 1,
+          "phase": "Running",
+          "podIP": "10.233.0.5",
+          "podIPs": [
+            {
+              "ip": "10.233.0.5"
+            }
+          ],
+          "qosClass": "Burstable",
+          "startTime": "2026-09-15T05:55:54Z"
+        }
+      },
+      {
+        "apiVersion": "v1",
+        "kind": "Pod",
+        "metadata": {
+          "annotations": {
+            "networking.kubercloud.com/subnet": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad/subnet-2a3f02dc6b444cc4b708a38d345a88c7",
+            "networking.kubercloud.com/vnic": "auto-lb02-2b3122-base-a-vnic-z7rvp"
+          },
+          "creationTimestamp": "2026-09-15T04:22:58Z",
+          "generation": 1,
+          "labels": {
+            "network.ani.io/attachment-id": "att_7d08b61f4038432a842d2fda525607b9",
+            "network.ani.io/generation": "1",
+            "network.ani.io/instance-id": "lb02-2b3122-base-a",
+            "network.ani.io/submission-id": "8bd16f7c-f585-452d-bf8f-378321326390",
+            "network.ani.io/tenant-id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "network.ani.io/test-run": "lb02-09141908-2b3122"
+          },
+          "name": "lb02-2b3122-base-a",
+          "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+          "resourceVersion": "276852",
+          "uid": "a0fb8a3c-9025-43b4-a45f-5114ffc5f3b5"
+        },
+        "spec": {
+          "automountServiceAccountToken": false,
+          "containers": [
+            {
+              "env": [
+                {
+                  "name": "NET05_ID",
+                  "value": "lb02-09141908-2b3122"
+                },
+                {
+                  "name": "ANI_WORKLOAD_ID",
+                  "value": "lb02-2b3122-base-a"
+                },
+                {
+                  "name": "NET05_PORT",
+                  "value": "8080"
+                }
+              ],
+              "image": "localhost/lb02-2b3122-probe@sha256:647c2acd8e115511a18506014995ec01b7d0d62fbc05f2a6e51a5c65c2a3fcce",
+              "imagePullPolicy": "Never",
+              "name": "probe",
+              "ports": [
+                {
+                  "containerPort": 8080,
+                  "protocol": "TCP"
+                }
+              ],
+              "resources": {
+                "limits": {
+                  "cpu": "100m",
+                  "memory": "64Mi"
+                },
+                "requests": {
+                  "cpu": "10m",
+                  "memory": "32Mi"
+                }
+              },
+              "securityContext": {
+                "allowPrivilegeEscalation": false,
+                "capabilities": {
+                  "drop": [
+                    "ALL"
+                  ]
+                },
+                "readOnlyRootFilesystem": true
+              },
+              "terminationMessagePath": "/dev/termination-log",
+              "terminationMessagePolicy": "File"
+            }
+          ],
+          "dnsPolicy": "ClusterFirst",
+          "enableServiceLinks": true,
+          "nodeName": "ani-02",
+          "nodeSelector": {
+            "kubernetes.io/hostname": "ani-02"
+          },
+          "preemptionPolicy": "PreemptLowerPriority",
+          "priority": 0,
+          "restartPolicy": "Always",
+          "schedulerName": "default-scheduler",
+          "securityContext": {
+            "runAsGroup": 65532,
+            "runAsNonRoot": true,
+            "runAsUser": 65532,
+            "seccompProfile": {
+              "type": "RuntimeDefault"
+            }
+          },
+          "serviceAccount": "default",
+          "serviceAccountName": "default",
+          "terminationGracePeriodSeconds": 30,
+          "tolerations": [
+            {
+              "effect": "NoExecute",
+              "key": "node.kubernetes.io/not-ready",
+              "operator": "Exists",
+              "tolerationSeconds": 300
+            },
+            {
+              "effect": "NoExecute",
+              "key": "node.kubernetes.io/unreachable",
+              "operator": "Exists",
+              "tolerationSeconds": 300
+            }
+          ]
+        },
+        "status": {
+          "conditions": [
+            {
+              "lastProbeTime": null,
+              "lastTransitionTime": "2026-09-15T04:22:59Z",
+              "observedGeneration": 1,
+              "status": "True",
+              "type": "PodReadyToStartContainers"
+            },
+            {
+              "lastProbeTime": null,
+              "lastTransitionTime": "2026-09-15T04:22:58Z",
+              "observedGeneration": 1,
+              "status": "True",
+              "type": "Initialized"
+            },
+            {
+              "lastProbeTime": null,
+              "lastTransitionTime": "2026-09-15T04:22:59Z",
+              "observedGeneration": 1,
+              "status": "True",
+              "type": "Ready"
+            },
+            {
+              "lastProbeTime": null,
+              "lastTransitionTime": "2026-09-15T04:22:59Z",
+              "observedGeneration": 1,
+              "status": "True",
+              "type": "ContainersReady"
+            },
+            {
+              "lastProbeTime": null,
+              "lastTransitionTime": "2026-09-15T04:22:58Z",
+              "observedGeneration": 1,
+              "status": "True",
+              "type": "PodScheduled"
+            }
+          ],
+          "containerStatuses": [
+            {
+              "allocatedResources": {
+                "cpu": "10m",
+                "memory": "32Mi"
+              },
+              "containerID": "containerd://7efb95b4a86da77a29551c2d7fe0f17a592b20c1611744cf484d821c87929f9c",
+              "image": "localhost/lb02-2b3122-probe:20260915",
+              "imageID": "docker.io/library/import-2026-09-15@sha256:6dc16949364cbd67c142d6d0ca3aa6353146917816936e63beb672621fcb9295",
+              "lastState": {},
+              "name": "probe",
+              "ready": true,
+              "resources": {
+                "limits": {
+                  "cpu": "100m",
+                  "memory": "64Mi"
+                },
+                "requests": {
+                  "cpu": "10m",
+                  "memory": "32Mi"
+                }
+              },
+              "restartCount": 0,
+              "started": true,
+              "state": {
+                "running": {
+                  "startedAt": "2026-09-15T04:22:59Z"
+                }
+              },
+              "user": {
+                "linux": {
+                  "gid": 65532,
+                  "supplementalGroups": [
+                    65532
+                  ],
+                  "uid": 65532
+                }
+              }
+            }
+          ],
+          "hostIP": "172.16.101.11",
+          "hostIPs": [
+            {
+              "ip": "172.16.101.11"
+            }
+          ],
+          "observedGeneration": 1,
+          "phase": "Running",
+          "podIP": "10.233.1.2",
+          "podIPs": [
+            {
+              "ip": "10.233.1.2"
+            }
+          ],
+          "qosClass": "Burstable",
+          "startTime": "2026-09-15T04:22:58Z"
+        }
+      },
+      {
+        "apiVersion": "v1",
+        "kind": "Pod",
+        "metadata": {
+          "annotations": {
+            "networking.kubercloud.com/subnet": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad/subnet-2a3f02dc6b444cc4b708a38d345a88c7",
+            "networking.kubercloud.com/vnic": "auto-lb02-2b3122-base-b-vnic-hcfzg"
+          },
+          "creationTimestamp": "2026-09-15T04:22:58Z",
+          "generation": 1,
+          "labels": {
+            "network.ani.io/attachment-id": "att_a6172d5ee5be434087f939001a435c9e",
+            "network.ani.io/generation": "1",
+            "network.ani.io/instance-id": "lb02-2b3122-base-b",
+            "network.ani.io/submission-id": "1358b933-00e9-448a-baed-ea168c21cd3e",
+            "network.ani.io/tenant-id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "network.ani.io/test-run": "lb02-09141908-2b3122"
+          },
+          "name": "lb02-2b3122-base-b",
+          "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+          "resourceVersion": "276880",
+          "uid": "e4c49404-afc1-4ff5-9e22-08521633d69c"
+        },
+        "spec": {
+          "automountServiceAccountToken": false,
+          "containers": [
+            {
+              "env": [
+                {
+                  "name": "NET05_ID",
+                  "value": "lb02-09141908-2b3122"
+                },
+                {
+                  "name": "ANI_WORKLOAD_ID",
+                  "value": "lb02-2b3122-base-b"
+                },
+                {
+                  "name": "NET05_PORT",
+                  "value": "8080"
+                }
+              ],
+              "image": "localhost/lb02-2b3122-probe@sha256:647c2acd8e115511a18506014995ec01b7d0d62fbc05f2a6e51a5c65c2a3fcce",
+              "imagePullPolicy": "Never",
+              "name": "probe",
+              "ports": [
+                {
+                  "containerPort": 8080,
+                  "protocol": "TCP"
+                }
+              ],
+              "resources": {
+                "limits": {
+                  "cpu": "100m",
+                  "memory": "64Mi"
+                },
+                "requests": {
+                  "cpu": "10m",
+                  "memory": "32Mi"
+                }
+              },
+              "securityContext": {
+                "allowPrivilegeEscalation": false,
+                "capabilities": {
+                  "drop": [
+                    "ALL"
+                  ]
+                },
+                "readOnlyRootFilesystem": true
+              },
+              "terminationMessagePath": "/dev/termination-log",
+              "terminationMessagePolicy": "File"
+            }
+          ],
+          "dnsPolicy": "ClusterFirst",
+          "enableServiceLinks": true,
+          "nodeName": "ani-03",
+          "nodeSelector": {
+            "kubernetes.io/hostname": "ani-03"
+          },
+          "preemptionPolicy": "PreemptLowerPriority",
+          "priority": 0,
+          "restartPolicy": "Always",
+          "schedulerName": "default-scheduler",
+          "securityContext": {
+            "runAsGroup": 65532,
+            "runAsNonRoot": true,
+            "runAsUser": 65532,
+            "seccompProfile": {
+              "type": "RuntimeDefault"
+            }
+          },
+          "serviceAccount": "default",
+          "serviceAccountName": "default",
+          "terminationGracePeriodSeconds": 30,
+          "tolerations": [
+            {
+              "effect": "NoExecute",
+              "key": "node.kubernetes.io/not-ready",
+              "operator": "Exists",
+              "tolerationSeconds": 300
+            },
+            {
+              "effect": "NoExecute",
+              "key": "node.kubernetes.io/unreachable",
+              "operator": "Exists",
+              "tolerationSeconds": 300
+            }
+          ]
+        },
+        "status": {
+          "conditions": [
+            {
+              "lastProbeTime": null,
+              "lastTransitionTime": "2026-09-15T04:23:01Z",
+              "observedGeneration": 1,
+              "status": "True",
+              "type": "PodReadyToStartContainers"
+            },
+            {
+              "lastProbeTime": null,
+              "lastTransitionTime": "2026-09-15T04:22:59Z",
+              "observedGeneration": 1,
+              "status": "True",
+              "type": "Initialized"
+            },
+            {
+              "lastProbeTime": null,
+              "lastTransitionTime": "2026-09-15T04:23:01Z",
+              "observedGeneration": 1,
+              "status": "True",
+              "type": "Ready"
+            },
+            {
+              "lastProbeTime": null,
+              "lastTransitionTime": "2026-09-15T04:23:01Z",
+              "observedGeneration": 1,
+              "status": "True",
+              "type": "ContainersReady"
+            },
+            {
+              "lastProbeTime": null,
+              "lastTransitionTime": "2026-09-15T04:22:58Z",
+              "observedGeneration": 1,
+              "status": "True",
+              "type": "PodScheduled"
+            }
+          ],
+          "containerStatuses": [
+            {
+              "allocatedResources": {
+                "cpu": "10m",
+                "memory": "32Mi"
+              },
+              "containerID": "containerd://40d533e6b0245ffa59f159c071d194298f0d238e8479b83b03b1d9cbac9ed4e5",
+              "image": "localhost/lb02-2b3122-probe:20260915",
+              "imageID": "docker.io/library/import-2026-09-15@sha256:6dc16949364cbd67c142d6d0ca3aa6353146917816936e63beb672621fcb9295",
+              "lastState": {},
+              "name": "probe",
+              "ready": true,
+              "resources": {
+                "limits": {
+                  "cpu": "100m",
+                  "memory": "64Mi"
+                },
+                "requests": {
+                  "cpu": "10m",
+                  "memory": "32Mi"
+                }
+              },
+              "restartCount": 0,
+              "started": true,
+              "state": {
+                "running": {
+                  "startedAt": "2026-09-15T04:23:01Z"
+                }
+              },
+              "user": {
+                "linux": {
+                  "gid": 65532,
+                  "supplementalGroups": [
+                    65532
+                  ],
+                  "uid": 65532
+                }
+              }
+            }
+          ],
+          "hostIP": "172.16.101.12",
+          "hostIPs": [
+            {
+              "ip": "172.16.101.12"
+            }
+          ],
+          "observedGeneration": 1,
+          "phase": "Running",
+          "podIP": "10.233.1.3",
+          "podIPs": [
+            {
+              "ip": "10.233.1.3"
+            }
+          ],
+          "qosClass": "Burstable",
+          "startTime": "2026-09-15T04:22:59Z"
+        }
+      },
+      {
+        "apiVersion": "v1",
+        "kind": "Pod",
+        "metadata": {
+          "annotations": {
+            "networking.kubercloud.com/subnet": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad/subnet-f74d90cbb5484f7fb37f8a8f6782da1d",
+            "networking.kubercloud.com/vnic": "auto-lb02-2b3122-base-client-vnic-bg976"
+          },
+          "creationTimestamp": "2026-09-15T04:22:59Z",
+          "generation": 1,
+          "labels": {
+            "network.ani.io/attachment-id": "att_dc37931e4bfa4d3d9fe7a2ed3b791e62",
+            "network.ani.io/generation": "1",
+            "network.ani.io/instance-id": "lb02-2b3122-base-client",
+            "network.ani.io/submission-id": "b2344384-698a-4c7a-a45a-a780080e1a10",
+            "network.ani.io/tenant-id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "network.ani.io/test-run": "lb02-09141908-2b3122"
+          },
+          "name": "lb02-2b3122-base-client",
+          "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+          "resourceVersion": "276881",
+          "uid": "6e3cfa90-d485-4311-a451-b8fa798acb7a"
+        },
+        "spec": {
+          "automountServiceAccountToken": false,
+          "containers": [
+            {
+              "env": [
+                {
+                  "name": "NET05_ID",
+                  "value": "lb02-09141908-2b3122"
+                },
+                {
+                  "name": "ANI_WORKLOAD_ID",
+                  "value": "lb02-2b3122-base-client"
+                },
+                {
+                  "name": "NET05_PORT",
+                  "value": "8080"
+                }
+              ],
+              "image": "localhost/lb02-2b3122-probe@sha256:647c2acd8e115511a18506014995ec01b7d0d62fbc05f2a6e51a5c65c2a3fcce",
+              "imagePullPolicy": "Never",
+              "name": "probe",
+              "ports": [
+                {
+                  "containerPort": 8080,
+                  "protocol": "TCP"
+                }
+              ],
+              "resources": {
+                "limits": {
+                  "cpu": "100m",
+                  "memory": "64Mi"
+                },
+                "requests": {
+                  "cpu": "10m",
+                  "memory": "32Mi"
+                }
+              },
+              "securityContext": {
+                "allowPrivilegeEscalation": false,
+                "capabilities": {
+                  "drop": [
+                    "ALL"
+                  ]
+                },
+                "readOnlyRootFilesystem": true
+              },
+              "terminationMessagePath": "/dev/termination-log",
+              "terminationMessagePolicy": "File"
+            }
+          ],
+          "dnsPolicy": "ClusterFirst",
+          "enableServiceLinks": true,
+          "nodeName": "ani-02",
+          "nodeSelector": {
+            "kubernetes.io/hostname": "ani-02"
+          },
+          "preemptionPolicy": "PreemptLowerPriority",
+          "priority": 0,
+          "restartPolicy": "Always",
+          "schedulerName": "default-scheduler",
+          "securityContext": {
+            "runAsGroup": 65532,
+            "runAsNonRoot": true,
+            "runAsUser": 65532,
+            "seccompProfile": {
+              "type": "RuntimeDefault"
+            }
+          },
+          "serviceAccount": "default",
+          "serviceAccountName": "default",
+          "terminationGracePeriodSeconds": 30,
+          "tolerations": [
+            {
+              "effect": "NoExecute",
+              "key": "node.kubernetes.io/not-ready",
+              "operator": "Exists",
+              "tolerationSeconds": 300
+            },
+            {
+              "effect": "NoExecute",
+              "key": "node.kubernetes.io/unreachable",
+              "operator": "Exists",
+              "tolerationSeconds": 300
+            }
+          ]
+        },
+        "status": {
+          "conditions": [
+            {
+              "lastProbeTime": null,
+              "lastTransitionTime": "2026-09-15T04:23:01Z",
+              "observedGeneration": 1,
+              "status": "True",
+              "type": "PodReadyToStartContainers"
+            },
+            {
+              "lastProbeTime": null,
+              "lastTransitionTime": "2026-09-15T04:22:59Z",
+              "observedGeneration": 1,
+              "status": "True",
+              "type": "Initialized"
+            },
+            {
+              "lastProbeTime": null,
+              "lastTransitionTime": "2026-09-15T04:23:01Z",
+              "observedGeneration": 1,
+              "status": "True",
+              "type": "Ready"
+            },
+            {
+              "lastProbeTime": null,
+              "lastTransitionTime": "2026-09-15T04:23:01Z",
+              "observedGeneration": 1,
+              "status": "True",
+              "type": "ContainersReady"
+            },
+            {
+              "lastProbeTime": null,
+              "lastTransitionTime": "2026-09-15T04:22:59Z",
+              "observedGeneration": 1,
+              "status": "True",
+              "type": "PodScheduled"
+            }
+          ],
+          "containerStatuses": [
+            {
+              "allocatedResources": {
+                "cpu": "10m",
+                "memory": "32Mi"
+              },
+              "containerID": "containerd://9873bd653be25eea85895ae62ff6725dc3bc192c77c99b7406a0524464efb36f",
+              "image": "localhost/lb02-2b3122-probe:20260915",
+              "imageID": "docker.io/library/import-2026-09-15@sha256:6dc16949364cbd67c142d6d0ca3aa6353146917816936e63beb672621fcb9295",
+              "lastState": {},
+              "name": "probe",
+              "ready": true,
+              "resources": {
+                "limits": {
+                  "cpu": "100m",
+                  "memory": "64Mi"
+                },
+                "requests": {
+                  "cpu": "10m",
+                  "memory": "32Mi"
+                }
+              },
+              "restartCount": 0,
+              "started": true,
+              "state": {
+                "running": {
+                  "startedAt": "2026-09-15T04:23:01Z"
+                }
+              },
+              "user": {
+                "linux": {
+                  "gid": 65532,
+                  "supplementalGroups": [
+                    65532
+                  ],
+                  "uid": 65532
+                }
+              }
+            }
+          ],
+          "hostIP": "172.16.101.11",
+          "hostIPs": [
+            {
+              "ip": "172.16.101.11"
+            }
+          ],
+          "observedGeneration": 1,
+          "phase": "Running",
+          "podIP": "10.233.0.2",
+          "podIPs": [
+            {
+              "ip": "10.233.0.2"
+            }
+          ],
+          "qosClass": "Burstable",
+          "startTime": "2026-09-15T04:22:59Z"
+        }
+      }
+    ],
+    "kind": "List",
+    "metadata": {
+      "resourceVersion": ""
+    }
+  },
+  "stderr": ""
+}

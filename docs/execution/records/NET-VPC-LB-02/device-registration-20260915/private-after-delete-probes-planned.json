@@ -1,0 +1,30 @@
+{
+  "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+  "commands": [
+    {
+      "pod": "lb02-2b3122-base-client",
+      "label": "deleted-vip-unreachable",
+      "argv": [
+        "/probe",
+        "request",
+        "http://10.233.0.200:8080/?nonce=deleted-vip-01"
+      ],
+      "expect_exit": 2
+    },
+    {
+      "pod": "lb02-2b3122-base-client",
+      "label": "backend-positive-control",
+      "argv": [
+        "/probe",
+        "request",
+        "http://10.233.1.2:8080/?nonce=deleted-vip-positive-01"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"instance_id\":\"lb02-2b3122-base-a\"",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"nonce\":\"deleted-vip-positive-01\""
+      ]
+    }
+  ]
+}

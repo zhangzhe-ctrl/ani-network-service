@@ -1,0 +1,7 @@
+{
+  "at": "2026-09-15T04:01:02.524334+00:00",
+  "execution_host": "ubuntu",
+  "exit": 0,
+  "stdout": "{\"query\": \"SELECT row_to_json(t) FROM (SELECT resource_id,kind,state,reason,provider_name,provider_uid,pending_action,pending_since,lease_owner,lease_epoch,lease_until FROM network_platform_resources WHERE resource_id='vlan_de1416d0a8d2473ba6da717f6282c290') t;\", \"exit\": 0, \"stdout\": \"\", \"stderr\": \"ERROR:  column \\\"lease_owner\\\" does not exist\\nLINE 1: ...er_name,provider_uid,pending_action,pending_since,lease_owne...\\n                                                             ^\\n\"}\n{\"metrics\": [\"ani_network_observation_audit_collection_max_seconds 5.144929395\", \"ani_network_observation_audit_evidence_age_seconds 9.966280031\", \"ani_network_observation_audit_failures_total 0\", \"ani_network_observation_coalesced_total 550\"]}\n",
+  "stderr": ""
+}

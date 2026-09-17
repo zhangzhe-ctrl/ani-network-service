@@ -1,0 +1,13 @@
+{
+  "at": "2026-09-15T13:48:35.760968+00:00",
+  "result": "fixture_evaluation_error",
+  "run": "r26",
+  "cause": "Watch-window helper compared actual instance_id against shortened labels base-a/base-b instead of the full owner fixture identifiers already recorded by prior VIP acceptance. Raw HTTP 200, fixture_id, nonce and full instance_id are retained unchanged.",
+  "expected": [
+    "lb02-2b3122-base-a",
+    "lb02-2b3122-base-b"
+  ],
+  "expected_source": "private-vip-audit-refresh-r24-assessment.json",
+  "action": "Keep original window output, independently validate all raw responses against the pre-existing full identifiers; report both-backend coverage separately, do not assume sparse sampling reaches both.",
+  "script": ".work/watch-window-r26.py"
+}

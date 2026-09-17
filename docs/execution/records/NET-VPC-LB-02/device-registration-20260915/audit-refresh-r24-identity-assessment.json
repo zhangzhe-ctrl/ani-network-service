@@ -1,0 +1,122 @@
+{
+  "at": "2026-09-15T12:39:14.482041+00:00",
+  "result": "pass",
+  "recorded_backend_identities": [
+    {
+      "member_id": "0934ed17-2ac7-4ee0-a9b9-7214f308870b",
+      "kind": "Pod",
+      "name": "lb02-2b3122-base-b",
+      "uid": "e4c49404-afc1-4ff5-9e22-08521633d69c",
+      "recorded_identity_present": true
+    },
+    {
+      "member_id": "0934ed17-2ac7-4ee0-a9b9-7214f308870b",
+      "kind": "VNic",
+      "name": "auto-lb02-2b3122-base-b-vnic-hcfzg",
+      "uid": "f23738b9-c1a7-43ad-a724-e1b867ef0d52",
+      "recorded_identity_present": true
+    },
+    {
+      "member_id": "0934ed17-2ac7-4ee0-a9b9-7214f308870b",
+      "kind": "VNicIP",
+      "name": "auto-lb02-2b3122-base-b-vnic-hcfzg",
+      "uid": "eaaa4210-f200-4009-82ca-b2137ffb491b",
+      "recorded_identity_present": true
+    },
+    {
+      "member_id": "ffc8fde0-3f10-4850-a3d8-ba3bd870ce6f",
+      "kind": "Pod",
+      "name": "lb02-2b3122-base-a",
+      "uid": "a0fb8a3c-9025-43b4-a45f-5114ffc5f3b5",
+      "recorded_identity_present": true
+    },
+    {
+      "member_id": "ffc8fde0-3f10-4850-a3d8-ba3bd870ce6f",
+      "kind": "VNic",
+      "name": "auto-lb02-2b3122-base-a-vnic-z7rvp",
+      "uid": "0b650c18-839a-49ac-97d9-7157a50c224c",
+      "recorded_identity_present": true
+    },
+    {
+      "member_id": "ffc8fde0-3f10-4850-a3d8-ba3bd870ce6f",
+      "kind": "VNicIP",
+      "name": "auto-lb02-2b3122-base-a-vnic-z7rvp",
+      "uid": "bc194f0b-fc1b-489d-8873-296e1b639146",
+      "recorded_identity_present": true
+    }
+  ],
+  "retained_provider_uids": [
+    {
+      "kind": "Gateway",
+      "name": "lb-74f96109961444a48b26c31601e6131f",
+      "uid": "2deefbdc-ca81-4701-8725-dccb8ee18d66"
+    },
+    {
+      "kind": "Gateway",
+      "name": "lb-cc562f7d8be147afae8144555aa7243b",
+      "uid": "ea63b906-a300-4364-a62a-21e5910429cf"
+    },
+    {
+      "kind": "Service",
+      "name": "lb-74f96109961444a48b26c31601e6131f",
+      "uid": "cbbfbc82-49c0-4bbc-96f3-a3924f685421"
+    },
+    {
+      "kind": "Service",
+      "name": "lb-cc562f7d8be147afae8144555aa7243b",
+      "uid": "b44d26a4-99b0-4a01-bf6a-46bc001d0b26"
+    },
+    {
+      "kind": "Deployment",
+      "name": "lb-74f96109961444a48b26c31601e6131f",
+      "uid": "74c76b1a-6020-471c-b9fd-ab0f7a51ca09"
+    },
+    {
+      "kind": "Deployment",
+      "name": "lb-cc562f7d8be147afae8144555aa7243b",
+      "uid": "f1e008a9-249a-49d7-9507-a7516135b5fc"
+    },
+    {
+      "kind": "Pod",
+      "name": "lb-74f96109961444a48b26c31601e6131f-75568698bb-8zg4x",
+      "uid": "ce02fd40-202f-457a-be79-11af94711234"
+    },
+    {
+      "kind": "Pod",
+      "name": "lb-74f96109961444a48b26c31601e6131f-75568698bb-vb2fd",
+      "uid": "ad31a52c-1481-48db-bfd1-10e0f50c6cb4"
+    },
+    {
+      "kind": "Pod",
+      "name": "lb-cc562f7d8be147afae8144555aa7243b-8647f8484-f4gqb",
+      "uid": "02205640-fe52-4523-8673-5641e32d9029"
+    },
+    {
+      "kind": "Pod",
+      "name": "lb-cc562f7d8be147afae8144555aa7243b-8647f8484-l8vth",
+      "uid": "d321a191-e66b-4782-8375-d0ec1fed3880"
+    },
+    {
+      "kind": "Pod",
+      "name": "lb02-2b3122-base-a",
+      "uid": "a0fb8a3c-9025-43b4-a45f-5114ffc5f3b5"
+    },
+    {
+      "kind": "Pod",
+      "name": "lb02-2b3122-base-b",
+      "uid": "e4c49404-afc1-4ff5-9e22-08521633d69c"
+    },
+    {
+      "kind": "Pod",
+      "name": "lb02-2b3122-base-client",
+      "uid": "6e3cfa90-d485-4311-a451-b8fa798acb7a"
+    }
+  ],
+  "scope": "Point-in-time identity comparison only; not proof of uninterrupted observation or forwarding.",
+  "evidence": [
+    "audit-refresh-r24-backend-identities.json",
+    "audit-refresh-r24-attachment-history.json",
+    "cross-namespace-recovered-provider.json",
+    "audit-refresh-r24-provider.json"
+  ]
+}

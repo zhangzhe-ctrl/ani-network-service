@@ -1,0 +1,38 @@
+{
+  "at": "2026-09-15T12:12:52.623914+00:00",
+  "execution_host": "ubuntu",
+  "source_run": "20260915T120552Z-3e13f4c9",
+  "archive_sha256": "1f0ef8e266577f35ddacdff8fc7eb2f86db6045ee2afd05337af913fefaf4cb3",
+  "manifest_sha256": "947d378f661438e74874e4a478dc9046c44853ab46ca5b031fa2f5d61718c54f",
+  "command": [
+    "bash",
+    "-e",
+    "-c",
+    "validation_tmp=$(mktemp -d /var/tmp/nlb2.XXXXXX); chmod 700 \"$validation_tmp\"; export TMPDIR=\"$validation_tmp\"; scripts/integration -race ./internal/data -run \"^(TestEgressRefreshesInvalidAuditWithoutLosingAppliedFacts|TestLBRefreshesInvalidAuditAndStillRejectsReusedBackendIdentity|TestEgressKCAdapterSharedObservationLifecycleAndDrift|TestLBCapabilityUsesSharedAuditAndKeepsVPCIndependent)$\" -timeout 4m -json"
+  ],
+  "conclusion": "Both single-call audit refresh regressions pass with race, changed UIDs are still rejected, and the existing egress drift and LB capability regressions pass. Full candidate gates and live observation remain pending.",
+  "test_results": [
+    {
+      "Test": "TestEgressRefreshesInvalidAuditWithoutLosingAppliedFacts",
+      "Action": "pass",
+      "Elapsed": 1.64
+    },
+    {
+      "Test": "TestLBRefreshesInvalidAuditAndStillRejectsReusedBackendIdentity",
+      "Action": "pass",
+      "Elapsed": 2.16
+    },
+    {
+      "Test": "TestEgressKCAdapterSharedObservationLifecycleAndDrift",
+      "Action": "pass",
+      "Elapsed": 2.54
+    },
+    {
+      "Test": "TestLBCapabilityUsesSharedAuditAndKeepsVPCIndependent",
+      "Action": "pass",
+      "Elapsed": 11.72
+    }
+  ],
+  "log": "audit-refresh-green-command.txt",
+  "log_sha256": "72ba641a83ae2735304b714a93104ae693968ce02c194518984662a2fe934aad"
+}

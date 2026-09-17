@@ -153,9 +153,13 @@ type NodeInterface struct {
 	Addresses                                       []string
 	Master                                          string
 	OVSManaged, KCManaged, DefaultRoute, Management bool
-	Selectable                                      bool
-	UnavailableReasons, VlanNetworkIDs              []string
-	ObservedAt                                      time.Time
+	// KCBridgeReady is collected from the real OVS bridge, vendor and mapping.
+	// Config identity/ownership are supplied by the provider, never the caller.
+	KCBridgeReady, KCConfigured        bool
+	KCConfigUID, KCDeviceOwner         string
+	Selectable                         bool
+	UnavailableReasons, VlanNetworkIDs []string
+	ObservedAt                         time.Time
 }
 type InterfaceInventory struct {
 	CollectedAt time.Time
@@ -667,11 +671,15 @@ func FilterNodeInterfaces(items []NodeInterface, now time.Time, freshness time.D
 		if v.Kind != "device" {
 			reject("not_physical_device")
 		}
-		if v.Master != "" || v.OVSManaged {
+		managedReady := v.KCManaged && v.KCConfigured && v.KCConfigUID != "" && v.KCBridgeReady && v.OVSManaged && v.Master == "ovs-system" && v.MAC != "" && v.LinkUp && v.Carrier
+		if (v.Master != "" || v.OVSManaged) && !managedReady {
 			reject("already_in_use")
 		}
-		if v.KCManaged {
-			reject("already_managed")
+		if (v.KCManaged || v.KCConfigured) && !managedReady {
+			reject("managed_device_not_ready")
+		}
+		if v.KCDeviceOwner != "" {
+			reject("already_registered")
 		}
 		for _, raw := range v.Addresses {
 			ip, err := netip.ParsePrefix(raw)

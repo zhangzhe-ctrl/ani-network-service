@@ -1,0 +1,1018 @@
+{
+  "at": "2026-09-15T08:19:04.786858+00:00",
+  "script": "public-pool-arp-screen.py",
+  "script_sha256": "afe0ec0d9fdd4c42fbb8974d553583d5003a7fbfbdcabfc615c7c108fa9584d1",
+  "nodes": [
+    {
+      "host": "ani-test-1",
+      "command": [
+        "ssh",
+        "-F",
+        "/home/chabking/.ssh/config",
+        "-o",
+        "BatchMode=yes",
+        "-o",
+        "ConnectTimeout=8",
+        "ani-test-1",
+        "sudo -n python3 -"
+      ],
+      "exit": 0,
+      "probe": {
+        "at": "2026-09-15T08:18:03.253816+00:00",
+        "interface": "ens35",
+        "mac": "00:0c:29:e2:f0:2b",
+        "cases": [
+          {
+            "target": "172.16.102.1",
+            "source_field": "172.16.102.200",
+            "transmit_vlan": null,
+            "frames_sent": 2,
+            "incoming_frames_seen": 2,
+            "replies": [
+              {
+                "sender": "172.16.102.1",
+                "sender_mac": "00:1e:08:2f:bb:17",
+                "received_vlan": null
+              }
+            ],
+            "nic_delta": {
+              "tx_packets": 2,
+              "rx_packets": 2,
+              "tx_errors": 0,
+              "rx_errors": 0,
+              "tx_dropped": 0,
+              "rx_dropped": 0
+            },
+            "result": "pass"
+          },
+          {
+            "target": "172.16.102.2",
+            "source_field": "0.0.0.0",
+            "transmit_vlan": null,
+            "frames_sent": 2,
+            "incoming_frames_seen": 0,
+            "replies": [],
+            "nic_delta": {
+              "tx_packets": 2,
+              "rx_packets": 0,
+              "tx_errors": 0,
+              "rx_errors": 0,
+              "tx_dropped": 0,
+              "rx_dropped": 0
+            },
+            "result": "not_verified"
+          },
+          {
+            "target": "172.16.102.192",
+            "source_field": "0.0.0.0",
+            "transmit_vlan": null,
+            "frames_sent": 2,
+            "incoming_frames_seen": 0,
+            "replies": [],
+            "nic_delta": {
+              "tx_packets": 2,
+              "rx_packets": 0,
+              "tx_errors": 0,
+              "rx_errors": 0,
+              "tx_dropped": 0,
+              "rx_dropped": 0
+            },
+            "result": "not_verified"
+          },
+          {
+            "target": "172.16.102.193",
+            "source_field": "0.0.0.0",
+            "transmit_vlan": null,
+            "frames_sent": 2,
+            "incoming_frames_seen": 0,
+            "replies": [],
+            "nic_delta": {
+              "tx_packets": 2,
+              "rx_packets": 0,
+              "tx_errors": 0,
+              "rx_errors": 0,
+              "tx_dropped": 0,
+              "rx_dropped": 0
+            },
+            "result": "not_verified"
+          },
+          {
+            "target": "172.16.102.194",
+            "source_field": "0.0.0.0",
+            "transmit_vlan": null,
+            "frames_sent": 2,
+            "incoming_frames_seen": 0,
+            "replies": [],
+            "nic_delta": {
+              "tx_packets": 2,
+              "rx_packets": 0,
+              "tx_errors": 0,
+              "rx_errors": 0,
+              "tx_dropped": 0,
+              "rx_dropped": 0
+            },
+            "result": "not_verified"
+          },
+          {
+            "target": "172.16.102.195",
+            "source_field": "0.0.0.0",
+            "transmit_vlan": null,
+            "frames_sent": 2,
+            "incoming_frames_seen": 0,
+            "replies": [],
+            "nic_delta": {
+              "tx_packets": 2,
+              "rx_packets": 0,
+              "tx_errors": 0,
+              "rx_errors": 0,
+              "tx_dropped": 0,
+              "rx_dropped": 0
+            },
+            "result": "not_verified"
+          },
+          {
+            "target": "172.16.102.196",
+            "source_field": "0.0.0.0",
+            "transmit_vlan": null,
+            "frames_sent": 2,
+            "incoming_frames_seen": 0,
+            "replies": [],
+            "nic_delta": {
+              "tx_packets": 2,
+              "rx_packets": 0,
+              "tx_errors": 0,
+              "rx_errors": 0,
+              "tx_dropped": 0,
+              "rx_dropped": 0
+            },
+            "result": "not_verified"
+          },
+          {
+            "target": "172.16.102.197",
+            "source_field": "0.0.0.0",
+            "transmit_vlan": null,
+            "frames_sent": 2,
+            "incoming_frames_seen": 0,
+            "replies": [],
+            "nic_delta": {
+              "tx_packets": 2,
+              "rx_packets": 0,
+              "tx_errors": 0,
+              "rx_errors": 0,
+              "tx_dropped": 0,
+              "rx_dropped": 0
+            },
+            "result": "not_verified"
+          },
+          {
+            "target": "172.16.102.198",
+            "source_field": "0.0.0.0",
+            "transmit_vlan": null,
+            "frames_sent": 2,
+            "incoming_frames_seen": 0,
+            "replies": [],
+            "nic_delta": {
+              "tx_packets": 2,
+              "rx_packets": 0,
+              "tx_errors": 0,
+              "rx_errors": 0,
+              "tx_dropped": 0,
+              "rx_dropped": 0
+            },
+            "result": "not_verified"
+          },
+          {
+            "target": "172.16.102.199",
+            "source_field": "0.0.0.0",
+            "transmit_vlan": null,
+            "frames_sent": 2,
+            "incoming_frames_seen": 0,
+            "replies": [],
+            "nic_delta": {
+              "tx_packets": 2,
+              "rx_packets": 0,
+              "tx_errors": 0,
+              "rx_errors": 0,
+              "tx_dropped": 0,
+              "rx_dropped": 0
+            },
+            "result": "not_verified"
+          },
+          {
+            "target": "172.16.102.200",
+            "source_field": "0.0.0.0",
+            "transmit_vlan": null,
+            "frames_sent": 2,
+            "incoming_frames_seen": 0,
+            "replies": [],
+            "nic_delta": {
+              "tx_packets": 2,
+              "rx_packets": 0,
+              "tx_errors": 0,
+              "rx_errors": 0,
+              "tx_dropped": 0,
+              "rx_dropped": 0
+            },
+            "result": "not_verified"
+          },
+          {
+            "target": "172.16.102.201",
+            "source_field": "0.0.0.0",
+            "transmit_vlan": null,
+            "frames_sent": 2,
+            "incoming_frames_seen": 0,
+            "replies": [],
+            "nic_delta": {
+              "tx_packets": 2,
+              "rx_packets": 0,
+              "tx_errors": 0,
+              "rx_errors": 0,
+              "tx_dropped": 0,
+              "rx_dropped": 0
+            },
+            "result": "not_verified"
+          },
+          {
+            "target": "172.16.102.202",
+            "source_field": "0.0.0.0",
+            "transmit_vlan": null,
+            "frames_sent": 2,
+            "incoming_frames_seen": 0,
+            "replies": [],
+            "nic_delta": {
+              "tx_packets": 2,
+              "rx_packets": 0,
+              "tx_errors": 0,
+              "rx_errors": 0,
+              "tx_dropped": 0,
+              "rx_dropped": 0
+            },
+            "result": "not_verified"
+          },
+          {
+            "target": "172.16.102.203",
+            "source_field": "0.0.0.0",
+            "transmit_vlan": null,
+            "frames_sent": 2,
+            "incoming_frames_seen": 0,
+            "replies": [],
+            "nic_delta": {
+              "tx_packets": 2,
+              "rx_packets": 0,
+              "tx_errors": 0,
+              "rx_errors": 0,
+              "tx_dropped": 0,
+              "rx_dropped": 0
+            },
+            "result": "not_verified"
+          },
+          {
+            "target": "172.16.102.204",
+            "source_field": "0.0.0.0",
+            "transmit_vlan": null,
+            "frames_sent": 2,
+            "incoming_frames_seen": 0,
+            "replies": [],
+            "nic_delta": {
+              "tx_packets": 2,
+              "rx_packets": 0,
+              "tx_errors": 0,
+              "rx_errors": 0,
+              "tx_dropped": 0,
+              "rx_dropped": 0
+            },
+            "result": "not_verified"
+          },
+          {
+            "target": "172.16.102.205",
+            "source_field": "0.0.0.0",
+            "transmit_vlan": null,
+            "frames_sent": 2,
+            "incoming_frames_seen": 0,
+            "replies": [],
+            "nic_delta": {
+              "tx_packets": 2,
+              "rx_packets": 0,
+              "tx_errors": 0,
+              "rx_errors": 0,
+              "tx_dropped": 0,
+              "rx_dropped": 0
+            },
+            "result": "not_verified"
+          },
+          {
+            "target": "172.16.102.206",
+            "source_field": "0.0.0.0",
+            "transmit_vlan": null,
+            "frames_sent": 2,
+            "incoming_frames_seen": 0,
+            "replies": [],
+            "nic_delta": {
+              "tx_packets": 2,
+              "rx_packets": 0,
+              "tx_errors": 0,
+              "rx_errors": 0,
+              "tx_dropped": 0,
+              "rx_dropped": 0
+            },
+            "result": "not_verified"
+          },
+          {
+            "target": "172.16.102.207",
+            "source_field": "0.0.0.0",
+            "transmit_vlan": null,
+            "frames_sent": 2,
+            "incoming_frames_seen": 0,
+            "replies": [],
+            "nic_delta": {
+              "tx_packets": 2,
+              "rx_packets": 0,
+              "tx_errors": 0,
+              "rx_errors": 0,
+              "tx_dropped": 0,
+              "rx_dropped": 0
+            },
+            "result": "not_verified"
+          }
+        ],
+        "host_configuration_changes": 0,
+        "interpretation": "No candidate reply is conflict-screening only, not proof of reservation. Gateway ordinary-source ARP is a link diagnostic, not public egress verification."
+      },
+      "stderr": ""
+    },
+    {
+      "host": "ani-test-2",
+      "command": [
+        "ssh",
+        "-F",
+        "/home/chabking/.ssh/config",
+        "-o",
+        "BatchMode=yes",
+        "-o",
+        "ConnectTimeout=8",
+        "ani-test-2",
+        "sudo -n python3 -"
+      ],
+      "exit": 0,
+      "probe": {
+        "at": "2026-09-15T08:18:33.974364+00:00",
+        "interface": "ens35",
+        "mac": "00:0c:29:1a:5a:19",
+        "cases": [
+          {
+            "target": "172.16.102.1",
+            "source_field": "172.16.102.200",
+            "transmit_vlan": null,
+            "frames_sent": 2,
+            "incoming_frames_seen": 2,
+            "replies": [
+              {
+                "sender": "172.16.102.1",
+                "sender_mac": "00:1e:08:2f:bb:17",
+                "received_vlan": null
+              }
+            ],
+            "nic_delta": {
+              "tx_packets": 2,
+              "rx_packets": 2,
+              "tx_errors": 0,
+              "rx_errors": 0,
+              "tx_dropped": 0,
+              "rx_dropped": 0
+            },
+            "result": "pass"
+          },
+          {
+            "target": "172.16.102.2",
+            "source_field": "0.0.0.0",
+            "transmit_vlan": null,
+            "frames_sent": 2,
+            "incoming_frames_seen": 0,
+            "replies": [],
+            "nic_delta": {
+              "tx_packets": 2,
+              "rx_packets": 0,
+              "tx_errors": 0,
+              "rx_errors": 0,
+              "tx_dropped": 0,
+              "rx_dropped": 0
+            },
+            "result": "not_verified"
+          },
+          {
+            "target": "172.16.102.192",
+            "source_field": "0.0.0.0",
+            "transmit_vlan": null,
+            "frames_sent": 2,
+            "incoming_frames_seen": 0,
+            "replies": [],
+            "nic_delta": {
+              "tx_packets": 2,
+              "rx_packets": 0,
+              "tx_errors": 0,
+              "rx_errors": 0,
+              "tx_dropped": 0,
+              "rx_dropped": 0
+            },
+            "result": "not_verified"
+          },
+          {
+            "target": "172.16.102.193",
+            "source_field": "0.0.0.0",
+            "transmit_vlan": null,
+            "frames_sent": 2,
+            "incoming_frames_seen": 0,
+            "replies": [],
+            "nic_delta": {
+              "tx_packets": 2,
+              "rx_packets": 0,
+              "tx_errors": 0,
+              "rx_errors": 0,
+              "tx_dropped": 0,
+              "rx_dropped": 0
+            },
+            "result": "not_verified"
+          },
+          {
+            "target": "172.16.102.194",
+            "source_field": "0.0.0.0",
+            "transmit_vlan": null,
+            "frames_sent": 2,
+            "incoming_frames_seen": 0,
+            "replies": [],
+            "nic_delta": {
+              "tx_packets": 2,
+              "rx_packets": 0,
+              "tx_errors": 0,
+              "rx_errors": 0,
+              "tx_dropped": 0,
+              "rx_dropped": 0
+            },
+            "result": "not_verified"
+          },
+          {
+            "target": "172.16.102.195",
+            "source_field": "0.0.0.0",
+            "transmit_vlan": null,
+            "frames_sent": 2,
+            "incoming_frames_seen": 0,
+            "replies": [],
+            "nic_delta": {
+              "tx_packets": 2,
+              "rx_packets": 0,
+              "tx_errors": 0,
+              "rx_errors": 0,
+              "tx_dropped": 0,
+              "rx_dropped": 0
+            },
+            "result": "not_verified"
+          },
+          {
+            "target": "172.16.102.196",
+            "source_field": "0.0.0.0",
+            "transmit_vlan": null,
+            "frames_sent": 2,
+            "incoming_frames_seen": 0,
+            "replies": [],
+            "nic_delta": {
+              "tx_packets": 2,
+              "rx_packets": 0,
+              "tx_errors": 0,
+              "rx_errors": 0,
+              "tx_dropped": 0,
+              "rx_dropped": 0
+            },
+            "result": "not_verified"
+          },
+          {
+            "target": "172.16.102.197",
+            "source_field": "0.0.0.0",
+            "transmit_vlan": null,
+            "frames_sent": 2,
+            "incoming_frames_seen": 0,
+            "replies": [],
+            "nic_delta": {
+              "tx_packets": 2,
+              "rx_packets": 0,
+              "tx_errors": 0,
+              "rx_errors": 0,
+              "tx_dropped": 0,
+              "rx_dropped": 0
+            },
+            "result": "not_verified"
+          },
+          {
+            "target": "172.16.102.198",
+            "source_field": "0.0.0.0",
+            "transmit_vlan": null,
+            "frames_sent": 2,
+            "incoming_frames_seen": 0,
+            "replies": [],
+            "nic_delta": {
+              "tx_packets": 2,
+              "rx_packets": 0,
+              "tx_errors": 0,
+              "rx_errors": 0,
+              "tx_dropped": 0,
+              "rx_dropped": 0
+            },
+            "result": "not_verified"
+          },
+          {
+            "target": "172.16.102.199",
+            "source_field": "0.0.0.0",
+            "transmit_vlan": null,
+            "frames_sent": 2,
+            "incoming_frames_seen": 0,
+            "replies": [],
+            "nic_delta": {
+              "tx_packets": 2,
+              "rx_packets": 0,
+              "tx_errors": 0,
+              "rx_errors": 0,
+              "tx_dropped": 0,
+              "rx_dropped": 0
+            },
+            "result": "not_verified"
+          },
+          {
+            "target": "172.16.102.200",
+            "source_field": "0.0.0.0",
+            "transmit_vlan": null,
+            "frames_sent": 2,
+            "incoming_frames_seen": 0,
+            "replies": [],
+            "nic_delta": {
+              "tx_packets": 2,
+              "rx_packets": 0,
+              "tx_errors": 0,
+              "rx_errors": 0,
+              "tx_dropped": 0,
+              "rx_dropped": 0
+            },
+            "result": "not_verified"
+          },
+          {
+            "target": "172.16.102.201",
+            "source_field": "0.0.0.0",
+            "transmit_vlan": null,
+            "frames_sent": 2,
+            "incoming_frames_seen": 0,
+            "replies": [],
+            "nic_delta": {
+              "tx_packets": 2,
+              "rx_packets": 0,
+              "tx_errors": 0,
+              "rx_errors": 0,
+              "tx_dropped": 0,
+              "rx_dropped": 0
+            },
+            "result": "not_verified"
+          },
+          {
+            "target": "172.16.102.202",
+            "source_field": "0.0.0.0",
+            "transmit_vlan": null,
+            "frames_sent": 2,
+            "incoming_frames_seen": 0,
+            "replies": [],
+            "nic_delta": {
+              "tx_packets": 2,
+              "rx_packets": 0,
+              "tx_errors": 0,
+              "rx_errors": 0,
+              "tx_dropped": 0,
+              "rx_dropped": 0
+            },
+            "result": "not_verified"
+          },
+          {
+            "target": "172.16.102.203",
+            "source_field": "0.0.0.0",
+            "transmit_vlan": null,
+            "frames_sent": 2,
+            "incoming_frames_seen": 0,
+            "replies": [],
+            "nic_delta": {
+              "tx_packets": 2,
+              "rx_packets": 0,
+              "tx_errors": 0,
+              "rx_errors": 0,
+              "tx_dropped": 0,
+              "rx_dropped": 0
+            },
+            "result": "not_verified"
+          },
+          {
+            "target": "172.16.102.204",
+            "source_field": "0.0.0.0",
+            "transmit_vlan": null,
+            "frames_sent": 2,
+            "incoming_frames_seen": 0,
+            "replies": [],
+            "nic_delta": {
+              "tx_packets": 2,
+              "rx_packets": 0,
+              "tx_errors": 0,
+              "rx_errors": 0,
+              "tx_dropped": 0,
+              "rx_dropped": 0
+            },
+            "result": "not_verified"
+          },
+          {
+            "target": "172.16.102.205",
+            "source_field": "0.0.0.0",
+            "transmit_vlan": null,
+            "frames_sent": 2,
+            "incoming_frames_seen": 0,
+            "replies": [],
+            "nic_delta": {
+              "tx_packets": 2,
+              "rx_packets": 0,
+              "tx_errors": 0,
+              "rx_errors": 0,
+              "tx_dropped": 0,
+              "rx_dropped": 0
+            },
+            "result": "not_verified"
+          },
+          {
+            "target": "172.16.102.206",
+            "source_field": "0.0.0.0",
+            "transmit_vlan": null,
+            "frames_sent": 2,
+            "incoming_frames_seen": 0,
+            "replies": [],
+            "nic_delta": {
+              "tx_packets": 2,
+              "rx_packets": 0,
+              "tx_errors": 0,
+              "rx_errors": 0,
+              "tx_dropped": 0,
+              "rx_dropped": 0
+            },
+            "result": "not_verified"
+          },
+          {
+            "target": "172.16.102.207",
+            "source_field": "0.0.0.0",
+            "transmit_vlan": null,
+            "frames_sent": 2,
+            "incoming_frames_seen": 0,
+            "replies": [],
+            "nic_delta": {
+              "tx_packets": 2,
+              "rx_packets": 0,
+              "tx_errors": 0,
+              "rx_errors": 0,
+              "tx_dropped": 0,
+              "rx_dropped": 0
+            },
+            "result": "not_verified"
+          }
+        ],
+        "host_configuration_changes": 0,
+        "interpretation": "No candidate reply is conflict-screening only, not proof of reservation. Gateway ordinary-source ARP is a link diagnostic, not public egress verification."
+      },
+      "stderr": ""
+    },
+    {
+      "host": "ani-test-3",
+      "command": [
+        "ssh",
+        "-F",
+        "/home/chabking/.ssh/config",
+        "-o",
+        "BatchMode=yes",
+        "-o",
+        "ConnectTimeout=8",
+        "ani-test-3",
+        "sudo -n python3 -"
+      ],
+      "exit": 0,
+      "probe": {
+        "at": "2026-09-15T08:19:04.755392+00:00",
+        "interface": "ens35",
+        "mac": "00:0c:29:e9:32:4f",
+        "cases": [
+          {
+            "target": "172.16.102.1",
+            "source_field": "172.16.102.200",
+            "transmit_vlan": null,
+            "frames_sent": 2,
+            "incoming_frames_seen": 2,
+            "replies": [
+              {
+                "sender": "172.16.102.1",
+                "sender_mac": "00:1e:08:2f:bb:17",
+                "received_vlan": null
+              }
+            ],
+            "nic_delta": {
+              "tx_packets": 2,
+              "rx_packets": 2,
+              "tx_errors": 0,
+              "rx_errors": 0,
+              "tx_dropped": 0,
+              "rx_dropped": 0
+            },
+            "result": "pass"
+          },
+          {
+            "target": "172.16.102.2",
+            "source_field": "0.0.0.0",
+            "transmit_vlan": null,
+            "frames_sent": 2,
+            "incoming_frames_seen": 0,
+            "replies": [],
+            "nic_delta": {
+              "tx_packets": 2,
+              "rx_packets": 0,
+              "tx_errors": 0,
+              "rx_errors": 0,
+              "tx_dropped": 0,
+              "rx_dropped": 0
+            },
+            "result": "not_verified"
+          },
+          {
+            "target": "172.16.102.192",
+            "source_field": "0.0.0.0",
+            "transmit_vlan": null,
+            "frames_sent": 2,
+            "incoming_frames_seen": 0,
+            "replies": [],
+            "nic_delta": {
+              "tx_packets": 2,
+              "rx_packets": 0,
+              "tx_errors": 0,
+              "rx_errors": 0,
+              "tx_dropped": 0,
+              "rx_dropped": 0
+            },
+            "result": "not_verified"
+          },
+          {
+            "target": "172.16.102.193",
+            "source_field": "0.0.0.0",
+            "transmit_vlan": null,
+            "frames_sent": 2,
+            "incoming_frames_seen": 0,
+            "replies": [],
+            "nic_delta": {
+              "tx_packets": 2,
+              "rx_packets": 0,
+              "tx_errors": 0,
+              "rx_errors": 0,
+              "tx_dropped": 0,
+              "rx_dropped": 0
+            },
+            "result": "not_verified"
+          },
+          {
+            "target": "172.16.102.194",
+            "source_field": "0.0.0.0",
+            "transmit_vlan": null,
+            "frames_sent": 2,
+            "incoming_frames_seen": 0,
+            "replies": [],
+            "nic_delta": {
+              "tx_packets": 2,
+              "rx_packets": 0,
+              "tx_errors": 0,
+              "rx_errors": 0,
+              "tx_dropped": 0,
+              "rx_dropped": 0
+            },
+            "result": "not_verified"
+          },
+          {
+            "target": "172.16.102.195",
+            "source_field": "0.0.0.0",
+            "transmit_vlan": null,
+            "frames_sent": 2,
+            "incoming_frames_seen": 0,
+            "replies": [],
+            "nic_delta": {
+              "tx_packets": 2,
+              "rx_packets": 0,
+              "tx_errors": 0,
+              "rx_errors": 0,
+              "tx_dropped": 0,
+              "rx_dropped": 0
+            },
+            "result": "not_verified"
+          },
+          {
+            "target": "172.16.102.196",
+            "source_field": "0.0.0.0",
+            "transmit_vlan": null,
+            "frames_sent": 2,
+            "incoming_frames_seen": 0,
+            "replies": [],
+            "nic_delta": {
+              "tx_packets": 2,
+              "rx_packets": 0,
+              "tx_errors": 0,
+              "rx_errors": 0,
+              "tx_dropped": 0,
+              "rx_dropped": 0
+            },
+            "result": "not_verified"
+          },
+          {
+            "target": "172.16.102.197",
+            "source_field": "0.0.0.0",
+            "transmit_vlan": null,
+            "frames_sent": 2,
+            "incoming_frames_seen": 0,
+            "replies": [],
+            "nic_delta": {
+              "tx_packets": 2,
+              "rx_packets": 0,
+              "tx_errors": 0,
+              "rx_errors": 0,
+              "tx_dropped": 0,
+              "rx_dropped": 0
+            },
+            "result": "not_verified"
+          },
+          {
+            "target": "172.16.102.198",
+            "source_field": "0.0.0.0",
+            "transmit_vlan": null,
+            "frames_sent": 2,
+            "incoming_frames_seen": 0,
+            "replies": [],
+            "nic_delta": {
+              "tx_packets": 2,
+              "rx_packets": 0,
+              "tx_errors": 0,
+              "rx_errors": 0,
+              "tx_dropped": 0,
+              "rx_dropped": 0
+            },
+            "result": "not_verified"
+          },
+          {
+            "target": "172.16.102.199",
+            "source_field": "0.0.0.0",
+            "transmit_vlan": null,
+            "frames_sent": 2,
+            "incoming_frames_seen": 0,
+            "replies": [],
+            "nic_delta": {
+              "tx_packets": 2,
+              "rx_packets": 0,
+              "tx_errors": 0,
+              "rx_errors": 0,
+              "tx_dropped": 0,
+              "rx_dropped": 0
+            },
+            "result": "not_verified"
+          },
+          {
+            "target": "172.16.102.200",
+            "source_field": "0.0.0.0",
+            "transmit_vlan": null,
+            "frames_sent": 2,
+            "incoming_frames_seen": 0,
+            "replies": [],
+            "nic_delta": {
+              "tx_packets": 2,
+              "rx_packets": 0,
+              "tx_errors": 0,
+              "rx_errors": 0,
+              "tx_dropped": 0,
+              "rx_dropped": 0
+            },
+            "result": "not_verified"
+          },
+          {
+            "target": "172.16.102.201",
+            "source_field": "0.0.0.0",
+            "transmit_vlan": null,
+            "frames_sent": 2,
+            "incoming_frames_seen": 0,
+            "replies": [],
+            "nic_delta": {
+              "tx_packets": 2,
+              "rx_packets": 0,
+              "tx_errors": 0,
+              "rx_errors": 0,
+              "tx_dropped": 0,
+              "rx_dropped": 0
+            },
+            "result": "not_verified"
+          },
+          {
+            "target": "172.16.102.202",
+            "source_field": "0.0.0.0",
+            "transmit_vlan": null,
+            "frames_sent": 2,
+            "incoming_frames_seen": 0,
+            "replies": [],
+            "nic_delta": {
+              "tx_packets": 2,
+              "rx_packets": 0,
+              "tx_errors": 0,
+              "rx_errors": 0,
+              "tx_dropped": 0,
+              "rx_dropped": 0
+            },
+            "result": "not_verified"
+          },
+          {
+            "target": "172.16.102.203",
+            "source_field": "0.0.0.0",
+            "transmit_vlan": null,
+            "frames_sent": 2,
+            "incoming_frames_seen": 0,
+            "replies": [],
+            "nic_delta": {
+              "tx_packets": 2,
+              "rx_packets": 0,
+              "tx_errors": 0,
+              "rx_errors": 0,
+              "tx_dropped": 0,
+              "rx_dropped": 0
+            },
+            "result": "not_verified"
+          },
+          {
+            "target": "172.16.102.204",
+            "source_field": "0.0.0.0",
+            "transmit_vlan": null,
+            "frames_sent": 2,
+            "incoming_frames_seen": 0,
+            "replies": [],
+            "nic_delta": {
+              "tx_packets": 2,
+              "rx_packets": 0,
+              "tx_errors": 0,
+              "rx_errors": 0,
+              "tx_dropped": 0,
+              "rx_dropped": 0
+            },
+            "result": "not_verified"
+          },
+          {
+            "target": "172.16.102.205",
+            "source_field": "0.0.0.0",
+            "transmit_vlan": null,
+            "frames_sent": 2,
+            "incoming_frames_seen": 0,
+            "replies": [],
+            "nic_delta": {
+              "tx_packets": 2,
+              "rx_packets": 0,
+              "tx_errors": 0,
+              "rx_errors": 0,
+              "tx_dropped": 0,
+              "rx_dropped": 0
+            },
+            "result": "not_verified"
+          },
+          {
+            "target": "172.16.102.206",
+            "source_field": "0.0.0.0",
+            "transmit_vlan": null,
+            "frames_sent": 2,
+            "incoming_frames_seen": 0,
+            "replies": [],
+            "nic_delta": {
+              "tx_packets": 2,
+              "rx_packets": 0,
+              "tx_errors": 0,
+              "rx_errors": 0,
+              "tx_dropped": 0,
+              "rx_dropped": 0
+            },
+            "result": "not_verified"
+          },
+          {
+            "target": "172.16.102.207",
+            "source_field": "0.0.0.0",
+            "transmit_vlan": null,
+            "frames_sent": 2,
+            "incoming_frames_seen": 0,
+            "replies": [],
+            "nic_delta": {
+              "tx_packets": 2,
+              "rx_packets": 0,
+              "tx_errors": 0,
+              "rx_errors": 0,
+              "tx_dropped": 0,
+              "rx_dropped": 0
+            },
+            "result": "not_verified"
+          }
+        ],
+        "host_configuration_changes": 0,
+        "interpretation": "No candidate reply is conflict-screening only, not proof of reservation. Gateway ordinary-source ARP is a link diagnostic, not public egress verification."
+      },
+      "stderr": ""
+    }
+  ]
+}

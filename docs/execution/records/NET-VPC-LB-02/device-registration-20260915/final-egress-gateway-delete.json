@@ -1,0 +1,32 @@
+{
+  "at": "2026-09-15T14:45:02.420803+00:00",
+  "execution_host": "ubuntu",
+  "context": "platform",
+  "command": "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/lb-api call -target unix:///home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/platform.sock -service PlatformNetworkService -method DeleteEgressGateway",
+  "request": {
+    "gateway_id": "egw_386dc165a8744951bc624ab55c439681"
+  },
+  "exit": 0,
+  "response": {
+    "code": "OK",
+    "response": {
+      "resource": {
+        "id": "egw_386dc165a8744951bc624ab55c439681",
+        "cluster_id": "lb02-09141908-2b3122",
+        "name": "lb02-2b3122-public",
+        "description": "U09 isolated Public Host egress gateway",
+        "state": "RESOURCE_STATE_DELETING",
+        "reason": "",
+        "reason_message": "",
+        "version": "1888",
+        "created_at": "2026-09-15T02:23:03.481170Z",
+        "updated_at": "2026-09-15T14:45:02.434766Z",
+        "observed_at": "2026-09-15T14:44:53.878580Z",
+        "observation_stale": false,
+        "last_operation_id": "8bb51859-cac7-426a-823b-0c598867d873",
+        "gateway": {}
+      }
+    }
+  },
+  "stderr": ""
+}

@@ -1,0 +1,22 @@
+{
+  "name": "lb02-2b3122-snat-first-conflict",
+  "description": "U09 direct external EIP entry without VPC Public SNAT",
+  "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+  "subnet_id": "subnet_f74d90cbb5484f7fb37f8a8f6782da1d",
+  "exposure": "LOAD_BALANCER_EXPOSURE_PUBLIC",
+  "flavor": "small",
+  "public_eip_id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+  "backends": [
+    {
+      "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+      "address": "10.233.1.2",
+      "port": 8080
+    },
+    {
+      "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+      "address": "10.233.1.3",
+      "port": 8080
+    }
+  ],
+  "idempotency_key": "lb02-2b3122-snat-first-lb-competition"
+}

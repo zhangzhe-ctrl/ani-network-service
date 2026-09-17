@@ -1,0 +1,21 @@
+{
+  "at": "2026-09-15T07:05:39.064685+00:00",
+  "execution_host": "ubuntu",
+  "command": [
+    "bash",
+    "-c",
+    "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+    "kubectl",
+    "--kubeconfig",
+    "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/kubeconfig.json",
+    "--request-timeout=15s",
+    "get",
+    "vlannetwork",
+    "vlan-de1416d0a8d2473ba6da717f6282c290",
+    "-o",
+    "json"
+  ],
+  "exit": 1,
+  "stdout": "",
+  "stderr": "Error from server (NotFound): vlannetworks.networking.kubercloud.com \"vlan-de1416d0a8d2473ba6da717f6282c290\" not found\n"
+}

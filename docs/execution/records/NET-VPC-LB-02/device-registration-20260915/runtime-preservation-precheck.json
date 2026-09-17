@@ -1,0 +1,36 @@
+[
+  {
+    "at": "2026-09-15T01:52:15.816573+00:00",
+    "argv": [
+      "ssh",
+      "-F",
+      "/home/chabking/.ssh/config",
+      "-o",
+      "BatchMode=yes",
+      "-o",
+      "ConnectTimeout=8",
+      "ubuntu",
+      "python3 /home/ubuntu/workspace/ani-network-service-runs/snat-20260914T193831Z-aeb6d141/source/scripts/lb-live-runtime status --directory /home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private"
+    ],
+    "exit_code": 0,
+    "stdout": "{\"at\": \"2026-09-14T19:39:40.616486+00:00\", \"run\": \"lb02-09141908-2b3122\", \"state\": \"stopped\", \"processes\": [{\"name\": \"owner\", \"pid\": 1859371, \"start_ticks\": \"643359180\", \"live\": false}, {\"name\": \"network\", \"pid\": 1859374, \"start_ticks\": \"643359180\", \"live\": false}, {\"name\": \"tenant-a\", \"pid\": 1859376, \"start_ticks\": \"643359181\", \"live\": false}, {\"name\": \"tenant-b\", \"pid\": 1859381, \"start_ticks\": \"643359181\", \"live\": false}, {\"name\": \"platform\", \"pid\": 1859389, \"start_ticks\": \"643359181\", \"live\": false}], \"stopped_at\": \"2026-09-14T19:41:25.657415+00:00\"}\n",
+    "stderr": ""
+  },
+  {
+    "at": "2026-09-15T01:52:16.590274+00:00",
+    "argv": [
+      "ssh",
+      "-F",
+      "/home/chabking/.ssh/config",
+      "-o",
+      "BatchMode=yes",
+      "-o",
+      "ConnectTimeout=8",
+      "ubuntu",
+      "docker inspect --format '{{.Id}} {{.State.Running}}' lb02-09141908-2b3122-pg; docker exec lb02-09141908-2b3122-pg psql -X -U postgres -d net_vpc_lb_02_2b3122 -Atc 'SELECT kind,state,count(*) FROM network_platform_resources GROUP BY kind,state; SELECT count(*) FROM network_vpcs;'; ss -ltn 'sport = :38443'"
+    ],
+    "exit_code": 0,
+    "stdout": "20f28b5962f4edfdd4115e4823be65982c4ebf92754a442175aeeb75af5ea5e9 true\npublic_pool|available|1\n0\nState Recv-Q Send-Q Local Address:Port Peer Address:PortProcess\n",
+    "stderr": ""
+  }
+]

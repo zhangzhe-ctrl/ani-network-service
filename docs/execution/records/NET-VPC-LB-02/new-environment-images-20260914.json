@@ -1,0 +1,113 @@
+{
+  "at": "2026-09-14T16:24:25.165484+00:00",
+  "mode": "read_only",
+  "checks": [
+    {
+      "host": "ani-test-1",
+      "command": [
+        "ssh",
+        "-F",
+        "/home/chabking/.ssh/config",
+        "-o",
+        "BatchMode=yes",
+        "ani-test-1",
+        "sudo",
+        "-n",
+        "/usr/local/bin/crictl",
+        "inspecti",
+        "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4"
+      ],
+      "exit": 0,
+      "status": {
+        "id": "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4",
+        "repoTags": [
+          "docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2"
+        ],
+        "repoDigests": [],
+        "size": "220160436"
+      },
+      "oci_labels": {
+        "org.opencontainers.image.ref.name": "ubuntu",
+        "org.opencontainers.image.version": "24.04"
+      }
+    },
+    {
+      "host": "ani-test-1",
+      "command": [
+        "ssh",
+        "-F",
+        "/home/chabking/.ssh/config",
+        "-o",
+        "BatchMode=yes",
+        "ani-test-1",
+        "sudo",
+        "-n",
+        "/usr/local/bin/crictl",
+        "inspecti",
+        "sha256:67f1cf44a5109717285c5aef449d02180762121747cbef3c261fe7e62e934b9a"
+      ],
+      "exit": 0,
+      "status": {
+        "id": "sha256:67f1cf44a5109717285c5aef449d02180762121747cbef3c261fe7e62e934b9a",
+        "repoTags": [
+          "docker.changqingyun.cn/kubercloud/envoy:distroless-v1.38.3"
+        ],
+        "repoDigests": [],
+        "size": "41907319"
+      },
+      "oci_labels": {}
+    },
+    {
+      "host": "ani-test-1",
+      "command": [
+        "ssh",
+        "-F",
+        "/home/chabking/.ssh/config",
+        "-o",
+        "BatchMode=yes",
+        "ani-test-1",
+        "sudo",
+        "-n",
+        "/usr/local/bin/crictl",
+        "inspecti",
+        "sha256:5f75b495bf07beb23f8ac4f97649e876ed723f1c6d02031bbc7cd23028b490b6"
+      ],
+      "exit": 0,
+      "status": {
+        "id": "sha256:5f75b495bf07beb23f8ac4f97649e876ed723f1c6d02031bbc7cd23028b490b6",
+        "repoTags": [
+          "docker.changqingyun.cn/kubercloud/gateway-dev:latest"
+        ],
+        "repoDigests": [],
+        "size": "74678202"
+      },
+      "oci_labels": {}
+    },
+    {
+      "host": "ani-test-3",
+      "command": [
+        "ssh",
+        "-F",
+        "/home/chabking/.ssh/config",
+        "-o",
+        "BatchMode=yes",
+        "ani-test-3",
+        "sudo",
+        "-n",
+        "/usr/local/bin/crictl",
+        "inspecti",
+        "sha256:6f1bf5d9c9b108b0aa98986e187d8a62366bb38d19ed7e15e50863b30de9d755"
+      ],
+      "exit": 0,
+      "status": {
+        "id": "sha256:6f1bf5d9c9b108b0aa98986e187d8a62366bb38d19ed7e15e50863b30de9d755",
+        "repoTags": [
+          "docker.changqingyun.cn/kubercloud/gateway:v1.8.3"
+        ],
+        "repoDigests": [],
+        "size": "73617646"
+      },
+      "oci_labels": {}
+    }
+  ]
+}

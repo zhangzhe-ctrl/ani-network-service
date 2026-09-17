@@ -1,0 +1,86 @@
+{
+  "at": "2026-09-17T11:31:52.418111+00:00",
+  "result": {
+    "load_balancer": {
+      "algorithm": "LOAD_BALANCER_ALGORITHM_ROUND_ROBIN",
+      "applied_version": "1",
+      "backends": [
+        {
+          "address": "10.235.1.2",
+          "attachment_id": "att_23f2e993565946689c21db2f4be71f5f",
+          "id": "11b460fb-22e4-4b57-af69-54c275d95710",
+          "observation_stale": false,
+          "observed_at": "2026-09-17T11:31:45.461598Z",
+          "port": 8080,
+          "reason": "",
+          "state": "available",
+          "subnet_id": "subnet_f62092f8d80046cab425c122e9da2684",
+          "weight": 1
+        },
+        {
+          "address": "10.235.1.3",
+          "attachment_id": "att_c948bdb059a24bc29bc8011e6d7b1659",
+          "id": "8ceafd16-7b90-4adb-a201-a23112281a06",
+          "observation_stale": false,
+          "observed_at": "2026-09-17T11:31:45.461598Z",
+          "port": 8080,
+          "reason": "",
+          "state": "available",
+          "subnet_id": "subnet_f62092f8d80046cab425c122e9da2684",
+          "weight": 1
+        }
+      ],
+      "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_DEGRADED",
+      "created_at": "2026-09-17T11:29:25.671133Z",
+      "data_plane_observed_at": null,
+      "data_plane_state": "LOAD_BALANCER_DATA_PLANE_STATE_UNKNOWN",
+      "description": "",
+      "desired_version": "1",
+      "exposure": "LOAD_BALANCER_EXPOSURE_PRIVATE",
+      "flavor": "small",
+      "health_check": {
+        "healthy_threshold": 1,
+        "interval_seconds": 5,
+        "port": 8080,
+        "protocol": "LOAD_BALANCER_HEALTH_CHECK_PROTOCOL_TCP",
+        "timeout_seconds": 3,
+        "unhealthy_threshold": 3
+      },
+      "id": "lb_76040497f6ea42c49c5ed95cbbc6931e",
+      "last_operation_id": "821e9f16-6f95-40e7-a335-9974a02a51da",
+      "listener": {
+        "id": "f9c86268-3b28-44c1-aa15-1c5fb0bb0c63",
+        "port": 8081,
+        "protocol": "LOAD_BALANCER_LISTENER_PROTOCOL_HTTP"
+      },
+      "name": "lbhealth-0917-private-lb",
+      "observation_stale": false,
+      "observed_at": "2026-09-17T11:31:45.461598Z",
+      "private_ip": "10.235.0.200",
+      "public_address": "",
+      "public_eip_id": "",
+      "reason": "",
+      "reason_message": "",
+      "state": "RESOURCE_STATE_DELETING",
+      "subnet_id": "subnet_922c1a9941bd4fde9795074e8b0ab021",
+      "tenant_id": "3c8a15c8-b679-4af8-a9fa-ca3703a1609f",
+      "updated_at": "2026-09-17T11:31:52.411925Z",
+      "version": "20",
+      "vpc_id": "vpc_2a9a072c542c4ceea744cba5eb17130f"
+    },
+    "operation": {
+      "completed_at": null,
+      "created_at": "2026-09-17T11:31:52.410500Z",
+      "id": "821e9f16-6f95-40e7-a335-9974a02a51da",
+      "kind": "OPERATION_KIND_DELETE_LOAD_BALANCER",
+      "next_attempt_at": "2026-09-17T11:31:52.410500Z",
+      "reason": "",
+      "reason_message": "",
+      "resource_id": "lb_76040497f6ea42c49c5ed95cbbc6931e",
+      "resource_type": "RESOURCE_TYPE_LOAD_BALANCER",
+      "state": "OPERATION_STATE_QUEUED",
+      "tenant_id": "3c8a15c8-b679-4af8-a9fa-ca3703a1609f",
+      "updated_at": "2026-09-17T11:31:52.410500Z"
+    }
+  }
+}

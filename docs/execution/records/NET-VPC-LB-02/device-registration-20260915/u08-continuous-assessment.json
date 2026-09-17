@@ -1,0 +1,87 @@
+{
+  "finished_at": "2026-09-15T06:13:54.806316+00:00",
+  "output": "u08-continuous-traffic.jsonl",
+  "sha256": "7e98243537127159af21c42efd4763ca5b9159ec86ca44b71c48f19805e261f0",
+  "samples": 306,
+  "failed": 0,
+  "stop_reason": "requested_after_completion",
+  "result": "pass",
+  "at": "2026-09-15T06:14:41.054409+00:00",
+  "source_run": "20260915T051609Z-70cbcaa3",
+  "backfill_operation": {
+    "id": "3accfc90-de5f-4fa4-8558-fd13b51c4342",
+    "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+    "resource_id": "vpc_1f6fbd7f85cd4baba0b0382770aa480e",
+    "kind": "OPERATION_KIND_ENSURE_VPC_BASE_CONNECTIVITY",
+    "state": "OPERATION_STATE_SUCCEEDED",
+    "reason": "",
+    "created_at": "2026-09-15T06:06:54.682618Z",
+    "updated_at": "2026-09-15T06:12:50.215879Z",
+    "completed_at": "2026-09-15T06:12:50.215879Z",
+    "next_attempt_at": null,
+    "resource_type": "RESOURCE_TYPE_VPC",
+    "reason_message": ""
+  },
+  "historical_create_operation_unchanged": true,
+  "historical_create_completed_at": "2026-09-15T06:01:51.362656Z",
+  "pod_uid_ip_node_preserved": {
+    "lb02-2b3122-continuous-a": [
+      "46cb430b-68e8-4093-b3ff-9c8a6375463f",
+      "10.233.48.2",
+      "ani-02"
+    ],
+    "lb02-2b3122-continuous-b": [
+      "d7d21a9c-e51e-46a8-bb09-0f110baef5a4",
+      "10.233.48.3",
+      "ani-03"
+    ]
+  },
+  "phases": [
+    {
+      "caller": "lb02-2b3122-continuous-a",
+      "phase": "before",
+      "samples": 21
+    },
+    {
+      "caller": "lb02-2b3122-continuous-b",
+      "phase": "before",
+      "samples": 21
+    },
+    {
+      "caller": "lb02-2b3122-continuous-a",
+      "phase": "during",
+      "samples": 112
+    },
+    {
+      "caller": "lb02-2b3122-continuous-b",
+      "phase": "during",
+      "samples": 111
+    },
+    {
+      "caller": "lb02-2b3122-continuous-b",
+      "phase": "after",
+      "samples": 21
+    },
+    {
+      "caller": "lb02-2b3122-continuous-a",
+      "phase": "after",
+      "samples": 20
+    }
+  ],
+  "max_sample_start_gap_seconds": {
+    "lb02-2b3122-continuous-b": 3.826794,
+    "lb02-2b3122-continuous-a": 3.650096
+  },
+  "meaning": "Every sampled request before, during and after the complete backfill returned HTTP 200 with the expected run, peer and nonce; does not claim absence of loss between samples.",
+  "evidence": [
+    "u08-continuous-traffic.jsonl",
+    "u08-continuous-operation-02.json",
+    "u08-continuous-pause-after-admission.json",
+    "u08-continuous-resume-completed.json",
+    "u08-continuous-dispatch-completed.json",
+    "u08-continuous-create-operation-before.json",
+    "u08-continuous-create-operation-after.json",
+    "continuous-pods-read-after.json",
+    "continuous-probe-binary.json"
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "at": "2026-09-15T13:17:54.361555+00:00",
+  "execution_host": "ubuntu",
+  "source_run": "20260915T131507Z-5c508c1f",
+  "archive_sha256": "a1507bc0cb2e68ead1584e550ba951be346c9f34ca39cb1df7ef18abd24becdf",
+  "manifest_sha256": "8495ba7d9865fc4e6e5961429d113c218105cafb37761e406dd1cdd828f009c6",
+  "command": [
+    "bash",
+    "-e",
+    "-c",
+    "validation_tmp=$(mktemp -d /var/tmp/nlb2.XXXXXX); chmod 700 \"$validation_tmp\"; export TMPDIR=\"$validation_tmp\"; scripts/integration ./internal/data -run \"^TestAttachmentFinishesFreshAuditAfterConsecutiveWatchBoundaries$\" -count 2 -timeout 2m -json"
+  ],
+  "conclusion": "The tested adapter overwrites rest.Config.UserAgent, so the injection selector matched no requests; both runs had zero injected boundaries. Use its preserved WrapTransport hook for a test-only routing header, then rerun; these failures are fixture routing failures, not product retries.",
+  "test_results": [
+    {
+      "Test": "TestAttachmentFinishesFreshAuditAfterConsecutiveWatchBoundaries",
+      "Action": "fail",
+      "Elapsed": 0.98
+    },
+    {
+      "Test": "TestAttachmentFinishesFreshAuditAfterConsecutiveWatchBoundaries",
+      "Action": "fail",
+      "Elapsed": 1.01
+    }
+  ],
+  "log": "attachment-retry-fixture-routing-command.txt",
+  "log_sha256": "f028e2a31056bfc652ebc96669937923b1a69db0ed57c101ec518437f692720c"
+}

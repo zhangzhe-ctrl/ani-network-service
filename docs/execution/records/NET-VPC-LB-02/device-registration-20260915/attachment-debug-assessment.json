@@ -1,0 +1,64 @@
+{
+  "at": "2026-09-15T12:59:02.669560+00:00",
+  "execution_host": "ubuntu",
+  "source_run": "20260915T124319Z-f715d364",
+  "runtime": "r25",
+  "result": "fail",
+  "criterion": "all 30 fixed observations configured and fresh",
+  "samples": [
+    {
+      "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_CONFIGURED",
+      "reason": "",
+      "stale": false,
+      "count": 21
+    },
+    {
+      "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_DEGRADED",
+      "reason": "BACKEND_IDENTITY_MISMATCH",
+      "stale": false,
+      "count": 6
+    },
+    {
+      "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_DEGRADED",
+      "reason": "PROVIDER_NOT_READY",
+      "stale": false,
+      "count": 3
+    }
+  ],
+  "diagnostic_exhausted_calls": [
+    {
+      "at": "2026-09-15T12:51:08.751016822Z",
+      "attachment_id": "att_7d08b61f4038432a842d2fda525607b9",
+      "covered_generation": 0,
+      "covers": false,
+      "requested_generation": 921,
+      "stage": "attempts-exhausted",
+      "work_now": "2026-09-15T20:50:59.99456+08:00"
+    },
+    {
+      "at": "2026-09-15T12:52:25.504328385Z",
+      "attachment_id": "att_a6172d5ee5be434087f939001a435c9e",
+      "covered_generation": 0,
+      "covers": false,
+      "requested_generation": 925,
+      "stage": "attempts-exhausted",
+      "work_now": "2026-09-15T20:52:15.09173+08:00"
+    }
+  ],
+  "diagnostic_return_paths": {
+    "refresh-needed-0": 16,
+    "refresh-needed-1": 2,
+    "attempts-exhausted": 2,
+    "refresh-failed": 2
+  },
+  "conclusion": "Two actual Attachment calls exhausted both retries while source epoch changed during consecutive collections; related changed_keys were empty in the later failing checks. Neither exhaustion was a request timeout or UID conflict. Final two refresh-failed/canceled events were caused by the authorized stop at 12:53:39, not spontaneous live failures.",
+  "evidence": [
+    "attachment-debug-final.json",
+    "attachment-debug-r25-stability.json",
+    "after-attachment-debug-1253.json",
+    "attachment-debug-restored.json"
+  ],
+  "temporary_source_and_binaries_restored": true,
+  "runtime_currently_stopped": true,
+  "public_forwarding_probes": false
+}

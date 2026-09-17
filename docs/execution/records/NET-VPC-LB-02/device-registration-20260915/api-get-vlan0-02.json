@@ -1,0 +1,35 @@
+{
+  "at": "2026-09-15T02:25:53.788571+00:00",
+  "execution_host": "ubuntu",
+  "context": "platform",
+  "command": "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/lb-api call -target unix:///home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/platform.sock -service PlatformNetworkService -method GetVlanNetwork",
+  "request": {
+    "vlan_network_id": "vlan_de1416d0a8d2473ba6da717f6282c290"
+  },
+  "exit": 0,
+  "response": {
+    "code": "OK",
+    "response": {
+      "resource": {
+        "id": "vlan_de1416d0a8d2473ba6da717f6282c290",
+        "cluster_id": "lb02-09141908-2b3122",
+        "name": "lb02-2b3122-untagged",
+        "description": "U09 logical VLAN 102, guest untagged; existing kc-managed ens35",
+        "state": "RESOURCE_STATE_PROVISIONING",
+        "reason": "PROVIDER_UNAVAILABLE",
+        "reason_message": "The network provider is temporarily unavailable.",
+        "version": "9",
+        "created_at": "2026-09-15T02:22:46.562890Z",
+        "updated_at": "2026-09-15T02:25:42.754953Z",
+        "observed_at": null,
+        "observation_stale": true,
+        "last_operation_id": "0295db34-1441-4ba4-bf87-1523168c3f6c",
+        "vlan": {
+          "device_id": "device_3290174cfb644473b5b5e260bcea085c",
+          "vlan_id": 0
+        }
+      }
+    }
+  },
+  "stderr": ""
+}

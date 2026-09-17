@@ -1,0 +1,54 @@
+{
+  "at": "2026-09-15T03:27:38.338323+00:00",
+  "result": "pass",
+  "execution_host": "ubuntu",
+  "source_run": "20260915T025202Z-d88ee066",
+  "archive_sha256": "17d30aa89b7f9d100120166c4c6c218038c01f7fd8b8627a7c874a658980dbad",
+  "manifest_sha256": "f0651c33f79398559ea0d701302cfed4ce2468a51d6b06dc8bb2d3cc4196311f",
+  "make_verify": "pass in original command.log",
+  "fixed_baseline_contracts": "pass in original command.log",
+  "postgres_race": "pass across same-source attempts; no clean single full-suite invocation claimed",
+  "attempts": {
+    "01": {
+      "exit": 75,
+      "log": "audit-final-retry-01.txt",
+      "log_sha256": "d0da6c1b75e5615e164fa440cd5fecb3076b07ff67bf9f4096545129e5780152"
+    },
+    "02": {
+      "exit": 75,
+      "log": "audit-final-retry-02.txt",
+      "log_sha256": "086ecfd16f9e6e07e48b20b68ae82cdfea939bddb5768c07ecef9393cc9405b9"
+    },
+    "03": {
+      "exit": 0,
+      "log": "audit-final-retry-03.txt",
+      "log_sha256": "a69ef5cc24f39a5e707b278fe46170479365de071e9b75611ee548c470c73eb6"
+    }
+  },
+  "data_top_level_expected": 113,
+  "data_top_level_passed": 112,
+  "explicit_out_of_scope_skips": [
+    "TestNET05ACapacity"
+  ],
+  "unique_passing_test_and_subtest_events": 390,
+  "historical_failure_events": 9,
+  "historical_failures_later_passed": true,
+  "uncovered_required_data_tests": [],
+  "non_data_packages_passed": [
+    "github.com/zhangzhe-ctrl/ani-network-service/cmd/ani-network-service",
+    "github.com/zhangzhe-ctrl/ani-network-service/internal/biz",
+    "github.com/zhangzhe-ctrl/ani-network-service/internal/conf/v1",
+    "github.com/zhangzhe-ctrl/ani-network-service/internal/server",
+    "github.com/zhangzhe-ctrl/ani-network-service/internal/service",
+    "github.com/zhangzhe-ctrl/ani-network-service/scripts/lb-api",
+    "github.com/zhangzhe-ctrl/ani-network-service/tests/net05a/provider",
+    "github.com/zhangzhe-ctrl/ani-network-service/tests/runtime",
+    "github.com/zhangzhe-ctrl/ani-network-service/tests/testenv"
+  ],
+  "artifact_sha256": {
+    "lb-api": "11c5924d3982b749daa5e653d8f2f096ccf97e96778ba7b0c374e55b0106acab",
+    "network": "63bfd8b6eff231c5452f30d382167bbc4bd43c3e7caec3780e31440712123185"
+  },
+  "current_runtime_source_drift": [],
+  "live_u09": "not_verified"
+}

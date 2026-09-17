@@ -1,0 +1,99 @@
+{
+  "execution_host": "ani-01/read-only OVN inspection",
+  "initiator": "local SSH",
+  "not_dataplane_acceptance": true,
+  "records": [
+    {
+      "at": "2026-09-15T09:58:21.635293+00:00",
+      "command": [
+        "sudo",
+        "kubectl",
+        "-n",
+        "kcn-system",
+        "exec",
+        "kcn-ovn-central-5dfc477ffc-9w7tz",
+        "-c",
+        "ovn-central",
+        "--",
+        "ovn-nbctl",
+        "--timeout=12",
+        "--format=json",
+        "find",
+        "Load_Balancer",
+        "external_ids:vpc=lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad/vpc-d06f28e82fe847f7bf2cedd57dad82f4"
+      ],
+      "exit": 0,
+      "stdout": "{\"data\":[[[\"uuid\",\"5f5fb094-dd76-4eba-9f6a-8ff628b4174c\"],[\"map\",[[\"10.233.0.200\",\"lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad/subnet-f74d90cbb5484f7fb37f8a8f6782da1d\"],[\"arp-addr\",\"10.233.0.200\"],[\"res-key\",\"lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad/lb-cc562f7d8be147afae8144555aa7243b\"],[\"vendor\",\"kc-networking\"],[\"vpc\",\"lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad/vpc-d06f28e82fe847f7bf2cedd57dad82f4\"]]],[\"set\",[]],[\"map\",[]],\"lb-cc562f7d8be147afae8144555aa7243b-lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad.tcp\",[\"map\",[[\"gateway_port\",\"\"]]],\"tcp\",[\"set\",[]],[\"map\",[[\"10.233.0.200:8080\",\"10.233.0.5:8080,10.233.0.6:8080\"]]]],[[\"uuid\",\"ab574fc5-580b-4a04-9324-562001bea0d0\"],[\"map\",[[\"res-key\",\"lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad/lb-bd6f74b7445b4c5a815763d38a995f14\"],[\"vendor\",\"kc-networking\"],[\"vpc\",\"lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad/vpc-d06f28e82fe847f7bf2cedd57dad82f4\"]]],[\"set\",[]],[\"map\",[]],\"lb-bd6f74b7445b4c5a815763d38a995f14-lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad.tcp.public\",[\"map\",[[\"gateway_port\",\"public.uplink.lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad.vpc-d06f28e82fe847f7bf2cedd57dad82f4.lrp\"]]],\"tcp\",[\"set\",[]],[\"map\",[[\"172.16.102.194:8080\",\"10.233.0.7:8080,10.233.0.8:8080\"]]]]],\"headings\":[\"_uuid\",\"external_ids\",\"health_check\",\"ip_port_mappings\",\"name\",\"options\",\"protocol\",\"selection_fields\",\"vips\"]}\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-15T09:58:22.300551+00:00",
+      "command": [
+        "sudo",
+        "kubectl",
+        "-n",
+        "kcn-system",
+        "exec",
+        "kcn-ovn-central-5dfc477ffc-9w7tz",
+        "-c",
+        "ovn-central",
+        "--",
+        "ovn-nbctl",
+        "--timeout=12",
+        "--format=json",
+        "list",
+        "Logical_Router",
+        "vpc.lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad.vpc-d06f28e82fe847f7bf2cedd57dad82f4"
+      ],
+      "exit": 0,
+      "stdout": "{\"data\":[[[\"uuid\",\"d6f85ed0-70c8-41ce-817d-f530d5a073c8\"],[\"set\",[]],[\"set\",[]],[\"map\",[[\"vendor\",\"kc-networking\"]]],[\"set\",[]],[\"uuid\",\"cc029ef0-fa7d-411c-a806-93bff4e4a157\"],\"vpc.lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad.vpc-d06f28e82fe847f7bf2cedd57dad82f4\",[\"uuid\",\"c6d80555-841e-41a7-9079-97a1af7c31a7\"],[\"map\",[]],[\"set\",[[\"uuid\",\"a6c84eb5-2205-4e07-b99a-67a801ab5f38\"],[\"uuid\",\"ca2526d8-e106-44e2-a920-a4af4c55164f\"],[\"uuid\",\"d4e0a067-1fc1-473c-8a03-552163db5dec\"],[\"uuid\",\"f3c19a60-5b91-497f-833b-0e08c394659d\"]]],[\"set\",[[\"uuid\",\"411774f7-02c3-4351-9c8c-9ad8a7043751\"],[\"uuid\",\"66beb037-1dde-4345-9b26-509bde279286\"],[\"uuid\",\"67db2747-e3ec-48b3-816d-c22387aab2d2\"],[\"uuid\",\"d8204954-a58a-4304-93ea-ec25ec9dd74b\"]]],[\"set\",[[\"uuid\",\"254c4f8d-2c6a-4e80-8f1a-cd110931a083\"],[\"uuid\",\"3130c57f-f207-4384-abd3-508bd7980176\"],[\"uuid\",\"6a6c42a9-0f65-4997-9596-64c02b8a9608\"],[\"uuid\",\"a8f90064-b3c8-44eb-a0f1-1fc394af17ac\"],[\"uuid\",\"c45338a2-835e-4497-9714-f9f89b7866e1\"],[\"uuid\",\"d46a2dee-a3b9-43e5-a034-2238ef4bb390\"]]]]],\"headings\":[\"_uuid\",\"copp\",\"enabled\",\"external_ids\",\"load_balancer\",\"load_balancer_group\",\"name\",\"nat\",\"options\",\"policies\",\"ports\",\"static_routes\"]}\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-15T09:58:22.937699+00:00",
+      "command": [
+        "sudo",
+        "kubectl",
+        "-n",
+        "kcn-system",
+        "exec",
+        "kcn-ovn-central-5dfc477ffc-9w7tz",
+        "-c",
+        "ovn-central",
+        "--",
+        "ovn-nbctl",
+        "--timeout=12",
+        "--format=json",
+        "list",
+        "Logical_Router_Port",
+        "public.uplink.lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad.vpc-d06f28e82fe847f7bf2cedd57dad82f4.lrp"
+      ],
+      "exit": 0,
+      "stdout": "{\"data\":[[[\"uuid\",\"411774f7-02c3-4351-9c8c-9ad8a7043751\"],[\"set\",[]],[\"set\",[]],[\"map\",[[\"lr\",\"vpc.lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad.vpc-d06f28e82fe847f7bf2cedd57dad82f4\"],[\"lrp-type\",\"vpc-uplink-public\"],[\"purpose\",\"system-lrp\"],[\"vendor\",\"kc-networking\"],[\"vpc\",\"lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad/vpc-d06f28e82fe847f7bf2cedd57dad82f4\"]]],[\"uuid\",\"495ee7cd-7fe6-474b-8868-63b5ea3ca57c\"],[\"set\",[]],[\"set\",[]],[\"map\",[]],\"fa:10:64:41:80:02\",\"public.uplink.lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad.vpc-d06f28e82fe847f7bf2cedd57dad82f4.lrp\",\"100.65.128.2/17\",[\"map\",[]],[\"set\",[]],[\"map\",[[\"hosting-chassis\",\"817ffa2a-5767-4eda-bbc2-c37fe0662f28\"]]]]],\"headings\":[\"_uuid\",\"dhcp_relay\",\"enabled\",\"external_ids\",\"gateway_chassis\",\"ha_chassis_group\",\"ipv6_prefix\",\"ipv6_ra_configs\",\"mac\",\"name\",\"networks\",\"options\",\"peer\",\"status\"]}\n",
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-15T09:58:23.762053+00:00",
+      "command": [
+        "sudo",
+        "kubectl",
+        "-n",
+        "kcn-system",
+        "exec",
+        "kcn-ovn-central-5dfc477ffc-9w7tz",
+        "-c",
+        "ovn-central",
+        "--",
+        "ovn-nbctl",
+        "--timeout=12",
+        "--format=json",
+        "list",
+        "Logical_Router",
+        "gw.egw-386dc165a8744951bc624ab55c439681"
+      ],
+      "exit": 0,
+      "stdout": "{\"data\":[[[\"uuid\",\"03e064cd-33db-4be0-9e98-fe2079a1d48e\"],[\"set\",[]],[\"set\",[]],[\"map\",[[\"vendor\",\"kc-networking\"]]],[\"set\",[]],[\"set\",[]],\"gw.egw-386dc165a8744951bc624ab55c439681\",[\"uuid\",\"5345cb58-b1bf-45d9-9ef1-421002432ea2\"],[\"map\",[]],[\"set\",[[\"uuid\",\"05f5a7d0-9583-4133-81f9-c3396bc03e78\"],[\"uuid\",\"2e337a68-5a23-4970-a412-9ec35122aced\"],[\"uuid\",\"e679be47-eefd-4ff4-b7ac-42e446c4e923\"],[\"uuid\",\"e7e63aa6-57ea-4db6-ae18-b171ccb40d7f\"],[\"uuid\",\"fc43cab9-2f1d-4342-be82-669f3af83a92\"]]],[\"set\",[[\"uuid\",\"774408ca-b226-4178-a831-2a1ac17985e6\"],[\"uuid\",\"a695b899-c62f-462f-8415-a37b7c09aa82\"]]],[\"set\",[[\"uuid\",\"19fb63e3-cda5-4f93-a81e-0c910f052eab\"],[\"uuid\",\"99d86f4e-b842-4e22-bacc-f9f4b4d8434e\"]]]]],\"headings\":[\"_uuid\",\"copp\",\"enabled\",\"external_ids\",\"load_balancer\",\"load_balancer_group\",\"name\",\"nat\",\"options\",\"policies\",\"ports\",\"static_routes\"]}\n",
+      "stderr": ""
+    }
+  ]
+}

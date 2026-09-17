@@ -1,0 +1,7 @@
+{
+  "at": "2026-09-15T14:02:56.147385+00:00",
+  "result": "fixture_preparation_error",
+  "cause": "Second stop called after transient systemd unit had already unloaded; pause helper asserted stop exit 0 before reaching pg_dump.",
+  "verified": "r26 LoadState=not-found, ActiveState=inactive; processes.json=stopped; no original PID/start-time pair live; no new dump exists.",
+  "recovery": "Use stopped-state and PID verification before taking the pending-deletion backup; no database or cluster recovery."
+}

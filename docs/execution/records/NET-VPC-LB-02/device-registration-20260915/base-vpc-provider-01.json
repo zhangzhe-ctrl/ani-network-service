@@ -1,0 +1,64 @@
+{
+  "at": "2026-09-15T04:04:28.405466+00:00",
+  "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+  "objects": [
+    {
+      "apiVersion": "networking.kubercloud.com/v1",
+      "kind": "VPC",
+      "metadata": {
+        "creationTimestamp": "2026-09-15T04:02:59Z",
+        "finalizers": [
+          "networking.kubercloud.com/finalizer"
+        ],
+        "generation": 1,
+        "labels": {
+          "network.ani.io/binding-id": "5225208e-046f-42a6-8be8-c0f05810bc4e",
+          "network.ani.io/managed-by": "ani-network-service",
+          "network.ani.io/resource-id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+          "network.ani.io/tenant-id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad"
+        },
+        "name": "vpc-d06f28e82fe847f7bf2cedd57dad82f4",
+        "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+        "resourceVersion": "270781",
+        "uid": "a4e27d33-c63b-459c-a939-16e61b9c19de"
+      },
+      "spec": {
+        "allowedNamespaces": {
+          "from": "Same"
+        },
+        "cidrBlock": "10.233.0.0/20",
+        "ipVersion": "IPv4"
+      },
+      "status": {
+        "boundResources": {
+          "chassisNode": "",
+          "router": "vpc.lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad.vpc-d06f28e82fe847f7bf2cedd57dad82f4"
+        },
+        "conditions": [
+          {
+            "lastTransitionTime": "2026-09-15T04:02:59Z",
+            "message": "",
+            "reason": "Valid",
+            "status": "True",
+            "type": "Valid"
+          },
+          {
+            "lastTransitionTime": "2026-09-15T04:02:59Z",
+            "message": "",
+            "reason": "Initialized",
+            "status": "True",
+            "type": "Initialized"
+          },
+          {
+            "lastTransitionTime": "2026-09-15T04:02:59Z",
+            "message": "",
+            "reason": "Ready",
+            "status": "True",
+            "type": "Ready"
+          }
+        ],
+        "observedGeneration": 1
+      }
+    }
+  ]
+}

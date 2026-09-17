@@ -1,0 +1,21 @@
+{
+  "command": [
+    "bash",
+    "-e",
+    "-c",
+    "make verify && scripts/check-vpc-lb-contracts && scripts/integration -race ./... -timeout 12m -json && mkdir ../artifacts && go build -trimpath -o ../artifacts/lb-api ./scripts/lb-api && go build -trimpath -o ../artifacts/network ./cmd/ani-network-service && sha256sum ../artifacts/lb-api ../artifacts/network"
+  ],
+  "manifest_sha256": "f0651c33f79398559ea0d701302cfed4ce2468a51d6b06dc8bb2d3cc4196311f",
+  "archive_sha256": "17d30aa89b7f9d100120166c4c6c218038c01f7fd8b8627a7c874a658980dbad",
+  "run": "20260915T025202Z-d88ee066",
+  "exit": 75,
+  "tests_started": true,
+  "json_passed_tests": 206,
+  "json_failed_tests": 0,
+  "result": "interrupted_resource_guard",
+  "required_pg_suite": "not_verified",
+  "make_verify": "pass",
+  "fixed_baseline_contracts": "pass",
+  "binaries": "not_built",
+  "reason": "load1 > 6 sustained for >30 seconds; preserve interrupted PG results, rerun only unfinished suite and builds against same immutable source"
+}

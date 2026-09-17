@@ -41,6 +41,11 @@ func buildApp(bc *conf.Bootstrap, logger *slog.Logger) (*kratos.App, error) {
 		return nil, err
 	}
 	options := data.DefaultObservationOptions()
+	if lb := bc.Network.LoadBalancer; lb != nil {
+		if err = provider.ConfigureLoadBalancer(data.LoadBalancerInstallation{Fingerprint: lb.InstallationFingerprint, ControllerImageID: lb.ControllerImageId, EnvoyImageID: lb.EnvoyImageId, ShutdownImageID: lb.ShutdownImageId, KCImageID: lb.KcImageId}); err != nil {
+			return nil, err
+		}
+	}
 	if o := bc.Network.Observation; o != nil {
 		options = data.ObservationOptions{AuditInterval: o.AuditInterval.AsDuration(), AuditJitter: o.AuditJitter.AsDuration(), AuditTimeout: o.AuditTimeout.AsDuration(), FlushInterval: o.FlushInterval.AsDuration(), QueueCapacity: int(o.QueueCapacity)}
 	}
@@ -104,6 +109,13 @@ func buildApp(bc *conf.Bootstrap, logger *slog.Logger) (*kratos.App, error) {
 	}
 	networkv1.RegisterTenantEgressServiceServer(grpcServer, service.NewTenantEgressService(egress))
 	networkv1.RegisterPlatformNetworkServiceServer(grpcServer, service.NewPlatformNetworkService(egress))
+	if lb := bc.Network.LoadBalancer; lb != nil && lb.EnableIsolatedApi {
+		lbs, err := biz.NewLoadBalancers(repository, biz.ContextEgressAuthorization{}, key, policy.StaleAfter, time.Now)
+		if err != nil {
+			return nil, err
+		}
+		networkv1.RegisterTenantLoadBalancerServiceServer(grpcServer, service.NewTenantLoadBalancerService(lbs))
+	}
 	adminServer := server.NewAdminServer(bc.Server.Admin, readiness, observability.Gatherer(), middlewares...)
 	app := kratos.New(
 		kratos.ID(id), kratos.Name(Name), kratos.Version(Version), kratos.Logger(logger),

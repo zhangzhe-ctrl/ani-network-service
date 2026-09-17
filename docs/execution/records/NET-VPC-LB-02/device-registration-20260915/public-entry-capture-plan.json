@@ -1,0 +1,31 @@
+{
+  "namespace": "lb02-09141908-2b3122",
+  "commands": [
+    {
+      "pod": "lb02-2b3122-outside-observer",
+      "label": "captured-eip-request",
+      "argv": [
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-eip-capture-lb02-2b3122-outside-observer"
+      ],
+      "expect_contains": [
+        "status 200",
+        "lb02-09141908-2b3122"
+      ]
+    },
+    {
+      "pod": "lb02-2b3122-public-probe-a",
+      "label": "captured-eip-request",
+      "argv": [
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-eip-capture-lb02-2b3122-public-probe-a"
+      ],
+      "expect_contains": [
+        "status 200",
+        "lb02-09141908-2b3122"
+      ]
+    }
+  ]
+}

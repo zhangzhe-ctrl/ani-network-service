@@ -1,0 +1,24 @@
+{
+  "at": "2026-09-17T11:21:35.810459+00:00",
+  "intent": {
+    "method": "CreateIntranetAddressPool",
+    "request": {
+      "cidr": "10.242.251.0/24",
+      "default_vpc_name": "kcn-cluster",
+      "default_vpc_uid": "a852bc64-3d41-4925-b6a1-de3db56e5a76",
+      "description": "NET-VPC-LB-02-HEALTH isolated Intranet qualification",
+      "excluded_ips": [
+        "10.242.251.1"
+      ],
+      "idempotency_key": "lbhealth-0917-intranet",
+      "intranet_networks": [
+        "172.16.101.0/24",
+        "172.16.201.0/24",
+        "172.16.202.0/24",
+        "10.96.0.0/16"
+      ],
+      "name": "lbhealth-0917-intranet-pool",
+      "ovn_gateway_ip": "10.242.251.1"
+    }
+  }
+}

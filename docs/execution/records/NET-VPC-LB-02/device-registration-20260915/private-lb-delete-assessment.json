@@ -1,0 +1,24 @@
+{
+  "at": "2026-09-15T05:52:02.196174+00:00",
+  "source_run": "20260915T051609Z-70cbcaa3",
+  "result": "pass",
+  "deleted_lb_id": "lb_d9f847eef7eb453a8388672718959ec8",
+  "vip": "10.233.0.200",
+  "provider_component_and_generated_absent": true,
+  "vip_intent_and_subnet_refs_released": true,
+  "generated_identity_records_released": true,
+  "business_pod_uids_preserved": true,
+  "base_eip_id": "eip_c428922594b94429a405305c6c781897",
+  "base_snat_id": "snat_3cbc9e4d07b44c0291a541d50bd4b43e",
+  "data_plane_after_delete": "VIP timeout with successful direct backend positive control",
+  "evidence": [
+    "private-lb-delete-operation-02.json",
+    "private-lb-delete-release-sql.json",
+    "private-provider-delete-progress-03.json",
+    "private-after-delete-probes.json",
+    "private-after-delete-network-objects.json"
+  ],
+  "kc_vnic_ip_absent": true,
+  "base_provider_uids_preserved": true,
+  "additional_verification_at": "2026-09-15T05:53:07.279007+00:00"
+}

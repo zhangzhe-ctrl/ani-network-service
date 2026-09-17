@@ -48,6 +48,8 @@ Network 实施基础为 `d8835a22d905e358b7f60756d3113baa97d7c762`（既有 EIP/
 
 管理员按环境准备所需二层网络、Public EIPGateway/Public Pool、Intranet Pool、`intranetNetworks` 和 LB 运行组件。Overlay 无 `underlayConfig`，不强制创建 VLAN；Underlay 需物理网卡、VLAN、上游网关和单独验收。保留既有网卡接管保护和 Public 池验证机制。
 
+安装器已经将物理口加入 `managedDevices` 并由 kc 接管时，应核验并登记该现成设备，再创建二层网络；不能将“已接管”本身判作环境阻塞。空闲接管与已有设备登记共用管理员接口，身份、并发与退役规则统一见[Public 方案 4.1](vpc-snat.md#41-underlay-的网卡发现与二层网络)。现场连通性和完整产品 API 数据面仍分别验证。
+
 每个部署集群分别配置默认 Intranet 池和默认 Public 池，池的 scope 创建后不可变。默认池选择只影响后续新申请，已受理操作持久固定池 ID、配置版本和 Provider placement；重试不能改选新默认池。关闭新分配不删除或解绑已有地址。
 
 Intranet Pool 映射为平台 namespace 的 `Subnet(type: Intranet)`，显式识别默认 VPC 网关，不能创建 scope Public 的 EIPGateway 来假冒。平台负责内网目标网段（含实际 DNS/xDS/Service 目标所需范围）的配置和验证，租户请求不得修改集群路由范围。Public 池沿用现有 Overlay/Underlay 与网关配置。
@@ -124,9 +126,11 @@ LB 归属于一个租户/VPC/Subnet，包含一个 HTTP Listener、一个默认 
 | private_ip | private/public_private 必填，属于所选 Subnet 且非网关/保留地址；public 禁止 |
 | listener | HTTP，port 默认为 8080，范围 1–65535；单实例一个监听器 |
 | backends | 非空；成员含 subnet_id、IPv4、port、weight，须验证归属本 VPC 的已分配业务地址，禁止直接指定平台/节点/跨租户地址 |
-| health_check | 首批 TCP，默认 interval=5s、timeout=3s、unhealthy=3、healthy=1；RoundRobin 和 panicThreshold=0 为明确默认 |
+| health_check | 创建/更新必须显式提供 port（1–65535），与全部后端成员服务端口相同；与前端 listener.port 独立。首批 TCP，默认 interval=5s、timeout=3s、unhealthy=3、healthy=1；RoundRobin 和 panicThreshold=0 为明确默认 |
 
 Backend 地址的归属校验结合已持久化 Attachment 与 Provider VNicIP/UID 事实，不仅用 CIDR 判断业务归属。Network 不创建或删除业务 Pod/VM；实例 owner 返回的接入信息用于地址确认。后端删除/地址变化触发成员退化与配置更新，固定 IP 成员不会静默转发到复用同一 IP 的另一身份。需要未纳管静态后端时另行定义管理员准入，不默认为任意 IP 放行。
+
+持续观察校验 Attachment 时，以读取该记录后的数据库时间判断新鲜度。LB 领取任务后、等待 Provider 审计期间完成的正常 Attachment 续报不能被误判为未来时间；实际未来、过期或缺失的观察仍拒绝。此时效判断不替代 Pod/VNic/VNicIP 的 UID、owner 链、Subnet/namespace 身份与审计 fence 校验。
 
 一期指定私网 VIP，由 kc IPAM 做最终冲突与预留。Network 先在本 VPC 范围保留地址意图，防止自身并发重复申请；不以自己的表替代 kc 对 Pod/VNicIP 等全部分配的权威。自动 VIP 分配不是本轮前置，可在确认 kc 契约后独立增加。
 
@@ -139,6 +143,8 @@ Backend 地址的归属校验结合已持久化 Attachment 与 Provider VNicIP/U
 | public_private | lb-small | 指定 VIP | Public EIP CR短名 | LoadBalancer |
 
 Gateway `spec.infrastructure.annotations` 的 `lb_vpc`/`subnet` 使用 namespace/name。Gateway、HTTPRoute、Backend、BackendTrafficPolicy 放在固定租户 namespace；GatewayNamespace 模式由 Envoy Gateway 在同 namespace 生成 Service/Deployment/Pod。Network 只写自己拥有的 Gateway/Route/Backend/Policy，不直接成为生成 Service/Deployment 的第二个 spec 写入者。
+
+2026-09-17 用户明确健康检查端口由用户传入，并与后端服务端口一致。当前单一 LB 策略要求所有后端使用相同服务端口；不同端口集合返回 INVALID_ARGUMENT。健康端口随配置版本持久化并在查询中返回，Provider 显式生成 `healthCheck.active.overrides.port`。迁移前旧配置以内部值 0 保留 endpoint 默认检查行为，查询不返回该占位值；创建/更新不允许缺失或 0。
 
 HTTPRoute 按 Listener 绑定 Gateway 并引用本 LB 的 Backend Members；每条 Route 的 BackendTrafficPolicy 独立指向正确对象，包含明确算法及检查参数。自有 CR 的名称/UID入持久映射；生成 Service/Deployment 的归属通过 Gateway UID/owner链和预期名称核对，观察结果保存后用于 EIP 绑定验证。未经证明的同名 Service 不是合法目标。
 

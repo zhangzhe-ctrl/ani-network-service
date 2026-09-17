@@ -1,0 +1,130 @@
+{
+  "at": "2026-09-15T09:10:18.874035+00:00",
+  "run": "lb02-09141908-2b3122",
+  "current_candidate": "20260915T074304Z-31ea8959",
+  "overall": "not_verified",
+  "kind": "dated U09 evidence snapshot, current ledger remains docs/execution/status.md",
+  "matrix": [
+    {
+      "goal_item": 1,
+      "result": "pass",
+      "scope": "新 VPC 自动基础内网，两个 worker 的 DNS/内网 HTTP 实测",
+      "evidence": "base-intranet-r15-renewal.json",
+      "limitations": []
+    },
+    {
+      "goal_item": 2,
+      "result": "pass",
+      "scope": "同 VPC 客户端直连 private VIP，两个真实节点后端，原 small 两副本",
+      "evidence": "private-vip-after-vlan-retest-assessment.json",
+      "limitations": []
+    },
+    {
+      "goal_item": 3,
+      "result": "not_verified",
+      "scope": "public LB 外部 EIP 入口，不依赖 Public SNAT",
+      "evidence": null,
+      "limitations": [
+        "Public prerequisite qualified and allocation enabled via product API. Tenant EIP creation was accepted but first bounded wait did not reach Available; ongoing after remote resource recovery. Public LB, dual entry and tenant translated source remain not_verified."
+      ]
+    },
+    {
+      "goal_item": 4,
+      "result": "not_verified",
+      "scope": "public_private 的 VIP/EIP 同时有效",
+      "evidence": null,
+      "limitations": [
+        "Public prerequisite qualified and allocation enabled via product API. Tenant EIP creation was accepted but first bounded wait did not reach Available; ongoing after remote resource recovery. Public LB, dual entry and tenant translated source remain not_verified."
+      ]
+    },
+    {
+      "goal_item": 5,
+      "result": "not_verified",
+      "scope": "Public SNAT 启停/解绑期间基础身份和 private 流量保持",
+      "evidence": null,
+      "limitations": [
+        "Public prerequisite qualified and allocation enabled via product API. Tenant EIP creation was accepted but first bounded wait did not reach Available; ongoing after remote resource recovery. Public LB, dual entry and tenant translated source remain not_verified."
+      ]
+    },
+    {
+      "goal_item": 6,
+      "result": "not_verified",
+      "scope": "Public 出站真实连接和出口源地址",
+      "evidence": null,
+      "limitations": [
+        "Public prerequisite qualified and allocation enabled via product API. Tenant EIP creation was accepted but first bounded wait did not reach Available; ongoing after remote resource recovery. Public LB, dual entry and tenant translated source remain not_verified."
+      ]
+    },
+    {
+      "goal_item": 7,
+      "result": "pass",
+      "scope": "成员新增/移除，权重 0，TCP 健康失败/恢复；各证据保留实际候选",
+      "evidence": "private-vip-member-removed-assessment.json",
+      "limitations": [
+        "权重/健康实测为 r12 freshness 候选；r13 新增摘要规范化后成员更新通过。产品持续健康仍 unknown"
+      ]
+    },
+    {
+      "goal_item": 8,
+      "result": "not_verified",
+      "scope": "完整 API 同 EIP 竞争、错误租户/namespace/UID、合法与外来 Service 占用",
+      "evidence": "foreign-service-assessment.json",
+      "limitations": [
+        "Live wrong tenant GetLB/GetOperation, cross-tenant backend Subnet and duplicate VIP rejection, legitimate generated Service and unowned same-name Service create/delete protection passed. Public same-EIP and namespace/UID occupancy matrix still not_verified."
+      ]
+    },
+    {
+      "goal_item": 9,
+      "result": "not_verified",
+      "scope": "完整 LB 删除后 EIP 重绑、VIP/父占用释放、原基础与后端保留",
+      "evidence": "private-lb-delete-assessment.json",
+      "limitations": [
+        "private Delete/claims/Provider release and same VIP recreated with 12 successful requests verified in private-lb-vip-reuse-assessment.json; Public EIP rebinding still not_verified."
+      ]
+    },
+    {
+      "goal_item": 10,
+      "result": "pass",
+      "scope": "DeleteVPC 按顺序清理系统基础资源",
+      "evidence": "base-cleanup-assessment.json",
+      "limitations": []
+    },
+    {
+      "goal_item": 11,
+      "result": "pass",
+      "scope": "U08 旧形态业务 VPC 补齐/暂停恢复/历史操作/删除竞争",
+      "evidence": "u08-continuous-assessment.json",
+      "limitations": [
+        "306 sampled requests across before/during/after succeeded; max one-direction sample-start gap 3.83 seconds, no guarantee for unsampled instants. Delete-first live race is separately recorded in u08-delete-race-assessment.json."
+      ],
+      "cleanup_evidence": "continuous-cleanup-assessment.json"
+    }
+  ],
+  "separate_failure": {
+    "result": "fail",
+    "scope": "all 30 observations configured and fresh",
+    "evidence": "private-lb-r13-stability-assessment.json"
+  },
+  "scope_boundary": [
+    "No real IAM, public Gateway or ANI UI acceptance",
+    "No production or formal migration",
+    "No capacity or HA result",
+    "No replacement of public traffic with NodePort, port-forward or Pod IP"
+  ],
+  "supersedes": "u09-matrix-20260915T0758.json",
+  "new_source_work": "Shutdown completion fix is qualified and deployed; old experimental VLAN repaired under explicit user authorization, normal delete/recreate passed.",
+  "current_source_validation": {
+    "source_run": "20260915T074304Z-31ea8959",
+    "gates": "shutdown-candidate-gates.json",
+    "live_deployed": true,
+    "old_vlan_recovery": "vlan-authorized-recovery-assessment.json",
+    "runtime": "r16 resumed after r15 shared-load guard stop, same binaries/config/database",
+    "backup": "after-r15-guard-0905.json"
+  },
+  "public_prerequisites": {
+    "result": "pass",
+    "qualification": "public-pool-qualification-assessment.json",
+    "admission": "public-pool-admission-enabled-03.json",
+    "scope": "underlay laboratory direct workload egress/return only, not tenant EIP/SNAT or Internet"
+  }
+}

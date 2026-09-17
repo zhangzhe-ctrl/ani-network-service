@@ -1,0 +1,23 @@
+{
+  "at": "2026-09-15T04:42:17.706926+00:00",
+  "result": "pass",
+  "run": "20260915T044032Z-95bb2df9",
+  "archive_sha256": "aa2d7eb58ea3d74f3e70f73e33d399381314236a5ddaf6782dbc4e69962f5106",
+  "command": [
+    "bash",
+    "-e",
+    "-c",
+    "validation_tmp=$(mktemp -d /var/tmp/nlb2.XXXXXX); chmod 700 \"$validation_tmp\"; export TMPDIR=\"$validation_tmp\"; scripts/integration -race ./internal/data -run \"^TestLBBackendObservationUsesCurrentDatabaseTime$|^TestLBActualAdapterIdentityLossRemovesRouteAndRetainsAppliedVersion$\" -count=1 -v"
+  ],
+  "exit": 0,
+  "log": "lb-freshness-green-command.txt",
+  "regressions": [
+    "fresh observation after claim accepted",
+    "true future timestamp rejected",
+    "expired observation rejected",
+    "renewed timestamp accepted again",
+    "replaced VNicIP UID rejected",
+    "existing lifecycle removes route on identity loss and retains applied version"
+  ],
+  "production_change": "DatabaseTime read after GetAttachment; frozen identities, owner relations, audit proof and stale limit unchanged"
+}

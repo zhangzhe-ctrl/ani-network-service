@@ -1,0 +1,40 @@
+{
+  "at": "2026-09-15T05:37:54.191868+00:00",
+  "execution_host": "ubuntu",
+  "context": "tenant-a",
+  "command": "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/lb-api call -target unix:///home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-a.sock -service NetworkService -method GetVPC",
+  "request": {
+    "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4"
+  },
+  "exit": 0,
+  "response": {
+    "code": "OK",
+    "response": {
+      "vpc": {
+        "id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+        "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+        "name": "lb02-2b3122-base",
+        "description": "Run-owned VPC with automatic base connectivity for U09",
+        "cidr": "10.233.0.0/20",
+        "state": "RESOURCE_STATE_AVAILABLE",
+        "reason": "",
+        "created_at": "2026-09-15T04:02:40.361909Z",
+        "updated_at": "2026-09-15T05:37:51.912178Z",
+        "version": "559",
+        "observed_at": "2026-09-15T05:37:51.864721Z",
+        "observation_stale": false,
+        "last_operation_id": "099f288a-56db-4ae1-8ba9-2a1efb473412",
+        "subnet_count": "2",
+        "reason_message": "",
+        "base_connectivity": {
+          "state": "ready",
+          "reason": "",
+          "observed_at": "2026-09-15T05:37:39.361088Z",
+          "observation_stale": false,
+          "reason_message": ""
+        }
+      }
+    }
+  },
+  "stderr": ""
+}

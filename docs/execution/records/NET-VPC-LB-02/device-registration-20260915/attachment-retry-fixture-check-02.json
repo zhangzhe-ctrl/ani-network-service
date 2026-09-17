@@ -1,0 +1,23 @@
+{
+  "at": "2026-09-15T13:04:24.276786+00:00",
+  "execution_host": "ubuntu",
+  "source_run": "20260915T130038Z-8915c4f9",
+  "archive_sha256": "1d9c790365018acaf68bd9d0cd08318c353ca5cacf985c8dc56b285abac884d4",
+  "manifest_sha256": "530c214add10aa8116138e2b32ee9f14a611d3cbe28d278745ec9be44d8cd200",
+  "command": [
+    "bash",
+    "-e",
+    "-c",
+    "validation_tmp=$(mktemp -d /var/tmp/nlb2.XXXXXX); chmod 700 \"$validation_tmp\"; export TMPDIR=\"$validation_tmp\"; scripts/integration ./internal/data -run \"^TestAttachmentFinishesFreshAuditAfterConsecutiveWatchBoundaries$\" -timeout 2m -json"
+  ],
+  "conclusion": "The bootstrap Watch handle did not reliably identify the active HTTP stream; the test stopped before two intended boundaries. Replaced the handle selection with an active-session registry and an observed source-boundary gate; no runtime fix yet.",
+  "test_results": [
+    {
+      "Test": "TestAttachmentFinishesFreshAuditAfterConsecutiveWatchBoundaries",
+      "Action": "fail",
+      "Elapsed": 1.1
+    }
+  ],
+  "log": "attachment-retry-fixture-check-02-command.txt",
+  "log_sha256": "c229fba41d1fd5bad80be6784088c0bcc1f377b7a1a4901ac6e242ecf3907bf3"
+}

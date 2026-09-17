@@ -1,0 +1,137 @@
+{
+  "at": "2026-09-15T11:08:06.621615+00:00",
+  "execution_host": "ubuntu",
+  "phase": "create",
+  "actions": [
+    {
+      "at": "2026-09-15T11:08:08.736649+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=12s",
+        "create",
+        "-f",
+        "-",
+        "-o",
+        "json"
+      ],
+      "request": {
+        "apiVersion": "v1",
+        "kind": "Service",
+        "metadata": {
+          "namespace": "lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832",
+          "name": "lb02-2b3122-crossns-eip",
+          "labels": {
+            "network.ani.io/test-run": "lb02-09141908-2b3122",
+            "network.ani.io/test-role": "crossns-eip-fault"
+          },
+          "annotations": {
+            "networking.kubercloud.com/lb_eips": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad/eip-f20581cca5d34cc7a25af17cd95dc4cb"
+          }
+        },
+        "spec": {
+          "type": "ClusterIP",
+          "ports": [
+            {
+              "name": "http",
+              "port": 8080,
+              "protocol": "TCP",
+              "targetPort": 8080
+            }
+          ]
+        }
+      },
+      "exit": 0,
+      "response": {
+        "apiVersion": "v1",
+        "kind": "Service",
+        "metadata": {
+          "annotations": {
+            "networking.kubercloud.com/lb_eips": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad/eip-f20581cca5d34cc7a25af17cd95dc4cb"
+          },
+          "creationTimestamp": "2026-09-15T11:08:08Z",
+          "labels": {
+            "network.ani.io/test-role": "crossns-eip-fault",
+            "network.ani.io/test-run": "lb02-09141908-2b3122"
+          },
+          "name": "lb02-2b3122-crossns-eip",
+          "namespace": "lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832",
+          "resourceVersion": "397073",
+          "uid": "12ee2a49-342f-4c82-bbbb-39c3b69597c4"
+        },
+        "spec": {
+          "clusterIP": "10.96.201.110",
+          "clusterIPs": [
+            "10.96.201.110"
+          ],
+          "internalTrafficPolicy": "Cluster",
+          "ipFamilies": [
+            "IPv4"
+          ],
+          "ipFamilyPolicy": "SingleStack",
+          "ports": [
+            {
+              "name": "http",
+              "port": 8080,
+              "protocol": "TCP",
+              "targetPort": 8080
+            }
+          ],
+          "sessionAffinity": "None",
+          "type": "ClusterIP"
+        },
+        "status": {
+          "loadBalancer": {}
+        }
+      },
+      "stderr": ""
+    }
+  ],
+  "created": {
+    "apiVersion": "v1",
+    "kind": "Service",
+    "metadata": {
+      "annotations": {
+        "networking.kubercloud.com/lb_eips": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad/eip-f20581cca5d34cc7a25af17cd95dc4cb"
+      },
+      "creationTimestamp": "2026-09-15T11:08:08Z",
+      "labels": {
+        "network.ani.io/test-role": "crossns-eip-fault",
+        "network.ani.io/test-run": "lb02-09141908-2b3122"
+      },
+      "name": "lb02-2b3122-crossns-eip",
+      "namespace": "lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832",
+      "resourceVersion": "397073",
+      "uid": "12ee2a49-342f-4c82-bbbb-39c3b69597c4"
+    },
+    "spec": {
+      "clusterIP": "10.96.201.110",
+      "clusterIPs": [
+        "10.96.201.110"
+      ],
+      "internalTrafficPolicy": "Cluster",
+      "ipFamilies": [
+        "IPv4"
+      ],
+      "ipFamilyPolicy": "SingleStack",
+      "ports": [
+        {
+          "name": "http",
+          "port": 8080,
+          "protocol": "TCP",
+          "targetPort": 8080
+        }
+      ],
+      "sessionAffinity": "None",
+      "type": "ClusterIP"
+    },
+    "status": {
+      "loadBalancer": {}
+    }
+  },
+  "result": "pass"
+}

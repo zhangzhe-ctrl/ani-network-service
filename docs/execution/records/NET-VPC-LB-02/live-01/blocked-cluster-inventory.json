@@ -1,0 +1,237 @@
+{
+  "at": "2026-09-14T19:42:37.201269+00:00",
+  "objects": [
+    {
+      "kind": "Namespace",
+      "namespace": null,
+      "name": "lb02-09141908-2b3122",
+      "uid": "d3595667-d9c1-4404-834d-e071cc37eec7",
+      "exists": true,
+      "labels": {
+        "kubernetes.io/metadata.name": "lb02-09141908-2b3122",
+        "network.ani.io/test-run": "lb02-09141908-2b3122"
+      },
+      "spec": {
+        "finalizers": [
+          "kubernetes"
+        ]
+      },
+      "status": {
+        "phase": "Active"
+      }
+    },
+    {
+      "kind": "Namespace",
+      "namespace": null,
+      "name": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+      "uid": "59b88976-90cc-42cb-8c6a-ccb3784db049",
+      "exists": true,
+      "labels": {
+        "kubernetes.io/metadata.name": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+        "network.ani.io/managed-by": "ani-network-service",
+        "network.ani.io/tenant-id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+        "network.ani.io/test-run": "lb02-09141908-2b3122"
+      },
+      "spec": {
+        "finalizers": [
+          "kubernetes"
+        ]
+      },
+      "status": {
+        "phase": "Active"
+      }
+    },
+    {
+      "kind": "Namespace",
+      "namespace": null,
+      "name": "lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832",
+      "uid": "e13bfb6e-4804-4de2-89b5-df4c703c0744",
+      "exists": true,
+      "labels": {
+        "kubernetes.io/metadata.name": "lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832",
+        "network.ani.io/managed-by": "ani-network-service",
+        "network.ani.io/tenant-id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+        "network.ani.io/test-run": "lb02-09141908-2b3122"
+      },
+      "spec": {
+        "finalizers": [
+          "kubernetes"
+        ]
+      },
+      "status": {
+        "phase": "Active"
+      }
+    },
+    {
+      "kind": "ServiceAccount",
+      "namespace": "lb02-09141908-2b3122",
+      "name": "network",
+      "uid": "a5b971ee-ac6c-400d-a460-8e6973b38e23",
+      "exists": true,
+      "labels": {
+        "network.ani.io/test-run": "lb02-09141908-2b3122"
+      },
+      "spec": null,
+      "status": null
+    },
+    {
+      "kind": "ClusterRole",
+      "namespace": null,
+      "name": "lb02-09141908-2b3122-observe",
+      "uid": "b24783e7-a3d5-4c55-bf8e-c35bd08a0baa",
+      "exists": true,
+      "labels": {
+        "network.ani.io/test-run": "lb02-09141908-2b3122"
+      },
+      "spec": null,
+      "status": null
+    },
+    {
+      "kind": "ClusterRoleBinding",
+      "namespace": null,
+      "name": "lb02-09141908-2b3122-observe",
+      "uid": "016d37e8-0072-4b0c-a384-371bd7abd716",
+      "exists": true,
+      "labels": {
+        "network.ani.io/test-run": "lb02-09141908-2b3122"
+      },
+      "spec": null,
+      "status": null
+    },
+    {
+      "kind": "Role",
+      "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+      "name": "lb02-09141908-2b3122-write",
+      "uid": "dc2cf2b1-66bd-464d-8362-67fec3e0f46b",
+      "exists": true,
+      "labels": {
+        "network.ani.io/test-run": "lb02-09141908-2b3122"
+      },
+      "spec": null,
+      "status": null
+    },
+    {
+      "kind": "RoleBinding",
+      "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+      "name": "lb02-09141908-2b3122-write",
+      "uid": "7bbec5e1-456b-459a-aaa7-8fd13cdc0517",
+      "exists": true,
+      "labels": {
+        "network.ani.io/test-run": "lb02-09141908-2b3122"
+      },
+      "spec": null,
+      "status": null
+    },
+    {
+      "kind": "Role",
+      "namespace": "lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832",
+      "name": "lb02-09141908-2b3122-write",
+      "uid": "db45e4ca-4d43-43fd-91c8-3d9e9be996dc",
+      "exists": true,
+      "labels": {
+        "network.ani.io/test-run": "lb02-09141908-2b3122"
+      },
+      "spec": null,
+      "status": null
+    },
+    {
+      "kind": "RoleBinding",
+      "namespace": "lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832",
+      "name": "lb02-09141908-2b3122-write",
+      "uid": "47e72ab5-9444-42c3-889d-d3ef3b835a60",
+      "exists": true,
+      "labels": {
+        "network.ani.io/test-run": "lb02-09141908-2b3122"
+      },
+      "spec": null,
+      "status": null
+    },
+    {
+      "kind": "Role",
+      "namespace": "kcn-system",
+      "name": "lb02-09141908-2b3122-intranet",
+      "uid": "a227e69b-8b70-4e40-ac5a-7d666bfcf04f",
+      "exists": true,
+      "labels": {
+        "network.ani.io/test-run": "lb02-09141908-2b3122"
+      },
+      "spec": null,
+      "status": null
+    },
+    {
+      "kind": "RoleBinding",
+      "namespace": "kcn-system",
+      "name": "lb02-09141908-2b3122-intranet",
+      "uid": "eba675c3-ccad-4f57-816e-5e4ce5cc0c3c",
+      "exists": true,
+      "labels": {
+        "network.ani.io/test-run": "lb02-09141908-2b3122"
+      },
+      "spec": null,
+      "status": null
+    },
+    {
+      "kind": "Subnet",
+      "namespace": "kcn-system",
+      "name": "pool-f6c078d198ae4ea1be6f43cfad8f9934",
+      "uid": "0ce012b9-3943-420e-8cd1-16cff3656a70",
+      "exists": true,
+      "labels": {
+        "network.ani.io/binding-id": "cde8b16d-0b87-4ea5-ab35-bc66a02a54f8",
+        "network.ani.io/managed-by": "ani-network-service",
+        "network.ani.io/resource-id": "pool_f6c078d198ae4ea1be6f43cfad8f9934",
+        "networking.kubercloud.com/gateway": "kcn-system.pool-f6c078d198ae4ea1be6f43cfad8f9934"
+      },
+      "spec": {
+        "allowedNamespaces": {
+          "from": "All"
+        },
+        "cidrBlock": "10.242.252.0/24",
+        "enableDHCP": false,
+        "excludeIPs": [
+          "10.242.252.1"
+        ],
+        "gateway": "kcn-system/kcn-cluster",
+        "gatewayIP": "10.242.252.1",
+        "ipVersion": "IPv4",
+        "natOutgoing": false,
+        "type": "Intranet"
+      },
+      "status": {
+        "boundResources": {
+          "gatewayPort": "vpc.kcn-system.kcn-cluster-kcn-system.pool-f6c078d198ae4ea1be6f43cfad8f9934",
+          "switch": "kcn-system.pool-f6c078d198ae4ea1be6f43cfad8f9934"
+        },
+        "conditions": [
+          {
+            "lastTransitionTime": "2026-09-14T19:40:26Z",
+            "message": "",
+            "reason": "Initialized",
+            "status": "True",
+            "type": "Initialized"
+          },
+          {
+            "lastTransitionTime": "2026-09-14T19:40:26Z",
+            "message": "",
+            "reason": "Valid",
+            "status": "True",
+            "type": "Valid"
+          },
+          {
+            "lastTransitionTime": "2026-09-14T19:40:27Z",
+            "message": "",
+            "reason": "Ready",
+            "status": "True",
+            "type": "Ready"
+          }
+        ],
+        "gatewayMac": "fa:00:61:3f:94:8f",
+        "observedGeneration": 1,
+        "v4availableIPrange": "10.242.252.2-10.242.252.254",
+        "v4availableIPs": 253,
+        "v4usingIPrange": "",
+        "v4usingIPs": 0
+      }
+    }
+  ]
+}

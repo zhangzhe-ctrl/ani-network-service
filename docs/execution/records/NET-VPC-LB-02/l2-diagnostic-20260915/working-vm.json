@@ -1,0 +1,255 @@
+{
+  "local_command": [
+    "ssh",
+    "-F",
+    "/home/chabking/.ssh/config",
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "ConnectTimeout=8",
+    "ubuntu@172.16.102.30",
+    "python3 -"
+  ],
+  "exit": 0,
+  "probe": {
+    "at": "2026-09-15T00:49:18.171641+00:00",
+    "hostname": "ubuntu",
+    "checks": [
+      {
+        "command": [
+          "ip",
+          "-d",
+          "-j",
+          "link",
+          "show"
+        ],
+        "exit": 0,
+        "output": [
+          {
+            "ifindex": 1,
+            "ifname": "lo",
+            "flags": [
+              "LOOPBACK",
+              "UP",
+              "LOWER_UP"
+            ],
+            "mtu": 65536,
+            "qdisc": "noqueue",
+            "operstate": "UNKNOWN",
+            "linkmode": "DEFAULT",
+            "group": "default",
+            "txqlen": 1000,
+            "link_type": "loopback",
+            "address": "00:00:00:00:00:00",
+            "broadcast": "00:00:00:00:00:00",
+            "promiscuity": 0,
+            "allmulti": 0,
+            "min_mtu": 0,
+            "max_mtu": 0,
+            "inet6_addr_gen_mode": "eui64",
+            "num_tx_queues": 1,
+            "num_rx_queues": 1,
+            "gso_max_size": 65536,
+            "gso_max_segs": 65535,
+            "tso_max_size": 524280,
+            "tso_max_segs": 65535,
+            "gro_max_size": 65536
+          },
+          {
+            "ifindex": 2,
+            "ifname": "ens34",
+            "flags": [
+              "BROADCAST",
+              "MULTICAST",
+              "UP",
+              "LOWER_UP"
+            ],
+            "mtu": 1500,
+            "qdisc": "mq",
+            "operstate": "UP",
+            "linkmode": "DEFAULT",
+            "group": "default",
+            "txqlen": 1000,
+            "link_type": "ether",
+            "address": "00:0c:29:91:aa:5c",
+            "broadcast": "ff:ff:ff:ff:ff:ff",
+            "promiscuity": 0,
+            "allmulti": 0,
+            "min_mtu": 60,
+            "max_mtu": 9190,
+            "inet6_addr_gen_mode": "eui64",
+            "num_tx_queues": 8,
+            "num_rx_queues": 8,
+            "gso_max_size": 65536,
+            "gso_max_segs": 65535,
+            "tso_max_size": 65536,
+            "tso_max_segs": 65535,
+            "gro_max_size": 65536,
+            "parentbus": "pci",
+            "parentdev": "0000:02:02.0",
+            "altnames": [
+              "enp2s2"
+            ]
+          }
+        ],
+        "stderr": ""
+      },
+      {
+        "command": [
+          "ip",
+          "-j",
+          "address",
+          "show"
+        ],
+        "exit": 0,
+        "output": [
+          {
+            "ifindex": 1,
+            "ifname": "lo",
+            "flags": [
+              "LOOPBACK",
+              "UP",
+              "LOWER_UP"
+            ],
+            "mtu": 65536,
+            "qdisc": "noqueue",
+            "operstate": "UNKNOWN",
+            "group": "default",
+            "txqlen": 1000,
+            "link_type": "loopback",
+            "address": "00:00:00:00:00:00",
+            "broadcast": "00:00:00:00:00:00",
+            "addr_info": [
+              {
+                "family": "inet",
+                "local": "127.0.0.1",
+                "prefixlen": 8,
+                "scope": "host",
+                "label": "lo",
+                "valid_life_time": 4294967295,
+                "preferred_life_time": 4294967295
+              },
+              {
+                "family": "inet6",
+                "local": "::1",
+                "prefixlen": 128,
+                "scope": "host",
+                "noprefixroute": true,
+                "valid_life_time": 4294967295,
+                "preferred_life_time": 4294967295
+              }
+            ]
+          },
+          {
+            "ifindex": 2,
+            "ifname": "ens34",
+            "flags": [
+              "BROADCAST",
+              "MULTICAST",
+              "UP",
+              "LOWER_UP"
+            ],
+            "mtu": 1500,
+            "qdisc": "mq",
+            "operstate": "UP",
+            "group": "default",
+            "txqlen": 1000,
+            "link_type": "ether",
+            "address": "00:0c:29:91:aa:5c",
+            "broadcast": "ff:ff:ff:ff:ff:ff",
+            "altnames": [
+              "enp2s2"
+            ],
+            "addr_info": [
+              {
+                "family": "inet",
+                "local": "172.16.102.30",
+                "prefixlen": 24,
+                "broadcast": "172.16.102.255",
+                "scope": "global",
+                "label": "ens34",
+                "valid_life_time": 4294967295,
+                "preferred_life_time": 4294967295
+              },
+              {
+                "family": "inet6",
+                "local": "fe80::20c:29ff:fe91:aa5c",
+                "prefixlen": 64,
+                "scope": "link",
+                "valid_life_time": 4294967295,
+                "preferred_life_time": 4294967295
+              }
+            ]
+          }
+        ],
+        "stderr": ""
+      },
+      {
+        "command": [
+          "ip",
+          "-j",
+          "route",
+          "show",
+          "table",
+          "main"
+        ],
+        "exit": 0,
+        "output": [
+          {
+            "dst": "default",
+            "gateway": "172.16.102.1",
+            "dev": "ens34",
+            "protocol": "static",
+            "flags": []
+          },
+          {
+            "dst": "172.16.102.0/24",
+            "dev": "ens34",
+            "protocol": "kernel",
+            "scope": "link",
+            "prefsrc": "172.16.102.30",
+            "flags": []
+          }
+        ],
+        "stderr": ""
+      },
+      {
+        "command": [
+          "ping",
+          "-n",
+          "-c",
+          "2",
+          "-W",
+          "1",
+          "172.16.102.1"
+        ],
+        "exit": 0,
+        "output": "PING 172.16.102.1 (172.16.102.1) 56(84) bytes of data.\n64 bytes from 172.16.102.1: icmp_seq=1 ttl=64 time=3.29 ms\n64 bytes from 172.16.102.1: icmp_seq=2 ttl=64 time=1.17 ms\n\n--- 172.16.102.1 ping statistics ---\n2 packets transmitted, 2 received, 0% packet loss, time 1001ms\nrtt min/avg/max/mdev = 1.172/2.230/3.288/1.058 ms\n",
+        "stderr": ""
+      },
+      {
+        "command": [
+          "ip",
+          "-j",
+          "neigh",
+          "show",
+          "to",
+          "172.16.102.1"
+        ],
+        "exit": 0,
+        "output": [
+          {
+            "dst": "172.16.102.1",
+            "dev": "ens34",
+            "lladdr": "00:1e:08:2f:bb:17",
+            "state": [
+              "DELAY"
+            ]
+          }
+        ],
+        "stderr": ""
+      }
+    ]
+  },
+  "stderr": ""
+}

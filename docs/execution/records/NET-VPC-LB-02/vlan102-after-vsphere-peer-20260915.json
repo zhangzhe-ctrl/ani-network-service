@@ -1,0 +1,39 @@
+{
+  "at": "2026-09-14T19:39:23.177618+00:00",
+  "trigger": "after user-reported vDS VLAN trunking change",
+  "receiver": {
+    "host": "ani-test-2",
+    "exit": 0,
+    "result": {
+      "interface": "ens35",
+      "captured_packets": 0,
+      "matching_node1_arp": [],
+      "nic_counter_delta": {
+        "rx_packets": 0,
+        "rx_dropped": 0,
+        "rx_errors": 0,
+        "tx_packets": 0,
+        "tx_dropped": 0,
+        "tx_errors": 0
+      }
+    },
+    "stderr": ""
+  },
+  "sender": {
+    "host": "ani-test-1",
+    "exit": 0,
+    "result": {
+      "at": "2026-09-14T19:39:19.060190+00:00",
+      "interface": "ens35",
+      "transmit_vlan": 102,
+      "target": "172.16.102.1",
+      "sender_ip": "0.0.0.0",
+      "frames_sent": 2,
+      "replies": [],
+      "host_configuration_changes": 0,
+      "result": "not_verified"
+    },
+    "stderr": ""
+  },
+  "host_configuration_changes": 0
+}

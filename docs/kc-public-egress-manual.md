@@ -13,7 +13,7 @@ Network 的 [原 RPC](../api/network/v1/network.proto) 提供 VPC/Subnet/Attachm
 所有操作在明确的集群、独占测试服务/数据库和可信授权入口上执行。部署所需的 [RBAC 与节点事实采集器](../deployments/egress/README.md) 独立说明权限、节点 UID 固定和停止方式。普通 RPC 请求中的 `target_tenant_id` 不能授予身份；未提供时使用可信租户上下文，指定其他租户需要单独代操作许可。`PlatformNetworkService` 的管理员权限不自动包含租户代操作权限。当前 ANI Gateway/OpenAPI 接线不在本轮。
 
 1. **读取事实。** Underlay 管理员调用 `ListNodeInterfaces`，记录完整 `inventory_fingerprint`、节点 UID、事实时间和不可用原因；本轮只做自动测试，不能对真实网卡执行下一步。Overlay 跳过网卡和 VLAN 接管。
-2. **平台初始化。** Underlay 调用 `AdoptNetworkDevice`，等待 `GetNetworkDevice` 的各节点进度，再调用 `CreateVlanNetwork`，其中 `vlan_id=0` 是 untagged。两种模式都调用 `CreateEgressGateway`，等待资源 `available` 且观测新鲜，再调用 `CreatePublicAddressPool`。请求使用产品网关/VLAN ID，不能提交底层 namespace 或 Public CR 名。
+2. **平台初始化。** Underlay 调用 `AdoptNetworkDevice`：空闲口执行接管；已由安装器加入 managedDevices 且 kc 接管就绪的口，核验后登记并复用，保留原物理配置。等待 `GetNetworkDevice` 的各节点进度，再调用 `CreateVlanNetwork`，其中 `vlan_id=0` 是 untagged。两种模式都调用 `CreateEgressGateway`，等待资源 `available` 且观测新鲜，再调用 `CreatePublicAddressPool`。请求使用产品网关/VLAN ID，不能提交底层 namespace 或 Public CR 名。设备条件与归属规则见[方案 4.1](specs/vpc-snat.md#41-underlay-的网卡发现与二层网络)。
 3. **记录验收并开放。** `GetPublicAddressPool` 返回当前 `topology_fingerprint` 与 `observed_provider_images`。具备该池/网关配置、实际镜像和模式范围的有效现场验收依据后，管理员调用 `RecordPublicPoolVerification`，提供完整源码 revision、实际 SHA-256 镜像 digest、该 fingerprint、证据引用、范围、验证及到期时间。再以最新 `expected_version` 和独立幂等键调用 `SetPublicPoolAllocationEnabled(enabled=true)`，并调用 `SetDefaultPublicPool`。只有 CR Ready 或历史手改 OVN 对照结果时，不能填写虚构验收记录；新池保持关闭。受控测试中的 fixture 证据只适用于该测试依赖。
 4. **租户私网与地址。** 通过既有 `NetworkService` 创建 VPC/Subnet；调用 `TenantEgressService.CreateEIP` 只提供名称、描述和幂等键。保存返回的产品 ID 与 operation ID，以 `GetEIP` 等待已分配地址。租户接口不暴露池配置，分配重试始终使用首次持久选定的池。
 5. **绑定与启停。** `BindVPCSnat(vpc_id,eip_id,idempotency_key)` 返回不可变 binding ID。用 `GetVPCSnatBinding` 等待 `applied_enabled=true`；`SetVPCSnatEnabled` 带该 ID、目标 enabled、最新 version 和永久幂等键。受理时 applied 值为空；停用完成后为显式 false，绑定及 EIP 继续占用。父 EIP 的持续观察也须恢复就绪后再发起重新启用；过渡中可返回出口未就绪。
@@ -129,7 +129,7 @@ ovs-vsctl get Open_vSwitch . external_ids:ovn-bridge-mappings
 | 地址占用 | kc 的 `HasIPAddress` 拒绝有非 link-local IP 的接口。实际实现跳过 `IsLinkLocalUnicast()` 地址，不能仅按注释理解为只跳过 IPv6。 |
 | 链路 | kc 会尝试将接口设为 UP；UP 不证明交换机链路或 VLAN 已正确连接，还应检查 carrier 和交换机配置。 |
 | 已有用途 | 产品应排除 loopback、管理/默认路由接口、隧道接口、veth，以及被其他 bridge/bond/系统占用的候选；这些是产品接管检查，不能宣称 kc 已完整实现。 |
-| 已由 kc 接管 | 可以只读展示其 `br-<devName>`、现有 VlanNetwork 和占用子网；不得当成空闲口重复破坏性接管。 |
+| 已由 kc 接管 | 是二层网络的正常前置状态；核对 `br-<devName>`、kc 标记、bridge mapping、节点身份和现有占用后，经同一管理员 API 登记使用，保留已有物理配置。 |
 
 [kc 网卡接管][kc-device-adopt]、[地址过滤][kc-device-filter]。当前 `networking.kubercloud.com/managed_netdevs` annotation 只反映已接管设备的布尔状态，不是完整候选网卡发现接口。
 

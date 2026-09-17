@@ -1,0 +1,32 @@
+# Additional rights for the explicitly isolated LB instance. Bind this role to
+# that run's ServiceAccount with a uniquely named ClusterRoleBinding.
+# The existing egress role remains required; no Service/Deployment spec writes.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: ani-network-load-balancer
+rules:
+  - apiGroups: [gateway.networking.k8s.io]
+    resources: [gateways, httproutes]
+    verbs: [get, list, watch, create, patch, delete]
+  - apiGroups: [gateway.envoyproxy.io]
+    resources: [backends, backendtrafficpolicies]
+    verbs: [get, list, watch, create, patch, delete]
+  - apiGroups: [gateway.networking.k8s.io]
+    resources: [gatewayclasses]
+    verbs: [get, list, watch]
+  - apiGroups: [gateway.envoyproxy.io]
+    resources: [envoyproxies]
+    verbs: [get, list, watch]
+  - apiGroups: [apps]
+    resources: [deployments, replicasets]
+    verbs: [get, list, watch]
+  - apiGroups: [discovery.k8s.io]
+    resources: [endpointslices]
+    verbs: [get, list, watch]
+  - apiGroups: [apiextensions.k8s.io]
+    resources: [customresourcedefinitions]
+    verbs: [get, list, watch]
+  - apiGroups: [authorization.k8s.io]
+    resources: [subjectaccessreviews]
+    verbs: [create]

@@ -1,0 +1,98 @@
+{
+  "at": "2026-09-15T07:08:08.313131+00:00",
+  "result": "pass",
+  "deleted": [
+    {
+      "kind": "Role",
+      "name": "lb02-2b3122-foreign-service-fixture",
+      "uid": "4ef6af6f-f563-4738-accb-65e630f33413"
+    },
+    {
+      "kind": "RoleBinding",
+      "name": "lb02-2b3122-foreign-service-fixture",
+      "uid": "f69d4d76-24f5-44f9-87cd-c206244868f1"
+    }
+  ],
+  "actions": [
+    {
+      "command": [
+        "sudo",
+        "-n",
+        "/usr/local/bin/kubectl",
+        "--kubeconfig",
+        "/etc/kubernetes/admin.conf",
+        "--context",
+        "kubernetes-admin@ani-platform",
+        "--request-timeout=15s",
+        "delete",
+        "--raw",
+        "/apis/rbac.authorization.k8s.io/v1/namespaces/lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad/rolebindings/lb02-2b3122-foreign-service-fixture",
+        "-f",
+        "-"
+      ],
+      "request": {
+        "apiVersion": "v1",
+        "kind": "DeleteOptions",
+        "preconditions": {
+          "uid": "f69d4d76-24f5-44f9-87cd-c206244868f1"
+        }
+      },
+      "exit": 0,
+      "stdout": "{\"kind\":\"Status\",\"apiVersion\":\"v1\",\"metadata\":{},\"status\":\"Success\",\"details\":{\"name\":\"lb02-2b3122-foreign-service-fixture\",\"group\":\"rbac.authorization.k8s.io\",\"kind\":\"rolebindings\",\"uid\":\"f69d4d76-24f5-44f9-87cd-c206244868f1\"}}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "sudo",
+        "-n",
+        "/usr/local/bin/kubectl",
+        "--kubeconfig",
+        "/etc/kubernetes/admin.conf",
+        "--context",
+        "kubernetes-admin@ani-platform",
+        "--request-timeout=15s",
+        "delete",
+        "--raw",
+        "/apis/rbac.authorization.k8s.io/v1/namespaces/lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad/roles/lb02-2b3122-foreign-service-fixture",
+        "-f",
+        "-"
+      ],
+      "request": {
+        "apiVersion": "v1",
+        "kind": "DeleteOptions",
+        "preconditions": {
+          "uid": "4ef6af6f-f563-4738-accb-65e630f33413"
+        }
+      },
+      "exit": 0,
+      "stdout": "{\"kind\":\"Status\",\"apiVersion\":\"v1\",\"metadata\":{},\"status\":\"Success\",\"details\":{\"name\":\"lb02-2b3122-foreign-service-fixture\",\"group\":\"rbac.authorization.k8s.io\",\"kind\":\"roles\",\"uid\":\"4ef6af6f-f563-4738-accb-65e630f33413\"}}\n",
+      "stderr": ""
+    }
+  ],
+  "post_delete_command": [
+    "sudo",
+    "-n",
+    "/usr/local/bin/kubectl",
+    "--kubeconfig",
+    "/etc/kubernetes/admin.conf",
+    "--context",
+    "kubernetes-admin@ani-platform",
+    "--request-timeout=15s",
+    "get",
+    "role,rolebinding",
+    "-n",
+    "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+    "--field-selector",
+    "metadata.name=lb02-2b3122-foreign-service-fixture",
+    "-o",
+    "json"
+  ],
+  "objects": {
+    "apiVersion": "v1",
+    "items": [],
+    "kind": "List",
+    "metadata": {
+      "resourceVersion": ""
+    }
+  }
+}

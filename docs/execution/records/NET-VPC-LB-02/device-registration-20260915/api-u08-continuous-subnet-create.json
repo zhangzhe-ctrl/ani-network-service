@@ -1,0 +1,29 @@
+{
+  "at": "2026-09-15T06:00:47.856626+00:00",
+  "execution_host": "ubuntu",
+  "context": "tenant-b",
+  "command": "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/lb-api call -target unix:///home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-b.sock -service NetworkService -method CreateSubnet",
+  "request": {
+    "name": "lb02-2b3122-u08-continuous",
+    "vpc_id": "vpc_1f6fbd7f85cd4baba0b0382770aa480e",
+    "cidr": "10.233.48.0/24",
+    "idempotency_key": "lb02-2b3122-u08-continuous-subnet"
+  },
+  "exit": 1,
+  "response": {
+    "code": "FailedPrecondition",
+    "status": {
+      "code": 9,
+      "message": "parent VPC requires a fresh available observation",
+      "details": [
+        {
+          "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+          "reason": "PARENT_NOT_READY",
+          "domain": "network.ani.io",
+          "metadata": {}
+        }
+      ]
+    }
+  },
+  "stderr": "RPC failed; structured status is in stdout\n"
+}

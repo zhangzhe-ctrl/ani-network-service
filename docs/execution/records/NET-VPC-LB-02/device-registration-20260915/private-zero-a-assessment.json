@@ -1,0 +1,251 @@
+{
+  "at": "2026-09-15T05:03:15.801916+00:00",
+  "bounded_stability_check": "fail: no two consecutive configured samples 5 seconds apart in 30 samples",
+  "configured_samples": 10,
+  "unknown_samples": 18,
+  "operation": "succeeded; private-lb-zero-operation.json",
+  "weight_zero_data_plane": "pass: private-vip-zero-a.json, 12/12 responses from backend b; backend a retained with weight 0",
+  "limits": "Configuration observation flapping remains unresolved; no continuous readiness claimed. The subsequent tests also record their operation and actual traffic separately.",
+  "samples": [
+    {
+      "at": "2026-09-15T04:59:37.171327+00:00",
+      "state": "RESOURCE_STATE_DEGRADED",
+      "reason": "PROVIDER_NOT_READY",
+      "applied_version": "1",
+      "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_DEGRADED",
+      "observed_at": "2026-09-15T04:59:26.150965Z"
+    },
+    {
+      "at": "2026-09-15T04:59:42.184460+00:00",
+      "state": "RESOURCE_STATE_DEGRADED",
+      "reason": "PROVIDER_NOT_READY",
+      "applied_version": "1",
+      "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_DEGRADED",
+      "observed_at": "2026-09-15T04:59:32.395263Z"
+    },
+    {
+      "at": "2026-09-15T04:59:47.196384+00:00",
+      "state": "RESOURCE_STATE_AVAILABLE",
+      "reason": "",
+      "applied_version": "2",
+      "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_CONFIGURED",
+      "observed_at": "2026-09-15T04:59:37.610593Z"
+    },
+    {
+      "at": "2026-09-15T04:59:52.237882+00:00",
+      "state": "RESOURCE_STATE_DEGRADED",
+      "reason": "PROVIDER_UNAVAILABLE",
+      "applied_version": "2",
+      "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_UNKNOWN",
+      "observed_at": "2026-09-15T04:59:37.610593Z"
+    },
+    {
+      "at": "2026-09-15T04:59:57.255745+00:00",
+      "state": "RESOURCE_STATE_DEGRADED",
+      "reason": "PROVIDER_UNAVAILABLE",
+      "applied_version": "2",
+      "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_UNKNOWN",
+      "observed_at": "2026-09-15T04:59:37.610593Z"
+    },
+    {
+      "at": "2026-09-15T05:00:02.271039+00:00",
+      "state": "RESOURCE_STATE_DEGRADED",
+      "reason": "PROVIDER_UNAVAILABLE",
+      "applied_version": "2",
+      "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_UNKNOWN",
+      "observed_at": "2026-09-15T04:59:37.610593Z"
+    },
+    {
+      "at": "2026-09-15T05:00:07.284847+00:00",
+      "state": "RESOURCE_STATE_AVAILABLE",
+      "reason": "",
+      "applied_version": "2",
+      "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_CONFIGURED",
+      "observed_at": "2026-09-15T04:59:57.477525Z"
+    },
+    {
+      "at": "2026-09-15T05:00:12.297607+00:00",
+      "state": "RESOURCE_STATE_DEGRADED",
+      "reason": "PROVIDER_UNAVAILABLE",
+      "applied_version": "2",
+      "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_UNKNOWN",
+      "observed_at": "2026-09-15T04:59:57.477525Z"
+    },
+    {
+      "at": "2026-09-15T05:00:17.309343+00:00",
+      "state": "RESOURCE_STATE_DEGRADED",
+      "reason": "PROVIDER_UNAVAILABLE",
+      "applied_version": "2",
+      "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_UNKNOWN",
+      "observed_at": "2026-09-15T04:59:57.477525Z"
+    },
+    {
+      "at": "2026-09-15T05:00:22.323228+00:00",
+      "state": "RESOURCE_STATE_DEGRADED",
+      "reason": "PROVIDER_UNAVAILABLE",
+      "applied_version": "2",
+      "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_UNKNOWN",
+      "observed_at": "2026-09-15T04:59:57.477525Z"
+    },
+    {
+      "at": "2026-09-15T05:00:27.335614+00:00",
+      "state": "RESOURCE_STATE_DEGRADED",
+      "reason": "PROVIDER_UNAVAILABLE",
+      "applied_version": "2",
+      "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_UNKNOWN",
+      "observed_at": "2026-09-15T04:59:57.477525Z"
+    },
+    {
+      "at": "2026-09-15T05:00:32.347016+00:00",
+      "state": "RESOURCE_STATE_AVAILABLE",
+      "reason": "",
+      "applied_version": "2",
+      "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_CONFIGURED",
+      "observed_at": "2026-09-15T05:00:22.464794Z"
+    },
+    {
+      "at": "2026-09-15T05:00:37.360315+00:00",
+      "state": "RESOURCE_STATE_DEGRADED",
+      "reason": "PROVIDER_UNAVAILABLE",
+      "applied_version": "2",
+      "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_UNKNOWN",
+      "observed_at": "2026-09-15T05:00:22.464794Z"
+    },
+    {
+      "at": "2026-09-15T05:00:42.372915+00:00",
+      "state": "RESOURCE_STATE_AVAILABLE",
+      "reason": "",
+      "applied_version": "2",
+      "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_CONFIGURED",
+      "observed_at": "2026-09-15T05:00:35.248202Z"
+    },
+    {
+      "at": "2026-09-15T05:00:47.385009+00:00",
+      "state": "RESOURCE_STATE_DEGRADED",
+      "reason": "PROVIDER_UNAVAILABLE",
+      "applied_version": "2",
+      "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_UNKNOWN",
+      "observed_at": "2026-09-15T05:00:35.248202Z"
+    },
+    {
+      "at": "2026-09-15T05:00:52.401024+00:00",
+      "state": "RESOURCE_STATE_DEGRADED",
+      "reason": "PROVIDER_UNAVAILABLE",
+      "applied_version": "2",
+      "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_UNKNOWN",
+      "observed_at": "2026-09-15T05:00:35.248202Z"
+    },
+    {
+      "at": "2026-09-15T05:00:57.412942+00:00",
+      "state": "RESOURCE_STATE_AVAILABLE",
+      "reason": "",
+      "applied_version": "2",
+      "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_CONFIGURED",
+      "observed_at": "2026-09-15T05:00:49.908457Z"
+    },
+    {
+      "at": "2026-09-15T05:01:02.426023+00:00",
+      "state": "RESOURCE_STATE_DEGRADED",
+      "reason": "PROVIDER_UNAVAILABLE",
+      "applied_version": "2",
+      "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_UNKNOWN",
+      "observed_at": "2026-09-15T05:00:49.908457Z"
+    },
+    {
+      "at": "2026-09-15T05:01:07.439184+00:00",
+      "state": "RESOURCE_STATE_AVAILABLE",
+      "reason": "",
+      "applied_version": "2",
+      "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_CONFIGURED",
+      "observed_at": "2026-09-15T05:00:56.516385Z"
+    },
+    {
+      "at": "2026-09-15T05:01:12.456012+00:00",
+      "state": "RESOURCE_STATE_DEGRADED",
+      "reason": "PROVIDER_UNAVAILABLE",
+      "applied_version": "2",
+      "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_UNKNOWN",
+      "observed_at": "2026-09-15T05:00:56.516385Z"
+    },
+    {
+      "at": "2026-09-15T05:01:17.467942+00:00",
+      "state": "RESOURCE_STATE_DEGRADED",
+      "reason": "PROVIDER_UNAVAILABLE",
+      "applied_version": "2",
+      "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_UNKNOWN",
+      "observed_at": "2026-09-15T05:00:56.516385Z"
+    },
+    {
+      "at": "2026-09-15T05:01:22.481308+00:00",
+      "state": "RESOURCE_STATE_AVAILABLE",
+      "reason": "",
+      "applied_version": "2",
+      "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_CONFIGURED",
+      "observed_at": "2026-09-15T05:01:12.597607Z"
+    },
+    {
+      "at": "2026-09-15T05:01:27.494382+00:00",
+      "state": "RESOURCE_STATE_DEGRADED",
+      "reason": "PROVIDER_UNAVAILABLE",
+      "applied_version": "2",
+      "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_UNKNOWN",
+      "observed_at": "2026-09-15T05:01:12.597607Z"
+    },
+    {
+      "at": "2026-09-15T05:01:32.507133+00:00",
+      "state": "RESOURCE_STATE_AVAILABLE",
+      "reason": "",
+      "applied_version": "2",
+      "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_CONFIGURED",
+      "observed_at": "2026-09-15T05:01:22.961412Z"
+    },
+    {
+      "at": "2026-09-15T05:01:37.518540+00:00",
+      "state": "RESOURCE_STATE_DEGRADED",
+      "reason": "PROVIDER_UNAVAILABLE",
+      "applied_version": "2",
+      "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_UNKNOWN",
+      "observed_at": "2026-09-15T05:01:22.961412Z"
+    },
+    {
+      "at": "2026-09-15T05:01:42.529697+00:00",
+      "state": "RESOURCE_STATE_AVAILABLE",
+      "reason": "",
+      "applied_version": "2",
+      "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_CONFIGURED",
+      "observed_at": "2026-09-15T05:01:33.471510Z"
+    },
+    {
+      "at": "2026-09-15T05:01:47.542325+00:00",
+      "state": "RESOURCE_STATE_DEGRADED",
+      "reason": "PROVIDER_UNAVAILABLE",
+      "applied_version": "2",
+      "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_UNKNOWN",
+      "observed_at": "2026-09-15T05:01:33.471510Z"
+    },
+    {
+      "at": "2026-09-15T05:01:52.554226+00:00",
+      "state": "RESOURCE_STATE_DEGRADED",
+      "reason": "PROVIDER_UNAVAILABLE",
+      "applied_version": "2",
+      "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_UNKNOWN",
+      "observed_at": "2026-09-15T05:01:33.471510Z"
+    },
+    {
+      "at": "2026-09-15T05:01:57.568689+00:00",
+      "state": "RESOURCE_STATE_AVAILABLE",
+      "reason": "",
+      "applied_version": "2",
+      "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_CONFIGURED",
+      "observed_at": "2026-09-15T05:01:49.600835Z"
+    },
+    {
+      "at": "2026-09-15T05:02:02.587315+00:00",
+      "state": "RESOURCE_STATE_DEGRADED",
+      "reason": "PROVIDER_UNAVAILABLE",
+      "applied_version": "2",
+      "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_UNKNOWN",
+      "observed_at": "2026-09-15T05:01:49.600835Z"
+    }
+  ]
+}

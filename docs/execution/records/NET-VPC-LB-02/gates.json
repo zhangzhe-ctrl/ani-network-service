@@ -1,0 +1,225 @@
+{
+  "at": "2026-09-14T16:57:53.036090+00:00",
+  "goal": "NET-VPC-LB-02",
+  "overall": "not_complete",
+  "current_card_status_authority": "../../status.md",
+  "fixed_head": "e534bb0e8ef83055e18e91d1d41a6c821348a887",
+  "final_run": "20260914T164316Z-37824ac9",
+  "execution_host": "ubuntu / i-8yg2l7u8",
+  "archive_sha256": "997809e8f1f8a2b9d787bf615750e1ae0759b1b338f461f7b7a77a0fc816456a",
+  "manifest_sha256": "f1f2fcded8942e32f095bbec55abc876758b8e63631d282a177ea394c64edb4e",
+  "commands": [
+    "bash",
+    "-c",
+    "scripts/integration -race -count=3 -v -run \"TestBaseConnectivityServiceProcessesRecoverEveryDurableBoundary/partial_unknown_EIP_termination_before_late_success\" ./internal/data && scripts/integration -race -count=1 -v -run \"TestLBUpdateContendsWithParentDeletionInBothOrders|TestLBRejectsSystemIntranetEIPWithoutChangingBaseClaim\" ./internal/data && make verify && scripts/check-vpc-lb-contracts && scripts/integration -race ./... -timeout 12m -json"
+  ],
+  "command_exit": 0,
+  "log": "runs/20260914T164316Z-37824ac9/command.txt",
+  "full_race": {
+    "result": "pass",
+    "top_level_tests_passed": 148,
+    "test_cases_including_subtests_passed": 353,
+    "failed_tests": 0,
+    "data_package_elapsed_seconds": 559.475,
+    "out_of_scope_skipped_test": "TestNET05ACapacity"
+  },
+  "controlled_matrix": [
+    {
+      "check": "u05_domain_rpc_and_idempotency",
+      "result": "pass",
+      "scope": "domain/service tests, actual fixed-context RPC processes and PostgreSQL acceptance",
+      "evidence": "runs/20260914T164316Z-37824ac9/command.txt"
+    },
+    {
+      "check": "u05_parent_and_shared_claim_atomicity",
+      "result": "pass",
+      "scope": "both SNAT/LB arrival orders, same VIP, parent admission/deletion and parent update/deletion",
+      "evidence": "runs/20260914T164316Z-37824ac9/command.txt"
+    },
+    {
+      "check": "u05_tenant_sql_api_operations",
+      "result": "pass",
+      "scope": "14 existing/new LB relation UPDATE FK negatives, INSERT negatives and cross-tenant API/operation queries",
+      "evidence": "runs/20260914T164316Z-37824ac9/command.txt"
+    },
+    {
+      "check": "schema_empty_and_exact_0006_upgrade",
+      "result": "pass",
+      "scope": "runtime migration of empty databases and exact 0006 historical rows; old column values and dormant VIP reservations preserved",
+      "evidence": "runs/20260914T164316Z-37824ac9/command.txt"
+    },
+    {
+      "check": "u06_three_exposure_provider_lifecycles",
+      "result": "pass",
+      "scope": "actual KC adapter with controlled HTTP Provider, all three mappings and Route/Policy/Gateway/Backend cleanup order",
+      "evidence": "runs/20260914T164316Z-37824ac9/command.txt"
+    },
+    {
+      "check": "u06_member_identity_and_generated_ownership",
+      "result": "pass",
+      "scope": "Attachment/Pod/VNicIP UID checks; reused addresses withdrawn; foreign Service/Nat/Snat/qualified VPC references conflict",
+      "evidence": "runs/20260914T164316Z-37824ac9/command.txt"
+    },
+    {
+      "check": "u06_partial_creation_and_unknown_deletion",
+      "result": "pass",
+      "scope": "never-sent, partial Backend/Gateway before generated Service, unknown POST late success and finalizer blocking",
+      "evidence": "runs/20260914T164316Z-37824ac9/command.txt"
+    },
+    {
+      "check": "u06_configuration_and_health_separation",
+      "result": "pass",
+      "scope": "partial applied version retained, zero weight preserved, active TCP policy contract; no fabricated ongoing data-plane health",
+      "evidence": "runs/20260914T164316Z-37824ac9/command.txt"
+    },
+    {
+      "check": "u06_shared_capability_observation",
+      "result": "pass",
+      "scope": "Watch disconnect/410/relist, stale pure queries, installation drift recovery, normal VPC independence",
+      "evidence": "runs/20260914T164316Z-37824ac9/command.txt"
+    },
+    {
+      "check": "u06_new_runtime_install_representation",
+      "result": "pass",
+      "scope": "bare config image IDs require exact running owner chain; omitted Public Service default and numeric/equivalent quantities accepted; wrong image/missing chain/reduced small/private default rejected",
+      "evidence": "runs/20260914T164316Z-37824ac9/command.txt"
+    },
+    {
+      "check": "u07_two_actual_network_processes",
+      "result": "pass",
+      "scope": "six LB POST/update/delete/late-success recovery boundaries with actual processes and shared PostgreSQL",
+      "evidence": "runs/20260914T164316Z-37824ac9/command.txt"
+    },
+    {
+      "check": "u07_base_process_regression_and_lease_fencing",
+      "result": "pass",
+      "scope": "original unknown EIP termination reproduced then fixed; targeted scenario repeated three times, complete base process suite passed",
+      "evidence": "runs/20260914T164316Z-37824ac9/command.txt"
+    },
+    {
+      "check": "u07_pool_switch_and_backfill_composition",
+      "result": "pass",
+      "scope": "both default pools/closure; U08 pause/resume, delete/new Public races, existing LB coexistence",
+      "evidence": "runs/20260914T164316Z-37824ac9/command.txt"
+    },
+    {
+      "check": "existing_vpc_subnet_attachment_public_regressions",
+      "result": "pass",
+      "scope": "full PostgreSQL race suite and standard runtime behavior",
+      "evidence": "runs/20260914T164316Z-37824ac9/command.txt"
+    },
+    {
+      "check": "make_verify",
+      "result": "pass",
+      "scope": "pinned generator equality, ownership boundaries, go mod tidy -diff, tests, vet, build, mod verify and diff check",
+      "evidence": "runs/20260914T164316Z-37824ac9/command.txt"
+    },
+    {
+      "check": "fixed_baseline_buf_breaking",
+      "result": "pass",
+      "scope": "scripts/check-vpc-lb-contracts against e534bb0e8ef83055e18e91d1d41a6c821348a887",
+      "evidence": "runs/20260914T164316Z-37824ac9/command.txt"
+    },
+    {
+      "check": "u09_product_api_live_traffic",
+      "result": "not_verified",
+      "scope": "old kind scheduler shortage; new environment read-only suitability assessed but target change, source/build linkage and experimental egress inputs outstanding",
+      "evidence": "new-environment-assessment-20260915.md"
+    }
+  ],
+  "u09_matrix": [
+    {
+      "item": 1,
+      "description": "new VPC automatic base intranet across two worker nodes",
+      "result": "not_verified"
+    },
+    {
+      "item": 2,
+      "description": "private LB direct VIP to two owner-attached backends",
+      "result": "not_verified"
+    },
+    {
+      "item": 3,
+      "description": "public EIP ingress without Public SNAT",
+      "result": "not_verified"
+    },
+    {
+      "item": 4,
+      "description": "public_private EIP and VIP simultaneously",
+      "result": "not_verified"
+    },
+    {
+      "item": 5,
+      "description": "SNAT toggle/rebind while preserving base identities and private traffic",
+      "result": "not_verified"
+    },
+    {
+      "item": 6,
+      "description": "Public outbound connection and observed source IP",
+      "result": "not_verified"
+    },
+    {
+      "item": 7,
+      "description": "backend update, zero weight, real TCP health failure and recovery",
+      "result": "not_verified"
+    },
+    {
+      "item": 8,
+      "description": "live API EIP competition and tenant/namespace/UID/Service conflicts",
+      "result": "not_verified"
+    },
+    {
+      "item": 9,
+      "description": "LB product deletion releases EIP/VIP/parents and preserves independent resources",
+      "result": "not_verified"
+    },
+    {
+      "item": 10,
+      "description": "ordered VPC deletion leaves no unregistered system resources",
+      "result": "not_verified"
+    },
+    {
+      "item": 11,
+      "description": "U08 legacy fixture traffic, pause/resume and deletion races",
+      "result": "not_verified"
+    }
+  ],
+  "new_cluster_probe": {
+    "result": "pass_for_read_only_suitability_only",
+    "direct_vip_http_requests": 15,
+    "http_200": 15,
+    "source": "new-environment-assessment-20260915.md",
+    "not_a_network_api_acceptance": true
+  },
+  "independent_not_verified": [
+    "real IAM",
+    "ANI Gateway/Console",
+    "real Internet",
+    "production deployment",
+    "formal migration/backfill",
+    "capacity/HA",
+    "Underlay physical dataplane"
+  ],
+  "cleanup": "cleanup.json",
+  "prior_failures": "run-index.json",
+  "source_coverage": "source-coverage.json",
+  "handoff": "handoff.md",
+  "resume_preparation": {
+    "at": "2026-09-14T18:53:33.511311+00:00",
+    "run": "20260914T184655Z-be9fd699",
+    "result": "pass",
+    "evidence": "resume-build-gates-20260915.json",
+    "transfer_evidence": "resume-transfer-20260915.json",
+    "u09_status": "not_verified",
+    "user_inputs_and_remaining_work": "resume-20260915.md"
+  },
+  "live_01_stop": {
+    "at": "2026-09-14T19:44:56.454163+00:00",
+    "reason": "user requested blocking after post-vSphere-change VLAN102 diagnostics",
+    "evidence": "blocked-20260915.md",
+    "platform_api_pool_create": "pass",
+    "api_traffic_matrix": "not_verified",
+    "runtime": "stopped",
+    "retained_resources": "live-01/blocked-cluster-inventory.json"
+  }
+}

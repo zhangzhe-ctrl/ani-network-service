@@ -1,0 +1,49 @@
+{
+  "at": "2026-09-15T04:58:19.233842+00:00",
+  "unit": "ani-net-lb02-2b3122-r12.service",
+  "source_build_run": "20260915T044217Z-a4d7785d",
+  "before_binary_sha256": {
+    "lb-api": "8774eaa6698b067eb54869af1b582ce053c5c955703dd0dbe8d0825312fcd9a4",
+    "network": "1090c7326266b2c7c928ae2edff6b47f15745ddd0f6ce448282e63043e308442"
+  },
+  "binary_sha256": {
+    "lb-api": "c42ff0ac4e8b0782d24f05c2c2960692020738b7f00ce3410284707f6ce5a741",
+    "network": "b4b465f733d910a62912c113d7fb92d710a131051a4a85092787bb4da2c2276d"
+  },
+  "database": "net_vpc_lb_02_2b3122",
+  "postgres_container": "20f28b5962f4edfdd4115e4823be65982c4ebf92754a442175aeeb75af5ea5e9",
+  "config_unchanged": true,
+  "command": [
+    "systemd-run",
+    "--user",
+    "--unit",
+    "ani-net-lb02-2b3122-r12.service",
+    "--working-directory",
+    "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private",
+    "-p",
+    "Type=exec",
+    "-p",
+    "Restart=no",
+    "-p",
+    "CPUQuota=200%",
+    "-p",
+    "MemoryMax=2300M",
+    "-p",
+    "MemorySwapMax=0",
+    "--setenv=GOMAXPROCS=2",
+    "--setenv=GOFLAGS=-p=2",
+    "--setenv=GOMEMLIMIT=1500MiB",
+    "flock",
+    "-n",
+    "/home/ubuntu/.local/share/ani-network-service/net05a-heavy.lock",
+    "/home/ubuntu/workspace/ani-network-service-runs/snat-20260915T044217Z-a4d7785d/source/scripts/net05a-resource-guard",
+    "python3",
+    "/home/ubuntu/workspace/ani-network-service-runs/snat-20260915T044217Z-a4d7785d/source/scripts/lb-live-runtime",
+    "serve",
+    "--directory",
+    "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private"
+  ],
+  "start_exit": 0,
+  "stdout": "",
+  "stderr": "Running as unit: ani-net-lb02-2b3122-r12.service; invocation ID: 0447bba3346245d0b14fd47fee2e3e93\n"
+}

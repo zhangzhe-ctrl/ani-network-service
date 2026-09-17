@@ -1,0 +1,20 @@
+source.tar.gz: OK
+verified source files: 2392
+go version go1.26.7 linux/amd64
+1.60.0
+v1.31.1
+127.0.0.1:5432 - accepting connections
+PostgreSQL image=docker.io/library/postgres@sha256:4ef4dbc939d61acea57712655ddb4b4ab27419c913f94cca0cd57cb3ea3c2280 container=462f57aaeccc1a3ecea98b287f2a5e838af1cbe7b50741a0e9fc2bf6028cb5f1
+{"Time":"2026-09-15T21:09:14.708947103+08:00","Action":"start","Package":"github.com/zhangzhe-ctrl/ani-network-service/internal/data"}
+{"Time":"2026-09-15T21:09:14.719071831+08:00","Action":"run","Package":"github.com/zhangzhe-ctrl/ani-network-service/internal/data","Test":"TestAttachmentFinishesFreshAuditAfterConsecutiveWatchBoundaries"}
+{"Time":"2026-09-15T21:09:14.719135607+08:00","Action":"output","Package":"github.com/zhangzhe-ctrl/ani-network-service/internal/data","Test":"TestAttachmentFinishesFreshAuditAfterConsecutiveWatchBoundaries","Output":"=== RUN   TestAttachmentFinishesFreshAuditAfterConsecutiveWatchBoundaries\n"}
+{"Time":"2026-09-15T21:09:15.64920481+08:00","Action":"output","Package":"github.com/zhangzhe-ctrl/ani-network-service/internal/data","Test":"TestAttachmentFinishesFreshAuditAfterConsecutiveWatchBoundaries","Output":"I0915 21:09:15.649155 3518617 reflector.go:664] \"Warning: watch ended with error\" reflector=\"pkg/mod/k8s.io/client-go@v0.36.0/tools/cache/reflector.go:343\" type=\"*unstructured.Unstructured\" err=\"very short watch: pkg/mod/k8s.io/client-go@v0.36.0/tools/cache/reflector.go:343: Unexpected watch close - watch lasted less than a second and no items received\"\n"}
+{"Time":"2026-09-15T21:09:15.649274109+08:00","Action":"output","Package":"github.com/zhangzhe-ctrl/ani-network-service/internal/data","Test":"TestAttachmentFinishesFreshAuditAfterConsecutiveWatchBoundaries","Output":"I0915 21:09:15.649157 3518617 reflector.go:664] \"Warning: watch ended with error\" reflector=\"pkg/mod/k8s.io/client-go@v0.36.0/tools/cache/reflector.go:343\" type=\"*unstructured.Unstructured\" err=\"very short watch: pkg/mod/k8s.io/client-go@v0.36.0/tools/cache/reflector.go:343: Unexpected watch close - watch lasted less than a second and no items received\"\n"}
+{"Time":"2026-09-15T21:09:16.925609394+08:00","Action":"output","Package":"github.com/zhangzhe-ctrl/ani-network-service/internal/data","Test":"TestAttachmentFinishesFreshAuditAfterConsecutiveWatchBoundaries","Output":"    attachment_audit_retry_integration_test.go:130: stable audit within caller budget was not consumed after two Watch boundaries: collections=16 boundaries=2 observation={Proof:{CollectedAt:0001-01-01 00:00:00 +0000 UTC Hash: CoveredGeneration:0} Exists:false HasDependencies:false PodName: PodUID: Relations:[]} err=network provider: temporary\n"}
+{"Time":"2026-09-15T21:09:17.043829978+08:00","Action":"output","Package":"github.com/zhangzhe-ctrl/ani-network-service/internal/data","Test":"TestAttachmentFinishesFreshAuditAfterConsecutiveWatchBoundaries","Output":"--- FAIL: TestAttachmentFinishesFreshAuditAfterConsecutiveWatchBoundaries (2.33s)\n"}
+{"Time":"2026-09-15T21:09:17.043926788+08:00","Action":"fail","Package":"github.com/zhangzhe-ctrl/ani-network-service/internal/data","Test":"TestAttachmentFinishesFreshAuditAfterConsecutiveWatchBoundaries","Elapsed":2.33}
+{"Time":"2026-09-15T21:09:17.043955097+08:00","Action":"output","Package":"github.com/zhangzhe-ctrl/ani-network-service/internal/data","Output":"FAIL\n"}
+{"Time":"2026-09-15T21:09:17.046602077+08:00","Action":"output","Package":"github.com/zhangzhe-ctrl/ani-network-service/internal/data","Output":"FAIL\tgithub.com/zhangzhe-ctrl/ani-network-service/internal/data\t2.337s\n"}
+{"Time":"2026-09-15T21:09:17.046626494+08:00","Action":"fail","Package":"github.com/zhangzhe-ctrl/ani-network-service/internal/data","Elapsed":2.338}
+removed task container=462f57aaeccc1a3ecea98b287f2a5e838af1cbe7b50741a0e9fc2bf6028cb5f1
+REMOTE_COMMAND_EXIT=1

@@ -1,0 +1,37 @@
+deployment "dual-lb" successfully rolled out
+source=client dst=10.233.0.201 attempt=1
+status 200
+{"fixture_id":"pubdebug-20260917","hostname":"backend-b","instance_id":"backend-b","nonce":"dual-before-snat-client-1","port":"8080"}
+source=public-a dst=172.16.102.195 attempt=1
+Get "http://172.16.102.195:8080/?nonce=dual-before-snat-public-a-1": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+command terminated with exit code 2
+source=public-b dst=172.16.102.195 attempt=1
+status 200
+{"fixture_id":"pubdebug-20260917","hostname":"backend-a","instance_id":"backend-a","nonce":"dual-before-snat-public-b-1","port":"8080"}
+source=client dst=10.233.0.201 attempt=2
+status 200
+{"fixture_id":"pubdebug-20260917","hostname":"backend-b","instance_id":"backend-b","nonce":"dual-before-snat-client-2","port":"8080"}
+source=public-a dst=172.16.102.195 attempt=2
+Get "http://172.16.102.195:8080/?nonce=dual-before-snat-public-a-2": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+command terminated with exit code 2
+source=public-b dst=172.16.102.195 attempt=2
+status 200
+{"fixture_id":"pubdebug-20260917","hostname":"backend-a","instance_id":"backend-a","nonce":"dual-before-snat-public-b-2","port":"8080"}
+source=client dst=10.233.0.201 attempt=3
+status 200
+{"fixture_id":"pubdebug-20260917","hostname":"backend-a","instance_id":"backend-a","nonce":"dual-before-snat-client-3","port":"8080"}
+source=public-a dst=172.16.102.195 attempt=3
+Get "http://172.16.102.195:8080/?nonce=dual-before-snat-public-a-3": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+command terminated with exit code 2
+source=public-b dst=172.16.102.195 attempt=3
+status 200
+{"fixture_id":"pubdebug-20260917","hostname":"backend-b","instance_id":"backend-b","nonce":"dual-before-snat-public-b-3","port":"8080"}
+source=client dst=10.233.0.201 attempt=4
+status 200
+{"fixture_id":"pubdebug-20260917","hostname":"backend-a","instance_id":"backend-a","nonce":"dual-before-snat-client-4","port":"8080"}
+source=public-a dst=172.16.102.195 attempt=4
+Get "http://172.16.102.195:8080/?nonce=dual-before-snat-public-a-4": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+command terminated with exit code 2
+source=public-b dst=172.16.102.195 attempt=4
+status 200
+{"fixture_id":"pubdebug-20260917","hostname":"backend-b","instance_id":"backend-b","nonce":"dual-before-snat-public-b-4","port":"8080"}

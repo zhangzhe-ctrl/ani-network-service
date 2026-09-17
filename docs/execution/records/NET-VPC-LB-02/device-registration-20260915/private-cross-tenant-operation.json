@@ -1,0 +1,26 @@
+{
+  "at": "2026-09-15T05:04:34.760389+00:00",
+  "execution_host": "ubuntu",
+  "context": "tenant-b",
+  "command": "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/lb-api call -target unix:///home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-b.sock -service TenantLoadBalancerService -method GetLoadBalancerOperation",
+  "request": {
+    "operation_id": "237b4521-f744-46d0-b912-843fd2c7067d"
+  },
+  "exit": 1,
+  "response": {
+    "code": "NotFound",
+    "status": {
+      "code": 5,
+      "message": "resource not found",
+      "details": [
+        {
+          "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+          "reason": "RESOURCE_NOT_FOUND",
+          "domain": "network.ani.io",
+          "metadata": {}
+        }
+      ]
+    }
+  },
+  "stderr": "RPC failed; structured status is in stdout\n"
+}

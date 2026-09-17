@@ -1,0 +1,66 @@
+apiVersion: networking.kubercloud.com/v1
+kind: VPC
+metadata:
+  name: tenant
+  labels:
+    manual.ani.io/run: pubdebug-20260917
+  namespace: pubdebug-20260917
+spec:
+  cidrBlock: 10.233.0.0/20
+  ipVersion: IPv4
+  allowedNamespaces:
+    from: Same
+---
+apiVersion: networking.kubercloud.com/v1
+kind: Subnet
+metadata:
+  name: entry
+  labels:
+    manual.ani.io/run: pubdebug-20260917
+  namespace: pubdebug-20260917
+spec:
+  type: VPC
+  gateway: pubdebug-20260917/tenant
+  cidrBlock: 10.233.0.0/24
+  gatewayIP: 10.233.0.1
+  allowedNamespaces:
+    from: Same
+---
+apiVersion: networking.kubercloud.com/v1
+kind: Subnet
+metadata:
+  name: backend-net
+  labels:
+    manual.ani.io/run: pubdebug-20260917
+  namespace: pubdebug-20260917
+spec:
+  type: VPC
+  gateway: pubdebug-20260917/tenant
+  cidrBlock: 10.233.1.0/24
+  gatewayIP: 10.233.1.1
+  allowedNamespaces:
+    from: Same
+---
+apiVersion: networking.kubercloud.com/v1
+kind: EIP
+metadata:
+  name: intranet-eip
+  labels:
+    manual.ani.io/run: pubdebug-20260917
+  namespace: pubdebug-20260917
+spec:
+  subnet: kcn-system/pubdebug-20260917-intranet
+  ipVersion: IPv4
+  ipAddress: 10.242.252.2
+---
+apiVersion: networking.kubercloud.com/v1
+kind: Snat
+metadata:
+  name: intranet-snat
+  labels:
+    manual.ani.io/run: pubdebug-20260917
+  namespace: pubdebug-20260917
+spec:
+  eip: intranet-eip
+  vpc: tenant
+  disable: false

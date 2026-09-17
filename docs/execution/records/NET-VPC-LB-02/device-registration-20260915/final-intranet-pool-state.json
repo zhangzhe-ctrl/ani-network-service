@@ -1,0 +1,65 @@
+{
+  "at": "2026-09-15T14:54:55.087815+00:00",
+  "execution_host": "ubuntu",
+  "context": "platform",
+  "command": "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/lb-api call -target unix:///home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/platform.sock -service PlatformNetworkService -method GetIntranetAddressPool",
+  "request": {
+    "pool_id": "pool_f6c078d198ae4ea1be6f43cfad8f9934"
+  },
+  "exit": 0,
+  "response": {
+    "code": "OK",
+    "response": {
+      "resource": {
+        "id": "pool_f6c078d198ae4ea1be6f43cfad8f9934",
+        "cluster_id": "lb02-09141908-2b3122",
+        "name": "lb02-09141908-2b3122-intranet",
+        "description": "NET-VPC-LB-02 isolated API live validation",
+        "state": "RESOURCE_STATE_DELETED",
+        "reason": "",
+        "reason_message": "",
+        "version": "3048",
+        "created_at": "2026-09-14T19:34:54.678021Z",
+        "updated_at": "2026-09-15T14:54:52.447675Z",
+        "observed_at": "2026-09-15T14:54:43.668497Z",
+        "observation_stale": false,
+        "last_operation_id": "19680c36-fec4-4e23-ae4d-ed46b2d08a28",
+        "intranet_pool": {
+          "cidr": "10.242.252.0/24",
+          "ovn_gateway_ip": "10.242.252.1",
+          "excluded_ips": [
+            "10.242.252.1"
+          ],
+          "default_vpc_name": "kcn-cluster",
+          "default_vpc_uid": "a852bc64-3d41-4925-b6a1-de3db56e5a76",
+          "intranet_networks": [
+            "10.96.0.0/16",
+            "172.16.101.0/24",
+            "172.16.201.0/24",
+            "172.16.202.0/24"
+          ],
+          "allocation_enabled": false,
+          "is_default": true,
+          "config_revision": "1",
+          "verification": {
+            "provider_source_revision": "735abf81cb728f30bd0f15e1885dcd7f88b56ab0",
+            "provider_image_digests": [
+              "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4"
+            ],
+            "topology_fingerprint": "b4d5c4d62cbfbd4cad412f92d9e4384419ca7e3f1937d501f2e8bb65ce2e5f52",
+            "evidence_reference": "NET-VPC-LB-02/device-registration-20260915/base-intranet-r15-renewal.json#sha256=463d0b15d3d0744153998bdd74f2e98ed71db920ccd00d9c34c3220aeb6df1b3",
+            "scope": "base_intranet",
+            "verified_at": "2026-09-15T08:57:37.023630Z",
+            "expires_at": "2026-09-15T14:57:37.023630Z"
+          },
+          "topology_fingerprint": "b4d5c4d62cbfbd4cad412f92d9e4384419ca7e3f1937d501f2e8bb65ce2e5f52",
+          "observed_provider_images": [
+            "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4"
+          ],
+          "scope": "intranet"
+        }
+      }
+    }
+  },
+  "stderr": ""
+}

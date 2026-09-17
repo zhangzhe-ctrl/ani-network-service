@@ -1,0 +1,29 @@
+source.tar.gz: OK
+verified source files: 1240
+go version go1.26.7 linux/amd64
+1.60.0
+v1.31.1
+127.0.0.1:5432 - accepting connections
+PostgreSQL image=docker.io/library/postgres@sha256:4ef4dbc939d61acea57712655ddb4b4ab27419c913f94cca0cd57cb3ea3c2280 container=319a3393ef5fe222a4bdeef32e85cacb699dce1e946edec09ac40e8f8e7334c7
+=== RUN   TestLBServiceProcessesRecoverUnknownMutationsWithTwoWorkers
+=== RUN   TestLBServiceProcessesRecoverUnknownMutationsWithTwoWorkers/backend_POST_response_lost
+    load_balancer_process_integration_test.go:210: rpc error: code = Unavailable desc = VPC base connectivity is not fresh and ready
+=== RUN   TestLBServiceProcessesRecoverUnknownMutationsWithTwoWorkers/gateway_POST_late_success
+    load_balancer_process_integration_test.go:283: gateway_POST_late_success: same LB=lb_482075a1f78343af8a9f4be5448050f7 recovered using two service processes; product cleanup verified
+=== RUN   TestLBServiceProcessesRecoverUnknownMutationsWithTwoWorkers/policy_POST_response_lost
+    load_balancer_process_integration_test.go:283: policy_POST_response_lost: same LB=lb_5f9dfca70d3049f4a95233a9501dc663 recovered using two service processes; product cleanup verified
+=== RUN   TestLBServiceProcessesRecoverUnknownMutationsWithTwoWorkers/route_UPDATE_response_lost
+    load_balancer_process_integration_test.go:283: route_UPDATE_response_lost: same LB=lb_c22e166ad00540aebe348f2eb3ae3829 recovered using two service processes; product cleanup verified
+=== RUN   TestLBServiceProcessesRecoverUnknownMutationsWithTwoWorkers/gateway_DELETE_response_lost
+    load_balancer_process_integration_test.go:283: gateway_DELETE_response_lost: same LB=lb_497b93ff01e44764a298c001ee6d2d26 recovered using two service processes; product cleanup verified
+--- FAIL: TestLBServiceProcessesRecoverUnknownMutationsWithTwoWorkers (80.38s)
+    --- FAIL: TestLBServiceProcessesRecoverUnknownMutationsWithTwoWorkers/backend_POST_response_lost (1.31s)
+    --- PASS: TestLBServiceProcessesRecoverUnknownMutationsWithTwoWorkers/gateway_POST_late_success (16.39s)
+    --- PASS: TestLBServiceProcessesRecoverUnknownMutationsWithTwoWorkers/policy_POST_response_lost (16.91s)
+    --- PASS: TestLBServiceProcessesRecoverUnknownMutationsWithTwoWorkers/route_UPDATE_response_lost (17.74s)
+    --- PASS: TestLBServiceProcessesRecoverUnknownMutationsWithTwoWorkers/gateway_DELETE_response_lost (16.88s)
+FAIL
+FAIL	github.com/zhangzhe-ctrl/ani-network-service/internal/data	80.397s
+FAIL
+removed task container=319a3393ef5fe222a4bdeef32e85cacb699dce1e946edec09ac40e8f8e7334c7
+REMOTE_COMMAND_EXIT=1

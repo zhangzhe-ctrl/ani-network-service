@@ -1,0 +1,82 @@
+{
+  "at": "2026-09-15T04:26:57.445967+00:00",
+  "execution_host": "ubuntu",
+  "context": "tenant-a",
+  "command": "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/lb-api call -target unix:///home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-a.sock -service TenantLoadBalancerService -method GetLoadBalancer",
+  "request": {
+    "load_balancer_id": "lb_d9f847eef7eb453a8388672718959ec8"
+  },
+  "exit": 0,
+  "response": {
+    "code": "OK",
+    "response": {
+      "load_balancer": {
+        "id": "lb_d9f847eef7eb453a8388672718959ec8",
+        "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+        "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+        "subnet_id": "subnet_f74d90cbb5484f7fb37f8a8f6782da1d",
+        "name": "lb02-2b3122-private",
+        "description": "",
+        "exposure": "LOAD_BALANCER_EXPOSURE_PRIVATE",
+        "flavor": "small",
+        "public_eip_id": "",
+        "private_ip": "10.233.0.200",
+        "listener": {
+          "id": "5b6b5877-95c2-4088-9322-33766764a7ed",
+          "protocol": "LOAD_BALANCER_LISTENER_PROTOCOL_HTTP",
+          "port": 8080
+        },
+        "backends": [
+          {
+            "id": "921f84d6-dda1-4373-a25d-3aae356a32bc",
+            "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+            "address": "10.233.1.3",
+            "port": 8080,
+            "weight": 1,
+            "attachment_id": "att_a6172d5ee5be434087f939001a435c9e",
+            "state": "available",
+            "reason": "",
+            "observed_at": "2026-09-15T04:26:40.137049Z",
+            "observation_stale": false
+          },
+          {
+            "id": "ff95c238-ae88-41ad-8f10-8a01162683b0",
+            "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+            "address": "10.233.1.2",
+            "port": 8080,
+            "weight": 1,
+            "attachment_id": "att_7d08b61f4038432a842d2fda525607b9",
+            "state": "available",
+            "reason": "",
+            "observed_at": "2026-09-15T04:26:40.137049Z",
+            "observation_stale": false
+          }
+        ],
+        "health_check": {
+          "protocol": "LOAD_BALANCER_HEALTH_CHECK_PROTOCOL_TCP",
+          "interval_seconds": 5,
+          "timeout_seconds": 3,
+          "unhealthy_threshold": 3,
+          "healthy_threshold": 1
+        },
+        "algorithm": "LOAD_BALANCER_ALGORITHM_ROUND_ROBIN",
+        "state": "RESOURCE_STATE_PROVISIONING",
+        "reason": "PROVIDER_NOT_READY",
+        "reason_message": "The requested configuration is not ready yet.",
+        "version": "8",
+        "desired_version": "1",
+        "applied_version": "0",
+        "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_APPLYING",
+        "data_plane_state": "LOAD_BALANCER_DATA_PLANE_STATE_UNKNOWN",
+        "observed_at": "2026-09-15T04:26:40.137049Z",
+        "observation_stale": false,
+        "created_at": "2026-09-15T04:25:08.256400Z",
+        "updated_at": "2026-09-15T04:26:44.701750Z",
+        "last_operation_id": "237b4521-f744-46d0-b912-843fd2c7067d",
+        "public_address": "",
+        "data_plane_observed_at": null
+      }
+    }
+  },
+  "stderr": ""
+}

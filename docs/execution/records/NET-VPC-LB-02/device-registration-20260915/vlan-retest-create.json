@@ -1,0 +1,39 @@
+{
+  "at": "2026-09-15T08:13:20.447714+00:00",
+  "execution_host": "ubuntu",
+  "context": "platform",
+  "command": "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/lb-api call -target unix:///home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/platform.sock -service PlatformNetworkService -method CreateVlanNetwork",
+  "request": {
+    "name": "lb02-2b3122-untagged-retest",
+    "description": "U09 repeat after authorized historical recovery; guest untagged, logical VLAN 102",
+    "device_id": "device_3290174cfb644473b5b5e260bcea085c",
+    "vlan_id": 0,
+    "idempotency_key": "lb02-2b3122-untagged-retest-01"
+  },
+  "exit": 0,
+  "response": {
+    "code": "OK",
+    "response": {
+      "resource": {
+        "id": "vlan_9b12fcb230ef4bc08ba1d497ebe44009",
+        "cluster_id": "lb02-09141908-2b3122",
+        "name": "lb02-2b3122-untagged-retest",
+        "description": "U09 repeat after authorized historical recovery; guest untagged, logical VLAN 102",
+        "state": "RESOURCE_STATE_PROVISIONING",
+        "reason": "",
+        "reason_message": "",
+        "version": "1",
+        "created_at": "2026-09-15T08:13:20.561675Z",
+        "updated_at": "2026-09-15T08:13:20.561675Z",
+        "observed_at": null,
+        "observation_stale": true,
+        "last_operation_id": "e672e2a5-d9cc-4b4e-b09d-0d09bd2a500f",
+        "vlan": {
+          "device_id": "device_3290174cfb644473b5b5e260bcea085c",
+          "vlan_id": 0
+        }
+      }
+    }
+  },
+  "stderr": ""
+}

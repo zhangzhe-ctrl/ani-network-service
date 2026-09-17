@@ -1,0 +1,253 @@
+{
+  "phase": "delete",
+  "records": [
+    {
+      "at": "2026-09-15T14:08:44.682684+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=15s",
+        "get",
+        "service",
+        "-n",
+        "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+        "lb-74f96109961444a48b26c31601e6131f",
+        "-o",
+        "json"
+      ],
+      "request": null,
+      "exit": 0,
+      "response": {
+        "apiVersion": "v1",
+        "kind": "Service",
+        "metadata": {
+          "annotations": {
+            "networking.kubercloud.com/lb_vpc": "kcn-system/kcn-cluster"
+          },
+          "creationTimestamp": "2026-09-15T14:03:28Z",
+          "labels": {
+            "network.ani.io/test-role": "same-name-service-uid-fault",
+            "network.ani.io/test-run": "lb02-09141908-2b3122"
+          },
+          "name": "lb-74f96109961444a48b26c31601e6131f",
+          "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+          "resourceVersion": "449993",
+          "uid": "c5181c98-a534-4666-824a-051746559eaf"
+        },
+        "spec": {
+          "clusterIP": "10.96.98.25",
+          "clusterIPs": [
+            "10.96.98.25"
+          ],
+          "internalTrafficPolicy": "Cluster",
+          "ipFamilies": [
+            "IPv4"
+          ],
+          "ipFamilyPolicy": "SingleStack",
+          "ports": [
+            {
+              "name": "http",
+              "port": 8080,
+              "protocol": "TCP",
+              "targetPort": 8080
+            }
+          ],
+          "sessionAffinity": "None",
+          "type": "ClusterIP"
+        },
+        "status": {
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-09-15T14:03:28Z",
+              "message": "",
+              "reason": "Valid",
+              "status": "True",
+              "type": "KcnValid"
+            },
+            {
+              "lastTransitionTime": "2026-09-15T14:03:28Z",
+              "message": "",
+              "reason": "Ready",
+              "status": "True",
+              "type": "KcnReady"
+            }
+          ],
+          "loadBalancer": {}
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-15T14:08:44.931461+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=15s",
+        "delete",
+        "--raw",
+        "/api/v1/namespaces/lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad/services/lb-74f96109961444a48b26c31601e6131f",
+        "-f",
+        "-"
+      ],
+      "request": {
+        "apiVersion": "v1",
+        "kind": "DeleteOptions",
+        "preconditions": {
+          "uid": "c5181c98-a534-4666-824a-051746559eaf"
+        }
+      },
+      "exit": 0,
+      "response": {
+        "kind": "Service",
+        "apiVersion": "v1",
+        "metadata": {
+          "name": "lb-74f96109961444a48b26c31601e6131f",
+          "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+          "uid": "c5181c98-a534-4666-824a-051746559eaf",
+          "resourceVersion": "451548",
+          "creationTimestamp": "2026-09-15T14:03:28Z",
+          "labels": {
+            "network.ani.io/test-role": "same-name-service-uid-fault",
+            "network.ani.io/test-run": "lb02-09141908-2b3122"
+          },
+          "annotations": {
+            "networking.kubercloud.com/lb_vpc": "kcn-system/kcn-cluster"
+          },
+          "managedFields": [
+            {
+              "manager": "kc-networking-controller",
+              "operation": "Update",
+              "apiVersion": "v1",
+              "time": "2026-09-15T14:03:28Z",
+              "fieldsType": "FieldsV1",
+              "fieldsV1": {
+                "f:metadata": {
+                  "f:annotations": {
+                    ".": {},
+                    "f:networking.kubercloud.com/lb_vpc": {}
+                  }
+                }
+              }
+            },
+            {
+              "manager": "kc-networking-controller",
+              "operation": "Update",
+              "apiVersion": "v1",
+              "time": "2026-09-15T14:03:28Z",
+              "fieldsType": "FieldsV1",
+              "fieldsV1": {
+                "f:status": {
+                  "f:conditions": {
+                    ".": {},
+                    "k:{\"type\":\"KcnReady\"}": {
+                      ".": {},
+                      "f:lastTransitionTime": {},
+                      "f:message": {},
+                      "f:reason": {},
+                      "f:status": {},
+                      "f:type": {}
+                    },
+                    "k:{\"type\":\"KcnValid\"}": {
+                      ".": {},
+                      "f:lastTransitionTime": {},
+                      "f:message": {},
+                      "f:reason": {},
+                      "f:status": {},
+                      "f:type": {}
+                    }
+                  }
+                }
+              },
+              "subresource": "status"
+            },
+            {
+              "manager": "kubectl-create",
+              "operation": "Update",
+              "apiVersion": "v1",
+              "time": "2026-09-15T14:03:28Z",
+              "fieldsType": "FieldsV1",
+              "fieldsV1": {
+                "f:metadata": {
+                  "f:labels": {
+                    ".": {},
+                    "f:network.ani.io/test-role": {},
+                    "f:network.ani.io/test-run": {}
+                  }
+                },
+                "f:spec": {
+                  "f:internalTrafficPolicy": {},
+                  "f:ports": {
+                    ".": {},
+                    "k:{\"port\":8080,\"protocol\":\"TCP\"}": {
+                      ".": {},
+                      "f:name": {},
+                      "f:port": {},
+                      "f:protocol": {},
+                      "f:targetPort": {}
+                    }
+                  },
+                  "f:sessionAffinity": {},
+                  "f:type": {}
+                }
+              }
+            }
+          ]
+        },
+        "spec": {
+          "ports": [
+            {
+              "name": "http",
+              "protocol": "TCP",
+              "port": 8080,
+              "targetPort": 8080
+            }
+          ],
+          "clusterIP": "10.96.98.25",
+          "clusterIPs": [
+            "10.96.98.25"
+          ],
+          "type": "ClusterIP",
+          "sessionAffinity": "None",
+          "ipFamilies": [
+            "IPv4"
+          ],
+          "ipFamilyPolicy": "SingleStack",
+          "internalTrafficPolicy": "Cluster"
+        },
+        "status": {
+          "loadBalancer": {},
+          "conditions": [
+            {
+              "type": "KcnValid",
+              "status": "True",
+              "lastTransitionTime": "2026-09-15T14:03:28Z",
+              "reason": "Valid",
+              "message": ""
+            },
+            {
+              "type": "KcnReady",
+              "status": "True",
+              "lastTransitionTime": "2026-09-15T14:03:28Z",
+              "reason": "Ready",
+              "message": ""
+            }
+          ]
+        }
+      },
+      "stderr": ""
+    }
+  ],
+  "expected_fixture_uid": "c5181c98-a534-4666-824a-051746559eaf",
+  "result": "pass",
+  "at": "2026-09-15T14:08:44.931499+00:00",
+  "execution_host": "ubuntu",
+  "original_generated_service_uid": "cbbfbc82-49c0-4bbc-96f3-a3924f685421"
+}

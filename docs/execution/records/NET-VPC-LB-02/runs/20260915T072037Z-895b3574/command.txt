@@ -1,0 +1,22 @@
+ControlSocket /home/chabking/workspace/.worktrees/network-vpc-lb-02/.work/ubuntu.sock already exists, disabling multiplexing
+source.tar.gz: OK
+verified source files: 2018
+go version go1.26.7 linux/amd64
+1.60.0
+v1.31.1
+127.0.0.1:5432 - accepting connections
+PostgreSQL image=docker.io/library/postgres@sha256:4ef4dbc939d61acea57712655ddb4b4ab27419c913f94cca0cd57cb3ea3c2280 container=bf99a3532c60b39893465bdf3bcf87daa2ac6e416f737797e0337ec889e17e61
+=== RUN   TestPlatformCancellationPreservesDefinitiveMutationOutcome
+=== RUN   TestPlatformCancellationPreservesDefinitiveMutationOutcome/definitive_pre_send_failure
+    worker_cancellation_integration_test.go:80: shutdown discarded known mutation outcome: pending="create" want="" uid="" finish_error=context canceled
+=== RUN   TestPlatformCancellationPreservesDefinitiveMutationOutcome/uncertain_send_remains_pending
+=== RUN   TestPlatformCancellationPreservesDefinitiveMutationOutcome/expired_lease_cannot_clear_pending
+--- FAIL: TestPlatformCancellationPreservesDefinitiveMutationOutcome (5.07s)
+    --- FAIL: TestPlatformCancellationPreservesDefinitiveMutationOutcome/definitive_pre_send_failure (0.51s)
+    --- PASS: TestPlatformCancellationPreservesDefinitiveMutationOutcome/uncertain_send_remains_pending (1.72s)
+    --- PASS: TestPlatformCancellationPreservesDefinitiveMutationOutcome/expired_lease_cannot_clear_pending (2.84s)
+FAIL
+FAIL	github.com/zhangzhe-ctrl/ani-network-service/internal/data	5.126s
+FAIL
+removed task container=bf99a3532c60b39893465bdf3bcf87daa2ac6e416f737797e0337ec889e17e61
+REMOTE_COMMAND_EXIT=1

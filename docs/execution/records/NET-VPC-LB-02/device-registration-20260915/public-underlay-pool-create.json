@@ -1,0 +1,64 @@
+{
+  "at": "2026-09-15T08:20:28.500937+00:00",
+  "execution_host": "ubuntu",
+  "context": "platform",
+  "command": "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/lb-api call -target unix:///home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/platform.sock -service PlatformNetworkService -method CreatePublicAddressPool",
+  "request": {
+    "name": "lb02-2b3122-public-untagged",
+    "description": "U09 isolated underlay pool, guest untagged on logical VLAN 102; tenant allocation initially disabled",
+    "mode": "PUBLIC_POOL_MODE_UNDERLAY",
+    "gateway_id": "egw_386dc165a8744951bc624ab55c439681",
+    "cidr": "172.16.102.0/24",
+    "ovn_gateway_ip": "172.16.102.2",
+    "excluded_ips": [
+      "172.16.102.1..172.16.102.191",
+      "172.16.102.208..172.16.102.254"
+    ],
+    "vlan_network_id": "vlan_9b12fcb230ef4bc08ba1d497ebe44009",
+    "upstream_gateway_ip": "172.16.102.1",
+    "idempotency_key": "lb02-2b3122-public-pool-01"
+  },
+  "exit": 0,
+  "response": {
+    "code": "OK",
+    "response": {
+      "resource": {
+        "id": "pool_f28b9d470c0147f6a66646b8976c36f9",
+        "cluster_id": "lb02-09141908-2b3122",
+        "name": "lb02-2b3122-public-untagged",
+        "description": "U09 isolated underlay pool, guest untagged on logical VLAN 102; tenant allocation initially disabled",
+        "state": "RESOURCE_STATE_PROVISIONING",
+        "reason": "",
+        "reason_message": "",
+        "version": "1",
+        "created_at": "2026-09-15T08:20:28.455726Z",
+        "updated_at": "2026-09-15T08:20:28.455726Z",
+        "observed_at": null,
+        "observation_stale": true,
+        "last_operation_id": "6db28354-c8dd-478e-9aba-55cd747731a0",
+        "pool": {
+          "mode": "PUBLIC_POOL_MODE_UNDERLAY",
+          "gateway_id": "egw_386dc165a8744951bc624ab55c439681",
+          "cidr": "172.16.102.0/24",
+          "ovn_gateway_ip": "172.16.102.2",
+          "excluded_ips": [
+            "172.16.102.1",
+            "172.16.102.1..172.16.102.191",
+            "172.16.102.2",
+            "172.16.102.208..172.16.102.254"
+          ],
+          "vlan_network_id": "vlan_9b12fcb230ef4bc08ba1d497ebe44009",
+          "upstream_gateway_ip": "172.16.102.1",
+          "allocation_enabled": false,
+          "is_default": false,
+          "config_revision": "1",
+          "verification": null,
+          "topology_fingerprint": "7e8e6a1a35a81dc004bac21805eac5411186cd970cdde96f70e0f4ebff2827df",
+          "observed_provider_images": [],
+          "scope": "public"
+        }
+      }
+    }
+  },
+  "stderr": ""
+}

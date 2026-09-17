@@ -1,0 +1,163 @@
+{
+  "at": "2026-09-14T16:22:25.304495+00:00",
+  "mode": "read_only",
+  "checks": [
+    {
+      "command": [
+        "sudo",
+        "-n",
+        "/usr/local/bin/kubectl",
+        "--kubeconfig",
+        "/etc/kubernetes/admin.conf",
+        "--request-timeout=15s",
+        "get",
+        "vlannetworks.networking.kubercloud.com",
+        "-A",
+        "-o",
+        "json"
+      ],
+      "exit": 0,
+      "stdout": "{\n    \"apiVersion\": \"v1\",\n    \"items\": [],\n    \"kind\": \"List\",\n    \"metadata\": {\n        \"resourceVersion\": \"\"\n    }\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "sudo",
+        "-n",
+        "/usr/local/bin/kubectl",
+        "--kubeconfig",
+        "/etc/kubernetes/admin.conf",
+        "--request-timeout=15s",
+        "get",
+        "vnics.networking.kubercloud.com",
+        "-n",
+        "lb-validation",
+        "-o",
+        "json"
+      ],
+      "exit": 0,
+      "stdout": "{\n    \"apiVersion\": \"v1\",\n    \"items\": [\n        {\n            \"apiVersion\": \"networking.kubercloud.com/v1\",\n            \"kind\": \"VNic\",\n            \"metadata\": {\n                \"annotations\": {\n                    \"networking.kubercloud.com/allocate_ip_with_dhcp\": \"false\",\n                    \"networking.kubercloud.com/allocated_vnicip\": \"auto-customer-vm-a-vnic-v65bz\",\n                    \"pod.networking.kubercloud.com/customer-vm-a\": \"ani-01/eth0\"\n                },\n                \"creationTimestamp\": \"2026-09-14T14:47:10Z\",\n                \"finalizers\": [\n                    \"networking.kubercloud.com/finalizer\"\n                ],\n                \"generation\": 2,\n                \"labels\": {\n                    \"node.networking.kubercloud.com/ani-01\": \"\"\n                },\n                \"name\": \"auto-customer-vm-a-vnic-v65bz\",\n                \"namespace\": \"lb-validation\",\n                \"ownerReferences\": [\n                    {\n                        \"apiVersion\": \"v1\",\n                        \"kind\": \"Pod\",\n                        \"name\": \"customer-vm-a\",\n                        \"uid\": \"82436fc0-660c-416e-b56d-0627c1bb5377\"\n                    }\n                ],\n                \"resourceVersion\": \"42327\",\n                \"uid\": \"29bc363a-ac3e-45dd-b5c8-2e657687ce19\"\n            },\n            \"spec\": {\n                \"macAddress\": \"fa:00:e6:2b:b7:51\",\n                \"subnet\": \"kcn-system/kcn-default\",\n                \"type\": \"VETH\"\n            },\n            \"status\": {\n                \"conditions\": [\n                    {\n                        \"lastTransitionTime\": \"2026-09-14T14:47:10Z\",\n                        \"message\": \"\",\n                        \"reason\": \"Ready\",\n                        \"status\": \"True\",\n                        \"type\": \"Ready\"\n                    },\n                    {\n                        \"lastTransitionTime\": \"2026-09-14T14:47:10Z\",\n                        \"message\": \"\",\n                        \"reason\": \"Initialized\",\n                        \"status\": \"True\",\n                        \"type\": \"Initialized\"\n                    },\n                    {\n                        \"lastTransitionTime\": \"2026-09-14T14:47:10Z\",\n                        \"message\": \"\",\n                        \"reason\": \"Valid\",\n                        \"status\": \"True\",\n                        \"type\": \"Valid\"\n                    }\n                ],\n                \"dstNic\": \"\",\n                \"gateway\": \"kcn-system/kcn-cluster\",\n                \"ips\": {\n                    \"auto-customer-vm-a-vnic-v65bz\": \"10.16.0.9\"\n                },\n                \"nic\": \"kcn-system/nic-lb-validation-customer-vm-a-rfxgh\",\n                \"nodeName\": \"ani-01\",\n                \"primaryIP\": \"10.16.0.9\"\n            }\n        },\n        {\n            \"apiVersion\": \"networking.kubercloud.com/v1\",\n            \"kind\": \"VNic\",\n            \"metadata\": {\n                \"annotations\": {\n                    \"networking.kubercloud.com/allocate_ip_with_dhcp\": \"false\",\n                    \"networking.kubercloud.com/allocated_vnicip\": \"auto-customer-vm-b-vnic-l26qv\",\n                    \"pod.networking.kubercloud.com/customer-vm-b\": \"ani-02/eth0\"\n                },\n                \"creationTimestamp\": \"2026-09-14T14:47:10Z\",\n                \"finalizers\": [\n                    \"networking.kubercloud.com/finalizer\"\n                ],\n                \"generation\": 2,\n                \"labels\": {\n                    \"node.networking.kubercloud.com/ani-02\": \"\"\n                },\n                \"name\": \"auto-customer-vm-b-vnic-l26qv\",\n                \"namespace\": \"lb-validation\",\n                \"ownerReferences\": [\n                    {\n                        \"apiVersion\": \"v1\",\n                        \"kind\": \"Pod\",\n                        \"name\": \"customer-vm-b\",\n                        \"uid\": \"c4e9d0c3-dfb0-4ac6-b94d-762856d0449a\"\n                    }\n                ],\n                \"resourceVersion\": \"42324\",\n                \"uid\": \"adf32390-a36f-4cc7-ae30-4e05a44a437f\"\n            },\n            \"spec\": {\n                \"macAddress\": \"fa:00:c0:52:2d:8a\",\n                \"subnet\": \"kcn-system/kcn-default\",\n                \"type\": \"VETH\"\n            },\n            \"status\": {\n                \"conditions\": [\n                    {\n                        \"lastTransitionTime\": \"2026-09-14T14:47:10Z\",\n                        \"message\": \"\",\n                        \"reason\": \"Ready\",\n                        \"status\": \"True\",\n                        \"type\": \"Ready\"\n                    },\n                    {\n                        \"lastTransitionTime\": \"2026-09-14T14:47:10Z\",\n                        \"message\": \"\",\n                        \"reason\": \"Initialized\",\n                        \"status\": \"True\",\n                        \"type\": \"Initialized\"\n                    },\n                    {\n                        \"lastTransitionTime\": \"2026-09-14T14:47:10Z\",\n                        \"message\": \"\",\n                        \"reason\": \"Valid\",\n                        \"status\": \"True\",\n                        \"type\": \"Valid\"\n                    }\n                ],\n                \"dstNic\": \"\",\n                \"gateway\": \"kcn-system/kcn-cluster\",\n                \"ips\": {\n                    \"auto-customer-vm-b-vnic-l26qv\": \"10.16.0.10\"\n                },\n                \"nic\": \"kcn-system/nic-lb-validation-customer-vm-b-c7fp9\",\n                \"nodeName\": \"ani-02\",\n                \"primaryIP\": \"10.16.0.10\"\n            }\n        },\n        {\n            \"apiVersion\": \"networking.kubercloud.com/v1\",\n            \"kind\": \"VNic\",\n            \"metadata\": {\n                \"annotations\": {\n                    \"networking.kubercloud.com/allocate_ip_with_dhcp\": \"false\",\n                    \"networking.kubercloud.com/allocated_vnicip\": \"auto-my-lb-57b4db95c8-5b7l9-vnic-jmkmw\",\n                    \"pod.networking.kubercloud.com/my-lb-57b4db95c8-5b7l9\": \"ani-02/eth0\"\n                },\n                \"creationTimestamp\": \"2026-09-14T15:11:29Z\",\n                \"finalizers\": [\n                    \"networking.kubercloud.com/finalizer\"\n                ],\n                \"generation\": 2,\n                \"labels\": {\n                    \"node.networking.kubercloud.com/ani-02\": \"\"\n                },\n                \"name\": \"auto-my-lb-57b4db95c8-5b7l9-vnic-jmkmw\",\n                \"namespace\": \"lb-validation\",\n                \"ownerReferences\": [\n                    {\n                        \"apiVersion\": \"v1\",\n                        \"kind\": \"Pod\",\n                        \"name\": \"my-lb-57b4db95c8-5b7l9\",\n                        \"uid\": \"c39f80ba-15cf-4503-871d-5e1fb254acb6\"\n                    }\n                ],\n                \"resourceVersion\": \"51352\",\n                \"uid\": \"c5f7c0b5-e1e3-4e6e-81bd-d2f424210119\"\n            },\n            \"spec\": {\n                \"macAddress\": \"fa:00:93:31:bf:a3\",\n                \"subnet\": \"kcn-system/kcn-default\",\n                \"type\": \"VETH\"\n            },\n            \"status\": {\n                \"conditions\": [\n                    {\n                        \"lastTransitionTime\": \"2026-09-14T15:11:30Z\",\n                        \"message\": \"\",\n                        \"reason\": \"Initialized\",\n                        \"status\": \"True\",\n                        \"type\": \"Initialized\"\n                    },\n                    {\n                        \"lastTransitionTime\": \"2026-09-14T15:11:30Z\",\n                        \"message\": \"\",\n                        \"reason\": \"Valid\",\n                        \"status\": \"True\",\n                        \"type\": \"Valid\"\n                    },\n                    {\n                        \"lastTransitionTime\": \"2026-09-14T15:11:30Z\",\n                        \"message\": \"\",\n                        \"reason\": \"Ready\",\n                        \"status\": \"True\",\n                        \"type\": \"Ready\"\n                    }\n                ],\n                \"dstNic\": \"\",\n                \"gateway\": \"kcn-system/kcn-cluster\",\n                \"ips\": {\n                    \"auto-my-lb-57b4db95c8-5b7l9-vnic-jmkmw\": \"10.16.0.43\"\n                },\n                \"nic\": \"kcn-system/nic-lb-validation-my-lb-57b4db95c8-5b7l9-5nshc\",\n                \"nodeName\": \"ani-02\",\n                \"primaryIP\": \"10.16.0.43\"\n            }\n        },\n        {\n            \"apiVersion\": \"networking.kubercloud.com/v1\",\n            \"kind\": \"VNic\",\n            \"metadata\": {\n                \"annotations\": {\n                    \"networking.kubercloud.com/allocate_ip_with_dhcp\": \"false\",\n                    \"networking.kubercloud.com/allocated_vnicip\": \"auto-my-lb-57b4db95c8-7wpc7-vnic-pgc9b\",\n                    \"pod.networking.kubercloud.com/my-lb-57b4db95c8-7wpc7\": \"ani-01/eth0\"\n                },\n                \"creationTimestamp\": \"2026-09-14T15:11:28Z\",\n                \"finalizers\": [\n                    \"networking.kubercloud.com/finalizer\"\n                ],\n                \"generation\": 2,\n                \"labels\": {\n                    \"node.networking.kubercloud.com/ani-01\": \"\"\n                },\n                \"name\": \"auto-my-lb-57b4db95c8-7wpc7-vnic-pgc9b\",\n                \"namespace\": \"lb-validation\",\n                \"ownerReferences\": [\n                    {\n                        \"apiVersion\": \"v1\",\n                        \"kind\": \"Pod\",\n                        \"name\": \"my-lb-57b4db95c8-7wpc7\",\n                        \"uid\": \"4cf926bd-8a55-4bf5-ae51-6fb4e91b41b6\"\n                    }\n                ],\n                \"resourceVersion\": \"51284\",\n                \"uid\": \"c1e43c1c-605e-4c0b-aecc-c8f8394fead8\"\n            },\n            \"spec\": {\n                \"macAddress\": \"fa:00:8e:51:7f:a8\",\n                \"subnet\": \"kcn-system/kcn-default\",\n                \"type\": \"VETH\"\n            },\n            \"status\": {\n                \"conditions\": [\n                    {\n                        \"lastTransitionTime\": \"2026-09-14T15:11:28Z\",\n                        \"message\": \"\",\n                        \"reason\": \"Ready\",\n                        \"status\": \"True\",\n                        \"type\": \"Ready\"\n                    },\n                    {\n                        \"lastTransitionTime\": \"2026-09-14T15:11:28Z\",\n                        \"message\": \"\",\n                        \"reason\": \"Initialized\",\n                        \"status\": \"True\",\n                        \"type\": \"Initialized\"\n                    },\n                    {\n                        \"lastTransitionTime\": \"2026-09-14T15:11:28Z\",\n                        \"message\": \"\",\n                        \"reason\": \"Valid\",\n                        \"status\": \"True\",\n                        \"type\": \"Valid\"\n                    }\n                ],\n                \"dstNic\": \"\",\n                \"gateway\": \"kcn-system/kcn-cluster\",\n                \"ips\": {\n                    \"auto-my-lb-57b4db95c8-7wpc7-vnic-pgc9b\": \"10.16.0.42\"\n                },\n                \"nic\": \"kcn-system/nic-lb-validation-my-lb-57b4db95c8-7wpc7-z8l6l\",\n                \"nodeName\": \"ani-01\",\n                \"primaryIP\": \"10.16.0.42\"\n            }\n        }\n    ],\n    \"kind\": \"List\",\n    \"metadata\": {\n        \"resourceVersion\": \"\"\n    }\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "sudo",
+        "-n",
+        "/usr/local/bin/kubectl",
+        "--kubeconfig",
+        "/etc/kubernetes/admin.conf",
+        "--request-timeout=15s",
+        "get",
+        "vnicips.networking.kubercloud.com",
+        "-n",
+        "lb-validation",
+        "-o",
+        "json"
+      ],
+      "exit": 0,
+      "stdout": "{\n    \"apiVersion\": \"v1\",\n    \"items\": [\n        {\n            \"apiVersion\": \"networking.kubercloud.com/v1\",\n            \"kind\": \"VNicIP\",\n            \"metadata\": {\n                \"creationTimestamp\": \"2026-09-14T14:47:10Z\",\n                \"finalizers\": [\n                    \"networking.kubercloud.com/finalizer\"\n                ],\n                \"generation\": 2,\n                \"name\": \"auto-customer-vm-a-vnic-v65bz\",\n                \"namespace\": \"lb-validation\",\n                \"ownerReferences\": [\n                    {\n                        \"apiVersion\": \"networking.kubercloud.com/v1\",\n                        \"kind\": \"VNic\",\n                        \"name\": \"auto-customer-vm-a-vnic-v65bz\",\n                        \"uid\": \"29bc363a-ac3e-45dd-b5c8-2e657687ce19\"\n                    }\n                ],\n                \"resourceVersion\": \"42265\",\n                \"uid\": \"b1a7fa63-5ff7-4a61-8815-a291757fe681\"\n            },\n            \"spec\": {\n                \"ipAddress\": \"10.16.0.9\",\n                \"subnet\": \"kcn-system/kcn-default\",\n                \"vNic\": \"auto-customer-vm-a-vnic-v65bz\"\n            },\n            \"status\": {\n                \"conditions\": [\n                    {\n                        \"lastTransitionTime\": \"2026-09-14T14:47:10Z\",\n                        \"message\": \"\",\n                        \"reason\": \"Initialized\",\n                        \"status\": \"True\",\n                        \"type\": \"Initialized\"\n                    },\n                    {\n                        \"lastTransitionTime\": \"2026-09-14T14:47:10Z\",\n                        \"message\": \"\",\n                        \"reason\": \"Valid\",\n                        \"status\": \"True\",\n                        \"type\": \"Valid\"\n                    }\n                ],\n                \"vNic\": \"auto-customer-vm-a-vnic-v65bz\"\n            }\n        },\n        {\n            \"apiVersion\": \"networking.kubercloud.com/v1\",\n            \"kind\": \"VNicIP\",\n            \"metadata\": {\n                \"creationTimestamp\": \"2026-09-14T14:47:10Z\",\n                \"finalizers\": [\n                    \"networking.kubercloud.com/finalizer\"\n                ],\n                \"generation\": 2,\n                \"name\": \"auto-customer-vm-b-vnic-l26qv\",\n                \"namespace\": \"lb-validation\",\n                \"ownerReferences\": [\n                    {\n                        \"apiVersion\": \"networking.kubercloud.com/v1\",\n                        \"kind\": \"VNic\",\n                        \"name\": \"auto-customer-vm-b-vnic-l26qv\",\n                        \"uid\": \"adf32390-a36f-4cc7-ae30-4e05a44a437f\"\n                    }\n                ],\n                \"resourceVersion\": \"42266\",\n                \"uid\": \"1443d672-8487-44a6-93d8-a102e3982c40\"\n            },\n            \"spec\": {\n                \"ipAddress\": \"10.16.0.10\",\n                \"subnet\": \"kcn-system/kcn-default\",\n                \"vNic\": \"auto-customer-vm-b-vnic-l26qv\"\n            },\n            \"status\": {\n                \"conditions\": [\n                    {\n                        \"lastTransitionTime\": \"2026-09-14T14:47:10Z\",\n                        \"message\": \"\",\n                        \"reason\": \"Initialized\",\n                        \"status\": \"True\",\n                        \"type\": \"Initialized\"\n                    },\n                    {\n                        \"lastTransitionTime\": \"2026-09-14T14:47:10Z\",\n                        \"message\": \"\",\n                        \"reason\": \"Valid\",\n                        \"status\": \"True\",\n                        \"type\": \"Valid\"\n                    }\n                ],\n                \"vNic\": \"auto-customer-vm-b-vnic-l26qv\"\n            }\n        },\n        {\n            \"apiVersion\": \"networking.kubercloud.com/v1\",\n            \"kind\": \"VNicIP\",\n            \"metadata\": {\n                \"creationTimestamp\": \"2026-09-14T15:11:29Z\",\n                \"finalizers\": [\n                    \"networking.kubercloud.com/finalizer\"\n                ],\n                \"generation\": 2,\n                \"name\": \"auto-my-lb-57b4db95c8-5b7l9-vnic-jmkmw\",\n                \"namespace\": \"lb-validation\",\n                \"ownerReferences\": [\n                    {\n                        \"apiVersion\": \"networking.kubercloud.com/v1\",\n                        \"kind\": \"VNic\",\n                        \"name\": \"auto-my-lb-57b4db95c8-5b7l9-vnic-jmkmw\",\n                        \"uid\": \"c5f7c0b5-e1e3-4e6e-81bd-d2f424210119\"\n                    }\n                ],\n                \"resourceVersion\": \"51347\",\n                \"uid\": \"fa26051b-bc09-41b7-be57-232e5c95714f\"\n            },\n            \"spec\": {\n                \"ipAddress\": \"10.16.0.43\",\n                \"subnet\": \"kcn-system/kcn-default\",\n                \"vNic\": \"auto-my-lb-57b4db95c8-5b7l9-vnic-jmkmw\"\n            },\n            \"status\": {\n                \"conditions\": [\n                    {\n                        \"lastTransitionTime\": \"2026-09-14T15:11:29Z\",\n                        \"message\": \"\",\n                        \"reason\": \"Initialized\",\n                        \"status\": \"True\",\n                        \"type\": \"Initialized\"\n                    },\n                    {\n                        \"lastTransitionTime\": \"2026-09-14T15:11:29Z\",\n                        \"message\": \"\",\n                        \"reason\": \"Valid\",\n                        \"status\": \"True\",\n                        \"type\": \"Valid\"\n                    }\n                ],\n                \"vNic\": \"auto-my-lb-57b4db95c8-5b7l9-vnic-jmkmw\"\n            }\n        },\n        {\n            \"apiVersion\": \"networking.kubercloud.com/v1\",\n            \"kind\": \"VNicIP\",\n            \"metadata\": {\n                \"creationTimestamp\": \"2026-09-14T15:11:28Z\",\n                \"finalizers\": [\n                    \"networking.kubercloud.com/finalizer\"\n                ],\n                \"generation\": 2,\n                \"name\": \"auto-my-lb-57b4db95c8-7wpc7-vnic-pgc9b\",\n                \"namespace\": \"lb-validation\",\n                \"ownerReferences\": [\n                    {\n                        \"apiVersion\": \"networking.kubercloud.com/v1\",\n                        \"kind\": \"VNic\",\n                        \"name\": \"auto-my-lb-57b4db95c8-7wpc7-vnic-pgc9b\",\n                        \"uid\": \"c1e43c1c-605e-4c0b-aecc-c8f8394fead8\"\n                    }\n                ],\n                \"resourceVersion\": \"51278\",\n                \"uid\": \"289f4562-c35b-446f-ac13-5f88566b8c3e\"\n            },\n            \"spec\": {\n                \"ipAddress\": \"10.16.0.42\",\n                \"subnet\": \"kcn-system/kcn-default\",\n                \"vNic\": \"auto-my-lb-57b4db95c8-7wpc7-vnic-pgc9b\"\n            },\n            \"status\": {\n                \"conditions\": [\n                    {\n                        \"lastTransitionTime\": \"2026-09-14T15:11:28Z\",\n                        \"message\": \"\",\n                        \"reason\": \"Initialized\",\n                        \"status\": \"True\",\n                        \"type\": \"Initialized\"\n                    },\n                    {\n                        \"lastTransitionTime\": \"2026-09-14T15:11:28Z\",\n                        \"message\": \"\",\n                        \"reason\": \"Valid\",\n                        \"status\": \"True\",\n                        \"type\": \"Valid\"\n                    }\n                ],\n                \"vNic\": \"auto-my-lb-57b4db95c8-7wpc7-vnic-pgc9b\"\n            }\n        }\n    ],\n    \"kind\": \"List\",\n    \"metadata\": {\n        \"resourceVersion\": \"\"\n    }\n}\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "sudo",
+        "-n",
+        "/usr/local/bin/kubectl",
+        "--kubeconfig",
+        "/etc/kubernetes/admin.conf",
+        "--request-timeout=15s",
+        "get",
+        "replicasets.apps",
+        "-n",
+        "lb-validation",
+        "-o",
+        "json"
+      ],
+      "exit": 0,
+      "stderr": "",
+      "items": [
+        {
+          "metadata": {
+            "name": "my-lb-558d668dbd",
+            "namespace": "lb-validation",
+            "uid": "d9c2f0ec-422c-43a0-996c-8ebabc035e91",
+            "ownerReferences": [
+              {
+                "apiVersion": "apps/v1",
+                "blockOwnerDeletion": true,
+                "controller": true,
+                "kind": "Deployment",
+                "name": "my-lb",
+                "uid": "3e8365e6-0d64-4bdf-b0fc-d351ac5b431a"
+              }
+            ]
+          },
+          "replicas": 0,
+          "status": {
+            "observedGeneration": 3,
+            "replicas": 0,
+            "terminatingReplicas": 0
+          }
+        },
+        {
+          "metadata": {
+            "name": "my-lb-57b4db95c8",
+            "namespace": "lb-validation",
+            "uid": "288d5942-f2be-4d08-b615-92b331513652",
+            "ownerReferences": [
+              {
+                "apiVersion": "apps/v1",
+                "blockOwnerDeletion": true,
+                "controller": true,
+                "kind": "Deployment",
+                "name": "my-lb",
+                "uid": "3e8365e6-0d64-4bdf-b0fc-d351ac5b431a"
+              }
+            ]
+          },
+          "replicas": 2,
+          "status": {
+            "availableReplicas": 2,
+            "fullyLabeledReplicas": 2,
+            "observedGeneration": 2,
+            "readyReplicas": 2,
+            "replicas": 2,
+            "terminatingReplicas": 0
+          }
+        }
+      ]
+    },
+    {
+      "command": [
+        "ip",
+        "-j",
+        "address",
+        "show"
+      ],
+      "exit": 0,
+      "stdout": "[{\"ifindex\":1,\"ifname\":\"lo\",\"flags\":[\"LOOPBACK\",\"UP\",\"LOWER_UP\"],\"mtu\":65536,\"qdisc\":\"noqueue\",\"operstate\":\"UNKNOWN\",\"group\":\"default\",\"txqlen\":1000,\"link_type\":\"loopback\",\"address\":\"00:00:00:00:00:00\",\"broadcast\":\"00:00:00:00:00:00\",\"addr_info\":[{\"family\":\"inet\",\"local\":\"127.0.0.1\",\"prefixlen\":8,\"scope\":\"host\",\"label\":\"lo\",\"valid_life_time\":4294967295,\"preferred_life_time\":4294967295},{\"family\":\"inet6\",\"local\":\"::1\",\"prefixlen\":128,\"scope\":\"host\",\"noprefixroute\":true,\"valid_life_time\":4294967295,\"preferred_life_time\":4294967295}]},{\"ifindex\":2,\"ifname\":\"ens34\",\"flags\":[\"BROADCAST\",\"MULTICAST\",\"UP\",\"LOWER_UP\"],\"mtu\":1500,\"qdisc\":\"mq\",\"operstate\":\"UP\",\"group\":\"default\",\"txqlen\":1000,\"link_type\":\"ether\",\"address\":\"00:0c:29:e2:f0:21\",\"broadcast\":\"ff:ff:ff:ff:ff:ff\",\"altnames\":[\"enp2s2\"],\"addr_info\":[{\"family\":\"inet\",\"local\":\"172.16.101.10\",\"prefixlen\":24,\"broadcast\":\"172.16.101.255\",\"scope\":\"global\",\"label\":\"ens34\",\"valid_life_time\":4294967295,\"preferred_life_time\":4294967295},{\"family\":\"inet\",\"local\":\"172.16.101.9\",\"prefixlen\":32,\"scope\":\"global\",\"label\":\"ens34\",\"valid_life_time\":4294967295,\"preferred_life_time\":4294967295},{\"family\":\"inet6\",\"local\":\"fe80::20c:29ff:fee2:f021\",\"prefixlen\":64,\"scope\":\"link\",\"valid_life_time\":4294967295,\"preferred_life_time\":4294967295}]},{\"ifindex\":3,\"ifname\":\"ens35\",\"flags\":[\"BROADCAST\",\"MULTICAST\",\"UP\",\"LOWER_UP\"],\"mtu\":1500,\"qdisc\":\"mq\",\"master\":\"ovs-system\",\"operstate\":\"UP\",\"group\":\"default\",\"txqlen\":1000,\"link_type\":\"ether\",\"address\":\"00:0c:29:e2:f0:2b\",\"broadcast\":\"ff:ff:ff:ff:ff:ff\",\"altnames\":[\"enp2s3\"],\"addr_info\":[]},{\"ifindex\":4,\"ifname\":\"ens36\",\"flags\":[\"BROADCAST\",\"MULTICAST\",\"UP\",\"LOWER_UP\"],\"mtu\":1500,\"qdisc\":\"mq\",\"operstate\":\"UP\",\"group\":\"default\",\"txqlen\":1000,\"link_type\":\"ether\",\"address\":\"00:0c:29:e2:f0:35\",\"broadcast\":\"ff:ff:ff:ff:ff:ff\",\"altnames\":[\"enp2s4\"],\"addr_info\":[{\"family\":\"inet\",\"local\":\"172.16.202.10\",\"prefixlen\":24,\"broadcast\":\"172.16.202.255\",\"scope\":\"global\",\"label\":\"ens36\",\"valid_life_time\":4294967295,\"preferred_life_time\":4294967295}]},{\"ifindex\":5,\"ifname\":\"ovs-system\",\"flags\":[\"BROADCAST\",\"MULTICAST\"],\"mtu\":1500,\"qdisc\":\"noop\",\"operstate\":\"DOWN\",\"group\":\"default\",\"txqlen\":1000,\"link_type\":\"ether\",\"address\":\"16:39:18:f3:d9:f1\",\"broadcast\":\"ff:ff:ff:ff:ff:ff\",\"addr_info\":[]},{\"ifindex\":6,\"ifname\":\"br-int\",\"flags\":[\"BROADCAST\",\"MULTICAST\"],\"mtu\":1400,\"qdisc\":\"noop\",\"operstate\":\"DOWN\",\"group\":\"default\",\"txqlen\":1000,\"link_type\":\"ether\",\"address\":\"e6:e8:99:b2:c7:eb\",\"broadcast\":\"ff:ff:ff:ff:ff:ff\",\"addr_info\":[]},{\"ifindex\":7,\"ifname\":\"ovn0\",\"flags\":[\"BROADCAST\",\"MULTICAST\",\"UP\",\"LOWER_UP\"],\"mtu\":1400,\"qdisc\":\"noqueue\",\"operstate\":\"UNKNOWN\",\"group\":\"default\",\"txqlen\":1000,\"link_type\":\"ether\",\"address\":\"fa:00:b5:2b:59:fe\",\"broadcast\":\"ff:ff:ff:ff:ff:ff\",\"addr_info\":[{\"family\":\"inet\",\"local\":\"100.64.0.2\",\"prefixlen\":17,\"broadcast\":\"100.64.127.255\",\"scope\":\"global\",\"label\":\"ovn0\",\"valid_life_time\":4294967295,\"preferred_life_time\":4294967295},{\"family\":\"inet\",\"local\":\"100.64.128.2\",\"prefixlen\":17,\"broadcast\":\"100.64.255.255\",\"scope\":\"global\",\"label\":\"ovn0\",\"valid_life_time\":4294967295,\"preferred_life_time\":4294967295},{\"family\":\"inet6\",\"local\":\"fe80::f800:b5ff:fe2b:59fe\",\"prefixlen\":64,\"scope\":\"link\",\"valid_life_time\":4294967295,\"preferred_life_time\":4294967295}]},{\"ifindex\":8,\"ifname\":\"genev_sys_6081\",\"flags\":[\"BROADCAST\",\"MULTICAST\",\"UP\",\"LOWER_UP\"],\"mtu\":65000,\"qdisc\":\"noqueue\",\"master\":\"ovs-system\",\"operstate\":\"UNKNOWN\",\"group\":\"default\",\"txqlen\":1000,\"link_type\":\"ether\",\"address\":\"1a:b2:b3:76:e4:cf\",\"broadcast\":\"ff:ff:ff:ff:ff:ff\",\"addr_info\":[{\"family\":\"inet6\",\"local\":\"fe80::cb0:d7ff:feb5:95eb\",\"prefixlen\":64,\"scope\":\"link\",\"valid_life_time\":4294967295,\"preferred_life_time\":4294967295}]},{\"ifindex\":9,\"ifname\":\"br-ens35\",\"flags\":[\"BROADCAST\",\"MULTICAST\"],\"mtu\":1500,\"qdisc\":\"noop\",\"operstate\":\"DOWN\",\"group\":\"default\",\"txqlen\":1000,\"link_type\":\"ether\",\"address\":\"00:0c:29:e2:f0:2b\",\"broadcast\":\"ff:ff:ff:ff:ff:ff\",\"addr_info\":[]},{\"ifindex\":29,\"link_index\":28,\"ifname\":\"a21b62907254_h\",\"flags\":[\"BROADCAST\",\"MULTICAST\",\"UP\",\"LOWER_UP\"],\"mtu\":1400,\"qdisc\":\"noqueue\",\"master\":\"ovs-system\",\"operstate\":\"UP\",\"group\":\"default\",\"txqlen\":1000,\"link_type\":\"ether\",\"address\":\"62:af:01:cb:73:ad\",\"broadcast\":\"ff:ff:ff:ff:ff:ff\",\"link_netnsid\":0,\"addr_info\":[{\"family\":\"inet6\",\"local\":\"fe80::60af:1ff:fecb:73ad\",\"prefixlen\":64,\"scope\":\"link\",\"valid_life_time\":4294967295,\"preferred_life_time\":4294967295}]},{\"ifindex\":31,\"link_index\":30,\"ifname\":\"59e17b98568b_h\",\"flags\":[\"BROADCAST\",\"MULTICAST\",\"UP\",\"LOWER_UP\"],\"mtu\":1400,\"qdisc\":\"noqueue\",\"master\":\"ovs-system\",\"operstate\":\"UP\",\"group\":\"default\",\"txqlen\":1000,\"link_type\":\"ether\",\"address\":\"ca:6a:66:90:5c:85\",\"broadcast\":\"ff:ff:ff:ff:ff:ff\",\"link_netnsid\":2,\"addr_info\":[{\"family\":\"inet6\",\"local\":\"fe80::c86a:66ff:fe90:5c85\",\"prefixlen\":64,\"scope\":\"link\",\"valid_life_time\":4294967295,\"preferred_life_time\":4294967295}]},{\"ifindex\":37,\"link_index\":36,\"ifname\":\"422e1d739083_h\",\"flags\":[\"BROADCAST\",\"MULTICAST\",\"UP\",\"LOWER_UP\"],\"mtu\":1400,\"qdisc\":\"noqueue\",\"master\":\"ovs-system\",\"operstate\":\"UP\",\"group\":\"default\",\"txqlen\":1000,\"link_type\":\"ether\",\"address\":\"5a:c7:82:aa:95:34\",\"broadcast\":\"ff:ff:ff:ff:ff:ff\",\"link_netnsid\":1,\"addr_info\":[{\"family\":\"inet6\",\"local\":\"fe80::58c7:82ff:feaa:9534\",\"prefixlen\":64,\"scope\":\"link\",\"valid_life_time\":4294967295,\"preferred_life_time\":4294967295}]},{\"ifindex\":45,\"link_index\":44,\"ifname\":\"cd6721b48b2b_h\",\"flags\":[\"BROADCAST\",\"MULTICAST\",\"UP\",\"LOWER_UP\"],\"mtu\":1400,\"qdisc\":\"noqueue\",\"master\":\"ovs-system\",\"operstate\":\"UP\",\"group\":\"default\",\"txqlen\":1000,\"link_type\":\"ether\",\"address\":\"5a:4a:2f:e2:66:fd\",\"broadcast\":\"ff:ff:ff:ff:ff:ff\",\"link_netnsid\":4,\"addr_info\":[{\"family\":\"inet6\",\"local\":\"fe80::584a:2fff:fee2:66fd\",\"prefixlen\":64,\"scope\":\"link\",\"valid_life_time\":4294967295,\"preferred_life_time\":4294967295}]},{\"ifindex\":51,\"link_index\":50,\"ifname\":\"8d0df12147ef_h\",\"flags\":[\"BROADCAST\",\"MULTICAST\",\"UP\",\"LOWER_UP\"],\"mtu\":1400,\"qdisc\":\"noqueue\",\"master\":\"ovs-system\",\"operstate\":\"UP\",\"group\":\"default\",\"txqlen\":1000,\"link_type\":\"ether\",\"address\":\"f6:57:8a:26:fa:c2\",\"broadcast\":\"ff:ff:ff:ff:ff:ff\",\"link_netnsid\":6,\"addr_info\":[{\"family\":\"inet6\",\"local\":\"fe80::f457:8aff:fe26:fac2\",\"prefixlen\":64,\"scope\":\"link\",\"valid_life_time\":4294967295,\"preferred_life_time\":4294967295}]}]\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "ip",
+        "-j",
+        "route",
+        "show"
+      ],
+      "exit": 0,
+      "stdout": "[{\"dst\":\"default\",\"gateway\":\"172.16.101.1\",\"dev\":\"ens34\",\"protocol\":\"static\",\"flags\":[]},{\"dst\":\"10.16.0.0/16\",\"gateway\":\"100.64.0.1\",\"dev\":\"ovn0\",\"prefsrc\":\"100.64.0.2\",\"flags\":[]},{\"dst\":\"100.64.0.0/17\",\"dev\":\"ovn0\",\"scope\":\"link\",\"flags\":[]},{\"dst\":\"100.64.128.0/17\",\"dev\":\"ovn0\",\"scope\":\"link\",\"flags\":[]},{\"dst\":\"172.16.101.0/24\",\"dev\":\"ens34\",\"protocol\":\"kernel\",\"scope\":\"link\",\"prefsrc\":\"172.16.101.10\",\"flags\":[]},{\"dst\":\"172.16.202.0/24\",\"dev\":\"ens36\",\"protocol\":\"kernel\",\"scope\":\"link\",\"prefsrc\":\"172.16.202.10\",\"flags\":[]}]\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "getent",
+        "hosts",
+        "api.ani.internal"
+      ],
+      "exit": 0,
+      "stdout": "172.16.101.9    api.ani.internal\n",
+      "stderr": ""
+    }
+  ]
+}

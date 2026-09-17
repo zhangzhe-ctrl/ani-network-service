@@ -1,0 +1,239 @@
+{
+  "at": "2026-09-15T04:27:45.582558+00:00",
+  "execution_host": "ubuntu",
+  "namespace": "lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832",
+  "results": [
+    {
+      "pod": "lb02-2b3122-legacy-client",
+      "label": "legacy-http-after-backfill",
+      "argv": [
+        "/probe",
+        "request",
+        "http://10.233.16.2:8080/?nonce=lb02-after-backfill"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"instance_id\":\"lb02-2b3122-legacy-a\"",
+        "\"nonce\":\"lb02-after-backfill\""
+      ],
+      "at": "2026-09-15T04:27:40.654142+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832",
+        "lb02-2b3122-legacy-client",
+        "-c",
+        "probe",
+        "--",
+        "/probe",
+        "request",
+        "http://10.233.16.2:8080/?nonce=lb02-after-backfill"
+      ],
+      "exit": 0,
+      "stdout": "status 200\n{\"fixture_id\":\"lb02-09141908-2b3122\",\"hostname\":\"lb02-2b3122-legacy-a\",\"instance_id\":\"lb02-2b3122-legacy-a\",\"nonce\":\"lb02-after-backfill\",\"port\":\"8080\"}\n",
+      "stderr": "",
+      "pass": true
+    },
+    {
+      "pod": "lb02-2b3122-legacy-client",
+      "label": "legacy-http-after-backfill",
+      "argv": [
+        "/probe",
+        "request",
+        "http://10.233.16.3:8080/?nonce=lb02-after-backfill"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"instance_id\":\"lb02-2b3122-legacy-b\"",
+        "\"nonce\":\"lb02-after-backfill\""
+      ],
+      "at": "2026-09-15T04:27:41.680533+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832",
+        "lb02-2b3122-legacy-client",
+        "-c",
+        "probe",
+        "--",
+        "/probe",
+        "request",
+        "http://10.233.16.3:8080/?nonce=lb02-after-backfill"
+      ],
+      "exit": 0,
+      "stdout": "status 200\n{\"fixture_id\":\"lb02-09141908-2b3122\",\"hostname\":\"lb02-2b3122-legacy-b\",\"instance_id\":\"lb02-2b3122-legacy-b\",\"nonce\":\"lb02-after-backfill\",\"port\":\"8080\"}\n",
+      "stderr": "",
+      "pass": true
+    },
+    {
+      "pod": "lb02-2b3122-legacy-a",
+      "label": "legacy-http-after-backfill",
+      "argv": [
+        "/probe",
+        "request",
+        "http://10.233.16.3:8080/?nonce=lb02-after-backfill"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"instance_id\":\"lb02-2b3122-legacy-b\"",
+        "\"nonce\":\"lb02-after-backfill\""
+      ],
+      "at": "2026-09-15T04:27:42.588697+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832",
+        "lb02-2b3122-legacy-a",
+        "-c",
+        "probe",
+        "--",
+        "/probe",
+        "request",
+        "http://10.233.16.3:8080/?nonce=lb02-after-backfill"
+      ],
+      "exit": 0,
+      "stdout": "status 200\n{\"fixture_id\":\"lb02-09141908-2b3122\",\"hostname\":\"lb02-2b3122-legacy-b\",\"instance_id\":\"lb02-2b3122-legacy-b\",\"nonce\":\"lb02-after-backfill\",\"port\":\"8080\"}\n",
+      "stderr": "",
+      "pass": true
+    },
+    {
+      "pod": "lb02-2b3122-legacy-b",
+      "label": "legacy-http-after-backfill",
+      "argv": [
+        "/probe",
+        "request",
+        "http://10.233.16.2:8080/?nonce=lb02-after-backfill"
+      ],
+      "expect_contains": [
+        "status 200",
+        "\"fixture_id\":\"lb02-09141908-2b3122\"",
+        "\"instance_id\":\"lb02-2b3122-legacy-a\"",
+        "\"nonce\":\"lb02-after-backfill\""
+      ],
+      "at": "2026-09-15T04:27:43.477423+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832",
+        "lb02-2b3122-legacy-b",
+        "-c",
+        "probe",
+        "--",
+        "/probe",
+        "request",
+        "http://10.233.16.2:8080/?nonce=lb02-after-backfill"
+      ],
+      "exit": 0,
+      "stdout": "status 200\n{\"fixture_id\":\"lb02-09141908-2b3122\",\"hostname\":\"lb02-2b3122-legacy-a\",\"instance_id\":\"lb02-2b3122-legacy-a\",\"nonce\":\"lb02-after-backfill\",\"port\":\"8080\"}\n",
+      "stderr": "",
+      "pass": true
+    },
+    {
+      "pod": "lb02-2b3122-legacy-a",
+      "label": "legacy-intranet-after-backfill",
+      "argv": [
+        "/probe",
+        "request",
+        "http://10.96.0.10:9153/metrics?nonce=lb02-after-backfill"
+      ],
+      "expect_contains": [
+        "status 200",
+        "# HELP"
+      ],
+      "at": "2026-09-15T04:27:44.491046+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832",
+        "lb02-2b3122-legacy-a",
+        "-c",
+        "probe",
+        "--",
+        "/probe",
+        "request",
+        "http://10.96.0.10:9153/metrics?nonce=lb02-after-backfill"
+      ],
+      "exit": 0,
+      "stdout": "status 200\n# HELP coredns_build_info A metric with a constant '1' value labeled by version, revision, and goversion from which CoreDNS was built.\n# TYPE coredns_build_info gauge\ncoredns_build_info{goversion=\"go1.25.2\",revision=\"1db4568\",version=\"1.13.1\"} 1\n# HELP coredns_cache_entries The number of elements in the cache.\n# TYPE coredns_cache_entries gauge\ncoredns_cache_entries{server=\"dns://:53\",type=\"denial\",view=\"\",zones=\".\"} 0\ncoredns_cache_entries{server=\"dns://:53\",type=\"success\",view=\"\",zones=\".\"} 0\n# HELP coredns_cache_misses_total The count of cache misses. Deprecated, derive misses from cache hits/requests counters.\n# TYPE coredns_cache_misses_total counter\ncoredns_cache_misses_total{server=\"dns://:53\",view=\"\",zones=\".\"} 29352\n# HELP coredns_cache_requests_total The count of cache requests.\n# TYPE coredns_cache_requests_total counter\ncoredns_cache_requests_total{server=\"dns://:53\",view=\"\",zones=\".\"} 29352\n# HELP coredns_dns_request_duration_seconds Histogram of the time (in seconds) each request took per zone.\n# TYPE coredns_dns_request_duration_seconds histogram\ncoredns_dns_request_duration_seconds_bucket{server=\"dns://:53\",view=\"\",zone=\".\",le=\"0.00025\"} 14015\ncoredns_dns_request_duration_seconds_bucket{server=\"dns://:53\",view=\"\",zone=\".\",le=\"0.0005\"} 19491\ncoredns_dns_request_duration_seconds_bucket{server=\"dns://:53\",view=\"\",zone=\".\",le=\"0.001\"} 19664\ncoredns_dns_request_duration_seconds_bucket{server=\"dns://:53\",view=\"\",zone=\".\",le=\"0.002\"} 19664\ncoredns_dns_request_duration_seconds_bucket{server=\"dns://:53\",view=\"\",zone=\".\",le=\"0.004\"} 19664\ncoredns_dns_request_duration_seconds_bucket{server=\"dns://:53\",view=\"\",zone=\".\",le=\"0.008\"} 19664\ncoredns_dns_request_duration_seconds_bucket{server=\"dns://:53\",view=\"\",zone=\".\",le=\"0.016\"} 19664\ncoredns_dns_request_duration_seconds_bucket{server=\"dns://:53\",view=\"\",zone=\".\",le=\"0.032\"} 19664\ncoredns_dns_request_duration_seconds_bucket{server=\"dns://:53\",view=\"\",zone=\".\",le=\"0.064\"} 19664\ncoredns_dns_request_duration_seconds_bucket{server=\"dns://:53\",view=\"\",zone=\".\",le=\"0.128\"} 19664\ncoredns_dns_request_duration_seconds_bucket{server=\"dns://:53\",view=\"\",zone=\".\",le=\"0.256\"} 19664\ncoredns_dns_request_duration_seconds_bucket{server=\"dns://:53\",view=\"\",zone=\".\",le=\"0.512\"} 19664\ncoredns_dns_request_duration_seconds_bucket{server=\"dns://:53\",view=\"\",zone=\".\",le=\"1.024\"} 19664\ncoredns_dns_request_duration_seconds_bucket{server=\"dns://:53\",view=\"\",zone=\".\",le=\"2.048\"} 29347\ncoredns_dns_request_duration_seconds_bucket{server=\"dns://:53\",view=\"\",zone=\".\",le=\"4.096\"} 29350\ncoredns_dns_request_duration_seconds_bucket{server=\"dns://:53\",view=\"\",zone=\".\",le=\"8.192\"} 29352\ncoredns_dns_request_duration_seconds_bucket{server=\"dns://:53\",view=\"\",zone=\".\",le=\"+Inf\"} 29352\ncoredns_dns_request_duration_seconds_sum{server=\"dns://:53\",view=\"\",zone=\".\"} 19399.93883772706\ncoredns_dns_request_duration_seconds_count{server=\"dns://:53\",view=\"\",zone=\".\"} 29352\n# HELP coredns_dns_request_size_bytes Size of the EDNS0 UDP buffer in bytes (64K for TCP) per zone and protocol.\n# TYPE coredns_dns_request_size_bytes histogram\ncoredns_dns_request_size_bytes_bucket{proto=\"udp\",server=\"dns://:53\",view=\"\",zone=\".\",le=\"0\"} 0\ncoredns_dns_request_size_bytes_bucket{proto=\"udp\",server=\"dns://:53\",view=\"\",zone=\".\",le=\"100\"} 29350\ncoredns_dns_request_size_bytes_bucket{proto=\"udp\",server=\"dns://:53\",view=\"\",zone=\".\",le=\"200\"} 29352\ncoredns_dns_request_size_bytes_bucket{proto=\"udp\",server=\"dns://:53\",view=\"\",zone=\".\",le=\"300\"} 29352\ncoredns_dns_request_size_bytes_bucket{proto=\"udp\",server=\"dns://:53\",view=\"\",zone=\".\",le=\"400\"} 29352\ncoredns_dns_request_size_bytes_bucket{proto=\"udp\",server=\"dns://:53\",view=\"\",zone=\".\",le=\"511\"} 29352\ncoredns_dns_request_size_bytes_bucket{proto=\"udp\",server=\"dns://:53\",view=\"\",zone=\".\",le=\"1023\"} 29352\ncoredns_dns_request_size_bytes_bucket{proto=\"udp\",server=\"dns://:53\",view=\"\",zone=\".\",le=\"2047\"} 29352\ncoredns_dns_request_size_bytes_bucket{proto=\"udp\",server=\"dns://:53\",view=\"\",zone=\".\",le=\"4095\"} 29352\ncoredns_dns_request_size_bytes_bucket{proto=\"udp\",server=\"dns://:53\",view=\"\",zone=\".\",le=\"82",
+      "stderr": "",
+      "pass": true
+    },
+    {
+      "pod": "lb02-2b3122-legacy-b",
+      "label": "legacy-intranet-after-backfill",
+      "argv": [
+        "/probe",
+        "request",
+        "http://10.96.0.10:9153/metrics?nonce=lb02-after-backfill"
+      ],
+      "expect_contains": [
+        "status 200",
+        "# HELP"
+      ],
+      "at": "2026-09-15T04:27:45.582532+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832",
+        "lb02-2b3122-legacy-b",
+        "-c",
+        "probe",
+        "--",
+        "/probe",
+        "request",
+        "http://10.96.0.10:9153/metrics?nonce=lb02-after-backfill"
+      ],
+      "exit": 0,
+      "stdout": "status 200\n# HELP coredns_build_info A metric with a constant '1' value labeled by version, revision, and goversion from which CoreDNS was built.\n# TYPE coredns_build_info gauge\ncoredns_build_info{goversion=\"go1.25.2\",revision=\"1db4568\",version=\"1.13.1\"} 1\n# HELP coredns_cache_entries The number of elements in the cache.\n# TYPE coredns_cache_entries gauge\ncoredns_cache_entries{server=\"dns://:53\",type=\"denial\",view=\"\",zones=\".\"} 0\ncoredns_cache_entries{server=\"dns://:53\",type=\"success\",view=\"\",zones=\".\"} 0\n# HELP coredns_cache_misses_total The count of cache misses. Deprecated, derive misses from cache hits/requests counters.\n# TYPE coredns_cache_misses_total counter\ncoredns_cache_misses_total{server=\"dns://:53\",view=\"\",zones=\".\"} 29352\n# HELP coredns_cache_requests_total The count of cache requests.\n# TYPE coredns_cache_requests_total counter\ncoredns_cache_requests_total{server=\"dns://:53\",view=\"\",zones=\".\"} 29352\n# HELP coredns_dns_request_duration_seconds Histogram of the time (in seconds) each request took per zone.\n# TYPE coredns_dns_request_duration_seconds histogram\ncoredns_dns_request_duration_seconds_bucket{server=\"dns://:53\",view=\"\",zone=\".\",le=\"0.00025\"} 14015\ncoredns_dns_request_duration_seconds_bucket{server=\"dns://:53\",view=\"\",zone=\".\",le=\"0.0005\"} 19491\ncoredns_dns_request_duration_seconds_bucket{server=\"dns://:53\",view=\"\",zone=\".\",le=\"0.001\"} 19664\ncoredns_dns_request_duration_seconds_bucket{server=\"dns://:53\",view=\"\",zone=\".\",le=\"0.002\"} 19664\ncoredns_dns_request_duration_seconds_bucket{server=\"dns://:53\",view=\"\",zone=\".\",le=\"0.004\"} 19664\ncoredns_dns_request_duration_seconds_bucket{server=\"dns://:53\",view=\"\",zone=\".\",le=\"0.008\"} 19664\ncoredns_dns_request_duration_seconds_bucket{server=\"dns://:53\",view=\"\",zone=\".\",le=\"0.016\"} 19664\ncoredns_dns_request_duration_seconds_bucket{server=\"dns://:53\",view=\"\",zone=\".\",le=\"0.032\"} 19664\ncoredns_dns_request_duration_seconds_bucket{server=\"dns://:53\",view=\"\",zone=\".\",le=\"0.064\"} 19664\ncoredns_dns_request_duration_seconds_bucket{server=\"dns://:53\",view=\"\",zone=\".\",le=\"0.128\"} 19664\ncoredns_dns_request_duration_seconds_bucket{server=\"dns://:53\",view=\"\",zone=\".\",le=\"0.256\"} 19664\ncoredns_dns_request_duration_seconds_bucket{server=\"dns://:53\",view=\"\",zone=\".\",le=\"0.512\"} 19664\ncoredns_dns_request_duration_seconds_bucket{server=\"dns://:53\",view=\"\",zone=\".\",le=\"1.024\"} 19664\ncoredns_dns_request_duration_seconds_bucket{server=\"dns://:53\",view=\"\",zone=\".\",le=\"2.048\"} 29347\ncoredns_dns_request_duration_seconds_bucket{server=\"dns://:53\",view=\"\",zone=\".\",le=\"4.096\"} 29350\ncoredns_dns_request_duration_seconds_bucket{server=\"dns://:53\",view=\"\",zone=\".\",le=\"8.192\"} 29352\ncoredns_dns_request_duration_seconds_bucket{server=\"dns://:53\",view=\"\",zone=\".\",le=\"+Inf\"} 29352\ncoredns_dns_request_duration_seconds_sum{server=\"dns://:53\",view=\"\",zone=\".\"} 19399.93883772706\ncoredns_dns_request_duration_seconds_count{server=\"dns://:53\",view=\"\",zone=\".\"} 29352\n# HELP coredns_dns_request_size_bytes Size of the EDNS0 UDP buffer in bytes (64K for TCP) per zone and protocol.\n# TYPE coredns_dns_request_size_bytes histogram\ncoredns_dns_request_size_bytes_bucket{proto=\"udp\",server=\"dns://:53\",view=\"\",zone=\".\",le=\"0\"} 0\ncoredns_dns_request_size_bytes_bucket{proto=\"udp\",server=\"dns://:53\",view=\"\",zone=\".\",le=\"100\"} 29350\ncoredns_dns_request_size_bytes_bucket{proto=\"udp\",server=\"dns://:53\",view=\"\",zone=\".\",le=\"200\"} 29352\ncoredns_dns_request_size_bytes_bucket{proto=\"udp\",server=\"dns://:53\",view=\"\",zone=\".\",le=\"300\"} 29352\ncoredns_dns_request_size_bytes_bucket{proto=\"udp\",server=\"dns://:53\",view=\"\",zone=\".\",le=\"400\"} 29352\ncoredns_dns_request_size_bytes_bucket{proto=\"udp\",server=\"dns://:53\",view=\"\",zone=\".\",le=\"511\"} 29352\ncoredns_dns_request_size_bytes_bucket{proto=\"udp\",server=\"dns://:53\",view=\"\",zone=\".\",le=\"1023\"} 29352\ncoredns_dns_request_size_bytes_bucket{proto=\"udp\",server=\"dns://:53\",view=\"\",zone=\".\",le=\"2047\"} 29352\ncoredns_dns_request_size_bytes_bucket{proto=\"udp\",server=\"dns://:53\",view=\"\",zone=\".\",le=\"4095\"} 29352\ncoredns_dns_request_size_bytes_bucket{proto=\"udp\",server=\"dns://:53\",view=\"\",zone=\".\",le=\"82",
+      "stderr": "",
+      "pass": true
+    }
+  ],
+  "input_file": "docs/execution/records/NET-VPC-LB-02/device-registration-20260915/legacy-after-backfill-planned.json",
+  "result": "pass"
+}

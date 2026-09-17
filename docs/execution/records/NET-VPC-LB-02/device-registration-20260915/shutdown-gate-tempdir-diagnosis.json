@@ -1,0 +1,16 @@
+{
+  "at": "2026-09-15T07:53:19.621028+00:00",
+  "failed_run": "20260915T073357Z-9f02149a",
+  "exit": 2,
+  "failed_test": "TestSocketRequiresPrivateDirectoryAndPreservesExistingPath",
+  "message": "cannot create isolated socket",
+  "failed_tmpdir_template": "/var/tmp/nlb2cancel.XXXXXX",
+  "retry_run": "20260915T074304Z-31ea8959",
+  "retry_tmpdir_template": "/var/tmp/nlb2.XXXXXX",
+  "runtime_source_differences": [],
+  "retry_make_verify": "pass",
+  "diagnosis": "longer temporary root exceeded the Unix socket pathname budget in the test; unchanged test passed with the previously used shorter root",
+  "limitation": "original helper did not expose net.Listen errno or the generated full socket path; diagnosis uses the isolated path-only counterfactual",
+  "product_or_assertion_changes": "none",
+  "failed_log_sha256": "6cceacdb9541a09e557eae9efabebe52fc3a08505241e020bfc63989a6c8191d"
+}

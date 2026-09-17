@@ -1,0 +1,19 @@
+{
+  "at": "2026-09-15T04:19:02.541715+00:00",
+  "execution_host": "ubuntu",
+  "database": "net_vpc_lb_02_2b3122",
+  "command": [
+    "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/network",
+    "-base-connectivity",
+    "status",
+    "-base-run",
+    "100122e1-317e-4a10-836d-d9366fc99373"
+  ],
+  "request": {
+    "action": "status",
+    "run": "100122e1-317e-4a10-836d-d9366fc99373"
+  },
+  "exit": 0,
+  "stdout": "{\"run_id\":\"100122e1-317e-4a10-836d-d9366fc99373\",\"cluster_id\":\"lb02-09141908-2b3122\",\"pool_id\":\"pool_f6c078d198ae4ea1be6f43cfad8f9934\",\"pool_revision\":1,\"interval_ms\":1000,\"plan_sha256\":\"3323da31ce53b5406284660e76a05a59eb125f7eba4e1baf980adc4d59dd734a\",\"paused\":true,\"reviewed_at\":\"2026-09-15T12:16:57.800454+08:00\",\"created_at\":\"2026-09-15T12:16:27.574139+08:00\",\"next_admission_at\":\"2026-09-15T12:16:59.044113+08:00\",\"candidates\":[{\"snapshot\":{\"tenant_id\":\"93b06aeb-e445-4823-ade8-e7b7d8e19832\",\"vpc_id\":\"vpc_1004994c0bde496f9ff64a4c812c9607\",\"vpc_version\":140,\"namespace\":\"lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832\",\"binding_id\":\"6d54c5a1-ba72-4d3a-af16-b1f84a4809c6\",\"provider_name\":\"vpc-1004994c0bde496f9ff64a4c812c9607\",\"provider_uid\":\"eb116d02-0a4e-4a8f-824e-05bb945bae77\",\"initial_state\":\"pending\",\"initial_reason\":\"\"},\"state\":\"accepted\",\"reason\":\"\",\"operation_id\":\"17bd6aa6-2a66-4e66-b8b8-e955b865e54a\",\"operation_state\":\"retrying\",\"base_state\":\"pending\"},{\"snapshot\":{\"tenant_id\":\"d896f754-ab06-4cbe-a7fd-53148d16d0ad\",\"vpc_id\":\"vpc_d06f28e82fe847f7bf2cedd57dad82f4\",\"vpc_version\":83,\"namespace\":\"lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad\",\"binding_id\":\"5225208e-046f-42a6-8be8-c0f05810bc4e\",\"provider_name\":\"vpc-d06f28e82fe847f7bf2cedd57dad82f4\",\"provider_uid\":\"a4e27d33-c63b-459c-a939-16e61b9c19de\",\"initial_state\":\"excluded\",\"initial_reason\":\"BASE_CONNECTIVITY_ALREADY_MANAGED\"},\"state\":\"excluded\",\"reason\":\"BASE_CONNECTIVITY_ALREADY_MANAGED\",\"base_state\":\"ready\"}]}\n",
+  "stderr": ""
+}

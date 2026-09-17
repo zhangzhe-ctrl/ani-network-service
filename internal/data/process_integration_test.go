@@ -219,6 +219,11 @@ func startNetworkProcess(t *testing.T, root, binary, dsn, kubeconfig, signingKey
 	}
 	t.Cleanup(func() { _ = log.Close() })
 	command := exec.Command(binary, "-conf", filepath.Join(root, "configs"))
+	for _, option := range resourceKinds {
+		if strings.HasPrefix(option, "config=") {
+			command.Args[2] = strings.TrimPrefix(option, "config=")
+		}
+	}
 	command.Dir = root
 	command.Stdout = log
 	command.Stderr = log
@@ -249,6 +254,17 @@ func startNetworkProcess(t *testing.T, root, binary, dsn, kubeconfig, signingKey
 			}
 			if strings.HasPrefix(entry, "ANI_WORKER_STALE_AFTER=") {
 				command.Env[i] = "ANI_WORKER_STALE_AFTER=10s"
+			}
+		}
+	}
+	for _, option := range resourceKinds {
+		if option == "load_balancer" {
+			for i, entry := range command.Env {
+				for key, value := range map[string]string{"ANI_WORKER_LEASE=": "12s", "ANI_WORKER_REQUEST_TIMEOUT=": "4s", "ANI_OBSERVATION_AUDIT_TIMEOUT=": "3s", "ANI_OBSERVATION_REQUEST_QPS=": "100", "ANI_OBSERVATION_REQUEST_BURST=": "200"} {
+					if strings.HasPrefix(entry, key) {
+						command.Env[i] = key + value
+					}
+				}
 			}
 		}
 	}

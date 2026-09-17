@@ -1,0 +1,852 @@
+{
+    "apiVersion": "v1",
+    "items": [
+        {
+            "apiVersion": "v1",
+            "kind": "Pod",
+            "metadata": {
+                "creationTimestamp": "2026-09-15T02:19:50Z",
+                "generateName": "ani-node-facts-51a80915f0169d9a92ce6bf0-5f67ffbfbf-",
+                "generation": 1,
+                "labels": {
+                    "app": "ani-node-facts-51a80915f0169d9a92ce6bf0",
+                    "network.ani.io/test-run": "lb02-09141908-2b3122",
+                    "pod-template-hash": "5f67ffbfbf"
+                },
+                "name": "ani-node-facts-51a80915f0169d9a92ce6bf0-5f67ffbfbf-l7mmt",
+                "namespace": "kcn-system",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "apps/v1",
+                        "blockOwnerDeletion": true,
+                        "controller": true,
+                        "kind": "ReplicaSet",
+                        "name": "ani-node-facts-51a80915f0169d9a92ce6bf0-5f67ffbfbf",
+                        "uid": "888b9955-5ae1-492a-817e-86505d54130d"
+                    }
+                ],
+                "resourceVersion": "240405",
+                "uid": "ef5b1a7e-6db3-4c1e-b538-5b5b7ee23607"
+            },
+            "spec": {
+                "automountServiceAccountToken": true,
+                "containers": [
+                    {
+                        "args": [
+                            "-node-facts"
+                        ],
+                        "env": [
+                            {
+                                "name": "NETWORK_FACTS_NODE_NAME",
+                                "value": "ani-01"
+                            },
+                            {
+                                "name": "NETWORK_FACTS_NODE_UID",
+                                "value": "3693178a-d4d4-4fb3-a39a-82b7d875391d"
+                            }
+                        ],
+                        "image": "localhost/ani-node-facts@sha256:fe7aaee4509778b464121fb7c536e59675dee821a74c1ced62ca6da6ff9ab0c9",
+                        "imagePullPolicy": "IfNotPresent",
+                        "name": "facts",
+                        "resources": {
+                            "limits": {
+                                "cpu": "100m",
+                                "memory": "96Mi"
+                            },
+                            "requests": {
+                                "cpu": "10m",
+                                "memory": "32Mi"
+                            }
+                        },
+                        "securityContext": {
+                            "allowPrivilegeEscalation": false,
+                            "capabilities": {
+                                "drop": [
+                                    "ALL"
+                                ]
+                            },
+                            "readOnlyRootFilesystem": true,
+                            "runAsNonRoot": true,
+                            "runAsUser": 65534
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File",
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/sys",
+                                "name": "sys",
+                                "readOnly": true
+                            },
+                            {
+                                "mountPath": "/var/run/openvswitch",
+                                "name": "ovs",
+                                "readOnly": true
+                            },
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "kube-api-access-vqmfk",
+                                "readOnly": true
+                            }
+                        ]
+                    }
+                ],
+                "dnsPolicy": "ClusterFirstWithHostNet",
+                "enableServiceLinks": true,
+                "hostNetwork": true,
+                "nodeName": "ani-01",
+                "preemptionPolicy": "PreemptLowerPriority",
+                "priority": 0,
+                "restartPolicy": "Always",
+                "schedulerName": "default-scheduler",
+                "securityContext": {
+                    "seccompProfile": {
+                        "type": "RuntimeDefault"
+                    }
+                },
+                "serviceAccount": "ani-node-facts-51a80915f0169d9a92ce6bf0",
+                "serviceAccountName": "ani-node-facts-51a80915f0169d9a92ce6bf0",
+                "terminationGracePeriodSeconds": 15,
+                "tolerations": [
+                    {
+                        "operator": "Exists"
+                    }
+                ],
+                "volumes": [
+                    {
+                        "hostPath": {
+                            "path": "/sys",
+                            "type": "Directory"
+                        },
+                        "name": "sys"
+                    },
+                    {
+                        "hostPath": {
+                            "path": "/var/run/openvswitch",
+                            "type": "Directory"
+                        },
+                        "name": "ovs"
+                    },
+                    {
+                        "name": "kube-api-access-vqmfk",
+                        "projected": {
+                            "defaultMode": 420,
+                            "sources": [
+                                {
+                                    "serviceAccountToken": {
+                                        "expirationSeconds": 3607,
+                                        "path": "token"
+                                    }
+                                },
+                                {
+                                    "configMap": {
+                                        "items": [
+                                            {
+                                                "key": "ca.crt",
+                                                "path": "ca.crt"
+                                            }
+                                        ],
+                                        "name": "kube-root-ca.crt"
+                                    }
+                                },
+                                {
+                                    "downwardAPI": {
+                                        "items": [
+                                            {
+                                                "fieldRef": {
+                                                    "apiVersion": "v1",
+                                                    "fieldPath": "metadata.namespace"
+                                                },
+                                                "path": "namespace"
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            "status": {
+                "conditions": [
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-09-15T02:19:53Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodReadyToStartContainers"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-09-15T02:19:50Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "Initialized"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-09-15T02:19:53Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "Ready"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-09-15T02:19:53Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "ContainersReady"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-09-15T02:19:50Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodScheduled"
+                    }
+                ],
+                "containerStatuses": [
+                    {
+                        "allocatedResources": {
+                            "cpu": "10m",
+                            "memory": "32Mi"
+                        },
+                        "containerID": "containerd://aacd1418e7bd85c12f73ef49c23a002d4c597362b149c7947405ce493e45e8b6",
+                        "image": "localhost/ani-node-facts:lb02-2b3122-20260915-v2",
+                        "imageID": "docker.io/library/import-2026-09-15@sha256:735394c4f3e6822fbbb247ce7b84475233287df80b827e6ec4c504f4bcae070e",
+                        "lastState": {},
+                        "name": "facts",
+                        "ready": true,
+                        "resources": {
+                            "limits": {
+                                "cpu": "100m",
+                                "memory": "96Mi"
+                            },
+                            "requests": {
+                                "cpu": "10m",
+                                "memory": "32Mi"
+                            }
+                        },
+                        "restartCount": 0,
+                        "started": true,
+                        "state": {
+                            "running": {
+                                "startedAt": "2026-09-15T02:19:52Z"
+                            }
+                        },
+                        "user": {
+                            "linux": {
+                                "gid": 65534,
+                                "supplementalGroups": [
+                                    65534
+                                ],
+                                "uid": 65534
+                            }
+                        },
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/sys",
+                                "name": "sys",
+                                "readOnly": true,
+                                "recursiveReadOnly": "Disabled"
+                            },
+                            {
+                                "mountPath": "/var/run/openvswitch",
+                                "name": "ovs",
+                                "readOnly": true,
+                                "recursiveReadOnly": "Disabled"
+                            },
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "kube-api-access-vqmfk",
+                                "readOnly": true,
+                                "recursiveReadOnly": "Disabled"
+                            }
+                        ]
+                    }
+                ],
+                "hostIP": "172.16.101.10",
+                "hostIPs": [
+                    {
+                        "ip": "172.16.101.10"
+                    }
+                ],
+                "observedGeneration": 1,
+                "phase": "Running",
+                "podIP": "172.16.101.10",
+                "podIPs": [
+                    {
+                        "ip": "172.16.101.10"
+                    }
+                ],
+                "qosClass": "Burstable",
+                "startTime": "2026-09-15T02:19:50Z"
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "Pod",
+            "metadata": {
+                "creationTimestamp": "2026-09-15T02:19:51Z",
+                "generateName": "ani-node-facts-7b398d4ee406a252345c20ca-55d8965b9c-",
+                "generation": 1,
+                "labels": {
+                    "app": "ani-node-facts-7b398d4ee406a252345c20ca",
+                    "network.ani.io/test-run": "lb02-09141908-2b3122",
+                    "pod-template-hash": "55d8965b9c"
+                },
+                "name": "ani-node-facts-7b398d4ee406a252345c20ca-55d8965b9c-6bc6l",
+                "namespace": "kcn-system",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "apps/v1",
+                        "blockOwnerDeletion": true,
+                        "controller": true,
+                        "kind": "ReplicaSet",
+                        "name": "ani-node-facts-7b398d4ee406a252345c20ca-55d8965b9c",
+                        "uid": "8e65fe38-57a0-4068-81d0-8e65202243f7"
+                    }
+                ],
+                "resourceVersion": "240413",
+                "uid": "8cef1fd6-fd1c-4fb7-8d37-4aeaca518e82"
+            },
+            "spec": {
+                "automountServiceAccountToken": true,
+                "containers": [
+                    {
+                        "args": [
+                            "-node-facts"
+                        ],
+                        "env": [
+                            {
+                                "name": "NETWORK_FACTS_NODE_NAME",
+                                "value": "ani-02"
+                            },
+                            {
+                                "name": "NETWORK_FACTS_NODE_UID",
+                                "value": "2f954d6f-31d0-49d9-83ee-2f8888408236"
+                            }
+                        ],
+                        "image": "localhost/ani-node-facts@sha256:fe7aaee4509778b464121fb7c536e59675dee821a74c1ced62ca6da6ff9ab0c9",
+                        "imagePullPolicy": "IfNotPresent",
+                        "name": "facts",
+                        "resources": {
+                            "limits": {
+                                "cpu": "100m",
+                                "memory": "96Mi"
+                            },
+                            "requests": {
+                                "cpu": "10m",
+                                "memory": "32Mi"
+                            }
+                        },
+                        "securityContext": {
+                            "allowPrivilegeEscalation": false,
+                            "capabilities": {
+                                "drop": [
+                                    "ALL"
+                                ]
+                            },
+                            "readOnlyRootFilesystem": true,
+                            "runAsNonRoot": true,
+                            "runAsUser": 65534
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File",
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/sys",
+                                "name": "sys",
+                                "readOnly": true
+                            },
+                            {
+                                "mountPath": "/var/run/openvswitch",
+                                "name": "ovs",
+                                "readOnly": true
+                            },
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "kube-api-access-58qdz",
+                                "readOnly": true
+                            }
+                        ]
+                    }
+                ],
+                "dnsPolicy": "ClusterFirstWithHostNet",
+                "enableServiceLinks": true,
+                "hostNetwork": true,
+                "nodeName": "ani-02",
+                "preemptionPolicy": "PreemptLowerPriority",
+                "priority": 0,
+                "restartPolicy": "Always",
+                "schedulerName": "default-scheduler",
+                "securityContext": {
+                    "seccompProfile": {
+                        "type": "RuntimeDefault"
+                    }
+                },
+                "serviceAccount": "ani-node-facts-7b398d4ee406a252345c20ca",
+                "serviceAccountName": "ani-node-facts-7b398d4ee406a252345c20ca",
+                "terminationGracePeriodSeconds": 15,
+                "tolerations": [
+                    {
+                        "operator": "Exists"
+                    }
+                ],
+                "volumes": [
+                    {
+                        "hostPath": {
+                            "path": "/sys",
+                            "type": "Directory"
+                        },
+                        "name": "sys"
+                    },
+                    {
+                        "hostPath": {
+                            "path": "/var/run/openvswitch",
+                            "type": "Directory"
+                        },
+                        "name": "ovs"
+                    },
+                    {
+                        "name": "kube-api-access-58qdz",
+                        "projected": {
+                            "defaultMode": 420,
+                            "sources": [
+                                {
+                                    "serviceAccountToken": {
+                                        "expirationSeconds": 3607,
+                                        "path": "token"
+                                    }
+                                },
+                                {
+                                    "configMap": {
+                                        "items": [
+                                            {
+                                                "key": "ca.crt",
+                                                "path": "ca.crt"
+                                            }
+                                        ],
+                                        "name": "kube-root-ca.crt"
+                                    }
+                                },
+                                {
+                                    "downwardAPI": {
+                                        "items": [
+                                            {
+                                                "fieldRef": {
+                                                    "apiVersion": "v1",
+                                                    "fieldPath": "metadata.namespace"
+                                                },
+                                                "path": "namespace"
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            "status": {
+                "conditions": [
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-09-15T02:19:53Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodReadyToStartContainers"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-09-15T02:19:51Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "Initialized"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-09-15T02:19:53Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "Ready"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-09-15T02:19:53Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "ContainersReady"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-09-15T02:19:51Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodScheduled"
+                    }
+                ],
+                "containerStatuses": [
+                    {
+                        "allocatedResources": {
+                            "cpu": "10m",
+                            "memory": "32Mi"
+                        },
+                        "containerID": "containerd://59de28398b87d5f40917b067ab2037d6934ee01378ed32e64863fc29f05f92ec",
+                        "image": "localhost/ani-node-facts:lb02-2b3122-20260915-v2",
+                        "imageID": "docker.io/library/import-2026-09-15@sha256:735394c4f3e6822fbbb247ce7b84475233287df80b827e6ec4c504f4bcae070e",
+                        "lastState": {},
+                        "name": "facts",
+                        "ready": true,
+                        "resources": {
+                            "limits": {
+                                "cpu": "100m",
+                                "memory": "96Mi"
+                            },
+                            "requests": {
+                                "cpu": "10m",
+                                "memory": "32Mi"
+                            }
+                        },
+                        "restartCount": 0,
+                        "started": true,
+                        "state": {
+                            "running": {
+                                "startedAt": "2026-09-15T02:19:53Z"
+                            }
+                        },
+                        "user": {
+                            "linux": {
+                                "gid": 65534,
+                                "supplementalGroups": [
+                                    65534
+                                ],
+                                "uid": 65534
+                            }
+                        },
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/sys",
+                                "name": "sys",
+                                "readOnly": true,
+                                "recursiveReadOnly": "Disabled"
+                            },
+                            {
+                                "mountPath": "/var/run/openvswitch",
+                                "name": "ovs",
+                                "readOnly": true,
+                                "recursiveReadOnly": "Disabled"
+                            },
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "kube-api-access-58qdz",
+                                "readOnly": true,
+                                "recursiveReadOnly": "Disabled"
+                            }
+                        ]
+                    }
+                ],
+                "hostIP": "172.16.101.11",
+                "hostIPs": [
+                    {
+                        "ip": "172.16.101.11"
+                    }
+                ],
+                "observedGeneration": 1,
+                "phase": "Running",
+                "podIP": "172.16.101.11",
+                "podIPs": [
+                    {
+                        "ip": "172.16.101.11"
+                    }
+                ],
+                "qosClass": "Burstable",
+                "startTime": "2026-09-15T02:19:51Z"
+            }
+        },
+        {
+            "apiVersion": "v1",
+            "kind": "Pod",
+            "metadata": {
+                "creationTimestamp": "2026-09-15T02:19:52Z",
+                "generateName": "ani-node-facts-ab0e432da17dfce745d60958-5cf45bbbdd-",
+                "generation": 1,
+                "labels": {
+                    "app": "ani-node-facts-ab0e432da17dfce745d60958",
+                    "network.ani.io/test-run": "lb02-09141908-2b3122",
+                    "pod-template-hash": "5cf45bbbdd"
+                },
+                "name": "ani-node-facts-ab0e432da17dfce745d60958-5cf45bbbdd-ptlt2",
+                "namespace": "kcn-system",
+                "ownerReferences": [
+                    {
+                        "apiVersion": "apps/v1",
+                        "blockOwnerDeletion": true,
+                        "controller": true,
+                        "kind": "ReplicaSet",
+                        "name": "ani-node-facts-ab0e432da17dfce745d60958-5cf45bbbdd",
+                        "uid": "b8c4afcc-566c-4ec2-b9bb-eaebe27e6951"
+                    }
+                ],
+                "resourceVersion": "240430",
+                "uid": "b217e742-44d3-4540-832f-8e68244f579b"
+            },
+            "spec": {
+                "automountServiceAccountToken": true,
+                "containers": [
+                    {
+                        "args": [
+                            "-node-facts"
+                        ],
+                        "env": [
+                            {
+                                "name": "NETWORK_FACTS_NODE_NAME",
+                                "value": "ani-03"
+                            },
+                            {
+                                "name": "NETWORK_FACTS_NODE_UID",
+                                "value": "2507940b-6901-44c6-aadd-ba1bb6875bde"
+                            }
+                        ],
+                        "image": "localhost/ani-node-facts@sha256:fe7aaee4509778b464121fb7c536e59675dee821a74c1ced62ca6da6ff9ab0c9",
+                        "imagePullPolicy": "IfNotPresent",
+                        "name": "facts",
+                        "resources": {
+                            "limits": {
+                                "cpu": "100m",
+                                "memory": "96Mi"
+                            },
+                            "requests": {
+                                "cpu": "10m",
+                                "memory": "32Mi"
+                            }
+                        },
+                        "securityContext": {
+                            "allowPrivilegeEscalation": false,
+                            "capabilities": {
+                                "drop": [
+                                    "ALL"
+                                ]
+                            },
+                            "readOnlyRootFilesystem": true,
+                            "runAsNonRoot": true,
+                            "runAsUser": 65534
+                        },
+                        "terminationMessagePath": "/dev/termination-log",
+                        "terminationMessagePolicy": "File",
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/sys",
+                                "name": "sys",
+                                "readOnly": true
+                            },
+                            {
+                                "mountPath": "/var/run/openvswitch",
+                                "name": "ovs",
+                                "readOnly": true
+                            },
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "kube-api-access-xs2p5",
+                                "readOnly": true
+                            }
+                        ]
+                    }
+                ],
+                "dnsPolicy": "ClusterFirstWithHostNet",
+                "enableServiceLinks": true,
+                "hostNetwork": true,
+                "nodeName": "ani-03",
+                "preemptionPolicy": "PreemptLowerPriority",
+                "priority": 0,
+                "restartPolicy": "Always",
+                "schedulerName": "default-scheduler",
+                "securityContext": {
+                    "seccompProfile": {
+                        "type": "RuntimeDefault"
+                    }
+                },
+                "serviceAccount": "ani-node-facts-ab0e432da17dfce745d60958",
+                "serviceAccountName": "ani-node-facts-ab0e432da17dfce745d60958",
+                "terminationGracePeriodSeconds": 15,
+                "tolerations": [
+                    {
+                        "operator": "Exists"
+                    }
+                ],
+                "volumes": [
+                    {
+                        "hostPath": {
+                            "path": "/sys",
+                            "type": "Directory"
+                        },
+                        "name": "sys"
+                    },
+                    {
+                        "hostPath": {
+                            "path": "/var/run/openvswitch",
+                            "type": "Directory"
+                        },
+                        "name": "ovs"
+                    },
+                    {
+                        "name": "kube-api-access-xs2p5",
+                        "projected": {
+                            "defaultMode": 420,
+                            "sources": [
+                                {
+                                    "serviceAccountToken": {
+                                        "expirationSeconds": 3607,
+                                        "path": "token"
+                                    }
+                                },
+                                {
+                                    "configMap": {
+                                        "items": [
+                                            {
+                                                "key": "ca.crt",
+                                                "path": "ca.crt"
+                                            }
+                                        ],
+                                        "name": "kube-root-ca.crt"
+                                    }
+                                },
+                                {
+                                    "downwardAPI": {
+                                        "items": [
+                                            {
+                                                "fieldRef": {
+                                                    "apiVersion": "v1",
+                                                    "fieldPath": "metadata.namespace"
+                                                },
+                                                "path": "namespace"
+                                            }
+                                        ]
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            "status": {
+                "conditions": [
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-09-15T02:19:55Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodReadyToStartContainers"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-09-15T02:19:52Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "Initialized"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-09-15T02:19:55Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "Ready"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-09-15T02:19:55Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "ContainersReady"
+                    },
+                    {
+                        "lastProbeTime": null,
+                        "lastTransitionTime": "2026-09-15T02:19:52Z",
+                        "observedGeneration": 1,
+                        "status": "True",
+                        "type": "PodScheduled"
+                    }
+                ],
+                "containerStatuses": [
+                    {
+                        "allocatedResources": {
+                            "cpu": "10m",
+                            "memory": "32Mi"
+                        },
+                        "containerID": "containerd://f3bdb3f1113c02306f65a9a5a79ab0c406c4376bf6c21c1a0c0f73214643cfe9",
+                        "image": "localhost/ani-node-facts:lb02-2b3122-20260915-v2",
+                        "imageID": "docker.io/library/import-2026-09-15@sha256:735394c4f3e6822fbbb247ce7b84475233287df80b827e6ec4c504f4bcae070e",
+                        "lastState": {},
+                        "name": "facts",
+                        "ready": true,
+                        "resources": {
+                            "limits": {
+                                "cpu": "100m",
+                                "memory": "96Mi"
+                            },
+                            "requests": {
+                                "cpu": "10m",
+                                "memory": "32Mi"
+                            }
+                        },
+                        "restartCount": 0,
+                        "started": true,
+                        "state": {
+                            "running": {
+                                "startedAt": "2026-09-15T02:19:54Z"
+                            }
+                        },
+                        "user": {
+                            "linux": {
+                                "gid": 65534,
+                                "supplementalGroups": [
+                                    65534
+                                ],
+                                "uid": 65534
+                            }
+                        },
+                        "volumeMounts": [
+                            {
+                                "mountPath": "/sys",
+                                "name": "sys",
+                                "readOnly": true,
+                                "recursiveReadOnly": "Disabled"
+                            },
+                            {
+                                "mountPath": "/var/run/openvswitch",
+                                "name": "ovs",
+                                "readOnly": true,
+                                "recursiveReadOnly": "Disabled"
+                            },
+                            {
+                                "mountPath": "/var/run/secrets/kubernetes.io/serviceaccount",
+                                "name": "kube-api-access-xs2p5",
+                                "readOnly": true,
+                                "recursiveReadOnly": "Disabled"
+                            }
+                        ]
+                    }
+                ],
+                "hostIP": "172.16.101.12",
+                "hostIPs": [
+                    {
+                        "ip": "172.16.101.12"
+                    }
+                ],
+                "observedGeneration": 1,
+                "phase": "Running",
+                "podIP": "172.16.101.12",
+                "podIPs": [
+                    {
+                        "ip": "172.16.101.12"
+                    }
+                ],
+                "qosClass": "Burstable",
+                "startTime": "2026-09-15T02:19:52Z"
+            }
+        }
+    ],
+    "kind": "List",
+    "metadata": {
+        "resourceVersion": ""
+    }
+}

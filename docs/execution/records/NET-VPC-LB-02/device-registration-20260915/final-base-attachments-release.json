@@ -1,0 +1,313 @@
+{
+  "at": "2026-09-15T14:29:46.199460+00:00",
+  "execution_host": "ubuntu",
+  "group": "base",
+  "result": "pass",
+  "results": [
+    {
+      "attachment_id": "att_7d08b61f4038432a842d2fda525607b9",
+      "finalization_id": "b1149c34-cbbc-4e15-8f0c-8bd9e6bfd162",
+      "accepted": true
+    },
+    {
+      "attachment_id": "att_a6172d5ee5be434087f939001a435c9e",
+      "finalization_id": "0f580f17-c2e9-4333-8c5c-7184fa4f322d",
+      "accepted": true
+    },
+    {
+      "attachment_id": "att_dc37931e4bfa4d3d9fe7a2ed3b791e62",
+      "finalization_id": "fd73a091-39ac-4ed0-8e4b-77f2344d33f3",
+      "accepted": true
+    }
+  ],
+  "records": [
+    {
+      "at": "2026-09-15T14:29:46.120697+00:00",
+      "command": [
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/lb-api",
+        "call",
+        "-target",
+        "unix:///home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-a.sock",
+        "-service",
+        "NetworkService",
+        "-method",
+        "GetAttachment"
+      ],
+      "request": {
+        "attachment_id": "att_7d08b61f4038432a842d2fda525607b9"
+      },
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "attachment": {
+            "id": "att_7d08b61f4038432a842d2fda525607b9",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+            "instance_id": "lb02-2b3122-base-a",
+            "slot": "primary",
+            "submission_id": "8bd16f7c-f585-452d-bf8f-378321326390",
+            "generation": "1",
+            "cluster_id": "lb02-09141908-2b3122",
+            "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "binding_revision": "efc7b48c-6cbb-4813-be1b-e96cd1298e19:c34aebb8-1253-4d9d-aaa1-563b0ff53332",
+            "state": "ATTACHMENT_STATE_RELEASING",
+            "reason": "CONSUMER_NOT_CLOSED",
+            "version": "3638",
+            "pod_primary": null,
+            "pod_name": "lb02-2b3122-base-a",
+            "pod_uid": "a0fb8a3c-9025-43b4-a45f-5114ffc5f3b5",
+            "consumer_finalization_id": "b1149c34-cbbc-4e15-8f0c-8bd9e6bfd162",
+            "created_at": "2026-09-15T04:22:33.105472Z",
+            "updated_at": "2026-09-15T14:29:45.085571Z",
+            "observed_at": "2026-09-15T14:29:39.057614Z",
+            "released_at": null
+          }
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-15T14:29:46.135919+00:00",
+      "command": [
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/lb-api",
+        "call",
+        "-target",
+        "unix:///home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-a.sock",
+        "-service",
+        "NetworkService",
+        "-method",
+        "ReleaseAttachment"
+      ],
+      "request": {
+        "attachment_id": "att_7d08b61f4038432a842d2fda525607b9",
+        "expected_version": "3638",
+        "consumer_finalization_id": "b1149c34-cbbc-4e15-8f0c-8bd9e6bfd162"
+      },
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "attachment": {
+            "id": "att_7d08b61f4038432a842d2fda525607b9",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+            "instance_id": "lb02-2b3122-base-a",
+            "slot": "primary",
+            "submission_id": "8bd16f7c-f585-452d-bf8f-378321326390",
+            "generation": "1",
+            "cluster_id": "lb02-09141908-2b3122",
+            "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "binding_revision": "efc7b48c-6cbb-4813-be1b-e96cd1298e19:c34aebb8-1253-4d9d-aaa1-563b0ff53332",
+            "state": "ATTACHMENT_STATE_RELEASING",
+            "reason": "CONSUMER_NOT_CLOSED",
+            "version": "3638",
+            "pod_primary": null,
+            "pod_name": "lb02-2b3122-base-a",
+            "pod_uid": "a0fb8a3c-9025-43b4-a45f-5114ffc5f3b5",
+            "consumer_finalization_id": "b1149c34-cbbc-4e15-8f0c-8bd9e6bfd162",
+            "created_at": "2026-09-15T04:22:33.105472Z",
+            "updated_at": "2026-09-15T14:29:45.085571Z",
+            "observed_at": "2026-09-15T14:29:39.057614Z",
+            "released_at": null
+          }
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-15T14:29:46.148094+00:00",
+      "command": [
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/lb-api",
+        "call",
+        "-target",
+        "unix:///home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-a.sock",
+        "-service",
+        "NetworkService",
+        "-method",
+        "GetAttachment"
+      ],
+      "request": {
+        "attachment_id": "att_a6172d5ee5be434087f939001a435c9e"
+      },
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "attachment": {
+            "id": "att_a6172d5ee5be434087f939001a435c9e",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+            "instance_id": "lb02-2b3122-base-b",
+            "slot": "primary",
+            "submission_id": "1358b933-00e9-448a-baed-ea168c21cd3e",
+            "generation": "1",
+            "cluster_id": "lb02-09141908-2b3122",
+            "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "binding_revision": "efc7b48c-6cbb-4813-be1b-e96cd1298e19:c34aebb8-1253-4d9d-aaa1-563b0ff53332",
+            "state": "ATTACHMENT_STATE_RELEASING",
+            "reason": "CONSUMER_NOT_CLOSED",
+            "version": "3650",
+            "pod_primary": null,
+            "pod_name": "lb02-2b3122-base-b",
+            "pod_uid": "e4c49404-afc1-4ff5-9e22-08521633d69c",
+            "consumer_finalization_id": "0f580f17-c2e9-4333-8c5c-7184fa4f322d",
+            "created_at": "2026-09-15T04:22:33.269433Z",
+            "updated_at": "2026-09-15T14:29:45.070515Z",
+            "observed_at": "2026-09-15T14:29:39.057614Z",
+            "released_at": null
+          }
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-15T14:29:46.161806+00:00",
+      "command": [
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/lb-api",
+        "call",
+        "-target",
+        "unix:///home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-a.sock",
+        "-service",
+        "NetworkService",
+        "-method",
+        "ReleaseAttachment"
+      ],
+      "request": {
+        "attachment_id": "att_a6172d5ee5be434087f939001a435c9e",
+        "expected_version": "3650",
+        "consumer_finalization_id": "0f580f17-c2e9-4333-8c5c-7184fa4f322d"
+      },
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "attachment": {
+            "id": "att_a6172d5ee5be434087f939001a435c9e",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+            "instance_id": "lb02-2b3122-base-b",
+            "slot": "primary",
+            "submission_id": "1358b933-00e9-448a-baed-ea168c21cd3e",
+            "generation": "1",
+            "cluster_id": "lb02-09141908-2b3122",
+            "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "binding_revision": "efc7b48c-6cbb-4813-be1b-e96cd1298e19:c34aebb8-1253-4d9d-aaa1-563b0ff53332",
+            "state": "ATTACHMENT_STATE_RELEASING",
+            "reason": "CONSUMER_NOT_CLOSED",
+            "version": "3650",
+            "pod_primary": null,
+            "pod_name": "lb02-2b3122-base-b",
+            "pod_uid": "e4c49404-afc1-4ff5-9e22-08521633d69c",
+            "consumer_finalization_id": "0f580f17-c2e9-4333-8c5c-7184fa4f322d",
+            "created_at": "2026-09-15T04:22:33.269433Z",
+            "updated_at": "2026-09-15T14:29:45.070515Z",
+            "observed_at": "2026-09-15T14:29:39.057614Z",
+            "released_at": null
+          }
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-15T14:29:46.173200+00:00",
+      "command": [
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/lb-api",
+        "call",
+        "-target",
+        "unix:///home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-a.sock",
+        "-service",
+        "NetworkService",
+        "-method",
+        "GetAttachment"
+      ],
+      "request": {
+        "attachment_id": "att_dc37931e4bfa4d3d9fe7a2ed3b791e62"
+      },
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "attachment": {
+            "id": "att_dc37931e4bfa4d3d9fe7a2ed3b791e62",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "subnet_id": "subnet_f74d90cbb5484f7fb37f8a8f6782da1d",
+            "instance_id": "lb02-2b3122-base-client",
+            "slot": "primary",
+            "submission_id": "b2344384-698a-4c7a-a45a-a780080e1a10",
+            "generation": "1",
+            "cluster_id": "lb02-09141908-2b3122",
+            "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "binding_revision": "ec2e5d9e-d9ee-4a36-8a1b-1c17f414c9fa:bda32245-03a3-479c-8972-0ed0ab39e4dc",
+            "state": "ATTACHMENT_STATE_RELEASING",
+            "reason": "CONSUMER_NOT_CLOSED",
+            "version": "3640",
+            "pod_primary": null,
+            "pod_name": "lb02-2b3122-base-client",
+            "pod_uid": "6e3cfa90-d485-4311-a451-b8fa798acb7a",
+            "consumer_finalization_id": "fd73a091-39ac-4ed0-8e4b-77f2344d33f3",
+            "created_at": "2026-09-15T04:22:33.448522Z",
+            "updated_at": "2026-09-15T14:29:45.095031Z",
+            "observed_at": "2026-09-15T14:29:39.057614Z",
+            "released_at": null
+          }
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-15T14:29:46.199262+00:00",
+      "command": [
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/lb-api",
+        "call",
+        "-target",
+        "unix:///home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-a.sock",
+        "-service",
+        "NetworkService",
+        "-method",
+        "ReleaseAttachment"
+      ],
+      "request": {
+        "attachment_id": "att_dc37931e4bfa4d3d9fe7a2ed3b791e62",
+        "expected_version": "3640",
+        "consumer_finalization_id": "fd73a091-39ac-4ed0-8e4b-77f2344d33f3"
+      },
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "attachment": {
+            "id": "att_dc37931e4bfa4d3d9fe7a2ed3b791e62",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "subnet_id": "subnet_f74d90cbb5484f7fb37f8a8f6782da1d",
+            "instance_id": "lb02-2b3122-base-client",
+            "slot": "primary",
+            "submission_id": "b2344384-698a-4c7a-a45a-a780080e1a10",
+            "generation": "1",
+            "cluster_id": "lb02-09141908-2b3122",
+            "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "binding_revision": "ec2e5d9e-d9ee-4a36-8a1b-1c17f414c9fa:bda32245-03a3-479c-8972-0ed0ab39e4dc",
+            "state": "ATTACHMENT_STATE_RELEASING",
+            "reason": "CONSUMER_NOT_CLOSED",
+            "version": "3640",
+            "pod_primary": null,
+            "pod_name": "lb02-2b3122-base-client",
+            "pod_uid": "6e3cfa90-d485-4311-a451-b8fa798acb7a",
+            "consumer_finalization_id": "fd73a091-39ac-4ed0-8e4b-77f2344d33f3",
+            "created_at": "2026-09-15T04:22:33.448522Z",
+            "updated_at": "2026-09-15T14:29:45.095031Z",
+            "observed_at": "2026-09-15T14:29:39.057614Z",
+            "released_at": null
+          }
+        }
+      },
+      "stderr": ""
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "exit": 0,
+  "artifact_sha256": {
+    "lb-api": "85833a6ba829ed4a094b73dac6422285a75c76a578a20603c9d9d07e9b05b2b6",
+    "network": "1ec0d63291496a1810c9fe7ff9d2dfb1af52ac67c47ef72a9173006e7a4a3502"
+  },
+  "at": "2026-09-15T12:44:11.984991+00:00",
+  "result": "pass",
+  "scope": "compile only; temporary diagnostics, not full gate qualification",
+  "source_run": "20260915T124319Z-f715d364",
+  "archive_sha256": "1f7288cc07861645a658b217bd9457e18a5b309e824ccf509eb8a2e7eb33d98a",
+  "manifest_sha256": "60aadd6b194232a5e4bd6ec7558a5ac5eb6d5841584d7f6c187ef1ef98b77290",
+  "command": [
+    "bash",
+    "-e",
+    "-c",
+    "mkdir ../artifacts; go build -trimpath -o ../artifacts/lb-api ./scripts/lb-api && go build -trimpath -o ../artifacts/network ./cmd/ani-network-service && sha256sum ../artifacts/lb-api ../artifacts/network"
+  ],
+  "log": "attachment-debug-build-command.txt"
+}

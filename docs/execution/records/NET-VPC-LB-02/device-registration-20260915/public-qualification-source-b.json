@@ -1,0 +1,83 @@
+{
+  "at": "2026-09-15T08:34:25.310346+00:00",
+  "execution_host": "ubuntu",
+  "request": {
+    "client": {
+      "namespace": "lb02-09141908-2b3122",
+      "pod": "lb02-2b3122-public-probe-b"
+    },
+    "server": {
+      "namespace": "lb02-09141908-2b3122",
+      "pod": "lb02-2b3122-outside-observer"
+    },
+    "destination": "172.16.101.10",
+    "port": 18808,
+    "expected_source": "172.16.102.193",
+    "nonce": "public-underlay-source-b-01"
+  },
+  "client_command": [
+    "bash",
+    "-c",
+    "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+    "kubectl",
+    "--kubeconfig",
+    "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+    "--request-timeout=20s",
+    "exec",
+    "-n",
+    "lb02-09141908-2b3122",
+    "lb02-2b3122-public-probe-b",
+    "-c",
+    "probe",
+    "--",
+    "/bin/sh",
+    "-c",
+    "(printf 'GET /?nonce=public-underlay-source-b-01 HTTP/1.1\\r\\nHost: fixture\\r\\n\\r\\n'; sleep 6) | /bin/busybox nc -w 10 172.16.101.10 18808"
+  ],
+  "server_command": [
+    "bash",
+    "-c",
+    "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+    "kubectl",
+    "--kubeconfig",
+    "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+    "--request-timeout=20s",
+    "exec",
+    "-n",
+    "lb02-09141908-2b3122",
+    "lb02-2b3122-outside-observer",
+    "-c",
+    "probe",
+    "--",
+    "cat",
+    "/proc/net/tcp",
+    "/proc/net/tcp6"
+  ],
+  "client_exit": 127,
+  "client_stdout": "",
+  "client_stderr": "/bin/sh: 1: /bin/busybox: not found\ncommand terminated with exit code 127\n",
+  "snapshots": [
+    {
+      "at": "2026-09-15T08:34:20.394197+00:00",
+      "exit": 0,
+      "connections": [],
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-15T08:34:22.394163+00:00",
+      "exit": 0,
+      "connections": [],
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-15T08:34:24.368162+00:00",
+      "exit": 0,
+      "connections": [],
+      "stderr": ""
+    }
+  ],
+  "http_identity_pass": false,
+  "receiver_source_pass": false,
+  "result": "fail",
+  "script_sha256": "2823ff0aaaddaf1a4f8021dd5e8e2ab7f4722d89d1de8c84ed7b61c7f25cd25d"
+}

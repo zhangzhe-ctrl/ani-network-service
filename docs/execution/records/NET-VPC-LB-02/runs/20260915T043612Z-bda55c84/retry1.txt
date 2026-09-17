@@ -1,0 +1,9 @@
+127.0.0.1:5432 - accepting connections
+PostgreSQL image=docker.io/library/postgres@sha256:4ef4dbc939d61acea57712655ddb4b4ab27419c913f94cca0cd57cb3ea3c2280 container=1c71ad570be63a5fbc9a65e5cfb4b8ce5c2c3b03d0dfc2d3f23f3fcb8d284f3a
+=== RUN   TestLBBackendObservationUsesCurrentDatabaseTime
+    load_balancer_freshness_integration_test.go:25: claim: found=true work={GateReason: CancelUnsent:false Requirement:{RequestedGeneration:3 AppliedAt:2026-09-15 12:38:08.590015 +0800 CST Hash:8e1e6b3c81dfc050d6dea3f3be91fadddd2e55f76ef0376ae63c09b0c6281eaa} Resource:{LoadBalancer:<nil> BaseRequired:false SystemManaged:false Egress:0xc000965940 ID:pool_b00a9b5835514b879a8cf76dfd6267ce TenantID: Kind:public_pool VPCID: CIDR: Gateway: LastOperationID:0d4ef6f7-5f1f-4fdb-9051-1b7a09920cf1 State:available Reason: Version:8 UpdatedAt:2026-09-15 12:38:08.588244 +0800 CST ObservedAt:2026-09-15 12:38:08.519788 +0800 CST} Operation:{ID:0d4ef6f7-5f1f-4fdb-9051-1b7a09920cf1 TenantID: ResourceID:pool_b00a9b5835514b879a8cf76dfd6267ce ResourceType:public_pool Kind:set_default_intranet_pool State:succeeded Reason: CreatedAt:0001-01-01 00:00:00 +0000 UTC UpdatedAt:0001-01-01 00:00:00 +0000 UTC CompletedAt:<nil> NextAttemptAt:<nil>} ActiveOperation:false BindingID:145e3d14-d924-4700-a002-e875fdad6aa0 KnownIdentity:e54ff5ca-2f64-402c-9e87-50eafd148f44 PendingAction: Owner:6629d66d-1b8c-47c4-b248-c25b836a54de Epoch:8 Attempt:0 Now:2026-09-15 12:38:08.785702 +0800 CST} err=<nil>
+--- FAIL: TestLBBackendObservationUsesCurrentDatabaseTime (1.87s)
+FAIL
+FAIL	github.com/zhangzhe-ctrl/ani-network-service/internal/data	1.926s
+FAIL
+removed task container=1c71ad570be63a5fbc9a65e5cfb4b8ce5c2c3b03d0dfc2d3f23f3fcb8d284f3a

@@ -1,0 +1,95 @@
+{
+  "at": "2026-09-14T18:40:03.574758+00:00",
+  "checks": [
+    {
+      "args": [
+        "-n",
+        "kcn-system",
+        "exec",
+        "kcn-ovs-ds-7hfv8",
+        "-c",
+        "openvswitch",
+        "--",
+        "ovs-vsctl",
+        "show"
+      ],
+      "exit": 0,
+      "stdout": "9983d52d-5e5b-41c9-9cf9-dd231d4077f7\n    Bridge br-int\n        fail_mode: secure\n        datapath_type: system\n        Port a21b62907254_h\n            Interface a21b62907254_h\n        Port ovn-e70870-0\n            Interface ovn-e70870-0\n                type: geneve\n                options: {csum=\"true\", key=flow, local_ip=\"172.16.101.10\", remote_ip=\"172.16.101.11\"}\n        Port \"59e17b98568b_h\"\n            Interface \"59e17b98568b_h\"\n        Port \"8d0df12147ef_h\"\n            Interface \"8d0df12147ef_h\"\n        Port cd6721b48b2b_h\n            Interface cd6721b48b2b_h\n        Port \"422e1d739083_h\"\n            Interface \"422e1d739083_h\"\n        Port br-int\n            Interface br-int\n                type: internal\n        Port ovn-a82f67-0\n            Interface ovn-a82f67-0\n                type: geneve\n                options: {csum=\"true\", key=flow, local_ip=\"172.16.101.10\", remote_ip=\"172.16.101.12\"}\n        Port ovn0\n            Interface ovn0\n                type: internal\n    Bridge br-ens35\n        Port ens35\n            Interface ens35\n        Port br-ens35\n            Interface br-ens35\n                type: internal\n    ovs_version: \"3.7.0\"\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "-n",
+        "kcn-system",
+        "exec",
+        "kcn-ovs-ds-hzz8g",
+        "-c",
+        "openvswitch",
+        "--",
+        "ovs-vsctl",
+        "show"
+      ],
+      "exit": 0,
+      "stdout": "c808d04d-a7ab-4a21-b14e-077d80ebbf7a\n    Bridge br-int\n        fail_mode: secure\n        datapath_type: system\n        Port ovn0\n            Interface ovn0\n                type: internal\n        Port bb755eeb7962_h\n            Interface bb755eeb7962_h\n        Port \"997f69008a61_h\"\n            Interface \"997f69008a61_h\"\n        Port c8d1841e46e1_h\n            Interface c8d1841e46e1_h\n        Port ovn-a82f67-0\n            Interface ovn-a82f67-0\n                type: geneve\n                options: {csum=\"true\", key=flow, local_ip=\"172.16.101.11\", remote_ip=\"172.16.101.12\"}\n        Port d6e4940d9d65_h\n            Interface d6e4940d9d65_h\n        Port \"1553ed078904_h\"\n            Interface \"1553ed078904_h\"\n        Port ovn-817ffa-0\n            Interface ovn-817ffa-0\n                type: geneve\n                options: {csum=\"true\", key=flow, local_ip=\"172.16.101.11\", remote_ip=\"172.16.101.10\"}\n        Port \"6991f3cfc831_h\"\n            Interface \"6991f3cfc831_h\"\n        Port br-int\n            Interface br-int\n                type: internal\n        Port c35a72442a15_h\n            Interface c35a72442a15_h\n    Bridge br-ens35\n        Port br-ens35\n            Interface br-ens35\n                type: internal\n        Port ens35\n            Interface ens35\n    ovs_version: \"3.7.0\"\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "-n",
+        "kcn-system",
+        "exec",
+        "kcn-ovs-ds-n4vt8",
+        "-c",
+        "openvswitch",
+        "--",
+        "ovs-vsctl",
+        "show"
+      ],
+      "exit": 0,
+      "stdout": "63aa4ae0-eb36-49ed-b47c-029581b53ce3\n    Bridge br-ens35\n        Port br-ens35\n            Interface br-ens35\n                type: internal\n        Port ens35\n            Interface ens35\n    Bridge br-int\n        fail_mode: secure\n        datapath_type: system\n        Port \"24c923ec57f7_h\"\n            Interface \"24c923ec57f7_h\"\n        Port \"0cf6e6f52678_h\"\n            Interface \"0cf6e6f52678_h\"\n        Port ovn-e70870-0\n            Interface ovn-e70870-0\n                type: geneve\n                options: {csum=\"true\", key=flow, local_ip=\"172.16.101.12\", remote_ip=\"172.16.101.11\"}\n        Port c143a07e9ba7_h\n            Interface c143a07e9ba7_h\n        Port ovn0\n            Interface ovn0\n                type: internal\n        Port br-int\n            Interface br-int\n                type: internal\n        Port \"14734f0ca034_h\"\n            Interface \"14734f0ca034_h\"\n        Port \"8d656a8b7913_h\"\n            Interface \"8d656a8b7913_h\"\n        Port ovn-817ffa-0\n            Interface ovn-817ffa-0\n                type: geneve\n                options: {csum=\"true\", key=flow, local_ip=\"172.16.101.12\", remote_ip=\"172.16.101.10\"}\n    ovs_version: \"3.7.0\"\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "-n",
+        "kcn-system",
+        "get",
+        "configmap",
+        "kcn-config",
+        "-o",
+        "json"
+      ],
+      "exit": 0,
+      "stdout": "{\n    \"apiVersion\": \"v1\",\n    \"data\": {\n        \"enablePortSecurity\": \"false\",\n        \"encapNetworks\": \"172.16.101.0/24\",\n        \"hasMultusCNI\": \"false\",\n        \"intranetNetworks\": \"- 172.16.101.0/24\\n- 172.16.201.0/24\\n- 172.16.202.0/24\\n- 10.96.0.0/16\\n\",\n        \"isDefaultCNI\": \"true\",\n        \"managedDevices\": \"ens35\",\n        \"nadDefaultNamespace\": \"kube-system\"\n    },\n    \"kind\": \"ConfigMap\",\n    \"metadata\": {\n        \"creationTimestamp\": \"2026-09-14T12:26:10Z\",\n        \"name\": \"kcn-config\",\n        \"namespace\": \"kcn-system\",\n        \"resourceVersion\": \"39661\",\n        \"uid\": \"dcca6e9e-db3f-4ebe-8b27-8898e3a2939e\"\n    }\n}\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "get",
+        "vlannetworks.networking.kubercloud.com",
+        "-o",
+        "json"
+      ],
+      "exit": 0,
+      "stdout": "{\n    \"apiVersion\": \"v1\",\n    \"items\": [],\n    \"kind\": \"List\",\n    \"metadata\": {\n        \"resourceVersion\": \"\"\n    }\n}\n",
+      "stderr": ""
+    },
+    {
+      "args": [
+        "-n",
+        "kcn-system",
+        "exec",
+        "kcn-controller-7d98bdb568-4c4mv",
+        "-c",
+        "kcn-controller",
+        "--",
+        "sh",
+        "-c",
+        "command -v go; command -v strings; readlink /proc/1/exe"
+      ],
+      "exit": 0,
+      "stdout": "/kc-networking/kcn-cmd\n",
+      "stderr": ""
+    }
+  ]
+}

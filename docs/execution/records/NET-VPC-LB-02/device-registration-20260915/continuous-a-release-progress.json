@@ -1,0 +1,19 @@
+{
+  "at": "2026-09-15T06:17:53.546733+00:00",
+  "execution_host": "ubuntu",
+  "context": "tenant-b",
+  "command": "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/lb-api call -target unix:///home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-b.sock -service NetworkService -method GetAttachment",
+  "request": {
+    "attachment_id": "att_a84eb739ac3046c695f0d61433607655"
+  },
+  "exit": 1,
+  "response": {
+    "code": "Unavailable",
+    "status": {
+      "code": 14,
+      "message": "connection error: desc = \"transport: Error while dialing: dial unix /home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-b.sock: connect: no such file or directory\"",
+      "details": []
+    }
+  },
+  "stderr": "RPC failed; structured status is in stdout\n"
+}

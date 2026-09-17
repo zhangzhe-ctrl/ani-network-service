@@ -1,0 +1,23 @@
+{
+  "at": "2026-09-15T13:13:17.902514+00:00",
+  "execution_host": "ubuntu",
+  "source_run": "20260915T130847Z-ca5772b1",
+  "archive_sha256": "dc850779d77aa755a23087bec5daf8f16380d2d66bd3844a77da2e98206373ef",
+  "manifest_sha256": "b0f89a20341349a86b2cb022899f5cc78541b2d5c14d45aad5ac3a8febc1e27c",
+  "command": [
+    "bash",
+    "-e",
+    "-c",
+    "validation_tmp=$(mktemp -d /var/tmp/nlb2.XXXXXX); chmod 700 \"$validation_tmp\"; export TMPDIR=\"$validation_tmp\"; scripts/integration ./internal/data -run \"^TestAttachmentFinishesFreshAuditAfterConsecutiveWatchBoundaries$\" -timeout 2m -json"
+  ],
+  "conclusion": "Real PostgreSQL and actual Attachment adapter, one caller attempt: two confirmed HTTP Watch source boundaries reproduced ProviderTemporary in 2.33 seconds while the original 12-second call budget still had time. Required Pod annotations and identities were preserved. Original implementation, before retry fix.",
+  "test_results": [
+    {
+      "Test": "TestAttachmentFinishesFreshAuditAfterConsecutiveWatchBoundaries",
+      "Action": "fail",
+      "Elapsed": 2.33
+    }
+  ],
+  "log": "attachment-retry-red-command.txt",
+  "log_sha256": "bf999b6de2f6111ccead8ef46f0618a0f64fdf0696dfffc6cd2cce0c022d1c30"
+}

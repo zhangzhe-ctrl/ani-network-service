@@ -1,0 +1,515 @@
+{
+  "at": "2026-09-14T19:12:38.253650+00:00",
+  "run": "lb02-09141908-2b3122",
+  "cluster_uid": "be57b911-892c-4e75-aa9d-4a05d819c59e",
+  "create_response_recording": "original create returned 0; wrapper failed parsing concatenated JSON outputs before persisting the response; no create replay performed",
+  "recovery_method": "read each fixed identity; require requested metadata labels, permissions and subjects exactly/subset including generated metadata; capture actual UIDs",
+  "read_exit": 0,
+  "observed_objects": [
+    {
+      "apiVersion": "v1",
+      "kind": "Namespace",
+      "metadata": {
+        "creationTimestamp": "2026-09-14T19:09:35Z",
+        "labels": {
+          "kubernetes.io/metadata.name": "lb02-09141908-2b3122",
+          "network.ani.io/test-run": "lb02-09141908-2b3122"
+        },
+        "name": "lb02-09141908-2b3122",
+        "resourceVersion": "118760",
+        "uid": "d3595667-d9c1-4404-834d-e071cc37eec7"
+      },
+      "spec": {
+        "finalizers": [
+          "kubernetes"
+        ]
+      },
+      "status": {
+        "phase": "Active"
+      }
+    },
+    {
+      "apiVersion": "v1",
+      "kind": "Namespace",
+      "metadata": {
+        "creationTimestamp": "2026-09-14T19:09:35Z",
+        "labels": {
+          "kubernetes.io/metadata.name": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+          "network.ani.io/managed-by": "ani-network-service",
+          "network.ani.io/tenant-id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+          "network.ani.io/test-run": "lb02-09141908-2b3122"
+        },
+        "name": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+        "resourceVersion": "118761",
+        "uid": "59b88976-90cc-42cb-8c6a-ccb3784db049"
+      },
+      "spec": {
+        "finalizers": [
+          "kubernetes"
+        ]
+      },
+      "status": {
+        "phase": "Active"
+      }
+    },
+    {
+      "apiVersion": "v1",
+      "kind": "Namespace",
+      "metadata": {
+        "creationTimestamp": "2026-09-14T19:09:35Z",
+        "labels": {
+          "kubernetes.io/metadata.name": "lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832",
+          "network.ani.io/managed-by": "ani-network-service",
+          "network.ani.io/tenant-id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+          "network.ani.io/test-run": "lb02-09141908-2b3122"
+        },
+        "name": "lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832",
+        "resourceVersion": "118762",
+        "uid": "e13bfb6e-4804-4de2-89b5-df4c703c0744"
+      },
+      "spec": {
+        "finalizers": [
+          "kubernetes"
+        ]
+      },
+      "status": {
+        "phase": "Active"
+      }
+    },
+    {
+      "apiVersion": "v1",
+      "automountServiceAccountToken": false,
+      "kind": "ServiceAccount",
+      "metadata": {
+        "creationTimestamp": "2026-09-14T19:09:35Z",
+        "labels": {
+          "network.ani.io/test-run": "lb02-09141908-2b3122"
+        },
+        "name": "network",
+        "namespace": "lb02-09141908-2b3122",
+        "resourceVersion": "118764",
+        "uid": "a5b971ee-ac6c-400d-a460-8e6973b38e23"
+      }
+    },
+    {
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "ClusterRole",
+      "metadata": {
+        "creationTimestamp": "2026-09-14T19:09:35Z",
+        "labels": {
+          "network.ani.io/test-run": "lb02-09141908-2b3122"
+        },
+        "name": "lb02-09141908-2b3122-observe",
+        "resourceVersion": "118767",
+        "uid": "b24783e7-a3d5-4c55-bf8e-c35bd08a0baa"
+      },
+      "rules": [
+        {
+          "apiGroups": [
+            "networking.kubercloud.com"
+          ],
+          "resources": [
+            "vpcs",
+            "subnets",
+            "eips",
+            "snats",
+            "eipgateways",
+            "vlannetworks",
+            "nats",
+            "vnics",
+            "vnicips"
+          ],
+          "verbs": [
+            "get",
+            "list",
+            "watch"
+          ]
+        },
+        {
+          "apiGroups": [
+            ""
+          ],
+          "resources": [
+            "namespaces",
+            "nodes",
+            "pods",
+            "services",
+            "configmaps"
+          ],
+          "verbs": [
+            "get",
+            "list",
+            "watch"
+          ]
+        },
+        {
+          "apiGroups": [
+            "apps"
+          ],
+          "resources": [
+            "deployments",
+            "replicasets"
+          ],
+          "verbs": [
+            "get",
+            "list",
+            "watch"
+          ]
+        },
+        {
+          "apiGroups": [
+            "discovery.k8s.io"
+          ],
+          "resources": [
+            "endpointslices"
+          ],
+          "verbs": [
+            "get",
+            "list",
+            "watch"
+          ]
+        },
+        {
+          "apiGroups": [
+            "apiextensions.k8s.io"
+          ],
+          "resources": [
+            "customresourcedefinitions"
+          ],
+          "verbs": [
+            "get",
+            "list",
+            "watch"
+          ]
+        },
+        {
+          "apiGroups": [
+            "networking.k8s.io"
+          ],
+          "resources": [
+            "servicecidrs"
+          ],
+          "verbs": [
+            "get",
+            "list",
+            "watch"
+          ]
+        },
+        {
+          "apiGroups": [
+            "gateway.networking.k8s.io"
+          ],
+          "resources": [
+            "gateways",
+            "httproutes",
+            "gatewayclasses"
+          ],
+          "verbs": [
+            "get",
+            "list",
+            "watch"
+          ]
+        },
+        {
+          "apiGroups": [
+            "gateway.envoyproxy.io"
+          ],
+          "resources": [
+            "backends",
+            "backendtrafficpolicies",
+            "envoyproxies"
+          ],
+          "verbs": [
+            "get",
+            "list",
+            "watch"
+          ]
+        },
+        {
+          "apiGroups": [
+            "authorization.k8s.io"
+          ],
+          "resources": [
+            "subjectaccessreviews"
+          ],
+          "verbs": [
+            "create"
+          ]
+        }
+      ]
+    },
+    {
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "ClusterRoleBinding",
+      "metadata": {
+        "creationTimestamp": "2026-09-14T19:09:35Z",
+        "labels": {
+          "network.ani.io/test-run": "lb02-09141908-2b3122"
+        },
+        "name": "lb02-09141908-2b3122-observe",
+        "resourceVersion": "118771",
+        "uid": "016d37e8-0072-4b0c-a384-371bd7abd716"
+      },
+      "roleRef": {
+        "apiGroup": "rbac.authorization.k8s.io",
+        "kind": "ClusterRole",
+        "name": "lb02-09141908-2b3122-observe"
+      },
+      "subjects": [
+        {
+          "kind": "ServiceAccount",
+          "name": "network",
+          "namespace": "lb02-09141908-2b3122"
+        }
+      ]
+    },
+    {
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "Role",
+      "metadata": {
+        "creationTimestamp": "2026-09-14T19:09:35Z",
+        "labels": {
+          "network.ani.io/test-run": "lb02-09141908-2b3122"
+        },
+        "name": "lb02-09141908-2b3122-write",
+        "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+        "resourceVersion": "118773",
+        "uid": "dc2cf2b1-66bd-464d-8362-67fec3e0f46b"
+      },
+      "rules": [
+        {
+          "apiGroups": [
+            "networking.kubercloud.com"
+          ],
+          "resources": [
+            "vpcs",
+            "subnets",
+            "eips",
+            "snats"
+          ],
+          "verbs": [
+            "create",
+            "delete"
+          ]
+        },
+        {
+          "apiGroups": [
+            "networking.kubercloud.com"
+          ],
+          "resources": [
+            "snats"
+          ],
+          "verbs": [
+            "patch"
+          ]
+        },
+        {
+          "apiGroups": [
+            "gateway.networking.k8s.io"
+          ],
+          "resources": [
+            "gateways",
+            "httproutes"
+          ],
+          "verbs": [
+            "create",
+            "patch",
+            "delete"
+          ]
+        },
+        {
+          "apiGroups": [
+            "gateway.envoyproxy.io"
+          ],
+          "resources": [
+            "backends",
+            "backendtrafficpolicies"
+          ],
+          "verbs": [
+            "create",
+            "patch",
+            "delete"
+          ]
+        }
+      ]
+    },
+    {
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "RoleBinding",
+      "metadata": {
+        "creationTimestamp": "2026-09-14T19:09:35Z",
+        "labels": {
+          "network.ani.io/test-run": "lb02-09141908-2b3122"
+        },
+        "name": "lb02-09141908-2b3122-write",
+        "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+        "resourceVersion": "118774",
+        "uid": "7bbec5e1-456b-459a-aaa7-8fd13cdc0517"
+      },
+      "roleRef": {
+        "apiGroup": "rbac.authorization.k8s.io",
+        "kind": "Role",
+        "name": "lb02-09141908-2b3122-write"
+      },
+      "subjects": [
+        {
+          "kind": "ServiceAccount",
+          "name": "network",
+          "namespace": "lb02-09141908-2b3122"
+        }
+      ]
+    },
+    {
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "Role",
+      "metadata": {
+        "creationTimestamp": "2026-09-14T19:09:35Z",
+        "labels": {
+          "network.ani.io/test-run": "lb02-09141908-2b3122"
+        },
+        "name": "lb02-09141908-2b3122-write",
+        "namespace": "lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832",
+        "resourceVersion": "118775",
+        "uid": "db45e4ca-4d43-43fd-91c8-3d9e9be996dc"
+      },
+      "rules": [
+        {
+          "apiGroups": [
+            "networking.kubercloud.com"
+          ],
+          "resources": [
+            "vpcs",
+            "subnets",
+            "eips",
+            "snats"
+          ],
+          "verbs": [
+            "create",
+            "delete"
+          ]
+        },
+        {
+          "apiGroups": [
+            "networking.kubercloud.com"
+          ],
+          "resources": [
+            "snats"
+          ],
+          "verbs": [
+            "patch"
+          ]
+        },
+        {
+          "apiGroups": [
+            "gateway.networking.k8s.io"
+          ],
+          "resources": [
+            "gateways",
+            "httproutes"
+          ],
+          "verbs": [
+            "create",
+            "patch",
+            "delete"
+          ]
+        },
+        {
+          "apiGroups": [
+            "gateway.envoyproxy.io"
+          ],
+          "resources": [
+            "backends",
+            "backendtrafficpolicies"
+          ],
+          "verbs": [
+            "create",
+            "patch",
+            "delete"
+          ]
+        }
+      ]
+    },
+    {
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "RoleBinding",
+      "metadata": {
+        "creationTimestamp": "2026-09-14T19:09:35Z",
+        "labels": {
+          "network.ani.io/test-run": "lb02-09141908-2b3122"
+        },
+        "name": "lb02-09141908-2b3122-write",
+        "namespace": "lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832",
+        "resourceVersion": "118776",
+        "uid": "47e72ab5-9444-42c3-889d-d3ef3b835a60"
+      },
+      "roleRef": {
+        "apiGroup": "rbac.authorization.k8s.io",
+        "kind": "Role",
+        "name": "lb02-09141908-2b3122-write"
+      },
+      "subjects": [
+        {
+          "kind": "ServiceAccount",
+          "name": "network",
+          "namespace": "lb02-09141908-2b3122"
+        }
+      ]
+    },
+    {
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "Role",
+      "metadata": {
+        "creationTimestamp": "2026-09-14T19:09:35Z",
+        "labels": {
+          "network.ani.io/test-run": "lb02-09141908-2b3122"
+        },
+        "name": "lb02-09141908-2b3122-intranet",
+        "namespace": "kcn-system",
+        "resourceVersion": "118777",
+        "uid": "a227e69b-8b70-4e40-ac5a-7d666bfcf04f"
+      },
+      "rules": [
+        {
+          "apiGroups": [
+            "networking.kubercloud.com"
+          ],
+          "resources": [
+            "subnets"
+          ],
+          "verbs": [
+            "create",
+            "delete"
+          ]
+        }
+      ]
+    },
+    {
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "RoleBinding",
+      "metadata": {
+        "creationTimestamp": "2026-09-14T19:09:35Z",
+        "labels": {
+          "network.ani.io/test-run": "lb02-09141908-2b3122"
+        },
+        "name": "lb02-09141908-2b3122-intranet",
+        "namespace": "kcn-system",
+        "resourceVersion": "118778",
+        "uid": "eba675c3-ccad-4f57-816e-5e4ce5cc0c3c"
+      },
+      "roleRef": {
+        "apiGroup": "rbac.authorization.k8s.io",
+        "kind": "Role",
+        "name": "lb02-09141908-2b3122-intranet"
+      },
+      "subjects": [
+        {
+          "kind": "ServiceAccount",
+          "name": "network",
+          "namespace": "lb02-09141908-2b3122"
+        }
+      ]
+    }
+  ],
+  "result": "pass",
+  "product_crs_created": 0
+}

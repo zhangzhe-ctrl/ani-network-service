@@ -11,7 +11,8 @@ import (
 )
 
 const blockingLBForSubnet = `-- name: BlockingLBForSubnet :one
-SELECT count(*)::bigint FROM network_load_balancers WHERE tenant_id=$1 AND subnet_id=$2 AND state<>'deleted'
+SELECT count(*)::bigint FROM network_load_balancers l WHERE l.tenant_id=$1 AND l.state<>'deleted'
+AND (l.subnet_id=$2 OR EXISTS(SELECT 1 FROM network_lb_subnet_refs r WHERE r.tenant_id=l.tenant_id AND r.lb_id=l.lb_id AND r.subnet_id=$2 AND r.released_at IS NULL))
 `
 
 type BlockingLBForSubnetParams struct {

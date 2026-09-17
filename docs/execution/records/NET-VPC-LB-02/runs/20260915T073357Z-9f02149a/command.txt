@@ -1,0 +1,37 @@
+ControlSocket /home/chabking/workspace/.worktrees/network-vpc-lb-02/.work/ubuntu.sock already exists, disabling multiplexing
+source.tar.gz: OK
+verified source files: 2028
+go version go1.26.7 linux/amd64
+1.60.0
+v1.31.1
+test "$(/home/ubuntu/workspace/ani-network-service-runs/snat-20260915T073357Z-9f02149a/source/.tools/bin/buf --version)" = "1.60.0"
+test "$(go version -m /home/ubuntu/workspace/ani-network-service-runs/snat-20260915T073357Z-9f02149a/source/.tools/bin/buf | awk '$1 == "mod" {print $2 "@" $3; exit}')" = "github.com/bufbuild/buf@v1.60.0"
+test "$(/home/ubuntu/workspace/ani-network-service-runs/snat-20260915T073357Z-9f02149a/source/.tools/bin/sqlc version)" = "v1.31.1"
+test "$(go version -m /home/ubuntu/workspace/ani-network-service-runs/snat-20260915T073357Z-9f02149a/source/.tools/bin/sqlc | awk '$1 == "mod" {print $2 "@" $3; exit}')" = "github.com/sqlc-dev/sqlc@v1.31.1"
+./scripts/verify-source /home/ubuntu/workspace/ani-network-service-runs/snat-20260915T073357Z-9f02149a/source/.tools/bin/buf /home/ubuntu/workspace/ani-network-service-runs/snat-20260915T073357Z-9f02149a/source/.tools/bin/sqlc
+./scripts/verify-boundaries
+domain and repository ownership boundaries verified
+go mod tidy -diff
+go test -count=1 ./...
+?   	github.com/zhangzhe-ctrl/ani-network-service/api/network/v1	[no test files]
+ok  	github.com/zhangzhe-ctrl/ani-network-service/cmd/ani-network-service	0.012s
+ok  	github.com/zhangzhe-ctrl/ani-network-service/internal/biz	0.008s
+ok  	github.com/zhangzhe-ctrl/ani-network-service/internal/conf/v1	0.012s
+ok  	github.com/zhangzhe-ctrl/ani-network-service/internal/data	0.029s
+?   	github.com/zhangzhe-ctrl/ani-network-service/internal/data/sqlcgen	[no test files]
+ok  	github.com/zhangzhe-ctrl/ani-network-service/internal/server	2.026s
+ok  	github.com/zhangzhe-ctrl/ani-network-service/internal/service	0.007s
+?   	github.com/zhangzhe-ctrl/ani-network-service/migrations	[no test files]
+--- FAIL: TestSocketRequiresPrivateDirectoryAndPreservesExistingPath (0.00s)
+    main_test.go:70: cannot create isolated socket
+FAIL
+FAIL	github.com/zhangzhe-ctrl/ani-network-service/scripts/lb-api	0.012s
+?   	github.com/zhangzhe-ctrl/ani-network-service/tests/net05	[no test files]
+?   	github.com/zhangzhe-ctrl/ani-network-service/tests/net05/relay	[no test files]
+?   	github.com/zhangzhe-ctrl/ani-network-service/tests/net05/rpc	[no test files]
+ok  	github.com/zhangzhe-ctrl/ani-network-service/tests/net05a/provider	0.011s
+ok  	github.com/zhangzhe-ctrl/ani-network-service/tests/runtime	0.043s
+ok  	github.com/zhangzhe-ctrl/ani-network-service/tests/testenv	0.009s
+FAIL
+make: *** [Makefile:94: verify] Error 1
+REMOTE_COMMAND_EXIT=2

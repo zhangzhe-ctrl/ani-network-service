@@ -1,0 +1,297 @@
+{
+  "execution_host": "ubuntu",
+  "command": [
+    "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/lb-api",
+    "call",
+    "-target",
+    "unix:///home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-b.sock",
+    "-service",
+    "NetworkService",
+    "-method",
+    "GetOperation"
+  ],
+  "request": {
+    "operation_id": "4bd9628e-d37b-4959-b77f-3d562b8ccca7"
+  },
+  "expected": {
+    "response.operation.state": "OPERATION_STATE_SUCCEEDED"
+  },
+  "result": "pass",
+  "records": [
+    {
+      "at": "2026-09-15T06:23:03.578400+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "4bd9628e-d37b-4959-b77f-3d562b8ccca7",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "resource_id": "subnet_483e588794f045a6afb54c2db0b6d643",
+            "kind": "OPERATION_KIND_DELETE_SUBNET",
+            "state": "OPERATION_STATE_QUEUED",
+            "reason": "",
+            "created_at": "2026-09-15T06:23:03.235506Z",
+            "updated_at": "2026-09-15T06:23:03.235506Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T06:23:03.235506Z",
+            "resource_type": "RESOURCE_TYPE_SUBNET",
+            "reason_message": ""
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T06:23:08.591223+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "4bd9628e-d37b-4959-b77f-3d562b8ccca7",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "resource_id": "subnet_483e588794f045a6afb54c2db0b6d643",
+            "kind": "OPERATION_KIND_DELETE_SUBNET",
+            "state": "OPERATION_STATE_QUEUED",
+            "reason": "",
+            "created_at": "2026-09-15T06:23:03.235506Z",
+            "updated_at": "2026-09-15T06:23:03.235506Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T06:23:03.235506Z",
+            "resource_type": "RESOURCE_TYPE_SUBNET",
+            "reason_message": ""
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T06:23:13.604807+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "4bd9628e-d37b-4959-b77f-3d562b8ccca7",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "resource_id": "subnet_483e588794f045a6afb54c2db0b6d643",
+            "kind": "OPERATION_KIND_DELETE_SUBNET",
+            "state": "OPERATION_STATE_RUNNING",
+            "reason": "",
+            "created_at": "2026-09-15T06:23:03.235506Z",
+            "updated_at": "2026-09-15T06:23:12.237769Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T06:23:03.235506Z",
+            "resource_type": "RESOURCE_TYPE_SUBNET",
+            "reason_message": ""
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T06:23:18.619455+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "4bd9628e-d37b-4959-b77f-3d562b8ccca7",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "resource_id": "subnet_483e588794f045a6afb54c2db0b6d643",
+            "kind": "OPERATION_KIND_DELETE_SUBNET",
+            "state": "OPERATION_STATE_RUNNING",
+            "reason": "",
+            "created_at": "2026-09-15T06:23:03.235506Z",
+            "updated_at": "2026-09-15T06:23:12.237769Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T06:23:03.235506Z",
+            "resource_type": "RESOURCE_TYPE_SUBNET",
+            "reason_message": ""
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T06:23:23.631454+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "4bd9628e-d37b-4959-b77f-3d562b8ccca7",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "resource_id": "subnet_483e588794f045a6afb54c2db0b6d643",
+            "kind": "OPERATION_KIND_DELETE_SUBNET",
+            "state": "OPERATION_STATE_RETRYING",
+            "reason": "CLEANUP_PENDING",
+            "created_at": "2026-09-15T06:23:03.235506Z",
+            "updated_at": "2026-09-15T06:23:21.730178Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T06:23:22.727692Z",
+            "resource_type": "RESOURCE_TYPE_SUBNET",
+            "reason_message": "Provider cleanup has been requested and awaits confirmation."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T06:23:28.645910+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "4bd9628e-d37b-4959-b77f-3d562b8ccca7",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "resource_id": "subnet_483e588794f045a6afb54c2db0b6d643",
+            "kind": "OPERATION_KIND_DELETE_SUBNET",
+            "state": "OPERATION_STATE_RETRYING",
+            "reason": "CLEANUP_PENDING",
+            "created_at": "2026-09-15T06:23:03.235506Z",
+            "updated_at": "2026-09-15T06:23:21.730178Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T06:23:22.727692Z",
+            "resource_type": "RESOURCE_TYPE_SUBNET",
+            "reason_message": "Provider cleanup has been requested and awaits confirmation."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T06:23:33.660674+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "4bd9628e-d37b-4959-b77f-3d562b8ccca7",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "resource_id": "subnet_483e588794f045a6afb54c2db0b6d643",
+            "kind": "OPERATION_KIND_DELETE_SUBNET",
+            "state": "OPERATION_STATE_RETRYING",
+            "reason": "CLEANUP_PENDING",
+            "created_at": "2026-09-15T06:23:03.235506Z",
+            "updated_at": "2026-09-15T06:23:21.730178Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T06:23:22.727692Z",
+            "resource_type": "RESOURCE_TYPE_SUBNET",
+            "reason_message": "Provider cleanup has been requested and awaits confirmation."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T06:23:38.672971+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "4bd9628e-d37b-4959-b77f-3d562b8ccca7",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "resource_id": "subnet_483e588794f045a6afb54c2db0b6d643",
+            "kind": "OPERATION_KIND_DELETE_SUBNET",
+            "state": "OPERATION_STATE_RUNNING",
+            "reason": "CLEANUP_PENDING",
+            "created_at": "2026-09-15T06:23:03.235506Z",
+            "updated_at": "2026-09-15T06:23:38.145067Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T06:23:22.727692Z",
+            "resource_type": "RESOURCE_TYPE_SUBNET",
+            "reason_message": "Provider cleanup has been requested and awaits confirmation."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T06:23:43.684355+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "4bd9628e-d37b-4959-b77f-3d562b8ccca7",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "resource_id": "subnet_483e588794f045a6afb54c2db0b6d643",
+            "kind": "OPERATION_KIND_DELETE_SUBNET",
+            "state": "OPERATION_STATE_RUNNING",
+            "reason": "CLEANUP_PENDING",
+            "created_at": "2026-09-15T06:23:03.235506Z",
+            "updated_at": "2026-09-15T06:23:38.145067Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T06:23:22.727692Z",
+            "resource_type": "RESOURCE_TYPE_SUBNET",
+            "reason_message": "Provider cleanup has been requested and awaits confirmation."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T06:23:48.698308+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "4bd9628e-d37b-4959-b77f-3d562b8ccca7",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "resource_id": "subnet_483e588794f045a6afb54c2db0b6d643",
+            "kind": "OPERATION_KIND_DELETE_SUBNET",
+            "state": "OPERATION_STATE_SUCCEEDED",
+            "reason": "",
+            "created_at": "2026-09-15T06:23:03.235506Z",
+            "updated_at": "2026-09-15T06:23:47.006434Z",
+            "completed_at": "2026-09-15T06:23:47.006434Z",
+            "next_attempt_at": null,
+            "resource_type": "RESOURCE_TYPE_SUBNET",
+            "reason_message": ""
+          }
+        }
+      },
+      "stderr": "",
+      "matches": true
+    },
+    {
+      "at": "2026-09-15T06:23:53.708323+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "4bd9628e-d37b-4959-b77f-3d562b8ccca7",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "resource_id": "subnet_483e588794f045a6afb54c2db0b6d643",
+            "kind": "OPERATION_KIND_DELETE_SUBNET",
+            "state": "OPERATION_STATE_SUCCEEDED",
+            "reason": "",
+            "created_at": "2026-09-15T06:23:03.235506Z",
+            "updated_at": "2026-09-15T06:23:47.006434Z",
+            "completed_at": "2026-09-15T06:23:47.006434Z",
+            "next_attempt_at": null,
+            "resource_type": "RESOURCE_TYPE_SUBNET",
+            "reason_message": ""
+          }
+        }
+      },
+      "stderr": "",
+      "matches": true
+    }
+  ]
+}

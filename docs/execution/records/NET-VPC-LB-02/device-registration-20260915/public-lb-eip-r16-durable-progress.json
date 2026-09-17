@@ -1,0 +1,12 @@
+{
+  "at": "2026-09-15T09:11:04.623179+00:00",
+  "execution_host": "ubuntu",
+  "transport_exit": 0,
+  "result": {
+    "query": "SELECT row_to_json(b) FROM network_provider_bindings b WHERE eip_id='eip_fdab288a3b1846138806e8e5e14529a9'; SELECT row_to_json(o) FROM network_operations o WHERE eip_id='eip_fdab288a3b1846138806e8e5e14529a9';",
+    "exit": 0,
+    "stdout": "BEGIN\n{\"tenant_id\":\"d896f754-ab06-4cbe-a7fd-53148d16d0ad\",\"vpc_id\":null,\"binding_id\":\"9be43963-2c7e-4d15-b92e-32798bce36e3\",\"cluster_id\":\"lb02-09141908-2b3122\",\"namespace\":\"lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad\",\"provider_name\":\"eip-fdab288a3b1846138806e8e5e14529a9\",\"provider_uid\":\"a878f5da-22c4-4288-bc4c-2edc4084ca2c\",\"pending_action\":\"\",\"pending_since\":null,\"subnet_id\":null,\"resource_kind\":\"eip\",\"eip_id\":\"eip_fdab288a3b1846138806e8e5e14529a9\",\"snat_id\":null,\"create_dispatched\":true,\"lb_id\":null}\n{\"tenant_id\":\"d896f754-ab06-4cbe-a7fd-53148d16d0ad\",\"operation_id\":\"08488aea-b150-49e6-a8cc-f4bf300bf166\",\"vpc_id\":null,\"kind\":\"create_eip\",\"state\":\"succeeded\",\"reason\":\"\",\"attempt\":5,\"execution_epoch\":5,\"created_at\":\"2026-09-15T08:56:43.580547+00:00\",\"updated_at\":\"2026-09-15T09:10:37.932924+00:00\",\"completed_at\":\"2026-09-15T09:10:37.932924+00:00\",\"next_attempt_at\":null,\"subnet_id\":null,\"eip_id\":\"eip_fdab288a3b1846138806e8e5e14529a9\",\"snat_id\":null,\"lb_id\":null}\nROLLBACK\n",
+    "stderr": ""
+  },
+  "stderr": ""
+}

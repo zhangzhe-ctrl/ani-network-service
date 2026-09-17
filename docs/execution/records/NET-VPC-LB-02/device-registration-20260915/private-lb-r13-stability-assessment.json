@@ -1,0 +1,21 @@
+{
+  "at": "2026-09-15T05:40:03.190538+00:00",
+  "result": "fail",
+  "source_run": "20260915T051609Z-70cbcaa3",
+  "criterion": "all 30 fixed-interval samples configured and not stale",
+  "samples": [
+    {
+      "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_CONFIGURED",
+      "reason": "",
+      "count": 29
+    },
+    {
+      "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_DEGRADED",
+      "reason": "PROVIDER_NOT_READY",
+      "count": 1
+    }
+  ],
+  "evidence": "private-lb-r13-stability.json",
+  "prior_r12": "18 unknown, 10 configured, 2 degraded in private-lb-zero-a-configured.json",
+  "causality": "unordered-hash defect proven in isolated red/green; remaining ProviderNotReady cause not established by this sample"
+}

@@ -55,11 +55,17 @@ func TestNET05AMigrationUpgradesAllThreeHistoricalChecksums(t *testing.T) {
 	})
 	for _, table := range tables {
 		var body string
-		if e := f.Owner.QueryRow(ctx, "SELECT coalesce(jsonb_agg(to_jsonb(t)-'eip_id'-'snat_id'-'requested_generation'-'processed_generation'-'retry_not_before'-'evidence_hash'-'evidence_applied_at'-'base_connectivity_required'-'create_dispatched'-'retired'),'[]')::text FROM (SELECT * FROM "+table+" ORDER BY tenant_id) t").Scan(&body); e != nil {
+		if e := f.Owner.QueryRow(ctx, "SELECT coalesce(jsonb_agg(to_jsonb(t)-'eip_id'-'snat_id'-'lb_id'-'requested_generation'-'processed_generation'-'retry_not_before'-'evidence_hash'-'evidence_applied_at'-'base_connectivity_required'-'create_dispatched'-'retired'),'[]')::text FROM (SELECT * FROM "+table+" ORDER BY tenant_id) t").Scan(&body); e != nil {
 			t.Fatal(e)
 		}
 		if body != facts[table] {
 			t.Fatalf("upgrade changed existing facts/lease: %s", table)
+		}
+	}
+	for _, table := range []string{"network_operations", "network_reconciliations", "network_provider_bindings"} {
+		var lbReferences int
+		if e := f.Owner.QueryRow(ctx, "SELECT count(*) FROM "+table+" WHERE lb_id IS NOT NULL").Scan(&lbReferences); e != nil || lbReferences != 0 {
+			t.Fatalf("upgrade invented LB references in %s: %d %v", table, lbReferences, e)
 		}
 	}
 	for _, table := range []string{"network_reconciliations", "network_attachments"} {
@@ -75,7 +81,7 @@ func TestNET05AMigrationUpgradesAllThreeHistoricalChecksums(t *testing.T) {
 		}
 	}
 	var count int
-	if e := f.Owner.QueryRow(ctx, `SELECT count(*) FROM network_schema_version`).Scan(&count); e != nil || count != 6 {
+	if e := f.Owner.QueryRow(ctx, `SELECT count(*) FROM network_schema_version`).Scan(&count); e != nil || count != 8 {
 		t.Fatalf("upgrade missing %d %v", count, e)
 	}
 }

@@ -1,0 +1,1072 @@
+{
+  "execution_host": "ubuntu",
+  "command": [
+    "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/lb-api",
+    "call",
+    "-target",
+    "unix:///home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-a.sock",
+    "-service",
+    "NetworkService",
+    "-method",
+    "GetVPC"
+  ],
+  "request": {
+    "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4"
+  },
+  "expected": {
+    "response.vpc.state": "RESOURCE_STATE_DELETED"
+  },
+  "result": "fail",
+  "records": [
+    {
+      "at": "2026-09-15T14:45:46.684924+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-base",
+            "description": "Run-owned VPC with automatic base connectivity for U09",
+            "cidr": "10.233.0.0/20",
+            "state": "RESOURCE_STATE_DELETING",
+            "reason": "CLEANUP_PENDING",
+            "created_at": "2026-09-15T04:02:40.361909Z",
+            "updated_at": "2026-09-15T14:45:06.843670Z",
+            "version": "1236",
+            "observed_at": "2026-09-15T14:41:54.775108Z",
+            "observation_stale": true,
+            "last_operation_id": "3d9a8840-cae9-40e3-9fc6-6cb5cff99418",
+            "subnet_count": "0",
+            "reason_message": "Provider cleanup has been requested and awaits confirmation.",
+            "base_connectivity": {
+              "state": "deleting",
+              "reason": "CLEANUP_PENDING",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": "Provider cleanup has been requested and awaits confirmation."
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T14:45:51.696439+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-base",
+            "description": "Run-owned VPC with automatic base connectivity for U09",
+            "cidr": "10.233.0.0/20",
+            "state": "RESOURCE_STATE_DELETING",
+            "reason": "CLEANUP_PENDING",
+            "created_at": "2026-09-15T04:02:40.361909Z",
+            "updated_at": "2026-09-15T14:45:06.843670Z",
+            "version": "1236",
+            "observed_at": "2026-09-15T14:41:54.775108Z",
+            "observation_stale": true,
+            "last_operation_id": "3d9a8840-cae9-40e3-9fc6-6cb5cff99418",
+            "subnet_count": "0",
+            "reason_message": "Provider cleanup has been requested and awaits confirmation.",
+            "base_connectivity": {
+              "state": "deleting",
+              "reason": "CLEANUP_PENDING",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": "Provider cleanup has been requested and awaits confirmation."
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T14:45:56.706022+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-base",
+            "description": "Run-owned VPC with automatic base connectivity for U09",
+            "cidr": "10.233.0.0/20",
+            "state": "RESOURCE_STATE_DELETING",
+            "reason": "CLEANUP_PENDING",
+            "created_at": "2026-09-15T04:02:40.361909Z",
+            "updated_at": "2026-09-15T14:45:06.843670Z",
+            "version": "1236",
+            "observed_at": "2026-09-15T14:41:54.775108Z",
+            "observation_stale": true,
+            "last_operation_id": "3d9a8840-cae9-40e3-9fc6-6cb5cff99418",
+            "subnet_count": "0",
+            "reason_message": "Provider cleanup has been requested and awaits confirmation.",
+            "base_connectivity": {
+              "state": "deleting",
+              "reason": "CLEANUP_PENDING",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": "Provider cleanup has been requested and awaits confirmation."
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T14:46:01.716590+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-base",
+            "description": "Run-owned VPC with automatic base connectivity for U09",
+            "cidr": "10.233.0.0/20",
+            "state": "RESOURCE_STATE_DELETING",
+            "reason": "CLEANUP_PENDING",
+            "created_at": "2026-09-15T04:02:40.361909Z",
+            "updated_at": "2026-09-15T14:45:06.843670Z",
+            "version": "1236",
+            "observed_at": "2026-09-15T14:41:54.775108Z",
+            "observation_stale": true,
+            "last_operation_id": "3d9a8840-cae9-40e3-9fc6-6cb5cff99418",
+            "subnet_count": "0",
+            "reason_message": "Provider cleanup has been requested and awaits confirmation.",
+            "base_connectivity": {
+              "state": "deleting",
+              "reason": "CLEANUP_PENDING",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": "Provider cleanup has been requested and awaits confirmation."
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T14:46:06.726786+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-base",
+            "description": "Run-owned VPC with automatic base connectivity for U09",
+            "cidr": "10.233.0.0/20",
+            "state": "RESOURCE_STATE_DELETING",
+            "reason": "CLEANUP_PENDING",
+            "created_at": "2026-09-15T04:02:40.361909Z",
+            "updated_at": "2026-09-15T14:45:06.843670Z",
+            "version": "1236",
+            "observed_at": "2026-09-15T14:41:54.775108Z",
+            "observation_stale": true,
+            "last_operation_id": "3d9a8840-cae9-40e3-9fc6-6cb5cff99418",
+            "subnet_count": "0",
+            "reason_message": "Provider cleanup has been requested and awaits confirmation.",
+            "base_connectivity": {
+              "state": "deleting",
+              "reason": "CLEANUP_PENDING",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": "Provider cleanup has been requested and awaits confirmation."
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T14:46:11.737894+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-base",
+            "description": "Run-owned VPC with automatic base connectivity for U09",
+            "cidr": "10.233.0.0/20",
+            "state": "RESOURCE_STATE_DELETING",
+            "reason": "CLEANUP_PENDING",
+            "created_at": "2026-09-15T04:02:40.361909Z",
+            "updated_at": "2026-09-15T14:45:06.843670Z",
+            "version": "1236",
+            "observed_at": "2026-09-15T14:41:54.775108Z",
+            "observation_stale": true,
+            "last_operation_id": "3d9a8840-cae9-40e3-9fc6-6cb5cff99418",
+            "subnet_count": "0",
+            "reason_message": "Provider cleanup has been requested and awaits confirmation.",
+            "base_connectivity": {
+              "state": "deleting",
+              "reason": "CLEANUP_PENDING",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": "Provider cleanup has been requested and awaits confirmation."
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T14:46:16.747843+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-base",
+            "description": "Run-owned VPC with automatic base connectivity for U09",
+            "cidr": "10.233.0.0/20",
+            "state": "RESOURCE_STATE_DELETING",
+            "reason": "CLEANUP_PENDING",
+            "created_at": "2026-09-15T04:02:40.361909Z",
+            "updated_at": "2026-09-15T14:45:06.843670Z",
+            "version": "1236",
+            "observed_at": "2026-09-15T14:41:54.775108Z",
+            "observation_stale": true,
+            "last_operation_id": "3d9a8840-cae9-40e3-9fc6-6cb5cff99418",
+            "subnet_count": "0",
+            "reason_message": "Provider cleanup has been requested and awaits confirmation.",
+            "base_connectivity": {
+              "state": "deleting",
+              "reason": "CLEANUP_PENDING",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": "Provider cleanup has been requested and awaits confirmation."
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T14:46:21.757128+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-base",
+            "description": "Run-owned VPC with automatic base connectivity for U09",
+            "cidr": "10.233.0.0/20",
+            "state": "RESOURCE_STATE_DELETING",
+            "reason": "CLEANUP_PENDING",
+            "created_at": "2026-09-15T04:02:40.361909Z",
+            "updated_at": "2026-09-15T14:45:06.843670Z",
+            "version": "1236",
+            "observed_at": "2026-09-15T14:41:54.775108Z",
+            "observation_stale": true,
+            "last_operation_id": "3d9a8840-cae9-40e3-9fc6-6cb5cff99418",
+            "subnet_count": "0",
+            "reason_message": "Provider cleanup has been requested and awaits confirmation.",
+            "base_connectivity": {
+              "state": "deleting",
+              "reason": "CLEANUP_PENDING",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": "Provider cleanup has been requested and awaits confirmation."
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T14:46:26.768082+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-base",
+            "description": "Run-owned VPC with automatic base connectivity for U09",
+            "cidr": "10.233.0.0/20",
+            "state": "RESOURCE_STATE_DELETING",
+            "reason": "CLEANUP_PENDING",
+            "created_at": "2026-09-15T04:02:40.361909Z",
+            "updated_at": "2026-09-15T14:45:06.843670Z",
+            "version": "1236",
+            "observed_at": "2026-09-15T14:41:54.775108Z",
+            "observation_stale": true,
+            "last_operation_id": "3d9a8840-cae9-40e3-9fc6-6cb5cff99418",
+            "subnet_count": "0",
+            "reason_message": "Provider cleanup has been requested and awaits confirmation.",
+            "base_connectivity": {
+              "state": "deleting",
+              "reason": "CLEANUP_PENDING",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": "Provider cleanup has been requested and awaits confirmation."
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T14:46:31.779921+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-base",
+            "description": "Run-owned VPC with automatic base connectivity for U09",
+            "cidr": "10.233.0.0/20",
+            "state": "RESOURCE_STATE_DELETING",
+            "reason": "CLEANUP_PENDING",
+            "created_at": "2026-09-15T04:02:40.361909Z",
+            "updated_at": "2026-09-15T14:45:06.843670Z",
+            "version": "1236",
+            "observed_at": "2026-09-15T14:41:54.775108Z",
+            "observation_stale": true,
+            "last_operation_id": "3d9a8840-cae9-40e3-9fc6-6cb5cff99418",
+            "subnet_count": "0",
+            "reason_message": "Provider cleanup has been requested and awaits confirmation.",
+            "base_connectivity": {
+              "state": "deleting",
+              "reason": "CLEANUP_PENDING",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": "Provider cleanup has been requested and awaits confirmation."
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T14:46:36.793007+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-base",
+            "description": "Run-owned VPC with automatic base connectivity for U09",
+            "cidr": "10.233.0.0/20",
+            "state": "RESOURCE_STATE_DELETING",
+            "reason": "CLEANUP_PENDING",
+            "created_at": "2026-09-15T04:02:40.361909Z",
+            "updated_at": "2026-09-15T14:46:36.168949Z",
+            "version": "1237",
+            "observed_at": "2026-09-15T14:41:54.775108Z",
+            "observation_stale": true,
+            "last_operation_id": "3d9a8840-cae9-40e3-9fc6-6cb5cff99418",
+            "subnet_count": "0",
+            "reason_message": "Provider cleanup has been requested and awaits confirmation.",
+            "base_connectivity": {
+              "state": "deleting",
+              "reason": "CLEANUP_PENDING",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": "Provider cleanup has been requested and awaits confirmation."
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T14:46:41.806463+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-base",
+            "description": "Run-owned VPC with automatic base connectivity for U09",
+            "cidr": "10.233.0.0/20",
+            "state": "RESOURCE_STATE_DELETING",
+            "reason": "CLEANUP_PENDING",
+            "created_at": "2026-09-15T04:02:40.361909Z",
+            "updated_at": "2026-09-15T14:46:36.168949Z",
+            "version": "1237",
+            "observed_at": "2026-09-15T14:41:54.775108Z",
+            "observation_stale": true,
+            "last_operation_id": "3d9a8840-cae9-40e3-9fc6-6cb5cff99418",
+            "subnet_count": "0",
+            "reason_message": "Provider cleanup has been requested and awaits confirmation.",
+            "base_connectivity": {
+              "state": "deleting",
+              "reason": "CLEANUP_PENDING",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": "Provider cleanup has been requested and awaits confirmation."
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T14:46:46.817564+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-base",
+            "description": "Run-owned VPC with automatic base connectivity for U09",
+            "cidr": "10.233.0.0/20",
+            "state": "RESOURCE_STATE_DELETING",
+            "reason": "CLEANUP_PENDING",
+            "created_at": "2026-09-15T04:02:40.361909Z",
+            "updated_at": "2026-09-15T14:46:36.168949Z",
+            "version": "1237",
+            "observed_at": "2026-09-15T14:41:54.775108Z",
+            "observation_stale": true,
+            "last_operation_id": "3d9a8840-cae9-40e3-9fc6-6cb5cff99418",
+            "subnet_count": "0",
+            "reason_message": "Provider cleanup has been requested and awaits confirmation.",
+            "base_connectivity": {
+              "state": "deleting",
+              "reason": "CLEANUP_PENDING",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": "Provider cleanup has been requested and awaits confirmation."
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T14:46:51.828020+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-base",
+            "description": "Run-owned VPC with automatic base connectivity for U09",
+            "cidr": "10.233.0.0/20",
+            "state": "RESOURCE_STATE_DELETING",
+            "reason": "CLEANUP_PENDING",
+            "created_at": "2026-09-15T04:02:40.361909Z",
+            "updated_at": "2026-09-15T14:46:36.168949Z",
+            "version": "1237",
+            "observed_at": "2026-09-15T14:41:54.775108Z",
+            "observation_stale": true,
+            "last_operation_id": "3d9a8840-cae9-40e3-9fc6-6cb5cff99418",
+            "subnet_count": "0",
+            "reason_message": "Provider cleanup has been requested and awaits confirmation.",
+            "base_connectivity": {
+              "state": "deleting",
+              "reason": "CLEANUP_PENDING",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": "Provider cleanup has been requested and awaits confirmation."
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T14:46:56.841671+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-base",
+            "description": "Run-owned VPC with automatic base connectivity for U09",
+            "cidr": "10.233.0.0/20",
+            "state": "RESOURCE_STATE_DELETING",
+            "reason": "CLEANUP_PENDING",
+            "created_at": "2026-09-15T04:02:40.361909Z",
+            "updated_at": "2026-09-15T14:46:36.168949Z",
+            "version": "1237",
+            "observed_at": "2026-09-15T14:41:54.775108Z",
+            "observation_stale": true,
+            "last_operation_id": "3d9a8840-cae9-40e3-9fc6-6cb5cff99418",
+            "subnet_count": "0",
+            "reason_message": "Provider cleanup has been requested and awaits confirmation.",
+            "base_connectivity": {
+              "state": "deleting",
+              "reason": "CLEANUP_PENDING",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": "Provider cleanup has been requested and awaits confirmation."
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T14:47:01.852060+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-base",
+            "description": "Run-owned VPC with automatic base connectivity for U09",
+            "cidr": "10.233.0.0/20",
+            "state": "RESOURCE_STATE_DELETING",
+            "reason": "CLEANUP_PENDING",
+            "created_at": "2026-09-15T04:02:40.361909Z",
+            "updated_at": "2026-09-15T14:46:36.168949Z",
+            "version": "1237",
+            "observed_at": "2026-09-15T14:41:54.775108Z",
+            "observation_stale": true,
+            "last_operation_id": "3d9a8840-cae9-40e3-9fc6-6cb5cff99418",
+            "subnet_count": "0",
+            "reason_message": "Provider cleanup has been requested and awaits confirmation.",
+            "base_connectivity": {
+              "state": "deleting",
+              "reason": "CLEANUP_PENDING",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": "Provider cleanup has been requested and awaits confirmation."
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T14:47:06.863003+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-base",
+            "description": "Run-owned VPC with automatic base connectivity for U09",
+            "cidr": "10.233.0.0/20",
+            "state": "RESOURCE_STATE_DELETING",
+            "reason": "CLEANUP_PENDING",
+            "created_at": "2026-09-15T04:02:40.361909Z",
+            "updated_at": "2026-09-15T14:46:36.168949Z",
+            "version": "1237",
+            "observed_at": "2026-09-15T14:41:54.775108Z",
+            "observation_stale": true,
+            "last_operation_id": "3d9a8840-cae9-40e3-9fc6-6cb5cff99418",
+            "subnet_count": "0",
+            "reason_message": "Provider cleanup has been requested and awaits confirmation.",
+            "base_connectivity": {
+              "state": "deleting",
+              "reason": "CLEANUP_PENDING",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": "Provider cleanup has been requested and awaits confirmation."
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T14:47:11.874862+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-base",
+            "description": "Run-owned VPC with automatic base connectivity for U09",
+            "cidr": "10.233.0.0/20",
+            "state": "RESOURCE_STATE_DELETING",
+            "reason": "CLEANUP_PENDING",
+            "created_at": "2026-09-15T04:02:40.361909Z",
+            "updated_at": "2026-09-15T14:46:36.168949Z",
+            "version": "1237",
+            "observed_at": "2026-09-15T14:41:54.775108Z",
+            "observation_stale": true,
+            "last_operation_id": "3d9a8840-cae9-40e3-9fc6-6cb5cff99418",
+            "subnet_count": "0",
+            "reason_message": "Provider cleanup has been requested and awaits confirmation.",
+            "base_connectivity": {
+              "state": "deleting",
+              "reason": "CLEANUP_PENDING",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": "Provider cleanup has been requested and awaits confirmation."
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T14:47:16.885379+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-base",
+            "description": "Run-owned VPC with automatic base connectivity for U09",
+            "cidr": "10.233.0.0/20",
+            "state": "RESOURCE_STATE_DELETING",
+            "reason": "CLEANUP_PENDING",
+            "created_at": "2026-09-15T04:02:40.361909Z",
+            "updated_at": "2026-09-15T14:46:36.168949Z",
+            "version": "1237",
+            "observed_at": "2026-09-15T14:41:54.775108Z",
+            "observation_stale": true,
+            "last_operation_id": "3d9a8840-cae9-40e3-9fc6-6cb5cff99418",
+            "subnet_count": "0",
+            "reason_message": "Provider cleanup has been requested and awaits confirmation.",
+            "base_connectivity": {
+              "state": "deleting",
+              "reason": "CLEANUP_PENDING",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": "Provider cleanup has been requested and awaits confirmation."
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T14:47:21.895120+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-base",
+            "description": "Run-owned VPC with automatic base connectivity for U09",
+            "cidr": "10.233.0.0/20",
+            "state": "RESOURCE_STATE_DELETING",
+            "reason": "CLEANUP_PENDING",
+            "created_at": "2026-09-15T04:02:40.361909Z",
+            "updated_at": "2026-09-15T14:46:36.168949Z",
+            "version": "1237",
+            "observed_at": "2026-09-15T14:41:54.775108Z",
+            "observation_stale": true,
+            "last_operation_id": "3d9a8840-cae9-40e3-9fc6-6cb5cff99418",
+            "subnet_count": "0",
+            "reason_message": "Provider cleanup has been requested and awaits confirmation.",
+            "base_connectivity": {
+              "state": "deleting",
+              "reason": "CLEANUP_PENDING",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": "Provider cleanup has been requested and awaits confirmation."
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T14:47:26.907388+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-base",
+            "description": "Run-owned VPC with automatic base connectivity for U09",
+            "cidr": "10.233.0.0/20",
+            "state": "RESOURCE_STATE_DELETING",
+            "reason": "CLEANUP_PENDING",
+            "created_at": "2026-09-15T04:02:40.361909Z",
+            "updated_at": "2026-09-15T14:46:36.168949Z",
+            "version": "1237",
+            "observed_at": "2026-09-15T14:41:54.775108Z",
+            "observation_stale": true,
+            "last_operation_id": "3d9a8840-cae9-40e3-9fc6-6cb5cff99418",
+            "subnet_count": "0",
+            "reason_message": "Provider cleanup has been requested and awaits confirmation.",
+            "base_connectivity": {
+              "state": "deleting",
+              "reason": "CLEANUP_PENDING",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": "Provider cleanup has been requested and awaits confirmation."
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T14:47:31.919565+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-base",
+            "description": "Run-owned VPC with automatic base connectivity for U09",
+            "cidr": "10.233.0.0/20",
+            "state": "RESOURCE_STATE_DELETING",
+            "reason": "CLEANUP_PENDING",
+            "created_at": "2026-09-15T04:02:40.361909Z",
+            "updated_at": "2026-09-15T14:46:36.168949Z",
+            "version": "1237",
+            "observed_at": "2026-09-15T14:41:54.775108Z",
+            "observation_stale": true,
+            "last_operation_id": "3d9a8840-cae9-40e3-9fc6-6cb5cff99418",
+            "subnet_count": "0",
+            "reason_message": "Provider cleanup has been requested and awaits confirmation.",
+            "base_connectivity": {
+              "state": "deleting",
+              "reason": "CLEANUP_PENDING",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": "Provider cleanup has been requested and awaits confirmation."
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T14:47:36.930352+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-base",
+            "description": "Run-owned VPC with automatic base connectivity for U09",
+            "cidr": "10.233.0.0/20",
+            "state": "RESOURCE_STATE_DELETING",
+            "reason": "CLEANUP_PENDING",
+            "created_at": "2026-09-15T04:02:40.361909Z",
+            "updated_at": "2026-09-15T14:46:36.168949Z",
+            "version": "1237",
+            "observed_at": "2026-09-15T14:41:54.775108Z",
+            "observation_stale": true,
+            "last_operation_id": "3d9a8840-cae9-40e3-9fc6-6cb5cff99418",
+            "subnet_count": "0",
+            "reason_message": "Provider cleanup has been requested and awaits confirmation.",
+            "base_connectivity": {
+              "state": "deleting",
+              "reason": "CLEANUP_PENDING",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": "Provider cleanup has been requested and awaits confirmation."
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T14:47:41.941622+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-base",
+            "description": "Run-owned VPC with automatic base connectivity for U09",
+            "cidr": "10.233.0.0/20",
+            "state": "RESOURCE_STATE_DELETING",
+            "reason": "CLEANUP_PENDING",
+            "created_at": "2026-09-15T04:02:40.361909Z",
+            "updated_at": "2026-09-15T14:46:36.168949Z",
+            "version": "1237",
+            "observed_at": "2026-09-15T14:41:54.775108Z",
+            "observation_stale": true,
+            "last_operation_id": "3d9a8840-cae9-40e3-9fc6-6cb5cff99418",
+            "subnet_count": "0",
+            "reason_message": "Provider cleanup has been requested and awaits confirmation.",
+            "base_connectivity": {
+              "state": "deleting",
+              "reason": "CLEANUP_PENDING",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": "Provider cleanup has been requested and awaits confirmation."
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T14:47:46.951500+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-base",
+            "description": "Run-owned VPC with automatic base connectivity for U09",
+            "cidr": "10.233.0.0/20",
+            "state": "RESOURCE_STATE_DELETING",
+            "reason": "CLEANUP_PENDING",
+            "created_at": "2026-09-15T04:02:40.361909Z",
+            "updated_at": "2026-09-15T14:46:36.168949Z",
+            "version": "1237",
+            "observed_at": "2026-09-15T14:41:54.775108Z",
+            "observation_stale": true,
+            "last_operation_id": "3d9a8840-cae9-40e3-9fc6-6cb5cff99418",
+            "subnet_count": "0",
+            "reason_message": "Provider cleanup has been requested and awaits confirmation.",
+            "base_connectivity": {
+              "state": "deleting",
+              "reason": "CLEANUP_PENDING",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": "Provider cleanup has been requested and awaits confirmation."
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T14:47:51.962942+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-base",
+            "description": "Run-owned VPC with automatic base connectivity for U09",
+            "cidr": "10.233.0.0/20",
+            "state": "RESOURCE_STATE_DELETING",
+            "reason": "CLEANUP_PENDING",
+            "created_at": "2026-09-15T04:02:40.361909Z",
+            "updated_at": "2026-09-15T14:46:36.168949Z",
+            "version": "1237",
+            "observed_at": "2026-09-15T14:41:54.775108Z",
+            "observation_stale": true,
+            "last_operation_id": "3d9a8840-cae9-40e3-9fc6-6cb5cff99418",
+            "subnet_count": "0",
+            "reason_message": "Provider cleanup has been requested and awaits confirmation.",
+            "base_connectivity": {
+              "state": "deleting",
+              "reason": "CLEANUP_PENDING",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": "Provider cleanup has been requested and awaits confirmation."
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T14:47:56.973012+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-base",
+            "description": "Run-owned VPC with automatic base connectivity for U09",
+            "cidr": "10.233.0.0/20",
+            "state": "RESOURCE_STATE_DELETING",
+            "reason": "CLEANUP_PENDING",
+            "created_at": "2026-09-15T04:02:40.361909Z",
+            "updated_at": "2026-09-15T14:46:36.168949Z",
+            "version": "1237",
+            "observed_at": "2026-09-15T14:41:54.775108Z",
+            "observation_stale": true,
+            "last_operation_id": "3d9a8840-cae9-40e3-9fc6-6cb5cff99418",
+            "subnet_count": "0",
+            "reason_message": "Provider cleanup has been requested and awaits confirmation.",
+            "base_connectivity": {
+              "state": "deleting",
+              "reason": "CLEANUP_PENDING",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": "Provider cleanup has been requested and awaits confirmation."
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T14:48:01.984383+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-base",
+            "description": "Run-owned VPC with automatic base connectivity for U09",
+            "cidr": "10.233.0.0/20",
+            "state": "RESOURCE_STATE_DELETING",
+            "reason": "CLEANUP_PENDING",
+            "created_at": "2026-09-15T04:02:40.361909Z",
+            "updated_at": "2026-09-15T14:46:36.168949Z",
+            "version": "1237",
+            "observed_at": "2026-09-15T14:41:54.775108Z",
+            "observation_stale": true,
+            "last_operation_id": "3d9a8840-cae9-40e3-9fc6-6cb5cff99418",
+            "subnet_count": "0",
+            "reason_message": "Provider cleanup has been requested and awaits confirmation.",
+            "base_connectivity": {
+              "state": "deleting",
+              "reason": "CLEANUP_PENDING",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": "Provider cleanup has been requested and awaits confirmation."
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T14:48:06.995222+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-base",
+            "description": "Run-owned VPC with automatic base connectivity for U09",
+            "cidr": "10.233.0.0/20",
+            "state": "RESOURCE_STATE_DELETING",
+            "reason": "CLEANUP_PENDING",
+            "created_at": "2026-09-15T04:02:40.361909Z",
+            "updated_at": "2026-09-15T14:48:02.600346Z",
+            "version": "1238",
+            "observed_at": "2026-09-15T14:41:54.775108Z",
+            "observation_stale": true,
+            "last_operation_id": "3d9a8840-cae9-40e3-9fc6-6cb5cff99418",
+            "subnet_count": "0",
+            "reason_message": "Provider cleanup has been requested and awaits confirmation.",
+            "base_connectivity": {
+              "state": "deleting",
+              "reason": "CLEANUP_PENDING",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": "Provider cleanup has been requested and awaits confirmation."
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T14:48:12.006001+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-base",
+            "description": "Run-owned VPC with automatic base connectivity for U09",
+            "cidr": "10.233.0.0/20",
+            "state": "RESOURCE_STATE_DELETING",
+            "reason": "CLEANUP_PENDING",
+            "created_at": "2026-09-15T04:02:40.361909Z",
+            "updated_at": "2026-09-15T14:48:02.600346Z",
+            "version": "1238",
+            "observed_at": "2026-09-15T14:41:54.775108Z",
+            "observation_stale": true,
+            "last_operation_id": "3d9a8840-cae9-40e3-9fc6-6cb5cff99418",
+            "subnet_count": "0",
+            "reason_message": "Provider cleanup has been requested and awaits confirmation.",
+            "base_connectivity": {
+              "state": "deleting",
+              "reason": "CLEANUP_PENDING",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": "Provider cleanup has been requested and awaits confirmation."
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    }
+  ]
+}

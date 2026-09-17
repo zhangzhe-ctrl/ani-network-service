@@ -1,0 +1,37 @@
+{
+  "at": "2026-09-15T14:16:54.748903+00:00",
+  "execution_host": "ubuntu",
+  "context": "tenant-a",
+  "command": "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/lb-api call -target unix:///home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-a.sock -service TenantEgressService -method DeleteEIP",
+  "request": {
+    "eip_id": "eip_f20581cca5d34cc7a25af17cd95dc4cb"
+  },
+  "exit": 0,
+  "response": {
+    "code": "OK",
+    "response": {
+      "eip": {
+        "id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+        "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+        "name": "lb02-2b3122-public-snat-eip",
+        "description": "U09 separately owned Public SNAT EIP",
+        "state": "RESOURCE_STATE_DELETING",
+        "reason": "",
+        "reason_message": "",
+        "version": "362",
+        "created_at": "2026-09-15T09:14:43.444708Z",
+        "updated_at": "2026-09-15T14:16:54.725549Z",
+        "observed_at": "2026-09-15T14:16:38.616323Z",
+        "observation_stale": false,
+        "last_operation_id": "1d21c827-b489-43e9-923d-b0193108b987",
+        "address": "172.16.102.195",
+        "binding_id": "",
+        "binding_state": "unbound",
+        "binding_target": null,
+        "scope": "public",
+        "managed_by": "tenant"
+      }
+    }
+  },
+  "stderr": ""
+}

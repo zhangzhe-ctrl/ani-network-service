@@ -123,7 +123,10 @@ var kindsToWire = map[string]networkv1.OperationKind{"ensure_vpc_base_connectivi
 	"delete_intranet_pool":         networkv1.OperationKind_OPERATION_KIND_DELETE_INTRANET_POOL,
 	"set_intranet_pool_allocation": networkv1.OperationKind_OPERATION_KIND_SET_INTRANET_POOL_ALLOCATION,
 	"set_default_intranet_pool":    networkv1.OperationKind_OPERATION_KIND_SET_DEFAULT_INTRANET_POOL,
-	"verify_intranet_pool":         networkv1.OperationKind_OPERATION_KIND_VERIFY_INTRANET_POOL}
+	"verify_intranet_pool":         networkv1.OperationKind_OPERATION_KIND_VERIFY_INTRANET_POOL,
+	"create_load_balancer":         networkv1.OperationKind_OPERATION_KIND_CREATE_LOAD_BALANCER,
+	"update_load_balancer":         networkv1.OperationKind_OPERATION_KIND_UPDATE_LOAD_BALANCER,
+	"delete_load_balancer":         networkv1.OperationKind_OPERATION_KIND_DELETE_LOAD_BALANCER}
 
 func rpcError(err error) error {
 	if errors.Is(err, context.Canceled) {
@@ -146,11 +149,11 @@ func rpcError(err error) error {
 		code = codes.NotFound
 	case biz.IdempotencyConflict, biz.CIDROverlap, biz.AttachmentConflict:
 		code = codes.AlreadyExists
-	case biz.EIPInUse, biz.VPCSnatExists, biz.ProviderOwnership, biz.ProviderStateMismatch, biz.ResourceInUse, biz.ResourceBusy, biz.ParentNotReady, biz.NetworkNotReady, biz.PlacementMismatch, biz.VersionConflict:
+	case biz.EIPInUse, biz.VIPInUse, biz.BackendIdentityMismatch, biz.VPCSnatExists, biz.ProviderOwnership, biz.ProviderStateMismatch, biz.ResourceInUse, biz.ResourceBusy, biz.ParentNotReady, biz.NetworkNotReady, biz.PlacementMismatch, biz.VersionConflict:
 		code = codes.FailedPrecondition
 	case biz.PermissionDenied:
 		code = codes.PermissionDenied
-	case biz.DependencyUnavailable, biz.PublicEgressNotReady, biz.BaseConnectivityNotReady:
+	case biz.DependencyUnavailable, biz.PublicEgressNotReady, biz.BaseConnectivityNotReady, biz.LoadBalancerNotReady:
 		code = codes.Unavailable
 	default:
 		reason = "INTERNAL_ERROR"
@@ -165,4 +168,4 @@ func rpcError(err error) error {
 
 }
 
-var resourceTypesToWire = map[string]networkv1.ResourceType{"vpc": networkv1.ResourceType_RESOURCE_TYPE_VPC, "subnet": networkv1.ResourceType_RESOURCE_TYPE_SUBNET, "eip": networkv1.ResourceType_RESOURCE_TYPE_EIP, "snat": networkv1.ResourceType_RESOURCE_TYPE_VPC_SNAT_BINDING, "device": networkv1.ResourceType_RESOURCE_TYPE_NETWORK_DEVICE, "vlan": networkv1.ResourceType_RESOURCE_TYPE_VLAN_NETWORK, "egress_gateway": networkv1.ResourceType_RESOURCE_TYPE_EGRESS_GATEWAY, "public_pool": networkv1.ResourceType_RESOURCE_TYPE_PUBLIC_ADDRESS_POOL}
+var resourceTypesToWire = map[string]networkv1.ResourceType{"load_balancer": networkv1.ResourceType_RESOURCE_TYPE_LOAD_BALANCER, "vpc": networkv1.ResourceType_RESOURCE_TYPE_VPC, "subnet": networkv1.ResourceType_RESOURCE_TYPE_SUBNET, "eip": networkv1.ResourceType_RESOURCE_TYPE_EIP, "snat": networkv1.ResourceType_RESOURCE_TYPE_VPC_SNAT_BINDING, "device": networkv1.ResourceType_RESOURCE_TYPE_NETWORK_DEVICE, "vlan": networkv1.ResourceType_RESOURCE_TYPE_VLAN_NETWORK, "egress_gateway": networkv1.ResourceType_RESOURCE_TYPE_EGRESS_GATEWAY, "public_pool": networkv1.ResourceType_RESOURCE_TYPE_PUBLIC_ADDRESS_POOL}

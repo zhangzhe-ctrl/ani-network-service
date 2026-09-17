@@ -1,0 +1,12 @@
+{
+  "at": "2026-09-15T06:02:25.474681+00:00",
+  "execution_host": "ubuntu",
+  "transport_exit": 0,
+  "result": {
+    "query": "SELECT jsonb_agg(jsonb_build_object('kind',kind,'name',provider_name,'uid',provider_uid,'pending',pending_action,'pending_since',pending_since,'create_dispatched',create_dispatched)) FROM network_lb_components WHERE lb_id='lb_cc562f7d8be147afae8144555aa7243b';",
+    "exit": 0,
+    "stdout": "BEGIN\n[{\"uid\": \"b161d7ac-901b-483c-b823-71ee8d1df7d4\", \"kind\": \"backend\", \"name\": \"lb-backend-333ca82a12af4e3e8f15bcc5b5784961\", \"pending\": \"\", \"pending_since\": null, \"create_dispatched\": true}, {\"uid\": \"d9ba58a1-8ede-4162-8f3c-bd34f93ec1e3\", \"kind\": \"backend\", \"name\": \"lb-backend-526fbc4590fa4b8090ed2248caa304e7\", \"pending\": \"\", \"pending_since\": null, \"create_dispatched\": true}, {\"uid\": \"6dcf8dca-ad04-4b58-aadf-7bf5aa8c22e6\", \"kind\": \"policy\", \"name\": \"lb-policy-ac08759359d94d9faee237f3f6f49378\", \"pending\": \"\", \"pending_since\": null, \"create_dispatched\": true}, {\"uid\": \"\", \"kind\": \"route\", \"name\": \"lb-route-ce082034daa14ea1a96d7d36957c801c\", \"pending\": \"\", \"pending_since\": null, \"create_dispatched\": false}]\nROLLBACK\n",
+    "stderr": ""
+  },
+  "stderr": ""
+}

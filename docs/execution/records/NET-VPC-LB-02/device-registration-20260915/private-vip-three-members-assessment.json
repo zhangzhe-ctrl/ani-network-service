@@ -1,0 +1,19 @@
+{
+  "at": "2026-09-15T05:40:39.166509+00:00",
+  "result": "pass",
+  "source_run": "20260915T051609Z-70cbcaa3",
+  "entry": "http://10.233.0.200:8080",
+  "caller": "lb02-2b3122-base-client",
+  "expected": [
+    "lb02-2b3122-base-a",
+    "lb02-2b3122-base-b",
+    "lb02-2b3122-base-client"
+  ],
+  "count": 24,
+  "backend_counts": {
+    "lb02-2b3122-base-b": 9,
+    "lb02-2b3122-base-client": 8,
+    "lb02-2b3122-base-a": 7
+  },
+  "evidence": "private-vip-three-members.json"
+}

@@ -1,0 +1,6 @@
+{
+  "command": "sudo -n /usr/local/bin/kubectl --kubeconfig /etc/kubernetes/admin.conf --context kubernetes-admin@ani-platform exec -n kcn-system ani-node-facts-51a80915f0169d9a92ce6bf0-6894584bff-tqxbm -- ovsdb-client list-dbs unix:/var/run/openvswitch/db.sock",
+  "exit": 1,
+  "stdout": "",
+  "stderr": "ovsdb-client: failed to connect to \"unix:/var/run/openvswitch/db.sock\" (Permission denied)\ncommand terminated with exit code 1\n"
+}

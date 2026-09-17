@@ -1,0 +1,17 @@
+{
+  "at": "2026-09-15T04:41:06.930097+00:00",
+  "result": "fail as intended",
+  "run": "20260915T043924Z-5ce48f8b",
+  "archive_sha256": "1dc66d0d869139a20f390afe2622ae727de96b9269ae1e7911eb1d2e72b6abe1",
+  "command": [
+    "bash",
+    "-e",
+    "-c",
+    "validation_tmp=$(mktemp -d /var/tmp/nlb2.XXXXXX); chmod 700 \"$validation_tmp\"; export TMPDIR=\"$validation_tmp\"; scripts/integration -race ./internal/data -run \"^TestLBBackendObservationUsesCurrentDatabaseTime$\" -count=1 -v"
+  ],
+  "exit": 1,
+  "log": "lb-freshness-red-command.txt",
+  "failure": "Fresh Attachment observed_at after Work.Now rejected as BACKEND_IDENTITY_MISMATCH; future and expired negatives passed.",
+  "live_observation": "private-lb-database-01.json",
+  "interpretation": "Controlled reproduction establishes the code defect; historical live rejection did not capture all predicate values at that exact instant."
+}

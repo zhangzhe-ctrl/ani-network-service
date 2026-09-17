@@ -1,0 +1,49 @@
+{
+  "at": "2026-09-15T06:54:46.130676+00:00",
+  "result": "pass",
+  "source_run": "20260915T051609Z-70cbcaa3",
+  "vpc_id": "vpc_1f6fbd7f85cd4baba0b0382770aa480e",
+  "system_eip_id": "eip_19dc90906e7a4461a9a5ad5c050de3ba",
+  "system_snat_id": "snat_b07400cca95a4ccaa44bac0ced0d7ffb",
+  "states_deleted": true,
+  "claim_released_at": "2026-09-15T06:26:14.029852+00:00",
+  "ordered_delete_operations": [
+    {
+      "id": "da5b67d6-82e9-46eb-b18d-078ebefe9fd7",
+      "kind": "delete_snat",
+      "state": "succeeded",
+      "created_at": "2026-09-15T06:24:58.852116+00:00",
+      "completed_at": "2026-09-15T06:26:14.03324+00:00"
+    },
+    {
+      "id": "d8ec0152-d477-4fce-9c57-84b971bf0ef5",
+      "kind": "delete_eip",
+      "state": "succeeded",
+      "created_at": "2026-09-15T06:26:37.152475+00:00",
+      "completed_at": "2026-09-15T06:29:06.292112+00:00"
+    },
+    {
+      "id": "c3d75582-4607-4283-8db2-b8749b03981c",
+      "kind": "delete_vpc",
+      "state": "succeeded",
+      "created_at": "2026-09-15T06:24:36.148628+00:00",
+      "completed_at": "2026-09-15T06:31:16.507908+00:00"
+    }
+  ],
+  "provider_resources_absent": true,
+  "original_legacy_provider_uids_preserved": {
+    "vpc-1004994c0bde496f9ff64a4c812c9607": "eb116d02-0a4e-4a8f-824e-05bb945bae77",
+    "eip-95f0b50044b64a05b0fd86c22b6cd5cc": "a83bda1b-a83d-42bb-a58f-b8d1576fd961",
+    "snat-530690503757461c951cc04135de09a2": "a7adc075-8bce-4fe3-af1f-67d220b12958"
+  },
+  "evidence": [
+    "continuous-owner-closing.json",
+    "continuous-owner-closed.json",
+    "continuous-a-released-02.json",
+    "continuous-b-released-02.json",
+    "continuous-subnet-delete-operation.json",
+    "continuous-vpc-delete-current.json",
+    "continuous-cleanup-final-sql.json",
+    "continuous-cleanup-provider.json"
+  ]
+}

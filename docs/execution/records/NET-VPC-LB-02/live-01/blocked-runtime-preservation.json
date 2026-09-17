@@ -1,0 +1,56 @@
+{
+  "at": "2026-09-14T19:41:26.025485+00:00",
+  "reason": "user requested blocking after unchanged VLAN102 diagnostics",
+  "processes": {
+    "at": "2026-09-14T19:39:40.616486+00:00",
+    "run": "lb02-09141908-2b3122",
+    "state": "stopped",
+    "processes": [
+      {
+        "name": "owner",
+        "pid": 1859371,
+        "start_ticks": "643359180",
+        "live": false
+      },
+      {
+        "name": "network",
+        "pid": 1859374,
+        "start_ticks": "643359180",
+        "live": false
+      },
+      {
+        "name": "tenant-a",
+        "pid": 1859376,
+        "start_ticks": "643359181",
+        "live": false
+      },
+      {
+        "name": "tenant-b",
+        "pid": 1859381,
+        "start_ticks": "643359181",
+        "live": false
+      },
+      {
+        "name": "platform",
+        "pid": 1859389,
+        "start_ticks": "643359181",
+        "live": false
+      }
+    ],
+    "stopped_at": "2026-09-14T19:41:25.657415+00:00"
+  },
+  "database": {
+    "name": "net_vpc_lb_02_2b3122",
+    "container": "20f28b5962f4edfdd4115e4823be65982c4ebf92754a442175aeeb75af5ea5e9",
+    "container_name": "lb02-09141908-2b3122-pg",
+    "running": true,
+    "retained_reason": "user-requested pause; preserve accepted product resource and database until lifecycle cleanup",
+    "private_backup": "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/blocked-20260915.dump",
+    "backup_sha256": "2878e9885fa664720d3c84bbdd278db71042dab0b721ecbd8ab220eca0ae7829",
+    "backup_bytes": 215749,
+    "archive_catalog_readable": true,
+    "restore_test": "not_verified"
+  },
+  "unit_state": "Result=success\nActiveState=inactive\nSubState=dead\n",
+  "final_read_correction": "blocked-database-state.json confirms the create operation succeeded before stop, superseding the earlier pending-operation assumption"
+}

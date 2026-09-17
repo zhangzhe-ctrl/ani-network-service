@@ -1,0 +1,23 @@
+source.tar.gz: OK
+verified source files: 1188
+go version go1.26.7 linux/amd64
+1.60.0
+v1.31.1
+127.0.0.1:5432 - accepting connections
+PostgreSQL image=docker.io/library/postgres@sha256:4ef4dbc939d61acea57712655ddb4b4ab27419c913f94cca0cd57cb3ea3c2280 container=1242927479aeea76080c8326fe1cc0bb147664fda9b921db595e29aa8265e838
+=== RUN   TestBaseSchemaLegacyPublicUpgradePreservesDurableFactsAndReplay
+--- PASS: TestBaseSchemaLegacyPublicUpgradePreservesDurableFactsAndReplay (0.40s)
+=== RUN   TestLBAdmissionAtomicIdentityReplayAndParentOccupancy
+--- PASS: TestLBAdmissionAtomicIdentityReplayAndParentOccupancy (1.11s)
+=== RUN   TestLBAdmissionRejectsCIDROnlyBackendAndDuplicateVIP
+--- PASS: TestLBAdmissionRejectsCIDROnlyBackendAndDuplicateVIP (0.94s)
+=== RUN   TestLBAdmissionCompetesWithSNATForOneClaimBothOrders
+=== RUN   TestLBAdmissionCompetesWithSNATForOneClaimBothOrders/snat
+=== RUN   TestLBAdmissionCompetesWithSNATForOneClaimBothOrders/lb
+--- PASS: TestLBAdmissionCompetesWithSNATForOneClaimBothOrders (2.09s)
+    --- PASS: TestLBAdmissionCompetesWithSNATForOneClaimBothOrders/snat (1.06s)
+    --- PASS: TestLBAdmissionCompetesWithSNATForOneClaimBothOrders/lb (1.02s)
+PASS
+ok  	github.com/zhangzhe-ctrl/ani-network-service/internal/data	4.552s
+removed task container=1242927479aeea76080c8326fe1cc0bb147664fda9b921db595e29aa8265e838
+REMOTE_COMMAND_EXIT=0

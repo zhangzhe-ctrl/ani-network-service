@@ -1,0 +1,2334 @@
+{
+  "execution_host": "ubuntu",
+  "command": [
+    "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/lb-api",
+    "call",
+    "-target",
+    "unix:///home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-a.sock",
+    "-service",
+    "TenantLoadBalancerService",
+    "-method",
+    "GetLoadBalancer"
+  ],
+  "request": {
+    "load_balancer_id": "lb_cc562f7d8be147afae8144555aa7243b"
+  },
+  "expected": {
+    "response.load_balancer.state": "RESOURCE_STATE_AVAILABLE",
+    "response.load_balancer.configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_CONFIGURED",
+    "response.load_balancer.observation_stale": false
+  },
+  "result": "fail",
+  "records": [
+    {
+      "at": "2026-09-15T12:49:34.502728+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "load_balancer": {
+            "id": "lb_cc562f7d8be147afae8144555aa7243b",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "subnet_id": "subnet_f74d90cbb5484f7fb37f8a8f6782da1d",
+            "name": "lb02-2b3122-private-reuse",
+            "description": "",
+            "exposure": "LOAD_BALANCER_EXPOSURE_PRIVATE",
+            "flavor": "small",
+            "public_eip_id": "",
+            "private_ip": "10.233.0.200",
+            "listener": {
+              "id": "4d813f9d-4316-4389-ac24-637b584e93d4",
+              "protocol": "LOAD_BALANCER_LISTENER_PROTOCOL_HTTP",
+              "port": 8080
+            },
+            "backends": [
+              {
+                "id": "0934ed17-2ac7-4ee0-a9b9-7214f308870b",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.3",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_a6172d5ee5be434087f939001a435c9e",
+                "state": "available",
+                "reason": "",
+                "observed_at": "2026-09-15T12:49:08.480826Z",
+                "observation_stale": false
+              },
+              {
+                "id": "ffc8fde0-3f10-4850-a3d8-ba3bd870ce6f",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.2",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_7d08b61f4038432a842d2fda525607b9",
+                "state": "available",
+                "reason": "",
+                "observed_at": "2026-09-15T12:49:08.480826Z",
+                "observation_stale": false
+              }
+            ],
+            "health_check": {
+              "protocol": "LOAD_BALANCER_HEALTH_CHECK_PROTOCOL_TCP",
+              "interval_seconds": 5,
+              "timeout_seconds": 3,
+              "unhealthy_threshold": 3,
+              "healthy_threshold": 1
+            },
+            "algorithm": "LOAD_BALANCER_ALGORITHM_ROUND_ROBIN",
+            "state": "RESOURCE_STATE_AVAILABLE",
+            "reason": "",
+            "reason_message": "",
+            "version": "409",
+            "desired_version": "1",
+            "applied_version": "1",
+            "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_CONFIGURED",
+            "data_plane_state": "LOAD_BALANCER_DATA_PLANE_STATE_UNKNOWN",
+            "observed_at": "2026-09-15T12:49:08.480826Z",
+            "observation_stale": false,
+            "created_at": "2026-09-15T05:54:48.265777Z",
+            "updated_at": "2026-09-15T12:49:13.438216Z",
+            "last_operation_id": "8c9ea3f5-dbcf-4b1e-b027-0869bbdb6ee2",
+            "public_address": "",
+            "data_plane_observed_at": null
+          }
+        }
+      },
+      "stderr": "",
+      "matches": true
+    },
+    {
+      "at": "2026-09-15T12:49:39.515756+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "load_balancer": {
+            "id": "lb_cc562f7d8be147afae8144555aa7243b",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "subnet_id": "subnet_f74d90cbb5484f7fb37f8a8f6782da1d",
+            "name": "lb02-2b3122-private-reuse",
+            "description": "",
+            "exposure": "LOAD_BALANCER_EXPOSURE_PRIVATE",
+            "flavor": "small",
+            "public_eip_id": "",
+            "private_ip": "10.233.0.200",
+            "listener": {
+              "id": "4d813f9d-4316-4389-ac24-637b584e93d4",
+              "protocol": "LOAD_BALANCER_LISTENER_PROTOCOL_HTTP",
+              "port": 8080
+            },
+            "backends": [
+              {
+                "id": "0934ed17-2ac7-4ee0-a9b9-7214f308870b",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.3",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_a6172d5ee5be434087f939001a435c9e",
+                "state": "available",
+                "reason": "",
+                "observed_at": "2026-09-15T12:49:08.480826Z",
+                "observation_stale": false
+              },
+              {
+                "id": "ffc8fde0-3f10-4850-a3d8-ba3bd870ce6f",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.2",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_7d08b61f4038432a842d2fda525607b9",
+                "state": "available",
+                "reason": "",
+                "observed_at": "2026-09-15T12:49:08.480826Z",
+                "observation_stale": false
+              }
+            ],
+            "health_check": {
+              "protocol": "LOAD_BALANCER_HEALTH_CHECK_PROTOCOL_TCP",
+              "interval_seconds": 5,
+              "timeout_seconds": 3,
+              "unhealthy_threshold": 3,
+              "healthy_threshold": 1
+            },
+            "algorithm": "LOAD_BALANCER_ALGORITHM_ROUND_ROBIN",
+            "state": "RESOURCE_STATE_AVAILABLE",
+            "reason": "",
+            "reason_message": "",
+            "version": "409",
+            "desired_version": "1",
+            "applied_version": "1",
+            "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_CONFIGURED",
+            "data_plane_state": "LOAD_BALANCER_DATA_PLANE_STATE_UNKNOWN",
+            "observed_at": "2026-09-15T12:49:08.480826Z",
+            "observation_stale": false,
+            "created_at": "2026-09-15T05:54:48.265777Z",
+            "updated_at": "2026-09-15T12:49:13.438216Z",
+            "last_operation_id": "8c9ea3f5-dbcf-4b1e-b027-0869bbdb6ee2",
+            "public_address": "",
+            "data_plane_observed_at": null
+          }
+        }
+      },
+      "stderr": "",
+      "matches": true
+    },
+    {
+      "at": "2026-09-15T12:49:44.528759+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "load_balancer": {
+            "id": "lb_cc562f7d8be147afae8144555aa7243b",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "subnet_id": "subnet_f74d90cbb5484f7fb37f8a8f6782da1d",
+            "name": "lb02-2b3122-private-reuse",
+            "description": "",
+            "exposure": "LOAD_BALANCER_EXPOSURE_PRIVATE",
+            "flavor": "small",
+            "public_eip_id": "",
+            "private_ip": "10.233.0.200",
+            "listener": {
+              "id": "4d813f9d-4316-4389-ac24-637b584e93d4",
+              "protocol": "LOAD_BALANCER_LISTENER_PROTOCOL_HTTP",
+              "port": 8080
+            },
+            "backends": [
+              {
+                "id": "0934ed17-2ac7-4ee0-a9b9-7214f308870b",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.3",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_a6172d5ee5be434087f939001a435c9e",
+                "state": "available",
+                "reason": "",
+                "observed_at": "2026-09-15T12:49:35.791421Z",
+                "observation_stale": false
+              },
+              {
+                "id": "ffc8fde0-3f10-4850-a3d8-ba3bd870ce6f",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.2",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_7d08b61f4038432a842d2fda525607b9",
+                "state": "available",
+                "reason": "",
+                "observed_at": "2026-09-15T12:49:35.791421Z",
+                "observation_stale": false
+              }
+            ],
+            "health_check": {
+              "protocol": "LOAD_BALANCER_HEALTH_CHECK_PROTOCOL_TCP",
+              "interval_seconds": 5,
+              "timeout_seconds": 3,
+              "unhealthy_threshold": 3,
+              "healthy_threshold": 1
+            },
+            "algorithm": "LOAD_BALANCER_ALGORITHM_ROUND_ROBIN",
+            "state": "RESOURCE_STATE_AVAILABLE",
+            "reason": "",
+            "reason_message": "",
+            "version": "410",
+            "desired_version": "1",
+            "applied_version": "1",
+            "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_CONFIGURED",
+            "data_plane_state": "LOAD_BALANCER_DATA_PLANE_STATE_UNKNOWN",
+            "observed_at": "2026-09-15T12:49:35.791421Z",
+            "observation_stale": false,
+            "created_at": "2026-09-15T05:54:48.265777Z",
+            "updated_at": "2026-09-15T12:49:40.899162Z",
+            "last_operation_id": "8c9ea3f5-dbcf-4b1e-b027-0869bbdb6ee2",
+            "public_address": "",
+            "data_plane_observed_at": null
+          }
+        }
+      },
+      "stderr": "",
+      "matches": true
+    },
+    {
+      "at": "2026-09-15T12:49:49.541777+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "load_balancer": {
+            "id": "lb_cc562f7d8be147afae8144555aa7243b",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "subnet_id": "subnet_f74d90cbb5484f7fb37f8a8f6782da1d",
+            "name": "lb02-2b3122-private-reuse",
+            "description": "",
+            "exposure": "LOAD_BALANCER_EXPOSURE_PRIVATE",
+            "flavor": "small",
+            "public_eip_id": "",
+            "private_ip": "10.233.0.200",
+            "listener": {
+              "id": "4d813f9d-4316-4389-ac24-637b584e93d4",
+              "protocol": "LOAD_BALANCER_LISTENER_PROTOCOL_HTTP",
+              "port": 8080
+            },
+            "backends": [
+              {
+                "id": "0934ed17-2ac7-4ee0-a9b9-7214f308870b",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.3",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_a6172d5ee5be434087f939001a435c9e",
+                "state": "available",
+                "reason": "",
+                "observed_at": "2026-09-15T12:49:35.791421Z",
+                "observation_stale": false
+              },
+              {
+                "id": "ffc8fde0-3f10-4850-a3d8-ba3bd870ce6f",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.2",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_7d08b61f4038432a842d2fda525607b9",
+                "state": "available",
+                "reason": "",
+                "observed_at": "2026-09-15T12:49:35.791421Z",
+                "observation_stale": false
+              }
+            ],
+            "health_check": {
+              "protocol": "LOAD_BALANCER_HEALTH_CHECK_PROTOCOL_TCP",
+              "interval_seconds": 5,
+              "timeout_seconds": 3,
+              "unhealthy_threshold": 3,
+              "healthy_threshold": 1
+            },
+            "algorithm": "LOAD_BALANCER_ALGORITHM_ROUND_ROBIN",
+            "state": "RESOURCE_STATE_AVAILABLE",
+            "reason": "",
+            "reason_message": "",
+            "version": "410",
+            "desired_version": "1",
+            "applied_version": "1",
+            "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_CONFIGURED",
+            "data_plane_state": "LOAD_BALANCER_DATA_PLANE_STATE_UNKNOWN",
+            "observed_at": "2026-09-15T12:49:35.791421Z",
+            "observation_stale": false,
+            "created_at": "2026-09-15T05:54:48.265777Z",
+            "updated_at": "2026-09-15T12:49:40.899162Z",
+            "last_operation_id": "8c9ea3f5-dbcf-4b1e-b027-0869bbdb6ee2",
+            "public_address": "",
+            "data_plane_observed_at": null
+          }
+        }
+      },
+      "stderr": "",
+      "matches": true
+    },
+    {
+      "at": "2026-09-15T12:49:54.556248+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "load_balancer": {
+            "id": "lb_cc562f7d8be147afae8144555aa7243b",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "subnet_id": "subnet_f74d90cbb5484f7fb37f8a8f6782da1d",
+            "name": "lb02-2b3122-private-reuse",
+            "description": "",
+            "exposure": "LOAD_BALANCER_EXPOSURE_PRIVATE",
+            "flavor": "small",
+            "public_eip_id": "",
+            "private_ip": "10.233.0.200",
+            "listener": {
+              "id": "4d813f9d-4316-4389-ac24-637b584e93d4",
+              "protocol": "LOAD_BALANCER_LISTENER_PROTOCOL_HTTP",
+              "port": 8080
+            },
+            "backends": [
+              {
+                "id": "0934ed17-2ac7-4ee0-a9b9-7214f308870b",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.3",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_a6172d5ee5be434087f939001a435c9e",
+                "state": "available",
+                "reason": "",
+                "observed_at": "2026-09-15T12:49:35.791421Z",
+                "observation_stale": false
+              },
+              {
+                "id": "ffc8fde0-3f10-4850-a3d8-ba3bd870ce6f",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.2",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_7d08b61f4038432a842d2fda525607b9",
+                "state": "available",
+                "reason": "",
+                "observed_at": "2026-09-15T12:49:35.791421Z",
+                "observation_stale": false
+              }
+            ],
+            "health_check": {
+              "protocol": "LOAD_BALANCER_HEALTH_CHECK_PROTOCOL_TCP",
+              "interval_seconds": 5,
+              "timeout_seconds": 3,
+              "unhealthy_threshold": 3,
+              "healthy_threshold": 1
+            },
+            "algorithm": "LOAD_BALANCER_ALGORITHM_ROUND_ROBIN",
+            "state": "RESOURCE_STATE_AVAILABLE",
+            "reason": "",
+            "reason_message": "",
+            "version": "410",
+            "desired_version": "1",
+            "applied_version": "1",
+            "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_CONFIGURED",
+            "data_plane_state": "LOAD_BALANCER_DATA_PLANE_STATE_UNKNOWN",
+            "observed_at": "2026-09-15T12:49:35.791421Z",
+            "observation_stale": false,
+            "created_at": "2026-09-15T05:54:48.265777Z",
+            "updated_at": "2026-09-15T12:49:40.899162Z",
+            "last_operation_id": "8c9ea3f5-dbcf-4b1e-b027-0869bbdb6ee2",
+            "public_address": "",
+            "data_plane_observed_at": null
+          }
+        }
+      },
+      "stderr": "",
+      "matches": true
+    },
+    {
+      "at": "2026-09-15T12:49:59.567870+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "load_balancer": {
+            "id": "lb_cc562f7d8be147afae8144555aa7243b",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "subnet_id": "subnet_f74d90cbb5484f7fb37f8a8f6782da1d",
+            "name": "lb02-2b3122-private-reuse",
+            "description": "",
+            "exposure": "LOAD_BALANCER_EXPOSURE_PRIVATE",
+            "flavor": "small",
+            "public_eip_id": "",
+            "private_ip": "10.233.0.200",
+            "listener": {
+              "id": "4d813f9d-4316-4389-ac24-637b584e93d4",
+              "protocol": "LOAD_BALANCER_LISTENER_PROTOCOL_HTTP",
+              "port": 8080
+            },
+            "backends": [
+              {
+                "id": "0934ed17-2ac7-4ee0-a9b9-7214f308870b",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.3",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_a6172d5ee5be434087f939001a435c9e",
+                "state": "available",
+                "reason": "",
+                "observed_at": "2026-09-15T12:49:35.791421Z",
+                "observation_stale": false
+              },
+              {
+                "id": "ffc8fde0-3f10-4850-a3d8-ba3bd870ce6f",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.2",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_7d08b61f4038432a842d2fda525607b9",
+                "state": "available",
+                "reason": "",
+                "observed_at": "2026-09-15T12:49:35.791421Z",
+                "observation_stale": false
+              }
+            ],
+            "health_check": {
+              "protocol": "LOAD_BALANCER_HEALTH_CHECK_PROTOCOL_TCP",
+              "interval_seconds": 5,
+              "timeout_seconds": 3,
+              "unhealthy_threshold": 3,
+              "healthy_threshold": 1
+            },
+            "algorithm": "LOAD_BALANCER_ALGORITHM_ROUND_ROBIN",
+            "state": "RESOURCE_STATE_AVAILABLE",
+            "reason": "",
+            "reason_message": "",
+            "version": "410",
+            "desired_version": "1",
+            "applied_version": "1",
+            "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_CONFIGURED",
+            "data_plane_state": "LOAD_BALANCER_DATA_PLANE_STATE_UNKNOWN",
+            "observed_at": "2026-09-15T12:49:35.791421Z",
+            "observation_stale": false,
+            "created_at": "2026-09-15T05:54:48.265777Z",
+            "updated_at": "2026-09-15T12:49:40.899162Z",
+            "last_operation_id": "8c9ea3f5-dbcf-4b1e-b027-0869bbdb6ee2",
+            "public_address": "",
+            "data_plane_observed_at": null
+          }
+        }
+      },
+      "stderr": "",
+      "matches": true
+    },
+    {
+      "at": "2026-09-15T12:50:04.579883+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "load_balancer": {
+            "id": "lb_cc562f7d8be147afae8144555aa7243b",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "subnet_id": "subnet_f74d90cbb5484f7fb37f8a8f6782da1d",
+            "name": "lb02-2b3122-private-reuse",
+            "description": "",
+            "exposure": "LOAD_BALANCER_EXPOSURE_PRIVATE",
+            "flavor": "small",
+            "public_eip_id": "",
+            "private_ip": "10.233.0.200",
+            "listener": {
+              "id": "4d813f9d-4316-4389-ac24-637b584e93d4",
+              "protocol": "LOAD_BALANCER_LISTENER_PROTOCOL_HTTP",
+              "port": 8080
+            },
+            "backends": [
+              {
+                "id": "0934ed17-2ac7-4ee0-a9b9-7214f308870b",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.3",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_a6172d5ee5be434087f939001a435c9e",
+                "state": "available",
+                "reason": "",
+                "observed_at": "2026-09-15T12:49:35.791421Z",
+                "observation_stale": false
+              },
+              {
+                "id": "ffc8fde0-3f10-4850-a3d8-ba3bd870ce6f",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.2",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_7d08b61f4038432a842d2fda525607b9",
+                "state": "available",
+                "reason": "",
+                "observed_at": "2026-09-15T12:49:35.791421Z",
+                "observation_stale": false
+              }
+            ],
+            "health_check": {
+              "protocol": "LOAD_BALANCER_HEALTH_CHECK_PROTOCOL_TCP",
+              "interval_seconds": 5,
+              "timeout_seconds": 3,
+              "unhealthy_threshold": 3,
+              "healthy_threshold": 1
+            },
+            "algorithm": "LOAD_BALANCER_ALGORITHM_ROUND_ROBIN",
+            "state": "RESOURCE_STATE_AVAILABLE",
+            "reason": "",
+            "reason_message": "",
+            "version": "410",
+            "desired_version": "1",
+            "applied_version": "1",
+            "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_CONFIGURED",
+            "data_plane_state": "LOAD_BALANCER_DATA_PLANE_STATE_UNKNOWN",
+            "observed_at": "2026-09-15T12:49:35.791421Z",
+            "observation_stale": false,
+            "created_at": "2026-09-15T05:54:48.265777Z",
+            "updated_at": "2026-09-15T12:49:40.899162Z",
+            "last_operation_id": "8c9ea3f5-dbcf-4b1e-b027-0869bbdb6ee2",
+            "public_address": "",
+            "data_plane_observed_at": null
+          }
+        }
+      },
+      "stderr": "",
+      "matches": true
+    },
+    {
+      "at": "2026-09-15T12:50:09.591407+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "load_balancer": {
+            "id": "lb_cc562f7d8be147afae8144555aa7243b",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "subnet_id": "subnet_f74d90cbb5484f7fb37f8a8f6782da1d",
+            "name": "lb02-2b3122-private-reuse",
+            "description": "",
+            "exposure": "LOAD_BALANCER_EXPOSURE_PRIVATE",
+            "flavor": "small",
+            "public_eip_id": "",
+            "private_ip": "10.233.0.200",
+            "listener": {
+              "id": "4d813f9d-4316-4389-ac24-637b584e93d4",
+              "protocol": "LOAD_BALANCER_LISTENER_PROTOCOL_HTTP",
+              "port": 8080
+            },
+            "backends": [
+              {
+                "id": "0934ed17-2ac7-4ee0-a9b9-7214f308870b",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.3",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_a6172d5ee5be434087f939001a435c9e",
+                "state": "available",
+                "reason": "",
+                "observed_at": "2026-09-15T12:50:00.517159Z",
+                "observation_stale": false
+              },
+              {
+                "id": "ffc8fde0-3f10-4850-a3d8-ba3bd870ce6f",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.2",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_7d08b61f4038432a842d2fda525607b9",
+                "state": "available",
+                "reason": "",
+                "observed_at": "2026-09-15T12:50:00.517159Z",
+                "observation_stale": false
+              }
+            ],
+            "health_check": {
+              "protocol": "LOAD_BALANCER_HEALTH_CHECK_PROTOCOL_TCP",
+              "interval_seconds": 5,
+              "timeout_seconds": 3,
+              "unhealthy_threshold": 3,
+              "healthy_threshold": 1
+            },
+            "algorithm": "LOAD_BALANCER_ALGORITHM_ROUND_ROBIN",
+            "state": "RESOURCE_STATE_AVAILABLE",
+            "reason": "",
+            "reason_message": "",
+            "version": "411",
+            "desired_version": "1",
+            "applied_version": "1",
+            "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_CONFIGURED",
+            "data_plane_state": "LOAD_BALANCER_DATA_PLANE_STATE_UNKNOWN",
+            "observed_at": "2026-09-15T12:50:00.517159Z",
+            "observation_stale": false,
+            "created_at": "2026-09-15T05:54:48.265777Z",
+            "updated_at": "2026-09-15T12:50:04.918635Z",
+            "last_operation_id": "8c9ea3f5-dbcf-4b1e-b027-0869bbdb6ee2",
+            "public_address": "",
+            "data_plane_observed_at": null
+          }
+        }
+      },
+      "stderr": "",
+      "matches": true
+    },
+    {
+      "at": "2026-09-15T12:50:14.604113+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "load_balancer": {
+            "id": "lb_cc562f7d8be147afae8144555aa7243b",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "subnet_id": "subnet_f74d90cbb5484f7fb37f8a8f6782da1d",
+            "name": "lb02-2b3122-private-reuse",
+            "description": "",
+            "exposure": "LOAD_BALANCER_EXPOSURE_PRIVATE",
+            "flavor": "small",
+            "public_eip_id": "",
+            "private_ip": "10.233.0.200",
+            "listener": {
+              "id": "4d813f9d-4316-4389-ac24-637b584e93d4",
+              "protocol": "LOAD_BALANCER_LISTENER_PROTOCOL_HTTP",
+              "port": 8080
+            },
+            "backends": [
+              {
+                "id": "0934ed17-2ac7-4ee0-a9b9-7214f308870b",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.3",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_a6172d5ee5be434087f939001a435c9e",
+                "state": "available",
+                "reason": "",
+                "observed_at": "2026-09-15T12:50:00.517159Z",
+                "observation_stale": false
+              },
+              {
+                "id": "ffc8fde0-3f10-4850-a3d8-ba3bd870ce6f",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.2",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_7d08b61f4038432a842d2fda525607b9",
+                "state": "available",
+                "reason": "",
+                "observed_at": "2026-09-15T12:50:00.517159Z",
+                "observation_stale": false
+              }
+            ],
+            "health_check": {
+              "protocol": "LOAD_BALANCER_HEALTH_CHECK_PROTOCOL_TCP",
+              "interval_seconds": 5,
+              "timeout_seconds": 3,
+              "unhealthy_threshold": 3,
+              "healthy_threshold": 1
+            },
+            "algorithm": "LOAD_BALANCER_ALGORITHM_ROUND_ROBIN",
+            "state": "RESOURCE_STATE_AVAILABLE",
+            "reason": "",
+            "reason_message": "",
+            "version": "411",
+            "desired_version": "1",
+            "applied_version": "1",
+            "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_CONFIGURED",
+            "data_plane_state": "LOAD_BALANCER_DATA_PLANE_STATE_UNKNOWN",
+            "observed_at": "2026-09-15T12:50:00.517159Z",
+            "observation_stale": false,
+            "created_at": "2026-09-15T05:54:48.265777Z",
+            "updated_at": "2026-09-15T12:50:04.918635Z",
+            "last_operation_id": "8c9ea3f5-dbcf-4b1e-b027-0869bbdb6ee2",
+            "public_address": "",
+            "data_plane_observed_at": null
+          }
+        }
+      },
+      "stderr": "",
+      "matches": true
+    },
+    {
+      "at": "2026-09-15T12:50:19.615459+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "load_balancer": {
+            "id": "lb_cc562f7d8be147afae8144555aa7243b",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "subnet_id": "subnet_f74d90cbb5484f7fb37f8a8f6782da1d",
+            "name": "lb02-2b3122-private-reuse",
+            "description": "",
+            "exposure": "LOAD_BALANCER_EXPOSURE_PRIVATE",
+            "flavor": "small",
+            "public_eip_id": "",
+            "private_ip": "10.233.0.200",
+            "listener": {
+              "id": "4d813f9d-4316-4389-ac24-637b584e93d4",
+              "protocol": "LOAD_BALANCER_LISTENER_PROTOCOL_HTTP",
+              "port": 8080
+            },
+            "backends": [
+              {
+                "id": "0934ed17-2ac7-4ee0-a9b9-7214f308870b",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.3",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_a6172d5ee5be434087f939001a435c9e",
+                "state": "available",
+                "reason": "",
+                "observed_at": "2026-09-15T12:50:00.517159Z",
+                "observation_stale": false
+              },
+              {
+                "id": "ffc8fde0-3f10-4850-a3d8-ba3bd870ce6f",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.2",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_7d08b61f4038432a842d2fda525607b9",
+                "state": "available",
+                "reason": "",
+                "observed_at": "2026-09-15T12:50:00.517159Z",
+                "observation_stale": false
+              }
+            ],
+            "health_check": {
+              "protocol": "LOAD_BALANCER_HEALTH_CHECK_PROTOCOL_TCP",
+              "interval_seconds": 5,
+              "timeout_seconds": 3,
+              "unhealthy_threshold": 3,
+              "healthy_threshold": 1
+            },
+            "algorithm": "LOAD_BALANCER_ALGORITHM_ROUND_ROBIN",
+            "state": "RESOURCE_STATE_AVAILABLE",
+            "reason": "",
+            "reason_message": "",
+            "version": "411",
+            "desired_version": "1",
+            "applied_version": "1",
+            "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_CONFIGURED",
+            "data_plane_state": "LOAD_BALANCER_DATA_PLANE_STATE_UNKNOWN",
+            "observed_at": "2026-09-15T12:50:00.517159Z",
+            "observation_stale": false,
+            "created_at": "2026-09-15T05:54:48.265777Z",
+            "updated_at": "2026-09-15T12:50:04.918635Z",
+            "last_operation_id": "8c9ea3f5-dbcf-4b1e-b027-0869bbdb6ee2",
+            "public_address": "",
+            "data_plane_observed_at": null
+          }
+        }
+      },
+      "stderr": "",
+      "matches": true
+    },
+    {
+      "at": "2026-09-15T12:50:24.628860+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "load_balancer": {
+            "id": "lb_cc562f7d8be147afae8144555aa7243b",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "subnet_id": "subnet_f74d90cbb5484f7fb37f8a8f6782da1d",
+            "name": "lb02-2b3122-private-reuse",
+            "description": "",
+            "exposure": "LOAD_BALANCER_EXPOSURE_PRIVATE",
+            "flavor": "small",
+            "public_eip_id": "",
+            "private_ip": "10.233.0.200",
+            "listener": {
+              "id": "4d813f9d-4316-4389-ac24-637b584e93d4",
+              "protocol": "LOAD_BALANCER_LISTENER_PROTOCOL_HTTP",
+              "port": 8080
+            },
+            "backends": [
+              {
+                "id": "0934ed17-2ac7-4ee0-a9b9-7214f308870b",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.3",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_a6172d5ee5be434087f939001a435c9e",
+                "state": "available",
+                "reason": "",
+                "observed_at": "2026-09-15T12:50:00.517159Z",
+                "observation_stale": false
+              },
+              {
+                "id": "ffc8fde0-3f10-4850-a3d8-ba3bd870ce6f",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.2",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_7d08b61f4038432a842d2fda525607b9",
+                "state": "available",
+                "reason": "",
+                "observed_at": "2026-09-15T12:50:00.517159Z",
+                "observation_stale": false
+              }
+            ],
+            "health_check": {
+              "protocol": "LOAD_BALANCER_HEALTH_CHECK_PROTOCOL_TCP",
+              "interval_seconds": 5,
+              "timeout_seconds": 3,
+              "unhealthy_threshold": 3,
+              "healthy_threshold": 1
+            },
+            "algorithm": "LOAD_BALANCER_ALGORITHM_ROUND_ROBIN",
+            "state": "RESOURCE_STATE_AVAILABLE",
+            "reason": "",
+            "reason_message": "",
+            "version": "411",
+            "desired_version": "1",
+            "applied_version": "1",
+            "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_CONFIGURED",
+            "data_plane_state": "LOAD_BALANCER_DATA_PLANE_STATE_UNKNOWN",
+            "observed_at": "2026-09-15T12:50:00.517159Z",
+            "observation_stale": false,
+            "created_at": "2026-09-15T05:54:48.265777Z",
+            "updated_at": "2026-09-15T12:50:04.918635Z",
+            "last_operation_id": "8c9ea3f5-dbcf-4b1e-b027-0869bbdb6ee2",
+            "public_address": "",
+            "data_plane_observed_at": null
+          }
+        }
+      },
+      "stderr": "",
+      "matches": true
+    },
+    {
+      "at": "2026-09-15T12:50:29.642898+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "load_balancer": {
+            "id": "lb_cc562f7d8be147afae8144555aa7243b",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "subnet_id": "subnet_f74d90cbb5484f7fb37f8a8f6782da1d",
+            "name": "lb02-2b3122-private-reuse",
+            "description": "",
+            "exposure": "LOAD_BALANCER_EXPOSURE_PRIVATE",
+            "flavor": "small",
+            "public_eip_id": "",
+            "private_ip": "10.233.0.200",
+            "listener": {
+              "id": "4d813f9d-4316-4389-ac24-637b584e93d4",
+              "protocol": "LOAD_BALANCER_LISTENER_PROTOCOL_HTTP",
+              "port": 8080
+            },
+            "backends": [
+              {
+                "id": "0934ed17-2ac7-4ee0-a9b9-7214f308870b",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.3",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_a6172d5ee5be434087f939001a435c9e",
+                "state": "available",
+                "reason": "",
+                "observed_at": "2026-09-15T12:50:00.517159Z",
+                "observation_stale": false
+              },
+              {
+                "id": "ffc8fde0-3f10-4850-a3d8-ba3bd870ce6f",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.2",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_7d08b61f4038432a842d2fda525607b9",
+                "state": "available",
+                "reason": "",
+                "observed_at": "2026-09-15T12:50:00.517159Z",
+                "observation_stale": false
+              }
+            ],
+            "health_check": {
+              "protocol": "LOAD_BALANCER_HEALTH_CHECK_PROTOCOL_TCP",
+              "interval_seconds": 5,
+              "timeout_seconds": 3,
+              "unhealthy_threshold": 3,
+              "healthy_threshold": 1
+            },
+            "algorithm": "LOAD_BALANCER_ALGORITHM_ROUND_ROBIN",
+            "state": "RESOURCE_STATE_AVAILABLE",
+            "reason": "",
+            "reason_message": "",
+            "version": "411",
+            "desired_version": "1",
+            "applied_version": "1",
+            "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_CONFIGURED",
+            "data_plane_state": "LOAD_BALANCER_DATA_PLANE_STATE_UNKNOWN",
+            "observed_at": "2026-09-15T12:50:00.517159Z",
+            "observation_stale": false,
+            "created_at": "2026-09-15T05:54:48.265777Z",
+            "updated_at": "2026-09-15T12:50:04.918635Z",
+            "last_operation_id": "8c9ea3f5-dbcf-4b1e-b027-0869bbdb6ee2",
+            "public_address": "",
+            "data_plane_observed_at": null
+          }
+        }
+      },
+      "stderr": "",
+      "matches": true
+    },
+    {
+      "at": "2026-09-15T12:50:34.655404+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "load_balancer": {
+            "id": "lb_cc562f7d8be147afae8144555aa7243b",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "subnet_id": "subnet_f74d90cbb5484f7fb37f8a8f6782da1d",
+            "name": "lb02-2b3122-private-reuse",
+            "description": "",
+            "exposure": "LOAD_BALANCER_EXPOSURE_PRIVATE",
+            "flavor": "small",
+            "public_eip_id": "",
+            "private_ip": "10.233.0.200",
+            "listener": {
+              "id": "4d813f9d-4316-4389-ac24-637b584e93d4",
+              "protocol": "LOAD_BALANCER_LISTENER_PROTOCOL_HTTP",
+              "port": 8080
+            },
+            "backends": [
+              {
+                "id": "0934ed17-2ac7-4ee0-a9b9-7214f308870b",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.3",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_a6172d5ee5be434087f939001a435c9e",
+                "state": "available",
+                "reason": "",
+                "observed_at": "2026-09-15T12:50:00.517159Z",
+                "observation_stale": false
+              },
+              {
+                "id": "ffc8fde0-3f10-4850-a3d8-ba3bd870ce6f",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.2",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_7d08b61f4038432a842d2fda525607b9",
+                "state": "available",
+                "reason": "",
+                "observed_at": "2026-09-15T12:50:00.517159Z",
+                "observation_stale": false
+              }
+            ],
+            "health_check": {
+              "protocol": "LOAD_BALANCER_HEALTH_CHECK_PROTOCOL_TCP",
+              "interval_seconds": 5,
+              "timeout_seconds": 3,
+              "unhealthy_threshold": 3,
+              "healthy_threshold": 1
+            },
+            "algorithm": "LOAD_BALANCER_ALGORITHM_ROUND_ROBIN",
+            "state": "RESOURCE_STATE_AVAILABLE",
+            "reason": "",
+            "reason_message": "",
+            "version": "411",
+            "desired_version": "1",
+            "applied_version": "1",
+            "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_CONFIGURED",
+            "data_plane_state": "LOAD_BALANCER_DATA_PLANE_STATE_UNKNOWN",
+            "observed_at": "2026-09-15T12:50:00.517159Z",
+            "observation_stale": false,
+            "created_at": "2026-09-15T05:54:48.265777Z",
+            "updated_at": "2026-09-15T12:50:04.918635Z",
+            "last_operation_id": "8c9ea3f5-dbcf-4b1e-b027-0869bbdb6ee2",
+            "public_address": "",
+            "data_plane_observed_at": null
+          }
+        }
+      },
+      "stderr": "",
+      "matches": true
+    },
+    {
+      "at": "2026-09-15T12:50:39.666384+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "load_balancer": {
+            "id": "lb_cc562f7d8be147afae8144555aa7243b",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "subnet_id": "subnet_f74d90cbb5484f7fb37f8a8f6782da1d",
+            "name": "lb02-2b3122-private-reuse",
+            "description": "",
+            "exposure": "LOAD_BALANCER_EXPOSURE_PRIVATE",
+            "flavor": "small",
+            "public_eip_id": "",
+            "private_ip": "10.233.0.200",
+            "listener": {
+              "id": "4d813f9d-4316-4389-ac24-637b584e93d4",
+              "protocol": "LOAD_BALANCER_LISTENER_PROTOCOL_HTTP",
+              "port": 8080
+            },
+            "backends": [
+              {
+                "id": "0934ed17-2ac7-4ee0-a9b9-7214f308870b",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.3",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_a6172d5ee5be434087f939001a435c9e",
+                "state": "available",
+                "reason": "",
+                "observed_at": "2026-09-15T12:50:00.517159Z",
+                "observation_stale": false
+              },
+              {
+                "id": "ffc8fde0-3f10-4850-a3d8-ba3bd870ce6f",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.2",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_7d08b61f4038432a842d2fda525607b9",
+                "state": "available",
+                "reason": "",
+                "observed_at": "2026-09-15T12:50:00.517159Z",
+                "observation_stale": false
+              }
+            ],
+            "health_check": {
+              "protocol": "LOAD_BALANCER_HEALTH_CHECK_PROTOCOL_TCP",
+              "interval_seconds": 5,
+              "timeout_seconds": 3,
+              "unhealthy_threshold": 3,
+              "healthy_threshold": 1
+            },
+            "algorithm": "LOAD_BALANCER_ALGORITHM_ROUND_ROBIN",
+            "state": "RESOURCE_STATE_AVAILABLE",
+            "reason": "",
+            "reason_message": "",
+            "version": "411",
+            "desired_version": "1",
+            "applied_version": "1",
+            "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_CONFIGURED",
+            "data_plane_state": "LOAD_BALANCER_DATA_PLANE_STATE_UNKNOWN",
+            "observed_at": "2026-09-15T12:50:00.517159Z",
+            "observation_stale": false,
+            "created_at": "2026-09-15T05:54:48.265777Z",
+            "updated_at": "2026-09-15T12:50:04.918635Z",
+            "last_operation_id": "8c9ea3f5-dbcf-4b1e-b027-0869bbdb6ee2",
+            "public_address": "",
+            "data_plane_observed_at": null
+          }
+        }
+      },
+      "stderr": "",
+      "matches": true
+    },
+    {
+      "at": "2026-09-15T12:50:44.679428+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "load_balancer": {
+            "id": "lb_cc562f7d8be147afae8144555aa7243b",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "subnet_id": "subnet_f74d90cbb5484f7fb37f8a8f6782da1d",
+            "name": "lb02-2b3122-private-reuse",
+            "description": "",
+            "exposure": "LOAD_BALANCER_EXPOSURE_PRIVATE",
+            "flavor": "small",
+            "public_eip_id": "",
+            "private_ip": "10.233.0.200",
+            "listener": {
+              "id": "4d813f9d-4316-4389-ac24-637b584e93d4",
+              "protocol": "LOAD_BALANCER_LISTENER_PROTOCOL_HTTP",
+              "port": 8080
+            },
+            "backends": [
+              {
+                "id": "0934ed17-2ac7-4ee0-a9b9-7214f308870b",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.3",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_a6172d5ee5be434087f939001a435c9e",
+                "state": "available",
+                "reason": "",
+                "observed_at": "2026-09-15T12:50:34.016296Z",
+                "observation_stale": false
+              },
+              {
+                "id": "ffc8fde0-3f10-4850-a3d8-ba3bd870ce6f",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.2",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_7d08b61f4038432a842d2fda525607b9",
+                "state": "available",
+                "reason": "",
+                "observed_at": "2026-09-15T12:50:34.016296Z",
+                "observation_stale": false
+              }
+            ],
+            "health_check": {
+              "protocol": "LOAD_BALANCER_HEALTH_CHECK_PROTOCOL_TCP",
+              "interval_seconds": 5,
+              "timeout_seconds": 3,
+              "unhealthy_threshold": 3,
+              "healthy_threshold": 1
+            },
+            "algorithm": "LOAD_BALANCER_ALGORITHM_ROUND_ROBIN",
+            "state": "RESOURCE_STATE_AVAILABLE",
+            "reason": "",
+            "reason_message": "",
+            "version": "412",
+            "desired_version": "1",
+            "applied_version": "1",
+            "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_CONFIGURED",
+            "data_plane_state": "LOAD_BALANCER_DATA_PLANE_STATE_UNKNOWN",
+            "observed_at": "2026-09-15T12:50:34.016296Z",
+            "observation_stale": false,
+            "created_at": "2026-09-15T05:54:48.265777Z",
+            "updated_at": "2026-09-15T12:50:40.243053Z",
+            "last_operation_id": "8c9ea3f5-dbcf-4b1e-b027-0869bbdb6ee2",
+            "public_address": "",
+            "data_plane_observed_at": null
+          }
+        }
+      },
+      "stderr": "",
+      "matches": true
+    },
+    {
+      "at": "2026-09-15T12:50:49.690442+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "load_balancer": {
+            "id": "lb_cc562f7d8be147afae8144555aa7243b",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "subnet_id": "subnet_f74d90cbb5484f7fb37f8a8f6782da1d",
+            "name": "lb02-2b3122-private-reuse",
+            "description": "",
+            "exposure": "LOAD_BALANCER_EXPOSURE_PRIVATE",
+            "flavor": "small",
+            "public_eip_id": "",
+            "private_ip": "10.233.0.200",
+            "listener": {
+              "id": "4d813f9d-4316-4389-ac24-637b584e93d4",
+              "protocol": "LOAD_BALANCER_LISTENER_PROTOCOL_HTTP",
+              "port": 8080
+            },
+            "backends": [
+              {
+                "id": "0934ed17-2ac7-4ee0-a9b9-7214f308870b",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.3",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_a6172d5ee5be434087f939001a435c9e",
+                "state": "available",
+                "reason": "",
+                "observed_at": "2026-09-15T12:50:34.016296Z",
+                "observation_stale": false
+              },
+              {
+                "id": "ffc8fde0-3f10-4850-a3d8-ba3bd870ce6f",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.2",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_7d08b61f4038432a842d2fda525607b9",
+                "state": "available",
+                "reason": "",
+                "observed_at": "2026-09-15T12:50:34.016296Z",
+                "observation_stale": false
+              }
+            ],
+            "health_check": {
+              "protocol": "LOAD_BALANCER_HEALTH_CHECK_PROTOCOL_TCP",
+              "interval_seconds": 5,
+              "timeout_seconds": 3,
+              "unhealthy_threshold": 3,
+              "healthy_threshold": 1
+            },
+            "algorithm": "LOAD_BALANCER_ALGORITHM_ROUND_ROBIN",
+            "state": "RESOURCE_STATE_AVAILABLE",
+            "reason": "",
+            "reason_message": "",
+            "version": "412",
+            "desired_version": "1",
+            "applied_version": "1",
+            "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_CONFIGURED",
+            "data_plane_state": "LOAD_BALANCER_DATA_PLANE_STATE_UNKNOWN",
+            "observed_at": "2026-09-15T12:50:34.016296Z",
+            "observation_stale": false,
+            "created_at": "2026-09-15T05:54:48.265777Z",
+            "updated_at": "2026-09-15T12:50:40.243053Z",
+            "last_operation_id": "8c9ea3f5-dbcf-4b1e-b027-0869bbdb6ee2",
+            "public_address": "",
+            "data_plane_observed_at": null
+          }
+        }
+      },
+      "stderr": "",
+      "matches": true
+    },
+    {
+      "at": "2026-09-15T12:50:54.703061+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "load_balancer": {
+            "id": "lb_cc562f7d8be147afae8144555aa7243b",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "subnet_id": "subnet_f74d90cbb5484f7fb37f8a8f6782da1d",
+            "name": "lb02-2b3122-private-reuse",
+            "description": "",
+            "exposure": "LOAD_BALANCER_EXPOSURE_PRIVATE",
+            "flavor": "small",
+            "public_eip_id": "",
+            "private_ip": "10.233.0.200",
+            "listener": {
+              "id": "4d813f9d-4316-4389-ac24-637b584e93d4",
+              "protocol": "LOAD_BALANCER_LISTENER_PROTOCOL_HTTP",
+              "port": 8080
+            },
+            "backends": [
+              {
+                "id": "0934ed17-2ac7-4ee0-a9b9-7214f308870b",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.3",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_a6172d5ee5be434087f939001a435c9e",
+                "state": "available",
+                "reason": "",
+                "observed_at": "2026-09-15T12:50:34.016296Z",
+                "observation_stale": false
+              },
+              {
+                "id": "ffc8fde0-3f10-4850-a3d8-ba3bd870ce6f",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.2",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_7d08b61f4038432a842d2fda525607b9",
+                "state": "available",
+                "reason": "",
+                "observed_at": "2026-09-15T12:50:34.016296Z",
+                "observation_stale": false
+              }
+            ],
+            "health_check": {
+              "protocol": "LOAD_BALANCER_HEALTH_CHECK_PROTOCOL_TCP",
+              "interval_seconds": 5,
+              "timeout_seconds": 3,
+              "unhealthy_threshold": 3,
+              "healthy_threshold": 1
+            },
+            "algorithm": "LOAD_BALANCER_ALGORITHM_ROUND_ROBIN",
+            "state": "RESOURCE_STATE_AVAILABLE",
+            "reason": "",
+            "reason_message": "",
+            "version": "412",
+            "desired_version": "1",
+            "applied_version": "1",
+            "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_CONFIGURED",
+            "data_plane_state": "LOAD_BALANCER_DATA_PLANE_STATE_UNKNOWN",
+            "observed_at": "2026-09-15T12:50:34.016296Z",
+            "observation_stale": false,
+            "created_at": "2026-09-15T05:54:48.265777Z",
+            "updated_at": "2026-09-15T12:50:40.243053Z",
+            "last_operation_id": "8c9ea3f5-dbcf-4b1e-b027-0869bbdb6ee2",
+            "public_address": "",
+            "data_plane_observed_at": null
+          }
+        }
+      },
+      "stderr": "",
+      "matches": true
+    },
+    {
+      "at": "2026-09-15T12:50:59.714605+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "load_balancer": {
+            "id": "lb_cc562f7d8be147afae8144555aa7243b",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "subnet_id": "subnet_f74d90cbb5484f7fb37f8a8f6782da1d",
+            "name": "lb02-2b3122-private-reuse",
+            "description": "",
+            "exposure": "LOAD_BALANCER_EXPOSURE_PRIVATE",
+            "flavor": "small",
+            "public_eip_id": "",
+            "private_ip": "10.233.0.200",
+            "listener": {
+              "id": "4d813f9d-4316-4389-ac24-637b584e93d4",
+              "protocol": "LOAD_BALANCER_LISTENER_PROTOCOL_HTTP",
+              "port": 8080
+            },
+            "backends": [
+              {
+                "id": "0934ed17-2ac7-4ee0-a9b9-7214f308870b",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.3",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_a6172d5ee5be434087f939001a435c9e",
+                "state": "available",
+                "reason": "",
+                "observed_at": "2026-09-15T12:50:34.016296Z",
+                "observation_stale": false
+              },
+              {
+                "id": "ffc8fde0-3f10-4850-a3d8-ba3bd870ce6f",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.2",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_7d08b61f4038432a842d2fda525607b9",
+                "state": "available",
+                "reason": "",
+                "observed_at": "2026-09-15T12:50:34.016296Z",
+                "observation_stale": false
+              }
+            ],
+            "health_check": {
+              "protocol": "LOAD_BALANCER_HEALTH_CHECK_PROTOCOL_TCP",
+              "interval_seconds": 5,
+              "timeout_seconds": 3,
+              "unhealthy_threshold": 3,
+              "healthy_threshold": 1
+            },
+            "algorithm": "LOAD_BALANCER_ALGORITHM_ROUND_ROBIN",
+            "state": "RESOURCE_STATE_AVAILABLE",
+            "reason": "",
+            "reason_message": "",
+            "version": "412",
+            "desired_version": "1",
+            "applied_version": "1",
+            "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_CONFIGURED",
+            "data_plane_state": "LOAD_BALANCER_DATA_PLANE_STATE_UNKNOWN",
+            "observed_at": "2026-09-15T12:50:34.016296Z",
+            "observation_stale": false,
+            "created_at": "2026-09-15T05:54:48.265777Z",
+            "updated_at": "2026-09-15T12:50:40.243053Z",
+            "last_operation_id": "8c9ea3f5-dbcf-4b1e-b027-0869bbdb6ee2",
+            "public_address": "",
+            "data_plane_observed_at": null
+          }
+        }
+      },
+      "stderr": "",
+      "matches": true
+    },
+    {
+      "at": "2026-09-15T12:51:04.726926+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "load_balancer": {
+            "id": "lb_cc562f7d8be147afae8144555aa7243b",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "subnet_id": "subnet_f74d90cbb5484f7fb37f8a8f6782da1d",
+            "name": "lb02-2b3122-private-reuse",
+            "description": "",
+            "exposure": "LOAD_BALANCER_EXPOSURE_PRIVATE",
+            "flavor": "small",
+            "public_eip_id": "",
+            "private_ip": "10.233.0.200",
+            "listener": {
+              "id": "4d813f9d-4316-4389-ac24-637b584e93d4",
+              "protocol": "LOAD_BALANCER_LISTENER_PROTOCOL_HTTP",
+              "port": 8080
+            },
+            "backends": [
+              {
+                "id": "0934ed17-2ac7-4ee0-a9b9-7214f308870b",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.3",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_a6172d5ee5be434087f939001a435c9e",
+                "state": "available",
+                "reason": "",
+                "observed_at": "2026-09-15T12:50:34.016296Z",
+                "observation_stale": false
+              },
+              {
+                "id": "ffc8fde0-3f10-4850-a3d8-ba3bd870ce6f",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.2",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_7d08b61f4038432a842d2fda525607b9",
+                "state": "available",
+                "reason": "",
+                "observed_at": "2026-09-15T12:50:34.016296Z",
+                "observation_stale": false
+              }
+            ],
+            "health_check": {
+              "protocol": "LOAD_BALANCER_HEALTH_CHECK_PROTOCOL_TCP",
+              "interval_seconds": 5,
+              "timeout_seconds": 3,
+              "unhealthy_threshold": 3,
+              "healthy_threshold": 1
+            },
+            "algorithm": "LOAD_BALANCER_ALGORITHM_ROUND_ROBIN",
+            "state": "RESOURCE_STATE_AVAILABLE",
+            "reason": "",
+            "reason_message": "",
+            "version": "412",
+            "desired_version": "1",
+            "applied_version": "1",
+            "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_CONFIGURED",
+            "data_plane_state": "LOAD_BALANCER_DATA_PLANE_STATE_UNKNOWN",
+            "observed_at": "2026-09-15T12:50:34.016296Z",
+            "observation_stale": false,
+            "created_at": "2026-09-15T05:54:48.265777Z",
+            "updated_at": "2026-09-15T12:50:40.243053Z",
+            "last_operation_id": "8c9ea3f5-dbcf-4b1e-b027-0869bbdb6ee2",
+            "public_address": "",
+            "data_plane_observed_at": null
+          }
+        }
+      },
+      "stderr": "",
+      "matches": true
+    },
+    {
+      "at": "2026-09-15T12:51:09.737755+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "load_balancer": {
+            "id": "lb_cc562f7d8be147afae8144555aa7243b",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "subnet_id": "subnet_f74d90cbb5484f7fb37f8a8f6782da1d",
+            "name": "lb02-2b3122-private-reuse",
+            "description": "",
+            "exposure": "LOAD_BALANCER_EXPOSURE_PRIVATE",
+            "flavor": "small",
+            "public_eip_id": "",
+            "private_ip": "10.233.0.200",
+            "listener": {
+              "id": "4d813f9d-4316-4389-ac24-637b584e93d4",
+              "protocol": "LOAD_BALANCER_LISTENER_PROTOCOL_HTTP",
+              "port": 8080
+            },
+            "backends": [
+              {
+                "id": "0934ed17-2ac7-4ee0-a9b9-7214f308870b",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.3",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_a6172d5ee5be434087f939001a435c9e",
+                "state": "available",
+                "reason": "",
+                "observed_at": "2026-09-15T12:50:34.016296Z",
+                "observation_stale": false
+              },
+              {
+                "id": "ffc8fde0-3f10-4850-a3d8-ba3bd870ce6f",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.2",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_7d08b61f4038432a842d2fda525607b9",
+                "state": "available",
+                "reason": "",
+                "observed_at": "2026-09-15T12:50:34.016296Z",
+                "observation_stale": false
+              }
+            ],
+            "health_check": {
+              "protocol": "LOAD_BALANCER_HEALTH_CHECK_PROTOCOL_TCP",
+              "interval_seconds": 5,
+              "timeout_seconds": 3,
+              "unhealthy_threshold": 3,
+              "healthy_threshold": 1
+            },
+            "algorithm": "LOAD_BALANCER_ALGORITHM_ROUND_ROBIN",
+            "state": "RESOURCE_STATE_AVAILABLE",
+            "reason": "",
+            "reason_message": "",
+            "version": "412",
+            "desired_version": "1",
+            "applied_version": "1",
+            "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_CONFIGURED",
+            "data_plane_state": "LOAD_BALANCER_DATA_PLANE_STATE_UNKNOWN",
+            "observed_at": "2026-09-15T12:50:34.016296Z",
+            "observation_stale": false,
+            "created_at": "2026-09-15T05:54:48.265777Z",
+            "updated_at": "2026-09-15T12:50:40.243053Z",
+            "last_operation_id": "8c9ea3f5-dbcf-4b1e-b027-0869bbdb6ee2",
+            "public_address": "",
+            "data_plane_observed_at": null
+          }
+        }
+      },
+      "stderr": "",
+      "matches": true
+    },
+    {
+      "at": "2026-09-15T12:51:14.751713+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "load_balancer": {
+            "id": "lb_cc562f7d8be147afae8144555aa7243b",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "subnet_id": "subnet_f74d90cbb5484f7fb37f8a8f6782da1d",
+            "name": "lb02-2b3122-private-reuse",
+            "description": "",
+            "exposure": "LOAD_BALANCER_EXPOSURE_PRIVATE",
+            "flavor": "small",
+            "public_eip_id": "",
+            "private_ip": "10.233.0.200",
+            "listener": {
+              "id": "4d813f9d-4316-4389-ac24-637b584e93d4",
+              "protocol": "LOAD_BALANCER_LISTENER_PROTOCOL_HTTP",
+              "port": 8080
+            },
+            "backends": [
+              {
+                "id": "0934ed17-2ac7-4ee0-a9b9-7214f308870b",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.3",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_a6172d5ee5be434087f939001a435c9e",
+                "state": "available",
+                "reason": "",
+                "observed_at": "2026-09-15T12:50:34.016296Z",
+                "observation_stale": false
+              },
+              {
+                "id": "ffc8fde0-3f10-4850-a3d8-ba3bd870ce6f",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.2",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_7d08b61f4038432a842d2fda525607b9",
+                "state": "available",
+                "reason": "",
+                "observed_at": "2026-09-15T12:50:34.016296Z",
+                "observation_stale": false
+              }
+            ],
+            "health_check": {
+              "protocol": "LOAD_BALANCER_HEALTH_CHECK_PROTOCOL_TCP",
+              "interval_seconds": 5,
+              "timeout_seconds": 3,
+              "unhealthy_threshold": 3,
+              "healthy_threshold": 1
+            },
+            "algorithm": "LOAD_BALANCER_ALGORITHM_ROUND_ROBIN",
+            "state": "RESOURCE_STATE_AVAILABLE",
+            "reason": "",
+            "reason_message": "",
+            "version": "412",
+            "desired_version": "1",
+            "applied_version": "1",
+            "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_CONFIGURED",
+            "data_plane_state": "LOAD_BALANCER_DATA_PLANE_STATE_UNKNOWN",
+            "observed_at": "2026-09-15T12:50:34.016296Z",
+            "observation_stale": false,
+            "created_at": "2026-09-15T05:54:48.265777Z",
+            "updated_at": "2026-09-15T12:50:40.243053Z",
+            "last_operation_id": "8c9ea3f5-dbcf-4b1e-b027-0869bbdb6ee2",
+            "public_address": "",
+            "data_plane_observed_at": null
+          }
+        }
+      },
+      "stderr": "",
+      "matches": true
+    },
+    {
+      "at": "2026-09-15T12:51:19.763468+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "load_balancer": {
+            "id": "lb_cc562f7d8be147afae8144555aa7243b",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "subnet_id": "subnet_f74d90cbb5484f7fb37f8a8f6782da1d",
+            "name": "lb02-2b3122-private-reuse",
+            "description": "",
+            "exposure": "LOAD_BALANCER_EXPOSURE_PRIVATE",
+            "flavor": "small",
+            "public_eip_id": "",
+            "private_ip": "10.233.0.200",
+            "listener": {
+              "id": "4d813f9d-4316-4389-ac24-637b584e93d4",
+              "protocol": "LOAD_BALANCER_LISTENER_PROTOCOL_HTTP",
+              "port": 8080
+            },
+            "backends": [
+              {
+                "id": "0934ed17-2ac7-4ee0-a9b9-7214f308870b",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.3",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_a6172d5ee5be434087f939001a435c9e",
+                "state": "available",
+                "reason": "",
+                "observed_at": "2026-09-15T12:51:08.752509Z",
+                "observation_stale": false
+              },
+              {
+                "id": "ffc8fde0-3f10-4850-a3d8-ba3bd870ce6f",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.2",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_7d08b61f4038432a842d2fda525607b9",
+                "state": "unavailable",
+                "reason": "BACKEND_IDENTITY_MISMATCH",
+                "observed_at": "2026-09-15T12:51:08.752509Z",
+                "observation_stale": false
+              }
+            ],
+            "health_check": {
+              "protocol": "LOAD_BALANCER_HEALTH_CHECK_PROTOCOL_TCP",
+              "interval_seconds": 5,
+              "timeout_seconds": 3,
+              "unhealthy_threshold": 3,
+              "healthy_threshold": 1
+            },
+            "algorithm": "LOAD_BALANCER_ALGORITHM_ROUND_ROBIN",
+            "state": "RESOURCE_STATE_DEGRADED",
+            "reason": "BACKEND_IDENTITY_MISMATCH",
+            "reason_message": "The backend no longer matches its accepted network identity.",
+            "version": "413",
+            "desired_version": "1",
+            "applied_version": "1",
+            "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_DEGRADED",
+            "data_plane_state": "LOAD_BALANCER_DATA_PLANE_STATE_UNKNOWN",
+            "observed_at": "2026-09-15T12:51:08.752509Z",
+            "observation_stale": false,
+            "created_at": "2026-09-15T05:54:48.265777Z",
+            "updated_at": "2026-09-15T12:51:15.292138Z",
+            "last_operation_id": "8c9ea3f5-dbcf-4b1e-b027-0869bbdb6ee2",
+            "public_address": "",
+            "data_plane_observed_at": null
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T12:51:24.775340+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "load_balancer": {
+            "id": "lb_cc562f7d8be147afae8144555aa7243b",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "subnet_id": "subnet_f74d90cbb5484f7fb37f8a8f6782da1d",
+            "name": "lb02-2b3122-private-reuse",
+            "description": "",
+            "exposure": "LOAD_BALANCER_EXPOSURE_PRIVATE",
+            "flavor": "small",
+            "public_eip_id": "",
+            "private_ip": "10.233.0.200",
+            "listener": {
+              "id": "4d813f9d-4316-4389-ac24-637b584e93d4",
+              "protocol": "LOAD_BALANCER_LISTENER_PROTOCOL_HTTP",
+              "port": 8080
+            },
+            "backends": [
+              {
+                "id": "0934ed17-2ac7-4ee0-a9b9-7214f308870b",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.3",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_a6172d5ee5be434087f939001a435c9e",
+                "state": "available",
+                "reason": "",
+                "observed_at": "2026-09-15T12:51:08.752509Z",
+                "observation_stale": false
+              },
+              {
+                "id": "ffc8fde0-3f10-4850-a3d8-ba3bd870ce6f",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.2",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_7d08b61f4038432a842d2fda525607b9",
+                "state": "unavailable",
+                "reason": "BACKEND_IDENTITY_MISMATCH",
+                "observed_at": "2026-09-15T12:51:08.752509Z",
+                "observation_stale": false
+              }
+            ],
+            "health_check": {
+              "protocol": "LOAD_BALANCER_HEALTH_CHECK_PROTOCOL_TCP",
+              "interval_seconds": 5,
+              "timeout_seconds": 3,
+              "unhealthy_threshold": 3,
+              "healthy_threshold": 1
+            },
+            "algorithm": "LOAD_BALANCER_ALGORITHM_ROUND_ROBIN",
+            "state": "RESOURCE_STATE_DEGRADED",
+            "reason": "BACKEND_IDENTITY_MISMATCH",
+            "reason_message": "The backend no longer matches its accepted network identity.",
+            "version": "413",
+            "desired_version": "1",
+            "applied_version": "1",
+            "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_DEGRADED",
+            "data_plane_state": "LOAD_BALANCER_DATA_PLANE_STATE_UNKNOWN",
+            "observed_at": "2026-09-15T12:51:08.752509Z",
+            "observation_stale": false,
+            "created_at": "2026-09-15T05:54:48.265777Z",
+            "updated_at": "2026-09-15T12:51:15.292138Z",
+            "last_operation_id": "8c9ea3f5-dbcf-4b1e-b027-0869bbdb6ee2",
+            "public_address": "",
+            "data_plane_observed_at": null
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T12:51:29.786958+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "load_balancer": {
+            "id": "lb_cc562f7d8be147afae8144555aa7243b",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "subnet_id": "subnet_f74d90cbb5484f7fb37f8a8f6782da1d",
+            "name": "lb02-2b3122-private-reuse",
+            "description": "",
+            "exposure": "LOAD_BALANCER_EXPOSURE_PRIVATE",
+            "flavor": "small",
+            "public_eip_id": "",
+            "private_ip": "10.233.0.200",
+            "listener": {
+              "id": "4d813f9d-4316-4389-ac24-637b584e93d4",
+              "protocol": "LOAD_BALANCER_LISTENER_PROTOCOL_HTTP",
+              "port": 8080
+            },
+            "backends": [
+              {
+                "id": "0934ed17-2ac7-4ee0-a9b9-7214f308870b",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.3",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_a6172d5ee5be434087f939001a435c9e",
+                "state": "available",
+                "reason": "",
+                "observed_at": "2026-09-15T12:51:08.752509Z",
+                "observation_stale": false
+              },
+              {
+                "id": "ffc8fde0-3f10-4850-a3d8-ba3bd870ce6f",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.2",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_7d08b61f4038432a842d2fda525607b9",
+                "state": "unavailable",
+                "reason": "BACKEND_IDENTITY_MISMATCH",
+                "observed_at": "2026-09-15T12:51:08.752509Z",
+                "observation_stale": false
+              }
+            ],
+            "health_check": {
+              "protocol": "LOAD_BALANCER_HEALTH_CHECK_PROTOCOL_TCP",
+              "interval_seconds": 5,
+              "timeout_seconds": 3,
+              "unhealthy_threshold": 3,
+              "healthy_threshold": 1
+            },
+            "algorithm": "LOAD_BALANCER_ALGORITHM_ROUND_ROBIN",
+            "state": "RESOURCE_STATE_DEGRADED",
+            "reason": "BACKEND_IDENTITY_MISMATCH",
+            "reason_message": "The backend no longer matches its accepted network identity.",
+            "version": "413",
+            "desired_version": "1",
+            "applied_version": "1",
+            "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_DEGRADED",
+            "data_plane_state": "LOAD_BALANCER_DATA_PLANE_STATE_UNKNOWN",
+            "observed_at": "2026-09-15T12:51:08.752509Z",
+            "observation_stale": false,
+            "created_at": "2026-09-15T05:54:48.265777Z",
+            "updated_at": "2026-09-15T12:51:15.292138Z",
+            "last_operation_id": "8c9ea3f5-dbcf-4b1e-b027-0869bbdb6ee2",
+            "public_address": "",
+            "data_plane_observed_at": null
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T12:51:34.798373+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "load_balancer": {
+            "id": "lb_cc562f7d8be147afae8144555aa7243b",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "subnet_id": "subnet_f74d90cbb5484f7fb37f8a8f6782da1d",
+            "name": "lb02-2b3122-private-reuse",
+            "description": "",
+            "exposure": "LOAD_BALANCER_EXPOSURE_PRIVATE",
+            "flavor": "small",
+            "public_eip_id": "",
+            "private_ip": "10.233.0.200",
+            "listener": {
+              "id": "4d813f9d-4316-4389-ac24-637b584e93d4",
+              "protocol": "LOAD_BALANCER_LISTENER_PROTOCOL_HTTP",
+              "port": 8080
+            },
+            "backends": [
+              {
+                "id": "0934ed17-2ac7-4ee0-a9b9-7214f308870b",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.3",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_a6172d5ee5be434087f939001a435c9e",
+                "state": "available",
+                "reason": "",
+                "observed_at": "2026-09-15T12:51:08.752509Z",
+                "observation_stale": false
+              },
+              {
+                "id": "ffc8fde0-3f10-4850-a3d8-ba3bd870ce6f",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.2",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_7d08b61f4038432a842d2fda525607b9",
+                "state": "unavailable",
+                "reason": "BACKEND_IDENTITY_MISMATCH",
+                "observed_at": "2026-09-15T12:51:08.752509Z",
+                "observation_stale": false
+              }
+            ],
+            "health_check": {
+              "protocol": "LOAD_BALANCER_HEALTH_CHECK_PROTOCOL_TCP",
+              "interval_seconds": 5,
+              "timeout_seconds": 3,
+              "unhealthy_threshold": 3,
+              "healthy_threshold": 1
+            },
+            "algorithm": "LOAD_BALANCER_ALGORITHM_ROUND_ROBIN",
+            "state": "RESOURCE_STATE_DEGRADED",
+            "reason": "BACKEND_IDENTITY_MISMATCH",
+            "reason_message": "The backend no longer matches its accepted network identity.",
+            "version": "413",
+            "desired_version": "1",
+            "applied_version": "1",
+            "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_DEGRADED",
+            "data_plane_state": "LOAD_BALANCER_DATA_PLANE_STATE_UNKNOWN",
+            "observed_at": "2026-09-15T12:51:08.752509Z",
+            "observation_stale": false,
+            "created_at": "2026-09-15T05:54:48.265777Z",
+            "updated_at": "2026-09-15T12:51:15.292138Z",
+            "last_operation_id": "8c9ea3f5-dbcf-4b1e-b027-0869bbdb6ee2",
+            "public_address": "",
+            "data_plane_observed_at": null
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T12:51:39.811603+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "load_balancer": {
+            "id": "lb_cc562f7d8be147afae8144555aa7243b",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "subnet_id": "subnet_f74d90cbb5484f7fb37f8a8f6782da1d",
+            "name": "lb02-2b3122-private-reuse",
+            "description": "",
+            "exposure": "LOAD_BALANCER_EXPOSURE_PRIVATE",
+            "flavor": "small",
+            "public_eip_id": "",
+            "private_ip": "10.233.0.200",
+            "listener": {
+              "id": "4d813f9d-4316-4389-ac24-637b584e93d4",
+              "protocol": "LOAD_BALANCER_LISTENER_PROTOCOL_HTTP",
+              "port": 8080
+            },
+            "backends": [
+              {
+                "id": "0934ed17-2ac7-4ee0-a9b9-7214f308870b",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.3",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_a6172d5ee5be434087f939001a435c9e",
+                "state": "available",
+                "reason": "",
+                "observed_at": "2026-09-15T12:51:08.752509Z",
+                "observation_stale": false
+              },
+              {
+                "id": "ffc8fde0-3f10-4850-a3d8-ba3bd870ce6f",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.2",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_7d08b61f4038432a842d2fda525607b9",
+                "state": "unavailable",
+                "reason": "BACKEND_IDENTITY_MISMATCH",
+                "observed_at": "2026-09-15T12:51:08.752509Z",
+                "observation_stale": false
+              }
+            ],
+            "health_check": {
+              "protocol": "LOAD_BALANCER_HEALTH_CHECK_PROTOCOL_TCP",
+              "interval_seconds": 5,
+              "timeout_seconds": 3,
+              "unhealthy_threshold": 3,
+              "healthy_threshold": 1
+            },
+            "algorithm": "LOAD_BALANCER_ALGORITHM_ROUND_ROBIN",
+            "state": "RESOURCE_STATE_DEGRADED",
+            "reason": "BACKEND_IDENTITY_MISMATCH",
+            "reason_message": "The backend no longer matches its accepted network identity.",
+            "version": "413",
+            "desired_version": "1",
+            "applied_version": "1",
+            "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_DEGRADED",
+            "data_plane_state": "LOAD_BALANCER_DATA_PLANE_STATE_UNKNOWN",
+            "observed_at": "2026-09-15T12:51:08.752509Z",
+            "observation_stale": false,
+            "created_at": "2026-09-15T05:54:48.265777Z",
+            "updated_at": "2026-09-15T12:51:15.292138Z",
+            "last_operation_id": "8c9ea3f5-dbcf-4b1e-b027-0869bbdb6ee2",
+            "public_address": "",
+            "data_plane_observed_at": null
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T12:51:44.824159+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "load_balancer": {
+            "id": "lb_cc562f7d8be147afae8144555aa7243b",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "subnet_id": "subnet_f74d90cbb5484f7fb37f8a8f6782da1d",
+            "name": "lb02-2b3122-private-reuse",
+            "description": "",
+            "exposure": "LOAD_BALANCER_EXPOSURE_PRIVATE",
+            "flavor": "small",
+            "public_eip_id": "",
+            "private_ip": "10.233.0.200",
+            "listener": {
+              "id": "4d813f9d-4316-4389-ac24-637b584e93d4",
+              "protocol": "LOAD_BALANCER_LISTENER_PROTOCOL_HTTP",
+              "port": 8080
+            },
+            "backends": [
+              {
+                "id": "0934ed17-2ac7-4ee0-a9b9-7214f308870b",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.3",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_a6172d5ee5be434087f939001a435c9e",
+                "state": "available",
+                "reason": "",
+                "observed_at": "2026-09-15T12:51:08.752509Z",
+                "observation_stale": false
+              },
+              {
+                "id": "ffc8fde0-3f10-4850-a3d8-ba3bd870ce6f",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.2",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_7d08b61f4038432a842d2fda525607b9",
+                "state": "unavailable",
+                "reason": "BACKEND_IDENTITY_MISMATCH",
+                "observed_at": "2026-09-15T12:51:08.752509Z",
+                "observation_stale": false
+              }
+            ],
+            "health_check": {
+              "protocol": "LOAD_BALANCER_HEALTH_CHECK_PROTOCOL_TCP",
+              "interval_seconds": 5,
+              "timeout_seconds": 3,
+              "unhealthy_threshold": 3,
+              "healthy_threshold": 1
+            },
+            "algorithm": "LOAD_BALANCER_ALGORITHM_ROUND_ROBIN",
+            "state": "RESOURCE_STATE_DEGRADED",
+            "reason": "BACKEND_IDENTITY_MISMATCH",
+            "reason_message": "The backend no longer matches its accepted network identity.",
+            "version": "413",
+            "desired_version": "1",
+            "applied_version": "1",
+            "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_DEGRADED",
+            "data_plane_state": "LOAD_BALANCER_DATA_PLANE_STATE_UNKNOWN",
+            "observed_at": "2026-09-15T12:51:08.752509Z",
+            "observation_stale": false,
+            "created_at": "2026-09-15T05:54:48.265777Z",
+            "updated_at": "2026-09-15T12:51:15.292138Z",
+            "last_operation_id": "8c9ea3f5-dbcf-4b1e-b027-0869bbdb6ee2",
+            "public_address": "",
+            "data_plane_observed_at": null
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T12:51:49.837413+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "load_balancer": {
+            "id": "lb_cc562f7d8be147afae8144555aa7243b",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "subnet_id": "subnet_f74d90cbb5484f7fb37f8a8f6782da1d",
+            "name": "lb02-2b3122-private-reuse",
+            "description": "",
+            "exposure": "LOAD_BALANCER_EXPOSURE_PRIVATE",
+            "flavor": "small",
+            "public_eip_id": "",
+            "private_ip": "10.233.0.200",
+            "listener": {
+              "id": "4d813f9d-4316-4389-ac24-637b584e93d4",
+              "protocol": "LOAD_BALANCER_LISTENER_PROTOCOL_HTTP",
+              "port": 8080
+            },
+            "backends": [
+              {
+                "id": "0934ed17-2ac7-4ee0-a9b9-7214f308870b",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.3",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_a6172d5ee5be434087f939001a435c9e",
+                "state": "available",
+                "reason": "",
+                "observed_at": "2026-09-15T12:51:43.372565Z",
+                "observation_stale": false
+              },
+              {
+                "id": "ffc8fde0-3f10-4850-a3d8-ba3bd870ce6f",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.2",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_7d08b61f4038432a842d2fda525607b9",
+                "state": "available",
+                "reason": "",
+                "observed_at": "2026-09-15T12:51:43.372565Z",
+                "observation_stale": false
+              }
+            ],
+            "health_check": {
+              "protocol": "LOAD_BALANCER_HEALTH_CHECK_PROTOCOL_TCP",
+              "interval_seconds": 5,
+              "timeout_seconds": 3,
+              "unhealthy_threshold": 3,
+              "healthy_threshold": 1
+            },
+            "algorithm": "LOAD_BALANCER_ALGORITHM_ROUND_ROBIN",
+            "state": "RESOURCE_STATE_DEGRADED",
+            "reason": "PROVIDER_NOT_READY",
+            "reason_message": "The requested configuration is not ready yet.",
+            "version": "414",
+            "desired_version": "1",
+            "applied_version": "1",
+            "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_DEGRADED",
+            "data_plane_state": "LOAD_BALANCER_DATA_PLANE_STATE_UNKNOWN",
+            "observed_at": "2026-09-15T12:51:43.372565Z",
+            "observation_stale": false,
+            "created_at": "2026-09-15T05:54:48.265777Z",
+            "updated_at": "2026-09-15T12:51:48.445340Z",
+            "last_operation_id": "8c9ea3f5-dbcf-4b1e-b027-0869bbdb6ee2",
+            "public_address": "",
+            "data_plane_observed_at": null
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T12:51:54.853019+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "load_balancer": {
+            "id": "lb_cc562f7d8be147afae8144555aa7243b",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "subnet_id": "subnet_f74d90cbb5484f7fb37f8a8f6782da1d",
+            "name": "lb02-2b3122-private-reuse",
+            "description": "",
+            "exposure": "LOAD_BALANCER_EXPOSURE_PRIVATE",
+            "flavor": "small",
+            "public_eip_id": "",
+            "private_ip": "10.233.0.200",
+            "listener": {
+              "id": "4d813f9d-4316-4389-ac24-637b584e93d4",
+              "protocol": "LOAD_BALANCER_LISTENER_PROTOCOL_HTTP",
+              "port": 8080
+            },
+            "backends": [
+              {
+                "id": "0934ed17-2ac7-4ee0-a9b9-7214f308870b",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.3",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_a6172d5ee5be434087f939001a435c9e",
+                "state": "available",
+                "reason": "",
+                "observed_at": "2026-09-15T12:51:43.372565Z",
+                "observation_stale": false
+              },
+              {
+                "id": "ffc8fde0-3f10-4850-a3d8-ba3bd870ce6f",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.2",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_7d08b61f4038432a842d2fda525607b9",
+                "state": "available",
+                "reason": "",
+                "observed_at": "2026-09-15T12:51:43.372565Z",
+                "observation_stale": false
+              }
+            ],
+            "health_check": {
+              "protocol": "LOAD_BALANCER_HEALTH_CHECK_PROTOCOL_TCP",
+              "interval_seconds": 5,
+              "timeout_seconds": 3,
+              "unhealthy_threshold": 3,
+              "healthy_threshold": 1
+            },
+            "algorithm": "LOAD_BALANCER_ALGORITHM_ROUND_ROBIN",
+            "state": "RESOURCE_STATE_DEGRADED",
+            "reason": "PROVIDER_NOT_READY",
+            "reason_message": "The requested configuration is not ready yet.",
+            "version": "414",
+            "desired_version": "1",
+            "applied_version": "1",
+            "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_DEGRADED",
+            "data_plane_state": "LOAD_BALANCER_DATA_PLANE_STATE_UNKNOWN",
+            "observed_at": "2026-09-15T12:51:43.372565Z",
+            "observation_stale": false,
+            "created_at": "2026-09-15T05:54:48.265777Z",
+            "updated_at": "2026-09-15T12:51:48.445340Z",
+            "last_operation_id": "8c9ea3f5-dbcf-4b1e-b027-0869bbdb6ee2",
+            "public_address": "",
+            "data_plane_observed_at": null
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T12:51:59.870595+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "load_balancer": {
+            "id": "lb_cc562f7d8be147afae8144555aa7243b",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "subnet_id": "subnet_f74d90cbb5484f7fb37f8a8f6782da1d",
+            "name": "lb02-2b3122-private-reuse",
+            "description": "",
+            "exposure": "LOAD_BALANCER_EXPOSURE_PRIVATE",
+            "flavor": "small",
+            "public_eip_id": "",
+            "private_ip": "10.233.0.200",
+            "listener": {
+              "id": "4d813f9d-4316-4389-ac24-637b584e93d4",
+              "protocol": "LOAD_BALANCER_LISTENER_PROTOCOL_HTTP",
+              "port": 8080
+            },
+            "backends": [
+              {
+                "id": "0934ed17-2ac7-4ee0-a9b9-7214f308870b",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.3",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_a6172d5ee5be434087f939001a435c9e",
+                "state": "available",
+                "reason": "",
+                "observed_at": "2026-09-15T12:51:43.372565Z",
+                "observation_stale": false
+              },
+              {
+                "id": "ffc8fde0-3f10-4850-a3d8-ba3bd870ce6f",
+                "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+                "address": "10.233.1.2",
+                "port": 8080,
+                "weight": 1,
+                "attachment_id": "att_7d08b61f4038432a842d2fda525607b9",
+                "state": "available",
+                "reason": "",
+                "observed_at": "2026-09-15T12:51:43.372565Z",
+                "observation_stale": false
+              }
+            ],
+            "health_check": {
+              "protocol": "LOAD_BALANCER_HEALTH_CHECK_PROTOCOL_TCP",
+              "interval_seconds": 5,
+              "timeout_seconds": 3,
+              "unhealthy_threshold": 3,
+              "healthy_threshold": 1
+            },
+            "algorithm": "LOAD_BALANCER_ALGORITHM_ROUND_ROBIN",
+            "state": "RESOURCE_STATE_DEGRADED",
+            "reason": "PROVIDER_NOT_READY",
+            "reason_message": "The requested configuration is not ready yet.",
+            "version": "414",
+            "desired_version": "1",
+            "applied_version": "1",
+            "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_DEGRADED",
+            "data_plane_state": "LOAD_BALANCER_DATA_PLANE_STATE_UNKNOWN",
+            "observed_at": "2026-09-15T12:51:43.372565Z",
+            "observation_stale": false,
+            "created_at": "2026-09-15T05:54:48.265777Z",
+            "updated_at": "2026-09-15T12:51:48.445340Z",
+            "last_operation_id": "8c9ea3f5-dbcf-4b1e-b027-0869bbdb6ee2",
+            "public_address": "",
+            "data_plane_observed_at": null
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    }
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "at": "2026-09-15T03:10:16.925532+00:00",
+  "source_run": "20260915T025202Z-d88ee066",
+  "attempt": "audit-final-retry-01",
+  "exit": 75,
+  "full_suite": "not_verified",
+  "failures": [
+    {
+      "test": "TestBaseConnectivityServiceProcessesRecoverEveryDurableBoundary/snat_POST_success_response_lost",
+      "package": "github.com/zhangzhe-ctrl/ani-network-service/internal/data"
+    },
+    {
+      "test": "TestBaseConnectivityServiceProcessesRecoverEveryDurableBoundary/eip_POST_accepted_success_after_process_kill",
+      "package": "github.com/zhangzhe-ctrl/ani-network-service/internal/data"
+    },
+    {
+      "test": "TestBaseConnectivityServiceProcessesRecoverEveryDurableBoundary/partial_unknown_EIP_termination_before_late_success",
+      "package": "github.com/zhangzhe-ctrl/ani-network-service/internal/data"
+    },
+    {
+      "test": "TestBaseConnectivityServiceProcessesRecoverEveryDurableBoundary/snats_DELETE_success_response_lost",
+      "package": "github.com/zhangzhe-ctrl/ani-network-service/internal/data"
+    },
+    {
+      "test": "TestBaseConnectivityServiceProcessesRecoverEveryDurableBoundary/eips_DELETE_success_response_lost",
+      "package": "github.com/zhangzhe-ctrl/ani-network-service/internal/data"
+    },
+    {
+      "test": "TestBaseConnectivityServiceProcessesRecoverEveryDurableBoundary/vpcs_DELETE_success_response_lost",
+      "package": "github.com/zhangzhe-ctrl/ani-network-service/internal/data"
+    },
+    {
+      "test": "TestBaseConnectivityServiceProcessesRecoverEveryDurableBoundary/termination_before_any_CR_process_recovery",
+      "package": "github.com/zhangzhe-ctrl/ani-network-service/internal/data"
+    },
+    {
+      "test": "TestBaseConnectivityServiceProcessesRecoverEveryDurableBoundary",
+      "package": "github.com/zhangzhe-ctrl/ani-network-service/internal/data"
+    },
+    {
+      "test": "TestEgressServiceProcessesRecoverLostCreateDeleteAndTombstone",
+      "package": "github.com/zhangzhe-ctrl/ani-network-service/internal/data"
+    }
+  ],
+  "passed_test_events": 321,
+  "observed_failures": "process recovery binaries under /tmp vanished during test; parent directories absent; root cause ownership not established",
+  "final_stop": "resource guard load1 > 6 for >30 seconds",
+  "next_execution_change": "use a task-owned TMPDIR outside /tmp, with unchanged source and resource protection"
+}

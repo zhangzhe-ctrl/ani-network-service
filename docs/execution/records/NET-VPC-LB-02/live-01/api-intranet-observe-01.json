@@ -1,0 +1,42 @@
+[
+  {
+    "method": "GetIntranetAddressPool",
+    "at": "2026-09-14T19:35:50.044721+00:00",
+    "command": [
+      "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/lb-api",
+      "call",
+      "-target",
+      "unix:///home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/platform.sock",
+      "-service",
+      "PlatformNetworkService",
+      "-method",
+      "GetIntranetAddressPool"
+    ],
+    "request": {
+      "pool_id": "pool_f6c078d198ae4ea1be6f43cfad8f9934"
+    },
+    "exit": 0,
+    "stdout": "{\"code\":\"OK\",\"response\":{\"resource\":{\"id\":\"pool_f6c078d198ae4ea1be6f43cfad8f9934\",\"cluster_id\":\"lb02-09141908-2b3122\",\"name\":\"lb02-09141908-2b3122-intranet\",\"description\":\"NET-VPC-LB-02 isolated API live validation\",\"state\":\"RESOURCE_STATE_PROVISIONING\",\"reason\":\"PROVIDER_UNAVAILABLE\",\"reason_message\":\"The network provider is temporarily unavailable.\",\"version\":\"5\",\"created_at\":\"2026-09-14T19:34:54.678021Z\",\"updated_at\":\"2026-09-14T19:35:35.433172Z\",\"observed_at\":null,\"observation_stale\":true,\"last_operation_id\":\"acc683b6-f1c9-4270-83ff-cb676b3ba700\",\"intranet_pool\":{\"cidr\":\"10.242.252.0/24\",\"ovn_gateway_ip\":\"10.242.252.1\",\"excluded_ips\":[\"10.242.252.1\"],\"default_vpc_name\":\"kcn-cluster\",\"default_vpc_uid\":\"a852bc64-3d41-4925-b6a1-de3db56e5a76\",\"intranet_networks\":[\"10.96.0.0/16\",\"172.16.101.0/24\",\"172.16.201.0/24\",\"172.16.202.0/24\"],\"allocation_enabled\":false,\"is_default\":false,\"config_revision\":\"1\",\"verification\":null,\"topology_fingerprint\":\"cc6c57cb4bc2bdd2638664adf44d13f7ad2a3b48b2e155f97b881a7302fee542\",\"observed_provider_images\":[],\"scope\":\"intranet\"}}}}\n",
+    "stderr": ""
+  },
+  {
+    "method": "GetPlatformOperation",
+    "at": "2026-09-14T19:35:50.628508+00:00",
+    "command": [
+      "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/lb-api",
+      "call",
+      "-target",
+      "unix:///home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/platform.sock",
+      "-service",
+      "PlatformNetworkService",
+      "-method",
+      "GetPlatformOperation"
+    ],
+    "request": {
+      "operation_id": "acc683b6-f1c9-4270-83ff-cb676b3ba700"
+    },
+    "exit": 0,
+    "stdout": "{\"code\":\"OK\",\"response\":{\"operation\":{\"id\":\"acc683b6-f1c9-4270-83ff-cb676b3ba700\",\"resource_id\":\"pool_f6c078d198ae4ea1be6f43cfad8f9934\",\"kind\":\"OPERATION_KIND_CREATE_INTRANET_POOL\",\"state\":\"OPERATION_STATE_RUNNING\",\"reason\":\"PROVIDER_UNAVAILABLE\",\"reason_message\":\"The network provider is temporarily unavailable.\",\"created_at\":\"2026-09-14T19:34:54.678021Z\",\"updated_at\":\"2026-09-14T19:35:44.923697Z\",\"completed_at\":null,\"next_attempt_at\":\"2026-09-14T19:35:44.878711Z\"}}}\n",
+    "stderr": ""
+  }
+]

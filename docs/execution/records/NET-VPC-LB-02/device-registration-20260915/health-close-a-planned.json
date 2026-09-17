@@ -1,0 +1,27 @@
+{
+  "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+  "commands": [
+    {
+      "pod": "lb02-2b3122-base-a",
+      "label": "close-test-listener",
+      "argv": [
+        "/bin/sh",
+        "-c",
+        "kill -USR1 1; sleep 2"
+      ]
+    },
+    {
+      "pod": "lb02-2b3122-base-a",
+      "label": "listener-closed-loopback",
+      "argv": [
+        "/probe",
+        "request",
+        "http://127.0.0.1:8080/?nonce=lb02-health-a-closed"
+      ],
+      "expect_exit": 2,
+      "expect_contains": [
+        "connection refused"
+      ]
+    }
+  ]
+}

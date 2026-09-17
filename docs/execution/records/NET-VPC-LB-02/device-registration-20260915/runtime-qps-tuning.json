@@ -1,0 +1,14 @@
+{
+  "at": "2026-09-15T02:25:31.823337+00:00",
+  "hypothesis": "full audit up to 7.52 seconds plus direct identity reads exceeds 10 second worker request budget at shared client QPS 5; increase isolated client QPS to 10 and burst to 20 without changing timeout, leases, freshness or readiness checks",
+  "before_qps": 5,
+  "after_qps": 10,
+  "before_burst": 10,
+  "after_burst": 20,
+  "request_timeout_seconds": 10,
+  "lease_seconds": 40,
+  "before_config_sha256": "8003e9e7b65167af092b66ab8c9f87150c3297326b0cb1378af999a27eb2ae0b",
+  "after_config_sha256": "b0be943cfbd1549f02d93747883653ed561ae57780135330fdcac7e74884a2eb",
+  "database_preserved": true,
+  "pending_operations_preserved": true
+}

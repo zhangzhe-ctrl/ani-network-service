@@ -1,0 +1,1072 @@
+{
+  "execution_host": "ubuntu",
+  "command": [
+    "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/lb-api",
+    "call",
+    "-target",
+    "unix:///home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-b.sock",
+    "-service",
+    "NetworkService",
+    "-method",
+    "GetVPC"
+  ],
+  "request": {
+    "vpc_id": "vpc_a43ae8279bd54524bcf3f7f137e6a2d4"
+  },
+  "expected": {
+    "response.vpc.base_connectivity.state": "ready"
+  },
+  "result": "fail",
+  "records": [
+    {
+      "at": "2026-09-15T05:42:03.257741+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_a43ae8279bd54524bcf3f7f137e6a2d4",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "name": "lb02-2b3122-base-cleanup",
+            "description": "Run-owned U09 system base cleanup fixture, no workloads",
+            "cidr": "10.233.32.0/20",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "BASE_CONNECTIVITY_NOT_READY",
+            "created_at": "2026-09-15T05:41:39.724183Z",
+            "updated_at": "2026-09-15T05:41:57.466347Z",
+            "version": "5",
+            "observed_at": "2026-09-15T05:41:57.396263Z",
+            "observation_stale": false,
+            "last_operation_id": "2e80c443-6189-4bf9-a2f4-895f331e1fd2",
+            "subnet_count": "0",
+            "reason_message": "VPC base connectivity is not ready",
+            "base_connectivity": {
+              "state": "pending",
+              "reason": "BASE_CONNECTIVITY_NOT_READY",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": "VPC base connectivity is not ready"
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:42:08.270410+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_a43ae8279bd54524bcf3f7f137e6a2d4",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "name": "lb02-2b3122-base-cleanup",
+            "description": "Run-owned U09 system base cleanup fixture, no workloads",
+            "cidr": "10.233.32.0/20",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_RESULT_UNKNOWN",
+            "created_at": "2026-09-15T05:41:39.724183Z",
+            "updated_at": "2026-09-15T05:42:05.880749Z",
+            "version": "6",
+            "observed_at": "2026-09-15T05:42:05.735432Z",
+            "observation_stale": false,
+            "last_operation_id": "2e80c443-6189-4bf9-a2f4-895f331e1fd2",
+            "subnet_count": "0",
+            "reason_message": "The external request result is unknown; Network is observing the original request.",
+            "base_connectivity": {
+              "state": "pending",
+              "reason": "PROVIDER_RESULT_UNKNOWN",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": "The external request result is unknown; Network is observing the original request."
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:42:13.280630+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_a43ae8279bd54524bcf3f7f137e6a2d4",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "name": "lb02-2b3122-base-cleanup",
+            "description": "Run-owned U09 system base cleanup fixture, no workloads",
+            "cidr": "10.233.32.0/20",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_RESULT_UNKNOWN",
+            "created_at": "2026-09-15T05:41:39.724183Z",
+            "updated_at": "2026-09-15T05:42:05.880749Z",
+            "version": "6",
+            "observed_at": "2026-09-15T05:42:05.735432Z",
+            "observation_stale": false,
+            "last_operation_id": "2e80c443-6189-4bf9-a2f4-895f331e1fd2",
+            "subnet_count": "0",
+            "reason_message": "The external request result is unknown; Network is observing the original request.",
+            "base_connectivity": {
+              "state": "pending",
+              "reason": "PROVIDER_RESULT_UNKNOWN",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": "The external request result is unknown; Network is observing the original request."
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:42:18.290562+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_a43ae8279bd54524bcf3f7f137e6a2d4",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "name": "lb02-2b3122-base-cleanup",
+            "description": "Run-owned U09 system base cleanup fixture, no workloads",
+            "cidr": "10.233.32.0/20",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_RESULT_UNKNOWN",
+            "created_at": "2026-09-15T05:41:39.724183Z",
+            "updated_at": "2026-09-15T05:42:05.880749Z",
+            "version": "6",
+            "observed_at": "2026-09-15T05:42:05.735432Z",
+            "observation_stale": false,
+            "last_operation_id": "2e80c443-6189-4bf9-a2f4-895f331e1fd2",
+            "subnet_count": "0",
+            "reason_message": "The external request result is unknown; Network is observing the original request.",
+            "base_connectivity": {
+              "state": "pending",
+              "reason": "PROVIDER_RESULT_UNKNOWN",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": "The external request result is unknown; Network is observing the original request."
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:42:23.303317+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_a43ae8279bd54524bcf3f7f137e6a2d4",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "name": "lb02-2b3122-base-cleanup",
+            "description": "Run-owned U09 system base cleanup fixture, no workloads",
+            "cidr": "10.233.32.0/20",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_RESULT_UNKNOWN",
+            "created_at": "2026-09-15T05:41:39.724183Z",
+            "updated_at": "2026-09-15T05:42:05.880749Z",
+            "version": "6",
+            "observed_at": "2026-09-15T05:42:05.735432Z",
+            "observation_stale": false,
+            "last_operation_id": "2e80c443-6189-4bf9-a2f4-895f331e1fd2",
+            "subnet_count": "0",
+            "reason_message": "The external request result is unknown; Network is observing the original request.",
+            "base_connectivity": {
+              "state": "pending",
+              "reason": "PROVIDER_RESULT_UNKNOWN",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": "The external request result is unknown; Network is observing the original request."
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:42:28.315875+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_a43ae8279bd54524bcf3f7f137e6a2d4",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "name": "lb02-2b3122-base-cleanup",
+            "description": "Run-owned U09 system base cleanup fixture, no workloads",
+            "cidr": "10.233.32.0/20",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "created_at": "2026-09-15T05:41:39.724183Z",
+            "updated_at": "2026-09-15T05:42:25.771674Z",
+            "version": "7",
+            "observed_at": "2026-09-15T05:42:25.658996Z",
+            "observation_stale": false,
+            "last_operation_id": "2e80c443-6189-4bf9-a2f4-895f331e1fd2",
+            "subnet_count": "0",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "base_connectivity": {
+              "state": "pending",
+              "reason": "PROVIDER_UNAVAILABLE",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": "The network provider is temporarily unavailable."
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:42:33.326862+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_a43ae8279bd54524bcf3f7f137e6a2d4",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "name": "lb02-2b3122-base-cleanup",
+            "description": "Run-owned U09 system base cleanup fixture, no workloads",
+            "cidr": "10.233.32.0/20",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "created_at": "2026-09-15T05:41:39.724183Z",
+            "updated_at": "2026-09-15T05:42:31.324013Z",
+            "version": "8",
+            "observed_at": "2026-09-15T05:42:31.221371Z",
+            "observation_stale": false,
+            "last_operation_id": "2e80c443-6189-4bf9-a2f4-895f331e1fd2",
+            "subnet_count": "0",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "base_connectivity": {
+              "state": "pending",
+              "reason": "PROVIDER_UNAVAILABLE",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": "The network provider is temporarily unavailable."
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:42:38.336647+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_a43ae8279bd54524bcf3f7f137e6a2d4",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "name": "lb02-2b3122-base-cleanup",
+            "description": "Run-owned U09 system base cleanup fixture, no workloads",
+            "cidr": "10.233.32.0/20",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "created_at": "2026-09-15T05:41:39.724183Z",
+            "updated_at": "2026-09-15T05:42:31.324013Z",
+            "version": "8",
+            "observed_at": "2026-09-15T05:42:31.221371Z",
+            "observation_stale": false,
+            "last_operation_id": "2e80c443-6189-4bf9-a2f4-895f331e1fd2",
+            "subnet_count": "0",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "base_connectivity": {
+              "state": "pending",
+              "reason": "PROVIDER_UNAVAILABLE",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": "The network provider is temporarily unavailable."
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:42:43.346238+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_a43ae8279bd54524bcf3f7f137e6a2d4",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "name": "lb02-2b3122-base-cleanup",
+            "description": "Run-owned U09 system base cleanup fixture, no workloads",
+            "cidr": "10.233.32.0/20",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "created_at": "2026-09-15T05:41:39.724183Z",
+            "updated_at": "2026-09-15T05:42:31.324013Z",
+            "version": "8",
+            "observed_at": "2026-09-15T05:42:31.221371Z",
+            "observation_stale": false,
+            "last_operation_id": "2e80c443-6189-4bf9-a2f4-895f331e1fd2",
+            "subnet_count": "0",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "base_connectivity": {
+              "state": "pending",
+              "reason": "PROVIDER_UNAVAILABLE",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": "The network provider is temporarily unavailable."
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:42:48.357396+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_a43ae8279bd54524bcf3f7f137e6a2d4",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "name": "lb02-2b3122-base-cleanup",
+            "description": "Run-owned U09 system base cleanup fixture, no workloads",
+            "cidr": "10.233.32.0/20",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "BASE_CONNECTIVITY_NOT_READY",
+            "created_at": "2026-09-15T05:41:39.724183Z",
+            "updated_at": "2026-09-15T05:42:46.522240Z",
+            "version": "9",
+            "observed_at": "2026-09-15T05:42:46.430532Z",
+            "observation_stale": false,
+            "last_operation_id": "2e80c443-6189-4bf9-a2f4-895f331e1fd2",
+            "subnet_count": "0",
+            "reason_message": "VPC base connectivity is not ready",
+            "base_connectivity": {
+              "state": "pending",
+              "reason": "BASE_CONNECTIVITY_NOT_READY",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": "VPC base connectivity is not ready"
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:42:53.368618+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_a43ae8279bd54524bcf3f7f137e6a2d4",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "name": "lb02-2b3122-base-cleanup",
+            "description": "Run-owned U09 system base cleanup fixture, no workloads",
+            "cidr": "10.233.32.0/20",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "BASE_CONNECTIVITY_NOT_READY",
+            "created_at": "2026-09-15T05:41:39.724183Z",
+            "updated_at": "2026-09-15T05:42:46.522240Z",
+            "version": "9",
+            "observed_at": "2026-09-15T05:42:46.430532Z",
+            "observation_stale": false,
+            "last_operation_id": "2e80c443-6189-4bf9-a2f4-895f331e1fd2",
+            "subnet_count": "0",
+            "reason_message": "VPC base connectivity is not ready",
+            "base_connectivity": {
+              "state": "pending",
+              "reason": "BASE_CONNECTIVITY_NOT_READY",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": "VPC base connectivity is not ready"
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:42:58.379178+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_a43ae8279bd54524bcf3f7f137e6a2d4",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "name": "lb02-2b3122-base-cleanup",
+            "description": "Run-owned U09 system base cleanup fixture, no workloads",
+            "cidr": "10.233.32.0/20",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "BASE_CONNECTIVITY_NOT_READY",
+            "created_at": "2026-09-15T05:41:39.724183Z",
+            "updated_at": "2026-09-15T05:42:46.522240Z",
+            "version": "9",
+            "observed_at": "2026-09-15T05:42:46.430532Z",
+            "observation_stale": false,
+            "last_operation_id": "2e80c443-6189-4bf9-a2f4-895f331e1fd2",
+            "subnet_count": "0",
+            "reason_message": "VPC base connectivity is not ready",
+            "base_connectivity": {
+              "state": "pending",
+              "reason": "BASE_CONNECTIVITY_NOT_READY",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": "VPC base connectivity is not ready"
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:43:03.389475+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_a43ae8279bd54524bcf3f7f137e6a2d4",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "name": "lb02-2b3122-base-cleanup",
+            "description": "Run-owned U09 system base cleanup fixture, no workloads",
+            "cidr": "10.233.32.0/20",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "BASE_CONNECTIVITY_NOT_READY",
+            "created_at": "2026-09-15T05:41:39.724183Z",
+            "updated_at": "2026-09-15T05:42:46.522240Z",
+            "version": "9",
+            "observed_at": "2026-09-15T05:42:46.430532Z",
+            "observation_stale": false,
+            "last_operation_id": "2e80c443-6189-4bf9-a2f4-895f331e1fd2",
+            "subnet_count": "0",
+            "reason_message": "VPC base connectivity is not ready",
+            "base_connectivity": {
+              "state": "pending",
+              "reason": "BASE_CONNECTIVITY_NOT_READY",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": "VPC base connectivity is not ready"
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:43:08.403669+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_a43ae8279bd54524bcf3f7f137e6a2d4",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "name": "lb02-2b3122-base-cleanup",
+            "description": "Run-owned U09 system base cleanup fixture, no workloads",
+            "cidr": "10.233.32.0/20",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "BASE_CONNECTIVITY_NOT_READY",
+            "created_at": "2026-09-15T05:41:39.724183Z",
+            "updated_at": "2026-09-15T05:42:46.522240Z",
+            "version": "9",
+            "observed_at": "2026-09-15T05:42:46.430532Z",
+            "observation_stale": false,
+            "last_operation_id": "2e80c443-6189-4bf9-a2f4-895f331e1fd2",
+            "subnet_count": "0",
+            "reason_message": "VPC base connectivity is not ready",
+            "base_connectivity": {
+              "state": "pending",
+              "reason": "BASE_CONNECTIVITY_NOT_READY",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": "VPC base connectivity is not ready"
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:43:13.415651+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_a43ae8279bd54524bcf3f7f137e6a2d4",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "name": "lb02-2b3122-base-cleanup",
+            "description": "Run-owned U09 system base cleanup fixture, no workloads",
+            "cidr": "10.233.32.0/20",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "created_at": "2026-09-15T05:41:39.724183Z",
+            "updated_at": "2026-09-15T05:43:11.642475Z",
+            "version": "10",
+            "observed_at": "2026-09-15T05:43:11.512038Z",
+            "observation_stale": false,
+            "last_operation_id": "2e80c443-6189-4bf9-a2f4-895f331e1fd2",
+            "subnet_count": "0",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "base_connectivity": {
+              "state": "pending",
+              "reason": "PROVIDER_UNAVAILABLE",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": "The network provider is temporarily unavailable."
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:43:18.426126+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_a43ae8279bd54524bcf3f7f137e6a2d4",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "name": "lb02-2b3122-base-cleanup",
+            "description": "Run-owned U09 system base cleanup fixture, no workloads",
+            "cidr": "10.233.32.0/20",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "created_at": "2026-09-15T05:41:39.724183Z",
+            "updated_at": "2026-09-15T05:43:11.642475Z",
+            "version": "10",
+            "observed_at": "2026-09-15T05:43:11.512038Z",
+            "observation_stale": false,
+            "last_operation_id": "2e80c443-6189-4bf9-a2f4-895f331e1fd2",
+            "subnet_count": "0",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "base_connectivity": {
+              "state": "pending",
+              "reason": "PROVIDER_UNAVAILABLE",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": "The network provider is temporarily unavailable."
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:43:23.437786+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_a43ae8279bd54524bcf3f7f137e6a2d4",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "name": "lb02-2b3122-base-cleanup",
+            "description": "Run-owned U09 system base cleanup fixture, no workloads",
+            "cidr": "10.233.32.0/20",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "created_at": "2026-09-15T05:41:39.724183Z",
+            "updated_at": "2026-09-15T05:43:20.323488Z",
+            "version": "11",
+            "observed_at": "2026-09-15T05:43:20.211968Z",
+            "observation_stale": false,
+            "last_operation_id": "2e80c443-6189-4bf9-a2f4-895f331e1fd2",
+            "subnet_count": "0",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "base_connectivity": {
+              "state": "pending",
+              "reason": "PROVIDER_UNAVAILABLE",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": "The network provider is temporarily unavailable."
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:43:28.449316+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_a43ae8279bd54524bcf3f7f137e6a2d4",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "name": "lb02-2b3122-base-cleanup",
+            "description": "Run-owned U09 system base cleanup fixture, no workloads",
+            "cidr": "10.233.32.0/20",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "created_at": "2026-09-15T05:41:39.724183Z",
+            "updated_at": "2026-09-15T05:43:25.452354Z",
+            "version": "12",
+            "observed_at": "2026-09-15T05:43:25.387671Z",
+            "observation_stale": false,
+            "last_operation_id": "2e80c443-6189-4bf9-a2f4-895f331e1fd2",
+            "subnet_count": "0",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "base_connectivity": {
+              "state": "pending",
+              "reason": "PROVIDER_UNAVAILABLE",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": "The network provider is temporarily unavailable."
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:43:33.461357+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_a43ae8279bd54524bcf3f7f137e6a2d4",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "name": "lb02-2b3122-base-cleanup",
+            "description": "Run-owned U09 system base cleanup fixture, no workloads",
+            "cidr": "10.233.32.0/20",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "created_at": "2026-09-15T05:41:39.724183Z",
+            "updated_at": "2026-09-15T05:43:30.626971Z",
+            "version": "13",
+            "observed_at": "2026-09-15T05:43:30.457761Z",
+            "observation_stale": false,
+            "last_operation_id": "2e80c443-6189-4bf9-a2f4-895f331e1fd2",
+            "subnet_count": "0",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "base_connectivity": {
+              "state": "pending",
+              "reason": "PROVIDER_UNAVAILABLE",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": "The network provider is temporarily unavailable."
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:43:38.473905+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_a43ae8279bd54524bcf3f7f137e6a2d4",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "name": "lb02-2b3122-base-cleanup",
+            "description": "Run-owned U09 system base cleanup fixture, no workloads",
+            "cidr": "10.233.32.0/20",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "created_at": "2026-09-15T05:41:39.724183Z",
+            "updated_at": "2026-09-15T05:43:30.626971Z",
+            "version": "13",
+            "observed_at": "2026-09-15T05:43:30.457761Z",
+            "observation_stale": false,
+            "last_operation_id": "2e80c443-6189-4bf9-a2f4-895f331e1fd2",
+            "subnet_count": "0",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "base_connectivity": {
+              "state": "pending",
+              "reason": "PROVIDER_UNAVAILABLE",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": "The network provider is temporarily unavailable."
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:43:43.485167+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_a43ae8279bd54524bcf3f7f137e6a2d4",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "name": "lb02-2b3122-base-cleanup",
+            "description": "Run-owned U09 system base cleanup fixture, no workloads",
+            "cidr": "10.233.32.0/20",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "created_at": "2026-09-15T05:41:39.724183Z",
+            "updated_at": "2026-09-15T05:43:30.626971Z",
+            "version": "13",
+            "observed_at": "2026-09-15T05:43:30.457761Z",
+            "observation_stale": false,
+            "last_operation_id": "2e80c443-6189-4bf9-a2f4-895f331e1fd2",
+            "subnet_count": "0",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "base_connectivity": {
+              "state": "pending",
+              "reason": "PROVIDER_UNAVAILABLE",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": "The network provider is temporarily unavailable."
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:43:48.497230+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_a43ae8279bd54524bcf3f7f137e6a2d4",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "name": "lb02-2b3122-base-cleanup",
+            "description": "Run-owned U09 system base cleanup fixture, no workloads",
+            "cidr": "10.233.32.0/20",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "created_at": "2026-09-15T05:41:39.724183Z",
+            "updated_at": "2026-09-15T05:43:30.626971Z",
+            "version": "13",
+            "observed_at": "2026-09-15T05:43:30.457761Z",
+            "observation_stale": false,
+            "last_operation_id": "2e80c443-6189-4bf9-a2f4-895f331e1fd2",
+            "subnet_count": "0",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "base_connectivity": {
+              "state": "pending",
+              "reason": "PROVIDER_UNAVAILABLE",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": "The network provider is temporarily unavailable."
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:43:53.509066+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_a43ae8279bd54524bcf3f7f137e6a2d4",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "name": "lb02-2b3122-base-cleanup",
+            "description": "Run-owned U09 system base cleanup fixture, no workloads",
+            "cidr": "10.233.32.0/20",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "created_at": "2026-09-15T05:41:39.724183Z",
+            "updated_at": "2026-09-15T05:43:30.626971Z",
+            "version": "13",
+            "observed_at": "2026-09-15T05:43:30.457761Z",
+            "observation_stale": false,
+            "last_operation_id": "2e80c443-6189-4bf9-a2f4-895f331e1fd2",
+            "subnet_count": "0",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "base_connectivity": {
+              "state": "pending",
+              "reason": "PROVIDER_UNAVAILABLE",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": "The network provider is temporarily unavailable."
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:43:58.519621+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_a43ae8279bd54524bcf3f7f137e6a2d4",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "name": "lb02-2b3122-base-cleanup",
+            "description": "Run-owned U09 system base cleanup fixture, no workloads",
+            "cidr": "10.233.32.0/20",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "created_at": "2026-09-15T05:41:39.724183Z",
+            "updated_at": "2026-09-15T05:43:55.910020Z",
+            "version": "14",
+            "observed_at": "2026-09-15T05:43:55.791246Z",
+            "observation_stale": false,
+            "last_operation_id": "2e80c443-6189-4bf9-a2f4-895f331e1fd2",
+            "subnet_count": "0",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "base_connectivity": {
+              "state": "pending",
+              "reason": "PROVIDER_UNAVAILABLE",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": "The network provider is temporarily unavailable."
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:44:03.530996+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_a43ae8279bd54524bcf3f7f137e6a2d4",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "name": "lb02-2b3122-base-cleanup",
+            "description": "Run-owned U09 system base cleanup fixture, no workloads",
+            "cidr": "10.233.32.0/20",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "created_at": "2026-09-15T05:41:39.724183Z",
+            "updated_at": "2026-09-15T05:43:55.910020Z",
+            "version": "14",
+            "observed_at": "2026-09-15T05:43:55.791246Z",
+            "observation_stale": false,
+            "last_operation_id": "2e80c443-6189-4bf9-a2f4-895f331e1fd2",
+            "subnet_count": "0",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "base_connectivity": {
+              "state": "pending",
+              "reason": "PROVIDER_UNAVAILABLE",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": "The network provider is temporarily unavailable."
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:44:08.545113+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_a43ae8279bd54524bcf3f7f137e6a2d4",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "name": "lb02-2b3122-base-cleanup",
+            "description": "Run-owned U09 system base cleanup fixture, no workloads",
+            "cidr": "10.233.32.0/20",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "created_at": "2026-09-15T05:41:39.724183Z",
+            "updated_at": "2026-09-15T05:44:08.033914Z",
+            "version": "15",
+            "observed_at": "2026-09-15T05:44:07.931781Z",
+            "observation_stale": false,
+            "last_operation_id": "2e80c443-6189-4bf9-a2f4-895f331e1fd2",
+            "subnet_count": "0",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "base_connectivity": {
+              "state": "pending",
+              "reason": "PROVIDER_UNAVAILABLE",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": "The network provider is temporarily unavailable."
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:44:13.557220+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_a43ae8279bd54524bcf3f7f137e6a2d4",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "name": "lb02-2b3122-base-cleanup",
+            "description": "Run-owned U09 system base cleanup fixture, no workloads",
+            "cidr": "10.233.32.0/20",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "created_at": "2026-09-15T05:41:39.724183Z",
+            "updated_at": "2026-09-15T05:44:13.178474Z",
+            "version": "16",
+            "observed_at": "2026-09-15T05:44:13.047662Z",
+            "observation_stale": false,
+            "last_operation_id": "2e80c443-6189-4bf9-a2f4-895f331e1fd2",
+            "subnet_count": "0",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "base_connectivity": {
+              "state": "pending",
+              "reason": "PROVIDER_UNAVAILABLE",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": "The network provider is temporarily unavailable."
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:44:18.568627+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_a43ae8279bd54524bcf3f7f137e6a2d4",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "name": "lb02-2b3122-base-cleanup",
+            "description": "Run-owned U09 system base cleanup fixture, no workloads",
+            "cidr": "10.233.32.0/20",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "created_at": "2026-09-15T05:41:39.724183Z",
+            "updated_at": "2026-09-15T05:44:13.178474Z",
+            "version": "16",
+            "observed_at": "2026-09-15T05:44:13.047662Z",
+            "observation_stale": false,
+            "last_operation_id": "2e80c443-6189-4bf9-a2f4-895f331e1fd2",
+            "subnet_count": "0",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "base_connectivity": {
+              "state": "pending",
+              "reason": "PROVIDER_UNAVAILABLE",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": "The network provider is temporarily unavailable."
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:44:23.581893+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_a43ae8279bd54524bcf3f7f137e6a2d4",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "name": "lb02-2b3122-base-cleanup",
+            "description": "Run-owned U09 system base cleanup fixture, no workloads",
+            "cidr": "10.233.32.0/20",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "created_at": "2026-09-15T05:41:39.724183Z",
+            "updated_at": "2026-09-15T05:44:18.764639Z",
+            "version": "17",
+            "observed_at": "2026-09-15T05:44:18.253142Z",
+            "observation_stale": false,
+            "last_operation_id": "2e80c443-6189-4bf9-a2f4-895f331e1fd2",
+            "subnet_count": "0",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "base_connectivity": {
+              "state": "pending",
+              "reason": "PROVIDER_UNAVAILABLE",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": "The network provider is temporarily unavailable."
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:44:28.594801+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_a43ae8279bd54524bcf3f7f137e6a2d4",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "name": "lb02-2b3122-base-cleanup",
+            "description": "Run-owned U09 system base cleanup fixture, no workloads",
+            "cidr": "10.233.32.0/20",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "created_at": "2026-09-15T05:41:39.724183Z",
+            "updated_at": "2026-09-15T05:44:18.764639Z",
+            "version": "17",
+            "observed_at": "2026-09-15T05:44:18.253142Z",
+            "observation_stale": false,
+            "last_operation_id": "2e80c443-6189-4bf9-a2f4-895f331e1fd2",
+            "subnet_count": "0",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "base_connectivity": {
+              "state": "pending",
+              "reason": "PROVIDER_UNAVAILABLE",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": "The network provider is temporarily unavailable."
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    }
+  ]
+}

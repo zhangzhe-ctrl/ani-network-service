@@ -1,0 +1,28 @@
+{
+  "at": "2026-09-15T09:26:52.782954+00:00",
+  "source_run": "20260915T074304Z-31ea8959",
+  "result": "pass",
+  "scope": "Public EIP allocation, wrong-tenant read denial and LB-first same-EIP SNAT admission denial only",
+  "eip_id": "eip_fdab288a3b1846138806e8e5e14529a9",
+  "address": "172.16.102.194",
+  "load_balancer_id": "lb_bd6f74b7445b4c5a815763d38a995f14",
+  "operation": "ca4a5f4a-0886-4219-96c8-077f46737937",
+  "checks": {
+    "original_eip_operation_completed": "public-lb-eip-r16-durable-progress.json",
+    "wrong_tenant_not_found": "public-eip-wrong-tenant-get.json",
+    "lb_first_snat_eip_in_use": "public-lb-first-snat-rejected.json",
+    "no_public_snat_before_lb": "public-lb-before-no-public-snat-03.json"
+  },
+  "not_verified": [
+    "LB data plane",
+    "SNAT-first LB conflict",
+    "real concurrent live claim ordering",
+    "Public SNAT traffic"
+  ],
+  "source_evidence_hashes": {
+    "public-lb-eip-ready-r16.json": "4077aabf6d71746b1111fa76f658b72926f211c78999504f503870df91c649db",
+    "public-lb-created-02.json": "0ccb30daac8e00bbc020131b8b55329f97e6f6a42ba03ce96729866042ad0521",
+    "public-lb-first-snat-rejected.json": "58d9d00e7a61c1a8d66e3a6e65c41f7261f6d74fd1a224af0e506abb06cfdc68",
+    "public-eip-wrong-tenant-get.json": "4694d0daf805830123d36345ce983188c81858f0a95e5a7d23804820bb9e0ad6"
+  }
+}

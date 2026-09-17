@@ -1,0 +1,16 @@
+{
+  "at": "2026-09-15T07:33:56.887308+00:00",
+  "result": "pass",
+  "source_run": "20260915T072357Z-a858bc34",
+  "source_archive_sha256": "a90a5944ed9c6211dfcbcd51b32e06150b9de723a69e1aa7dd02465e573112a6",
+  "command": [
+    "bash",
+    "-e",
+    "-c",
+    "validation_tmp=$(mktemp -d /var/tmp/nlb2cancel.XXXXXX); chmod 700 \"$validation_tmp\"; export TMPDIR=\"$validation_tmp\"; scripts/integration -race ./internal/data -run \"^TestPlatformCancellationPreservesDefinitiveMutationOutcome$\" -count=1 -v"
+  ],
+  "exit": 0,
+  "log": "shutdown-outcome-green-command.txt",
+  "log_sha256": "dda36086496a2ae7325cd558f581754b3426fadddf47bae3fafdd4af480f31ee",
+  "scope": "real PostgreSQL worker shutdown completion; adapter case additionally records actual HTTP POST count in controlled API server; not live old-request outcome proof"
+}

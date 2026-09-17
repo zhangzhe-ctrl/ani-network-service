@@ -96,8 +96,12 @@ SNAT 将租户工作负载私网源地址转换为 EIP，回包由有状态转�
 
 - 当前 `managedDevices` 是全部节点生效的同名接口配置；没有可用于此流程的 VlanNetwork nodeSelector。候选须覆盖目标部署所有适用节点，缺节点、缺设备或观测过期则拒绝接管。
 - kc 拒绝存在非 link-local IP 的候选；Network 额外排除管理/默认路由口、loopback、veth/隧道，以及被现有 bridge/bond/其他用途占用的口。不能自动删 IP 或拆 bond 来使网卡“可选”。
-- 已接管设备可展示其现有 VlanNetwork 和子网占用，不能伪装为空闲口。跨节点同名、UP 或 IP 为空也不证明交换机 VLAN 已就绪。
-- 管理员明确选择物理接口后，后台再次核对同一组节点/设备事实，并以资源版本条件合并 `managedDevices`，保留其他设备和配置；异步等待各节点接管反馈。
+- `managedDevices` 是 kc 接管物理口并支持 VlanNetwork 的前置配置，可以由部署安装器或 Network 平台操作准备。已由 kc 接管表示这一步已经完成，不能仅凭 OVS/KC managed 状态将它判为不可用于二层网络。跨节点同名、UP 或 IP 为空也不证明交换机 VLAN 已就绪。
+- `AdoptNetworkDevice` 沿用同一管理员入口处理两种起点：空闲物理口按原流程接管；安装器已准备好的物理口经核验后登记为 Network 可引用的设备。后者不是收养历史 VlanNetwork、Public 池或租户业务 CR。
+- 已受管设备必须覆盖所有适用节点，事实新鲜且 Node UID、接口 MAC 完整；kcn-config UID/managedDevices、节点接管反馈、实际 OVS 端口所属 `br-<dev>`、kc bridge 标记与 `net.<dev>` mapping 必须一致。管理/默认路由口、接口或内部桥上的业务 IP、其他 bridge/bond、外来 VLAN 占用、缺失/过期事实仍拒绝。列表的 `selectable` 表示可接受该管理员操作，不等于物理口空闲；KC/OVS managed 字段保持真实值。
+- 管理员明确选择物理接口后，后台再次核对同一组节点/设备事实。空闲口以资源版本条件合并 `managedDevices`，保留其他设备和配置；已受管口保持该字段原样，不重复修改网桥、地址或路由。两种情况都通过受 UID/resourceVersion 保护的既有 device-adoption annotation 登记 Network binding，禁止覆盖其他 binding；操作由现有持久 worker 异步推进。
+- 登记固定节点 UID/MAC 和 kcn-config UID，持续观察身份、kc 接管状态及真实 OVS wiring。已受管配置被移除、同名异 UID、网卡替换或事实失效时退化并阻止下游准入，不自行拆桥、重新接管或改写他人归属。删除 VlanNetwork 不删除设备登记或清除共享物理配置。
+- 关联设备核验复用同一完整审计；正常采集续报按[持续观察规则](cr-observation.md)处理，不能仅因事实不变的采集时间前进而使二层网络永久重试，亦不能延长旧证明的有效期。
 - 接管就绪后创建 VlanNetwork，填 `devName` 与 `vlanID`；等待 `Valid/Ready=True`、`notReadyNodes` 为空，核对 OVS bridge mapping 和交换机端口 tag/native VLAN。
 
 设备接管与 VlanNetwork 是两个可观察步骤。部分节点接管失败时保留部分进度并阻止下游池开放，不能自动恢复整个旧 ConfigMap 覆盖他人并发修改，也不能自动撤销已有共享物理网络。删除 VlanNetwork 不等同于物理接口已归还；物理接口退役单独操作并检查依赖。
@@ -163,7 +167,7 @@ Underlay 等待 Subnet `Valid/Initialized/Ready=True`，并要求 `underlayState
 | 能力/RPC 草案 | 关键输入与输出 |
 |---|---|
 | `ListNodeInterfaces` | 按节点和接管状态过滤，返回第 4.1 节的事实、不可选原因及时间；不等同于 Node.status.addresses |
-| `AdoptNetworkDevice` | 明确接口名、节点范围证据、幂等键；异步报告各节点接管结果 |
+| `AdoptNetworkDevice` | 明确接口名、完整事实 fingerprint、幂等键；接管空闲口或核验登记 kc 已受管口，异步报告各节点结果；详见 4.1 |
 | `CreateVlanNetwork / Get / List / Delete` | devName、vlanID；接管前置及唯一占用检查 |
 | `CreateEgressGateway / Get / List / Delete` | 平台网关名称；本期固定 Public/Host，内部字段隐藏于租户 |
 | `CreatePublicAddressPool / Get / List / Delete` | 第 4.3 节输入；异步资源状态；池拓扑、容量原因仅管理员可见 |

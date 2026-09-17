@@ -1,0 +1,43 @@
+{
+  "at": "2026-09-15T08:36:09.513304+00:00",
+  "execution_host": "ubuntu",
+  "namespace": "lb02-09141908-2b3122",
+  "results": [
+    {
+      "pod": "lb02-2b3122-public-probe-a",
+      "label": "available-connection-tools",
+      "argv": [
+        "/bin/sh",
+        "-c",
+        "command -v bash; command -v nc; command -v python3; command -v curl; command -v timeout; true"
+      ],
+      "expect_contains": [],
+      "at": "2026-09-15T08:36:09.513274+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb02-09141908-2b3122",
+        "lb02-2b3122-public-probe-a",
+        "-c",
+        "probe",
+        "--",
+        "/bin/sh",
+        "-c",
+        "command -v bash; command -v nc; command -v python3; command -v curl; command -v timeout; true"
+      ],
+      "exit": 0,
+      "stdout": "/usr/bin/bash\n/usr/bin/timeout\n",
+      "stderr": "",
+      "pass": true
+    }
+  ],
+  "input_file": "docs/execution/records/NET-VPC-LB-02/device-registration-20260915/public-probe-tool-read-planned.json",
+  "result": "pass"
+}

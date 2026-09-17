@@ -1,0 +1,12 @@
+{
+  "at": "2026-09-15T04:36:46.429190+00:00",
+  "execution_host": "ubuntu",
+  "transport_exit": 0,
+  "result": {
+    "query": "SELECT row_to_json(t) FROM network_operations t WHERE operation_id IN ('237b4521-f744-46d0-b912-843fd2c7067d','17bd6aa6-2a66-4e66-b8b8-e955b865e54a','e018a209-212d-4faf-9088-62e1b87e0d59'); SELECT row_to_json(t) FROM network_reconciliations t WHERE pending_action<>'';",
+    "exit": 3,
+    "stdout": "BEGIN\n{\"tenant_id\":\"93b06aeb-e445-4823-ade8-e7b7d8e19832\",\"operation_id\":\"17bd6aa6-2a66-4e66-b8b8-e955b865e54a\",\"vpc_id\":\"vpc_1004994c0bde496f9ff64a4c812c9607\",\"kind\":\"ensure_vpc_base_connectivity\",\"state\":\"succeeded\",\"reason\":\"\",\"attempt\":46,\"execution_epoch\":192,\"created_at\":\"2026-09-15T04:16:58.019817+00:00\",\"updated_at\":\"2026-09-15T04:22:04.680033+00:00\",\"completed_at\":\"2026-09-15T04:22:04.680034+00:00\",\"next_attempt_at\":null,\"subnet_id\":null,\"eip_id\":null,\"snat_id\":null,\"lb_id\":null}\n{\"tenant_id\":\"93b06aeb-e445-4823-ade8-e7b7d8e19832\",\"operation_id\":\"e018a209-212d-4faf-9088-62e1b87e0d59\",\"vpc_id\":\"vpc_1004994c0bde496f9ff64a4c812c9607\",\"kind\":\"create_vpc\",\"state\":\"succeeded\",\"reason\":\"\",\"attempt\":2,\"execution_epoch\":2,\"created_at\":\"2026-09-15T03:58:47.6714+00:00\",\"updated_at\":\"2026-09-15T03:58:53.772874+00:00\",\"completed_at\":\"2026-09-15T03:58:53.772874+00:00\",\"next_attempt_at\":null,\"subnet_id\":null,\"eip_id\":null,\"snat_id\":null,\"lb_id\":null}\n{\"tenant_id\":\"d896f754-ab06-4cbe-a7fd-53148d16d0ad\",\"operation_id\":\"237b4521-f744-46d0-b912-843fd2c7067d\",\"vpc_id\":null,\"kind\":\"create_load_balancer\",\"state\":\"succeeded\",\"reason\":\"\",\"attempt\":17,\"execution_epoch\":17,\"created_at\":\"2026-09-15T04:25:08.2564+00:00\",\"updated_at\":\"2026-09-15T04:31:34.797052+00:00\",\"completed_at\":\"2026-09-15T04:31:34.797052+00:00\",\"next_attempt_at\":null,\"subnet_id\":null,\"eip_id\":null,\"snat_id\":null,\"lb_id\":\"lb_d9f847eef7eb453a8388672718959ec8\"}\n",
+    "stderr": "ERROR:  column \"pending_action\" does not exist\nLINE 1: ...w_to_json(t) FROM network_reconciliations t WHERE pending_ac...\n                                                             ^\n"
+  },
+  "stderr": ""
+}

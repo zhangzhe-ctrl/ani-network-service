@@ -1,0 +1,82 @@
+{
+  "at": "2026-09-15T08:37:08.194237+00:00",
+  "execution_host": "ubuntu",
+  "request": {
+    "client": {
+      "namespace": "lb02-09141908-2b3122",
+      "pod": "lb02-2b3122-public-probe-a"
+    },
+    "server": {
+      "namespace": "lb02-09141908-2b3122",
+      "pod": "lb02-2b3122-outside-observer"
+    },
+    "destination": "172.16.101.10",
+    "port": 18808,
+    "expected_source": "172.16.102.192",
+    "nonce": "public-underlay-source-a-02"
+  },
+  "client_command": [
+    "bash",
+    "-c",
+    "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+    "kubectl",
+    "--kubeconfig",
+    "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+    "--request-timeout=20s",
+    "exec",
+    "-n",
+    "lb02-09141908-2b3122",
+    "lb02-2b3122-public-probe-a",
+    "-c",
+    "probe",
+    "--",
+    "/usr/bin/timeout",
+    "12",
+    "/usr/bin/bash",
+    "-c",
+    "exec 3<>/dev/tcp/172.16.101.10/18808; printf 'GET /?nonce=public-underlay-source-a-02 HTTP/1.1\\r\\nHost: fixture\\r\\n\\r\\n' >&3; /usr/bin/timeout 6 cat <&3; read_exit=$?; if [ \"$read_exit\" -eq 124 ]; then exit 0; fi; exit \"$read_exit\""
+  ],
+  "server_command": [
+    "bash",
+    "-c",
+    "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+    "kubectl",
+    "--kubeconfig",
+    "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+    "--request-timeout=20s",
+    "exec",
+    "-n",
+    "lb02-09141908-2b3122",
+    "lb02-2b3122-outside-observer",
+    "-c",
+    "probe",
+    "--",
+    "cat",
+    "/proc/net/tcp",
+    "/proc/net/tcp6"
+  ],
+  "client_exit": 0,
+  "client_stdout": "HTTP/1.1 200 OK\nContent-Type: application/json\nDate: Tue, 15 Sep 2026 08:37:02 GMT\nContent-Length: 156\n\n{\"fixture_id\":\"lb02-09141908-2b3122\",\"hostname\":\"ani-01\",\"instance_id\":\"lb02-2b3122-outside-observer\",\"nonce\":\"public-underlay-source-a-02\",\"port\":\"18808\"}\n",
+  "client_stderr": "",
+  "snapshots": [
+    {
+      "at": "2026-09-15T08:37:03.300599+00:00",
+      "exit": 0,
+      "connections": [
+        {
+          "local_address": "172.16.101.10",
+          "local_port": 18808,
+          "peer_address": "172.16.102.192",
+          "peer_port": 50874,
+          "state": "ESTABLISHED",
+          "expected_source": true
+        }
+      ],
+      "stderr": ""
+    }
+  ],
+  "http_identity_pass": true,
+  "receiver_source_pass": true,
+  "result": "pass",
+  "script_sha256": "f775b71e63541abff57248893d8684ca0fb74161685aa6fe0b5dfd0075ab888c"
+}

@@ -1,0 +1,14 @@
+source.tar.gz: OK
+verified source files: 1187
+go version go1.26.7 linux/amd64
+1.60.0
+v1.31.1
+127.0.0.1:5432 - accepting connections
+PostgreSQL image=docker.io/library/postgres@sha256:4ef4dbc939d61acea57712655ddb4b4ab27419c913f94cca0cd57cb3ea3c2280 container=00cb82cdf789519d653472c276d3d4df4fc4bbb16d87f5c489e7b65a4b97aa59
+--- FAIL: TestBaseSchemaLegacyPublicUpgradePreservesDurableFactsAndReplay (0.32s)
+    base_schema_integration_test.go:157: migration changed legacy network_provider_bindings identity/history/snapshot/lease
+FAIL
+FAIL	github.com/zhangzhe-ctrl/ani-network-service/internal/data	1.231s
+FAIL
+removed task container=00cb82cdf789519d653472c276d3d4df4fc4bbb16d87f5c489e7b65a4b97aa59
+REMOTE_COMMAND_EXIT=1

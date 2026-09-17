@@ -1,0 +1,56 @@
+{
+  "at": "2026-09-14T19:35:33.599298+00:00",
+  "trigger": "user reports vSphere VLAN trunking configured",
+  "probe_sha256": "a3a565324d7fbe069f08f6a40a6992612199db38dd72fcc7b56802e3b42df57a",
+  "scope": "tagged VLAN102 ARP only; no host configuration changes",
+  "nodes": [
+    {
+      "host": "ani-test-1",
+      "exit": 0,
+      "probe": {
+        "at": "2026-09-14T19:35:36.523136+00:00",
+        "interface": "ens35",
+        "transmit_vlan": 102,
+        "target": "172.16.102.1",
+        "sender_ip": "0.0.0.0",
+        "frames_sent": 2,
+        "replies": [],
+        "host_configuration_changes": 0,
+        "result": "not_verified"
+      },
+      "stderr": ""
+    },
+    {
+      "host": "ani-test-2",
+      "exit": 0,
+      "probe": {
+        "at": "2026-09-14T19:35:40.122770+00:00",
+        "interface": "ens35",
+        "transmit_vlan": 102,
+        "target": "172.16.102.1",
+        "sender_ip": "0.0.0.0",
+        "frames_sent": 2,
+        "replies": [],
+        "host_configuration_changes": 0,
+        "result": "not_verified"
+      },
+      "stderr": ""
+    },
+    {
+      "host": "ani-test-3",
+      "exit": 0,
+      "probe": {
+        "at": "2026-09-14T19:35:43.857556+00:00",
+        "interface": "ens35",
+        "transmit_vlan": 102,
+        "target": "172.16.102.1",
+        "sender_ip": "0.0.0.0",
+        "frames_sent": 2,
+        "replies": [],
+        "host_configuration_changes": 0,
+        "result": "not_verified"
+      },
+      "stderr": ""
+    }
+  ]
+}

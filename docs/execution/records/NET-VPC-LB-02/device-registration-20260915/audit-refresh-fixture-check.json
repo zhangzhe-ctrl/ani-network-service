@@ -1,0 +1,28 @@
+{
+  "at": "2026-09-15T12:00:34.031691+00:00",
+  "execution_host": "ubuntu",
+  "source_run": "20260915T115322Z-248f5758",
+  "archive_sha256": "41b2b8f61fd60266b8a3f10c1012e865add740d0c641265e496c947268ca180c",
+  "manifest_sha256": "fd0da279db1bf069ad0811e252013593419c59e71d56df50f573d863a3ee3281",
+  "command": [
+    "bash",
+    "-e",
+    "-c",
+    "validation_tmp=$(mktemp -d /var/tmp/nlb2.XXXXXX); chmod 700 \"$validation_tmp\"; export TMPDIR=\"$validation_tmp\"; scripts/integration ./internal/data -run \"^(TestEgressRefreshesInvalidAuditWithoutLosingAppliedFacts|TestLBRefreshesInvalidAuditAndStillRejectsReusedBackendIdentity)$\" -timeout 3m -json"
+  ],
+  "conclusion": "SNAT test stopped at incomplete ProviderTarget setup, not the intended defect; LB invalid-audit rejection reproduced. Fixture corrected before official red run.",
+  "test_results": [
+    {
+      "Test": "TestEgressRefreshesInvalidAuditWithoutLosingAppliedFacts",
+      "Action": "fail",
+      "Elapsed": 0.95
+    },
+    {
+      "Test": "TestLBRefreshesInvalidAuditAndStillRejectsReusedBackendIdentity",
+      "Action": "fail",
+      "Elapsed": 0.98
+    }
+  ],
+  "log": "audit-refresh-fixture-check-command.txt",
+  "log_sha256": "4f87f9dc6c3a8a6cb266c59d4b6d4d3b4cff8f04f49dde42045ba3f8c2c046de"
+}

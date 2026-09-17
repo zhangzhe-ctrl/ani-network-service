@@ -1,0 +1,12 @@
+{
+  "at": "2026-09-15T09:18:01.900426+00:00",
+  "execution_host": "ubuntu",
+  "transport_exit": 0,
+  "result": {
+    "query": "SELECT lb_id,member_id,attachment_id,pod_uid,vnic_uid,vnicip_uid,state,reason,observed_at FROM network_lb_members WHERE lb_id IN ('lb_bd6f74b7445b4c5a815763d38a995f14','lb_cc562f7d8be147afae8144555aa7243b');",
+    "exit": 0,
+    "stdout": "BEGIN\nlb_bd6f74b7445b4c5a815763d38a995f14|15250ca5-84c0-44a1-a655-c30ca7b640c5|att_7d08b61f4038432a842d2fda525607b9|a0fb8a3c-9025-43b4-a45f-5114ffc5f3b5|0b650c18-839a-49ac-97d9-7157a50c224c|bc194f0b-fc1b-489d-8873-296e1b639146|available||2026-09-15 09:16:25.223429+00\nlb_bd6f74b7445b4c5a815763d38a995f14|69a4a09d-f2a2-49f2-bde5-c9f34bada414|att_a6172d5ee5be434087f939001a435c9e|e4c49404-afc1-4ff5-9e22-08521633d69c|f23738b9-c1a7-43ad-a724-e1b867ef0d52|eaaa4210-f200-4009-82ca-b2137ffb491b|unavailable|BACKEND_IDENTITY_MISMATCH|2026-09-15 09:16:25.223429+00\nlb_cc562f7d8be147afae8144555aa7243b|0934ed17-2ac7-4ee0-a9b9-7214f308870b|att_a6172d5ee5be434087f939001a435c9e|e4c49404-afc1-4ff5-9e22-08521633d69c|f23738b9-c1a7-43ad-a724-e1b867ef0d52|eaaa4210-f200-4009-82ca-b2137ffb491b|available||2026-09-15 09:17:49.828133+00\nlb_cc562f7d8be147afae8144555aa7243b|ffc8fde0-3f10-4850-a3d8-ba3bd870ce6f|att_7d08b61f4038432a842d2fda525607b9|a0fb8a3c-9025-43b4-a45f-5114ffc5f3b5|0b650c18-839a-49ac-97d9-7157a50c224c|bc194f0b-fc1b-489d-8873-296e1b639146|available||2026-09-15 09:17:49.828133+00\nROLLBACK\n",
+    "stderr": ""
+  },
+  "stderr": ""
+}

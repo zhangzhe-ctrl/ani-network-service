@@ -56,6 +56,11 @@ func (p *Postgres) Claim(ctx context.Context, owner string, duration time.Durati
 	if err != nil {
 		return biz.Work{}, false, databaseFailure(err)
 	}
+	if resource.Kind == "load_balancer" {
+		if err = hydrateLBWork(ctx, q, &resource, binding); err != nil {
+			return biz.Work{}, false, databaseFailure(err)
+		}
+	}
 	now, err := q.DatabaseTime(ctx)
 	if err != nil {
 		return biz.Work{}, false, databaseFailure(err)
@@ -155,6 +160,11 @@ func (p *Postgres) Finish(ctx context.Context, work biz.Work, progress biz.Progr
 	if err = p.finishBaseConnectivity(ctx, q, work, &progress, now); err != nil {
 		return err
 	}
+	if work.Resource.Kind == "load_balancer" {
+		if err = p.finishLB(ctx, q, work, progress); err != nil {
+			return databaseFailure(err)
+		}
+	}
 	row, err := advanceResource(ctx, q, work.Resource, progress)
 	if err != nil {
 		return databaseFailure(err)
@@ -177,7 +187,9 @@ func (p *Postgres) Finish(ctx context.Context, work biz.Work, progress biz.Progr
 	if work.ActiveOperation || work.Resource.State != progress.State || work.Resource.Reason != progress.Reason {
 		entry := sqlcgen.InsertHistoryParams{TenantID: row.TenantID, HistoryID: uuid.NewString(),
 			Event: "reconciled", ResourceState: string(row.State), Reason: string(row.Reason), CreatedAt: row.UpdatedAt}
-		if row.Kind == "eip" {
+		if row.Kind == "load_balancer" {
+			entry.LbID = row.ID
+		} else if row.Kind == "eip" {
 			entry.EipID = row.ID
 		} else if row.Kind == "snat" {
 			entry.SnatID = row.ID

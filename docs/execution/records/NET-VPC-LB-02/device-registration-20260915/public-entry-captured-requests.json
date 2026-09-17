@@ -1,0 +1,83 @@
+{
+  "at": "2026-09-15T09:35:46.171935+00:00",
+  "execution_host": "ubuntu",
+  "namespace": "lb02-09141908-2b3122",
+  "results": [
+    {
+      "pod": "lb02-2b3122-outside-observer",
+      "label": "captured-eip-request",
+      "argv": [
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-eip-capture-lb02-2b3122-outside-observer"
+      ],
+      "expect_contains": [
+        "status 200",
+        "lb02-09141908-2b3122"
+      ],
+      "at": "2026-09-15T09:35:42.151158+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb02-09141908-2b3122",
+        "lb02-2b3122-outside-observer",
+        "-c",
+        "probe",
+        "--",
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-eip-capture-lb02-2b3122-outside-observer"
+      ],
+      "exit": 2,
+      "stdout": "Get \"http://172.16.102.194:8080/?nonce=lb02-eip-capture-lb02-2b3122-outside-observer\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)\n",
+      "stderr": "command terminated with exit code 2\n",
+      "pass": false
+    },
+    {
+      "pod": "lb02-2b3122-public-probe-a",
+      "label": "captured-eip-request",
+      "argv": [
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-eip-capture-lb02-2b3122-public-probe-a"
+      ],
+      "expect_contains": [
+        "status 200",
+        "lb02-09141908-2b3122"
+      ],
+      "at": "2026-09-15T09:35:46.171910+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb02-09141908-2b3122",
+        "lb02-2b3122-public-probe-a",
+        "-c",
+        "probe",
+        "--",
+        "/probe",
+        "request",
+        "http://172.16.102.194:8080/?nonce=lb02-eip-capture-lb02-2b3122-public-probe-a"
+      ],
+      "exit": 2,
+      "stdout": "Get \"http://172.16.102.194:8080/?nonce=lb02-eip-capture-lb02-2b3122-public-probe-a\": context deadline exceeded (Client.Timeout exceeded while awaiting headers)\n",
+      "stderr": "command terminated with exit code 2\n",
+      "pass": false
+    }
+  ],
+  "input_file": "docs/execution/records/NET-VPC-LB-02/device-registration-20260915/public-entry-capture-plan.json",
+  "result": "fail"
+}

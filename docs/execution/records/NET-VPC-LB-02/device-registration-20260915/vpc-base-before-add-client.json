@@ -1,0 +1,443 @@
+{
+  "execution_host": "ubuntu",
+  "command": [
+    "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/lb-api",
+    "call",
+    "-target",
+    "unix:///home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-a.sock",
+    "-service",
+    "NetworkService",
+    "-method",
+    "GetVPC"
+  ],
+  "request": {
+    "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+    "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4"
+  },
+  "expected": {
+    "response.vpc.base_connectivity.state": "ready"
+  },
+  "result": "pass",
+  "records": [
+    {
+      "at": "2026-09-15T05:06:20.263070+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-base",
+            "description": "Run-owned VPC with automatic base connectivity for U09",
+            "cidr": "10.233.0.0/20",
+            "state": "RESOURCE_STATE_DEGRADED",
+            "reason": "BASE_CONNECTIVITY_NOT_READY",
+            "created_at": "2026-09-15T04:02:40.361909Z",
+            "updated_at": "2026-09-15T05:06:19.244529Z",
+            "version": "451",
+            "observed_at": "2026-09-15T05:06:19.128285Z",
+            "observation_stale": false,
+            "last_operation_id": "099f288a-56db-4ae1-8ba9-2a1efb473412",
+            "subnet_count": "2",
+            "reason_message": "VPC base connectivity is not ready",
+            "base_connectivity": {
+              "state": "degraded",
+              "reason": "BASE_CONNECTIVITY_NOT_READY",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": "VPC base connectivity is not ready"
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:06:25.275483+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-base",
+            "description": "Run-owned VPC with automatic base connectivity for U09",
+            "cidr": "10.233.0.0/20",
+            "state": "RESOURCE_STATE_DEGRADED",
+            "reason": "BASE_CONNECTIVITY_NOT_READY",
+            "created_at": "2026-09-15T04:02:40.361909Z",
+            "updated_at": "2026-09-15T05:06:21.670691Z",
+            "version": "452",
+            "observed_at": "2026-09-15T05:06:21.215921Z",
+            "observation_stale": false,
+            "last_operation_id": "099f288a-56db-4ae1-8ba9-2a1efb473412",
+            "subnet_count": "2",
+            "reason_message": "VPC base connectivity is not ready",
+            "base_connectivity": {
+              "state": "degraded",
+              "reason": "BASE_CONNECTIVITY_NOT_READY",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": "VPC base connectivity is not ready"
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:06:30.286288+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-base",
+            "description": "Run-owned VPC with automatic base connectivity for U09",
+            "cidr": "10.233.0.0/20",
+            "state": "RESOURCE_STATE_DEGRADED",
+            "reason": "BASE_CONNECTIVITY_NOT_READY",
+            "created_at": "2026-09-15T04:02:40.361909Z",
+            "updated_at": "2026-09-15T05:06:26.756838Z",
+            "version": "453",
+            "observed_at": "2026-09-15T05:06:26.688737Z",
+            "observation_stale": false,
+            "last_operation_id": "099f288a-56db-4ae1-8ba9-2a1efb473412",
+            "subnet_count": "2",
+            "reason_message": "VPC base connectivity is not ready",
+            "base_connectivity": {
+              "state": "degraded",
+              "reason": "BASE_CONNECTIVITY_NOT_READY",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": "VPC base connectivity is not ready"
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:06:35.298631+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-base",
+            "description": "Run-owned VPC with automatic base connectivity for U09",
+            "cidr": "10.233.0.0/20",
+            "state": "RESOURCE_STATE_DEGRADED",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "created_at": "2026-09-15T04:02:40.361909Z",
+            "updated_at": "2026-09-15T05:06:35.021855Z",
+            "version": "456",
+            "observed_at": "2026-09-15T05:06:34.872320Z",
+            "observation_stale": false,
+            "last_operation_id": "099f288a-56db-4ae1-8ba9-2a1efb473412",
+            "subnet_count": "2",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "base_connectivity": {
+              "state": "degraded",
+              "reason": "PROVIDER_UNAVAILABLE",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": "The network provider is temporarily unavailable."
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:06:40.311002+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-base",
+            "description": "Run-owned VPC with automatic base connectivity for U09",
+            "cidr": "10.233.0.0/20",
+            "state": "RESOURCE_STATE_DEGRADED",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "created_at": "2026-09-15T04:02:40.361909Z",
+            "updated_at": "2026-09-15T05:06:35.021855Z",
+            "version": "456",
+            "observed_at": "2026-09-15T05:06:34.872320Z",
+            "observation_stale": false,
+            "last_operation_id": "099f288a-56db-4ae1-8ba9-2a1efb473412",
+            "subnet_count": "2",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "base_connectivity": {
+              "state": "degraded",
+              "reason": "PROVIDER_UNAVAILABLE",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": "The network provider is temporarily unavailable."
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:06:45.324260+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-base",
+            "description": "Run-owned VPC with automatic base connectivity for U09",
+            "cidr": "10.233.0.0/20",
+            "state": "RESOURCE_STATE_DEGRADED",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "created_at": "2026-09-15T04:02:40.361909Z",
+            "updated_at": "2026-09-15T05:06:35.021855Z",
+            "version": "456",
+            "observed_at": "2026-09-15T05:06:34.872320Z",
+            "observation_stale": false,
+            "last_operation_id": "099f288a-56db-4ae1-8ba9-2a1efb473412",
+            "subnet_count": "2",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "base_connectivity": {
+              "state": "degraded",
+              "reason": "PROVIDER_UNAVAILABLE",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": "The network provider is temporarily unavailable."
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:06:50.338601+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-base",
+            "description": "Run-owned VPC with automatic base connectivity for U09",
+            "cidr": "10.233.0.0/20",
+            "state": "RESOURCE_STATE_DEGRADED",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "created_at": "2026-09-15T04:02:40.361909Z",
+            "updated_at": "2026-09-15T05:06:47.513929Z",
+            "version": "458",
+            "observed_at": "2026-09-15T05:06:47.407419Z",
+            "observation_stale": false,
+            "last_operation_id": "099f288a-56db-4ae1-8ba9-2a1efb473412",
+            "subnet_count": "2",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "base_connectivity": {
+              "state": "degraded",
+              "reason": "PROVIDER_UNAVAILABLE",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": "The network provider is temporarily unavailable."
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:06:55.349929+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-base",
+            "description": "Run-owned VPC with automatic base connectivity for U09",
+            "cidr": "10.233.0.0/20",
+            "state": "RESOURCE_STATE_DEGRADED",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "created_at": "2026-09-15T04:02:40.361909Z",
+            "updated_at": "2026-09-15T05:06:52.636634Z",
+            "version": "459",
+            "observed_at": "2026-09-15T05:06:52.533160Z",
+            "observation_stale": false,
+            "last_operation_id": "099f288a-56db-4ae1-8ba9-2a1efb473412",
+            "subnet_count": "2",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "base_connectivity": {
+              "state": "degraded",
+              "reason": "PROVIDER_UNAVAILABLE",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": "The network provider is temporarily unavailable."
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:07:00.362754+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-base",
+            "description": "Run-owned VPC with automatic base connectivity for U09",
+            "cidr": "10.233.0.0/20",
+            "state": "RESOURCE_STATE_DEGRADED",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "created_at": "2026-09-15T04:02:40.361909Z",
+            "updated_at": "2026-09-15T05:06:58.303286Z",
+            "version": "460",
+            "observed_at": "2026-09-15T05:06:57.705289Z",
+            "observation_stale": false,
+            "last_operation_id": "099f288a-56db-4ae1-8ba9-2a1efb473412",
+            "subnet_count": "2",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "base_connectivity": {
+              "state": "degraded",
+              "reason": "PROVIDER_UNAVAILABLE",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": "The network provider is temporarily unavailable."
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:07:05.376880+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-base",
+            "description": "Run-owned VPC with automatic base connectivity for U09",
+            "cidr": "10.233.0.0/20",
+            "state": "RESOURCE_STATE_DEGRADED",
+            "reason": "BASE_CONNECTIVITY_NOT_READY",
+            "created_at": "2026-09-15T04:02:40.361909Z",
+            "updated_at": "2026-09-15T05:07:05.149233Z",
+            "version": "462",
+            "observed_at": "2026-09-15T05:07:05.065830Z",
+            "observation_stale": false,
+            "last_operation_id": "099f288a-56db-4ae1-8ba9-2a1efb473412",
+            "subnet_count": "2",
+            "reason_message": "VPC base connectivity is not ready",
+            "base_connectivity": {
+              "state": "degraded",
+              "reason": "BASE_CONNECTIVITY_NOT_READY",
+              "observed_at": null,
+              "observation_stale": true,
+              "reason_message": "VPC base connectivity is not ready"
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:07:10.387822+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-base",
+            "description": "Run-owned VPC with automatic base connectivity for U09",
+            "cidr": "10.233.0.0/20",
+            "state": "RESOURCE_STATE_AVAILABLE",
+            "reason": "",
+            "created_at": "2026-09-15T04:02:40.361909Z",
+            "updated_at": "2026-09-15T05:07:05.908783Z",
+            "version": "463",
+            "observed_at": "2026-09-15T05:07:05.815270Z",
+            "observation_stale": false,
+            "last_operation_id": "099f288a-56db-4ae1-8ba9-2a1efb473412",
+            "subnet_count": "2",
+            "reason_message": "",
+            "base_connectivity": {
+              "state": "ready",
+              "reason": "",
+              "observed_at": "2026-09-15T05:06:52.908784Z",
+              "observation_stale": false,
+              "reason_message": ""
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": true
+    },
+    {
+      "at": "2026-09-15T05:07:15.400164+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "vpc": {
+            "id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "name": "lb02-2b3122-base",
+            "description": "Run-owned VPC with automatic base connectivity for U09",
+            "cidr": "10.233.0.0/20",
+            "state": "RESOURCE_STATE_AVAILABLE",
+            "reason": "",
+            "created_at": "2026-09-15T04:02:40.361909Z",
+            "updated_at": "2026-09-15T05:07:14.490927Z",
+            "version": "464",
+            "observed_at": "2026-09-15T05:07:08.058351Z",
+            "observation_stale": false,
+            "last_operation_id": "099f288a-56db-4ae1-8ba9-2a1efb473412",
+            "subnet_count": "2",
+            "reason_message": "",
+            "base_connectivity": {
+              "state": "ready",
+              "reason": "",
+              "observed_at": "2026-09-15T05:07:08.058351Z",
+              "observation_stale": false,
+              "reason_message": ""
+            }
+          }
+        }
+      },
+      "stderr": "",
+      "matches": true
+    }
+  ]
+}

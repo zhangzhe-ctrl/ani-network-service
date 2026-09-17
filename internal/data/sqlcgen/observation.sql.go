@@ -33,7 +33,7 @@ const notifyResource = `-- name: NotifyResource :execrows
 UPDATE network_reconciliations
 SET requested_generation=requested_generation+1,
     next_run_at=greatest(retry_not_before,least(next_run_at,clock_timestamp()))
-WHERE NOT retired AND tenant_id=$1 AND coalesce(vpc_id,subnet_id,eip_id,snat_id)=$2::text
+WHERE NOT retired AND tenant_id=$1 AND coalesce(vpc_id,subnet_id,eip_id,snat_id,lb_id)=$2::text
 `
 
 type NotifyResourceParams struct {
@@ -117,6 +117,12 @@ WITH targets AS (
  SELECT b.tenant_id::text,b.vpc_id,'vpc'::text,b.pool_id,b.vpc_id,b.eip_id,b.snat_id
  FROM network_vpc_base_connectivity b WHERE b.cluster_id=$1
  UNION ALL
+ SELECT l.tenant_id::text,l.lb_id,'load_balancer'::text,b.pool_id,l.vpc_id,b.eip_id,b.snat_id
+ FROM network_load_balancers l JOIN network_vpc_base_connectivity b ON b.tenant_id=l.tenant_id AND b.vpc_id=l.vpc_id WHERE l.cluster_id=$1 AND l.last_operation_id IS NOT NULL
+ UNION ALL
+ SELECT l.tenant_id::text,l.lb_id,'load_balancer'::text,e.pool_id,l.vpc_id,e.eip_id,NULL::text
+ FROM network_load_balancers l JOIN network_eips e ON e.tenant_id=l.tenant_id AND e.eip_id=l.public_eip_id WHERE l.cluster_id=$1 AND l.last_operation_id IS NOT NULL
+ UNION ALL
  SELECT ''::text,p.resource_id,p.kind,p.resource_id,NULL::text,NULL::text,NULL::text
  FROM network_platform_resources p WHERE p.cluster_id=$1 AND p.kind='public_pool'
 )
@@ -178,11 +184,58 @@ func (q *Queries) ObservationEgressEdges(ctx context.Context, arg ObservationEgr
 	return items, nil
 }
 
+const observationLBEdges = `-- name: ObservationLBEdges :many
+SELECT l.tenant_id,l.lb_id,('load-balancer:'||l.namespace||'/'||l.lb_id)::text AS relation_key
+FROM network_load_balancers l WHERE l.cluster_id=$1 AND l.last_operation_id IS NOT NULL
+UNION ALL
+SELECT c.tenant_id,c.lb_id,('object:'||CASE c.kind WHEN 'route' THEN 'HTTPRoute' WHEN 'policy' THEN 'BackendTrafficPolicy' ELSE 'Backend' END||'/'||c.namespace||'/'||c.provider_name)::text
+FROM network_lb_components c WHERE c.cluster_id=$1
+UNION ALL
+SELECT m.tenant_id,m.lb_id,('uid:'||x.uid)::text FROM network_lb_members m CROSS JOIN LATERAL (VALUES(m.pod_uid),(m.vnic_uid),(m.vnicip_uid)) x(uid) WHERE m.cluster_id=$1
+UNION ALL
+SELECT m.tenant_id,m.lb_id,('attachment:'||m.attachment_id)::text FROM network_lb_members m WHERE m.cluster_id=$1
+UNION ALL
+SELECT r.tenant_id,r.lb_id,('subnet:'||b.namespace||'/'||b.provider_name)::text FROM network_lb_subnet_refs r JOIN network_provider_bindings b ON b.tenant_id=r.tenant_id AND b.subnet_id=r.subnet_id AND b.cluster_id=r.cluster_id WHERE r.cluster_id=$1 AND r.released_at IS NULL
+UNION ALL
+SELECT g.tenant_id,g.lb_id,('uid:'||g.provider_uid)::text FROM network_lb_generated_resources g WHERE g.cluster_id=$1
+`
+
+type ObservationLBEdgesParams struct {
+	ClusterID string
+}
+
+type ObservationLBEdgesRow struct {
+	TenantID    string
+	LbID        string
+	RelationKey string
+}
+
+// Complete worker-only fanout inventory, preserving tenant/cluster placement.
+func (q *Queries) ObservationLBEdges(ctx context.Context, arg ObservationLBEdgesParams) ([]ObservationLBEdgesRow, error) {
+	rows, err := q.db.Query(ctx, observationLBEdges, arg.ClusterID)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	items := []ObservationLBEdgesRow{}
+	for rows.Next() {
+		var i ObservationLBEdgesRow
+		if err := rows.Scan(&i.TenantID, &i.LbID, &i.RelationKey); err != nil {
+			return nil, err
+		}
+		items = append(items, i)
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
+}
+
 const observationResources = `-- name: ObservationResources :many
-SELECT r.tenant_id,coalesce(r.vpc_id,r.subnet_id,r.eip_id,r.snat_id)::text AS resource_id,
+SELECT r.tenant_id,coalesce(r.vpc_id,r.subnet_id,r.eip_id,r.snat_id,r.lb_id)::text AS resource_id,
  r.requested_generation,b.resource_kind,b.namespace,b.provider_name,b.provider_uid
 FROM network_reconciliations r JOIN network_provider_bindings b
- ON b.tenant_id=r.tenant_id AND coalesce(b.vpc_id,b.subnet_id,b.eip_id,b.snat_id)=coalesce(r.vpc_id,r.subnet_id,r.eip_id,r.snat_id)
+ ON b.tenant_id=r.tenant_id AND coalesce(b.vpc_id,b.subnet_id,b.eip_id,b.snat_id,b.lb_id)=coalesce(r.vpc_id,r.subnet_id,r.eip_id,r.snat_id,r.lb_id)
 WHERE b.cluster_id=$1 AND NOT r.retired
 `
 

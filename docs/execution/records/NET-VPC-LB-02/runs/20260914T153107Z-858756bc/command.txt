@@ -1,0 +1,17 @@
+source.tar.gz: OK
+verified source files: 1239
+go version go1.26.7 linux/amd64
+1.60.0
+v1.31.1
+127.0.0.1:5432 - accepting connections
+PostgreSQL image=docker.io/library/postgres@sha256:4ef4dbc939d61acea57712655ddb4b4ab27419c913f94cca0cd57cb3ea3c2280 container=cf4d108c36be7b00c91e48603d4627c357d4cb4ee7b7b55970930071324ef8b8
+=== RUN   TestLBConcurrentSNATClaimBothArrivalOrders
+=== RUN   TestLBConcurrentSNATClaimBothArrivalOrders/lb
+=== RUN   TestLBConcurrentSNATClaimBothArrivalOrders/snat
+--- PASS: TestLBConcurrentSNATClaimBothArrivalOrders (1.74s)
+    --- PASS: TestLBConcurrentSNATClaimBothArrivalOrders/lb (0.88s)
+    --- PASS: TestLBConcurrentSNATClaimBothArrivalOrders/snat (0.86s)
+PASS
+ok  	github.com/zhangzhe-ctrl/ani-network-service/internal/data	1.758s
+removed task container=cf4d108c36be7b00c91e48603d4627c357d4cb4ee7b7b55970930071324ef8b8
+REMOTE_COMMAND_EXIT=0

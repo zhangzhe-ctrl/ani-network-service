@@ -1,0 +1,76 @@
+{
+  "at": "2026-09-15T12:38:37.046130+00:00",
+  "source_run": "20260915T121305Z-1e089142",
+  "runtime": "r24",
+  "fixed_window_result": "pass",
+  "overall_continuous_stability": "fail",
+  "criterion": "all 30 fixed-interval samples configured and not stale; post-window checks separately retained",
+  "window_start": "2026-09-15T12:30:28.859910+00:00",
+  "window_end": "2026-09-15T12:32:54.226835+00:00",
+  "samples": [
+    {
+      "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_CONFIGURED",
+      "reason": "",
+      "observation_stale": false,
+      "count": 30
+    }
+  ],
+  "max_observation_age_seconds": 36.981703,
+  "window_evidence": "private-lb-r24-stability.json",
+  "private_vip": "private-vip-audit-refresh-r24-assessment.json",
+  "post_window_failure": "audit-refresh-r24-post-window-read.json",
+  "attachment_history": "audit-refresh-r24-attachment-history.json",
+  "post_window_member_reason": "BACKEND_IDENTITY_MISMATCH",
+  "unavailable_attachment_events": [
+    {
+      "event": "observed",
+      "state": "attached",
+      "reason": "PROVIDER_UNAVAILABLE",
+      "pod_uid": "a0fb8a3c-9025-43b4-a45f-5114ffc5f3b5",
+      "version": 3035,
+      "created_at": "2026-09-15T12:36:25.591804+00:00",
+      "attachment_id": "att_7d08b61f4038432a842d2fda525607b9"
+    },
+    {
+      "event": "observed",
+      "state": "attached",
+      "reason": "PROVIDER_UNAVAILABLE",
+      "pod_uid": "e4c49404-afc1-4ff5-9e22-08521633d69c",
+      "version": 3039,
+      "created_at": "2026-09-15T12:36:25.588145+00:00",
+      "attachment_id": "att_a6172d5ee5be434087f939001a435c9e"
+    },
+    {
+      "event": "observed",
+      "state": "attached",
+      "reason": "PROVIDER_UNAVAILABLE",
+      "pod_uid": "6e3cfa90-d485-4311-a451-b8fa798acb7a",
+      "version": 3034,
+      "created_at": "2026-09-15T12:36:11.261344+00:00",
+      "attachment_id": "att_dc37931e4bfa4d3d9fe7a2ed3b791e62"
+    },
+    {
+      "event": "observed",
+      "state": "attached",
+      "reason": "PROVIDER_UNAVAILABLE",
+      "pod_uid": "e4c49404-afc1-4ff5-9e22-08521633d69c",
+      "version": 3028,
+      "created_at": "2026-09-15T12:34:57.155061+00:00",
+      "attachment_id": "att_a6172d5ee5be434087f939001a435c9e"
+    },
+    {
+      "event": "observed",
+      "state": "attached",
+      "reason": "PROVIDER_UNAVAILABLE",
+      "pod_uid": "e4c49404-afc1-4ff5-9e22-08521633d69c",
+      "version": 3020,
+      "created_at": "2026-09-15T12:34:00.177225+00:00",
+      "attachment_id": "att_a6172d5ee5be434087f939001a435c9e"
+    }
+  ],
+  "metrics": [
+    "audit-refresh-r24-metrics-before.json",
+    "audit-refresh-r24-metrics-after.json"
+  ],
+  "conclusion": "Cached-audit refresh regressions and fixed live window pass. Later actual reads still showed BackendIdentityMismatch; base connections remained ready and Attachment history recorded brief ProviderUnavailable/recovery. Overall continuous stability is not resolved; exact Attachment adapter error path remains unconfirmed. No Public forwarding probes were resumed."
+}

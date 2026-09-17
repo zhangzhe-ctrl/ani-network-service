@@ -1,0 +1,1917 @@
+{
+  "at": "2026-09-15T08:52:48.978402+00:00",
+  "execution_host": "ubuntu",
+  "result": "fail",
+  "completed": [
+    "RecordPublicPoolVerification"
+  ],
+  "records": [
+    {
+      "at": "2026-09-15T08:52:08.368384+00:00",
+      "method": "GetPublicAddressPool",
+      "request": {
+        "pool_id": "pool_f28b9d470c0147f6a66646b8976c36f9"
+      },
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "resource": {
+            "id": "pool_f28b9d470c0147f6a66646b8976c36f9",
+            "cluster_id": "lb02-09141908-2b3122",
+            "name": "lb02-2b3122-public-untagged",
+            "description": "U09 isolated underlay pool, guest untagged on logical VLAN 102; tenant allocation initially disabled",
+            "state": "RESOURCE_STATE_AVAILABLE",
+            "reason": "",
+            "reason_message": "",
+            "version": "100",
+            "created_at": "2026-09-15T08:20:28.455726Z",
+            "updated_at": "2026-09-15T08:51:55.759185Z",
+            "observed_at": "2026-09-15T08:51:50.607573Z",
+            "observation_stale": false,
+            "last_operation_id": "6db28354-c8dd-478e-9aba-55cd747731a0",
+            "pool": {
+              "mode": "PUBLIC_POOL_MODE_UNDERLAY",
+              "gateway_id": "egw_386dc165a8744951bc624ab55c439681",
+              "cidr": "172.16.102.0/24",
+              "ovn_gateway_ip": "172.16.102.2",
+              "excluded_ips": [
+                "172.16.102.1",
+                "172.16.102.1..172.16.102.191",
+                "172.16.102.2",
+                "172.16.102.208..172.16.102.254"
+              ],
+              "vlan_network_id": "vlan_9b12fcb230ef4bc08ba1d497ebe44009",
+              "upstream_gateway_ip": "172.16.102.1",
+              "allocation_enabled": false,
+              "is_default": false,
+              "config_revision": "1",
+              "verification": null,
+              "topology_fingerprint": "301586ecb248d176a80e3fb733198c09198df8b29196ba92b35c9f5725b361c6",
+              "observed_provider_images": [
+                "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4"
+              ],
+              "scope": "public"
+            }
+          }
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-15T08:52:08.405209+00:00",
+      "method": "RecordPublicPoolVerification",
+      "request": {
+        "verification": {
+          "provider_source_revision": "735abf81cb728f30bd0f15e1885dcd7f88b56ab0",
+          "provider_image_digests": [
+            "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4"
+          ],
+          "topology_fingerprint": "301586ecb248d176a80e3fb733198c09198df8b29196ba92b35c9f5725b361c6",
+          "scope": "underlay_lab_direct_workload_egress_return",
+          "evidence_reference": "NET-VPC-LB-02/device-registration-20260915/public-pool-qualification-assessment.json#sha256=06fd07bfdf4703da0a322b8dfd24a66721e91c10d30b4a14cf260f047d1d20c5",
+          "verified_at": "2026-09-15T08:38:54.409181+00:00",
+          "expires_at": "2026-09-15T14:41:06.728059+00:00"
+        },
+        "idempotency_key": "lb02-public-qualification-01",
+        "pool_id": "pool_f28b9d470c0147f6a66646b8976c36f9",
+        "expected_version": "100"
+      },
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "resource": {
+            "id": "pool_f28b9d470c0147f6a66646b8976c36f9",
+            "cluster_id": "lb02-09141908-2b3122",
+            "name": "lb02-2b3122-public-untagged",
+            "description": "U09 isolated underlay pool, guest untagged on logical VLAN 102; tenant allocation initially disabled",
+            "state": "RESOURCE_STATE_AVAILABLE",
+            "reason": "",
+            "reason_message": "",
+            "version": "101",
+            "created_at": "2026-09-15T08:20:28.455726Z",
+            "updated_at": "2026-09-15T08:52:08.393006Z",
+            "observed_at": "2026-09-15T08:51:50.607573Z",
+            "observation_stale": false,
+            "last_operation_id": "b352c665-188d-4474-97b6-de3f982f74da",
+            "pool": {
+              "mode": "PUBLIC_POOL_MODE_UNDERLAY",
+              "gateway_id": "egw_386dc165a8744951bc624ab55c439681",
+              "cidr": "172.16.102.0/24",
+              "ovn_gateway_ip": "172.16.102.2",
+              "excluded_ips": [
+                "172.16.102.1",
+                "172.16.102.1..172.16.102.191",
+                "172.16.102.2",
+                "172.16.102.208..172.16.102.254"
+              ],
+              "vlan_network_id": "vlan_9b12fcb230ef4bc08ba1d497ebe44009",
+              "upstream_gateway_ip": "172.16.102.1",
+              "allocation_enabled": false,
+              "is_default": false,
+              "config_revision": "1",
+              "verification": {
+                "provider_source_revision": "735abf81cb728f30bd0f15e1885dcd7f88b56ab0",
+                "provider_image_digests": [
+                  "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4"
+                ],
+                "topology_fingerprint": "301586ecb248d176a80e3fb733198c09198df8b29196ba92b35c9f5725b361c6",
+                "evidence_reference": "NET-VPC-LB-02/device-registration-20260915/public-pool-qualification-assessment.json#sha256=06fd07bfdf4703da0a322b8dfd24a66721e91c10d30b4a14cf260f047d1d20c5",
+                "scope": "underlay_lab_direct_workload_egress_return",
+                "verified_at": "2026-09-15T08:38:54.409181Z",
+                "expires_at": "2026-09-15T14:41:06.728059Z"
+              },
+              "topology_fingerprint": "301586ecb248d176a80e3fb733198c09198df8b29196ba92b35c9f5725b361c6",
+              "observed_provider_images": [
+                "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4"
+              ],
+              "scope": "public"
+            }
+          }
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-15T08:52:08.420204+00:00",
+      "method": "GetPublicAddressPool",
+      "request": {
+        "pool_id": "pool_f28b9d470c0147f6a66646b8976c36f9"
+      },
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "resource": {
+            "id": "pool_f28b9d470c0147f6a66646b8976c36f9",
+            "cluster_id": "lb02-09141908-2b3122",
+            "name": "lb02-2b3122-public-untagged",
+            "description": "U09 isolated underlay pool, guest untagged on logical VLAN 102; tenant allocation initially disabled",
+            "state": "RESOURCE_STATE_AVAILABLE",
+            "reason": "",
+            "reason_message": "",
+            "version": "101",
+            "created_at": "2026-09-15T08:20:28.455726Z",
+            "updated_at": "2026-09-15T08:52:08.393006Z",
+            "observed_at": "2026-09-15T08:51:50.607573Z",
+            "observation_stale": false,
+            "last_operation_id": "b352c665-188d-4474-97b6-de3f982f74da",
+            "pool": {
+              "mode": "PUBLIC_POOL_MODE_UNDERLAY",
+              "gateway_id": "egw_386dc165a8744951bc624ab55c439681",
+              "cidr": "172.16.102.0/24",
+              "ovn_gateway_ip": "172.16.102.2",
+              "excluded_ips": [
+                "172.16.102.1",
+                "172.16.102.1..172.16.102.191",
+                "172.16.102.2",
+                "172.16.102.208..172.16.102.254"
+              ],
+              "vlan_network_id": "vlan_9b12fcb230ef4bc08ba1d497ebe44009",
+              "upstream_gateway_ip": "172.16.102.1",
+              "allocation_enabled": false,
+              "is_default": false,
+              "config_revision": "1",
+              "verification": {
+                "provider_source_revision": "735abf81cb728f30bd0f15e1885dcd7f88b56ab0",
+                "provider_image_digests": [
+                  "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4"
+                ],
+                "topology_fingerprint": "301586ecb248d176a80e3fb733198c09198df8b29196ba92b35c9f5725b361c6",
+                "evidence_reference": "NET-VPC-LB-02/device-registration-20260915/public-pool-qualification-assessment.json#sha256=06fd07bfdf4703da0a322b8dfd24a66721e91c10d30b4a14cf260f047d1d20c5",
+                "scope": "underlay_lab_direct_workload_egress_return",
+                "verified_at": "2026-09-15T08:38:54.409181Z",
+                "expires_at": "2026-09-15T14:41:06.728059Z"
+              },
+              "topology_fingerprint": "301586ecb248d176a80e3fb733198c09198df8b29196ba92b35c9f5725b361c6",
+              "observed_provider_images": [
+                "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4"
+              ],
+              "scope": "public"
+            }
+          }
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-15T08:52:08.434664+00:00",
+      "method": "SetPublicPoolAllocationEnabled",
+      "request": {
+        "enabled": true,
+        "idempotency_key": "lb02-public-allocation-01",
+        "pool_id": "pool_f28b9d470c0147f6a66646b8976c36f9",
+        "expected_version": "101"
+      },
+      "exit": 1,
+      "response": {
+        "code": "Unavailable",
+        "status": {
+          "code": 14,
+          "message": "address pool configuration or evidence is not ready",
+          "details": [
+            {
+              "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+              "reason": "PUBLIC_EGRESS_NOT_READY",
+              "domain": "network.ani.io",
+              "metadata": {}
+            }
+          ]
+        }
+      },
+      "stderr": "RPC failed; structured status is in stdout\n"
+    },
+    {
+      "at": "2026-09-15T08:52:10.454081+00:00",
+      "method": "GetPublicAddressPool",
+      "request": {
+        "pool_id": "pool_f28b9d470c0147f6a66646b8976c36f9"
+      },
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "resource": {
+            "id": "pool_f28b9d470c0147f6a66646b8976c36f9",
+            "cluster_id": "lb02-09141908-2b3122",
+            "name": "lb02-2b3122-public-untagged",
+            "description": "U09 isolated underlay pool, guest untagged on logical VLAN 102; tenant allocation initially disabled",
+            "state": "RESOURCE_STATE_AVAILABLE",
+            "reason": "",
+            "reason_message": "",
+            "version": "101",
+            "created_at": "2026-09-15T08:20:28.455726Z",
+            "updated_at": "2026-09-15T08:52:08.393006Z",
+            "observed_at": "2026-09-15T08:51:50.607573Z",
+            "observation_stale": false,
+            "last_operation_id": "b352c665-188d-4474-97b6-de3f982f74da",
+            "pool": {
+              "mode": "PUBLIC_POOL_MODE_UNDERLAY",
+              "gateway_id": "egw_386dc165a8744951bc624ab55c439681",
+              "cidr": "172.16.102.0/24",
+              "ovn_gateway_ip": "172.16.102.2",
+              "excluded_ips": [
+                "172.16.102.1",
+                "172.16.102.1..172.16.102.191",
+                "172.16.102.2",
+                "172.16.102.208..172.16.102.254"
+              ],
+              "vlan_network_id": "vlan_9b12fcb230ef4bc08ba1d497ebe44009",
+              "upstream_gateway_ip": "172.16.102.1",
+              "allocation_enabled": false,
+              "is_default": false,
+              "config_revision": "1",
+              "verification": {
+                "provider_source_revision": "735abf81cb728f30bd0f15e1885dcd7f88b56ab0",
+                "provider_image_digests": [
+                  "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4"
+                ],
+                "topology_fingerprint": "301586ecb248d176a80e3fb733198c09198df8b29196ba92b35c9f5725b361c6",
+                "evidence_reference": "NET-VPC-LB-02/device-registration-20260915/public-pool-qualification-assessment.json#sha256=06fd07bfdf4703da0a322b8dfd24a66721e91c10d30b4a14cf260f047d1d20c5",
+                "scope": "underlay_lab_direct_workload_egress_return",
+                "verified_at": "2026-09-15T08:38:54.409181Z",
+                "expires_at": "2026-09-15T14:41:06.728059Z"
+              },
+              "topology_fingerprint": "301586ecb248d176a80e3fb733198c09198df8b29196ba92b35c9f5725b361c6",
+              "observed_provider_images": [
+                "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4"
+              ],
+              "scope": "public"
+            }
+          }
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-15T08:52:10.470642+00:00",
+      "method": "SetPublicPoolAllocationEnabled",
+      "request": {
+        "enabled": true,
+        "idempotency_key": "lb02-public-allocation-01",
+        "pool_id": "pool_f28b9d470c0147f6a66646b8976c36f9",
+        "expected_version": "101"
+      },
+      "exit": 1,
+      "response": {
+        "code": "Unavailable",
+        "status": {
+          "code": 14,
+          "message": "address pool configuration or evidence is not ready",
+          "details": [
+            {
+              "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+              "reason": "PUBLIC_EGRESS_NOT_READY",
+              "domain": "network.ani.io",
+              "metadata": {}
+            }
+          ]
+        }
+      },
+      "stderr": "RPC failed; structured status is in stdout\n"
+    },
+    {
+      "at": "2026-09-15T08:52:12.484003+00:00",
+      "method": "GetPublicAddressPool",
+      "request": {
+        "pool_id": "pool_f28b9d470c0147f6a66646b8976c36f9"
+      },
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "resource": {
+            "id": "pool_f28b9d470c0147f6a66646b8976c36f9",
+            "cluster_id": "lb02-09141908-2b3122",
+            "name": "lb02-2b3122-public-untagged",
+            "description": "U09 isolated underlay pool, guest untagged on logical VLAN 102; tenant allocation initially disabled",
+            "state": "RESOURCE_STATE_AVAILABLE",
+            "reason": "",
+            "reason_message": "",
+            "version": "101",
+            "created_at": "2026-09-15T08:20:28.455726Z",
+            "updated_at": "2026-09-15T08:52:08.393006Z",
+            "observed_at": "2026-09-15T08:51:50.607573Z",
+            "observation_stale": false,
+            "last_operation_id": "b352c665-188d-4474-97b6-de3f982f74da",
+            "pool": {
+              "mode": "PUBLIC_POOL_MODE_UNDERLAY",
+              "gateway_id": "egw_386dc165a8744951bc624ab55c439681",
+              "cidr": "172.16.102.0/24",
+              "ovn_gateway_ip": "172.16.102.2",
+              "excluded_ips": [
+                "172.16.102.1",
+                "172.16.102.1..172.16.102.191",
+                "172.16.102.2",
+                "172.16.102.208..172.16.102.254"
+              ],
+              "vlan_network_id": "vlan_9b12fcb230ef4bc08ba1d497ebe44009",
+              "upstream_gateway_ip": "172.16.102.1",
+              "allocation_enabled": false,
+              "is_default": false,
+              "config_revision": "1",
+              "verification": {
+                "provider_source_revision": "735abf81cb728f30bd0f15e1885dcd7f88b56ab0",
+                "provider_image_digests": [
+                  "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4"
+                ],
+                "topology_fingerprint": "301586ecb248d176a80e3fb733198c09198df8b29196ba92b35c9f5725b361c6",
+                "evidence_reference": "NET-VPC-LB-02/device-registration-20260915/public-pool-qualification-assessment.json#sha256=06fd07bfdf4703da0a322b8dfd24a66721e91c10d30b4a14cf260f047d1d20c5",
+                "scope": "underlay_lab_direct_workload_egress_return",
+                "verified_at": "2026-09-15T08:38:54.409181Z",
+                "expires_at": "2026-09-15T14:41:06.728059Z"
+              },
+              "topology_fingerprint": "301586ecb248d176a80e3fb733198c09198df8b29196ba92b35c9f5725b361c6",
+              "observed_provider_images": [
+                "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4"
+              ],
+              "scope": "public"
+            }
+          }
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-15T08:52:12.497477+00:00",
+      "method": "SetPublicPoolAllocationEnabled",
+      "request": {
+        "enabled": true,
+        "idempotency_key": "lb02-public-allocation-01",
+        "pool_id": "pool_f28b9d470c0147f6a66646b8976c36f9",
+        "expected_version": "101"
+      },
+      "exit": 1,
+      "response": {
+        "code": "Unavailable",
+        "status": {
+          "code": 14,
+          "message": "address pool configuration or evidence is not ready",
+          "details": [
+            {
+              "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+              "reason": "PUBLIC_EGRESS_NOT_READY",
+              "domain": "network.ani.io",
+              "metadata": {}
+            }
+          ]
+        }
+      },
+      "stderr": "RPC failed; structured status is in stdout\n"
+    },
+    {
+      "at": "2026-09-15T08:52:14.520029+00:00",
+      "method": "GetPublicAddressPool",
+      "request": {
+        "pool_id": "pool_f28b9d470c0147f6a66646b8976c36f9"
+      },
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "resource": {
+            "id": "pool_f28b9d470c0147f6a66646b8976c36f9",
+            "cluster_id": "lb02-09141908-2b3122",
+            "name": "lb02-2b3122-public-untagged",
+            "description": "U09 isolated underlay pool, guest untagged on logical VLAN 102; tenant allocation initially disabled",
+            "state": "RESOURCE_STATE_AVAILABLE",
+            "reason": "",
+            "reason_message": "",
+            "version": "101",
+            "created_at": "2026-09-15T08:20:28.455726Z",
+            "updated_at": "2026-09-15T08:52:08.393006Z",
+            "observed_at": "2026-09-15T08:51:50.607573Z",
+            "observation_stale": false,
+            "last_operation_id": "b352c665-188d-4474-97b6-de3f982f74da",
+            "pool": {
+              "mode": "PUBLIC_POOL_MODE_UNDERLAY",
+              "gateway_id": "egw_386dc165a8744951bc624ab55c439681",
+              "cidr": "172.16.102.0/24",
+              "ovn_gateway_ip": "172.16.102.2",
+              "excluded_ips": [
+                "172.16.102.1",
+                "172.16.102.1..172.16.102.191",
+                "172.16.102.2",
+                "172.16.102.208..172.16.102.254"
+              ],
+              "vlan_network_id": "vlan_9b12fcb230ef4bc08ba1d497ebe44009",
+              "upstream_gateway_ip": "172.16.102.1",
+              "allocation_enabled": false,
+              "is_default": false,
+              "config_revision": "1",
+              "verification": {
+                "provider_source_revision": "735abf81cb728f30bd0f15e1885dcd7f88b56ab0",
+                "provider_image_digests": [
+                  "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4"
+                ],
+                "topology_fingerprint": "301586ecb248d176a80e3fb733198c09198df8b29196ba92b35c9f5725b361c6",
+                "evidence_reference": "NET-VPC-LB-02/device-registration-20260915/public-pool-qualification-assessment.json#sha256=06fd07bfdf4703da0a322b8dfd24a66721e91c10d30b4a14cf260f047d1d20c5",
+                "scope": "underlay_lab_direct_workload_egress_return",
+                "verified_at": "2026-09-15T08:38:54.409181Z",
+                "expires_at": "2026-09-15T14:41:06.728059Z"
+              },
+              "topology_fingerprint": "301586ecb248d176a80e3fb733198c09198df8b29196ba92b35c9f5725b361c6",
+              "observed_provider_images": [
+                "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4"
+              ],
+              "scope": "public"
+            }
+          }
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-15T08:52:14.546034+00:00",
+      "method": "SetPublicPoolAllocationEnabled",
+      "request": {
+        "enabled": true,
+        "idempotency_key": "lb02-public-allocation-01",
+        "pool_id": "pool_f28b9d470c0147f6a66646b8976c36f9",
+        "expected_version": "101"
+      },
+      "exit": 1,
+      "response": {
+        "code": "Unavailable",
+        "status": {
+          "code": 14,
+          "message": "address pool configuration or evidence is not ready",
+          "details": [
+            {
+              "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+              "reason": "PUBLIC_EGRESS_NOT_READY",
+              "domain": "network.ani.io",
+              "metadata": {}
+            }
+          ]
+        }
+      },
+      "stderr": "RPC failed; structured status is in stdout\n"
+    },
+    {
+      "at": "2026-09-15T08:52:16.560380+00:00",
+      "method": "GetPublicAddressPool",
+      "request": {
+        "pool_id": "pool_f28b9d470c0147f6a66646b8976c36f9"
+      },
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "resource": {
+            "id": "pool_f28b9d470c0147f6a66646b8976c36f9",
+            "cluster_id": "lb02-09141908-2b3122",
+            "name": "lb02-2b3122-public-untagged",
+            "description": "U09 isolated underlay pool, guest untagged on logical VLAN 102; tenant allocation initially disabled",
+            "state": "RESOURCE_STATE_AVAILABLE",
+            "reason": "",
+            "reason_message": "",
+            "version": "101",
+            "created_at": "2026-09-15T08:20:28.455726Z",
+            "updated_at": "2026-09-15T08:52:08.393006Z",
+            "observed_at": "2026-09-15T08:51:50.607573Z",
+            "observation_stale": false,
+            "last_operation_id": "b352c665-188d-4474-97b6-de3f982f74da",
+            "pool": {
+              "mode": "PUBLIC_POOL_MODE_UNDERLAY",
+              "gateway_id": "egw_386dc165a8744951bc624ab55c439681",
+              "cidr": "172.16.102.0/24",
+              "ovn_gateway_ip": "172.16.102.2",
+              "excluded_ips": [
+                "172.16.102.1",
+                "172.16.102.1..172.16.102.191",
+                "172.16.102.2",
+                "172.16.102.208..172.16.102.254"
+              ],
+              "vlan_network_id": "vlan_9b12fcb230ef4bc08ba1d497ebe44009",
+              "upstream_gateway_ip": "172.16.102.1",
+              "allocation_enabled": false,
+              "is_default": false,
+              "config_revision": "1",
+              "verification": {
+                "provider_source_revision": "735abf81cb728f30bd0f15e1885dcd7f88b56ab0",
+                "provider_image_digests": [
+                  "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4"
+                ],
+                "topology_fingerprint": "301586ecb248d176a80e3fb733198c09198df8b29196ba92b35c9f5725b361c6",
+                "evidence_reference": "NET-VPC-LB-02/device-registration-20260915/public-pool-qualification-assessment.json#sha256=06fd07bfdf4703da0a322b8dfd24a66721e91c10d30b4a14cf260f047d1d20c5",
+                "scope": "underlay_lab_direct_workload_egress_return",
+                "verified_at": "2026-09-15T08:38:54.409181Z",
+                "expires_at": "2026-09-15T14:41:06.728059Z"
+              },
+              "topology_fingerprint": "301586ecb248d176a80e3fb733198c09198df8b29196ba92b35c9f5725b361c6",
+              "observed_provider_images": [
+                "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4"
+              ],
+              "scope": "public"
+            }
+          }
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-15T08:52:16.572885+00:00",
+      "method": "SetPublicPoolAllocationEnabled",
+      "request": {
+        "enabled": true,
+        "idempotency_key": "lb02-public-allocation-01",
+        "pool_id": "pool_f28b9d470c0147f6a66646b8976c36f9",
+        "expected_version": "101"
+      },
+      "exit": 1,
+      "response": {
+        "code": "Unavailable",
+        "status": {
+          "code": 14,
+          "message": "address pool configuration or evidence is not ready",
+          "details": [
+            {
+              "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+              "reason": "PUBLIC_EGRESS_NOT_READY",
+              "domain": "network.ani.io",
+              "metadata": {}
+            }
+          ]
+        }
+      },
+      "stderr": "RPC failed; structured status is in stdout\n"
+    },
+    {
+      "at": "2026-09-15T08:52:18.585520+00:00",
+      "method": "GetPublicAddressPool",
+      "request": {
+        "pool_id": "pool_f28b9d470c0147f6a66646b8976c36f9"
+      },
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "resource": {
+            "id": "pool_f28b9d470c0147f6a66646b8976c36f9",
+            "cluster_id": "lb02-09141908-2b3122",
+            "name": "lb02-2b3122-public-untagged",
+            "description": "U09 isolated underlay pool, guest untagged on logical VLAN 102; tenant allocation initially disabled",
+            "state": "RESOURCE_STATE_AVAILABLE",
+            "reason": "",
+            "reason_message": "",
+            "version": "101",
+            "created_at": "2026-09-15T08:20:28.455726Z",
+            "updated_at": "2026-09-15T08:52:08.393006Z",
+            "observed_at": "2026-09-15T08:51:50.607573Z",
+            "observation_stale": false,
+            "last_operation_id": "b352c665-188d-4474-97b6-de3f982f74da",
+            "pool": {
+              "mode": "PUBLIC_POOL_MODE_UNDERLAY",
+              "gateway_id": "egw_386dc165a8744951bc624ab55c439681",
+              "cidr": "172.16.102.0/24",
+              "ovn_gateway_ip": "172.16.102.2",
+              "excluded_ips": [
+                "172.16.102.1",
+                "172.16.102.1..172.16.102.191",
+                "172.16.102.2",
+                "172.16.102.208..172.16.102.254"
+              ],
+              "vlan_network_id": "vlan_9b12fcb230ef4bc08ba1d497ebe44009",
+              "upstream_gateway_ip": "172.16.102.1",
+              "allocation_enabled": false,
+              "is_default": false,
+              "config_revision": "1",
+              "verification": {
+                "provider_source_revision": "735abf81cb728f30bd0f15e1885dcd7f88b56ab0",
+                "provider_image_digests": [
+                  "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4"
+                ],
+                "topology_fingerprint": "301586ecb248d176a80e3fb733198c09198df8b29196ba92b35c9f5725b361c6",
+                "evidence_reference": "NET-VPC-LB-02/device-registration-20260915/public-pool-qualification-assessment.json#sha256=06fd07bfdf4703da0a322b8dfd24a66721e91c10d30b4a14cf260f047d1d20c5",
+                "scope": "underlay_lab_direct_workload_egress_return",
+                "verified_at": "2026-09-15T08:38:54.409181Z",
+                "expires_at": "2026-09-15T14:41:06.728059Z"
+              },
+              "topology_fingerprint": "301586ecb248d176a80e3fb733198c09198df8b29196ba92b35c9f5725b361c6",
+              "observed_provider_images": [
+                "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4"
+              ],
+              "scope": "public"
+            }
+          }
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-15T08:52:18.597216+00:00",
+      "method": "SetPublicPoolAllocationEnabled",
+      "request": {
+        "enabled": true,
+        "idempotency_key": "lb02-public-allocation-01",
+        "pool_id": "pool_f28b9d470c0147f6a66646b8976c36f9",
+        "expected_version": "101"
+      },
+      "exit": 1,
+      "response": {
+        "code": "Unavailable",
+        "status": {
+          "code": 14,
+          "message": "address pool configuration or evidence is not ready",
+          "details": [
+            {
+              "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+              "reason": "PUBLIC_EGRESS_NOT_READY",
+              "domain": "network.ani.io",
+              "metadata": {}
+            }
+          ]
+        }
+      },
+      "stderr": "RPC failed; structured status is in stdout\n"
+    },
+    {
+      "at": "2026-09-15T08:52:20.609015+00:00",
+      "method": "GetPublicAddressPool",
+      "request": {
+        "pool_id": "pool_f28b9d470c0147f6a66646b8976c36f9"
+      },
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "resource": {
+            "id": "pool_f28b9d470c0147f6a66646b8976c36f9",
+            "cluster_id": "lb02-09141908-2b3122",
+            "name": "lb02-2b3122-public-untagged",
+            "description": "U09 isolated underlay pool, guest untagged on logical VLAN 102; tenant allocation initially disabled",
+            "state": "RESOURCE_STATE_AVAILABLE",
+            "reason": "",
+            "reason_message": "",
+            "version": "101",
+            "created_at": "2026-09-15T08:20:28.455726Z",
+            "updated_at": "2026-09-15T08:52:08.393006Z",
+            "observed_at": "2026-09-15T08:51:50.607573Z",
+            "observation_stale": false,
+            "last_operation_id": "b352c665-188d-4474-97b6-de3f982f74da",
+            "pool": {
+              "mode": "PUBLIC_POOL_MODE_UNDERLAY",
+              "gateway_id": "egw_386dc165a8744951bc624ab55c439681",
+              "cidr": "172.16.102.0/24",
+              "ovn_gateway_ip": "172.16.102.2",
+              "excluded_ips": [
+                "172.16.102.1",
+                "172.16.102.1..172.16.102.191",
+                "172.16.102.2",
+                "172.16.102.208..172.16.102.254"
+              ],
+              "vlan_network_id": "vlan_9b12fcb230ef4bc08ba1d497ebe44009",
+              "upstream_gateway_ip": "172.16.102.1",
+              "allocation_enabled": false,
+              "is_default": false,
+              "config_revision": "1",
+              "verification": {
+                "provider_source_revision": "735abf81cb728f30bd0f15e1885dcd7f88b56ab0",
+                "provider_image_digests": [
+                  "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4"
+                ],
+                "topology_fingerprint": "301586ecb248d176a80e3fb733198c09198df8b29196ba92b35c9f5725b361c6",
+                "evidence_reference": "NET-VPC-LB-02/device-registration-20260915/public-pool-qualification-assessment.json#sha256=06fd07bfdf4703da0a322b8dfd24a66721e91c10d30b4a14cf260f047d1d20c5",
+                "scope": "underlay_lab_direct_workload_egress_return",
+                "verified_at": "2026-09-15T08:38:54.409181Z",
+                "expires_at": "2026-09-15T14:41:06.728059Z"
+              },
+              "topology_fingerprint": "301586ecb248d176a80e3fb733198c09198df8b29196ba92b35c9f5725b361c6",
+              "observed_provider_images": [
+                "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4"
+              ],
+              "scope": "public"
+            }
+          }
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-15T08:52:20.620582+00:00",
+      "method": "SetPublicPoolAllocationEnabled",
+      "request": {
+        "enabled": true,
+        "idempotency_key": "lb02-public-allocation-01",
+        "pool_id": "pool_f28b9d470c0147f6a66646b8976c36f9",
+        "expected_version": "101"
+      },
+      "exit": 1,
+      "response": {
+        "code": "Unavailable",
+        "status": {
+          "code": 14,
+          "message": "address pool configuration or evidence is not ready",
+          "details": [
+            {
+              "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+              "reason": "PUBLIC_EGRESS_NOT_READY",
+              "domain": "network.ani.io",
+              "metadata": {}
+            }
+          ]
+        }
+      },
+      "stderr": "RPC failed; structured status is in stdout\n"
+    },
+    {
+      "at": "2026-09-15T08:52:22.634104+00:00",
+      "method": "GetPublicAddressPool",
+      "request": {
+        "pool_id": "pool_f28b9d470c0147f6a66646b8976c36f9"
+      },
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "resource": {
+            "id": "pool_f28b9d470c0147f6a66646b8976c36f9",
+            "cluster_id": "lb02-09141908-2b3122",
+            "name": "lb02-2b3122-public-untagged",
+            "description": "U09 isolated underlay pool, guest untagged on logical VLAN 102; tenant allocation initially disabled",
+            "state": "RESOURCE_STATE_AVAILABLE",
+            "reason": "",
+            "reason_message": "",
+            "version": "101",
+            "created_at": "2026-09-15T08:20:28.455726Z",
+            "updated_at": "2026-09-15T08:52:08.393006Z",
+            "observed_at": "2026-09-15T08:51:50.607573Z",
+            "observation_stale": false,
+            "last_operation_id": "b352c665-188d-4474-97b6-de3f982f74da",
+            "pool": {
+              "mode": "PUBLIC_POOL_MODE_UNDERLAY",
+              "gateway_id": "egw_386dc165a8744951bc624ab55c439681",
+              "cidr": "172.16.102.0/24",
+              "ovn_gateway_ip": "172.16.102.2",
+              "excluded_ips": [
+                "172.16.102.1",
+                "172.16.102.1..172.16.102.191",
+                "172.16.102.2",
+                "172.16.102.208..172.16.102.254"
+              ],
+              "vlan_network_id": "vlan_9b12fcb230ef4bc08ba1d497ebe44009",
+              "upstream_gateway_ip": "172.16.102.1",
+              "allocation_enabled": false,
+              "is_default": false,
+              "config_revision": "1",
+              "verification": {
+                "provider_source_revision": "735abf81cb728f30bd0f15e1885dcd7f88b56ab0",
+                "provider_image_digests": [
+                  "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4"
+                ],
+                "topology_fingerprint": "301586ecb248d176a80e3fb733198c09198df8b29196ba92b35c9f5725b361c6",
+                "evidence_reference": "NET-VPC-LB-02/device-registration-20260915/public-pool-qualification-assessment.json#sha256=06fd07bfdf4703da0a322b8dfd24a66721e91c10d30b4a14cf260f047d1d20c5",
+                "scope": "underlay_lab_direct_workload_egress_return",
+                "verified_at": "2026-09-15T08:38:54.409181Z",
+                "expires_at": "2026-09-15T14:41:06.728059Z"
+              },
+              "topology_fingerprint": "301586ecb248d176a80e3fb733198c09198df8b29196ba92b35c9f5725b361c6",
+              "observed_provider_images": [
+                "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4"
+              ],
+              "scope": "public"
+            }
+          }
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-15T08:52:22.650118+00:00",
+      "method": "SetPublicPoolAllocationEnabled",
+      "request": {
+        "enabled": true,
+        "idempotency_key": "lb02-public-allocation-01",
+        "pool_id": "pool_f28b9d470c0147f6a66646b8976c36f9",
+        "expected_version": "101"
+      },
+      "exit": 1,
+      "response": {
+        "code": "Unavailable",
+        "status": {
+          "code": 14,
+          "message": "address pool configuration or evidence is not ready",
+          "details": [
+            {
+              "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+              "reason": "PUBLIC_EGRESS_NOT_READY",
+              "domain": "network.ani.io",
+              "metadata": {}
+            }
+          ]
+        }
+      },
+      "stderr": "RPC failed; structured status is in stdout\n"
+    },
+    {
+      "at": "2026-09-15T08:52:24.662395+00:00",
+      "method": "GetPublicAddressPool",
+      "request": {
+        "pool_id": "pool_f28b9d470c0147f6a66646b8976c36f9"
+      },
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "resource": {
+            "id": "pool_f28b9d470c0147f6a66646b8976c36f9",
+            "cluster_id": "lb02-09141908-2b3122",
+            "name": "lb02-2b3122-public-untagged",
+            "description": "U09 isolated underlay pool, guest untagged on logical VLAN 102; tenant allocation initially disabled",
+            "state": "RESOURCE_STATE_AVAILABLE",
+            "reason": "",
+            "reason_message": "",
+            "version": "101",
+            "created_at": "2026-09-15T08:20:28.455726Z",
+            "updated_at": "2026-09-15T08:52:08.393006Z",
+            "observed_at": "2026-09-15T08:51:50.607573Z",
+            "observation_stale": false,
+            "last_operation_id": "b352c665-188d-4474-97b6-de3f982f74da",
+            "pool": {
+              "mode": "PUBLIC_POOL_MODE_UNDERLAY",
+              "gateway_id": "egw_386dc165a8744951bc624ab55c439681",
+              "cidr": "172.16.102.0/24",
+              "ovn_gateway_ip": "172.16.102.2",
+              "excluded_ips": [
+                "172.16.102.1",
+                "172.16.102.1..172.16.102.191",
+                "172.16.102.2",
+                "172.16.102.208..172.16.102.254"
+              ],
+              "vlan_network_id": "vlan_9b12fcb230ef4bc08ba1d497ebe44009",
+              "upstream_gateway_ip": "172.16.102.1",
+              "allocation_enabled": false,
+              "is_default": false,
+              "config_revision": "1",
+              "verification": {
+                "provider_source_revision": "735abf81cb728f30bd0f15e1885dcd7f88b56ab0",
+                "provider_image_digests": [
+                  "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4"
+                ],
+                "topology_fingerprint": "301586ecb248d176a80e3fb733198c09198df8b29196ba92b35c9f5725b361c6",
+                "evidence_reference": "NET-VPC-LB-02/device-registration-20260915/public-pool-qualification-assessment.json#sha256=06fd07bfdf4703da0a322b8dfd24a66721e91c10d30b4a14cf260f047d1d20c5",
+                "scope": "underlay_lab_direct_workload_egress_return",
+                "verified_at": "2026-09-15T08:38:54.409181Z",
+                "expires_at": "2026-09-15T14:41:06.728059Z"
+              },
+              "topology_fingerprint": "301586ecb248d176a80e3fb733198c09198df8b29196ba92b35c9f5725b361c6",
+              "observed_provider_images": [
+                "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4"
+              ],
+              "scope": "public"
+            }
+          }
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-15T08:52:24.674748+00:00",
+      "method": "SetPublicPoolAllocationEnabled",
+      "request": {
+        "enabled": true,
+        "idempotency_key": "lb02-public-allocation-01",
+        "pool_id": "pool_f28b9d470c0147f6a66646b8976c36f9",
+        "expected_version": "101"
+      },
+      "exit": 1,
+      "response": {
+        "code": "Unavailable",
+        "status": {
+          "code": 14,
+          "message": "address pool configuration or evidence is not ready",
+          "details": [
+            {
+              "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+              "reason": "PUBLIC_EGRESS_NOT_READY",
+              "domain": "network.ani.io",
+              "metadata": {}
+            }
+          ]
+        }
+      },
+      "stderr": "RPC failed; structured status is in stdout\n"
+    },
+    {
+      "at": "2026-09-15T08:52:26.688135+00:00",
+      "method": "GetPublicAddressPool",
+      "request": {
+        "pool_id": "pool_f28b9d470c0147f6a66646b8976c36f9"
+      },
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "resource": {
+            "id": "pool_f28b9d470c0147f6a66646b8976c36f9",
+            "cluster_id": "lb02-09141908-2b3122",
+            "name": "lb02-2b3122-public-untagged",
+            "description": "U09 isolated underlay pool, guest untagged on logical VLAN 102; tenant allocation initially disabled",
+            "state": "RESOURCE_STATE_AVAILABLE",
+            "reason": "",
+            "reason_message": "",
+            "version": "101",
+            "created_at": "2026-09-15T08:20:28.455726Z",
+            "updated_at": "2026-09-15T08:52:08.393006Z",
+            "observed_at": "2026-09-15T08:51:50.607573Z",
+            "observation_stale": false,
+            "last_operation_id": "b352c665-188d-4474-97b6-de3f982f74da",
+            "pool": {
+              "mode": "PUBLIC_POOL_MODE_UNDERLAY",
+              "gateway_id": "egw_386dc165a8744951bc624ab55c439681",
+              "cidr": "172.16.102.0/24",
+              "ovn_gateway_ip": "172.16.102.2",
+              "excluded_ips": [
+                "172.16.102.1",
+                "172.16.102.1..172.16.102.191",
+                "172.16.102.2",
+                "172.16.102.208..172.16.102.254"
+              ],
+              "vlan_network_id": "vlan_9b12fcb230ef4bc08ba1d497ebe44009",
+              "upstream_gateway_ip": "172.16.102.1",
+              "allocation_enabled": false,
+              "is_default": false,
+              "config_revision": "1",
+              "verification": {
+                "provider_source_revision": "735abf81cb728f30bd0f15e1885dcd7f88b56ab0",
+                "provider_image_digests": [
+                  "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4"
+                ],
+                "topology_fingerprint": "301586ecb248d176a80e3fb733198c09198df8b29196ba92b35c9f5725b361c6",
+                "evidence_reference": "NET-VPC-LB-02/device-registration-20260915/public-pool-qualification-assessment.json#sha256=06fd07bfdf4703da0a322b8dfd24a66721e91c10d30b4a14cf260f047d1d20c5",
+                "scope": "underlay_lab_direct_workload_egress_return",
+                "verified_at": "2026-09-15T08:38:54.409181Z",
+                "expires_at": "2026-09-15T14:41:06.728059Z"
+              },
+              "topology_fingerprint": "301586ecb248d176a80e3fb733198c09198df8b29196ba92b35c9f5725b361c6",
+              "observed_provider_images": [
+                "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4"
+              ],
+              "scope": "public"
+            }
+          }
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-15T08:52:26.702432+00:00",
+      "method": "SetPublicPoolAllocationEnabled",
+      "request": {
+        "enabled": true,
+        "idempotency_key": "lb02-public-allocation-01",
+        "pool_id": "pool_f28b9d470c0147f6a66646b8976c36f9",
+        "expected_version": "101"
+      },
+      "exit": 1,
+      "response": {
+        "code": "Unavailable",
+        "status": {
+          "code": 14,
+          "message": "address pool configuration or evidence is not ready",
+          "details": [
+            {
+              "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+              "reason": "PUBLIC_EGRESS_NOT_READY",
+              "domain": "network.ani.io",
+              "metadata": {}
+            }
+          ]
+        }
+      },
+      "stderr": "RPC failed; structured status is in stdout\n"
+    },
+    {
+      "at": "2026-09-15T08:52:28.715084+00:00",
+      "method": "GetPublicAddressPool",
+      "request": {
+        "pool_id": "pool_f28b9d470c0147f6a66646b8976c36f9"
+      },
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "resource": {
+            "id": "pool_f28b9d470c0147f6a66646b8976c36f9",
+            "cluster_id": "lb02-09141908-2b3122",
+            "name": "lb02-2b3122-public-untagged",
+            "description": "U09 isolated underlay pool, guest untagged on logical VLAN 102; tenant allocation initially disabled",
+            "state": "RESOURCE_STATE_AVAILABLE",
+            "reason": "",
+            "reason_message": "",
+            "version": "101",
+            "created_at": "2026-09-15T08:20:28.455726Z",
+            "updated_at": "2026-09-15T08:52:08.393006Z",
+            "observed_at": "2026-09-15T08:51:50.607573Z",
+            "observation_stale": false,
+            "last_operation_id": "b352c665-188d-4474-97b6-de3f982f74da",
+            "pool": {
+              "mode": "PUBLIC_POOL_MODE_UNDERLAY",
+              "gateway_id": "egw_386dc165a8744951bc624ab55c439681",
+              "cidr": "172.16.102.0/24",
+              "ovn_gateway_ip": "172.16.102.2",
+              "excluded_ips": [
+                "172.16.102.1",
+                "172.16.102.1..172.16.102.191",
+                "172.16.102.2",
+                "172.16.102.208..172.16.102.254"
+              ],
+              "vlan_network_id": "vlan_9b12fcb230ef4bc08ba1d497ebe44009",
+              "upstream_gateway_ip": "172.16.102.1",
+              "allocation_enabled": false,
+              "is_default": false,
+              "config_revision": "1",
+              "verification": {
+                "provider_source_revision": "735abf81cb728f30bd0f15e1885dcd7f88b56ab0",
+                "provider_image_digests": [
+                  "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4"
+                ],
+                "topology_fingerprint": "301586ecb248d176a80e3fb733198c09198df8b29196ba92b35c9f5725b361c6",
+                "evidence_reference": "NET-VPC-LB-02/device-registration-20260915/public-pool-qualification-assessment.json#sha256=06fd07bfdf4703da0a322b8dfd24a66721e91c10d30b4a14cf260f047d1d20c5",
+                "scope": "underlay_lab_direct_workload_egress_return",
+                "verified_at": "2026-09-15T08:38:54.409181Z",
+                "expires_at": "2026-09-15T14:41:06.728059Z"
+              },
+              "topology_fingerprint": "301586ecb248d176a80e3fb733198c09198df8b29196ba92b35c9f5725b361c6",
+              "observed_provider_images": [
+                "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4"
+              ],
+              "scope": "public"
+            }
+          }
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-15T08:52:28.730230+00:00",
+      "method": "SetPublicPoolAllocationEnabled",
+      "request": {
+        "enabled": true,
+        "idempotency_key": "lb02-public-allocation-01",
+        "pool_id": "pool_f28b9d470c0147f6a66646b8976c36f9",
+        "expected_version": "101"
+      },
+      "exit": 1,
+      "response": {
+        "code": "Unavailable",
+        "status": {
+          "code": 14,
+          "message": "address pool configuration or evidence is not ready",
+          "details": [
+            {
+              "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+              "reason": "PUBLIC_EGRESS_NOT_READY",
+              "domain": "network.ani.io",
+              "metadata": {}
+            }
+          ]
+        }
+      },
+      "stderr": "RPC failed; structured status is in stdout\n"
+    },
+    {
+      "at": "2026-09-15T08:52:30.744431+00:00",
+      "method": "GetPublicAddressPool",
+      "request": {
+        "pool_id": "pool_f28b9d470c0147f6a66646b8976c36f9"
+      },
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "resource": {
+            "id": "pool_f28b9d470c0147f6a66646b8976c36f9",
+            "cluster_id": "lb02-09141908-2b3122",
+            "name": "lb02-2b3122-public-untagged",
+            "description": "U09 isolated underlay pool, guest untagged on logical VLAN 102; tenant allocation initially disabled",
+            "state": "RESOURCE_STATE_AVAILABLE",
+            "reason": "",
+            "reason_message": "",
+            "version": "101",
+            "created_at": "2026-09-15T08:20:28.455726Z",
+            "updated_at": "2026-09-15T08:52:08.393006Z",
+            "observed_at": "2026-09-15T08:51:50.607573Z",
+            "observation_stale": false,
+            "last_operation_id": "b352c665-188d-4474-97b6-de3f982f74da",
+            "pool": {
+              "mode": "PUBLIC_POOL_MODE_UNDERLAY",
+              "gateway_id": "egw_386dc165a8744951bc624ab55c439681",
+              "cidr": "172.16.102.0/24",
+              "ovn_gateway_ip": "172.16.102.2",
+              "excluded_ips": [
+                "172.16.102.1",
+                "172.16.102.1..172.16.102.191",
+                "172.16.102.2",
+                "172.16.102.208..172.16.102.254"
+              ],
+              "vlan_network_id": "vlan_9b12fcb230ef4bc08ba1d497ebe44009",
+              "upstream_gateway_ip": "172.16.102.1",
+              "allocation_enabled": false,
+              "is_default": false,
+              "config_revision": "1",
+              "verification": {
+                "provider_source_revision": "735abf81cb728f30bd0f15e1885dcd7f88b56ab0",
+                "provider_image_digests": [
+                  "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4"
+                ],
+                "topology_fingerprint": "301586ecb248d176a80e3fb733198c09198df8b29196ba92b35c9f5725b361c6",
+                "evidence_reference": "NET-VPC-LB-02/device-registration-20260915/public-pool-qualification-assessment.json#sha256=06fd07bfdf4703da0a322b8dfd24a66721e91c10d30b4a14cf260f047d1d20c5",
+                "scope": "underlay_lab_direct_workload_egress_return",
+                "verified_at": "2026-09-15T08:38:54.409181Z",
+                "expires_at": "2026-09-15T14:41:06.728059Z"
+              },
+              "topology_fingerprint": "301586ecb248d176a80e3fb733198c09198df8b29196ba92b35c9f5725b361c6",
+              "observed_provider_images": [
+                "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4"
+              ],
+              "scope": "public"
+            }
+          }
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-15T08:52:30.758553+00:00",
+      "method": "SetPublicPoolAllocationEnabled",
+      "request": {
+        "enabled": true,
+        "idempotency_key": "lb02-public-allocation-01",
+        "pool_id": "pool_f28b9d470c0147f6a66646b8976c36f9",
+        "expected_version": "101"
+      },
+      "exit": 1,
+      "response": {
+        "code": "Unavailable",
+        "status": {
+          "code": 14,
+          "message": "address pool configuration or evidence is not ready",
+          "details": [
+            {
+              "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+              "reason": "PUBLIC_EGRESS_NOT_READY",
+              "domain": "network.ani.io",
+              "metadata": {}
+            }
+          ]
+        }
+      },
+      "stderr": "RPC failed; structured status is in stdout\n"
+    },
+    {
+      "at": "2026-09-15T08:52:32.772703+00:00",
+      "method": "GetPublicAddressPool",
+      "request": {
+        "pool_id": "pool_f28b9d470c0147f6a66646b8976c36f9"
+      },
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "resource": {
+            "id": "pool_f28b9d470c0147f6a66646b8976c36f9",
+            "cluster_id": "lb02-09141908-2b3122",
+            "name": "lb02-2b3122-public-untagged",
+            "description": "U09 isolated underlay pool, guest untagged on logical VLAN 102; tenant allocation initially disabled",
+            "state": "RESOURCE_STATE_AVAILABLE",
+            "reason": "",
+            "reason_message": "",
+            "version": "101",
+            "created_at": "2026-09-15T08:20:28.455726Z",
+            "updated_at": "2026-09-15T08:52:08.393006Z",
+            "observed_at": "2026-09-15T08:51:50.607573Z",
+            "observation_stale": false,
+            "last_operation_id": "b352c665-188d-4474-97b6-de3f982f74da",
+            "pool": {
+              "mode": "PUBLIC_POOL_MODE_UNDERLAY",
+              "gateway_id": "egw_386dc165a8744951bc624ab55c439681",
+              "cidr": "172.16.102.0/24",
+              "ovn_gateway_ip": "172.16.102.2",
+              "excluded_ips": [
+                "172.16.102.1",
+                "172.16.102.1..172.16.102.191",
+                "172.16.102.2",
+                "172.16.102.208..172.16.102.254"
+              ],
+              "vlan_network_id": "vlan_9b12fcb230ef4bc08ba1d497ebe44009",
+              "upstream_gateway_ip": "172.16.102.1",
+              "allocation_enabled": false,
+              "is_default": false,
+              "config_revision": "1",
+              "verification": {
+                "provider_source_revision": "735abf81cb728f30bd0f15e1885dcd7f88b56ab0",
+                "provider_image_digests": [
+                  "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4"
+                ],
+                "topology_fingerprint": "301586ecb248d176a80e3fb733198c09198df8b29196ba92b35c9f5725b361c6",
+                "evidence_reference": "NET-VPC-LB-02/device-registration-20260915/public-pool-qualification-assessment.json#sha256=06fd07bfdf4703da0a322b8dfd24a66721e91c10d30b4a14cf260f047d1d20c5",
+                "scope": "underlay_lab_direct_workload_egress_return",
+                "verified_at": "2026-09-15T08:38:54.409181Z",
+                "expires_at": "2026-09-15T14:41:06.728059Z"
+              },
+              "topology_fingerprint": "301586ecb248d176a80e3fb733198c09198df8b29196ba92b35c9f5725b361c6",
+              "observed_provider_images": [
+                "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4"
+              ],
+              "scope": "public"
+            }
+          }
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-15T08:52:32.788128+00:00",
+      "method": "SetPublicPoolAllocationEnabled",
+      "request": {
+        "enabled": true,
+        "idempotency_key": "lb02-public-allocation-01",
+        "pool_id": "pool_f28b9d470c0147f6a66646b8976c36f9",
+        "expected_version": "101"
+      },
+      "exit": 1,
+      "response": {
+        "code": "Unavailable",
+        "status": {
+          "code": 14,
+          "message": "address pool configuration or evidence is not ready",
+          "details": [
+            {
+              "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+              "reason": "PUBLIC_EGRESS_NOT_READY",
+              "domain": "network.ani.io",
+              "metadata": {}
+            }
+          ]
+        }
+      },
+      "stderr": "RPC failed; structured status is in stdout\n"
+    },
+    {
+      "at": "2026-09-15T08:52:34.802474+00:00",
+      "method": "GetPublicAddressPool",
+      "request": {
+        "pool_id": "pool_f28b9d470c0147f6a66646b8976c36f9"
+      },
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "resource": {
+            "id": "pool_f28b9d470c0147f6a66646b8976c36f9",
+            "cluster_id": "lb02-09141908-2b3122",
+            "name": "lb02-2b3122-public-untagged",
+            "description": "U09 isolated underlay pool, guest untagged on logical VLAN 102; tenant allocation initially disabled",
+            "state": "RESOURCE_STATE_AVAILABLE",
+            "reason": "",
+            "reason_message": "",
+            "version": "102",
+            "created_at": "2026-09-15T08:20:28.455726Z",
+            "updated_at": "2026-09-15T08:52:33.283599Z",
+            "observed_at": "2026-09-15T08:52:28.367859Z",
+            "observation_stale": false,
+            "last_operation_id": "b352c665-188d-4474-97b6-de3f982f74da",
+            "pool": {
+              "mode": "PUBLIC_POOL_MODE_UNDERLAY",
+              "gateway_id": "egw_386dc165a8744951bc624ab55c439681",
+              "cidr": "172.16.102.0/24",
+              "ovn_gateway_ip": "172.16.102.2",
+              "excluded_ips": [
+                "172.16.102.1",
+                "172.16.102.1..172.16.102.191",
+                "172.16.102.2",
+                "172.16.102.208..172.16.102.254"
+              ],
+              "vlan_network_id": "vlan_9b12fcb230ef4bc08ba1d497ebe44009",
+              "upstream_gateway_ip": "172.16.102.1",
+              "allocation_enabled": false,
+              "is_default": false,
+              "config_revision": "1",
+              "verification": {
+                "provider_source_revision": "735abf81cb728f30bd0f15e1885dcd7f88b56ab0",
+                "provider_image_digests": [
+                  "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4"
+                ],
+                "topology_fingerprint": "301586ecb248d176a80e3fb733198c09198df8b29196ba92b35c9f5725b361c6",
+                "evidence_reference": "NET-VPC-LB-02/device-registration-20260915/public-pool-qualification-assessment.json#sha256=06fd07bfdf4703da0a322b8dfd24a66721e91c10d30b4a14cf260f047d1d20c5",
+                "scope": "underlay_lab_direct_workload_egress_return",
+                "verified_at": "2026-09-15T08:38:54.409181Z",
+                "expires_at": "2026-09-15T14:41:06.728059Z"
+              },
+              "topology_fingerprint": "301586ecb248d176a80e3fb733198c09198df8b29196ba92b35c9f5725b361c6",
+              "observed_provider_images": [
+                "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4"
+              ],
+              "scope": "public"
+            }
+          }
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-15T08:52:34.816283+00:00",
+      "method": "SetPublicPoolAllocationEnabled",
+      "request": {
+        "enabled": true,
+        "idempotency_key": "lb02-public-allocation-01",
+        "pool_id": "pool_f28b9d470c0147f6a66646b8976c36f9",
+        "expected_version": "102"
+      },
+      "exit": 1,
+      "response": {
+        "code": "Unavailable",
+        "status": {
+          "code": 14,
+          "message": "address pool configuration or evidence is not ready",
+          "details": [
+            {
+              "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+              "reason": "PUBLIC_EGRESS_NOT_READY",
+              "domain": "network.ani.io",
+              "metadata": {}
+            }
+          ]
+        }
+      },
+      "stderr": "RPC failed; structured status is in stdout\n"
+    },
+    {
+      "at": "2026-09-15T08:52:36.828464+00:00",
+      "method": "GetPublicAddressPool",
+      "request": {
+        "pool_id": "pool_f28b9d470c0147f6a66646b8976c36f9"
+      },
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "resource": {
+            "id": "pool_f28b9d470c0147f6a66646b8976c36f9",
+            "cluster_id": "lb02-09141908-2b3122",
+            "name": "lb02-2b3122-public-untagged",
+            "description": "U09 isolated underlay pool, guest untagged on logical VLAN 102; tenant allocation initially disabled",
+            "state": "RESOURCE_STATE_AVAILABLE",
+            "reason": "",
+            "reason_message": "",
+            "version": "102",
+            "created_at": "2026-09-15T08:20:28.455726Z",
+            "updated_at": "2026-09-15T08:52:33.283599Z",
+            "observed_at": "2026-09-15T08:52:28.367859Z",
+            "observation_stale": false,
+            "last_operation_id": "b352c665-188d-4474-97b6-de3f982f74da",
+            "pool": {
+              "mode": "PUBLIC_POOL_MODE_UNDERLAY",
+              "gateway_id": "egw_386dc165a8744951bc624ab55c439681",
+              "cidr": "172.16.102.0/24",
+              "ovn_gateway_ip": "172.16.102.2",
+              "excluded_ips": [
+                "172.16.102.1",
+                "172.16.102.1..172.16.102.191",
+                "172.16.102.2",
+                "172.16.102.208..172.16.102.254"
+              ],
+              "vlan_network_id": "vlan_9b12fcb230ef4bc08ba1d497ebe44009",
+              "upstream_gateway_ip": "172.16.102.1",
+              "allocation_enabled": false,
+              "is_default": false,
+              "config_revision": "1",
+              "verification": {
+                "provider_source_revision": "735abf81cb728f30bd0f15e1885dcd7f88b56ab0",
+                "provider_image_digests": [
+                  "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4"
+                ],
+                "topology_fingerprint": "301586ecb248d176a80e3fb733198c09198df8b29196ba92b35c9f5725b361c6",
+                "evidence_reference": "NET-VPC-LB-02/device-registration-20260915/public-pool-qualification-assessment.json#sha256=06fd07bfdf4703da0a322b8dfd24a66721e91c10d30b4a14cf260f047d1d20c5",
+                "scope": "underlay_lab_direct_workload_egress_return",
+                "verified_at": "2026-09-15T08:38:54.409181Z",
+                "expires_at": "2026-09-15T14:41:06.728059Z"
+              },
+              "topology_fingerprint": "301586ecb248d176a80e3fb733198c09198df8b29196ba92b35c9f5725b361c6",
+              "observed_provider_images": [
+                "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4"
+              ],
+              "scope": "public"
+            }
+          }
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-15T08:52:36.839582+00:00",
+      "method": "SetPublicPoolAllocationEnabled",
+      "request": {
+        "enabled": true,
+        "idempotency_key": "lb02-public-allocation-01",
+        "pool_id": "pool_f28b9d470c0147f6a66646b8976c36f9",
+        "expected_version": "102"
+      },
+      "exit": 1,
+      "response": {
+        "code": "Unavailable",
+        "status": {
+          "code": 14,
+          "message": "address pool configuration or evidence is not ready",
+          "details": [
+            {
+              "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+              "reason": "PUBLIC_EGRESS_NOT_READY",
+              "domain": "network.ani.io",
+              "metadata": {}
+            }
+          ]
+        }
+      },
+      "stderr": "RPC failed; structured status is in stdout\n"
+    },
+    {
+      "at": "2026-09-15T08:52:38.853033+00:00",
+      "method": "GetPublicAddressPool",
+      "request": {
+        "pool_id": "pool_f28b9d470c0147f6a66646b8976c36f9"
+      },
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "resource": {
+            "id": "pool_f28b9d470c0147f6a66646b8976c36f9",
+            "cluster_id": "lb02-09141908-2b3122",
+            "name": "lb02-2b3122-public-untagged",
+            "description": "U09 isolated underlay pool, guest untagged on logical VLAN 102; tenant allocation initially disabled",
+            "state": "RESOURCE_STATE_AVAILABLE",
+            "reason": "",
+            "reason_message": "",
+            "version": "102",
+            "created_at": "2026-09-15T08:20:28.455726Z",
+            "updated_at": "2026-09-15T08:52:33.283599Z",
+            "observed_at": "2026-09-15T08:52:28.367859Z",
+            "observation_stale": false,
+            "last_operation_id": "b352c665-188d-4474-97b6-de3f982f74da",
+            "pool": {
+              "mode": "PUBLIC_POOL_MODE_UNDERLAY",
+              "gateway_id": "egw_386dc165a8744951bc624ab55c439681",
+              "cidr": "172.16.102.0/24",
+              "ovn_gateway_ip": "172.16.102.2",
+              "excluded_ips": [
+                "172.16.102.1",
+                "172.16.102.1..172.16.102.191",
+                "172.16.102.2",
+                "172.16.102.208..172.16.102.254"
+              ],
+              "vlan_network_id": "vlan_9b12fcb230ef4bc08ba1d497ebe44009",
+              "upstream_gateway_ip": "172.16.102.1",
+              "allocation_enabled": false,
+              "is_default": false,
+              "config_revision": "1",
+              "verification": {
+                "provider_source_revision": "735abf81cb728f30bd0f15e1885dcd7f88b56ab0",
+                "provider_image_digests": [
+                  "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4"
+                ],
+                "topology_fingerprint": "301586ecb248d176a80e3fb733198c09198df8b29196ba92b35c9f5725b361c6",
+                "evidence_reference": "NET-VPC-LB-02/device-registration-20260915/public-pool-qualification-assessment.json#sha256=06fd07bfdf4703da0a322b8dfd24a66721e91c10d30b4a14cf260f047d1d20c5",
+                "scope": "underlay_lab_direct_workload_egress_return",
+                "verified_at": "2026-09-15T08:38:54.409181Z",
+                "expires_at": "2026-09-15T14:41:06.728059Z"
+              },
+              "topology_fingerprint": "301586ecb248d176a80e3fb733198c09198df8b29196ba92b35c9f5725b361c6",
+              "observed_provider_images": [
+                "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4"
+              ],
+              "scope": "public"
+            }
+          }
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-15T08:52:38.866010+00:00",
+      "method": "SetPublicPoolAllocationEnabled",
+      "request": {
+        "enabled": true,
+        "idempotency_key": "lb02-public-allocation-01",
+        "pool_id": "pool_f28b9d470c0147f6a66646b8976c36f9",
+        "expected_version": "102"
+      },
+      "exit": 1,
+      "response": {
+        "code": "Unavailable",
+        "status": {
+          "code": 14,
+          "message": "address pool configuration or evidence is not ready",
+          "details": [
+            {
+              "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+              "reason": "PUBLIC_EGRESS_NOT_READY",
+              "domain": "network.ani.io",
+              "metadata": {}
+            }
+          ]
+        }
+      },
+      "stderr": "RPC failed; structured status is in stdout\n"
+    },
+    {
+      "at": "2026-09-15T08:52:40.879076+00:00",
+      "method": "GetPublicAddressPool",
+      "request": {
+        "pool_id": "pool_f28b9d470c0147f6a66646b8976c36f9"
+      },
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "resource": {
+            "id": "pool_f28b9d470c0147f6a66646b8976c36f9",
+            "cluster_id": "lb02-09141908-2b3122",
+            "name": "lb02-2b3122-public-untagged",
+            "description": "U09 isolated underlay pool, guest untagged on logical VLAN 102; tenant allocation initially disabled",
+            "state": "RESOURCE_STATE_AVAILABLE",
+            "reason": "",
+            "reason_message": "",
+            "version": "102",
+            "created_at": "2026-09-15T08:20:28.455726Z",
+            "updated_at": "2026-09-15T08:52:33.283599Z",
+            "observed_at": "2026-09-15T08:52:28.367859Z",
+            "observation_stale": false,
+            "last_operation_id": "b352c665-188d-4474-97b6-de3f982f74da",
+            "pool": {
+              "mode": "PUBLIC_POOL_MODE_UNDERLAY",
+              "gateway_id": "egw_386dc165a8744951bc624ab55c439681",
+              "cidr": "172.16.102.0/24",
+              "ovn_gateway_ip": "172.16.102.2",
+              "excluded_ips": [
+                "172.16.102.1",
+                "172.16.102.1..172.16.102.191",
+                "172.16.102.2",
+                "172.16.102.208..172.16.102.254"
+              ],
+              "vlan_network_id": "vlan_9b12fcb230ef4bc08ba1d497ebe44009",
+              "upstream_gateway_ip": "172.16.102.1",
+              "allocation_enabled": false,
+              "is_default": false,
+              "config_revision": "1",
+              "verification": {
+                "provider_source_revision": "735abf81cb728f30bd0f15e1885dcd7f88b56ab0",
+                "provider_image_digests": [
+                  "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4"
+                ],
+                "topology_fingerprint": "301586ecb248d176a80e3fb733198c09198df8b29196ba92b35c9f5725b361c6",
+                "evidence_reference": "NET-VPC-LB-02/device-registration-20260915/public-pool-qualification-assessment.json#sha256=06fd07bfdf4703da0a322b8dfd24a66721e91c10d30b4a14cf260f047d1d20c5",
+                "scope": "underlay_lab_direct_workload_egress_return",
+                "verified_at": "2026-09-15T08:38:54.409181Z",
+                "expires_at": "2026-09-15T14:41:06.728059Z"
+              },
+              "topology_fingerprint": "301586ecb248d176a80e3fb733198c09198df8b29196ba92b35c9f5725b361c6",
+              "observed_provider_images": [
+                "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4"
+              ],
+              "scope": "public"
+            }
+          }
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-15T08:52:40.896437+00:00",
+      "method": "SetPublicPoolAllocationEnabled",
+      "request": {
+        "enabled": true,
+        "idempotency_key": "lb02-public-allocation-01",
+        "pool_id": "pool_f28b9d470c0147f6a66646b8976c36f9",
+        "expected_version": "102"
+      },
+      "exit": 1,
+      "response": {
+        "code": "Unavailable",
+        "status": {
+          "code": 14,
+          "message": "address pool configuration or evidence is not ready",
+          "details": [
+            {
+              "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+              "reason": "PUBLIC_EGRESS_NOT_READY",
+              "domain": "network.ani.io",
+              "metadata": {}
+            }
+          ]
+        }
+      },
+      "stderr": "RPC failed; structured status is in stdout\n"
+    },
+    {
+      "at": "2026-09-15T08:52:42.910422+00:00",
+      "method": "GetPublicAddressPool",
+      "request": {
+        "pool_id": "pool_f28b9d470c0147f6a66646b8976c36f9"
+      },
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "resource": {
+            "id": "pool_f28b9d470c0147f6a66646b8976c36f9",
+            "cluster_id": "lb02-09141908-2b3122",
+            "name": "lb02-2b3122-public-untagged",
+            "description": "U09 isolated underlay pool, guest untagged on logical VLAN 102; tenant allocation initially disabled",
+            "state": "RESOURCE_STATE_AVAILABLE",
+            "reason": "",
+            "reason_message": "",
+            "version": "102",
+            "created_at": "2026-09-15T08:20:28.455726Z",
+            "updated_at": "2026-09-15T08:52:33.283599Z",
+            "observed_at": "2026-09-15T08:52:28.367859Z",
+            "observation_stale": false,
+            "last_operation_id": "b352c665-188d-4474-97b6-de3f982f74da",
+            "pool": {
+              "mode": "PUBLIC_POOL_MODE_UNDERLAY",
+              "gateway_id": "egw_386dc165a8744951bc624ab55c439681",
+              "cidr": "172.16.102.0/24",
+              "ovn_gateway_ip": "172.16.102.2",
+              "excluded_ips": [
+                "172.16.102.1",
+                "172.16.102.1..172.16.102.191",
+                "172.16.102.2",
+                "172.16.102.208..172.16.102.254"
+              ],
+              "vlan_network_id": "vlan_9b12fcb230ef4bc08ba1d497ebe44009",
+              "upstream_gateway_ip": "172.16.102.1",
+              "allocation_enabled": false,
+              "is_default": false,
+              "config_revision": "1",
+              "verification": {
+                "provider_source_revision": "735abf81cb728f30bd0f15e1885dcd7f88b56ab0",
+                "provider_image_digests": [
+                  "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4"
+                ],
+                "topology_fingerprint": "301586ecb248d176a80e3fb733198c09198df8b29196ba92b35c9f5725b361c6",
+                "evidence_reference": "NET-VPC-LB-02/device-registration-20260915/public-pool-qualification-assessment.json#sha256=06fd07bfdf4703da0a322b8dfd24a66721e91c10d30b4a14cf260f047d1d20c5",
+                "scope": "underlay_lab_direct_workload_egress_return",
+                "verified_at": "2026-09-15T08:38:54.409181Z",
+                "expires_at": "2026-09-15T14:41:06.728059Z"
+              },
+              "topology_fingerprint": "301586ecb248d176a80e3fb733198c09198df8b29196ba92b35c9f5725b361c6",
+              "observed_provider_images": [
+                "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4"
+              ],
+              "scope": "public"
+            }
+          }
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-15T08:52:42.923863+00:00",
+      "method": "SetPublicPoolAllocationEnabled",
+      "request": {
+        "enabled": true,
+        "idempotency_key": "lb02-public-allocation-01",
+        "pool_id": "pool_f28b9d470c0147f6a66646b8976c36f9",
+        "expected_version": "102"
+      },
+      "exit": 1,
+      "response": {
+        "code": "Unavailable",
+        "status": {
+          "code": 14,
+          "message": "address pool configuration or evidence is not ready",
+          "details": [
+            {
+              "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+              "reason": "PUBLIC_EGRESS_NOT_READY",
+              "domain": "network.ani.io",
+              "metadata": {}
+            }
+          ]
+        }
+      },
+      "stderr": "RPC failed; structured status is in stdout\n"
+    },
+    {
+      "at": "2026-09-15T08:52:44.936393+00:00",
+      "method": "GetPublicAddressPool",
+      "request": {
+        "pool_id": "pool_f28b9d470c0147f6a66646b8976c36f9"
+      },
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "resource": {
+            "id": "pool_f28b9d470c0147f6a66646b8976c36f9",
+            "cluster_id": "lb02-09141908-2b3122",
+            "name": "lb02-2b3122-public-untagged",
+            "description": "U09 isolated underlay pool, guest untagged on logical VLAN 102; tenant allocation initially disabled",
+            "state": "RESOURCE_STATE_AVAILABLE",
+            "reason": "",
+            "reason_message": "",
+            "version": "103",
+            "created_at": "2026-09-15T08:20:28.455726Z",
+            "updated_at": "2026-09-15T08:52:44.013271Z",
+            "observed_at": "2026-09-15T08:52:38.618827Z",
+            "observation_stale": false,
+            "last_operation_id": "b352c665-188d-4474-97b6-de3f982f74da",
+            "pool": {
+              "mode": "PUBLIC_POOL_MODE_UNDERLAY",
+              "gateway_id": "egw_386dc165a8744951bc624ab55c439681",
+              "cidr": "172.16.102.0/24",
+              "ovn_gateway_ip": "172.16.102.2",
+              "excluded_ips": [
+                "172.16.102.1",
+                "172.16.102.1..172.16.102.191",
+                "172.16.102.2",
+                "172.16.102.208..172.16.102.254"
+              ],
+              "vlan_network_id": "vlan_9b12fcb230ef4bc08ba1d497ebe44009",
+              "upstream_gateway_ip": "172.16.102.1",
+              "allocation_enabled": false,
+              "is_default": false,
+              "config_revision": "1",
+              "verification": {
+                "provider_source_revision": "735abf81cb728f30bd0f15e1885dcd7f88b56ab0",
+                "provider_image_digests": [
+                  "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4"
+                ],
+                "topology_fingerprint": "301586ecb248d176a80e3fb733198c09198df8b29196ba92b35c9f5725b361c6",
+                "evidence_reference": "NET-VPC-LB-02/device-registration-20260915/public-pool-qualification-assessment.json#sha256=06fd07bfdf4703da0a322b8dfd24a66721e91c10d30b4a14cf260f047d1d20c5",
+                "scope": "underlay_lab_direct_workload_egress_return",
+                "verified_at": "2026-09-15T08:38:54.409181Z",
+                "expires_at": "2026-09-15T14:41:06.728059Z"
+              },
+              "topology_fingerprint": "301586ecb248d176a80e3fb733198c09198df8b29196ba92b35c9f5725b361c6",
+              "observed_provider_images": [
+                "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4"
+              ],
+              "scope": "public"
+            }
+          }
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-15T08:52:44.949226+00:00",
+      "method": "SetPublicPoolAllocationEnabled",
+      "request": {
+        "enabled": true,
+        "idempotency_key": "lb02-public-allocation-01",
+        "pool_id": "pool_f28b9d470c0147f6a66646b8976c36f9",
+        "expected_version": "103"
+      },
+      "exit": 1,
+      "response": {
+        "code": "Unavailable",
+        "status": {
+          "code": 14,
+          "message": "address pool configuration or evidence is not ready",
+          "details": [
+            {
+              "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+              "reason": "PUBLIC_EGRESS_NOT_READY",
+              "domain": "network.ani.io",
+              "metadata": {}
+            }
+          ]
+        }
+      },
+      "stderr": "RPC failed; structured status is in stdout\n"
+    },
+    {
+      "at": "2026-09-15T08:52:46.965024+00:00",
+      "method": "GetPublicAddressPool",
+      "request": {
+        "pool_id": "pool_f28b9d470c0147f6a66646b8976c36f9"
+      },
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "resource": {
+            "id": "pool_f28b9d470c0147f6a66646b8976c36f9",
+            "cluster_id": "lb02-09141908-2b3122",
+            "name": "lb02-2b3122-public-untagged",
+            "description": "U09 isolated underlay pool, guest untagged on logical VLAN 102; tenant allocation initially disabled",
+            "state": "RESOURCE_STATE_AVAILABLE",
+            "reason": "",
+            "reason_message": "",
+            "version": "103",
+            "created_at": "2026-09-15T08:20:28.455726Z",
+            "updated_at": "2026-09-15T08:52:44.013271Z",
+            "observed_at": "2026-09-15T08:52:38.618827Z",
+            "observation_stale": false,
+            "last_operation_id": "b352c665-188d-4474-97b6-de3f982f74da",
+            "pool": {
+              "mode": "PUBLIC_POOL_MODE_UNDERLAY",
+              "gateway_id": "egw_386dc165a8744951bc624ab55c439681",
+              "cidr": "172.16.102.0/24",
+              "ovn_gateway_ip": "172.16.102.2",
+              "excluded_ips": [
+                "172.16.102.1",
+                "172.16.102.1..172.16.102.191",
+                "172.16.102.2",
+                "172.16.102.208..172.16.102.254"
+              ],
+              "vlan_network_id": "vlan_9b12fcb230ef4bc08ba1d497ebe44009",
+              "upstream_gateway_ip": "172.16.102.1",
+              "allocation_enabled": false,
+              "is_default": false,
+              "config_revision": "1",
+              "verification": {
+                "provider_source_revision": "735abf81cb728f30bd0f15e1885dcd7f88b56ab0",
+                "provider_image_digests": [
+                  "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4"
+                ],
+                "topology_fingerprint": "301586ecb248d176a80e3fb733198c09198df8b29196ba92b35c9f5725b361c6",
+                "evidence_reference": "NET-VPC-LB-02/device-registration-20260915/public-pool-qualification-assessment.json#sha256=06fd07bfdf4703da0a322b8dfd24a66721e91c10d30b4a14cf260f047d1d20c5",
+                "scope": "underlay_lab_direct_workload_egress_return",
+                "verified_at": "2026-09-15T08:38:54.409181Z",
+                "expires_at": "2026-09-15T14:41:06.728059Z"
+              },
+              "topology_fingerprint": "301586ecb248d176a80e3fb733198c09198df8b29196ba92b35c9f5725b361c6",
+              "observed_provider_images": [
+                "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4"
+              ],
+              "scope": "public"
+            }
+          }
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-15T08:52:46.978274+00:00",
+      "method": "SetPublicPoolAllocationEnabled",
+      "request": {
+        "enabled": true,
+        "idempotency_key": "lb02-public-allocation-01",
+        "pool_id": "pool_f28b9d470c0147f6a66646b8976c36f9",
+        "expected_version": "103"
+      },
+      "exit": 1,
+      "response": {
+        "code": "Unavailable",
+        "status": {
+          "code": 14,
+          "message": "address pool configuration or evidence is not ready",
+          "details": [
+            {
+              "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+              "reason": "PUBLIC_EGRESS_NOT_READY",
+              "domain": "network.ani.io",
+              "metadata": {}
+            }
+          ]
+        }
+      },
+      "stderr": "RPC failed; structured status is in stdout\n"
+    }
+  ]
+}

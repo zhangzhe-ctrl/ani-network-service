@@ -1,0 +1,34 @@
+{
+  "at": "2026-09-15T14:33:37.665898+00:00",
+  "execution_host": "ubuntu",
+  "context": "tenant-a",
+  "command": "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/lb-api call -target unix:///home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-a.sock -service NetworkService -method DeleteSubnet",
+  "request": {
+    "subnet_id": "subnet_f74d90cbb5484f7fb37f8a8f6782da1d"
+  },
+  "exit": 0,
+  "response": {
+    "code": "OK",
+    "response": {
+      "subnet": {
+        "id": "subnet_f74d90cbb5484f7fb37f8a8f6782da1d",
+        "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+        "name": "lb02-2b3122-entry",
+        "description": "",
+        "cidr": "10.233.0.0/24",
+        "state": "RESOURCE_STATE_DELETING",
+        "reason": "",
+        "created_at": "2026-09-15T04:20:52.560451Z",
+        "updated_at": "2026-09-15T14:33:37.661533Z",
+        "version": "1022",
+        "observed_at": "2026-09-15T14:33:21.328701Z",
+        "observation_stale": false,
+        "last_operation_id": "18210e5f-54df-4648-b5ce-f5d4d3fdac75",
+        "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+        "reason_message": "",
+        "gateway": "10.233.0.1"
+      }
+    }
+  },
+  "stderr": ""
+}

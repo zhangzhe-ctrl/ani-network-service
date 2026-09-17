@@ -1,0 +1,12 @@
+{
+  "at": "2026-09-15T08:57:44.931574+00:00",
+  "execution_host": "ubuntu",
+  "transport_exit": 0,
+  "result": {
+    "query": "SELECT vpc_id,base_connectivity_profile FROM network_vpcs WHERE vpc_id='vpc_d06f28e82fe847f7bf2cedd57dad82f4'; SELECT snat_id,purpose,eip_id,provider_uid,state FROM network_snat_bindings WHERE vpc_id='vpc_d06f28e82fe847f7bf2cedd57dad82f4';",
+    "exit": 3,
+    "stdout": "BEGIN\n",
+    "stderr": "ERROR:  column \"base_connectivity_profile\" does not exist\nLINE 1: SELECT vpc_id,base_connectivity_profile FROM network_vpcs WH...\n                      ^\n"
+  },
+  "stderr": ""
+}

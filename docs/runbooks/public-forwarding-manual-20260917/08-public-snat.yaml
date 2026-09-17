@@ -1,0 +1,11 @@
+apiVersion: networking.kubercloud.com/v1
+kind: Snat
+metadata:
+  name: public-snat
+  labels:
+    manual.ani.io/run: pubdebug-20260917
+  namespace: pubdebug-20260917
+spec:
+  eip: snat-eip
+  vpc: tenant
+  disable: false

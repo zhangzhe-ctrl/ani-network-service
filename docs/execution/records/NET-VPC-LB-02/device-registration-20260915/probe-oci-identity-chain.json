@@ -1,0 +1,112 @@
+{
+  "at": "2026-09-15T04:50:30.351654+00:00",
+  "result": "pass",
+  "source": "original ubuntu archive transited locally and verified identically on three nodes",
+  "reported_pod_image_id": "sha256:6dc16949364cbd67c142d6d0ca3aa6353146917816936e63beb672621fcb9295",
+  "requested_manifest_digest": "sha256:647c2acd8e115511a18506014995ec01b7d0d62fbc05f2a6e51a5c65c2a3fcce",
+  "actual_config_digest": "sha256:ce7574f8dd6ec7bf512cd5a665bbecfe0e783285d243e2ebbe7f54f3c544ae67",
+  "proof": "Reported imageID is the OCI index in archive index.json containing the exact requested manifest, whose config is the recorded actual config digest. Each JSON hash verified against the source archive.",
+  "oci_objects": {
+    "sha256:6dc16949364cbd67c142d6d0ca3aa6353146917816936e63beb672621fcb9295": {
+      "schemaVersion": 2,
+      "mediaType": "application/vnd.oci.image.index.v1+json",
+      "manifests": [
+        {
+          "mediaType": "application/vnd.oci.image.manifest.v1+json",
+          "digest": "sha256:647c2acd8e115511a18506014995ec01b7d0d62fbc05f2a6e51a5c65c2a3fcce",
+          "size": 976,
+          "annotations": {
+            "io.containerd.image.name": "localhost/lb02-2b3122-probe:20260915",
+            "org.opencontainers.image.ref.name": "20260915"
+          }
+        }
+      ]
+    },
+    "sha256:647c2acd8e115511a18506014995ec01b7d0d62fbc05f2a6e51a5c65c2a3fcce": {
+      "mediaType": "application/vnd.oci.image.manifest.v1+json",
+      "schemaVersion": 2,
+      "config": {
+        "mediaType": "application/vnd.oci.image.config.v1+json",
+        "digest": "sha256:ce7574f8dd6ec7bf512cd5a665bbecfe0e783285d243e2ebbe7f54f3c544ae67",
+        "size": 1468
+      },
+      "layers": [
+        {
+          "mediaType": "application/vnd.oci.image.layer.v1.tar+gzip",
+          "digest": "sha256:a8ac7f6c67abc236e4c745052c404112b8fab6fe8ac3a329d1ef3b867ad67c71",
+          "size": 28232655
+        },
+        {
+          "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+          "digest": "sha256:f3caa0daee5d2774d9ac24c153edf09a4c49f303361849c5185a1523e2c14dfa",
+          "size": 5198563
+        },
+        {
+          "mediaType": "application/vnd.docker.image.rootfs.diff.tar.gzip",
+          "digest": "sha256:7f488b2d23757e0abfc89060094bf23382f679df7b586019cf33ee340c812944",
+          "size": 414
+        }
+      ]
+    },
+    "sha256:ce7574f8dd6ec7bf512cd5a665bbecfe0e783285d243e2ebbe7f54f3c544ae67": {
+      "created": "2026-09-15T11:28:30.894070647+08:00",
+      "architecture": "amd64",
+      "os": "linux",
+      "rootfs": {
+        "type": "layers",
+        "diff_ids": [
+          "sha256:1d69a5fd31932841d7825ef4780c06f008eea65aaa9f3110fe09d5832ed5c7d8",
+          "sha256:aae24042e7fed4d476dad6bd0888bd1d4d0c6df647956f8405a03cc7eca80e0a",
+          "sha256:6f74be0f084c992f0c16617b8cb9dc4826ceb6b6e3732bba8d901113480d2bcd"
+        ]
+      },
+      "history": [
+        {
+          "created": "2026-08-24T00:00:00Z",
+          "created_by": "# debian.sh --arch 'amd64' out/ 'bookworm' '@1787529600'",
+          "comment": "debuerreotype 0.17"
+        },
+        {
+          "created": "2026-09-15T03:28:29.467421342Z",
+          "created_by": "/bin/sh -c #(nop) COPY file:cd0d9478efb45894ff972b094a190157b61242fe47186d97538b3b20fe82538b in /probe "
+        },
+        {
+          "created": "2026-09-15T03:28:29.880731333Z",
+          "created_by": "/bin/sh -c #(nop) COPY file:7d47549d806445501a31323ca6292442ae00100ca2fe2eea3f9ed05248b9970f in /probe-entrypoint.sh "
+        },
+        {
+          "created": "2026-09-15T11:28:30.210023964+08:00",
+          "created_by": "/bin/sh -c #(nop)  USER 65532:65532",
+          "empty_layer": true
+        },
+        {
+          "created": "2026-09-15T11:28:30.543866803+08:00",
+          "created_by": "/bin/sh -c #(nop)  ENTRYPOINT [\"/bin/sh\" \"/probe-entrypoint.sh\"]",
+          "empty_layer": true
+        },
+        {
+          "created": "2026-09-15T11:28:30.894070647+08:00",
+          "created_by": "/bin/sh -c #(nop)  LABEL ani.network.task=lb02-09141908-2b3122",
+          "empty_layer": true
+        }
+      ],
+      "config": {
+        "User": "65532:65532",
+        "Env": [
+          "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+        ],
+        "Entrypoint": [
+          "/bin/sh",
+          "/probe-entrypoint.sh"
+        ],
+        "Labels": {
+          "ani.network.task": "lb02-09141908-2b3122"
+        }
+      }
+    }
+  },
+  "workload_binary_evidence": [
+    "legacy-traffic-before-backfill.json",
+    "base-intranet-probes-01.json"
+  ]
+}

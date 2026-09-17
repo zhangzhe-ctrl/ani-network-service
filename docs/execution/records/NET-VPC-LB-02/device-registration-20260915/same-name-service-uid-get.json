@@ -1,0 +1,90 @@
+{
+  "phase": "get",
+  "records": [
+    {
+      "at": "2026-09-15T14:06:21.759981+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=15s",
+        "get",
+        "service",
+        "-n",
+        "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+        "lb-74f96109961444a48b26c31601e6131f",
+        "-o",
+        "json"
+      ],
+      "request": null,
+      "exit": 0,
+      "response": {
+        "apiVersion": "v1",
+        "kind": "Service",
+        "metadata": {
+          "annotations": {
+            "networking.kubercloud.com/lb_vpc": "kcn-system/kcn-cluster"
+          },
+          "creationTimestamp": "2026-09-15T14:03:28Z",
+          "labels": {
+            "network.ani.io/test-role": "same-name-service-uid-fault",
+            "network.ani.io/test-run": "lb02-09141908-2b3122"
+          },
+          "name": "lb-74f96109961444a48b26c31601e6131f",
+          "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+          "resourceVersion": "449993",
+          "uid": "c5181c98-a534-4666-824a-051746559eaf"
+        },
+        "spec": {
+          "clusterIP": "10.96.98.25",
+          "clusterIPs": [
+            "10.96.98.25"
+          ],
+          "internalTrafficPolicy": "Cluster",
+          "ipFamilies": [
+            "IPv4"
+          ],
+          "ipFamilyPolicy": "SingleStack",
+          "ports": [
+            {
+              "name": "http",
+              "port": 8080,
+              "protocol": "TCP",
+              "targetPort": 8080
+            }
+          ],
+          "sessionAffinity": "None",
+          "type": "ClusterIP"
+        },
+        "status": {
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-09-15T14:03:28Z",
+              "message": "",
+              "reason": "Valid",
+              "status": "True",
+              "type": "KcnValid"
+            },
+            {
+              "lastTransitionTime": "2026-09-15T14:03:28Z",
+              "message": "",
+              "reason": "Ready",
+              "status": "True",
+              "type": "KcnReady"
+            }
+          ],
+          "loadBalancer": {}
+        }
+      },
+      "stderr": ""
+    }
+  ],
+  "expected_fixture_uid": "c5181c98-a534-4666-824a-051746559eaf",
+  "result": "pass",
+  "at": "2026-09-15T14:06:21.760028+00:00",
+  "execution_host": "ubuntu",
+  "original_generated_service_uid": "cbbfbc82-49c0-4bbc-96f3-a3924f685421"
+}

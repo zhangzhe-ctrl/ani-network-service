@@ -146,6 +146,12 @@ func (r Reason) Message() string {
 		return "Provider cleanup has been requested and awaits confirmation."
 	case BaseConnectivityNotReady:
 		return "VPC base connectivity is not ready"
+	case LoadBalancerNotReady:
+		return "The load balancer capability is not ready."
+	case BackendIdentityMismatch:
+		return "The backend no longer matches its accepted network identity."
+	case VIPInUse:
+		return "The private address is reserved by another network resource."
 	case Reason("CREATE_TERMINATED"):
 		return "VPC creation was terminated; cleanup is tracked by its delete operation"
 	case PublicEgressNotReady:

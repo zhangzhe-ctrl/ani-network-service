@@ -1,0 +1,325 @@
+{
+  "at": "2026-09-15T15:01:54.097014+00:00",
+  "run": "lb02-09141908-2b3122",
+  "result": "pass",
+  "scope": "product business lifecycle and active LB/EIP/VIP/parent claims cleanup, not physical device retirement or full infrastructure removal",
+  "database_zero_counts": {
+    "vpcs": 0,
+    "subnets": 0,
+    "attachments": 0,
+    "eips": 0,
+    "snats": 0,
+    "lbs": 0,
+    "claims": 0,
+    "components": 0,
+    "generated": 0
+  },
+  "active_vip_intents": 0,
+  "active_subnet_refs": 0,
+  "historical_released_rows": {
+    "vip_intents": 4,
+    "subnet_refs": 10
+  },
+  "tenant_provider_absence": [
+    "final-tenant-a-provider-absence.json",
+    "final-tenant-b-provider-absence.json"
+  ],
+  "remaining_platform": [
+    {
+      "id": "device_3290174cfb644473b5b5e260bcea085c",
+      "kind": "device",
+      "state": "available",
+      "reason": ""
+    }
+  ],
+  "retained_inventory": [
+    {
+      "kind": "ServiceAccount",
+      "namespace": "kcn-system",
+      "name": "ani-node-facts-51a80915f0169d9a92ce6bf0",
+      "uid": "c9883997-d24d-45d4-9864-ef826b787d2a"
+    },
+    {
+      "kind": "ServiceAccount",
+      "namespace": "kcn-system",
+      "name": "ani-node-facts-7b398d4ee406a252345c20ca",
+      "uid": "cd39fd56-0faa-4ffb-b3d6-8222ac81a2c6"
+    },
+    {
+      "kind": "ServiceAccount",
+      "namespace": "kcn-system",
+      "name": "ani-node-facts-ab0e432da17dfce745d60958",
+      "uid": "1dbac959-03fd-4874-bb70-d961d840c61b"
+    },
+    {
+      "kind": "ConfigMap",
+      "namespace": "kcn-system",
+      "name": "ani-node-facts-51a80915f0169d9a92ce6bf0",
+      "uid": "9d03f57e-7db1-4d5a-8918-5d8340e70d18"
+    },
+    {
+      "kind": "ConfigMap",
+      "namespace": "kcn-system",
+      "name": "ani-node-facts-7b398d4ee406a252345c20ca",
+      "uid": "5d3977b4-2ee3-41d6-a1de-53d226316b5d"
+    },
+    {
+      "kind": "ConfigMap",
+      "namespace": "kcn-system",
+      "name": "ani-node-facts-ab0e432da17dfce745d60958",
+      "uid": "ed55ae88-925e-4ce8-a404-25f32a8f63fd"
+    },
+    {
+      "kind": "Role",
+      "namespace": "kcn-system",
+      "name": "ani-node-facts-51a80915f0169d9a92ce6bf0",
+      "uid": "61d7349f-0af0-43bd-9d68-156e8651b597"
+    },
+    {
+      "kind": "Role",
+      "namespace": "kcn-system",
+      "name": "ani-node-facts-7b398d4ee406a252345c20ca",
+      "uid": "f04b2b05-9a37-4983-8e39-07309c08a026"
+    },
+    {
+      "kind": "Role",
+      "namespace": "kcn-system",
+      "name": "ani-node-facts-ab0e432da17dfce745d60958",
+      "uid": "7acfa824-f57e-4efc-bdc6-196bd988e33a"
+    },
+    {
+      "kind": "Role",
+      "namespace": "kcn-system",
+      "name": "lb02-09141908-2b3122-device-registration",
+      "uid": "09554f46-620f-4ed6-9183-5034ce24d789"
+    },
+    {
+      "kind": "Role",
+      "namespace": "kcn-system",
+      "name": "lb02-09141908-2b3122-intranet",
+      "uid": "a227e69b-8b70-4e40-ac5a-7d666bfcf04f"
+    },
+    {
+      "kind": "RoleBinding",
+      "namespace": "kcn-system",
+      "name": "ani-node-facts-51a80915f0169d9a92ce6bf0",
+      "uid": "3a0a6550-3dba-4aa3-adc2-035d66426e96"
+    },
+    {
+      "kind": "RoleBinding",
+      "namespace": "kcn-system",
+      "name": "ani-node-facts-7b398d4ee406a252345c20ca",
+      "uid": "87076a70-05dd-4837-aa4c-e676832b17dc"
+    },
+    {
+      "kind": "RoleBinding",
+      "namespace": "kcn-system",
+      "name": "ani-node-facts-ab0e432da17dfce745d60958",
+      "uid": "e1affb41-d2ce-4ceb-affd-2383593c488d"
+    },
+    {
+      "kind": "RoleBinding",
+      "namespace": "kcn-system",
+      "name": "lb02-09141908-2b3122-device-registration",
+      "uid": "1db4b97c-dbca-4263-bec8-c33903c1b43e"
+    },
+    {
+      "kind": "RoleBinding",
+      "namespace": "kcn-system",
+      "name": "lb02-09141908-2b3122-intranet",
+      "uid": "eba675c3-ccad-4f57-816e-5e4ce5cc0c3c"
+    },
+    {
+      "kind": "Deployment",
+      "namespace": "kcn-system",
+      "name": "ani-node-facts-51a80915f0169d9a92ce6bf0",
+      "uid": "590adf58-de4b-4642-8f73-30d8fb96a056"
+    },
+    {
+      "kind": "Deployment",
+      "namespace": "kcn-system",
+      "name": "ani-node-facts-7b398d4ee406a252345c20ca",
+      "uid": "7c7a26d1-2c52-42f9-80e1-278a6513e38d"
+    },
+    {
+      "kind": "Deployment",
+      "namespace": "kcn-system",
+      "name": "ani-node-facts-ab0e432da17dfce745d60958",
+      "uid": "639c67d2-b10e-42c2-a27b-a665e6c5abf7"
+    },
+    {
+      "kind": "ReplicaSet",
+      "namespace": "kcn-system",
+      "name": "ani-node-facts-51a80915f0169d9a92ce6bf0-5f67ffbfbf",
+      "uid": "888b9955-5ae1-492a-817e-86505d54130d"
+    },
+    {
+      "kind": "ReplicaSet",
+      "namespace": "kcn-system",
+      "name": "ani-node-facts-51a80915f0169d9a92ce6bf0-6894584bff",
+      "uid": "dd8624de-c463-40ed-81c4-0e7166e7c642"
+    },
+    {
+      "kind": "ReplicaSet",
+      "namespace": "kcn-system",
+      "name": "ani-node-facts-7b398d4ee406a252345c20ca-55d8965b9c",
+      "uid": "8e65fe38-57a0-4068-81d0-8e65202243f7"
+    },
+    {
+      "kind": "ReplicaSet",
+      "namespace": "kcn-system",
+      "name": "ani-node-facts-7b398d4ee406a252345c20ca-7b5f5f45c",
+      "uid": "a437d9ac-4e04-48f0-9885-88f0ce31c8c7"
+    },
+    {
+      "kind": "ReplicaSet",
+      "namespace": "kcn-system",
+      "name": "ani-node-facts-ab0e432da17dfce745d60958-5cf45bbbdd",
+      "uid": "b8c4afcc-566c-4ec2-b9bb-eaebe27e6951"
+    },
+    {
+      "kind": "ReplicaSet",
+      "namespace": "kcn-system",
+      "name": "ani-node-facts-ab0e432da17dfce745d60958-67c9b5b476",
+      "uid": "573ded00-628d-4675-9b3b-7429665e0ab1"
+    },
+    {
+      "kind": "Pod",
+      "namespace": "kcn-system",
+      "name": "ani-node-facts-51a80915f0169d9a92ce6bf0-5f67ffbfbf-l7mmt",
+      "uid": "ef5b1a7e-6db3-4c1e-b538-5b5b7ee23607"
+    },
+    {
+      "kind": "Pod",
+      "namespace": "kcn-system",
+      "name": "ani-node-facts-7b398d4ee406a252345c20ca-55d8965b9c-6bc6l",
+      "uid": "8cef1fd6-fd1c-4fb7-8d37-4aeaca518e82"
+    },
+    {
+      "kind": "Pod",
+      "namespace": "kcn-system",
+      "name": "ani-node-facts-ab0e432da17dfce745d60958-5cf45bbbdd-ptlt2",
+      "uid": "b217e742-44d3-4540-832f-8e68244f579b"
+    },
+    {
+      "kind": "ClusterRole",
+      "namespace": null,
+      "name": "ani-node-facts-51a80915f0169d9a92ce6bf0",
+      "uid": "d4acb217-2b59-43d8-a98c-254b1c90aa2a"
+    },
+    {
+      "kind": "ClusterRole",
+      "namespace": null,
+      "name": "ani-node-facts-7b398d4ee406a252345c20ca",
+      "uid": "835144d2-06cc-416c-bbd6-456cf4ff183f"
+    },
+    {
+      "kind": "ClusterRole",
+      "namespace": null,
+      "name": "ani-node-facts-ab0e432da17dfce745d60958",
+      "uid": "9f169fc8-a620-4b0c-8fbd-d81c402f3b3f"
+    },
+    {
+      "kind": "ClusterRole",
+      "namespace": null,
+      "name": "lb02-09141908-2b3122-device-registration",
+      "uid": "ccdca94c-e942-4b08-9df4-4394f42262cd"
+    },
+    {
+      "kind": "ClusterRole",
+      "namespace": null,
+      "name": "lb02-09141908-2b3122-observe",
+      "uid": "b24783e7-a3d5-4c55-bf8e-c35bd08a0baa"
+    },
+    {
+      "kind": "ClusterRoleBinding",
+      "namespace": null,
+      "name": "ani-node-facts-51a80915f0169d9a92ce6bf0",
+      "uid": "f1675384-b460-4565-bc24-e9e41014cdd0"
+    },
+    {
+      "kind": "ClusterRoleBinding",
+      "namespace": null,
+      "name": "ani-node-facts-7b398d4ee406a252345c20ca",
+      "uid": "4093b3ce-8e2f-4f4f-ace9-0d371af1f259"
+    },
+    {
+      "kind": "ClusterRoleBinding",
+      "namespace": null,
+      "name": "ani-node-facts-ab0e432da17dfce745d60958",
+      "uid": "901b0840-75c1-47cb-8e9d-1b96bb74f7a9"
+    },
+    {
+      "kind": "ClusterRoleBinding",
+      "namespace": null,
+      "name": "lb02-09141908-2b3122-device-registration",
+      "uid": "98c3ac7d-6594-4d45-82fe-9e441055bde5"
+    },
+    {
+      "kind": "ClusterRoleBinding",
+      "namespace": null,
+      "name": "lb02-09141908-2b3122-observe",
+      "uid": "016d37e8-0072-4b0c-a384-371bd7abd716"
+    },
+    {
+      "kind": "ServiceAccount",
+      "namespace": "lb02-09141908-2b3122",
+      "name": "default",
+      "uid": "209419c9-1989-4796-a2fb-7467368976b1"
+    },
+    {
+      "kind": "ServiceAccount",
+      "namespace": "lb02-09141908-2b3122",
+      "name": "lb02-2b3122-workload-owner",
+      "uid": "0f8210f3-0c4a-44af-83c4-89c30b521939"
+    },
+    {
+      "kind": "ServiceAccount",
+      "namespace": "lb02-09141908-2b3122",
+      "name": "network",
+      "uid": "a5b971ee-ac6c-400d-a460-8e6973b38e23"
+    },
+    {
+      "kind": "ConfigMap",
+      "namespace": "lb02-09141908-2b3122",
+      "name": "kube-root-ca.crt",
+      "uid": "8c0188b7-5b45-4383-8fad-44ad82ad95bd"
+    },
+    {
+      "kind": "Namespace",
+      "namespace": null,
+      "name": "lb02-09141908-2b3122",
+      "uid": "d3595667-d9c1-4404-834d-e071cc37eec7"
+    },
+    {
+      "kind": "Namespace",
+      "namespace": null,
+      "name": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+      "uid": "59b88976-90cc-42cb-8c6a-ccb3784db049"
+    },
+    {
+      "kind": "Namespace",
+      "namespace": null,
+      "name": "lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832",
+      "uid": "e13bfb6e-4804-4de2-89b5-df4c703c0744"
+    }
+  ],
+  "kcn_config_data_unchanged": true,
+  "kcn_config_data_sha256": "8d480382c2b7ee0eeb1802de287e59781a0f81ea74f0c0cc760237159a8785bb",
+  "kcn_config_uid": "dcca6e9e-db3f-4ebe-8b27-8898e3a2939e",
+  "device_binding_annotation": {
+    "network.ani.io/device-adoption-2f5c91188d083599": "a1fdc522-a807-40b7-89a6-986b0039ff43"
+  },
+  "shared_default_vpc_uid_unchanged": true,
+  "runtime_stopped": "ani-net-lb02-2b3122-r28.service",
+  "database_backup": "final-cleanup-checkpoint-1500.json",
+  "backup_sha256": "3aaa624e30f10d36376d9e5300cca9060ef6bd90aa7a48b77475c3ed2adc01f4",
+  "infrastructure_retirement": "not_verified: retained registration, collectors, namespace/SA/RBAC, private credentials and PostgreSQL container; no device unregister product API",
+  "limitations": [
+    "Public forwarding failures remain fail and deferred by user",
+    "Dual LB observation stability remains fail",
+    "Bounded VPC deletion wait ended before eventual completion; final actual GetVPC confirms deleted",
+    "Initial inventory attempts used limited Network credentials and wrong eippools kind; raw errors retained; corrected explicit read-only administrator inventory succeeded",
+    "Prior snapshots include historical released rows; they are not active claims"
+  ]
+}

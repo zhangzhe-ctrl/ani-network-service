@@ -4,6 +4,8 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"slices"
+	"strings"
 	"time"
 
 	"github.com/zhangzhe-ctrl/ani-network-service/internal/biz"
@@ -80,7 +82,13 @@ func (p *KCProvider) ObserveAttachment(ctx context.Context, w biz.AttachmentWork
 			return biz.AttachmentObservation{}, readFailure(err)
 		}
 	}
-	for attempt := 0; attempt < 2; attempt++ {
+	// Each invalidation moves the required collection boundary forward. Keep
+	// collecting within the caller's original request budget; consecutive Watch
+	// renewals can invalidate more than one audit without changing any identity.
+	for {
+		if err := ctx.Err(); err != nil {
+			return biz.AttachmentObservation{}, readFailure(err)
+		}
 		v, err := p.observation.snapshot(ctx, after)
 		if err != nil {
 			return biz.AttachmentObservation{}, readFailure(err)
@@ -102,7 +110,8 @@ func (p *KCProvider) ObserveAttachment(ctx context.Context, w biz.AttachmentWork
 		}
 		proof := biz.ObservationProof{CollectedAt: v.collected, Hash: contentHash(candidatesForHash(candidates)), CoveredGeneration: v.generations[observationTarget{a.TenantID, a.ID, "attachment"}.key()]}
 		if !proof.Covers(w.Requirement) || !p.observation.valid(v, allKeys) {
-			if _, err = p.observation.refresh(ctx, w.Now, true); err != nil {
+			after, err = p.repository.queries.DatabaseTime(ctx)
+			if err != nil {
 				return biz.AttachmentObservation{}, readFailure(err)
 			}
 			continue
@@ -118,16 +127,32 @@ func (p *KCProvider) ObserveAttachment(ctx context.Context, w biz.AttachmentWork
 			result.HasDependencies = true
 		}
 		if !p.observation.valid(v, allKeys) {
-			return biz.AttachmentObservation{}, readFailure(fmt.Errorf("relations changed during observation"))
+			after, err = p.repository.queries.DatabaseTime(ctx)
+			if err != nil {
+				return biz.AttachmentObservation{}, readFailure(err)
+			}
+			continue
 		}
 		return result, err
 	}
-	return biz.AttachmentObservation{}, readFailure(fmt.Errorf("audit does not cover pending relations"))
 }
 func candidatesForHash(values map[schema.GroupVersionResource][]unstructured.Unstructured) map[string][]unstructured.Unstructured {
 	out := map[string][]unstructured.Unstructured{}
 	for gvr, v := range values {
-		out[gvr.String()] = v
+		// Informer List order is not evidence of a changed object set. Keep
+		// every field, but canonicalize a copy so shared view slices stay intact.
+		objects := slices.Clone(v)
+		slices.SortFunc(objects, func(a, b unstructured.Unstructured) int {
+			for _, pair := range [][2]string{{a.GetNamespace(), b.GetNamespace()}, {a.GetName(), b.GetName()}, {string(a.GetUID()), string(b.GetUID())}} {
+				if order := strings.Compare(pair[0], pair[1]); order != 0 {
+					return order
+				}
+			}
+			// Preserve deterministic evidence even for duplicate identities with
+			// contradictory contents; do not collapse or hide either candidate.
+			return strings.Compare(contentHash(a.Object), contentHash(b.Object))
+		})
+		out[gvr.String()] = objects
 	}
 	return out
 }

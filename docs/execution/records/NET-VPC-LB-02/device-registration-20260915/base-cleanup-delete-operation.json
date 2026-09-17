@@ -1,0 +1,772 @@
+{
+  "execution_host": "ubuntu",
+  "command": [
+    "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/lb-api",
+    "call",
+    "-target",
+    "unix:///home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-b.sock",
+    "-service",
+    "NetworkService",
+    "-method",
+    "GetOperation"
+  ],
+  "request": {
+    "operation_id": "99f699d8-80f3-4b6d-8321-aebfc9824c3f"
+  },
+  "expected": {
+    "response.operation.state": "OPERATION_STATE_SUCCEEDED"
+  },
+  "result": "fail",
+  "records": [
+    {
+      "at": "2026-09-15T05:49:49.524144+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "99f699d8-80f3-4b6d-8321-aebfc9824c3f",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "resource_id": "vpc_a43ae8279bd54524bcf3f7f137e6a2d4",
+            "kind": "OPERATION_KIND_DELETE_VPC",
+            "state": "OPERATION_STATE_RETRYING",
+            "reason": "CLEANUP_PENDING",
+            "created_at": "2026-09-15T05:49:11.059623Z",
+            "updated_at": "2026-09-15T05:49:42.489453Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T05:49:43.489454Z",
+            "resource_type": "RESOURCE_TYPE_VPC",
+            "reason_message": "Provider cleanup has been requested and awaits confirmation."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:49:54.536306+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "99f699d8-80f3-4b6d-8321-aebfc9824c3f",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "resource_id": "vpc_a43ae8279bd54524bcf3f7f137e6a2d4",
+            "kind": "OPERATION_KIND_DELETE_VPC",
+            "state": "OPERATION_STATE_RETRYING",
+            "reason": "CLEANUP_PENDING",
+            "created_at": "2026-09-15T05:49:11.059623Z",
+            "updated_at": "2026-09-15T05:49:42.489453Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T05:49:43.489454Z",
+            "resource_type": "RESOURCE_TYPE_VPC",
+            "reason_message": "Provider cleanup has been requested and awaits confirmation."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:49:59.549777+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "99f699d8-80f3-4b6d-8321-aebfc9824c3f",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "resource_id": "vpc_a43ae8279bd54524bcf3f7f137e6a2d4",
+            "kind": "OPERATION_KIND_DELETE_VPC",
+            "state": "OPERATION_STATE_RETRYING",
+            "reason": "CLEANUP_PENDING",
+            "created_at": "2026-09-15T05:49:11.059623Z",
+            "updated_at": "2026-09-15T05:49:42.489453Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T05:49:43.489454Z",
+            "resource_type": "RESOURCE_TYPE_VPC",
+            "reason_message": "Provider cleanup has been requested and awaits confirmation."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:50:04.561988+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "99f699d8-80f3-4b6d-8321-aebfc9824c3f",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "resource_id": "vpc_a43ae8279bd54524bcf3f7f137e6a2d4",
+            "kind": "OPERATION_KIND_DELETE_VPC",
+            "state": "OPERATION_STATE_RETRYING",
+            "reason": "CLEANUP_PENDING",
+            "created_at": "2026-09-15T05:49:11.059623Z",
+            "updated_at": "2026-09-15T05:50:00.638861Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T05:50:01.638862Z",
+            "resource_type": "RESOURCE_TYPE_VPC",
+            "reason_message": "Provider cleanup has been requested and awaits confirmation."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:50:09.573272+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "99f699d8-80f3-4b6d-8321-aebfc9824c3f",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "resource_id": "vpc_a43ae8279bd54524bcf3f7f137e6a2d4",
+            "kind": "OPERATION_KIND_DELETE_VPC",
+            "state": "OPERATION_STATE_RETRYING",
+            "reason": "CLEANUP_PENDING",
+            "created_at": "2026-09-15T05:49:11.059623Z",
+            "updated_at": "2026-09-15T05:50:00.638861Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T05:50:01.638862Z",
+            "resource_type": "RESOURCE_TYPE_VPC",
+            "reason_message": "Provider cleanup has been requested and awaits confirmation."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:50:14.584038+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "99f699d8-80f3-4b6d-8321-aebfc9824c3f",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "resource_id": "vpc_a43ae8279bd54524bcf3f7f137e6a2d4",
+            "kind": "OPERATION_KIND_DELETE_VPC",
+            "state": "OPERATION_STATE_RETRYING",
+            "reason": "CLEANUP_PENDING",
+            "created_at": "2026-09-15T05:49:11.059623Z",
+            "updated_at": "2026-09-15T05:50:00.638861Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T05:50:01.638862Z",
+            "resource_type": "RESOURCE_TYPE_VPC",
+            "reason_message": "Provider cleanup has been requested and awaits confirmation."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:50:19.594351+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "99f699d8-80f3-4b6d-8321-aebfc9824c3f",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "resource_id": "vpc_a43ae8279bd54524bcf3f7f137e6a2d4",
+            "kind": "OPERATION_KIND_DELETE_VPC",
+            "state": "OPERATION_STATE_RETRYING",
+            "reason": "CLEANUP_PENDING",
+            "created_at": "2026-09-15T05:49:11.059623Z",
+            "updated_at": "2026-09-15T05:50:18.823874Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T05:50:19.823874Z",
+            "resource_type": "RESOURCE_TYPE_VPC",
+            "reason_message": "Provider cleanup has been requested and awaits confirmation."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:50:24.605367+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "99f699d8-80f3-4b6d-8321-aebfc9824c3f",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "resource_id": "vpc_a43ae8279bd54524bcf3f7f137e6a2d4",
+            "kind": "OPERATION_KIND_DELETE_VPC",
+            "state": "OPERATION_STATE_RETRYING",
+            "reason": "CLEANUP_PENDING",
+            "created_at": "2026-09-15T05:49:11.059623Z",
+            "updated_at": "2026-09-15T05:50:18.823874Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T05:50:19.823874Z",
+            "resource_type": "RESOURCE_TYPE_VPC",
+            "reason_message": "Provider cleanup has been requested and awaits confirmation."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:50:29.616647+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "99f699d8-80f3-4b6d-8321-aebfc9824c3f",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "resource_id": "vpc_a43ae8279bd54524bcf3f7f137e6a2d4",
+            "kind": "OPERATION_KIND_DELETE_VPC",
+            "state": "OPERATION_STATE_RETRYING",
+            "reason": "CLEANUP_PENDING",
+            "created_at": "2026-09-15T05:49:11.059623Z",
+            "updated_at": "2026-09-15T05:50:28.544965Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T05:50:29.544965Z",
+            "resource_type": "RESOURCE_TYPE_VPC",
+            "reason_message": "Provider cleanup has been requested and awaits confirmation."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:50:34.630309+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "99f699d8-80f3-4b6d-8321-aebfc9824c3f",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "resource_id": "vpc_a43ae8279bd54524bcf3f7f137e6a2d4",
+            "kind": "OPERATION_KIND_DELETE_VPC",
+            "state": "OPERATION_STATE_RETRYING",
+            "reason": "CLEANUP_PENDING",
+            "created_at": "2026-09-15T05:49:11.059623Z",
+            "updated_at": "2026-09-15T05:50:34.166319Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T05:50:35.166319Z",
+            "resource_type": "RESOURCE_TYPE_VPC",
+            "reason_message": "Provider cleanup has been requested and awaits confirmation."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:50:39.641351+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "99f699d8-80f3-4b6d-8321-aebfc9824c3f",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "resource_id": "vpc_a43ae8279bd54524bcf3f7f137e6a2d4",
+            "kind": "OPERATION_KIND_DELETE_VPC",
+            "state": "OPERATION_STATE_RETRYING",
+            "reason": "CLEANUP_PENDING",
+            "created_at": "2026-09-15T05:49:11.059623Z",
+            "updated_at": "2026-09-15T05:50:34.166319Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T05:50:35.166319Z",
+            "resource_type": "RESOURCE_TYPE_VPC",
+            "reason_message": "Provider cleanup has been requested and awaits confirmation."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:50:44.653190+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "99f699d8-80f3-4b6d-8321-aebfc9824c3f",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "resource_id": "vpc_a43ae8279bd54524bcf3f7f137e6a2d4",
+            "kind": "OPERATION_KIND_DELETE_VPC",
+            "state": "OPERATION_STATE_RETRYING",
+            "reason": "CLEANUP_PENDING",
+            "created_at": "2026-09-15T05:49:11.059623Z",
+            "updated_at": "2026-09-15T05:50:34.166319Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T05:50:35.166319Z",
+            "resource_type": "RESOURCE_TYPE_VPC",
+            "reason_message": "Provider cleanup has been requested and awaits confirmation."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:50:49.664774+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "99f699d8-80f3-4b6d-8321-aebfc9824c3f",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "resource_id": "vpc_a43ae8279bd54524bcf3f7f137e6a2d4",
+            "kind": "OPERATION_KIND_DELETE_VPC",
+            "state": "OPERATION_STATE_RETRYING",
+            "reason": "CLEANUP_PENDING",
+            "created_at": "2026-09-15T05:49:11.059623Z",
+            "updated_at": "2026-09-15T05:50:34.166319Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T05:50:35.166319Z",
+            "resource_type": "RESOURCE_TYPE_VPC",
+            "reason_message": "Provider cleanup has been requested and awaits confirmation."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:50:54.676076+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "99f699d8-80f3-4b6d-8321-aebfc9824c3f",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "resource_id": "vpc_a43ae8279bd54524bcf3f7f137e6a2d4",
+            "kind": "OPERATION_KIND_DELETE_VPC",
+            "state": "OPERATION_STATE_RETRYING",
+            "reason": "CLEANUP_PENDING",
+            "created_at": "2026-09-15T05:49:11.059623Z",
+            "updated_at": "2026-09-15T05:50:51.529686Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T05:50:52.529686Z",
+            "resource_type": "RESOURCE_TYPE_VPC",
+            "reason_message": "Provider cleanup has been requested and awaits confirmation."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:50:59.686016+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "99f699d8-80f3-4b6d-8321-aebfc9824c3f",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "resource_id": "vpc_a43ae8279bd54524bcf3f7f137e6a2d4",
+            "kind": "OPERATION_KIND_DELETE_VPC",
+            "state": "OPERATION_STATE_RETRYING",
+            "reason": "CLEANUP_PENDING",
+            "created_at": "2026-09-15T05:49:11.059623Z",
+            "updated_at": "2026-09-15T05:50:51.529686Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T05:50:52.529686Z",
+            "resource_type": "RESOURCE_TYPE_VPC",
+            "reason_message": "Provider cleanup has been requested and awaits confirmation."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:51:04.696969+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "99f699d8-80f3-4b6d-8321-aebfc9824c3f",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "resource_id": "vpc_a43ae8279bd54524bcf3f7f137e6a2d4",
+            "kind": "OPERATION_KIND_DELETE_VPC",
+            "state": "OPERATION_STATE_RETRYING",
+            "reason": "CLEANUP_PENDING",
+            "created_at": "2026-09-15T05:49:11.059623Z",
+            "updated_at": "2026-09-15T05:50:51.529686Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T05:50:52.529686Z",
+            "resource_type": "RESOURCE_TYPE_VPC",
+            "reason_message": "Provider cleanup has been requested and awaits confirmation."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:51:09.710498+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "99f699d8-80f3-4b6d-8321-aebfc9824c3f",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "resource_id": "vpc_a43ae8279bd54524bcf3f7f137e6a2d4",
+            "kind": "OPERATION_KIND_DELETE_VPC",
+            "state": "OPERATION_STATE_RETRYING",
+            "reason": "CLEANUP_PENDING",
+            "created_at": "2026-09-15T05:49:11.059623Z",
+            "updated_at": "2026-09-15T05:51:08.659160Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T05:51:09.659160Z",
+            "resource_type": "RESOURCE_TYPE_VPC",
+            "reason_message": "Provider cleanup has been requested and awaits confirmation."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:51:14.720976+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "99f699d8-80f3-4b6d-8321-aebfc9824c3f",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "resource_id": "vpc_a43ae8279bd54524bcf3f7f137e6a2d4",
+            "kind": "OPERATION_KIND_DELETE_VPC",
+            "state": "OPERATION_STATE_RETRYING",
+            "reason": "CLEANUP_PENDING",
+            "created_at": "2026-09-15T05:49:11.059623Z",
+            "updated_at": "2026-09-15T05:51:08.659160Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T05:51:09.659160Z",
+            "resource_type": "RESOURCE_TYPE_VPC",
+            "reason_message": "Provider cleanup has been requested and awaits confirmation."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:51:19.733923+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "99f699d8-80f3-4b6d-8321-aebfc9824c3f",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "resource_id": "vpc_a43ae8279bd54524bcf3f7f137e6a2d4",
+            "kind": "OPERATION_KIND_DELETE_VPC",
+            "state": "OPERATION_STATE_RETRYING",
+            "reason": "CLEANUP_PENDING",
+            "created_at": "2026-09-15T05:49:11.059623Z",
+            "updated_at": "2026-09-15T05:51:08.659160Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T05:51:09.659160Z",
+            "resource_type": "RESOURCE_TYPE_VPC",
+            "reason_message": "Provider cleanup has been requested and awaits confirmation."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:51:24.744029+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "99f699d8-80f3-4b6d-8321-aebfc9824c3f",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "resource_id": "vpc_a43ae8279bd54524bcf3f7f137e6a2d4",
+            "kind": "OPERATION_KIND_DELETE_VPC",
+            "state": "OPERATION_STATE_RETRYING",
+            "reason": "CLEANUP_PENDING",
+            "created_at": "2026-09-15T05:49:11.059623Z",
+            "updated_at": "2026-09-15T05:51:08.659160Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T05:51:09.659160Z",
+            "resource_type": "RESOURCE_TYPE_VPC",
+            "reason_message": "Provider cleanup has been requested and awaits confirmation."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:51:29.755898+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "99f699d8-80f3-4b6d-8321-aebfc9824c3f",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "resource_id": "vpc_a43ae8279bd54524bcf3f7f137e6a2d4",
+            "kind": "OPERATION_KIND_DELETE_VPC",
+            "state": "OPERATION_STATE_RETRYING",
+            "reason": "CLEANUP_PENDING",
+            "created_at": "2026-09-15T05:49:11.059623Z",
+            "updated_at": "2026-09-15T05:51:08.659160Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T05:51:09.659160Z",
+            "resource_type": "RESOURCE_TYPE_VPC",
+            "reason_message": "Provider cleanup has been requested and awaits confirmation."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:51:34.767942+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "99f699d8-80f3-4b6d-8321-aebfc9824c3f",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "resource_id": "vpc_a43ae8279bd54524bcf3f7f137e6a2d4",
+            "kind": "OPERATION_KIND_DELETE_VPC",
+            "state": "OPERATION_STATE_RETRYING",
+            "reason": "CLEANUP_PENDING",
+            "created_at": "2026-09-15T05:49:11.059623Z",
+            "updated_at": "2026-09-15T05:51:08.659160Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T05:51:09.659160Z",
+            "resource_type": "RESOURCE_TYPE_VPC",
+            "reason_message": "Provider cleanup has been requested and awaits confirmation."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:51:39.779635+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "99f699d8-80f3-4b6d-8321-aebfc9824c3f",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "resource_id": "vpc_a43ae8279bd54524bcf3f7f137e6a2d4",
+            "kind": "OPERATION_KIND_DELETE_VPC",
+            "state": "OPERATION_STATE_RETRYING",
+            "reason": "CLEANUP_PENDING",
+            "created_at": "2026-09-15T05:49:11.059623Z",
+            "updated_at": "2026-09-15T05:51:36.244281Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T05:51:37.244282Z",
+            "resource_type": "RESOURCE_TYPE_VPC",
+            "reason_message": "Provider cleanup has been requested and awaits confirmation."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:51:44.791054+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "99f699d8-80f3-4b6d-8321-aebfc9824c3f",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "resource_id": "vpc_a43ae8279bd54524bcf3f7f137e6a2d4",
+            "kind": "OPERATION_KIND_DELETE_VPC",
+            "state": "OPERATION_STATE_RETRYING",
+            "reason": "CLEANUP_PENDING",
+            "created_at": "2026-09-15T05:49:11.059623Z",
+            "updated_at": "2026-09-15T05:51:36.244281Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T05:51:37.244282Z",
+            "resource_type": "RESOURCE_TYPE_VPC",
+            "reason_message": "Provider cleanup has been requested and awaits confirmation."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:51:49.802535+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "99f699d8-80f3-4b6d-8321-aebfc9824c3f",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "resource_id": "vpc_a43ae8279bd54524bcf3f7f137e6a2d4",
+            "kind": "OPERATION_KIND_DELETE_VPC",
+            "state": "OPERATION_STATE_RETRYING",
+            "reason": "CLEANUP_PENDING",
+            "created_at": "2026-09-15T05:49:11.059623Z",
+            "updated_at": "2026-09-15T05:51:36.244281Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T05:51:37.244282Z",
+            "resource_type": "RESOURCE_TYPE_VPC",
+            "reason_message": "Provider cleanup has been requested and awaits confirmation."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:51:54.813537+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "99f699d8-80f3-4b6d-8321-aebfc9824c3f",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "resource_id": "vpc_a43ae8279bd54524bcf3f7f137e6a2d4",
+            "kind": "OPERATION_KIND_DELETE_VPC",
+            "state": "OPERATION_STATE_RETRYING",
+            "reason": "CLEANUP_PENDING",
+            "created_at": "2026-09-15T05:49:11.059623Z",
+            "updated_at": "2026-09-15T05:51:36.244281Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T05:51:37.244282Z",
+            "resource_type": "RESOURCE_TYPE_VPC",
+            "reason_message": "Provider cleanup has been requested and awaits confirmation."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:51:59.824777+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "99f699d8-80f3-4b6d-8321-aebfc9824c3f",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "resource_id": "vpc_a43ae8279bd54524bcf3f7f137e6a2d4",
+            "kind": "OPERATION_KIND_DELETE_VPC",
+            "state": "OPERATION_STATE_RETRYING",
+            "reason": "CLEANUP_PENDING",
+            "created_at": "2026-09-15T05:49:11.059623Z",
+            "updated_at": "2026-09-15T05:51:36.244281Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T05:51:37.244282Z",
+            "resource_type": "RESOURCE_TYPE_VPC",
+            "reason_message": "Provider cleanup has been requested and awaits confirmation."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:52:04.838656+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "99f699d8-80f3-4b6d-8321-aebfc9824c3f",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "resource_id": "vpc_a43ae8279bd54524bcf3f7f137e6a2d4",
+            "kind": "OPERATION_KIND_DELETE_VPC",
+            "state": "OPERATION_STATE_RETRYING",
+            "reason": "CLEANUP_PENDING",
+            "created_at": "2026-09-15T05:49:11.059623Z",
+            "updated_at": "2026-09-15T05:52:02.723195Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T05:52:03.723195Z",
+            "resource_type": "RESOURCE_TYPE_VPC",
+            "reason_message": "Provider cleanup has been requested and awaits confirmation."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:52:09.851785+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "99f699d8-80f3-4b6d-8321-aebfc9824c3f",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "resource_id": "vpc_a43ae8279bd54524bcf3f7f137e6a2d4",
+            "kind": "OPERATION_KIND_DELETE_VPC",
+            "state": "OPERATION_STATE_RETRYING",
+            "reason": "CLEANUP_PENDING",
+            "created_at": "2026-09-15T05:49:11.059623Z",
+            "updated_at": "2026-09-15T05:52:02.723195Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T05:52:03.723195Z",
+            "resource_type": "RESOURCE_TYPE_VPC",
+            "reason_message": "Provider cleanup has been requested and awaits confirmation."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T05:52:14.862817+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "99f699d8-80f3-4b6d-8321-aebfc9824c3f",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "resource_id": "vpc_a43ae8279bd54524bcf3f7f137e6a2d4",
+            "kind": "OPERATION_KIND_DELETE_VPC",
+            "state": "OPERATION_STATE_RETRYING",
+            "reason": "CLEANUP_PENDING",
+            "created_at": "2026-09-15T05:49:11.059623Z",
+            "updated_at": "2026-09-15T05:52:02.723195Z",
+            "completed_at": null,
+            "next_attempt_at": "2026-09-15T05:52:03.723195Z",
+            "resource_type": "RESOURCE_TYPE_VPC",
+            "reason_message": "Provider cleanup has been requested and awaits confirmation."
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    }
+  ]
+}

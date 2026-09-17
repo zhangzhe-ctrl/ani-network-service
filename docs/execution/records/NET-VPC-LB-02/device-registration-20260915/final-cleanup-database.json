@@ -1,0 +1,12 @@
+{
+  "at": "2026-09-15T14:54:48.739550+00:00",
+  "execution_host": "ubuntu",
+  "transport_exit": 0,
+  "result": {
+    "query": "SELECT json_build_object('vpcs',(SELECT count(*) FROM network_vpcs WHERE state<>'deleted'),'subnets',(SELECT count(*) FROM network_subnets WHERE state<>'deleted'),'attachments',(SELECT count(*) FROM network_attachments WHERE state<>'released'),'eips',(SELECT count(*) FROM network_eips WHERE state<>'deleted'),'snats',(SELECT count(*) FROM network_snat_bindings WHERE state<>'deleted'),'lbs',(SELECT count(*) FROM network_load_balancers WHERE state<>'deleted'),'claims',(SELECT count(*) FROM network_eip_claims WHERE released_at IS NULL),'vip_intents',(SELECT count(*) FROM network_lb_vip_intents),'subnet_refs',(SELECT count(*) FROM network_lb_subnet_refs),'components',(SELECT count(*) FROM network_lb_components WHERE deleted_at IS NULL),'generated',(SELECT count(*) FROM network_lb_generated_resources WHERE released_at IS NULL),'platform',(SELECT json_agg(json_build_object('id',resource_id,'kind',kind,'state',state,'reason',reason)) FROM network_platform_resources WHERE state<>'deleted'));",
+    "exit": 0,
+    "stdout": "BEGIN\n{\"vpcs\" : 0, \"subnets\" : 0, \"attachments\" : 0, \"eips\" : 0, \"snats\" : 0, \"lbs\" : 0, \"claims\" : 0, \"vip_intents\" : 4, \"subnet_refs\" : 10, \"components\" : 0, \"generated\" : 0, \"platform\" : [{\"id\" : \"device_3290174cfb644473b5b5e260bcea085c\", \"kind\" : \"device\", \"state\" : \"available\", \"reason\" : \"\"}, {\"id\" : \"pool_f6c078d198ae4ea1be6f43cfad8f9934\", \"kind\" : \"public_pool\", \"state\" : \"deleting\", \"reason\" : \"CLEANUP_PENDING\"}]}\nROLLBACK\n",
+    "stderr": ""
+  },
+  "stderr": ""
+}

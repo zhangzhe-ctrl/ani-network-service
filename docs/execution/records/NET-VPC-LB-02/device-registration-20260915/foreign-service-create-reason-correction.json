@@ -1,0 +1,13 @@
+{
+  "at": "2026-09-15T07:03:35.119398+00:00",
+  "result": "pass",
+  "criterion": "two consecutive BLOCKED with declared stable reason PROVIDER_OWNERSHIP_CONFLICT",
+  "canonical_reason_source": "internal/biz/worker.go:17",
+  "correction": "Initial polling helper expected the non-existent PROVIDER_OWNERSHIP spelling. Raw 30 samples and original helper failure are retained; no product code or semantic assertion changed.",
+  "raw_evidence": "foreign-service-create-blocked.json",
+  "matching_samples": 12,
+  "sample_reason_counts": {
+    "PROVIDER_UNAVAILABLE": 16,
+    "PROVIDER_OWNERSHIP_CONFLICT": 14
+  }
+}

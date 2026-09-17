@@ -1,0 +1,23 @@
+{
+    "apiVersion": "v1",
+    "data": {
+        "enablePortSecurity": "false",
+        "encapNetworks": "172.16.101.0/24",
+        "hasMultusCNI": "false",
+        "intranetNetworks": "- 172.16.101.0/24\n- 172.16.201.0/24\n- 172.16.202.0/24\n- 10.96.0.0/16\n",
+        "isDefaultCNI": "true",
+        "managedDevices": "ens35",
+        "nadDefaultNamespace": "kube-system"
+    },
+    "kind": "ConfigMap",
+    "metadata": {
+        "annotations": {
+            "network.ani.io/device-adoption-2f5c91188d083599": "a1fdc522-a807-40b7-89a6-986b0039ff43"
+        },
+        "creationTimestamp": "2026-09-14T12:26:10Z",
+        "name": "kcn-config",
+        "namespace": "kcn-system",
+        "resourceVersion": "240845",
+        "uid": "dcca6e9e-db3f-4ebe-8b27-8898e3a2939e"
+    }
+}

@@ -15,6 +15,8 @@
 
 2026-09-14 新统一设计：[VPC 基础内网、公网出站与 LB 方案](specs/vpc-connectivity-lb.md)定义新规则及对旧流程的调整；[13 个可执行任务](plans/vpc-connectivity-lb.md)给出依赖、修改范围与验收条件；[方案交付与来源核对](execution/records/2026-09-14-vpc-lb-plan.md)记录固定代码和手工实测的证据边界。本文档交付不代表新流程已实现。
 
+[历史未知创建恢复提案](plans/provider-unknown-create-recovery.md)区分退出结果落库修正与旧回执缺失的恢复前提；本次实验例外已按用户授权恢复并复测；通用管理接口未实施，实际结果见执行状态。
+
 ## 架构决定
 
 | 记录 | 决定 |
@@ -29,6 +31,8 @@ ADR 记录已确认的方向及理由；规格中本轮补齐的数值、字段�
 当前用户明确决定优先。规格、ADR、代码或证据出现差异时，标明是待实现目标、过期材料还是需要变更的决定，并更新对应权威材料，不能静默挑选有利版本。
 
 NET-05A 的观察、时效、调度与增量验收统一见[持续观察规格](specs/cr-observation.md)；既有资源与 Attachment 协议仍以首片规格为准。实际源码、分层验收和容量边界见 [NET-05A 实施记录](execution/records/NET-05A-implementation.md)，当前结果只看执行状态。
+
+管理员逐条手工复现三项 Public 转发问题：[命令与独立 YAML](runbooks/public-forwarding-manual-20260917/README.md)。此入口是手工 Provider 诊断，准备时未执行新资源创建或流量复验，不替代产品验收。
 
 ## 文档职责
 
@@ -46,6 +50,8 @@ NET-05A 的观察、时效、调度与增量验收统一见[持续观察规格](
 目录只在有实际文件时创建。过期规范注明替代关系；历史执行记录不随当前状态变化而重写成新的证据。
 
 ## 运行与来源
+
+- [NET-VPC-LB-02 实现与分层验收](execution/records/NET-VPC-LB-02/README.md)：固定输入、LB 持久生命周期及受控/真实数据面边界；[隔离产品 API 操作](../deployments/load-balancer/README.md)；[Public 转发失败排查交接](execution/records/NET-VPC-LB-02/device-registration-20260915/public-forwarding-followup.md)。
 
 - [NET-VPC-BASE-01 实施与受控验收](execution/records/NET-VPC-BASE-01/README.md)：六卡实现、固定源码、分层验收、补齐工具及下一批输入；[Intranet 平台运行前提](../deployments/egress/intranet.md)。
 

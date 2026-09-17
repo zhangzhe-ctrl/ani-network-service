@@ -1,0 +1,21 @@
+{
+  "at": "2026-09-15T05:37:03.315556+00:00",
+  "result": "pass",
+  "source_run": "20260915T051609Z-70cbcaa3",
+  "entry": "http://10.233.0.200:8080",
+  "caller": "lb02-2b3122-base-client",
+  "expected": [
+    "lb02-2b3122-base-a",
+    "lb02-2b3122-base-b"
+  ],
+  "count": 12,
+  "backend_counts": {
+    "lb02-2b3122-base-a": 6,
+    "lb02-2b3122-base-b": 6
+  },
+  "evidence": "r13-stable.json",
+  "assessment_provenance_correction": {
+    "prior_source_run": "20260915T044217Z-a4d7785d",
+    "reason": "helper retained r12 constant; actual r13 runtime build is recorded in runtime-resume-r13.json; raw request results unchanged"
+  }
+}

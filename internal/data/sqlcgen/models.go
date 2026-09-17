@@ -180,6 +180,115 @@ type NetworkIdempotency struct {
 	SubnetID           *string
 	EipID              *string
 	SnatID             *string
+	LbID               *string
+}
+
+type NetworkLbCapability struct {
+	ClusterID      string
+	Ready          bool
+	Reason         string
+	ObservedAt     time.Time
+	Fingerprint    string
+	ProviderImages []string
+}
+
+type NetworkLbComponent struct {
+	TenantID             string
+	ClusterID            string
+	Namespace            string
+	LbID                 string
+	ComponentID          string
+	Kind                 string
+	MemberID             *string
+	ProviderName         string
+	ProviderUid          string
+	CreateDispatched     bool
+	PendingAction        string
+	PendingSince         *time.Time
+	TargetVersion        int64
+	AppliedVersion       int64
+	AppliedConfigVersion pgtype.Int8
+	DeletedAt            *time.Time
+}
+
+type NetworkLbConfiguration struct {
+	TenantID           string
+	ClusterID          string
+	Namespace          string
+	LbID               string
+	ConfigVersion      int64
+	Name               string
+	Description        string
+	IntervalSeconds    int64
+	TimeoutSeconds     int64
+	UnhealthyThreshold int64
+	HealthyThreshold   int64
+	CreatedAt          time.Time
+	HealthCheckPort    int32
+}
+
+type NetworkLbConfigurationMember struct {
+	TenantID      string
+	ClusterID     string
+	Namespace     string
+	LbID          string
+	ConfigVersion int64
+	MemberID      string
+	Weight        int32
+}
+
+type NetworkLbGeneratedResource struct {
+	TenantID     string
+	ClusterID    string
+	Namespace    string
+	LbID         string
+	Kind         string
+	ProviderName string
+	ProviderUid  string
+	GatewayUid   string
+	ObservedAt   time.Time
+	ReleasedAt   *time.Time
+}
+
+type NetworkLbListener struct {
+	TenantID   string
+	ClusterID  string
+	Namespace  string
+	LbID       string
+	ListenerID string
+	Protocol   string
+	Port       int32
+}
+
+type NetworkLbMember struct {
+	TenantID     string
+	ClusterID    string
+	Namespace    string
+	LbID         string
+	MemberID     string
+	VpcID        string
+	SubnetID     string
+	AttachmentID string
+	Address      string
+	Port         int32
+	PodUid       string
+	VnicName     string
+	VnicUid      string
+	VnicipName   string
+	VnicipUid    string
+	State        string
+	Reason       string
+	ObservedAt   *time.Time
+}
+
+type NetworkLbSubnetRef struct {
+	TenantID   string
+	ClusterID  string
+	Namespace  string
+	LbID       string
+	VpcID      string
+	SubnetID   string
+	ReleasedAt *time.Time
 }
 
 type NetworkLbVipIntent struct {
@@ -194,19 +303,35 @@ type NetworkLbVipIntent struct {
 }
 
 type NetworkLoadBalancer struct {
-	TenantID    string
-	LbID        string
-	ClusterID   string
-	Namespace   string
-	VpcID       string
-	SubnetID    string
-	Exposure    string
-	PublicEipID *string
-	PublicScope string
-	PrivateIp   *string
-	State       string
-	Version     int64
-	CreatedAt   time.Time
+	TenantID              string
+	LbID                  string
+	ClusterID             string
+	Namespace             string
+	VpcID                 string
+	SubnetID              string
+	Exposure              string
+	PublicEipID           *string
+	PublicScope           string
+	PrivateIp             *string
+	State                 string
+	Version               int64
+	CreatedAt             time.Time
+	Name                  string
+	Description           string
+	Flavor                string
+	Reason                string
+	UpdatedAt             time.Time
+	ObservedAt            *time.Time
+	VipOccupiedRevision   string
+	VipAbsenceRevision    string
+	LastOperationID       *string
+	DesiredVersion        int64
+	AppliedVersion        int64
+	ConfigurationState    string
+	DataPlaneState        string
+	DataPlaneObservedAt   *time.Time
+	AcceptedConfigVersion pgtype.Int8
+	AppliedConfigVersion  pgtype.Int8
 }
 
 type NetworkOperation struct {
@@ -225,6 +350,7 @@ type NetworkOperation struct {
 	SubnetID       *string
 	EipID          *string
 	SnatID         *string
+	LbID           *string
 }
 
 type NetworkPlatformHistory struct {
@@ -315,6 +441,7 @@ type NetworkProviderBinding struct {
 	EipID            *string
 	SnatID           *string
 	CreateDispatched bool
+	LbID             *string
 }
 
 type NetworkPublicPool struct {
@@ -356,6 +483,7 @@ type NetworkReconciliation struct {
 	EipID               *string
 	SnatID              *string
 	Retired             bool
+	LbID                *string
 }
 
 type NetworkResourceHistory struct {
@@ -375,6 +503,7 @@ type NetworkResourceHistory struct {
 	SubnetID         *string
 	EipID            *string
 	SnatID           *string
+	LbID             *string
 }
 
 type NetworkSnatBinding struct {

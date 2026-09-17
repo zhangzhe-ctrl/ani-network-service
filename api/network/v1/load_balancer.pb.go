@@ -649,8 +649,11 @@ type LoadBalancerHealthCheck struct {
 	TimeoutSeconds     *uint32                         `protobuf:"varint,3,opt,name=timeout_seconds,json=timeoutSeconds,proto3,oneof" json:"timeout_seconds,omitempty"`
 	UnhealthyThreshold *uint32                         `protobuf:"varint,4,opt,name=unhealthy_threshold,json=unhealthyThreshold,proto3,oneof" json:"unhealthy_threshold,omitempty"`
 	HealthyThreshold   *uint32                         `protobuf:"varint,5,opt,name=healthy_threshold,json=healthyThreshold,proto3,oneof" json:"healthy_threshold,omitempty"`
-	unknownFields      protoimpl.UnknownFields
-	sizeCache          protoimpl.SizeCache
+	// Required on create/update: 1..65535, equal to every backend service port.
+	// Absent on legacy records that use the endpoint serving port.
+	Port          *uint32 `protobuf:"varint,6,opt,name=port,proto3,oneof" json:"port,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
 func (x *LoadBalancerHealthCheck) Reset() {
@@ -714,6 +717,13 @@ func (x *LoadBalancerHealthCheck) GetUnhealthyThreshold() uint32 {
 func (x *LoadBalancerHealthCheck) GetHealthyThreshold() uint32 {
 	if x != nil && x.HealthyThreshold != nil {
 		return *x.HealthyThreshold
+	}
+	return 0
+}
+
+func (x *LoadBalancerHealthCheck) GetPort() uint32 {
+	if x != nil && x.Port != nil {
+		return *x.Port
 	}
 	return 0
 }
@@ -1840,17 +1850,19 @@ const file_network_v1_load_balancer_proto_rawDesc = "" +
 	"\vobserved_at\x18\t \x01(\v2\x1a.google.protobuf.TimestampR\n" +
 	"observedAt\x12+\n" +
 	"\x11observation_stale\x18\n" +
-	" \x01(\bR\x10observationStale\"\xff\x02\n" +
+	" \x01(\bR\x10observationStale\"\xa1\x03\n" +
 	"\x17LoadBalancerHealthCheck\x12G\n" +
 	"\bprotocol\x18\x01 \x01(\x0e2+.network.v1.LoadBalancerHealthCheckProtocolR\bprotocol\x12.\n" +
 	"\x10interval_seconds\x18\x02 \x01(\rH\x00R\x0fintervalSeconds\x88\x01\x01\x12,\n" +
 	"\x0ftimeout_seconds\x18\x03 \x01(\rH\x01R\x0etimeoutSeconds\x88\x01\x01\x124\n" +
 	"\x13unhealthy_threshold\x18\x04 \x01(\rH\x02R\x12unhealthyThreshold\x88\x01\x01\x120\n" +
-	"\x11healthy_threshold\x18\x05 \x01(\rH\x03R\x10healthyThreshold\x88\x01\x01B\x13\n" +
+	"\x11healthy_threshold\x18\x05 \x01(\rH\x03R\x10healthyThreshold\x88\x01\x01\x12\x17\n" +
+	"\x04port\x18\x06 \x01(\rH\x04R\x04port\x88\x01\x01B\x13\n" +
 	"\x11_interval_secondsB\x12\n" +
 	"\x10_timeout_secondsB\x16\n" +
 	"\x14_unhealthy_thresholdB\x14\n" +
-	"\x12_healthy_threshold\"\xd7\n" +
+	"\x12_healthy_thresholdB\a\n" +
+	"\x05_port\"\xd7\n" +
 	"\n" +
 	"\fLoadBalancer\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x1b\n" +

@@ -161,7 +161,7 @@ func (q *Queries) GetSubnet(ctx context.Context, arg GetSubnetParams) (NetworkSu
 }
 
 const getSubnetIdempotency = `-- name: GetSubnetIdempotency :one
-SELECT tenant_id, operation_kind, idempotency_key, fingerprint, fingerprint_version, vpc_id, operation_id, response, created_at, subnet_id, eip_id, snat_id FROM network_idempotency WHERE tenant_id=$1 AND operation_kind='create_subnet' AND idempotency_key=$2
+SELECT tenant_id, operation_kind, idempotency_key, fingerprint, fingerprint_version, vpc_id, operation_id, response, created_at, subnet_id, eip_id, snat_id, lb_id FROM network_idempotency WHERE tenant_id=$1 AND operation_kind='create_subnet' AND idempotency_key=$2
 `
 
 type GetSubnetIdempotencyParams struct {
@@ -185,6 +185,7 @@ func (q *Queries) GetSubnetIdempotency(ctx context.Context, arg GetSubnetIdempot
 		&i.SubnetID,
 		&i.EipID,
 		&i.SnatID,
+		&i.LbID,
 	)
 	return i, err
 }

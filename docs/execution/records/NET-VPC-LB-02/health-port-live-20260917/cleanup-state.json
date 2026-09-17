@@ -1,0 +1,537 @@
+{
+  "product": {
+    "creation_closed": true,
+    "instances": {
+      "backend-a": {
+        "attachment": {
+          "binding_revision": "0838aca3-f11c-4cf2-848a-407ffad478fe:761f4283-743a-44b9-883c-6a452167eca1",
+          "cluster_id": "lbhealth-0917",
+          "consumer_finalization_id": "fb6a4c1d-0ed0-4366-b5e8-a3f7dc1227b3",
+          "created_at": "2026-09-17T11:28:08.797715Z",
+          "generation": "1",
+          "id": "att_23f2e993565946689c21db2f4be71f5f",
+          "instance_id": "a22c9bee-2f88-4811-92a7-42e342ffbd95",
+          "namespace": "lbhp-3c8a15c8-b679-4af8-a9fa-ca3703a1609f",
+          "observed_at": "2026-09-17T11:40:17.086871Z",
+          "pod_name": "lbhealth-0917-backend-a",
+          "pod_primary": null,
+          "pod_uid": "590b0520-f57a-435c-9743-f8c221a16c96",
+          "reason": "",
+          "released_at": "2026-09-17T11:35:23.013910Z",
+          "slot": "primary",
+          "state": "ATTACHMENT_STATE_RELEASED",
+          "submission_id": "e7c56f30-38af-4b68-a478-3d24089c8071",
+          "subnet_id": "subnet_f62092f8d80046cab425c122e9da2684",
+          "tenant_id": "3c8a15c8-b679-4af8-a9fa-ca3703a1609f",
+          "updated_at": "2026-09-17T11:40:22.145284Z",
+          "version": "133",
+          "vpc_id": "vpc_2a9a072c542c4ceea744cba5eb17130f"
+        },
+        "owner": {
+          "attachment_id": "att_23f2e993565946689c21db2f4be71f5f",
+          "closed_at": "2026-09-17T11:35:16.744180+00:00",
+          "cluster_id": "lbhealth-0917",
+          "controller_uids": [],
+          "finalization_id": "fb6a4c1d-0ed0-4366-b5e8-a3f7dc1227b3",
+          "generation": "1",
+          "instance_id": "a22c9bee-2f88-4811-92a7-42e342ffbd95",
+          "namespace": "lbhp-3c8a15c8-b679-4af8-a9fa-ca3703a1609f",
+          "pod_uids": [
+            "590b0520-f57a-435c-9743-f8c221a16c96"
+          ],
+          "protocol_version": 1,
+          "state": "SUBMISSION_STATE_CLOSED",
+          "submission_id": "e7c56f30-38af-4b68-a478-3d24089c8071",
+          "tenant_id": "3c8a15c8-b679-4af8-a9fa-ca3703a1609f"
+        },
+        "pod": {
+          "apiVersion": "v1",
+          "kind": "Pod",
+          "metadata": {
+            "annotations": {
+              "networking.kubercloud.com/subnet": "lbhp-3c8a15c8-b679-4af8-a9fa-ca3703a1609f/subnet-f62092f8d80046cab425c122e9da2684"
+            },
+            "creationTimestamp": "2026-09-17T11:28:23Z",
+            "generation": 1,
+            "labels": {
+              "network.ani.io/attachment-id": "att_23f2e993565946689c21db2f4be71f5f",
+              "network.ani.io/generation": "1",
+              "network.ani.io/instance-id": "a22c9bee-2f88-4811-92a7-42e342ffbd95",
+              "network.ani.io/submission-id": "e7c56f30-38af-4b68-a478-3d24089c8071",
+              "network.ani.io/tenant-id": "3c8a15c8-b679-4af8-a9fa-ca3703a1609f",
+              "network.ani.io/test-run": "lbhealth-0917"
+            },
+            "name": "lbhealth-0917-backend-a",
+            "namespace": "lbhp-3c8a15c8-b679-4af8-a9fa-ca3703a1609f",
+            "resourceVersion": "1248652",
+            "uid": "590b0520-f57a-435c-9743-f8c221a16c96"
+          },
+          "spec": {
+            "automountServiceAccountToken": false,
+            "containers": [
+              {
+                "env": [
+                  {
+                    "name": "NET05_ID",
+                    "value": "lbhealth-0917"
+                  },
+                  {
+                    "name": "ANI_WORKLOAD_ID",
+                    "value": "a22c9bee-2f88-4811-92a7-42e342ffbd95"
+                  },
+                  {
+                    "name": "NET05_PORT",
+                    "value": "8080"
+                  }
+                ],
+                "image": "localhost/lb02-2b3122-probe@sha256:647c2acd8e115511a18506014995ec01b7d0d62fbc05f2a6e51a5c65c2a3fcce",
+                "imagePullPolicy": "Never",
+                "name": "probe",
+                "ports": [
+                  {
+                    "containerPort": 8080,
+                    "protocol": "TCP"
+                  }
+                ],
+                "resources": {
+                  "limits": {
+                    "cpu": "100m",
+                    "memory": "64Mi"
+                  },
+                  "requests": {
+                    "cpu": "10m",
+                    "memory": "32Mi"
+                  }
+                },
+                "securityContext": {
+                  "allowPrivilegeEscalation": false,
+                  "capabilities": {
+                    "drop": [
+                      "ALL"
+                    ]
+                  },
+                  "readOnlyRootFilesystem": true
+                },
+                "terminationMessagePath": "/dev/termination-log",
+                "terminationMessagePolicy": "File"
+              }
+            ],
+            "dnsPolicy": "ClusterFirst",
+            "enableServiceLinks": true,
+            "nodeSelector": {
+              "kubernetes.io/hostname": "ani-02"
+            },
+            "preemptionPolicy": "PreemptLowerPriority",
+            "priority": 0,
+            "restartPolicy": "Always",
+            "schedulerName": "default-scheduler",
+            "securityContext": {
+              "runAsGroup": 65532,
+              "runAsNonRoot": true,
+              "runAsUser": 65532,
+              "seccompProfile": {
+                "type": "RuntimeDefault"
+              }
+            },
+            "serviceAccount": "default",
+            "serviceAccountName": "default",
+            "terminationGracePeriodSeconds": 30,
+            "tolerations": [
+              {
+                "effect": "NoExecute",
+                "key": "node.kubernetes.io/not-ready",
+                "operator": "Exists",
+                "tolerationSeconds": 300
+              },
+              {
+                "effect": "NoExecute",
+                "key": "node.kubernetes.io/unreachable",
+                "operator": "Exists",
+                "tolerationSeconds": 300
+              }
+            ]
+          },
+          "status": {
+            "phase": "Pending",
+            "qosClass": "Burstable"
+          }
+        },
+        "submission_id": "e7c56f30-38af-4b68-a478-3d24089c8071"
+      },
+      "backend-b": {
+        "attachment": {
+          "binding_revision": "0838aca3-f11c-4cf2-848a-407ffad478fe:761f4283-743a-44b9-883c-6a452167eca1",
+          "cluster_id": "lbhealth-0917",
+          "consumer_finalization_id": "35d02053-ef04-4e6d-bf2b-2ea8fbe00348",
+          "created_at": "2026-09-17T11:28:08.837738Z",
+          "generation": "1",
+          "id": "att_c948bdb059a24bc29bc8011e6d7b1659",
+          "instance_id": "77e3382a-8783-4ac6-bb95-be31adb4edb9",
+          "namespace": "lbhp-3c8a15c8-b679-4af8-a9fa-ca3703a1609f",
+          "observed_at": "2026-09-17T11:40:17.086871Z",
+          "pod_name": "lbhealth-0917-backend-b",
+          "pod_primary": null,
+          "pod_uid": "2e679af6-a593-4b7b-a34d-ea60e636b07c",
+          "reason": "",
+          "released_at": "2026-09-17T11:35:23.015731Z",
+          "slot": "primary",
+          "state": "ATTACHMENT_STATE_RELEASED",
+          "submission_id": "31ebc542-e48b-416e-907c-86f428d7ceb0",
+          "subnet_id": "subnet_f62092f8d80046cab425c122e9da2684",
+          "tenant_id": "3c8a15c8-b679-4af8-a9fa-ca3703a1609f",
+          "updated_at": "2026-09-17T11:40:22.140210Z",
+          "version": "130",
+          "vpc_id": "vpc_2a9a072c542c4ceea744cba5eb17130f"
+        },
+        "owner": {
+          "attachment_id": "att_c948bdb059a24bc29bc8011e6d7b1659",
+          "closed_at": "2026-09-17T11:35:16.804429+00:00",
+          "cluster_id": "lbhealth-0917",
+          "controller_uids": [],
+          "finalization_id": "35d02053-ef04-4e6d-bf2b-2ea8fbe00348",
+          "generation": "1",
+          "instance_id": "77e3382a-8783-4ac6-bb95-be31adb4edb9",
+          "namespace": "lbhp-3c8a15c8-b679-4af8-a9fa-ca3703a1609f",
+          "pod_uids": [
+            "2e679af6-a593-4b7b-a34d-ea60e636b07c"
+          ],
+          "protocol_version": 1,
+          "state": "SUBMISSION_STATE_CLOSED",
+          "submission_id": "31ebc542-e48b-416e-907c-86f428d7ceb0",
+          "tenant_id": "3c8a15c8-b679-4af8-a9fa-ca3703a1609f"
+        },
+        "pod": {
+          "apiVersion": "v1",
+          "kind": "Pod",
+          "metadata": {
+            "annotations": {
+              "networking.kubercloud.com/subnet": "lbhp-3c8a15c8-b679-4af8-a9fa-ca3703a1609f/subnet-f62092f8d80046cab425c122e9da2684"
+            },
+            "creationTimestamp": "2026-09-17T11:28:23Z",
+            "generation": 1,
+            "labels": {
+              "network.ani.io/attachment-id": "att_c948bdb059a24bc29bc8011e6d7b1659",
+              "network.ani.io/generation": "1",
+              "network.ani.io/instance-id": "77e3382a-8783-4ac6-bb95-be31adb4edb9",
+              "network.ani.io/submission-id": "31ebc542-e48b-416e-907c-86f428d7ceb0",
+              "network.ani.io/tenant-id": "3c8a15c8-b679-4af8-a9fa-ca3703a1609f",
+              "network.ani.io/test-run": "lbhealth-0917"
+            },
+            "name": "lbhealth-0917-backend-b",
+            "namespace": "lbhp-3c8a15c8-b679-4af8-a9fa-ca3703a1609f",
+            "resourceVersion": "1248669",
+            "uid": "2e679af6-a593-4b7b-a34d-ea60e636b07c"
+          },
+          "spec": {
+            "automountServiceAccountToken": false,
+            "containers": [
+              {
+                "env": [
+                  {
+                    "name": "NET05_ID",
+                    "value": "lbhealth-0917"
+                  },
+                  {
+                    "name": "ANI_WORKLOAD_ID",
+                    "value": "77e3382a-8783-4ac6-bb95-be31adb4edb9"
+                  },
+                  {
+                    "name": "NET05_PORT",
+                    "value": "8080"
+                  }
+                ],
+                "image": "localhost/lb02-2b3122-probe@sha256:647c2acd8e115511a18506014995ec01b7d0d62fbc05f2a6e51a5c65c2a3fcce",
+                "imagePullPolicy": "Never",
+                "name": "probe",
+                "ports": [
+                  {
+                    "containerPort": 8080,
+                    "protocol": "TCP"
+                  }
+                ],
+                "resources": {
+                  "limits": {
+                    "cpu": "100m",
+                    "memory": "64Mi"
+                  },
+                  "requests": {
+                    "cpu": "10m",
+                    "memory": "32Mi"
+                  }
+                },
+                "securityContext": {
+                  "allowPrivilegeEscalation": false,
+                  "capabilities": {
+                    "drop": [
+                      "ALL"
+                    ]
+                  },
+                  "readOnlyRootFilesystem": true
+                },
+                "terminationMessagePath": "/dev/termination-log",
+                "terminationMessagePolicy": "File"
+              }
+            ],
+            "dnsPolicy": "ClusterFirst",
+            "enableServiceLinks": true,
+            "nodeSelector": {
+              "kubernetes.io/hostname": "ani-03"
+            },
+            "preemptionPolicy": "PreemptLowerPriority",
+            "priority": 0,
+            "restartPolicy": "Always",
+            "schedulerName": "default-scheduler",
+            "securityContext": {
+              "runAsGroup": 65532,
+              "runAsNonRoot": true,
+              "runAsUser": 65532,
+              "seccompProfile": {
+                "type": "RuntimeDefault"
+              }
+            },
+            "serviceAccount": "default",
+            "serviceAccountName": "default",
+            "terminationGracePeriodSeconds": 30,
+            "tolerations": [
+              {
+                "effect": "NoExecute",
+                "key": "node.kubernetes.io/not-ready",
+                "operator": "Exists",
+                "tolerationSeconds": 300
+              },
+              {
+                "effect": "NoExecute",
+                "key": "node.kubernetes.io/unreachable",
+                "operator": "Exists",
+                "tolerationSeconds": 300
+              }
+            ]
+          },
+          "status": {
+            "phase": "Pending",
+            "qosClass": "Burstable"
+          }
+        },
+        "submission_id": "31ebc542-e48b-416e-907c-86f428d7ceb0"
+      }
+    },
+    "resources": {
+      "backend_subnet": {
+        "cidr": "10.235.1.0/24",
+        "created_at": "2026-09-17T11:27:14.758635Z",
+        "description": "",
+        "gateway": "10.235.1.1",
+        "id": "subnet_f62092f8d80046cab425c122e9da2684",
+        "last_operation_id": "07a7f03f-b23e-4bc1-aaf2-c77e4c6cde05",
+        "name": "lbhealth-0917-backend-subnet",
+        "observation_stale": false,
+        "observed_at": "2026-09-17T11:40:18.399478Z",
+        "reason": "",
+        "reason_message": "",
+        "state": "RESOURCE_STATE_DELETED",
+        "tenant_id": "3c8a15c8-b679-4af8-a9fa-ca3703a1609f",
+        "updated_at": "2026-09-17T11:40:24.485207Z",
+        "version": "147",
+        "vpc_id": "vpc_2a9a072c542c4ceea744cba5eb17130f"
+      },
+      "entry_subnet": {
+        "cidr": "10.235.0.0/24",
+        "created_at": "2026-09-17T11:27:14.535191Z",
+        "description": "",
+        "gateway": "10.235.0.1",
+        "id": "subnet_922c1a9941bd4fde9795074e8b0ab021",
+        "last_operation_id": "036acaf3-394c-4534-9e2e-16d501575b2a",
+        "name": "lbhealth-0917-entry-subnet",
+        "observation_stale": false,
+        "observed_at": "2026-09-17T11:40:14.193797Z",
+        "reason": "",
+        "reason_message": "",
+        "state": "RESOURCE_STATE_DELETED",
+        "tenant_id": "3c8a15c8-b679-4af8-a9fa-ca3703a1609f",
+        "updated_at": "2026-09-17T11:40:21.185814Z",
+        "version": "155",
+        "vpc_id": "vpc_2a9a072c542c4ceea744cba5eb17130f"
+      },
+      "private_lb": {
+        "algorithm": "LOAD_BALANCER_ALGORITHM_ROUND_ROBIN",
+        "applied_version": "1",
+        "backends": [
+          {
+            "address": "10.235.1.2",
+            "attachment_id": "att_23f2e993565946689c21db2f4be71f5f",
+            "id": "11b460fb-22e4-4b57-af69-54c275d95710",
+            "observation_stale": true,
+            "observed_at": "2026-09-17T11:34:57.623664Z",
+            "port": 8080,
+            "reason": "",
+            "state": "unknown",
+            "subnet_id": "subnet_f62092f8d80046cab425c122e9da2684",
+            "weight": 1
+          },
+          {
+            "address": "10.235.1.3",
+            "attachment_id": "att_c948bdb059a24bc29bc8011e6d7b1659",
+            "id": "8ceafd16-7b90-4adb-a201-a23112281a06",
+            "observation_stale": true,
+            "observed_at": "2026-09-17T11:34:57.623664Z",
+            "port": 8080,
+            "reason": "",
+            "state": "unknown",
+            "subnet_id": "subnet_f62092f8d80046cab425c122e9da2684",
+            "weight": 1
+          }
+        ],
+        "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_UNKNOWN",
+        "created_at": "2026-09-17T11:29:25.671133Z",
+        "data_plane_observed_at": null,
+        "data_plane_state": "LOAD_BALANCER_DATA_PLANE_STATE_UNKNOWN",
+        "description": "",
+        "desired_version": "1",
+        "exposure": "LOAD_BALANCER_EXPOSURE_PRIVATE",
+        "flavor": "small",
+        "health_check": {
+          "healthy_threshold": 1,
+          "interval_seconds": 5,
+          "port": 8080,
+          "protocol": "LOAD_BALANCER_HEALTH_CHECK_PROTOCOL_TCP",
+          "timeout_seconds": 3,
+          "unhealthy_threshold": 3
+        },
+        "id": "lb_76040497f6ea42c49c5ed95cbbc6931e",
+        "last_operation_id": "821e9f16-6f95-40e7-a335-9974a02a51da",
+        "listener": {
+          "id": "f9c86268-3b28-44c1-aa15-1c5fb0bb0c63",
+          "port": 8081,
+          "protocol": "LOAD_BALANCER_LISTENER_PROTOCOL_HTTP"
+        },
+        "name": "lbhealth-0917-private-lb",
+        "observation_stale": true,
+        "observed_at": "2026-09-17T11:34:57.623664Z",
+        "private_ip": "10.235.0.200",
+        "public_address": "",
+        "public_eip_id": "",
+        "reason": "PROVIDER_UNAVAILABLE",
+        "reason_message": "The network provider is temporarily unavailable.",
+        "state": "RESOURCE_STATE_DELETED",
+        "subnet_id": "subnet_922c1a9941bd4fde9795074e8b0ab021",
+        "tenant_id": "3c8a15c8-b679-4af8-a9fa-ca3703a1609f",
+        "updated_at": "2026-09-17T11:35:11.525900Z",
+        "version": "33",
+        "vpc_id": "vpc_2a9a072c542c4ceea744cba5eb17130f"
+      },
+      "vpc": {
+        "base_connectivity": {
+          "observation_stale": true,
+          "observed_at": null,
+          "reason": "PROVIDER_UNAVAILABLE",
+          "reason_message": "The network provider is temporarily unavailable.",
+          "state": "deleted"
+        },
+        "cidr": "10.235.0.0/16",
+        "created_at": "2026-09-17T11:23:22.577277Z",
+        "description": "",
+        "id": "vpc_2a9a072c542c4ceea744cba5eb17130f",
+        "last_operation_id": "dedc80f7-87df-4907-8597-f19d88643b47",
+        "name": "lbhealth-0917-vpc",
+        "observation_stale": false,
+        "observed_at": "2026-09-17T11:40:02.133539Z",
+        "reason": "PROVIDER_UNAVAILABLE",
+        "reason_message": "The network provider is temporarily unavailable.",
+        "state": "RESOURCE_STATE_DELETED",
+        "subnet_count": "0",
+        "tenant_id": "3c8a15c8-b679-4af8-a9fa-ca3703a1609f",
+        "updated_at": "2026-09-17T11:40:14.186617Z",
+        "version": "251"
+      }
+    },
+    "run": "lbhealth-0917",
+    "task": "NET-VPC-LB-02-HEALTH",
+    "tenant": "3c8a15c8-b679-4af8-a9fa-ca3703a1609f"
+  },
+  "platform": {
+    "evidence": {
+      "intranet": {
+        "path": "/home/chabking/workspace/ani-network-service-runs/lb-health-e2e-20260917/private/runtime/platform-driver/intranet-qualification.json",
+        "sha256": "7203362033a33eb71937c331bfe8041e9e3d07e9608a8fe28d59bf01c6146853"
+      }
+    },
+    "pods": {
+      "intranet-a": {
+        "instance_id": "eff4b14b-3175-4b39-afc2-fa43c860b3cc",
+        "name": "lbhealth-0917-intranet-a",
+        "namespace": "lbhealth-0917",
+        "uid": "8d0bb9ec-c4d1-4deb-beb3-f859bfb98ecf"
+      },
+      "intranet-b": {
+        "instance_id": "aefa8c68-da6d-450b-a0da-677278253336",
+        "name": "lbhealth-0917-intranet-b",
+        "namespace": "lbhealth-0917",
+        "uid": "bf095f30-17be-4391-bfce-50fa0c90bd3b"
+      }
+    },
+    "provider": {
+      "intranet": {
+        "name": "pool-ed275c704abe414dbdba5c205044977c",
+        "namespace": "kcn-system",
+        "uid": "8dcc6219-9a08-40d3-bd04-a6d811c6c751"
+      }
+    },
+    "resources": {
+      "intranet": {
+        "cluster_id": "lbhealth-0917",
+        "created_at": "2026-09-17T11:21:36.101570Z",
+        "description": "NET-VPC-LB-02-HEALTH isolated Intranet qualification",
+        "id": "pool_ed275c704abe414dbdba5c205044977c",
+        "intranet_pool": {
+          "allocation_enabled": false,
+          "cidr": "10.242.251.0/24",
+          "config_revision": "1",
+          "default_vpc_name": "kcn-cluster",
+          "default_vpc_uid": "a852bc64-3d41-4925-b6a1-de3db56e5a76",
+          "excluded_ips": [
+            "10.242.251.1"
+          ],
+          "intranet_networks": [
+            "10.96.0.0/16",
+            "172.16.101.0/24",
+            "172.16.201.0/24",
+            "172.16.202.0/24"
+          ],
+          "is_default": true,
+          "observed_provider_images": [
+            "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4"
+          ],
+          "ovn_gateway_ip": "10.242.251.1",
+          "scope": "intranet",
+          "topology_fingerprint": "ec4f8cf23dd57c9f090c611d2a97584130cec6bddaf8801ceaa76eb7e193a701",
+          "verification": {
+            "evidence_reference": "NET-VPC-LB-02-HEALTH/intranet-qualification.json sha256:7203362033a33eb71937c331bfe8041e9e3d07e9608a8fe28d59bf01c6146853",
+            "expires_at": "2026-09-17T13:22:25.045642Z",
+            "provider_image_digests": [
+              "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4"
+            ],
+            "provider_source_revision": "735abf81cb728f30bd0f15e1885dcd7f88b56ab0",
+            "scope": "base_intranet",
+            "topology_fingerprint": "ec4f8cf23dd57c9f090c611d2a97584130cec6bddaf8801ceaa76eb7e193a701",
+            "verified_at": "2026-09-17T11:22:25.045642Z"
+          }
+        },
+        "last_operation_id": "5699b72b-5136-4bd5-b78f-797ce12f9f47",
+        "name": "lbhealth-0917-intranet-pool",
+        "observation_stale": false,
+        "observed_at": "2026-09-17T11:39:45.299883Z",
+        "reason": "",
+        "reason_message": "",
+        "state": "RESOURCE_STATE_DELETED",
+        "updated_at": "2026-09-17T11:39:51.513796Z",
+        "version": "187"
+      }
+    },
+    "run": "lbhealth-0917",
+    "task": "NET-VPC-LB-02-HEALTH"
+  },
+  "sql_query": "select kind,state,attempt from network_operations order by created_at; select state,count(*) from network_attachments group by state; select count(*) as active_claims from network_eip_claims where released_at is null;",
+  "sql_exit": 0,
+  "sql_stdout": "         kind         |   state   | attempt \n----------------------+-----------+---------\n create_vpc           | succeeded |      15\n create_eip           | succeeded |       5\n bind_snat            | succeeded |      25\n create_subnet        | succeeded |       3\n create_subnet        | succeeded |       4\n create_load_balancer | succeeded |       7\n delete_load_balancer | succeeded |      12\n delete_subnet        | succeeded |       2\n delete_subnet        | succeeded |       3\n delete_vpc           | succeeded |      55\n delete_snat          | succeeded |       5\n delete_eip           | succeeded |       2\n(12 rows)\n\n  state   | count \n----------+-------\n released |     2\n(1 row)\n\n active_claims \n---------------\n             0\n(1 row)\n\n",
+  "sql_stderr": ""
+}

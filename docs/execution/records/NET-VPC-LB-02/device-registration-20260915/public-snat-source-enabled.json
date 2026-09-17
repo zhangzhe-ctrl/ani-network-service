@@ -1,0 +1,85 @@
+{
+  "at": "2026-09-15T09:42:38.930298+00:00",
+  "execution_host": "ubuntu",
+  "request": {
+    "client": {
+      "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+      "pod": "lb02-2b3122-base-client"
+    },
+    "server": {
+      "namespace": "lb02-09141908-2b3122",
+      "pod": "lb02-2b3122-public-probe-a"
+    },
+    "destination": "172.16.102.192",
+    "port": 8080,
+    "expected_source": "172.16.102.195",
+    "nonce": "lb02-public-snat-enabled-01"
+  },
+  "client_command": [
+    "bash",
+    "-c",
+    "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+    "kubectl",
+    "--kubeconfig",
+    "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+    "--request-timeout=20s",
+    "exec",
+    "-n",
+    "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+    "lb02-2b3122-base-client",
+    "-c",
+    "probe",
+    "--",
+    "/usr/bin/timeout",
+    "12",
+    "/usr/bin/bash",
+    "-c",
+    "exec 3<>/dev/tcp/172.16.102.192/8080; printf 'GET /?nonce=lb02-public-snat-enabled-01 HTTP/1.1\\r\\nHost: fixture\\r\\n\\r\\n' >&3; /usr/bin/timeout 6 cat <&3; read_exit=$?; if [ \"$read_exit\" -eq 124 ]; then exit 0; fi; exit \"$read_exit\""
+  ],
+  "server_command": [
+    "bash",
+    "-c",
+    "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+    "kubectl",
+    "--kubeconfig",
+    "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+    "--request-timeout=20s",
+    "exec",
+    "-n",
+    "lb02-09141908-2b3122",
+    "lb02-2b3122-public-probe-a",
+    "-c",
+    "probe",
+    "--",
+    "cat",
+    "/proc/net/tcp",
+    "/proc/net/tcp6"
+  ],
+  "client_exit": 124,
+  "client_stdout": "",
+  "client_stderr": "command terminated with exit code 124\n",
+  "snapshots": [
+    {
+      "at": "2026-09-15T09:42:27.764828+00:00",
+      "exit": 0,
+      "connections": [],
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-15T09:42:29.771957+00:00",
+      "exit": 0,
+      "connections": [],
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-15T09:42:31.891499+00:00",
+      "exit": 0,
+      "connections": [],
+      "stderr": ""
+    }
+  ],
+  "http_identity_pass": false,
+  "receiver_source_pass": false,
+  "result": "fail",
+  "script_sha256": "f775b71e63541abff57248893d8684ca0fb74161685aa6fe0b5dfd0075ab888c"
+}

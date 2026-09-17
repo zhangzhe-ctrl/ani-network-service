@@ -1,0 +1,30 @@
+source.tar.gz: OK
+verified source files: 1239
+go version go1.26.7 linux/amd64
+1.60.0
+v1.31.1
+127.0.0.1:5432 - accepting connections
+PostgreSQL image=docker.io/library/postgres@sha256:4ef4dbc939d61acea57712655ddb4b4ab27419c913f94cca0cd57cb3ea3c2280 container=253ccc0b0d7a2235d01160000f406ff6fe0d6b2767ad4da540df58b34fb1a335
+=== RUN   TestLBCapabilityUsesSharedAuditAndKeepsVPCIndependent
+--- PASS: TestLBCapabilityUsesSharedAuditAndKeepsVPCIndependent (1.67s)
+=== RUN   TestLBConcurrentSNATClaimBothArrivalOrders
+=== RUN   TestLBConcurrentSNATClaimBothArrivalOrders/lb
+    load_balancer_concurrency_integration_test.go:46: NET05A condition did not converge
+=== RUN   TestLBConcurrentSNATClaimBothArrivalOrders/snat
+    load_balancer_concurrency_integration_test.go:46: NET05A condition did not converge
+--- FAIL: TestLBConcurrentSNATClaimBothArrivalOrders (7.98s)
+    --- FAIL: TestLBConcurrentSNATClaimBothArrivalOrders/lb (3.98s)
+    --- FAIL: TestLBConcurrentSNATClaimBothArrivalOrders/snat (4.00s)
+=== RUN   TestLBConcurrentVIPAndEntryDeletion
+=== RUN   TestLBConcurrentVIPAndEntryDeletion/vip
+=== RUN   TestLBConcurrentVIPAndEntryDeletion/entry-delete
+--- PASS: TestLBConcurrentVIPAndEntryDeletion (1.61s)
+    --- PASS: TestLBConcurrentVIPAndEntryDeletion/vip (0.82s)
+    --- PASS: TestLBConcurrentVIPAndEntryDeletion/entry-delete (0.79s)
+=== RUN   TestLBNewRelationsRejectCrossTenantSQLAndAPI
+--- PASS: TestLBNewRelationsRejectCrossTenantSQLAndAPI (0.84s)
+FAIL
+FAIL	github.com/zhangzhe-ctrl/ani-network-service/internal/data	12.116s
+FAIL
+removed task container=253ccc0b0d7a2235d01160000f406ff6fe0d6b2767ad4da540df58b34fb1a335
+REMOTE_COMMAND_EXIT=1

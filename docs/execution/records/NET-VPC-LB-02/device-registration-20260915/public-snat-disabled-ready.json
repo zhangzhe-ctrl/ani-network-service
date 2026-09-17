@@ -1,0 +1,897 @@
+{
+  "execution_host": "ubuntu",
+  "command": [
+    "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/lb-api",
+    "call",
+    "-target",
+    "unix:///home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-a.sock",
+    "-service",
+    "TenantEgressService",
+    "-method",
+    "GetVPCSnatBinding"
+  ],
+  "request": {
+    "binding_id": "snat_c2e679a19be64badbc78877d8323451d"
+  },
+  "expected": {
+    "response.binding.state": "RESOURCE_STATE_AVAILABLE",
+    "response.binding.desired_enabled": false,
+    "response.binding.applied_enabled": false,
+    "response.binding.observation_stale": false
+  },
+  "result": "pass",
+  "records": [
+    {
+      "at": "2026-09-15T09:54:41.895751+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "binding": {
+            "id": "snat_c2e679a19be64badbc78877d8323451d",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "eip_id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "",
+            "reason_message": "",
+            "version": "45",
+            "created_at": "2026-09-15T09:36:41.450199Z",
+            "updated_at": "2026-09-15T09:54:20.012946Z",
+            "observed_at": "2026-09-15T09:53:50.933920Z",
+            "observation_stale": false,
+            "last_operation_id": "42af9dd5-ac50-4748-aecc-b2af0ef10b4b",
+            "eip_address": "172.16.102.195",
+            "desired_enabled": false,
+            "purpose": "public"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T09:54:46.908141+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "binding": {
+            "id": "snat_c2e679a19be64badbc78877d8323451d",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "eip_id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "version": "46",
+            "created_at": "2026-09-15T09:36:41.450199Z",
+            "updated_at": "2026-09-15T09:54:46.287357Z",
+            "observed_at": "2026-09-15T09:53:50.933920Z",
+            "observation_stale": false,
+            "last_operation_id": "42af9dd5-ac50-4748-aecc-b2af0ef10b4b",
+            "eip_address": "172.16.102.195",
+            "desired_enabled": false,
+            "purpose": "public"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T09:54:51.920786+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "binding": {
+            "id": "snat_c2e679a19be64badbc78877d8323451d",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "eip_id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "version": "46",
+            "created_at": "2026-09-15T09:36:41.450199Z",
+            "updated_at": "2026-09-15T09:54:46.287357Z",
+            "observed_at": "2026-09-15T09:53:50.933920Z",
+            "observation_stale": true,
+            "last_operation_id": "42af9dd5-ac50-4748-aecc-b2af0ef10b4b",
+            "eip_address": "172.16.102.195",
+            "desired_enabled": false,
+            "purpose": "public"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T09:54:56.931996+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "binding": {
+            "id": "snat_c2e679a19be64badbc78877d8323451d",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "eip_id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "version": "46",
+            "created_at": "2026-09-15T09:36:41.450199Z",
+            "updated_at": "2026-09-15T09:54:46.287357Z",
+            "observed_at": "2026-09-15T09:53:50.933920Z",
+            "observation_stale": true,
+            "last_operation_id": "42af9dd5-ac50-4748-aecc-b2af0ef10b4b",
+            "eip_address": "172.16.102.195",
+            "desired_enabled": false,
+            "purpose": "public"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T09:55:01.945426+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "binding": {
+            "id": "snat_c2e679a19be64badbc78877d8323451d",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "eip_id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "version": "46",
+            "created_at": "2026-09-15T09:36:41.450199Z",
+            "updated_at": "2026-09-15T09:54:46.287357Z",
+            "observed_at": "2026-09-15T09:53:50.933920Z",
+            "observation_stale": true,
+            "last_operation_id": "42af9dd5-ac50-4748-aecc-b2af0ef10b4b",
+            "eip_address": "172.16.102.195",
+            "desired_enabled": false,
+            "purpose": "public"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T09:55:06.957762+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "binding": {
+            "id": "snat_c2e679a19be64badbc78877d8323451d",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "eip_id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "version": "46",
+            "created_at": "2026-09-15T09:36:41.450199Z",
+            "updated_at": "2026-09-15T09:54:46.287357Z",
+            "observed_at": "2026-09-15T09:53:50.933920Z",
+            "observation_stale": true,
+            "last_operation_id": "42af9dd5-ac50-4748-aecc-b2af0ef10b4b",
+            "eip_address": "172.16.102.195",
+            "desired_enabled": false,
+            "purpose": "public"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T09:55:11.972940+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "binding": {
+            "id": "snat_c2e679a19be64badbc78877d8323451d",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "eip_id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "version": "46",
+            "created_at": "2026-09-15T09:36:41.450199Z",
+            "updated_at": "2026-09-15T09:54:46.287357Z",
+            "observed_at": "2026-09-15T09:53:50.933920Z",
+            "observation_stale": true,
+            "last_operation_id": "42af9dd5-ac50-4748-aecc-b2af0ef10b4b",
+            "eip_address": "172.16.102.195",
+            "desired_enabled": false,
+            "purpose": "public"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T09:55:16.984835+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "binding": {
+            "id": "snat_c2e679a19be64badbc78877d8323451d",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "eip_id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "version": "47",
+            "created_at": "2026-09-15T09:36:41.450199Z",
+            "updated_at": "2026-09-15T09:55:15.415588Z",
+            "observed_at": "2026-09-15T09:53:50.933920Z",
+            "observation_stale": true,
+            "last_operation_id": "42af9dd5-ac50-4748-aecc-b2af0ef10b4b",
+            "eip_address": "172.16.102.195",
+            "desired_enabled": false,
+            "purpose": "public"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T09:55:21.996749+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "binding": {
+            "id": "snat_c2e679a19be64badbc78877d8323451d",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "eip_id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "version": "47",
+            "created_at": "2026-09-15T09:36:41.450199Z",
+            "updated_at": "2026-09-15T09:55:15.415588Z",
+            "observed_at": "2026-09-15T09:53:50.933920Z",
+            "observation_stale": true,
+            "last_operation_id": "42af9dd5-ac50-4748-aecc-b2af0ef10b4b",
+            "eip_address": "172.16.102.195",
+            "desired_enabled": false,
+            "purpose": "public"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T09:55:27.008813+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "binding": {
+            "id": "snat_c2e679a19be64badbc78877d8323451d",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "eip_id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "version": "47",
+            "created_at": "2026-09-15T09:36:41.450199Z",
+            "updated_at": "2026-09-15T09:55:15.415588Z",
+            "observed_at": "2026-09-15T09:53:50.933920Z",
+            "observation_stale": true,
+            "last_operation_id": "42af9dd5-ac50-4748-aecc-b2af0ef10b4b",
+            "eip_address": "172.16.102.195",
+            "desired_enabled": false,
+            "purpose": "public"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T09:55:32.019164+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "binding": {
+            "id": "snat_c2e679a19be64badbc78877d8323451d",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "eip_id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "version": "47",
+            "created_at": "2026-09-15T09:36:41.450199Z",
+            "updated_at": "2026-09-15T09:55:15.415588Z",
+            "observed_at": "2026-09-15T09:53:50.933920Z",
+            "observation_stale": true,
+            "last_operation_id": "42af9dd5-ac50-4748-aecc-b2af0ef10b4b",
+            "eip_address": "172.16.102.195",
+            "desired_enabled": false,
+            "purpose": "public"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T09:55:37.031101+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "binding": {
+            "id": "snat_c2e679a19be64badbc78877d8323451d",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "eip_id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "version": "47",
+            "created_at": "2026-09-15T09:36:41.450199Z",
+            "updated_at": "2026-09-15T09:55:15.415588Z",
+            "observed_at": "2026-09-15T09:53:50.933920Z",
+            "observation_stale": true,
+            "last_operation_id": "42af9dd5-ac50-4748-aecc-b2af0ef10b4b",
+            "eip_address": "172.16.102.195",
+            "desired_enabled": false,
+            "purpose": "public"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T09:55:42.042327+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "binding": {
+            "id": "snat_c2e679a19be64badbc78877d8323451d",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "eip_id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "version": "47",
+            "created_at": "2026-09-15T09:36:41.450199Z",
+            "updated_at": "2026-09-15T09:55:15.415588Z",
+            "observed_at": "2026-09-15T09:53:50.933920Z",
+            "observation_stale": true,
+            "last_operation_id": "42af9dd5-ac50-4748-aecc-b2af0ef10b4b",
+            "eip_address": "172.16.102.195",
+            "desired_enabled": false,
+            "purpose": "public"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T09:55:47.054303+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "binding": {
+            "id": "snat_c2e679a19be64badbc78877d8323451d",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "eip_id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "version": "47",
+            "created_at": "2026-09-15T09:36:41.450199Z",
+            "updated_at": "2026-09-15T09:55:15.415588Z",
+            "observed_at": "2026-09-15T09:53:50.933920Z",
+            "observation_stale": true,
+            "last_operation_id": "42af9dd5-ac50-4748-aecc-b2af0ef10b4b",
+            "eip_address": "172.16.102.195",
+            "desired_enabled": false,
+            "purpose": "public"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T09:55:52.066405+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "binding": {
+            "id": "snat_c2e679a19be64badbc78877d8323451d",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "eip_id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "version": "47",
+            "created_at": "2026-09-15T09:36:41.450199Z",
+            "updated_at": "2026-09-15T09:55:15.415588Z",
+            "observed_at": "2026-09-15T09:53:50.933920Z",
+            "observation_stale": true,
+            "last_operation_id": "42af9dd5-ac50-4748-aecc-b2af0ef10b4b",
+            "eip_address": "172.16.102.195",
+            "desired_enabled": false,
+            "purpose": "public"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T09:55:57.079030+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "binding": {
+            "id": "snat_c2e679a19be64badbc78877d8323451d",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "eip_id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "version": "47",
+            "created_at": "2026-09-15T09:36:41.450199Z",
+            "updated_at": "2026-09-15T09:55:15.415588Z",
+            "observed_at": "2026-09-15T09:53:50.933920Z",
+            "observation_stale": true,
+            "last_operation_id": "42af9dd5-ac50-4748-aecc-b2af0ef10b4b",
+            "eip_address": "172.16.102.195",
+            "desired_enabled": false,
+            "purpose": "public"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T09:56:02.092425+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "binding": {
+            "id": "snat_c2e679a19be64badbc78877d8323451d",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "eip_id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "version": "48",
+            "created_at": "2026-09-15T09:36:41.450199Z",
+            "updated_at": "2026-09-15T09:55:57.195045Z",
+            "observed_at": "2026-09-15T09:53:50.933920Z",
+            "observation_stale": true,
+            "last_operation_id": "42af9dd5-ac50-4748-aecc-b2af0ef10b4b",
+            "eip_address": "172.16.102.195",
+            "desired_enabled": false,
+            "purpose": "public"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T09:56:07.102962+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "binding": {
+            "id": "snat_c2e679a19be64badbc78877d8323451d",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "eip_id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "version": "48",
+            "created_at": "2026-09-15T09:36:41.450199Z",
+            "updated_at": "2026-09-15T09:55:57.195045Z",
+            "observed_at": "2026-09-15T09:53:50.933920Z",
+            "observation_stale": true,
+            "last_operation_id": "42af9dd5-ac50-4748-aecc-b2af0ef10b4b",
+            "eip_address": "172.16.102.195",
+            "desired_enabled": false,
+            "purpose": "public"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T09:56:12.116188+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "binding": {
+            "id": "snat_c2e679a19be64badbc78877d8323451d",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "eip_id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "version": "48",
+            "created_at": "2026-09-15T09:36:41.450199Z",
+            "updated_at": "2026-09-15T09:55:57.195045Z",
+            "observed_at": "2026-09-15T09:53:50.933920Z",
+            "observation_stale": true,
+            "last_operation_id": "42af9dd5-ac50-4748-aecc-b2af0ef10b4b",
+            "eip_address": "172.16.102.195",
+            "desired_enabled": false,
+            "purpose": "public"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T09:56:17.127579+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "binding": {
+            "id": "snat_c2e679a19be64badbc78877d8323451d",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "eip_id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "version": "48",
+            "created_at": "2026-09-15T09:36:41.450199Z",
+            "updated_at": "2026-09-15T09:55:57.195045Z",
+            "observed_at": "2026-09-15T09:53:50.933920Z",
+            "observation_stale": true,
+            "last_operation_id": "42af9dd5-ac50-4748-aecc-b2af0ef10b4b",
+            "eip_address": "172.16.102.195",
+            "desired_enabled": false,
+            "purpose": "public"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T09:56:22.140422+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "binding": {
+            "id": "snat_c2e679a19be64badbc78877d8323451d",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "eip_id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "version": "48",
+            "created_at": "2026-09-15T09:36:41.450199Z",
+            "updated_at": "2026-09-15T09:55:57.195045Z",
+            "observed_at": "2026-09-15T09:53:50.933920Z",
+            "observation_stale": true,
+            "last_operation_id": "42af9dd5-ac50-4748-aecc-b2af0ef10b4b",
+            "eip_address": "172.16.102.195",
+            "desired_enabled": false,
+            "purpose": "public"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T09:56:27.152920+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "binding": {
+            "id": "snat_c2e679a19be64badbc78877d8323451d",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "eip_id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "version": "48",
+            "created_at": "2026-09-15T09:36:41.450199Z",
+            "updated_at": "2026-09-15T09:55:57.195045Z",
+            "observed_at": "2026-09-15T09:53:50.933920Z",
+            "observation_stale": true,
+            "last_operation_id": "42af9dd5-ac50-4748-aecc-b2af0ef10b4b",
+            "eip_address": "172.16.102.195",
+            "desired_enabled": false,
+            "purpose": "public"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T09:56:32.169819+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "binding": {
+            "id": "snat_c2e679a19be64badbc78877d8323451d",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "eip_id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "version": "48",
+            "created_at": "2026-09-15T09:36:41.450199Z",
+            "updated_at": "2026-09-15T09:55:57.195045Z",
+            "observed_at": "2026-09-15T09:53:50.933920Z",
+            "observation_stale": true,
+            "last_operation_id": "42af9dd5-ac50-4748-aecc-b2af0ef10b4b",
+            "eip_address": "172.16.102.195",
+            "desired_enabled": false,
+            "purpose": "public"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T09:56:37.190456+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "binding": {
+            "id": "snat_c2e679a19be64badbc78877d8323451d",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "eip_id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "version": "48",
+            "created_at": "2026-09-15T09:36:41.450199Z",
+            "updated_at": "2026-09-15T09:55:57.195045Z",
+            "observed_at": "2026-09-15T09:53:50.933920Z",
+            "observation_stale": true,
+            "last_operation_id": "42af9dd5-ac50-4748-aecc-b2af0ef10b4b",
+            "eip_address": "172.16.102.195",
+            "desired_enabled": false,
+            "purpose": "public"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T09:56:42.204223+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "binding": {
+            "id": "snat_c2e679a19be64badbc78877d8323451d",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "eip_id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "version": "48",
+            "created_at": "2026-09-15T09:36:41.450199Z",
+            "updated_at": "2026-09-15T09:55:57.195045Z",
+            "observed_at": "2026-09-15T09:53:50.933920Z",
+            "observation_stale": true,
+            "last_operation_id": "42af9dd5-ac50-4748-aecc-b2af0ef10b4b",
+            "eip_address": "172.16.102.195",
+            "desired_enabled": false,
+            "purpose": "public"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T09:56:47.215711+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "binding": {
+            "id": "snat_c2e679a19be64badbc78877d8323451d",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "eip_id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "version": "48",
+            "created_at": "2026-09-15T09:36:41.450199Z",
+            "updated_at": "2026-09-15T09:55:57.195045Z",
+            "observed_at": "2026-09-15T09:53:50.933920Z",
+            "observation_stale": true,
+            "last_operation_id": "42af9dd5-ac50-4748-aecc-b2af0ef10b4b",
+            "eip_address": "172.16.102.195",
+            "desired_enabled": false,
+            "purpose": "public"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T09:56:52.227994+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "binding": {
+            "id": "snat_c2e679a19be64badbc78877d8323451d",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "eip_id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "version": "48",
+            "created_at": "2026-09-15T09:36:41.450199Z",
+            "updated_at": "2026-09-15T09:55:57.195045Z",
+            "observed_at": "2026-09-15T09:53:50.933920Z",
+            "observation_stale": true,
+            "last_operation_id": "42af9dd5-ac50-4748-aecc-b2af0ef10b4b",
+            "eip_address": "172.16.102.195",
+            "desired_enabled": false,
+            "purpose": "public"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T09:56:57.240375+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "binding": {
+            "id": "snat_c2e679a19be64badbc78877d8323451d",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "eip_id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_UNAVAILABLE",
+            "reason_message": "The network provider is temporarily unavailable.",
+            "version": "48",
+            "created_at": "2026-09-15T09:36:41.450199Z",
+            "updated_at": "2026-09-15T09:55:57.195045Z",
+            "observed_at": "2026-09-15T09:53:50.933920Z",
+            "observation_stale": true,
+            "last_operation_id": "42af9dd5-ac50-4748-aecc-b2af0ef10b4b",
+            "eip_address": "172.16.102.195",
+            "desired_enabled": false,
+            "purpose": "public"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T09:57:02.253692+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "binding": {
+            "id": "snat_c2e679a19be64badbc78877d8323451d",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "eip_id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+            "state": "RESOURCE_STATE_AVAILABLE",
+            "reason": "",
+            "reason_message": "",
+            "version": "49",
+            "created_at": "2026-09-15T09:36:41.450199Z",
+            "updated_at": "2026-09-15T09:56:58.532391Z",
+            "observed_at": "2026-09-15T09:56:49.352441Z",
+            "observation_stale": false,
+            "last_operation_id": "42af9dd5-ac50-4748-aecc-b2af0ef10b4b",
+            "eip_address": "172.16.102.195",
+            "desired_enabled": false,
+            "applied_enabled": false,
+            "purpose": "public"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": true
+    },
+    {
+      "at": "2026-09-15T09:57:07.264840+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "binding": {
+            "id": "snat_c2e679a19be64badbc78877d8323451d",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "eip_id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+            "state": "RESOURCE_STATE_AVAILABLE",
+            "reason": "",
+            "reason_message": "",
+            "version": "49",
+            "created_at": "2026-09-15T09:36:41.450199Z",
+            "updated_at": "2026-09-15T09:56:58.532391Z",
+            "observed_at": "2026-09-15T09:56:49.352441Z",
+            "observation_stale": false,
+            "last_operation_id": "42af9dd5-ac50-4748-aecc-b2af0ef10b4b",
+            "eip_address": "172.16.102.195",
+            "desired_enabled": false,
+            "applied_enabled": false,
+            "purpose": "public"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": true
+    }
+  ]
+}

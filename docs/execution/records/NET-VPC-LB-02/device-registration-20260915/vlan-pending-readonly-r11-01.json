@@ -1,0 +1,12 @@
+{
+  "at": "2026-09-15T04:17:26.217681+00:00",
+  "execution_host": "ubuntu",
+  "transport_exit": 0,
+  "result": {
+    "query": "SELECT row_to_json(t) FROM (SELECT resource_id,kind,state,reason,provider_name,provider_uid,pending_action,pending_since FROM network_platform_resources WHERE resource_id='vlan_de1416d0a8d2473ba6da717f6282c290') t;",
+    "exit": 0,
+    "stdout": "BEGIN\n{\"resource_id\":\"vlan_de1416d0a8d2473ba6da717f6282c290\",\"kind\":\"vlan\",\"state\":\"provisioning\",\"reason\":\"PROVIDER_RESULT_UNKNOWN\",\"provider_name\":\"vlan-de1416d0a8d2473ba6da717f6282c290\",\"provider_uid\":\"\",\"pending_action\":\"create\",\"pending_since\":\"2026-09-15T02:33:22.57298+00:00\"}\nROLLBACK\n",
+    "stderr": ""
+  },
+  "stderr": ""
+}

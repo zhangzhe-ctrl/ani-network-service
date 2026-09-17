@@ -1,0 +1,79 @@
+{
+  "at": "2026-09-15T05:08:43.461047+00:00",
+  "execution_host": "ubuntu",
+  "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+  "results": [
+    {
+      "pod": "lb02-2b3122-base-b",
+      "label": "close-test-listener",
+      "argv": [
+        "/bin/sh",
+        "-c",
+        "kill -USR1 1; sleep 2"
+      ],
+      "at": "2026-09-15T05:08:42.381642+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+        "lb02-2b3122-base-b",
+        "-c",
+        "probe",
+        "--",
+        "/bin/sh",
+        "-c",
+        "kill -USR1 1; sleep 2"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": "",
+      "pass": true
+    },
+    {
+      "pod": "lb02-2b3122-base-b",
+      "label": "listener-closed-loopback",
+      "argv": [
+        "/probe",
+        "request",
+        "http://127.0.0.1:8080/?nonce=lb02-health-b-closed"
+      ],
+      "expect_exit": 2,
+      "expect_contains": [
+        "connection refused"
+      ],
+      "at": "2026-09-15T05:08:43.461026+00:00",
+      "command": [
+        "bash",
+        "-c",
+        "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+        "kubectl",
+        "--kubeconfig",
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/workload-owner-kubeconfig.json",
+        "--request-timeout=10s",
+        "exec",
+        "-n",
+        "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+        "lb02-2b3122-base-b",
+        "-c",
+        "probe",
+        "--",
+        "/probe",
+        "request",
+        "http://127.0.0.1:8080/?nonce=lb02-health-b-closed"
+      ],
+      "exit": 2,
+      "stdout": "Get \"http://127.0.0.1:8080/?nonce=lb02-health-b-closed\": dial tcp 127.0.0.1:8080: connect: connection refused\n",
+      "stderr": "command terminated with exit code 2\n",
+      "pass": true
+    }
+  ],
+  "input_file": "docs/execution/records/NET-VPC-LB-02/device-registration-20260915/health-close-b-planned.json",
+  "result": "pass"
+}

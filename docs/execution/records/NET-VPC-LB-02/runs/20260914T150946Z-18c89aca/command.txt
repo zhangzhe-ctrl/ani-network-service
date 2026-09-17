@@ -1,0 +1,17 @@
+source.tar.gz: OK
+verified source files: 1206
+go version go1.26.7 linux/amd64
+1.60.0
+v1.31.1
+ok  	github.com/zhangzhe-ctrl/ani-network-service/internal/biz	0.008s
+ok  	github.com/zhangzhe-ctrl/ani-network-service/internal/service	0.006s
+127.0.0.1:5432 - accepting connections
+PostgreSQL image=docker.io/library/postgres@sha256:4ef4dbc939d61acea57712655ddb4b4ab27419c913f94cca0cd57cb3ea3c2280 container=ad631d98bcd66ee936a9f405ff0b08abeb7be13dba18bd0e6f1d7a5e6b4dc0d6
+# github.com/zhangzhe-ctrl/ani-network-service/internal/data [github.com/zhangzhe-ctrl/ani-network-service/internal/data.test]
+internal/data/kc_load_balancer.go:100:59: cannot use r.binding.ClusterID (variable of type string) as sqlcgen.GetLBCapabilityParams value in argument to p.repository.queries.GetLBCapability
+internal/data/resource_work.go:135: unknown field VIPOccupiedRevision in struct literal of type sqlcgen.AdvanceLBParams, but does have VipOccupiedRevision
+internal/data/resource_work.go:135: unknown field VIPAbsenceRevision in struct literal of type sqlcgen.AdvanceLBParams, but does have VipAbsenceRevision
+FAIL	github.com/zhangzhe-ctrl/ani-network-service/internal/data [build failed]
+FAIL
+removed task container=ad631d98bcd66ee936a9f405ff0b08abeb7be13dba18bd0e6f1d7a5e6b4dc0d6
+REMOTE_COMMAND_EXIT=1

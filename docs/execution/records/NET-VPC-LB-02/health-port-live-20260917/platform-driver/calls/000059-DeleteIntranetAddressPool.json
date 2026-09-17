@@ -1,0 +1,22 @@
+{
+  "at": "2026-09-17T11:36:18.943248+00:00",
+  "command": [
+    "/home/chabking/workspace/ani-network-service-runs/lb-health-e2e-20260917/private/runtime/bin/lb-api",
+    "call",
+    "-target",
+    "unix:///home/chabking/.local/state/lbhp0917/sockets/platform.sock",
+    "-service",
+    "PlatformNetworkService",
+    "-method",
+    "DeleteIntranetAddressPool"
+  ],
+  "completed_at": "2026-09-17T11:36:18.955205+00:00",
+  "exit": 1,
+  "phase": "cleanup",
+  "request": {
+    "pool_id": "pool_ed275c704abe414dbdba5c205044977c"
+  },
+  "stderr": "RPC failed; structured status is in stdout\n",
+  "stdout": "{\"code\":\"FailedPrecondition\",\"status\":{\"code\":9,\"message\":\"platform dependencies must be released\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.ErrorInfo\",\"reason\":\"RESOURCE_IN_USE\",\"domain\":\"network.ani.io\",\"metadata\":{}}]}}\n",
+  "step": "pools"
+}

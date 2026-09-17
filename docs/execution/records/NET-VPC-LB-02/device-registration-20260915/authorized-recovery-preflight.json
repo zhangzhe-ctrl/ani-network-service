@@ -1,0 +1,55 @@
+{
+  "at": "2026-09-15T08:03:50.817530+00:00",
+  "processes": [
+    {
+      "name": "owner",
+      "old_pid": 1321743,
+      "old_process_exited": true
+    },
+    {
+      "name": "network",
+      "old_pid": 1321744,
+      "old_process_exited": true
+    },
+    {
+      "name": "tenant-a",
+      "old_pid": 1321745,
+      "old_process_exited": true
+    },
+    {
+      "name": "tenant-b",
+      "old_pid": 1321750,
+      "old_process_exited": true
+    },
+    {
+      "name": "platform",
+      "old_pid": 1321755,
+      "old_process_exited": true
+    }
+  ],
+  "provider_check": {
+    "command": [
+      "bash",
+      "-c",
+      "source /home/ubuntu/.local/share/ani-network-service/env.sh; exec kubectl \"$@\"",
+      "kubectl",
+      "--kubeconfig",
+      "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/kubeconfig.json",
+      "--request-timeout=20s",
+      "get",
+      "vlannetwork",
+      "vlan-de1416d0a8d2473ba6da717f6282c290",
+      "-o",
+      "json"
+    ],
+    "exit": 1,
+    "stdout": "",
+    "stderr": "Error from server (NotFound): vlannetworks.networking.kubercloud.com \"vlan-de1416d0a8d2473ba6da717f6282c290\" not found\n"
+  },
+  "backup_remote": "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/before-authorized-vlan-recovery-0804.dump",
+  "backup_bytes": 351886,
+  "backup_sha256": "19a8c7f54e9b54143be38de79692cee2e4c979878a74d827fd2e83415ef4c307",
+  "authorization": "用户：你可以恢复，然后再测试，能否复现之前的问题。如果不行就不用管了，别这么死脑筋",
+  "scope": "one historical fixture VLAN recovery, not automatic product recovery evidence",
+  "backup_local_verified": true
+}

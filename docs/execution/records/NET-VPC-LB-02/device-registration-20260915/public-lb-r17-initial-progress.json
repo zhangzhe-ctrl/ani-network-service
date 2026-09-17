@@ -1,0 +1,12 @@
+{
+  "at": "2026-09-15T09:27:31.348248+00:00",
+  "execution_host": "ubuntu",
+  "transport_exit": 0,
+  "result": {
+    "query": "SELECT row_to_json(o) FROM network_operations o WHERE lb_id='lb_bd6f74b7445b4c5a815763d38a995f14'; SELECT kind,provider_uid,pending_action,create_dispatched FROM network_lb_components WHERE lb_id='lb_bd6f74b7445b4c5a815763d38a995f14';",
+    "exit": 0,
+    "stdout": "BEGIN\n{\"tenant_id\":\"d896f754-ab06-4cbe-a7fd-53148d16d0ad\",\"operation_id\":\"ca4a5f4a-0886-4219-96c8-077f46737937\",\"vpc_id\":null,\"kind\":\"create_load_balancer\",\"state\":\"retrying\",\"reason\":\"PROVIDER_NOT_READY\",\"attempt\":11,\"execution_epoch\":11,\"created_at\":\"2026-09-15T09:13:07.496475+00:00\",\"updated_at\":\"2026-09-15T09:27:23.69667+00:00\",\"completed_at\":null,\"next_attempt_at\":\"2026-09-15T09:27:24.69667+00:00\",\"subnet_id\":null,\"eip_id\":null,\"snat_id\":null,\"lb_id\":\"lb_bd6f74b7445b4c5a815763d38a995f14\"}\nbackend|04e96f56-bad6-4d40-b6d1-7dba4ee28d56||t\nbackend|205e40e6-637c-4b55-bef6-71d1c91d12a3||t\npolicy|||f\nroute|||f\nROLLBACK\n",
+    "stderr": ""
+  },
+  "stderr": ""
+}

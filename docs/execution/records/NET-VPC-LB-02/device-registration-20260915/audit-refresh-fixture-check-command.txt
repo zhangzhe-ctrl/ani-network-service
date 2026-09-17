@@ -1,0 +1,23 @@
+source.tar.gz: OK
+verified source files: 2327
+go version go1.26.7 linux/amd64
+1.60.0
+v1.31.1
+127.0.0.1:5432 - accepting connections
+PostgreSQL image=docker.io/library/postgres@sha256:4ef4dbc939d61acea57712655ddb4b4ab27419c913f94cca0cd57cb3ea3c2280 container=091e51ca3faee7383d44865bb66e6430839948ee0a1a2cf0a2af3b46dc6f6f2a
+{"Time":"2026-09-15T19:53:53.044161042+08:00","Action":"start","Package":"github.com/zhangzhe-ctrl/ani-network-service/internal/data"}
+{"Time":"2026-09-15T19:53:53.055185597+08:00","Action":"run","Package":"github.com/zhangzhe-ctrl/ani-network-service/internal/data","Test":"TestEgressRefreshesInvalidAuditWithoutLosingAppliedFacts"}
+{"Time":"2026-09-15T19:53:53.055218109+08:00","Action":"output","Package":"github.com/zhangzhe-ctrl/ani-network-service/internal/data","Test":"TestEgressRefreshesInvalidAuditWithoutLosingAppliedFacts","Output":"=== RUN   TestEgressRefreshesInvalidAuditWithoutLosingAppliedFacts\n"}
+{"Time":"2026-09-15T19:53:53.879743686+08:00","Action":"output","Package":"github.com/zhangzhe-ctrl/ani-network-service/internal/data","Test":"TestEgressRefreshesInvalidAuditWithoutLosingAppliedFacts","Output":"    audit_refresh_integration_test.go:47: initial facts: {Egress:\u003cnil\u003e NeedsUpdate:false Proof:{CollectedAt:0001-01-01 00:00:00 +0000 UTC Hash: CoveredGeneration:0} Exists:false Ready:false HasDependencies:false Identity:} network provider: conflict\n"}
+{"Time":"2026-09-15T19:53:54.007020666+08:00","Action":"output","Package":"github.com/zhangzhe-ctrl/ani-network-service/internal/data","Test":"TestEgressRefreshesInvalidAuditWithoutLosingAppliedFacts","Output":"--- FAIL: TestEgressRefreshesInvalidAuditWithoutLosingAppliedFacts (0.95s)\n"}
+{"Time":"2026-09-15T19:53:54.007061698+08:00","Action":"fail","Package":"github.com/zhangzhe-ctrl/ani-network-service/internal/data","Test":"TestEgressRefreshesInvalidAuditWithoutLosingAppliedFacts","Elapsed":0.95}
+{"Time":"2026-09-15T19:53:54.007079363+08:00","Action":"run","Package":"github.com/zhangzhe-ctrl/ani-network-service/internal/data","Test":"TestLBRefreshesInvalidAuditAndStillRejectsReusedBackendIdentity"}
+{"Time":"2026-09-15T19:53:54.007085595+08:00","Action":"output","Package":"github.com/zhangzhe-ctrl/ani-network-service/internal/data","Test":"TestLBRefreshesInvalidAuditAndStillRejectsReusedBackendIdentity","Output":"=== RUN   TestLBRefreshesInvalidAuditAndStillRejectsReusedBackendIdentity\n"}
+{"Time":"2026-09-15T19:53:54.975938763+08:00","Action":"output","Package":"github.com/zhangzhe-ctrl/ani-network-service/internal/data","Test":"TestLBRefreshesInvalidAuditAndStillRejectsReusedBackendIdentity","Output":"    audit_refresh_integration_test.go:103: invalid cached LB audit did not refresh in same call: [] network provider: temporary\n"}
+{"Time":"2026-09-15T19:53:54.985436536+08:00","Action":"output","Package":"github.com/zhangzhe-ctrl/ani-network-service/internal/data","Test":"TestLBRefreshesInvalidAuditAndStillRejectsReusedBackendIdentity","Output":"--- FAIL: TestLBRefreshesInvalidAuditAndStillRejectsReusedBackendIdentity (0.98s)\n"}
+{"Time":"2026-09-15T19:53:54.985461059+08:00","Action":"fail","Package":"github.com/zhangzhe-ctrl/ani-network-service/internal/data","Test":"TestLBRefreshesInvalidAuditAndStillRejectsReusedBackendIdentity","Elapsed":0.98}
+{"Time":"2026-09-15T19:53:54.985579257+08:00","Action":"output","Package":"github.com/zhangzhe-ctrl/ani-network-service/internal/data","Output":"FAIL\n"}
+{"Time":"2026-09-15T19:53:54.988745647+08:00","Action":"output","Package":"github.com/zhangzhe-ctrl/ani-network-service/internal/data","Output":"FAIL\tgithub.com/zhangzhe-ctrl/ani-network-service/internal/data\t1.944s\n"}
+{"Time":"2026-09-15T19:53:54.988783167+08:00","Action":"fail","Package":"github.com/zhangzhe-ctrl/ani-network-service/internal/data","Elapsed":1.9449999999999998}
+removed task container=091e51ca3faee7383d44865bb66e6430839948ee0a1a2cf0a2af3b46dc6f6f2a
+REMOTE_COMMAND_EXIT=1

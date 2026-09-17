@@ -1,0 +1,22 @@
+source.tar.gz: OK
+verified source files: 1473
+go version go1.26.7 linux/amd64
+1.60.0
+v1.31.1
+ok  	github.com/zhangzhe-ctrl/ani-network-service/internal/biz	0.005s
+ok  	github.com/zhangzhe-ctrl/ani-network-service/internal/data	0.016s
+127.0.0.1:5432 - accepting connections
+PostgreSQL image=docker.io/library/postgres@sha256:4ef4dbc939d61acea57712655ddb4b4ab27419c913f94cca0cd57cb3ea3c2280 container=a89e8efa08b32b7e8bc3703346e5854dd14dabd0cc9b4418986d22a2719085c7
+=== RUN   TestEgressKCDeviceAdoptionPartialFactsAndUntaggedVlan
+--- PASS: TestEgressKCDeviceAdoptionPartialFactsAndUntaggedVlan (0.51s)
+=== RUN   TestEgressKCPreManagedDeviceRegistrationAndUntaggedVlan
+    egress_device_integration_test.go:153: network_platform_resources [{"state": "provisioning", "reason": "PROVIDER_OWNERSHIP_CONFLICT", "version": 166, "last_operation_id": "dbdb5131-0ff6-44c7-a173-c7b081ed2934"}]
+    egress_device_integration_test.go:153: network_eips []
+    egress_device_integration_test.go:153: network_snat_bindings []
+    egress_device_integration_test.go:153: egress worker did not converge
+--- FAIL: TestEgressKCPreManagedDeviceRegistrationAndUntaggedVlan (3.96s)
+FAIL
+FAIL	github.com/zhangzhe-ctrl/ani-network-service/internal/data	4.492s
+FAIL
+removed task container=a89e8efa08b32b7e8bc3703346e5854dd14dabd0cc9b4418986d22a2719085c7
+REMOTE_COMMAND_EXIT=1

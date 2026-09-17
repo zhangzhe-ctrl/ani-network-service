@@ -1,0 +1,43 @@
+{
+  "at": "2026-09-15T13:15:07.416725+00:00",
+  "execution_host": "ubuntu",
+  "source_run": "20260915T131318Z-ccef3412",
+  "archive_sha256": "56f4784b3a813c96ac260ac823b245b2241978d1455b9aa0e48976511d89d060",
+  "manifest_sha256": "1caf6a1170d029b89ce017eb0d49ac11e3a5c4571fb860eff30e0af1c45e80bf",
+  "command": [
+    "bash",
+    "-e",
+    "-c",
+    "validation_tmp=$(mktemp -d /var/tmp/nlb2.XXXXXX); chmod 700 \"$validation_tmp\"; export TMPDIR=\"$validation_tmp\"; scripts/integration -race ./internal/data -run \"^(TestAttachmentFinishesFreshAuditAfterConsecutiveWatchBoundaries|TestNET05ACriticalAuditFollowsCollectionStartedBeforeItsBoundary|TestNET05AReleaseAuditMustStartAfterOwnerClosureResponse)$\" -timeout 3m -json"
+  ],
+  "conclusion": "The new retry implementation returned valid facts, but the test recorded only one targeted source boundary: its HTTP interceptor also saw the fixture setup observer. Existing owner-closure regressions passed. Isolate only the tested provider with a test User-Agent and repeat the same red/green comparison; do not count this as the completed regression gate.",
+  "test_results": [
+    {
+      "Test": "TestAttachmentFinishesFreshAuditAfterConsecutiveWatchBoundaries",
+      "Action": "fail",
+      "Elapsed": 2.1
+    },
+    {
+      "Test": "TestNET05AReleaseAuditMustStartAfterOwnerClosureResponse/false",
+      "Action": "pass",
+      "Elapsed": 0.71
+    },
+    {
+      "Test": "TestNET05AReleaseAuditMustStartAfterOwnerClosureResponse/true",
+      "Action": "pass",
+      "Elapsed": 0.6
+    },
+    {
+      "Test": "TestNET05AReleaseAuditMustStartAfterOwnerClosureResponse",
+      "Action": "pass",
+      "Elapsed": 1.31
+    },
+    {
+      "Test": "TestNET05ACriticalAuditFollowsCollectionStartedBeforeItsBoundary",
+      "Action": "pass",
+      "Elapsed": 0.53
+    }
+  ],
+  "log": "attachment-retry-fixture-interference-command.txt",
+  "log_sha256": "6c440d02e3494855f82708c198437c6ba32cdcba1eda39a3cffd930c76aec83e"
+}

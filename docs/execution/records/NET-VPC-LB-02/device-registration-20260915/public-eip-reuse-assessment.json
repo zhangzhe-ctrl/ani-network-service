@@ -1,0 +1,20 @@
+{
+  "at": "2026-09-15T10:20:05.238181+00:00",
+  "result": "pass",
+  "source_run": "20260915T074304Z-31ea8959",
+  "scope": "Public EIP survives product LB delete and can be rebound through product SNAT API",
+  "eip_id": "eip_fdab288a3b1846138806e8e5e14529a9",
+  "address": "172.16.102.194",
+  "provider_uid": "a878f5da-22c4-4288-bc4c-2edc4084ca2c",
+  "original_lb": "lb_bd6f74b7445b4c5a815763d38a995f14",
+  "new_snat": "snat_69b2441cc70147a4adfeb22c8c0659fc",
+  "new_snat_provider_uid": "6b38ad95-09d8-4874-85d8-cb843b66950a",
+  "evidence": [
+    "public-lb-delete-assessment.json",
+    "public-lb-deleted-release-sql.json",
+    "public-eip-rebound-snat.json",
+    "public-eip-rebound-snat-ready.json",
+    "public-eip-rebound-provider.json"
+  ],
+  "limitation": "This is allocation/binding/lifecycle proof, not translated egress traffic proof."
+}

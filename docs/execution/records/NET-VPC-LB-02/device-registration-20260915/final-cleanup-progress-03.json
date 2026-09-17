@@ -1,0 +1,12 @@
+{
+  "at": "2026-09-15T14:39:23.026110+00:00",
+  "execution_host": "ubuntu",
+  "transport_exit": 0,
+  "result": {
+    "query": "SELECT json_build_object('active_vpcs',(SELECT json_agg(json_build_object('id',vpc_id,'state',state,'reason',reason)) FROM network_vpcs WHERE state<>'deleted'),'active_subnets',(SELECT count(*) FROM network_subnets WHERE state<>'deleted'),'active_eips',(SELECT json_agg(json_build_object('id',eip_id,'state',state,'reason',reason)) FROM network_eips WHERE state<>'deleted'),'active_snats',(SELECT json_agg(json_build_object('id',snat_id,'state',state,'reason',reason)) FROM network_snat_bindings WHERE state<>'deleted'));",
+    "exit": 0,
+    "stdout": "BEGIN\n{\"active_vpcs\" : [{\"id\" : \"vpc_1004994c0bde496f9ff64a4c812c9607\", \"state\" : \"deleting\", \"reason\" : \"CLEANUP_PENDING\"}, {\"id\" : \"vpc_d06f28e82fe847f7bf2cedd57dad82f4\", \"state\" : \"degraded\", \"reason\" : \"BASE_CONNECTIVITY_NOT_READY\"}], \"active_subnets\" : 2, \"active_eips\" : [{\"id\" : \"eip_c428922594b94429a405305c6c781897\", \"state\" : \"available\", \"reason\" : \"\"}, {\"id\" : \"eip_95f0b50044b64a05b0fd86c22b6cd5cc\", \"state\" : \"deleting\", \"reason\" : \"PROVIDER_UNAVAILABLE\"}], \"active_snats\" : [{\"id\" : \"snat_3cbc9e4d07b44c0291a541d50bd4b43e\", \"state\" : \"available\", \"reason\" : \"BASE_CONNECTIVITY_NOT_READY\"}]}\nROLLBACK\n",
+    "stderr": ""
+  },
+  "stderr": ""
+}

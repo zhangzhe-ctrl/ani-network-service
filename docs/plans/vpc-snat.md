@@ -19,7 +19,7 @@
 | 前置：Provider 修复与版本接纳 | 对接新网关缓存 serviceIP、空地址拒绝、跨 namespace EIP 候选及 Snat→VPC 校验缺口 | 固定 kc 源码/实际镜像；新建网关、重启初始化、disable→enable 和跨 namespace 同名负例；无手工 OVN 修补的 Overlay 原始链路通过 |
 | A：领域与契约 | EIP、SNAT 绑定、平台出口资源；身份、API、operation kind、错误与查询字段；默认池及配置开放规则 | Proto/生成客户端/用例一致；ANI OpenAPI 接线单独验证；普通租户与管理员代办边界、不可重用 binding ID、幂等与控制面/流量证据语义可测 |
 | B：持久事务与恢复 | 新租户/平台关系、复合 FK、唯一绑定占用、锁顺序、operation/history/idempotency、稳定 Provider 映射 | 真实 PG 并发与崩溃测试覆盖方案 SNAT-V03/04/10；未知外部结果不重复分配、不提前释放；平台操作不伪造 tenant |
-| C：平台出口管理 | 网卡只读事实、受控接管、VlanNetwork、EIPGateway、Public 池 CRUD、默认池与开放开关 | 方案 SNAT-V01/02；先用适配器合同和受控环境验证；平台删除保护与部分接管失败可恢复；未测模式不开放租户分配 |
+| C：平台出口管理 | 网卡只读事实、空闲口接管/安装器已受管口登记、VlanNetwork、EIPGateway、Public 池 CRUD、默认池与开放开关 | 方案 SNAT-V01/02；核验实际 bridge/mapping、完整节点身份、共享配置并发和归属；平台删除保护与部分接管失败可恢复；未测模式不开放租户分配 |
 | D：EIP/Snat Provider 纵向切片 | 自动分配、全 VPC 绑定、启停、解绑、释放、持续观察/关系索引与依赖退化 | 方案 SNAT-V03/04/05/10/11；实际 generation、UID、namespace 判定；受理与观测持久闭环，Get/List 纯读 |
 | E：产品 Overlay 验收 | 经 Network API 创建和操作，Gateway 接入另计，实例 owner 接入两个 worker 上的实际普通 Pod | 方案 SNAT-V06/07/08/11；正确身份、实际源 IP、启停/解绑和清理；手工 CR 历史测试仅为基线 |
 | F：Underlay 后续验收 | 物理口、OVS/VLAN、交换机路由及回程具备后，再跑同一产品生命周期 | 方案 SNAT-V09 及共同功能矩阵；分别验证 vlanID 0 和真实带 tag VLAN；记录上游网络和物理回收边界 |

@@ -1,0 +1,487 @@
+{
+  "execution_host": "ubuntu",
+  "command": [
+    "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/lb-api",
+    "call",
+    "-target",
+    "unix:///home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-b.sock",
+    "-service",
+    "NetworkService",
+    "-method",
+    "GetSubnet"
+  ],
+  "request": {
+    "subnet_id": "subnet_483e588794f045a6afb54c2db0b6d643"
+  },
+  "expected": {
+    "response.subnet.state": "RESOURCE_STATE_AVAILABLE",
+    "response.subnet.observation_stale": false
+  },
+  "result": "pass",
+  "records": [
+    {
+      "at": "2026-09-15T06:02:12.656332+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "subnet": {
+            "id": "subnet_483e588794f045a6afb54c2db0b6d643",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "name": "lb02-2b3122-u08-continuous",
+            "description": "",
+            "cidr": "10.233.48.0/24",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "",
+            "created_at": "2026-09-15T06:02:12.324198Z",
+            "updated_at": "2026-09-15T06:02:12.324198Z",
+            "version": "1",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "8e265dc5-bdf5-454a-8d5d-c6ddbbd1a6d1",
+            "vpc_id": "vpc_1f6fbd7f85cd4baba0b0382770aa480e",
+            "reason_message": "",
+            "gateway": "10.233.48.1"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T06:02:17.667897+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "subnet": {
+            "id": "subnet_483e588794f045a6afb54c2db0b6d643",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "name": "lb02-2b3122-u08-continuous",
+            "description": "",
+            "cidr": "10.233.48.0/24",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "",
+            "created_at": "2026-09-15T06:02:12.324198Z",
+            "updated_at": "2026-09-15T06:02:12.324198Z",
+            "version": "1",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "8e265dc5-bdf5-454a-8d5d-c6ddbbd1a6d1",
+            "vpc_id": "vpc_1f6fbd7f85cd4baba0b0382770aa480e",
+            "reason_message": "",
+            "gateway": "10.233.48.1"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T06:02:22.680345+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "subnet": {
+            "id": "subnet_483e588794f045a6afb54c2db0b6d643",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "name": "lb02-2b3122-u08-continuous",
+            "description": "",
+            "cidr": "10.233.48.0/24",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "",
+            "created_at": "2026-09-15T06:02:12.324198Z",
+            "updated_at": "2026-09-15T06:02:12.324198Z",
+            "version": "1",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "8e265dc5-bdf5-454a-8d5d-c6ddbbd1a6d1",
+            "vpc_id": "vpc_1f6fbd7f85cd4baba0b0382770aa480e",
+            "reason_message": "",
+            "gateway": "10.233.48.1"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T06:02:27.690362+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "subnet": {
+            "id": "subnet_483e588794f045a6afb54c2db0b6d643",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "name": "lb02-2b3122-u08-continuous",
+            "description": "",
+            "cidr": "10.233.48.0/24",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "",
+            "created_at": "2026-09-15T06:02:12.324198Z",
+            "updated_at": "2026-09-15T06:02:12.324198Z",
+            "version": "1",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "8e265dc5-bdf5-454a-8d5d-c6ddbbd1a6d1",
+            "vpc_id": "vpc_1f6fbd7f85cd4baba0b0382770aa480e",
+            "reason_message": "",
+            "gateway": "10.233.48.1"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T06:02:32.701798+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "subnet": {
+            "id": "subnet_483e588794f045a6afb54c2db0b6d643",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "name": "lb02-2b3122-u08-continuous",
+            "description": "",
+            "cidr": "10.233.48.0/24",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "",
+            "created_at": "2026-09-15T06:02:12.324198Z",
+            "updated_at": "2026-09-15T06:02:12.324198Z",
+            "version": "1",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "8e265dc5-bdf5-454a-8d5d-c6ddbbd1a6d1",
+            "vpc_id": "vpc_1f6fbd7f85cd4baba0b0382770aa480e",
+            "reason_message": "",
+            "gateway": "10.233.48.1"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T06:02:37.712165+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "subnet": {
+            "id": "subnet_483e588794f045a6afb54c2db0b6d643",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "name": "lb02-2b3122-u08-continuous",
+            "description": "",
+            "cidr": "10.233.48.0/24",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "",
+            "created_at": "2026-09-15T06:02:12.324198Z",
+            "updated_at": "2026-09-15T06:02:12.324198Z",
+            "version": "1",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "8e265dc5-bdf5-454a-8d5d-c6ddbbd1a6d1",
+            "vpc_id": "vpc_1f6fbd7f85cd4baba0b0382770aa480e",
+            "reason_message": "",
+            "gateway": "10.233.48.1"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T06:02:42.725094+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "subnet": {
+            "id": "subnet_483e588794f045a6afb54c2db0b6d643",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "name": "lb02-2b3122-u08-continuous",
+            "description": "",
+            "cidr": "10.233.48.0/24",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "",
+            "created_at": "2026-09-15T06:02:12.324198Z",
+            "updated_at": "2026-09-15T06:02:12.324198Z",
+            "version": "1",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "8e265dc5-bdf5-454a-8d5d-c6ddbbd1a6d1",
+            "vpc_id": "vpc_1f6fbd7f85cd4baba0b0382770aa480e",
+            "reason_message": "",
+            "gateway": "10.233.48.1"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T06:02:47.736046+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "subnet": {
+            "id": "subnet_483e588794f045a6afb54c2db0b6d643",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "name": "lb02-2b3122-u08-continuous",
+            "description": "",
+            "cidr": "10.233.48.0/24",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_NOT_READY",
+            "created_at": "2026-09-15T06:02:12.324198Z",
+            "updated_at": "2026-09-15T06:02:44.326769Z",
+            "version": "2",
+            "observed_at": "2026-09-15T06:02:32.129247Z",
+            "observation_stale": false,
+            "last_operation_id": "8e265dc5-bdf5-454a-8d5d-c6ddbbd1a6d1",
+            "vpc_id": "vpc_1f6fbd7f85cd4baba0b0382770aa480e",
+            "reason_message": "The requested configuration is not ready yet.",
+            "gateway": "10.233.48.1"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T06:02:52.749326+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "subnet": {
+            "id": "subnet_483e588794f045a6afb54c2db0b6d643",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "name": "lb02-2b3122-u08-continuous",
+            "description": "",
+            "cidr": "10.233.48.0/24",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_NOT_READY",
+            "created_at": "2026-09-15T06:02:12.324198Z",
+            "updated_at": "2026-09-15T06:02:44.326769Z",
+            "version": "2",
+            "observed_at": "2026-09-15T06:02:32.129247Z",
+            "observation_stale": false,
+            "last_operation_id": "8e265dc5-bdf5-454a-8d5d-c6ddbbd1a6d1",
+            "vpc_id": "vpc_1f6fbd7f85cd4baba0b0382770aa480e",
+            "reason_message": "The requested configuration is not ready yet.",
+            "gateway": "10.233.48.1"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T06:02:57.759371+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "subnet": {
+            "id": "subnet_483e588794f045a6afb54c2db0b6d643",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "name": "lb02-2b3122-u08-continuous",
+            "description": "",
+            "cidr": "10.233.48.0/24",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_NOT_READY",
+            "created_at": "2026-09-15T06:02:12.324198Z",
+            "updated_at": "2026-09-15T06:02:44.326769Z",
+            "version": "2",
+            "observed_at": "2026-09-15T06:02:32.129247Z",
+            "observation_stale": false,
+            "last_operation_id": "8e265dc5-bdf5-454a-8d5d-c6ddbbd1a6d1",
+            "vpc_id": "vpc_1f6fbd7f85cd4baba0b0382770aa480e",
+            "reason_message": "The requested configuration is not ready yet.",
+            "gateway": "10.233.48.1"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T06:03:02.769687+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "subnet": {
+            "id": "subnet_483e588794f045a6afb54c2db0b6d643",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "name": "lb02-2b3122-u08-continuous",
+            "description": "",
+            "cidr": "10.233.48.0/24",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_NOT_READY",
+            "created_at": "2026-09-15T06:02:12.324198Z",
+            "updated_at": "2026-09-15T06:02:44.326769Z",
+            "version": "2",
+            "observed_at": "2026-09-15T06:02:32.129247Z",
+            "observation_stale": false,
+            "last_operation_id": "8e265dc5-bdf5-454a-8d5d-c6ddbbd1a6d1",
+            "vpc_id": "vpc_1f6fbd7f85cd4baba0b0382770aa480e",
+            "reason_message": "The requested configuration is not ready yet.",
+            "gateway": "10.233.48.1"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T06:03:07.780794+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "subnet": {
+            "id": "subnet_483e588794f045a6afb54c2db0b6d643",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "name": "lb02-2b3122-u08-continuous",
+            "description": "",
+            "cidr": "10.233.48.0/24",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_NOT_READY",
+            "created_at": "2026-09-15T06:02:12.324198Z",
+            "updated_at": "2026-09-15T06:02:44.326769Z",
+            "version": "2",
+            "observed_at": "2026-09-15T06:02:32.129247Z",
+            "observation_stale": false,
+            "last_operation_id": "8e265dc5-bdf5-454a-8d5d-c6ddbbd1a6d1",
+            "vpc_id": "vpc_1f6fbd7f85cd4baba0b0382770aa480e",
+            "reason_message": "The requested configuration is not ready yet.",
+            "gateway": "10.233.48.1"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T06:03:12.791566+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "subnet": {
+            "id": "subnet_483e588794f045a6afb54c2db0b6d643",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "name": "lb02-2b3122-u08-continuous",
+            "description": "",
+            "cidr": "10.233.48.0/24",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_NOT_READY",
+            "created_at": "2026-09-15T06:02:12.324198Z",
+            "updated_at": "2026-09-15T06:02:44.326769Z",
+            "version": "2",
+            "observed_at": "2026-09-15T06:02:32.129247Z",
+            "observation_stale": false,
+            "last_operation_id": "8e265dc5-bdf5-454a-8d5d-c6ddbbd1a6d1",
+            "vpc_id": "vpc_1f6fbd7f85cd4baba0b0382770aa480e",
+            "reason_message": "The requested configuration is not ready yet.",
+            "gateway": "10.233.48.1"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T06:03:17.803669+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "subnet": {
+            "id": "subnet_483e588794f045a6afb54c2db0b6d643",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "name": "lb02-2b3122-u08-continuous",
+            "description": "",
+            "cidr": "10.233.48.0/24",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "PROVIDER_NOT_READY",
+            "created_at": "2026-09-15T06:02:12.324198Z",
+            "updated_at": "2026-09-15T06:02:44.326769Z",
+            "version": "2",
+            "observed_at": "2026-09-15T06:02:32.129247Z",
+            "observation_stale": false,
+            "last_operation_id": "8e265dc5-bdf5-454a-8d5d-c6ddbbd1a6d1",
+            "vpc_id": "vpc_1f6fbd7f85cd4baba0b0382770aa480e",
+            "reason_message": "The requested configuration is not ready yet.",
+            "gateway": "10.233.48.1"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T06:03:22.813940+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "subnet": {
+            "id": "subnet_483e588794f045a6afb54c2db0b6d643",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "name": "lb02-2b3122-u08-continuous",
+            "description": "",
+            "cidr": "10.233.48.0/24",
+            "state": "RESOURCE_STATE_AVAILABLE",
+            "reason": "",
+            "created_at": "2026-09-15T06:02:12.324198Z",
+            "updated_at": "2026-09-15T06:03:22.802112Z",
+            "version": "3",
+            "observed_at": "2026-09-15T06:03:22.743267Z",
+            "observation_stale": false,
+            "last_operation_id": "8e265dc5-bdf5-454a-8d5d-c6ddbbd1a6d1",
+            "vpc_id": "vpc_1f6fbd7f85cd4baba0b0382770aa480e",
+            "reason_message": "",
+            "gateway": "10.233.48.1"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": true
+    },
+    {
+      "at": "2026-09-15T06:03:27.825025+00:00",
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "subnet": {
+            "id": "subnet_483e588794f045a6afb54c2db0b6d643",
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "name": "lb02-2b3122-u08-continuous",
+            "description": "",
+            "cidr": "10.233.48.0/24",
+            "state": "RESOURCE_STATE_AVAILABLE",
+            "reason": "",
+            "created_at": "2026-09-15T06:02:12.324198Z",
+            "updated_at": "2026-09-15T06:03:22.802112Z",
+            "version": "3",
+            "observed_at": "2026-09-15T06:03:22.743267Z",
+            "observation_stale": false,
+            "last_operation_id": "8e265dc5-bdf5-454a-8d5d-c6ddbbd1a6d1",
+            "vpc_id": "vpc_1f6fbd7f85cd4baba0b0382770aa480e",
+            "reason_message": "",
+            "gateway": "10.233.48.1"
+          }
+        }
+      },
+      "stderr": "",
+      "matches": true
+    }
+  ]
+}

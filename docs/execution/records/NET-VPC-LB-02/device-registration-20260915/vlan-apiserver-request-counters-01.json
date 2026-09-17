@@ -1,0 +1,34 @@
+{
+  "at": "2026-09-15T07:31:18.507798+00:00",
+  "read_host": "ani-test-1",
+  "command": [
+    "sudo",
+    "-n",
+    "/usr/local/bin/kubectl",
+    "--kubeconfig",
+    "/etc/kubernetes/admin.conf",
+    "--context",
+    "kubernetes-admin@ani-platform",
+    "--request-timeout=20s",
+    "get",
+    "--raw",
+    "/metrics"
+  ],
+  "exit": 0,
+  "metrics": [
+    "apiserver_current_inflight_requests{request_kind=\"mutating\"} 1",
+    "apiserver_current_inflight_requests{request_kind=\"readOnly\"} 1",
+    "apiserver_request_duration_seconds_count{component=\"apiserver\",dry_run=\"\",group=\"networking.kubercloud.com\",resource=\"vlannetworks\",scope=\"cluster\",subresource=\"\",verb=\"LIST\",version=\"v1\"} 1892",
+    "apiserver_request_duration_seconds_count{component=\"apiserver\",dry_run=\"\",group=\"networking.kubercloud.com\",resource=\"vlannetworks\",scope=\"cluster\",subresource=\"\",verb=\"WATCH\",version=\"v1\"} 6500",
+    "apiserver_request_duration_seconds_count{component=\"apiserver\",dry_run=\"\",group=\"networking.kubercloud.com\",resource=\"vlannetworks\",scope=\"resource\",subresource=\"\",verb=\"GET\",version=\"v1\"} 256",
+    "apiserver_request_terminations_total{code=\"504\",component=\"apiserver\",group=\"authorization.k8s.io\",resource=\"subjectaccessreviews\",scope=\"resource\",subresource=\"\",verb=\"POST\",version=\"v1\"} 8",
+    "apiserver_request_terminations_total{code=\"504\",component=\"apiserver\",group=\"networking.k8s.io\",resource=\"servicecidrs\",scope=\"cluster\",subresource=\"\",verb=\"LIST\",version=\"v1\"} 1",
+    "apiserver_request_terminations_total{code=\"504\",component=\"apiserver\",group=\"networking.kubercloud.com\",resource=\"subnets\",scope=\"resource\",subresource=\"\",verb=\"GET\",version=\"v1\"} 1",
+    "apiserver_request_terminations_total{code=\"504\",component=\"apiserver\",group=\"networking.kubercloud.com\",resource=\"vpcs\",scope=\"cluster\",subresource=\"\",verb=\"LIST\",version=\"v1\"} 1",
+    "apiserver_request_total{code=\"200\",component=\"apiserver\",dry_run=\"\",group=\"networking.kubercloud.com\",resource=\"vlannetworks\",scope=\"cluster\",subresource=\"\",verb=\"LIST\",version=\"v1\"} 1892",
+    "apiserver_request_total{code=\"200\",component=\"apiserver\",dry_run=\"\",group=\"networking.kubercloud.com\",resource=\"vlannetworks\",scope=\"cluster\",subresource=\"\",verb=\"WATCH\",version=\"v1\"} 6499",
+    "apiserver_request_total{code=\"404\",component=\"apiserver\",dry_run=\"\",group=\"networking.kubercloud.com\",resource=\"vlannetworks\",scope=\"resource\",subresource=\"\",verb=\"GET\",version=\"v1\"} 256",
+    "apiserver_request_total{code=\"429\",component=\"apiserver\",dry_run=\"\",group=\"networking.kubercloud.com\",resource=\"vlannetworks\",scope=\"cluster\",subresource=\"\",verb=\"WATCH\",version=\"v1\"} 1",
+    "process_start_time_seconds 1.78938858255e+09"
+  ]
+}

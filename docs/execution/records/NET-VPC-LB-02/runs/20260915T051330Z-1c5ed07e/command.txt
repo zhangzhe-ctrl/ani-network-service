@@ -1,0 +1,19 @@
+source.tar.gz: OK
+verified source files: 1806
+go version go1.26.7 linux/amd64
+1.60.0
+v1.31.1
+=== RUN   TestAuditCandidateHashIgnoresListOrderButPreservesFacts
+    kc_candidate_hash_test.go:27: same complete object set changed its evidence hash after List order changed
+    kc_candidate_hash_test.go:35: unchanged cached evidence cannot cover its previously applied facts
+=== RUN   TestAuditCandidateHashIgnoresListOrderButPreservesFacts/uid
+=== RUN   TestAuditCandidateHashIgnoresListOrderButPreservesFacts/resourceVersion
+=== RUN   TestAuditCandidateHashIgnoresListOrderButPreservesFacts/podIP
+--- FAIL: TestAuditCandidateHashIgnoresListOrderButPreservesFacts (0.00s)
+    --- PASS: TestAuditCandidateHashIgnoresListOrderButPreservesFacts/uid (0.00s)
+    --- PASS: TestAuditCandidateHashIgnoresListOrderButPreservesFacts/resourceVersion (0.00s)
+    --- PASS: TestAuditCandidateHashIgnoresListOrderButPreservesFacts/podIP (0.00s)
+FAIL
+FAIL	github.com/zhangzhe-ctrl/ani-network-service/internal/data	0.052s
+FAIL
+REMOTE_COMMAND_EXIT=1

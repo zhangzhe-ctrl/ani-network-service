@@ -1,0 +1,561 @@
+{
+  "at": "2026-09-15T09:58:59.086861+00:00",
+  "execution_host": "ubuntu",
+  "result": "pass",
+  "records": [
+    {
+      "at": "2026-09-15T09:58:28.923251+00:00",
+      "command": [
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/lb-api",
+        "call",
+        "-target",
+        "unix:///home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-a.sock",
+        "-service",
+        "TenantEgressService",
+        "-method",
+        "GetVPCSnatBinding"
+      ],
+      "request": {
+        "binding_id": "snat_c2e679a19be64badbc78877d8323451d"
+      },
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "binding": {
+            "id": "snat_c2e679a19be64badbc78877d8323451d",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "eip_id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+            "state": "RESOURCE_STATE_AVAILABLE",
+            "reason": "",
+            "reason_message": "",
+            "version": "53",
+            "created_at": "2026-09-15T09:36:41.450199Z",
+            "updated_at": "2026-09-15T09:58:20.894908Z",
+            "observed_at": "2026-09-15T09:58:13.787887Z",
+            "observation_stale": false,
+            "last_operation_id": "42af9dd5-ac50-4748-aecc-b2af0ef10b4b",
+            "eip_address": "172.16.102.195",
+            "desired_enabled": false,
+            "applied_enabled": false,
+            "purpose": "public"
+          }
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-15T09:58:28.936385+00:00",
+      "command": [
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/lb-api",
+        "call",
+        "-target",
+        "unix:///home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-a.sock",
+        "-service",
+        "TenantEgressService",
+        "-method",
+        "SetVPCSnatEnabled"
+      ],
+      "request": {
+        "binding_id": "snat_c2e679a19be64badbc78877d8323451d",
+        "enabled": true,
+        "expected_version": "53",
+        "idempotency_key": "public-snat-reenable-53"
+      },
+      "exit": 1,
+      "response": {
+        "code": "Unavailable",
+        "status": {
+          "code": 14,
+          "message": "VPC base connectivity is not fresh and ready",
+          "details": [
+            {
+              "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+              "reason": "BASE_CONNECTIVITY_NOT_READY",
+              "domain": "network.ani.io",
+              "metadata": {}
+            }
+          ]
+        }
+      },
+      "stderr": "RPC failed; structured status is in stdout\n"
+    },
+    {
+      "at": "2026-09-15T09:58:33.947396+00:00",
+      "command": [
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/lb-api",
+        "call",
+        "-target",
+        "unix:///home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-a.sock",
+        "-service",
+        "TenantEgressService",
+        "-method",
+        "GetVPCSnatBinding"
+      ],
+      "request": {
+        "binding_id": "snat_c2e679a19be64badbc78877d8323451d"
+      },
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "binding": {
+            "id": "snat_c2e679a19be64badbc78877d8323451d",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "eip_id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+            "state": "RESOURCE_STATE_AVAILABLE",
+            "reason": "",
+            "reason_message": "",
+            "version": "53",
+            "created_at": "2026-09-15T09:36:41.450199Z",
+            "updated_at": "2026-09-15T09:58:20.894908Z",
+            "observed_at": "2026-09-15T09:58:13.787887Z",
+            "observation_stale": false,
+            "last_operation_id": "42af9dd5-ac50-4748-aecc-b2af0ef10b4b",
+            "eip_address": "172.16.102.195",
+            "desired_enabled": false,
+            "applied_enabled": false,
+            "purpose": "public"
+          }
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-15T09:58:33.960127+00:00",
+      "command": [
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/lb-api",
+        "call",
+        "-target",
+        "unix:///home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-a.sock",
+        "-service",
+        "TenantEgressService",
+        "-method",
+        "SetVPCSnatEnabled"
+      ],
+      "request": {
+        "binding_id": "snat_c2e679a19be64badbc78877d8323451d",
+        "enabled": true,
+        "expected_version": "53",
+        "idempotency_key": "public-snat-reenable-53"
+      },
+      "exit": 1,
+      "response": {
+        "code": "Unavailable",
+        "status": {
+          "code": 14,
+          "message": "VPC base connectivity is not fresh and ready",
+          "details": [
+            {
+              "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+              "reason": "BASE_CONNECTIVITY_NOT_READY",
+              "domain": "network.ani.io",
+              "metadata": {}
+            }
+          ]
+        }
+      },
+      "stderr": "RPC failed; structured status is in stdout\n"
+    },
+    {
+      "at": "2026-09-15T09:58:38.970329+00:00",
+      "command": [
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/lb-api",
+        "call",
+        "-target",
+        "unix:///home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-a.sock",
+        "-service",
+        "TenantEgressService",
+        "-method",
+        "GetVPCSnatBinding"
+      ],
+      "request": {
+        "binding_id": "snat_c2e679a19be64badbc78877d8323451d"
+      },
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "binding": {
+            "id": "snat_c2e679a19be64badbc78877d8323451d",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "eip_id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+            "state": "RESOURCE_STATE_AVAILABLE",
+            "reason": "",
+            "reason_message": "",
+            "version": "53",
+            "created_at": "2026-09-15T09:36:41.450199Z",
+            "updated_at": "2026-09-15T09:58:20.894908Z",
+            "observed_at": "2026-09-15T09:58:13.787887Z",
+            "observation_stale": false,
+            "last_operation_id": "42af9dd5-ac50-4748-aecc-b2af0ef10b4b",
+            "eip_address": "172.16.102.195",
+            "desired_enabled": false,
+            "applied_enabled": false,
+            "purpose": "public"
+          }
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-15T09:58:38.981741+00:00",
+      "command": [
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/lb-api",
+        "call",
+        "-target",
+        "unix:///home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-a.sock",
+        "-service",
+        "TenantEgressService",
+        "-method",
+        "SetVPCSnatEnabled"
+      ],
+      "request": {
+        "binding_id": "snat_c2e679a19be64badbc78877d8323451d",
+        "enabled": true,
+        "expected_version": "53",
+        "idempotency_key": "public-snat-reenable-53"
+      },
+      "exit": 1,
+      "response": {
+        "code": "Unavailable",
+        "status": {
+          "code": 14,
+          "message": "VPC base connectivity is not fresh and ready",
+          "details": [
+            {
+              "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+              "reason": "BASE_CONNECTIVITY_NOT_READY",
+              "domain": "network.ani.io",
+              "metadata": {}
+            }
+          ]
+        }
+      },
+      "stderr": "RPC failed; structured status is in stdout\n"
+    },
+    {
+      "at": "2026-09-15T09:58:43.996218+00:00",
+      "command": [
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/lb-api",
+        "call",
+        "-target",
+        "unix:///home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-a.sock",
+        "-service",
+        "TenantEgressService",
+        "-method",
+        "GetVPCSnatBinding"
+      ],
+      "request": {
+        "binding_id": "snat_c2e679a19be64badbc78877d8323451d"
+      },
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "binding": {
+            "id": "snat_c2e679a19be64badbc78877d8323451d",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "eip_id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+            "state": "RESOURCE_STATE_AVAILABLE",
+            "reason": "",
+            "reason_message": "",
+            "version": "53",
+            "created_at": "2026-09-15T09:36:41.450199Z",
+            "updated_at": "2026-09-15T09:58:20.894908Z",
+            "observed_at": "2026-09-15T09:58:13.787887Z",
+            "observation_stale": false,
+            "last_operation_id": "42af9dd5-ac50-4748-aecc-b2af0ef10b4b",
+            "eip_address": "172.16.102.195",
+            "desired_enabled": false,
+            "applied_enabled": false,
+            "purpose": "public"
+          }
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-15T09:58:44.009029+00:00",
+      "command": [
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/lb-api",
+        "call",
+        "-target",
+        "unix:///home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-a.sock",
+        "-service",
+        "TenantEgressService",
+        "-method",
+        "SetVPCSnatEnabled"
+      ],
+      "request": {
+        "binding_id": "snat_c2e679a19be64badbc78877d8323451d",
+        "enabled": true,
+        "expected_version": "53",
+        "idempotency_key": "public-snat-reenable-53"
+      },
+      "exit": 1,
+      "response": {
+        "code": "Unavailable",
+        "status": {
+          "code": 14,
+          "message": "VPC base connectivity is not fresh and ready",
+          "details": [
+            {
+              "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+              "reason": "BASE_CONNECTIVITY_NOT_READY",
+              "domain": "network.ani.io",
+              "metadata": {}
+            }
+          ]
+        }
+      },
+      "stderr": "RPC failed; structured status is in stdout\n"
+    },
+    {
+      "at": "2026-09-15T09:58:49.020026+00:00",
+      "command": [
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/lb-api",
+        "call",
+        "-target",
+        "unix:///home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-a.sock",
+        "-service",
+        "TenantEgressService",
+        "-method",
+        "GetVPCSnatBinding"
+      ],
+      "request": {
+        "binding_id": "snat_c2e679a19be64badbc78877d8323451d"
+      },
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "binding": {
+            "id": "snat_c2e679a19be64badbc78877d8323451d",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "eip_id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+            "state": "RESOURCE_STATE_AVAILABLE",
+            "reason": "",
+            "reason_message": "",
+            "version": "53",
+            "created_at": "2026-09-15T09:36:41.450199Z",
+            "updated_at": "2026-09-15T09:58:20.894908Z",
+            "observed_at": "2026-09-15T09:58:13.787887Z",
+            "observation_stale": false,
+            "last_operation_id": "42af9dd5-ac50-4748-aecc-b2af0ef10b4b",
+            "eip_address": "172.16.102.195",
+            "desired_enabled": false,
+            "applied_enabled": false,
+            "purpose": "public"
+          }
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-15T09:58:49.031695+00:00",
+      "command": [
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/lb-api",
+        "call",
+        "-target",
+        "unix:///home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-a.sock",
+        "-service",
+        "TenantEgressService",
+        "-method",
+        "SetVPCSnatEnabled"
+      ],
+      "request": {
+        "binding_id": "snat_c2e679a19be64badbc78877d8323451d",
+        "enabled": true,
+        "expected_version": "53",
+        "idempotency_key": "public-snat-reenable-53"
+      },
+      "exit": 1,
+      "response": {
+        "code": "Unavailable",
+        "status": {
+          "code": 14,
+          "message": "VPC base connectivity is not fresh and ready",
+          "details": [
+            {
+              "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+              "reason": "BASE_CONNECTIVITY_NOT_READY",
+              "domain": "network.ani.io",
+              "metadata": {}
+            }
+          ]
+        }
+      },
+      "stderr": "RPC failed; structured status is in stdout\n"
+    },
+    {
+      "at": "2026-09-15T09:58:54.042508+00:00",
+      "command": [
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/lb-api",
+        "call",
+        "-target",
+        "unix:///home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-a.sock",
+        "-service",
+        "TenantEgressService",
+        "-method",
+        "GetVPCSnatBinding"
+      ],
+      "request": {
+        "binding_id": "snat_c2e679a19be64badbc78877d8323451d"
+      },
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "binding": {
+            "id": "snat_c2e679a19be64badbc78877d8323451d",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "eip_id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+            "state": "RESOURCE_STATE_AVAILABLE",
+            "reason": "",
+            "reason_message": "",
+            "version": "54",
+            "created_at": "2026-09-15T09:36:41.450199Z",
+            "updated_at": "2026-09-15T09:58:50.645604Z",
+            "observed_at": "2026-09-15T09:58:44.136905Z",
+            "observation_stale": false,
+            "last_operation_id": "42af9dd5-ac50-4748-aecc-b2af0ef10b4b",
+            "eip_address": "172.16.102.195",
+            "desired_enabled": false,
+            "applied_enabled": false,
+            "purpose": "public"
+          }
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-15T09:58:54.053819+00:00",
+      "command": [
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/lb-api",
+        "call",
+        "-target",
+        "unix:///home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-a.sock",
+        "-service",
+        "TenantEgressService",
+        "-method",
+        "SetVPCSnatEnabled"
+      ],
+      "request": {
+        "binding_id": "snat_c2e679a19be64badbc78877d8323451d",
+        "enabled": true,
+        "expected_version": "54",
+        "idempotency_key": "public-snat-reenable-54"
+      },
+      "exit": 1,
+      "response": {
+        "code": "Unavailable",
+        "status": {
+          "code": 14,
+          "message": "VPC base connectivity is not fresh and ready",
+          "details": [
+            {
+              "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+              "reason": "BASE_CONNECTIVITY_NOT_READY",
+              "domain": "network.ani.io",
+              "metadata": {}
+            }
+          ]
+        }
+      },
+      "stderr": "RPC failed; structured status is in stdout\n"
+    },
+    {
+      "at": "2026-09-15T09:58:59.065987+00:00",
+      "command": [
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/lb-api",
+        "call",
+        "-target",
+        "unix:///home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-a.sock",
+        "-service",
+        "TenantEgressService",
+        "-method",
+        "GetVPCSnatBinding"
+      ],
+      "request": {
+        "binding_id": "snat_c2e679a19be64badbc78877d8323451d"
+      },
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "binding": {
+            "id": "snat_c2e679a19be64badbc78877d8323451d",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "eip_id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+            "state": "RESOURCE_STATE_AVAILABLE",
+            "reason": "",
+            "reason_message": "",
+            "version": "54",
+            "created_at": "2026-09-15T09:36:41.450199Z",
+            "updated_at": "2026-09-15T09:58:50.645604Z",
+            "observed_at": "2026-09-15T09:58:44.136905Z",
+            "observation_stale": false,
+            "last_operation_id": "42af9dd5-ac50-4748-aecc-b2af0ef10b4b",
+            "eip_address": "172.16.102.195",
+            "desired_enabled": false,
+            "applied_enabled": false,
+            "purpose": "public"
+          }
+        }
+      },
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-15T09:58:59.086828+00:00",
+      "command": [
+        "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/lb-api",
+        "call",
+        "-target",
+        "unix:///home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-a.sock",
+        "-service",
+        "TenantEgressService",
+        "-method",
+        "SetVPCSnatEnabled"
+      ],
+      "request": {
+        "binding_id": "snat_c2e679a19be64badbc78877d8323451d",
+        "enabled": true,
+        "expected_version": "54",
+        "idempotency_key": "public-snat-reenable-54"
+      },
+      "exit": 0,
+      "response": {
+        "code": "OK",
+        "response": {
+          "binding": {
+            "id": "snat_c2e679a19be64badbc78877d8323451d",
+            "tenant_id": "d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+            "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+            "eip_id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "",
+            "reason_message": "",
+            "version": "55",
+            "created_at": "2026-09-15T09:36:41.450199Z",
+            "updated_at": "2026-09-15T09:58:59.081444Z",
+            "observed_at": "2026-09-15T09:58:44.136905Z",
+            "observation_stale": true,
+            "last_operation_id": "51880c18-4664-49cc-b901-56a065aeb110",
+            "eip_address": "172.16.102.195",
+            "desired_enabled": true,
+            "purpose": "public"
+          }
+        }
+      },
+      "stderr": ""
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "at": "2026-09-15T05:15:36.238424+00:00",
+  "result": "fail as intended",
+  "run": "20260915T051330Z-1c5ed07e",
+  "archive_sha256": "3f2e667939c907cd46b77e6935a4a522862cd4114823fdee4ed70629a1553e5e",
+  "command": [
+    "go",
+    "test",
+    "-race",
+    "./internal/data",
+    "-run",
+    "^TestAuditCandidateHashIgnoresListOrderButPreservesFacts$",
+    "-count=1",
+    "-v"
+  ],
+  "exit": 1,
+  "log": "candidate-hash-red-command.txt",
+  "failure": "Identical complete object set in different List order yields different evidence hash and fails to cover previously applied facts. UID/resourceVersion/address change negatives already pass.",
+  "live_context": "private-zero-a-assessment.json",
+  "limits": "Proves source defect; causal contribution to live flapping requires candidate deployment and repeated observation."
+}

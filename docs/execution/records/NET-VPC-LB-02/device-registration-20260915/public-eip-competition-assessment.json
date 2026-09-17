@@ -1,0 +1,23 @@
+{
+  "at": "2026-09-15T10:03:12.724470+00:00",
+  "result": "pass",
+  "scope": "live product API exclusive EIP occupancy in both first-owner orders",
+  "cases": [
+    {
+      "first": "LoadBalancer",
+      "second": "Public SNAT",
+      "eip": "172.16.102.194",
+      "evidence": "public-lb-first-snat-rejected.json"
+    },
+    {
+      "first": "Public SNAT",
+      "second": "LoadBalancer",
+      "eip": "172.16.102.195",
+      "evidence": "public-snat-first-lb-rejected.json"
+    }
+  ],
+  "limitations": [
+    "These live calls are sequential ownership-order cases. Real concurrent transactions are covered separately by required PostgreSQL integration tests.",
+    "Generic retry helper marks a non-OK response fail; EIP_IN_USE is the expected rejection in both cases."
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "at": "2026-09-17T11:29:25.488788+00:00",
+  "command": [
+    "/home/chabking/workspace/ani-network-service-runs/lb-health-e2e-20260917/private/runtime/bin/lb-api",
+    "call",
+    "-target",
+    "unix:///home/chabking/.local/state/lbhp0917/sockets/tenant-a.sock",
+    "-service",
+    "NetworkService",
+    "-method",
+    "GetAttachment"
+  ],
+  "completed_at": "2026-09-17T11:29:25.499757+00:00",
+  "exit": 0,
+  "phase": "create-lbs",
+  "request": {
+    "attachment_id": "att_c948bdb059a24bc29bc8011e6d7b1659",
+    "tenant_id": "3c8a15c8-b679-4af8-a9fa-ca3703a1609f"
+  },
+  "stderr": "",
+  "stdout": "{\"code\":\"OK\",\"response\":{\"attachment\":{\"id\":\"att_c948bdb059a24bc29bc8011e6d7b1659\",\"tenant_id\":\"3c8a15c8-b679-4af8-a9fa-ca3703a1609f\",\"vpc_id\":\"vpc_2a9a072c542c4ceea744cba5eb17130f\",\"subnet_id\":\"subnet_f62092f8d80046cab425c122e9da2684\",\"instance_id\":\"77e3382a-8783-4ac6-bb95-be31adb4edb9\",\"slot\":\"primary\",\"submission_id\":\"31ebc542-e48b-416e-907c-86f428d7ceb0\",\"generation\":\"1\",\"cluster_id\":\"lbhealth-0917\",\"namespace\":\"lbhp-3c8a15c8-b679-4af8-a9fa-ca3703a1609f\",\"binding_revision\":\"0838aca3-f11c-4cf2-848a-407ffad478fe:761f4283-743a-44b9-883c-6a452167eca1\",\"state\":\"ATTACHMENT_STATE_ATTACHED\",\"reason\":\"\",\"version\":\"11\",\"pod_primary\":{\"format_version\":1,\"namespace\":\"lbhp-3c8a15c8-b679-4af8-a9fa-ca3703a1609f\",\"subnet_annotation\":\"lbhp-3c8a15c8-b679-4af8-a9fa-ca3703a1609f/subnet-f62092f8d80046cab425c122e9da2684\",\"labels\":{\"tenant_id\":\"3c8a15c8-b679-4af8-a9fa-ca3703a1609f\",\"instance_id\":\"77e3382a-8783-4ac6-bb95-be31adb4edb9\",\"attachment_id\":\"att_c948bdb059a24bc29bc8011e6d7b1659\",\"submission_id\":\"31ebc542-e48b-416e-907c-86f428d7ceb0\",\"generation\":\"1\"}},\"pod_name\":\"lbhealth-0917-backend-b\",\"pod_uid\":\"2e679af6-a593-4b7b-a34d-ea60e636b07c\",\"consumer_finalization_id\":\"\",\"created_at\":\"2026-09-17T11:28:08.837738Z\",\"updated_at\":\"2026-09-17T11:29:22.449237Z\",\"observed_at\":\"2026-09-17T11:29:17.938915Z\",\"released_at\":null}}}\n",
+  "step": "lbs"
+}

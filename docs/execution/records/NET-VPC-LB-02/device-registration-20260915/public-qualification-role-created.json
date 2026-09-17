@@ -1,0 +1,133 @@
+{
+  "at": "2026-09-15T08:24:19.228216+00:00",
+  "command": [
+    "ssh",
+    "-F",
+    "/home/chabking/.ssh/config",
+    "-o",
+    "BatchMode=yes",
+    "ani-test-1",
+    "sudo -n /usr/local/bin/kubectl --kubeconfig /etc/kubernetes/admin.conf --context kubernetes-admin@ani-platform --request-timeout=20s create -f - -o json"
+  ],
+  "request": {
+    "apiVersion": "rbac.authorization.k8s.io/v1",
+    "kind": "Role",
+    "metadata": {
+      "name": "lb02-2b3122-public-probe-owner",
+      "namespace": "lb02-09141908-2b3122",
+      "labels": {
+        "network.ani.io/test-run": "lb02-09141908-2b3122"
+      }
+    },
+    "rules": [
+      {
+        "apiGroups": [
+          ""
+        ],
+        "resources": [
+          "pods"
+        ],
+        "verbs": [
+          "create"
+        ]
+      },
+      {
+        "apiGroups": [
+          ""
+        ],
+        "resources": [
+          "pods"
+        ],
+        "resourceNames": [
+          "lb02-2b3122-public-probe-a",
+          "lb02-2b3122-public-probe-b",
+          "lb02-2b3122-outside-observer"
+        ],
+        "verbs": [
+          "get",
+          "delete"
+        ]
+      },
+      {
+        "apiGroups": [
+          ""
+        ],
+        "resources": [
+          "pods/exec"
+        ],
+        "resourceNames": [
+          "lb02-2b3122-public-probe-a",
+          "lb02-2b3122-public-probe-b",
+          "lb02-2b3122-outside-observer"
+        ],
+        "verbs": [
+          "get",
+          "create"
+        ]
+      }
+    ]
+  },
+  "exit": 0,
+  "object": {
+    "apiVersion": "rbac.authorization.k8s.io/v1",
+    "kind": "Role",
+    "metadata": {
+      "creationTimestamp": "2026-09-15T08:24:19Z",
+      "labels": {
+        "network.ani.io/test-run": "lb02-09141908-2b3122"
+      },
+      "name": "lb02-2b3122-public-probe-owner",
+      "namespace": "lb02-09141908-2b3122",
+      "resourceVersion": "348377",
+      "uid": "63cd5df5-528d-4f67-890b-537702442649"
+    },
+    "rules": [
+      {
+        "apiGroups": [
+          ""
+        ],
+        "resources": [
+          "pods"
+        ],
+        "verbs": [
+          "create"
+        ]
+      },
+      {
+        "apiGroups": [
+          ""
+        ],
+        "resourceNames": [
+          "lb02-2b3122-public-probe-a",
+          "lb02-2b3122-public-probe-b",
+          "lb02-2b3122-outside-observer"
+        ],
+        "resources": [
+          "pods"
+        ],
+        "verbs": [
+          "get",
+          "delete"
+        ]
+      },
+      {
+        "apiGroups": [
+          ""
+        ],
+        "resourceNames": [
+          "lb02-2b3122-public-probe-a",
+          "lb02-2b3122-public-probe-b",
+          "lb02-2b3122-outside-observer"
+        ],
+        "resources": [
+          "pods/exec"
+        ],
+        "verbs": [
+          "get",
+          "create"
+        ]
+      }
+    ]
+  },
+  "stderr": ""
+}

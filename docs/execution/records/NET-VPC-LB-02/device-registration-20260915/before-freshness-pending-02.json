@@ -1,0 +1,12 @@
+{
+  "at": "2026-09-15T04:37:05.723880+00:00",
+  "execution_host": "ubuntu",
+  "transport_exit": 0,
+  "result": {
+    "query": "SELECT 'tenant' AS scope,resource_kind,provider_name,pending_action,pending_since FROM network_provider_bindings WHERE pending_action<>''; SELECT 'lb' AS scope,kind,provider_name,pending_action,pending_since FROM network_lb_components WHERE pending_action<>'';",
+    "exit": 0,
+    "stdout": "BEGIN\nROLLBACK\n",
+    "stderr": ""
+  },
+  "stderr": ""
+}

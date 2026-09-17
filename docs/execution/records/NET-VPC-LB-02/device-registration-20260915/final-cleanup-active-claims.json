@@ -1,0 +1,12 @@
+{
+  "at": "2026-09-15T14:56:11.043165+00:00",
+  "execution_host": "ubuntu",
+  "transport_exit": 0,
+  "result": {
+    "query": "SELECT json_build_object('active_vip_intents',(SELECT count(*) FROM network_lb_vip_intents WHERE released_at IS NULL),'historical_vip_intents',(SELECT count(*) FROM network_lb_vip_intents WHERE released_at IS NOT NULL),'active_subnet_refs',(SELECT count(*) FROM network_lb_subnet_refs WHERE released_at IS NULL),'historical_subnet_refs',(SELECT count(*) FROM network_lb_subnet_refs WHERE released_at IS NOT NULL),'remaining_platform',(SELECT json_agg(json_build_object('id',resource_id,'kind',kind,'state',state,'reason',reason)) FROM network_platform_resources WHERE state<>'deleted'));",
+    "exit": 0,
+    "stdout": "BEGIN\n{\"active_vip_intents\" : 0, \"historical_vip_intents\" : 4, \"active_subnet_refs\" : 0, \"historical_subnet_refs\" : 10, \"remaining_platform\" : [{\"id\" : \"device_3290174cfb644473b5b5e260bcea085c\", \"kind\" : \"device\", \"state\" : \"available\", \"reason\" : \"\"}]}\nROLLBACK\n",
+    "stderr": ""
+  },
+  "stderr": ""
+}

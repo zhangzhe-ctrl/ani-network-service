@@ -1,0 +1,17 @@
+{
+  "at": "2026-09-15T13:05:20.285803+00:00",
+  "execution_host": "ubuntu",
+  "source_run": "20260915T130424Z-9a9e53b3",
+  "archive_sha256": "230f3bf6f97cf75bf4678057511501765cf4143c428bd961a9b7e49e1fbd67ad",
+  "manifest_sha256": "746a514283534dfa98c3cd95520f6b50748280768fe89a88030436dc0f5f642a",
+  "command": [
+    "bash",
+    "-e",
+    "-c",
+    "validation_tmp=$(mktemp -d /var/tmp/nlb2.XXXXXX); chmod 700 \"$validation_tmp\"; export TMPDIR=\"$validation_tmp\"; scripts/integration ./internal/data -run \"^TestAttachmentFinishesFreshAuditAfterConsecutiveWatchBoundaries$\" -timeout 2m -json"
+  ],
+  "conclusion": "Resource guard exited 75 before tests: disk free 21454020608 bytes, below 20 GiB. No test verdict. Recover task-owned terminal artifacts to verified local storage before another remote run.",
+  "test_results": [],
+  "log": "attachment-retry-resource-stop-command.txt",
+  "log_sha256": "ac841ee564d54710b6abce79ee5bc7de61641ecccf6620b389d38565dc4bc73e"
+}

@@ -1,0 +1,79 @@
+{
+  "at": "2026-09-15T10:07:50.270187+00:00",
+  "source_run": "20260915T074304Z-31ea8959",
+  "result": "pass",
+  "scope": "Public SNAT enable, disable, re-enable, unbind preserve base identities and sampled private/intranet traffic",
+  "binding_id": "snat_c2e679a19be64badbc78877d8323451d",
+  "phases": [
+    {
+      "phase": "enabled",
+      "private_vip": "private-vip-public-snat-enabled-assessment.json",
+      "intranet": "base-intranet-public-snat-enabled.json",
+      "provider": "public-snat-enabled-provider.json",
+      "vip_requests": 12,
+      "base_checks": 8
+    },
+    {
+      "phase": "disabled",
+      "private_vip": "private-vip-public-snat-disabled-assessment.json",
+      "intranet": "base-intranet-public-snat-disabled.json",
+      "provider": "public-snat-disabled-provider.json",
+      "vip_requests": 12,
+      "base_checks": 8
+    },
+    {
+      "phase": "reenabled",
+      "private_vip": "private-vip-public-snat-reenabled-assessment.json",
+      "intranet": "base-intranet-public-snat-reenabled.json",
+      "provider": "public-snat-reenabled-provider.json",
+      "vip_requests": 12,
+      "base_checks": 8
+    },
+    {
+      "phase": "unbound",
+      "private_vip": "private-vip-public-snat-unbound-assessment.json",
+      "intranet": "base-intranet-public-snat-unbound.json",
+      "provider": "public-snat-unbound-provider.json",
+      "vip_requests": 12,
+      "base_checks": 8
+    }
+  ],
+  "configuration_evidence": [
+    "public-snat-ready.json",
+    "public-snat-disabled-ready.json",
+    "public-snat-reenabled-ready.json",
+    "public-snat-unbound-ready.json"
+  ],
+  "base_provider_uids_by_phase": {
+    "enabled": {
+      "vpc-d06f28e82fe847f7bf2cedd57dad82f4": "a4e27d33-c63b-459c-a939-16e61b9c19de",
+      "eip-c428922594b94429a405305c6c781897": "9c33ae20-a87e-4810-b141-f968c68c9f50",
+      "snat-3cbc9e4d07b44c0291a541d50bd4b43e": "5f639975-62af-4f31-bc3e-fc781657ae1f"
+    },
+    "disabled": {
+      "vpc-d06f28e82fe847f7bf2cedd57dad82f4": "a4e27d33-c63b-459c-a939-16e61b9c19de",
+      "eip-c428922594b94429a405305c6c781897": "9c33ae20-a87e-4810-b141-f968c68c9f50",
+      "snat-3cbc9e4d07b44c0291a541d50bd4b43e": "5f639975-62af-4f31-bc3e-fc781657ae1f"
+    },
+    "reenabled": {
+      "vpc-d06f28e82fe847f7bf2cedd57dad82f4": "a4e27d33-c63b-459c-a939-16e61b9c19de",
+      "eip-c428922594b94429a405305c6c781897": "9c33ae20-a87e-4810-b141-f968c68c9f50",
+      "snat-3cbc9e4d07b44c0291a541d50bd4b43e": "5f639975-62af-4f31-bc3e-fc781657ae1f"
+    },
+    "unbound": {
+      "vpc-d06f28e82fe847f7bf2cedd57dad82f4": "a4e27d33-c63b-459c-a939-16e61b9c19de",
+      "eip-c428922594b94429a405305c6c781897": "9c33ae20-a87e-4810-b141-f968c68c9f50",
+      "snat-3cbc9e4d07b44c0291a541d50bd4b43e": "5f639975-62af-4f31-bc3e-fc781657ae1f"
+    }
+  },
+  "original_public_eip_uid_preserved": "92c89380-ef23-46a1-bb4c-ec6c15c640cb",
+  "public_snat_provider_absent_after_unbind": true,
+  "additional_transition_samples": [
+    "private-vip-public-snat-disabling-assessment.json",
+    "private-vip-public-snat-unbinding-assessment.json"
+  ],
+  "limitations": [
+    "Finite samples before and after phase completion, not a gapless availability guarantee.",
+    "Actual translated Public egress remains fail in both source probes; this pass applies only to isolation and lifecycle."
+  ]
+}

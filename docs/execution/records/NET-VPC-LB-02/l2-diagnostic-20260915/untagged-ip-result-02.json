@@ -1,0 +1,803 @@
+{
+  "at": "2026-09-15T01:03:27.906061+00:00",
+  "command": [
+    "ssh",
+    "-F",
+    "/home/chabking/.ssh/config",
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "ConnectTimeout=8",
+    "ani-test-1",
+    "sudo -n python3 -"
+  ],
+  "script_sha256": "39c6d22e5d5b7775079b313c624e7c60ef46a412b1a2096b7fd425be03aeed72",
+  "exit_code": 1,
+  "stderr": "",
+  "evidence": {
+    "at": "2026-09-15T01:03:21.525469+00:00",
+    "source": "172.16.102.200",
+    "device": "ens35",
+    "bridge": "br-ens35",
+    "commands": [
+      {
+        "argv": [
+          "/usr/local/bin/kubectl",
+          "--kubeconfig",
+          "/etc/kubernetes/admin.conf",
+          "--context",
+          "kubernetes-admin@ani-platform",
+          "get",
+          "namespace",
+          "kube-system",
+          "-o",
+          "jsonpath={.metadata.uid}"
+        ],
+        "exit_code": 0,
+        "stdout": "be57b911-892c-4e75-aa9d-4a05d819c59e",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "ip",
+          "-j",
+          "-d",
+          "addr",
+          "show",
+          "dev",
+          "ens35"
+        ],
+        "exit_code": 0,
+        "stdout": "[{\"ifindex\":3,\"ifname\":\"ens35\",\"flags\":[\"BROADCAST\",\"MULTICAST\",\"UP\",\"LOWER_UP\"],\"mtu\":1500,\"qdisc\":\"mq\",\"master\":\"ovs-system\",\"operstate\":\"UP\",\"group\":\"default\",\"txqlen\":1000,\"link_type\":\"ether\",\"address\":\"00:0c:29:e2:f0:2b\",\"broadcast\":\"ff:ff:ff:ff:ff:ff\",\"promiscuity\":1,\"allmulti\":0,\"min_mtu\":60,\"max_mtu\":9190,\"linkinfo\":{\"info_slave_kind\":\"openvswitch\"},\"num_tx_queues\":16,\"num_rx_queues\":16,\"gso_max_size\":65536,\"gso_max_segs\":65535,\"tso_max_size\":65536,\"tso_max_segs\":65535,\"gro_max_size\":65536,\"parentbus\":\"pci\",\"parentdev\":\"0000:02:03.0\",\"altnames\":[\"enp2s3\"],\"addr_info\":[]}]\n",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "ip",
+          "-j",
+          "-d",
+          "addr",
+          "show",
+          "dev",
+          "br-ens35"
+        ],
+        "exit_code": 0,
+        "stdout": "[{\"ifindex\":9,\"ifname\":\"br-ens35\",\"flags\":[\"BROADCAST\",\"MULTICAST\"],\"mtu\":1500,\"qdisc\":\"noop\",\"operstate\":\"DOWN\",\"group\":\"default\",\"txqlen\":1000,\"link_type\":\"ether\",\"address\":\"00:0c:29:e2:f0:2b\",\"broadcast\":\"ff:ff:ff:ff:ff:ff\",\"promiscuity\":1,\"allmulti\":0,\"min_mtu\":68,\"max_mtu\":65535,\"linkinfo\":{\"info_kind\":\"openvswitch\"},\"num_tx_queues\":1,\"num_rx_queues\":1,\"gso_max_size\":65536,\"gso_max_segs\":65535,\"tso_max_size\":65536,\"tso_max_segs\":65535,\"gro_max_size\":65536,\"addr_info\":[]}]\n",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "ip",
+          "-j",
+          "-d",
+          "link",
+          "show",
+          "dev",
+          "br-ens35"
+        ],
+        "exit_code": 0,
+        "stdout": "[{\"ifindex\":9,\"ifname\":\"br-ens35\",\"flags\":[\"BROADCAST\",\"MULTICAST\"],\"mtu\":1500,\"qdisc\":\"noop\",\"operstate\":\"DOWN\",\"linkmode\":\"DEFAULT\",\"group\":\"default\",\"txqlen\":1000,\"link_type\":\"ether\",\"address\":\"00:0c:29:e2:f0:2b\",\"broadcast\":\"ff:ff:ff:ff:ff:ff\",\"promiscuity\":1,\"allmulti\":0,\"min_mtu\":68,\"max_mtu\":65535,\"linkinfo\":{\"info_kind\":\"openvswitch\"},\"inet6_addr_gen_mode\":\"eui64\",\"num_tx_queues\":1,\"num_rx_queues\":1,\"gso_max_size\":65536,\"gso_max_segs\":65535,\"tso_max_size\":65536,\"tso_max_segs\":65535,\"gro_max_size\":65536}]\n",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "ip",
+          "-j",
+          "route",
+          "show"
+        ],
+        "exit_code": 0,
+        "stdout": "[{\"dst\":\"default\",\"gateway\":\"172.16.101.1\",\"dev\":\"ens34\",\"protocol\":\"static\",\"flags\":[]},{\"dst\":\"10.16.0.0/16\",\"gateway\":\"100.64.0.1\",\"dev\":\"ovn0\",\"prefsrc\":\"100.64.0.2\",\"flags\":[]},{\"dst\":\"10.242.252.0/24\",\"gateway\":\"100.64.0.1\",\"dev\":\"ovn0\",\"prefsrc\":\"100.64.0.2\",\"flags\":[]},{\"dst\":\"100.64.0.0/17\",\"dev\":\"ovn0\",\"scope\":\"link\",\"flags\":[]},{\"dst\":\"100.64.128.0/17\",\"dev\":\"ovn0\",\"scope\":\"link\",\"flags\":[]},{\"dst\":\"172.16.101.0/24\",\"dev\":\"ens34\",\"protocol\":\"kernel\",\"scope\":\"link\",\"prefsrc\":\"172.16.101.10\",\"flags\":[]},{\"dst\":\"172.16.202.0/24\",\"dev\":\"ens36\",\"protocol\":\"kernel\",\"scope\":\"link\",\"prefsrc\":\"172.16.202.10\",\"flags\":[]}]\n",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "/usr/local/bin/kubectl",
+          "--kubeconfig",
+          "/etc/kubernetes/admin.conf",
+          "--context",
+          "kubernetes-admin@ani-platform",
+          "-n",
+          "kcn-system",
+          "exec",
+          "kcn-ovs-ds-7hfv8",
+          "-c",
+          "openvswitch",
+          "--",
+          "ovs-vsctl",
+          "--format=json",
+          "--columns=name,tag,trunks,vlan_mode",
+          "list",
+          "Port",
+          "ens35",
+          "br-ens35"
+        ],
+        "exit_code": 0,
+        "stdout": "{\"data\":[[\"ens35\",[\"set\",[]],[\"set\",[]],[\"set\",[]]],[\"br-ens35\",[\"set\",[]],[\"set\",[]],[\"set\",[]]]],\"headings\":[\"name\",\"tag\",\"trunks\",\"vlan_mode\"]}\n",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "ip",
+          "link",
+          "set",
+          "dev",
+          "br-ens35",
+          "addrgenmode",
+          "none"
+        ],
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "ip",
+          "addr",
+          "add",
+          "172.16.102.200/24",
+          "dev",
+          "br-ens35",
+          "label",
+          "br-ens35:lb02"
+        ],
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "ip",
+          "link",
+          "set",
+          "dev",
+          "br-ens35",
+          "up"
+        ],
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "ip",
+          "-j",
+          "addr",
+          "show",
+          "dev",
+          "br-ens35"
+        ],
+        "exit_code": 0,
+        "stdout": "[{\"ifindex\":9,\"ifname\":\"br-ens35\",\"flags\":[\"BROADCAST\",\"MULTICAST\",\"UP\",\"LOWER_UP\"],\"mtu\":1500,\"qdisc\":\"noqueue\",\"operstate\":\"UNKNOWN\",\"group\":\"default\",\"txqlen\":1000,\"link_type\":\"ether\",\"address\":\"00:0c:29:e2:f0:2b\",\"broadcast\":\"ff:ff:ff:ff:ff:ff\",\"addr_info\":[{\"family\":\"inet\",\"local\":\"172.16.102.200\",\"prefixlen\":24,\"scope\":\"global\",\"label\":\"br-ens35:lb02\",\"valid_life_time\":4294967295,\"preferred_life_time\":4294967295}]}]\n",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "ip",
+          "-j",
+          "route",
+          "get",
+          "172.16.102.30",
+          "from",
+          "172.16.102.200"
+        ],
+        "exit_code": 0,
+        "stdout": "[{\"dst\":\"172.16.102.30\",\"from\":\"172.16.102.200\",\"dev\":\"br-ens35\",\"flags\":[],\"uid\":0,\"cache\":[]}]\n",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "ping",
+          "-n",
+          "-I",
+          "172.16.102.200",
+          "-c",
+          "3",
+          "-i",
+          "0.3",
+          "-W",
+          "1",
+          "172.16.102.1"
+        ],
+        "exit_code": 0,
+        "stdout": "PING 172.16.102.1 (172.16.102.1) from 172.16.102.200 : 56(84) bytes of data.\n64 bytes from 172.16.102.1: icmp_seq=1 ttl=64 time=3.25 ms\n64 bytes from 172.16.102.1: icmp_seq=2 ttl=64 time=1.66 ms\n64 bytes from 172.16.102.1: icmp_seq=3 ttl=64 time=1.17 ms\n\n--- 172.16.102.1 ping statistics ---\n3 packets transmitted, 3 received, 0% packet loss, time 602ms\nrtt min/avg/max/mdev = 1.174/2.027/3.247/0.884 ms\n",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "ping",
+          "-n",
+          "-I",
+          "172.16.102.200",
+          "-c",
+          "3",
+          "-i",
+          "0.3",
+          "-W",
+          "1",
+          "172.16.102.30"
+        ],
+        "exit_code": 1,
+        "stdout": "PING 172.16.102.30 (172.16.102.30) from 172.16.102.200 : 56(84) bytes of data.\n\n--- 172.16.102.30 ping statistics ---\n3 packets transmitted, 0 received, 100% packet loss, time 606ms\n\n",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "ip",
+          "-j",
+          "neigh",
+          "show",
+          "dev",
+          "br-ens35"
+        ],
+        "exit_code": 0,
+        "stdout": "[{\"dst\":\"172.16.102.1\",\"lladdr\":\"00:1e:08:2f:bb:17\",\"state\":[\"REACHABLE\"]},{\"dst\":\"172.16.102.30\",\"state\":[\"FAILED\"]}]\n",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "ip",
+          "addr",
+          "del",
+          "172.16.102.200/24",
+          "dev",
+          "br-ens35"
+        ],
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "ip",
+          "link",
+          "set",
+          "dev",
+          "br-ens35",
+          "down"
+        ],
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "ip",
+          "link",
+          "set",
+          "dev",
+          "br-ens35",
+          "addrgenmode",
+          "eui64"
+        ],
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "ip",
+          "-j",
+          "-d",
+          "addr",
+          "show",
+          "dev",
+          "ens35"
+        ],
+        "exit_code": 0,
+        "stdout": "[{\"ifindex\":3,\"ifname\":\"ens35\",\"flags\":[\"BROADCAST\",\"MULTICAST\",\"UP\",\"LOWER_UP\"],\"mtu\":1500,\"qdisc\":\"mq\",\"master\":\"ovs-system\",\"operstate\":\"UP\",\"group\":\"default\",\"txqlen\":1000,\"link_type\":\"ether\",\"address\":\"00:0c:29:e2:f0:2b\",\"broadcast\":\"ff:ff:ff:ff:ff:ff\",\"promiscuity\":1,\"allmulti\":0,\"min_mtu\":60,\"max_mtu\":9190,\"linkinfo\":{\"info_slave_kind\":\"openvswitch\"},\"num_tx_queues\":16,\"num_rx_queues\":16,\"gso_max_size\":65536,\"gso_max_segs\":65535,\"tso_max_size\":65536,\"tso_max_segs\":65535,\"gro_max_size\":65536,\"parentbus\":\"pci\",\"parentdev\":\"0000:02:03.0\",\"altnames\":[\"enp2s3\"],\"addr_info\":[]}]\n",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "ip",
+          "-j",
+          "-d",
+          "addr",
+          "show",
+          "dev",
+          "br-ens35"
+        ],
+        "exit_code": 0,
+        "stdout": "[{\"ifindex\":9,\"ifname\":\"br-ens35\",\"flags\":[\"BROADCAST\",\"MULTICAST\"],\"mtu\":1500,\"qdisc\":\"noqueue\",\"operstate\":\"DOWN\",\"group\":\"default\",\"txqlen\":1000,\"link_type\":\"ether\",\"address\":\"00:0c:29:e2:f0:2b\",\"broadcast\":\"ff:ff:ff:ff:ff:ff\",\"promiscuity\":1,\"allmulti\":0,\"min_mtu\":68,\"max_mtu\":65535,\"linkinfo\":{\"info_kind\":\"openvswitch\"},\"num_tx_queues\":1,\"num_rx_queues\":1,\"gso_max_size\":65536,\"gso_max_segs\":65535,\"tso_max_size\":65536,\"tso_max_segs\":65535,\"gro_max_size\":65536,\"addr_info\":[]}]\n",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "ip",
+          "-j",
+          "-d",
+          "link",
+          "show",
+          "dev",
+          "br-ens35"
+        ],
+        "exit_code": 0,
+        "stdout": "[{\"ifindex\":9,\"ifname\":\"br-ens35\",\"flags\":[\"BROADCAST\",\"MULTICAST\"],\"mtu\":1500,\"qdisc\":\"noqueue\",\"operstate\":\"DOWN\",\"linkmode\":\"DEFAULT\",\"group\":\"default\",\"txqlen\":1000,\"link_type\":\"ether\",\"address\":\"00:0c:29:e2:f0:2b\",\"broadcast\":\"ff:ff:ff:ff:ff:ff\",\"promiscuity\":1,\"allmulti\":0,\"min_mtu\":68,\"max_mtu\":65535,\"linkinfo\":{\"info_kind\":\"openvswitch\"},\"inet6_addr_gen_mode\":\"eui64\",\"num_tx_queues\":1,\"num_rx_queues\":1,\"gso_max_size\":65536,\"gso_max_segs\":65535,\"tso_max_size\":65536,\"tso_max_segs\":65535,\"gro_max_size\":65536}]\n",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "ip",
+          "-j",
+          "route",
+          "show"
+        ],
+        "exit_code": 0,
+        "stdout": "[{\"dst\":\"default\",\"gateway\":\"172.16.101.1\",\"dev\":\"ens34\",\"protocol\":\"static\",\"flags\":[]},{\"dst\":\"10.16.0.0/16\",\"gateway\":\"100.64.0.1\",\"dev\":\"ovn0\",\"prefsrc\":\"100.64.0.2\",\"flags\":[]},{\"dst\":\"10.242.252.0/24\",\"gateway\":\"100.64.0.1\",\"dev\":\"ovn0\",\"prefsrc\":\"100.64.0.2\",\"flags\":[]},{\"dst\":\"100.64.0.0/17\",\"dev\":\"ovn0\",\"scope\":\"link\",\"flags\":[]},{\"dst\":\"100.64.128.0/17\",\"dev\":\"ovn0\",\"scope\":\"link\",\"flags\":[]},{\"dst\":\"172.16.101.0/24\",\"dev\":\"ens34\",\"protocol\":\"kernel\",\"scope\":\"link\",\"prefsrc\":\"172.16.101.10\",\"flags\":[]},{\"dst\":\"172.16.202.0/24\",\"dev\":\"ens36\",\"protocol\":\"kernel\",\"scope\":\"link\",\"prefsrc\":\"172.16.202.10\",\"flags\":[]}]\n",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "/usr/local/bin/kubectl",
+          "--kubeconfig",
+          "/etc/kubernetes/admin.conf",
+          "--context",
+          "kubernetes-admin@ani-platform",
+          "-n",
+          "kcn-system",
+          "exec",
+          "kcn-ovs-ds-7hfv8",
+          "-c",
+          "openvswitch",
+          "--",
+          "ovs-vsctl",
+          "--format=json",
+          "--columns=name,tag,trunks,vlan_mode",
+          "list",
+          "Port",
+          "ens35",
+          "br-ens35"
+        ],
+        "exit_code": 0,
+        "stdout": "{\"data\":[[\"ens35\",[\"set\",[]],[\"set\",[]],[\"set\",[]]],[\"br-ens35\",[\"set\",[]],[\"set\",[]],[\"set\",[]]]],\"headings\":[\"name\",\"tag\",\"trunks\",\"vlan_mode\"]}\n",
+        "stderr": ""
+      }
+    ],
+    "before": {
+      "physical": [
+        {
+          "ifindex": 3,
+          "ifname": "ens35",
+          "flags": [
+            "BROADCAST",
+            "MULTICAST",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1500,
+          "qdisc": "mq",
+          "master": "ovs-system",
+          "operstate": "UP",
+          "group": "default",
+          "txqlen": 1000,
+          "link_type": "ether",
+          "address": "00:0c:29:e2:f0:2b",
+          "broadcast": "ff:ff:ff:ff:ff:ff",
+          "promiscuity": 1,
+          "allmulti": 0,
+          "min_mtu": 60,
+          "max_mtu": 9190,
+          "linkinfo": {
+            "info_slave_kind": "openvswitch"
+          },
+          "num_tx_queues": 16,
+          "num_rx_queues": 16,
+          "gso_max_size": 65536,
+          "gso_max_segs": 65535,
+          "tso_max_size": 65536,
+          "tso_max_segs": 65535,
+          "gro_max_size": 65536,
+          "parentbus": "pci",
+          "parentdev": "0000:02:03.0",
+          "altnames": [
+            "enp2s3"
+          ],
+          "addr_info": []
+        }
+      ],
+      "bridge": [
+        {
+          "ifindex": 9,
+          "ifname": "br-ens35",
+          "flags": [
+            "BROADCAST",
+            "MULTICAST"
+          ],
+          "mtu": 1500,
+          "qdisc": "noop",
+          "operstate": "DOWN",
+          "group": "default",
+          "txqlen": 1000,
+          "link_type": "ether",
+          "address": "00:0c:29:e2:f0:2b",
+          "broadcast": "ff:ff:ff:ff:ff:ff",
+          "promiscuity": 1,
+          "allmulti": 0,
+          "min_mtu": 68,
+          "max_mtu": 65535,
+          "linkinfo": {
+            "info_kind": "openvswitch"
+          },
+          "num_tx_queues": 1,
+          "num_rx_queues": 1,
+          "gso_max_size": 65536,
+          "gso_max_segs": 65535,
+          "tso_max_size": 65536,
+          "tso_max_segs": 65535,
+          "gro_max_size": 65536,
+          "addr_info": []
+        }
+      ],
+      "bridge_link": [
+        {
+          "ifindex": 9,
+          "ifname": "br-ens35",
+          "flags": [
+            "BROADCAST",
+            "MULTICAST"
+          ],
+          "mtu": 1500,
+          "qdisc": "noop",
+          "operstate": "DOWN",
+          "linkmode": "DEFAULT",
+          "group": "default",
+          "txqlen": 1000,
+          "link_type": "ether",
+          "address": "00:0c:29:e2:f0:2b",
+          "broadcast": "ff:ff:ff:ff:ff:ff",
+          "promiscuity": 1,
+          "allmulti": 0,
+          "min_mtu": 68,
+          "max_mtu": 65535,
+          "linkinfo": {
+            "info_kind": "openvswitch"
+          },
+          "inet6_addr_gen_mode": "eui64",
+          "num_tx_queues": 1,
+          "num_rx_queues": 1,
+          "gso_max_size": 65536,
+          "gso_max_segs": 65535,
+          "tso_max_size": 65536,
+          "tso_max_segs": 65535,
+          "gro_max_size": 65536
+        }
+      ],
+      "routes": [
+        {
+          "dst": "default",
+          "gateway": "172.16.101.1",
+          "dev": "ens34",
+          "protocol": "static",
+          "flags": []
+        },
+        {
+          "dst": "10.16.0.0/16",
+          "gateway": "100.64.0.1",
+          "dev": "ovn0",
+          "prefsrc": "100.64.0.2",
+          "flags": []
+        },
+        {
+          "dst": "10.242.252.0/24",
+          "gateway": "100.64.0.1",
+          "dev": "ovn0",
+          "prefsrc": "100.64.0.2",
+          "flags": []
+        },
+        {
+          "dst": "100.64.0.0/17",
+          "dev": "ovn0",
+          "scope": "link",
+          "flags": []
+        },
+        {
+          "dst": "100.64.128.0/17",
+          "dev": "ovn0",
+          "scope": "link",
+          "flags": []
+        },
+        {
+          "dst": "172.16.101.0/24",
+          "dev": "ens34",
+          "protocol": "kernel",
+          "scope": "link",
+          "prefsrc": "172.16.101.10",
+          "flags": []
+        },
+        {
+          "dst": "172.16.202.0/24",
+          "dev": "ens36",
+          "protocol": "kernel",
+          "scope": "link",
+          "prefsrc": "172.16.202.10",
+          "flags": []
+        }
+      ],
+      "ovs": "{\"data\":[[\"ens35\",[\"set\",[]],[\"set\",[]],[\"set\",[]]],[\"br-ens35\",[\"set\",[]],[\"set\",[]],[\"set\",[]]]],\"headings\":[\"name\",\"tag\",\"trunks\",\"vlan_mode\"]}\n"
+    },
+    "duplicate_address_probe": {
+      "attempts": 3,
+      "conflicts": [],
+      "limit": "no reply is not a DHCP/IPAM reservation"
+    },
+    "configured": [
+      {
+        "ifindex": 9,
+        "ifname": "br-ens35",
+        "flags": [
+          "BROADCAST",
+          "MULTICAST",
+          "UP",
+          "LOWER_UP"
+        ],
+        "mtu": 1500,
+        "qdisc": "noqueue",
+        "operstate": "UNKNOWN",
+        "group": "default",
+        "txqlen": 1000,
+        "link_type": "ether",
+        "address": "00:0c:29:e2:f0:2b",
+        "broadcast": "ff:ff:ff:ff:ff:ff",
+        "addr_info": [
+          {
+            "family": "inet",
+            "local": "172.16.102.200",
+            "prefixlen": 24,
+            "scope": "global",
+            "label": "br-ens35:lb02",
+            "valid_life_time": 4294967295,
+            "preferred_life_time": 4294967295
+          }
+        ]
+      }
+    ],
+    "route_to_vm": [
+      {
+        "dst": "172.16.102.30",
+        "from": "172.16.102.200",
+        "dev": "br-ens35",
+        "flags": [],
+        "uid": 0,
+        "cache": []
+      }
+    ],
+    "ping": {
+      "172.16.102.1": {
+        "exit_code": 0,
+        "stdout": "PING 172.16.102.1 (172.16.102.1) from 172.16.102.200 : 56(84) bytes of data.\n64 bytes from 172.16.102.1: icmp_seq=1 ttl=64 time=3.25 ms\n64 bytes from 172.16.102.1: icmp_seq=2 ttl=64 time=1.66 ms\n64 bytes from 172.16.102.1: icmp_seq=3 ttl=64 time=1.17 ms\n\n--- 172.16.102.1 ping statistics ---\n3 packets transmitted, 3 received, 0% packet loss, time 602ms\nrtt min/avg/max/mdev = 1.174/2.027/3.247/0.884 ms\n"
+      },
+      "172.16.102.30": {
+        "exit_code": 1,
+        "stdout": "PING 172.16.102.30 (172.16.102.30) from 172.16.102.200 : 56(84) bytes of data.\n\n--- 172.16.102.30 ping statistics ---\n3 packets transmitted, 0 received, 100% packet loss, time 606ms\n\n"
+      }
+    },
+    "tcp": {
+      "result": "fail",
+      "error": "[Errno 113] No route to host"
+    },
+    "neighbors": [
+      {
+        "dst": "172.16.102.1",
+        "lladdr": "00:1e:08:2f:bb:17",
+        "state": [
+          "REACHABLE"
+        ]
+      },
+      {
+        "dst": "172.16.102.30",
+        "state": [
+          "FAILED"
+        ]
+      }
+    ],
+    "physical_frames": [
+      {
+        "source": "172.16.102.200",
+        "target": "172.16.102.1",
+        "protocol": 1,
+        "direction": "tx",
+        "vlan": null
+      },
+      {
+        "source": "172.16.102.1",
+        "target": "172.16.102.200",
+        "protocol": 1,
+        "direction": "rx",
+        "vlan": null
+      },
+      {
+        "source": "172.16.102.200",
+        "target": "172.16.102.1",
+        "protocol": 1,
+        "direction": "tx",
+        "vlan": null
+      },
+      {
+        "source": "172.16.102.1",
+        "target": "172.16.102.200",
+        "protocol": 1,
+        "direction": "rx",
+        "vlan": null
+      },
+      {
+        "source": "172.16.102.200",
+        "target": "172.16.102.1",
+        "protocol": 1,
+        "direction": "tx",
+        "vlan": null
+      },
+      {
+        "source": "172.16.102.1",
+        "target": "172.16.102.200",
+        "protocol": 1,
+        "direction": "rx",
+        "vlan": null
+      }
+    ],
+    "traffic_result": "fail",
+    "after": {
+      "physical": [
+        {
+          "ifindex": 3,
+          "ifname": "ens35",
+          "flags": [
+            "BROADCAST",
+            "MULTICAST",
+            "UP",
+            "LOWER_UP"
+          ],
+          "mtu": 1500,
+          "qdisc": "mq",
+          "master": "ovs-system",
+          "operstate": "UP",
+          "group": "default",
+          "txqlen": 1000,
+          "link_type": "ether",
+          "address": "00:0c:29:e2:f0:2b",
+          "broadcast": "ff:ff:ff:ff:ff:ff",
+          "promiscuity": 1,
+          "allmulti": 0,
+          "min_mtu": 60,
+          "max_mtu": 9190,
+          "linkinfo": {
+            "info_slave_kind": "openvswitch"
+          },
+          "num_tx_queues": 16,
+          "num_rx_queues": 16,
+          "gso_max_size": 65536,
+          "gso_max_segs": 65535,
+          "tso_max_size": 65536,
+          "tso_max_segs": 65535,
+          "gro_max_size": 65536,
+          "parentbus": "pci",
+          "parentdev": "0000:02:03.0",
+          "altnames": [
+            "enp2s3"
+          ],
+          "addr_info": []
+        }
+      ],
+      "bridge": [
+        {
+          "ifindex": 9,
+          "ifname": "br-ens35",
+          "flags": [
+            "BROADCAST",
+            "MULTICAST"
+          ],
+          "mtu": 1500,
+          "qdisc": "noqueue",
+          "operstate": "DOWN",
+          "group": "default",
+          "txqlen": 1000,
+          "link_type": "ether",
+          "address": "00:0c:29:e2:f0:2b",
+          "broadcast": "ff:ff:ff:ff:ff:ff",
+          "promiscuity": 1,
+          "allmulti": 0,
+          "min_mtu": 68,
+          "max_mtu": 65535,
+          "linkinfo": {
+            "info_kind": "openvswitch"
+          },
+          "num_tx_queues": 1,
+          "num_rx_queues": 1,
+          "gso_max_size": 65536,
+          "gso_max_segs": 65535,
+          "tso_max_size": 65536,
+          "tso_max_segs": 65535,
+          "gro_max_size": 65536,
+          "addr_info": []
+        }
+      ],
+      "bridge_link": [
+        {
+          "ifindex": 9,
+          "ifname": "br-ens35",
+          "flags": [
+            "BROADCAST",
+            "MULTICAST"
+          ],
+          "mtu": 1500,
+          "qdisc": "noqueue",
+          "operstate": "DOWN",
+          "linkmode": "DEFAULT",
+          "group": "default",
+          "txqlen": 1000,
+          "link_type": "ether",
+          "address": "00:0c:29:e2:f0:2b",
+          "broadcast": "ff:ff:ff:ff:ff:ff",
+          "promiscuity": 1,
+          "allmulti": 0,
+          "min_mtu": 68,
+          "max_mtu": 65535,
+          "linkinfo": {
+            "info_kind": "openvswitch"
+          },
+          "inet6_addr_gen_mode": "eui64",
+          "num_tx_queues": 1,
+          "num_rx_queues": 1,
+          "gso_max_size": 65536,
+          "gso_max_segs": 65535,
+          "tso_max_size": 65536,
+          "tso_max_segs": 65535,
+          "gro_max_size": 65536
+        }
+      ],
+      "routes": [
+        {
+          "dst": "default",
+          "gateway": "172.16.101.1",
+          "dev": "ens34",
+          "protocol": "static",
+          "flags": []
+        },
+        {
+          "dst": "10.16.0.0/16",
+          "gateway": "100.64.0.1",
+          "dev": "ovn0",
+          "prefsrc": "100.64.0.2",
+          "flags": []
+        },
+        {
+          "dst": "10.242.252.0/24",
+          "gateway": "100.64.0.1",
+          "dev": "ovn0",
+          "prefsrc": "100.64.0.2",
+          "flags": []
+        },
+        {
+          "dst": "100.64.0.0/17",
+          "dev": "ovn0",
+          "scope": "link",
+          "flags": []
+        },
+        {
+          "dst": "100.64.128.0/17",
+          "dev": "ovn0",
+          "scope": "link",
+          "flags": []
+        },
+        {
+          "dst": "172.16.101.0/24",
+          "dev": "ens34",
+          "protocol": "kernel",
+          "scope": "link",
+          "prefsrc": "172.16.101.10",
+          "flags": []
+        },
+        {
+          "dst": "172.16.202.0/24",
+          "dev": "ens36",
+          "protocol": "kernel",
+          "scope": "link",
+          "prefsrc": "172.16.202.10",
+          "flags": []
+        }
+      ],
+      "ovs": "{\"data\":[[\"ens35\",[\"set\",[]],[\"set\",[]],[\"set\",[]]],[\"br-ens35\",[\"set\",[]],[\"set\",[]],[\"set\",[]]]],\"headings\":[\"name\",\"tag\",\"trunks\",\"vlan_mode\"]}\n"
+    },
+    "restored": false
+  }
+}

@@ -1,0 +1,87 @@
+{
+    "apiVersion": "networking.kubercloud.com/v1",
+    "kind": "Subnet",
+    "metadata": {
+        "annotations": {
+            "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"networking.kubercloud.com/v1\",\"kind\":\"Subnet\",\"metadata\":{\"annotations\":{},\"labels\":{\"manual.ani.io/run\":\"pubdebug-20260917\"},\"name\":\"pubdebug-20260917-public\",\"namespace\":\"kcn-system\"},\"spec\":{\"allowedNamespaces\":{\"from\":\"Selector\",\"selector\":{\"matchLabels\":{\"manual.ani.io/run\":\"pubdebug-20260917\"}}},\"cidrBlock\":\"172.16.102.0/24\",\"enableDHCP\":false,\"excludeIPs\":[\"172.16.102.1..172.16.102.191\",\"172.16.102.208..172.16.102.254\"],\"gateway\":\"pubdebug-20260917-egress\",\"gatewayIP\":\"172.16.102.2\",\"ipVersion\":\"IPv4\",\"natOutgoing\":false,\"type\":\"Public\",\"underlayConfig\":{\"gatewayIP\":\"172.16.102.1\",\"vlanNetwork\":\"pubdebug-20260917-vlan0\"}}}\n"
+        },
+        "creationTimestamp": "2026-09-17T02:30:57Z",
+        "finalizers": [
+            "networking.kubercloud.com/finalizer"
+        ],
+        "generation": 1,
+        "labels": {
+            "manual.ani.io/run": "pubdebug-20260917",
+            "networking.kubercloud.com/gateway": "kcn-system.pubdebug-20260917-public"
+        },
+        "name": "pubdebug-20260917-public",
+        "namespace": "kcn-system",
+        "resourceVersion": "1092201",
+        "uid": "39619c25-703e-4db2-a35a-d44ee2acb780"
+    },
+    "spec": {
+        "allowedNamespaces": {
+            "from": "Selector",
+            "selector": {
+                "matchLabels": {
+                    "manual.ani.io/run": "pubdebug-20260917"
+                }
+            }
+        },
+        "cidrBlock": "172.16.102.0/24",
+        "enableDHCP": false,
+        "excludeIPs": [
+            "172.16.102.1..172.16.102.191",
+            "172.16.102.208..172.16.102.254"
+        ],
+        "gateway": "pubdebug-20260917-egress",
+        "gatewayIP": "172.16.102.2",
+        "ipVersion": "IPv4",
+        "natOutgoing": false,
+        "type": "Public",
+        "underlayConfig": {
+            "gatewayIP": "172.16.102.1",
+            "vlanNetwork": "pubdebug-20260917-vlan0"
+        }
+    },
+    "status": {
+        "boundResources": {
+            "gatewayPort": "gw.pubdebug-20260917-egress-kcn-system.pubdebug-20260917-public",
+            "switch": "kcn-system.pubdebug-20260917-public"
+        },
+        "conditions": [
+            {
+                "lastTransitionTime": "2026-09-17T02:30:57Z",
+                "message": "",
+                "reason": "Initialized",
+                "status": "True",
+                "type": "Initialized"
+            },
+            {
+                "lastTransitionTime": "2026-09-17T02:30:57Z",
+                "message": "",
+                "reason": "Valid",
+                "status": "True",
+                "type": "Valid"
+            },
+            {
+                "lastTransitionTime": "2026-09-17T02:30:57Z",
+                "message": "",
+                "reason": "Ready",
+                "status": "True",
+                "type": "Ready"
+            }
+        ],
+        "gatewayMac": "fa:00:48:74:34:85",
+        "observedGeneration": 1,
+        "underlayState": {
+            "chassisNode": "ani-01",
+            "ready": true,
+            "vlanNetwork": "pubdebug-20260917-vlan0"
+        },
+        "v4availableIPrange": "172.16.102.197-172.16.102.207",
+        "v4availableIPs": 11,
+        "v4usingIPrange": "172.16.102.192-172.16.102.196",
+        "v4usingIPs": 5
+    }
+}

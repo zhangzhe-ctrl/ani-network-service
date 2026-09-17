@@ -1,0 +1,72 @@
+source.tar.gz: OK
+verified source files: 1255
+go version go1.26.7 linux/amd64
+1.60.0
+v1.31.1
+127.0.0.1:5432 - accepting connections
+PostgreSQL image=docker.io/library/postgres@sha256:4ef4dbc939d61acea57712655ddb4b4ab27419c913f94cca0cd57cb3ea3c2280 container=b9ee8309a9bc31bcc3a6afeb3ffc2c0ef12c7e633ebedf6f049f31f0d7851923
+=== RUN   TestBaseSchemaEmptyMigrationAndRuntimeRole
+--- PASS: TestBaseSchemaEmptyMigrationAndRuntimeRole (0.35s)
+=== RUN   TestBaseSchemaLegacyPublicUpgradePreservesDurableFactsAndReplay
+--- PASS: TestBaseSchemaLegacyPublicUpgradePreservesDurableFactsAndReplay (0.33s)
+=== RUN   TestBaseSchemaUnknownPublicProvenanceStopsWholeUpgrade
+--- PASS: TestBaseSchemaUnknownPublicProvenanceStopsWholeUpgrade (0.34s)
+=== RUN   TestBaseSchemaOneIntranetOnePublicAndSamePurposeContention
+--- PASS: TestBaseSchemaOneIntranetOnePublicAndSamePurposeContention (0.56s)
+=== RUN   TestBaseSchemaSnatAndLBClaimContentionBothWinnerOrders
+=== RUN   TestBaseSchemaSnatAndLBClaimContentionBothWinnerOrders/snat-first-true
+=== RUN   TestBaseSchemaSnatAndLBClaimContentionBothWinnerOrders/snat-first-false
+--- PASS: TestBaseSchemaSnatAndLBClaimContentionBothWinnerOrders (0.99s)
+    --- PASS: TestBaseSchemaSnatAndLBClaimContentionBothWinnerOrders/snat-first-true (0.43s)
+    --- PASS: TestBaseSchemaSnatAndLBClaimContentionBothWinnerOrders/snat-first-false (0.56s)
+=== RUN   TestBaseSchemaTypedTenantPlacementAndVIPConstraints
+=== RUN   TestBaseSchemaTypedTenantPlacementAndVIPConstraints/snat-purpose
+=== RUN   TestBaseSchemaTypedTenantPlacementAndVIPConstraints/snat-tenant
+=== RUN   TestBaseSchemaTypedTenantPlacementAndVIPConstraints/snat-cluster
+=== RUN   TestBaseSchemaTypedTenantPlacementAndVIPConstraints/snat-namespace
+=== RUN   TestBaseSchemaTypedTenantPlacementAndVIPConstraints/snat-parent
+=== RUN   TestBaseSchemaTypedTenantPlacementAndVIPConstraints/system-eip-management
+=== RUN   TestBaseSchemaTypedTenantPlacementAndVIPConstraints/system-eip-owner
+=== RUN   TestBaseSchemaTypedTenantPlacementAndVIPConstraints/claim-tenant
+=== RUN   TestBaseSchemaTypedTenantPlacementAndVIPConstraints/claim-cluster
+=== RUN   TestBaseSchemaTypedTenantPlacementAndVIPConstraints/claim-namespace
+=== RUN   TestBaseSchemaTypedTenantPlacementAndVIPConstraints/wrong-typed-target
+=== RUN   TestBaseSchemaTypedTenantPlacementAndVIPConstraints/discriminator
+=== RUN   TestBaseSchemaTypedTenantPlacementAndVIPConstraints/no-typed-target
+=== RUN   TestBaseSchemaTypedTenantPlacementAndVIPConstraints/lb-parent-tenant
+=== RUN   TestBaseSchemaTypedTenantPlacementAndVIPConstraints/lb-parent-cluster
+=== RUN   TestBaseSchemaTypedTenantPlacementAndVIPConstraints/lb-parent-namespace
+--- PASS: TestBaseSchemaTypedTenantPlacementAndVIPConstraints (0.47s)
+    --- PASS: TestBaseSchemaTypedTenantPlacementAndVIPConstraints/snat-purpose (0.00s)
+    --- PASS: TestBaseSchemaTypedTenantPlacementAndVIPConstraints/snat-tenant (0.00s)
+    --- PASS: TestBaseSchemaTypedTenantPlacementAndVIPConstraints/snat-cluster (0.00s)
+    --- PASS: TestBaseSchemaTypedTenantPlacementAndVIPConstraints/snat-namespace (0.00s)
+    --- PASS: TestBaseSchemaTypedTenantPlacementAndVIPConstraints/snat-parent (0.00s)
+    --- PASS: TestBaseSchemaTypedTenantPlacementAndVIPConstraints/system-eip-management (0.00s)
+    --- PASS: TestBaseSchemaTypedTenantPlacementAndVIPConstraints/system-eip-owner (0.00s)
+    --- PASS: TestBaseSchemaTypedTenantPlacementAndVIPConstraints/claim-tenant (0.00s)
+    --- PASS: TestBaseSchemaTypedTenantPlacementAndVIPConstraints/claim-cluster (0.00s)
+    --- PASS: TestBaseSchemaTypedTenantPlacementAndVIPConstraints/claim-namespace (0.00s)
+    --- PASS: TestBaseSchemaTypedTenantPlacementAndVIPConstraints/wrong-typed-target (0.00s)
+    --- PASS: TestBaseSchemaTypedTenantPlacementAndVIPConstraints/discriminator (0.00s)
+    --- PASS: TestBaseSchemaTypedTenantPlacementAndVIPConstraints/no-typed-target (0.00s)
+    --- PASS: TestBaseSchemaTypedTenantPlacementAndVIPConstraints/lb-parent-tenant (0.01s)
+    --- PASS: TestBaseSchemaTypedTenantPlacementAndVIPConstraints/lb-parent-cluster (0.00s)
+    --- PASS: TestBaseSchemaTypedTenantPlacementAndVIPConstraints/lb-parent-namespace (0.00s)
+=== RUN   TestBaseSchemaIntranetPurposeContention
+--- PASS: TestBaseSchemaIntranetPurposeContention (0.39s)
+=== RUN   TestLBActualAdapterDeletePartialCreationWithoutGeneratedService
+=== RUN   TestLBActualAdapterDeletePartialCreationWithoutGeneratedService/backend
+=== RUN   TestLBActualAdapterDeletePartialCreationWithoutGeneratedService/gateway
+    load_balancer_lifecycle_integration_test.go:350: network_platform_resources [{"state": "available", "reason": "", "version": 52, "last_operation_id": "cc31a4b0-baaa-4f35-84ce-3c4d60acbb84"}, {"state": "available", "reason": "", "version": 54, "last_operation_id": "1a0a09af-10e2-413c-8cba-c51226495a01"}, {"state": "available", "reason": "", "version": 50, "last_operation_id": "86e87b3f-0115-478f-933c-e2107354f6f0"}]
+    load_balancer_lifecycle_integration_test.go:350: network_eips [{"state": "available", "reason": "", "version": 48, "last_operation_id": "66702e05-947f-410b-a70d-0051db512a90"}]
+    load_balancer_lifecycle_integration_test.go:350: network_snat_bindings [{"state": "available", "reason": "", "version": 48, "last_operation_id": "651cd530-e8b1-4d0a-aa68-8919f79b9418"}]
+    load_balancer_lifecycle_integration_test.go:350: egress worker did not converge
+--- FAIL: TestLBActualAdapterDeletePartialCreationWithoutGeneratedService (7.05s)
+    --- PASS: TestLBActualAdapterDeletePartialCreationWithoutGeneratedService/backend (0.98s)
+    --- FAIL: TestLBActualAdapterDeletePartialCreationWithoutGeneratedService/gateway (6.07s)
+FAIL
+FAIL	github.com/zhangzhe-ctrl/ani-network-service/internal/data	10.508s
+FAIL
+removed task container=b9ee8309a9bc31bcc3a6afeb3ffc2c0ef12c7e633ebedf6f049f31f0d7851923
+REMOTE_COMMAND_EXIT=1

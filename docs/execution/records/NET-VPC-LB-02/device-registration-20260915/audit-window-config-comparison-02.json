@@ -1,0 +1,27 @@
+{
+  "at": "2026-09-15T10:59:19.876722+00:00",
+  "execution_host": "ubuntu",
+  "rejected_config_sha256": "d9e2a71e0582f6f51db963568e0e675adfc8124b736aa2440f77829949ff5a1e",
+  "comparison_baseline_sha256": "6d8fbd80f3ffd70c6d1a6aee0a4ea1c740d74d6934fe3be924787c6e44f06bbb",
+  "config_after_sha256": "4533ce6624eb148e8934568a6263850eb3ecf4855318837e82ebcd83453f9796",
+  "only_changes_from_baseline": {
+    "network.worker.lease": [
+      "80s",
+      "120s"
+    ],
+    "network.worker.request_timeout": [
+      "20s",
+      "30s"
+    ],
+    "network.observation.audit_timeout": [
+      "10s",
+      "15s"
+    ]
+  },
+  "freshness_unchanged": "60s",
+  "workers_per_kind_unchanged": 4,
+  "source_unchanged": true,
+  "resource_limits_unchanged": true,
+  "validation": "within existing internal/conf/v1/validate.go maxima; no source validation changes",
+  "prior_r19": "network startup refused excessive lease; 30 connection-error samples are not evidence about product observations"
+}

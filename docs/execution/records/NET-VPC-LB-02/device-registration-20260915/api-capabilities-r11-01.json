@@ -1,0 +1,37 @@
+{
+  "at": "2026-09-15T04:24:46.386247+00:00",
+  "execution_host": "ubuntu",
+  "context": "platform",
+  "command": "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/lb-api call -target unix:///home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/platform.sock -service PlatformNetworkService -method GetPlatformNetworkCapabilities",
+  "request": {},
+  "exit": 0,
+  "response": {
+    "code": "OK",
+    "response": {
+      "capabilities": {
+        "base_connectivity_ready": true,
+        "public_address_ready": false,
+        "load_balancer_ready": true,
+        "base_connectivity": {
+          "reason": "",
+          "reason_message": "",
+          "observed_at": "2026-09-15T04:24:27.948199Z",
+          "observation_stale": false
+        },
+        "public_address": {
+          "reason": "CAPABILITY_UNKNOWN",
+          "reason_message": "capability is not configured or verified",
+          "observed_at": null,
+          "observation_stale": true
+        },
+        "load_balancer": {
+          "reason": "",
+          "reason_message": "",
+          "observed_at": "2026-09-15T04:24:40.732707Z",
+          "observation_stale": false
+        }
+      }
+    }
+  },
+  "stderr": ""
+}

@@ -1,0 +1,12 @@
+{
+  "at": "2026-09-15T14:14:23.596503+00:00",
+  "execution_host": "ubuntu",
+  "transport_exit": 0,
+  "result": {
+    "query": "SELECT json_build_object('components',(SELECT json_agg(json_build_object('kind',kind,'name',provider_name,'uid',provider_uid,'pending_action',pending_action,'deleted_at',deleted_at)) FROM network_lb_components WHERE lb_id='lb_74f96109961444a48b26c31601e6131f'),'bindings',(SELECT json_agg(row_to_json(b)) FROM network_provider_bindings b WHERE lb_id='lb_74f96109961444a48b26c31601e6131f'),'active_generated',(SELECT json_agg(json_build_object('kind',kind,'name',provider_name,'uid',provider_uid)) FROM network_lb_generated_resources WHERE lb_id='lb_74f96109961444a48b26c31601e6131f' AND released_at IS NULL));",
+    "exit": 0,
+    "stdout": "BEGIN\n{\"components\" : [{\"kind\" : \"backend\", \"name\" : \"lb-backend-5a3efab2092546f89c884cf69c761d58\", \"uid\" : \"a9935415-6591-43ef-8848-347cf7289543\", \"pending_action\" : \"\", \"deleted_at\" : \"2026-09-15T14:11:18.261778+00:00\"}, {\"kind\" : \"backend\", \"name\" : \"lb-backend-ed351f310df3487ab20d220e6b887b81\", \"uid\" : \"9754b7e7-0698-4876-83bc-d23e205e8149\", \"pending_action\" : \"\", \"deleted_at\" : \"2026-09-15T14:12:05.407018+00:00\"}, {\"kind\" : \"policy\", \"name\" : \"lb-policy-91e83cbc7f2941d1bdfadc8aef3d531c\", \"uid\" : \"3907dacb-84fc-4db9-84a5-9b5e0755787c\", \"pending_action\" : \"\", \"deleted_at\" : \"2026-09-15T14:01:06.945679+00:00\"}, {\"kind\" : \"route\", \"name\" : \"lb-route-eedf82df15354fa29cc392a7aac994d6\", \"uid\" : \"79f02557-6f96-4fdd-9edd-a3360d69bb85\", \"pending_action\" : \"\", \"deleted_at\" : \"2026-09-15T14:00:20.500335+00:00\"}], \"bindings\" : [{\"tenant_id\":\"d896f754-ab06-4cbe-a7fd-53148d16d0ad\",\"vpc_id\":null,\"binding_id\":\"a4834bb8-026d-4b94-8907-e68752ee1f87\",\"cluster_id\":\"lb02-09141908-2b3122\",\"namespace\":\"lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad\",\"provider_name\":\"lb-74f96109961444a48b26c31601e6131f\",\"provider_uid\":\"2deefbdc-ca81-4701-8725-dccb8ee18d66\",\"pending_action\":\"\",\"pending_since\":null,\"subnet_id\":null,\"resource_kind\":\"load_balancer\",\"eip_id\":null,\"snat_id\":null,\"create_dispatched\":true,\"lb_id\":\"lb_74f96109961444a48b26c31601e6131f\"}], \"active_generated\" : null}\nROLLBACK\n",
+    "stderr": ""
+  },
+  "stderr": ""
+}

@@ -1,0 +1,980 @@
+{
+  "apiVersion": "v1",
+  "items": [
+    {
+      "apiVersion": "v1",
+      "kind": "Node",
+      "metadata": {
+        "annotations": {
+          "csi.volume.kubernetes.io/nodeid": "{\"rook-ceph.cephfs.csi.ceph.com\":\"ani-01\",\"rook-ceph.rbd.csi.ceph.com\":\"ani-01\"}",
+          "network.rook.io/mon-ip": "172.16.202.10",
+          "networking.kubercloud.com/allocated": "true",
+          "networking.kubercloud.com/chassis": "817ffa2a-5767-4eda-bbc2-c37fe0662f28",
+          "networking.kubercloud.com/managed_netdevs": "{\"ens35\":true}",
+          "networking.kubercloud.com/service_ip": "100.64.0.2",
+          "node.alpha.kubernetes.io/ttl": "0",
+          "volumes.kubernetes.io/controller-managed-attach-detach": "true"
+        },
+        "creationTimestamp": "2026-09-14T12:23:05Z",
+        "labels": {
+          "beta.kubernetes.io/arch": "amd64",
+          "beta.kubernetes.io/os": "linux",
+          "kubernetes.io/arch": "amd64",
+          "kubernetes.io/hostname": "ani-01",
+          "kubernetes.io/os": "linux",
+          "networking.kubercloud.com/role": "master",
+          "node-role.kubernetes.io/control-plane": "",
+          "node-role.kubernetes.io/worker": "",
+          "node.kubernetes.io/exclude-from-external-load-balancers": ""
+        },
+        "name": "ani-01",
+        "resourceVersion": "231123",
+        "uid": "3693178a-d4d4-4fb3-a39a-82b7d875391d"
+      },
+      "spec": {
+        "podCIDR": "10.16.0.0/24",
+        "podCIDRs": [
+          "10.16.0.0/24"
+        ]
+      },
+      "status": {
+        "addresses": [
+          {
+            "address": "172.16.101.10",
+            "type": "InternalIP"
+          },
+          {
+            "address": "ani-01",
+            "type": "Hostname"
+          }
+        ],
+        "allocatable": {
+          "cpu": "15600m",
+          "ephemeral-storage": "204227624Ki",
+          "hugepages-1Gi": "0",
+          "hugepages-2Mi": "0",
+          "memory": "31492248756",
+          "pods": "110"
+        },
+        "capacity": {
+          "cpu": "16",
+          "ephemeral-storage": "204227624Ki",
+          "hugepages-1Gi": "0",
+          "hugepages-2Mi": "0",
+          "memory": "32911736Ki",
+          "pods": "110"
+        },
+        "conditions": [
+          {
+            "lastHeartbeatTime": "2026-09-15T01:47:33Z",
+            "lastTransitionTime": "2026-09-14T12:23:03Z",
+            "message": "kubelet has sufficient memory available",
+            "reason": "KubeletHasSufficientMemory",
+            "status": "False",
+            "type": "MemoryPressure"
+          },
+          {
+            "lastHeartbeatTime": "2026-09-15T01:47:33Z",
+            "lastTransitionTime": "2026-09-14T12:23:03Z",
+            "message": "kubelet has no disk pressure",
+            "reason": "KubeletHasNoDiskPressure",
+            "status": "False",
+            "type": "DiskPressure"
+          },
+          {
+            "lastHeartbeatTime": "2026-09-15T01:47:33Z",
+            "lastTransitionTime": "2026-09-14T12:23:03Z",
+            "message": "kubelet has sufficient PID available",
+            "reason": "KubeletHasSufficientPID",
+            "status": "False",
+            "type": "PIDPressure"
+          },
+          {
+            "lastHeartbeatTime": "2026-09-15T01:47:33Z",
+            "lastTransitionTime": "2026-09-14T12:27:01Z",
+            "message": "kubelet is posting ready status",
+            "reason": "KubeletReady",
+            "status": "True",
+            "type": "Ready"
+          }
+        ],
+        "daemonEndpoints": {
+          "kubeletEndpoint": {
+            "Port": 10250
+          }
+        },
+        "features": {
+          "supplementalGroupsPolicy": true
+        },
+        "images": [
+          {
+            "names": [
+              "quay.io/cephcsi/cephcsi@sha256:0b62db8afc9b174619186c87084a8952157daa719415c598603be22b63cc1293",
+              "quay.io/cephcsi/cephcsi:v3.17.1"
+            ],
+            "sizeBytes": 728704400
+          },
+          {
+            "names": [
+              "ghcr.io/rook/ceph@sha256:2f970c4256179d56fa9f7867a634701f533103908c4e2ad43cf3954c1f7e33f9",
+              "ghcr.io/rook/ceph:v1.20.7"
+            ],
+            "sizeBytes": 560713658
+          },
+          {
+            "names": [
+              "quay.io/ceph/ceph@sha256:6bb1c8a42fbc0bf87938946990b65174466997bc11c31eb5a323225a779fd8f9",
+              "quay.io/ceph/ceph:v20.2.4"
+            ],
+            "sizeBytes": 542860098
+          },
+          {
+            "names": [
+              "docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2"
+            ],
+            "sizeBytes": 220160436
+          },
+          {
+            "names": [
+              "docker.io/library/postgres@sha256:5660c2cbfea50c7a9127d17dc4e48543eedd3d7a41a595a2dfa572471e37e64c"
+            ],
+            "sizeBytes": 99175927
+          },
+          {
+            "names": [
+              "docker.changqingyun.cn/kubercloud/gateway-dev:latest"
+            ],
+            "sizeBytes": 74678202
+          },
+          {
+            "names": [
+              "docker.changqingyun.cn/kubercloud/gateway:v1.8.3"
+            ],
+            "sizeBytes": 73617646
+          },
+          {
+            "names": [
+              "docker.changqingyun.cn/kubercloud/nginx:latest"
+            ],
+            "sizeBytes": 63338606
+          },
+          {
+            "names": [
+              "docker.changqingyun.cn/kubercloud/envoy:distroless-v1.38.3"
+            ],
+            "sizeBytes": 41907319
+          },
+          {
+            "names": [
+              "registry.k8s.io/sig-storage/csi-provisioner:v6.2.0"
+            ],
+            "sizeBytes": 39524047
+          },
+          {
+            "names": [
+              "registry.k8s.io/sig-storage/csi-attacher:v4.12.0"
+            ],
+            "sizeBytes": 38606137
+          },
+          {
+            "names": [
+              "registry.k8s.io/sig-storage/csi-snapshotter:v8.5.0"
+            ],
+            "sizeBytes": 37294559
+          },
+          {
+            "names": [
+              "registry.k8s.io/sig-storage/csi-resizer:v2.1.0"
+            ],
+            "sizeBytes": 37248216
+          },
+          {
+            "names": [
+              "hub.kubesphere.com.cn/kubernetes/kube-apiserver@sha256:6a7b73e718540d2c097cbcdc84c0f2cffad7a51ebccaf7f0b8cceb464715e1d9",
+              "hub.kubesphere.com.cn/kubernetes/kube-apiserver:v1.35.8"
+            ],
+            "sizeBytes": 27860169
+          },
+          {
+            "names": [
+              "hub.kubesphere.com.cn/kubernetes/kube-proxy@sha256:5d641d163114b212229b8bceba9f859cff1265ba40e02a2bb0ec8743f56c1033",
+              "hub.kubesphere.com.cn/kubernetes/kube-proxy:v1.35.8"
+            ],
+            "sizeBytes": 27156357
+          },
+          {
+            "names": [
+              "hub.kubesphere.com.cn/coredns/coredns@sha256:9b9128672209474da07c91439bf15ed704ae05ad918dd6454e5b6ae14e35fee6",
+              "hub.kubesphere.com.cn/coredns/coredns:v1.13.1"
+            ],
+            "sizeBytes": 23553139
+          },
+          {
+            "names": [
+              "quay.io/coreos/etcd@sha256:ea8a4698f22200bf0322fd8ed6e0b106a3107db649bd61f654e1a9fc14d9a17e",
+              "quay.io/coreos/etcd:v3.6.6"
+            ],
+            "sizeBytes": 23550832
+          },
+          {
+            "names": [
+              "hub.kubesphere.com.cn/kubernetes/kube-controller-manager@sha256:b27c0bf88a81437747b257a1e6d019a921ec3a97b724e67dfc180efe3125998b",
+              "hub.kubesphere.com.cn/kubernetes/kube-controller-manager:v1.35.8"
+            ],
+            "sizeBytes": 23295495
+          },
+          {
+            "names": [
+              "docker.io/valkey/valkey:8.1.10-alpine"
+            ],
+            "sizeBytes": 19960462
+          },
+          {
+            "names": [
+              "hub.kubesphere.com.cn/kubernetes/kube-scheduler@sha256:f4334826c53876b700f73cd06a69c405c6f882a4116c5813786e046ee6eca1ac",
+              "hub.kubesphere.com.cn/kubernetes/kube-scheduler:v1.35.8"
+            ],
+            "sizeBytes": 17434783
+          },
+          {
+            "names": [
+              "ghcr.io/axllent/mailpit@sha256:9d85d6bd20c834ec2b7d08ff97976af7b13e2330d9c56ecade4a231dcd3481ba"
+            ],
+            "sizeBytes": 16919821
+          },
+          {
+            "names": [
+              "docker.io/library/redis@sha256:ff02b58f971e7d7d156a1267e283fcbbeee91773b6aa36c49dac28ecfe28eadf"
+            ],
+            "sizeBytes": 16276863
+          },
+          {
+            "names": [
+              "hub.kubesphere.com.cn/plndr/kube-vip@sha256:452659d4e25968d42a000143114437f97f0ec0a0d06193a1b1b38fc55490d2d1",
+              "hub.kubesphere.com.cn/plndr/kube-vip:v0.7.2"
+            ],
+            "sizeBytes": 15644860
+          },
+          {
+            "names": [
+              "registry.k8s.io/sig-storage/csi-node-driver-registrar:v2.17.0"
+            ],
+            "sizeBytes": 14637974
+          },
+          {
+            "names": [
+              "docker.io/library/nats@sha256:065e8355c20a5575b3c77224be1855e8103fd148b68fba05130b9b8ddfa40ccc"
+            ],
+            "sizeBytes": 11110376
+          },
+          {
+            "names": [
+              "docker.changqingyun.cn/kubercloud/ratelimit:1e50889b"
+            ],
+            "sizeBytes": 9210622
+          },
+          {
+            "names": [
+              "hub.kubesphere.com.cn/kubernetes/pause@sha256:278fb9dbcca9518083ad1e11276933a2e96f23de604a3a08cc3c80002767d24c",
+              "hub.kubesphere.com.cn/kubernetes/pause:3.10.1"
+            ],
+            "sizeBytes": 320448
+          }
+        ],
+        "nodeInfo": {
+          "architecture": "amd64",
+          "bootID": "63017eac-d07b-4ecc-a045-c15b6e0e192e",
+          "containerRuntimeVersion": "containerd://2.3.4",
+          "kernelVersion": "6.8.0-139-generic",
+          "kubeProxyVersion": "",
+          "kubeletVersion": "v1.35.8",
+          "machineID": "cd933c2ed43e460986560541fa038e54",
+          "operatingSystem": "linux",
+          "osImage": "Ubuntu 24.04.4 LTS",
+          "systemUUID": "215e4d56-e067-ab62-a80d-ed15c7e2f021"
+        },
+        "runtimeHandlers": [
+          {
+            "features": {
+              "recursiveReadOnlyMounts": true,
+              "userNamespaces": true
+            },
+            "name": ""
+          },
+          {
+            "features": {
+              "recursiveReadOnlyMounts": true,
+              "userNamespaces": true
+            },
+            "name": "runc"
+          }
+        ],
+        "volumesAttached": [
+          {
+            "devicePath": "",
+            "name": "kubernetes.io/csi/rook-ceph.rbd.csi.ceph.com^0001-0009-rook-ceph-0000000000000002-1a61d3fc-2f11-4679-8859-8fc1a3e54504"
+          }
+        ],
+        "volumesInUse": [
+          "kubernetes.io/csi/rook-ceph.rbd.csi.ceph.com^0001-0009-rook-ceph-0000000000000002-1a61d3fc-2f11-4679-8859-8fc1a3e54504"
+        ]
+      }
+    },
+    {
+      "apiVersion": "v1",
+      "kind": "Node",
+      "metadata": {
+        "annotations": {
+          "csi.volume.kubernetes.io/nodeid": "{\"rook-ceph.cephfs.csi.ceph.com\":\"ani-02\",\"rook-ceph.rbd.csi.ceph.com\":\"ani-02\"}",
+          "network.rook.io/mon-ip": "172.16.202.11",
+          "networking.kubercloud.com/allocated": "true",
+          "networking.kubercloud.com/chassis": "e7087045-79cc-40bf-a252-6849135afe50",
+          "networking.kubercloud.com/managed_netdevs": "{\"ens35\":true}",
+          "networking.kubercloud.com/service_ip": "100.64.0.5",
+          "node.alpha.kubernetes.io/ttl": "0",
+          "volumes.kubernetes.io/controller-managed-attach-detach": "true"
+        },
+        "creationTimestamp": "2026-09-14T12:25:48Z",
+        "labels": {
+          "beta.kubernetes.io/arch": "amd64",
+          "beta.kubernetes.io/os": "linux",
+          "kubernetes.io/arch": "amd64",
+          "kubernetes.io/hostname": "ani-02",
+          "kubernetes.io/os": "linux",
+          "networking.kubercloud.com/role": "master",
+          "node-role.kubernetes.io/control-plane": "",
+          "node-role.kubernetes.io/worker": "",
+          "node.kubernetes.io/exclude-from-external-load-balancers": ""
+        },
+        "name": "ani-02",
+        "resourceVersion": "231002",
+        "uid": "2f954d6f-31d0-49d9-83ee-2f8888408236"
+      },
+      "spec": {
+        "podCIDR": "10.16.1.0/24",
+        "podCIDRs": [
+          "10.16.1.0/24"
+        ]
+      },
+      "status": {
+        "addresses": [
+          {
+            "address": "172.16.101.11",
+            "type": "InternalIP"
+          },
+          {
+            "address": "ani-02",
+            "type": "Hostname"
+          }
+        ],
+        "allocatable": {
+          "cpu": "15600m",
+          "ephemeral-storage": "204227624Ki",
+          "hugepages-1Gi": "0",
+          "hugepages-2Mi": "0",
+          "memory": "31492256539",
+          "pods": "110"
+        },
+        "capacity": {
+          "cpu": "16",
+          "ephemeral-storage": "204227624Ki",
+          "hugepages-1Gi": "0",
+          "hugepages-2Mi": "0",
+          "memory": "32911744Ki",
+          "pods": "110"
+        },
+        "conditions": [
+          {
+            "lastHeartbeatTime": "2026-09-15T01:47:08Z",
+            "lastTransitionTime": "2026-09-14T12:25:48Z",
+            "message": "kubelet has sufficient memory available",
+            "reason": "KubeletHasSufficientMemory",
+            "status": "False",
+            "type": "MemoryPressure"
+          },
+          {
+            "lastHeartbeatTime": "2026-09-15T01:47:08Z",
+            "lastTransitionTime": "2026-09-14T12:25:48Z",
+            "message": "kubelet has no disk pressure",
+            "reason": "KubeletHasNoDiskPressure",
+            "status": "False",
+            "type": "DiskPressure"
+          },
+          {
+            "lastHeartbeatTime": "2026-09-15T01:47:08Z",
+            "lastTransitionTime": "2026-09-14T12:25:48Z",
+            "message": "kubelet has sufficient PID available",
+            "reason": "KubeletHasSufficientPID",
+            "status": "False",
+            "type": "PIDPressure"
+          },
+          {
+            "lastHeartbeatTime": "2026-09-15T01:47:08Z",
+            "lastTransitionTime": "2026-09-14T12:26:54Z",
+            "message": "kubelet is posting ready status",
+            "reason": "KubeletReady",
+            "status": "True",
+            "type": "Ready"
+          }
+        ],
+        "daemonEndpoints": {
+          "kubeletEndpoint": {
+            "Port": 10250
+          }
+        },
+        "features": {
+          "supplementalGroupsPolicy": true
+        },
+        "images": [
+          {
+            "names": [
+              "quay.io/cephcsi/cephcsi@sha256:0b62db8afc9b174619186c87084a8952157daa719415c598603be22b63cc1293",
+              "quay.io/cephcsi/cephcsi:v3.17.1"
+            ],
+            "sizeBytes": 728705143
+          },
+          {
+            "names": [
+              "ghcr.io/rook/ceph@sha256:2f970c4256179d56fa9f7867a634701f533103908c4e2ad43cf3954c1f7e33f9",
+              "quay.io/rook/ceph@sha256:7ca79b1ef388de2b4fb19049bc07da1ab2971ddc3aac222b61db20c85c75e6a9",
+              "ghcr.io/rook/ceph:v1.20.7",
+              "quay.io/rook/ceph:v1.20.7"
+            ],
+            "sizeBytes": 579601455
+          },
+          {
+            "names": [
+              "quay.io/ceph/ceph@sha256:6bb1c8a42fbc0bf87938946990b65174466997bc11c31eb5a323225a779fd8f9",
+              "quay.io/ceph/ceph:v20.2.4"
+            ],
+            "sizeBytes": 542860098
+          },
+          {
+            "names": [
+              "docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2"
+            ],
+            "sizeBytes": 220160436
+          },
+          {
+            "names": [
+              "docker.io/library/postgres@sha256:5660c2cbfea50c7a9127d17dc4e48543eedd3d7a41a595a2dfa572471e37e64c"
+            ],
+            "sizeBytes": 99175927
+          },
+          {
+            "names": [
+              "docker.changqingyun.cn/kubercloud/gateway-dev:latest"
+            ],
+            "sizeBytes": 74678202
+          },
+          {
+            "names": [
+              "docker.changqingyun.cn/kubercloud/gateway:v1.8.3"
+            ],
+            "sizeBytes": 73617646
+          },
+          {
+            "names": [
+              "docker.changqingyun.cn/kubercloud/nginx:latest"
+            ],
+            "sizeBytes": 63338606
+          },
+          {
+            "names": [
+              "docker.changqingyun.cn/kubercloud/envoy:distroless-v1.38.3"
+            ],
+            "sizeBytes": 41907319
+          },
+          {
+            "names": [
+              "registry.k8s.io/sig-storage/csi-provisioner:v6.2.0"
+            ],
+            "sizeBytes": 39524047
+          },
+          {
+            "names": [
+              "registry.k8s.io/sig-storage/csi-attacher:v4.12.0"
+            ],
+            "sizeBytes": 38606137
+          },
+          {
+            "names": [
+              "registry.k8s.io/sig-storage/csi-snapshotter:v8.5.0"
+            ],
+            "sizeBytes": 37294559
+          },
+          {
+            "names": [
+              "registry.k8s.io/sig-storage/csi-resizer:v2.1.0"
+            ],
+            "sizeBytes": 37248216
+          },
+          {
+            "names": [
+              "quay.io/cephcsi/ceph-csi-operator@sha256:c62933fd4083635f969f8a61932af45dba9902d48867e2b5d98a69d8e4344eb6",
+              "quay.io/cephcsi/ceph-csi-operator:v1.0.4"
+            ],
+            "sizeBytes": 32692676
+          },
+          {
+            "names": [
+              "hub.kubesphere.com.cn/kubernetes/kube-apiserver@sha256:6a7b73e718540d2c097cbcdc84c0f2cffad7a51ebccaf7f0b8cceb464715e1d9",
+              "hub.kubesphere.com.cn/kubernetes/kube-apiserver:v1.35.8"
+            ],
+            "sizeBytes": 27860169
+          },
+          {
+            "names": [
+              "hub.kubesphere.com.cn/kubernetes/kube-proxy@sha256:5d641d163114b212229b8bceba9f859cff1265ba40e02a2bb0ec8743f56c1033",
+              "hub.kubesphere.com.cn/kubernetes/kube-proxy:v1.35.8"
+            ],
+            "sizeBytes": 27156357
+          },
+          {
+            "names": [
+              "hub.kubesphere.com.cn/coredns/coredns@sha256:9b9128672209474da07c91439bf15ed704ae05ad918dd6454e5b6ae14e35fee6",
+              "hub.kubesphere.com.cn/coredns/coredns:v1.13.1"
+            ],
+            "sizeBytes": 23553139
+          },
+          {
+            "names": [
+              "quay.io/coreos/etcd@sha256:ea8a4698f22200bf0322fd8ed6e0b106a3107db649bd61f654e1a9fc14d9a17e",
+              "quay.io/coreos/etcd:v3.6.6"
+            ],
+            "sizeBytes": 23550832
+          },
+          {
+            "names": [
+              "hub.kubesphere.com.cn/kubernetes/kube-controller-manager@sha256:b27c0bf88a81437747b257a1e6d019a921ec3a97b724e67dfc180efe3125998b",
+              "hub.kubesphere.com.cn/kubernetes/kube-controller-manager:v1.35.8"
+            ],
+            "sizeBytes": 23295495
+          },
+          {
+            "names": [
+              "docker.io/valkey/valkey:8.1.10-alpine"
+            ],
+            "sizeBytes": 19960462
+          },
+          {
+            "names": [
+              "hub.kubesphere.com.cn/kubernetes/kube-scheduler@sha256:f4334826c53876b700f73cd06a69c405c6f882a4116c5813786e046ee6eca1ac",
+              "hub.kubesphere.com.cn/kubernetes/kube-scheduler:v1.35.8"
+            ],
+            "sizeBytes": 17434783
+          },
+          {
+            "names": [
+              "ghcr.io/axllent/mailpit@sha256:9d85d6bd20c834ec2b7d08ff97976af7b13e2330d9c56ecade4a231dcd3481ba"
+            ],
+            "sizeBytes": 16919821
+          },
+          {
+            "names": [
+              "docker.io/library/redis@sha256:ff02b58f971e7d7d156a1267e283fcbbeee91773b6aa36c49dac28ecfe28eadf"
+            ],
+            "sizeBytes": 16276863
+          },
+          {
+            "names": [
+              "hub.kubesphere.com.cn/plndr/kube-vip@sha256:452659d4e25968d42a000143114437f97f0ec0a0d06193a1b1b38fc55490d2d1",
+              "hub.kubesphere.com.cn/plndr/kube-vip:v0.7.2"
+            ],
+            "sizeBytes": 15644860
+          },
+          {
+            "names": [
+              "registry.k8s.io/sig-storage/csi-node-driver-registrar:v2.17.0"
+            ],
+            "sizeBytes": 14637974
+          },
+          {
+            "names": [
+              "docker.io/library/nats@sha256:065e8355c20a5575b3c77224be1855e8103fd148b68fba05130b9b8ddfa40ccc"
+            ],
+            "sizeBytes": 11110376
+          },
+          {
+            "names": [
+              "docker.changqingyun.cn/kubercloud/ratelimit:1e50889b"
+            ],
+            "sizeBytes": 9210622
+          },
+          {
+            "names": [
+              "hub.kubesphere.com.cn/kubernetes/pause@sha256:278fb9dbcca9518083ad1e11276933a2e96f23de604a3a08cc3c80002767d24c",
+              "hub.kubesphere.com.cn/kubernetes/pause:3.10.1"
+            ],
+            "sizeBytes": 320448
+          }
+        ],
+        "nodeInfo": {
+          "architecture": "amd64",
+          "bootID": "6a3dbeb8-2773-4cbc-9986-69537c27ce50",
+          "containerRuntimeVersion": "containerd://2.3.4",
+          "kernelVersion": "6.8.0-139-generic",
+          "kubeProxyVersion": "",
+          "kubeletVersion": "v1.35.8",
+          "machineID": "ff15e43d9efa48ffa63ab0c8878b6566",
+          "operatingSystem": "linux",
+          "osImage": "Ubuntu 24.04.4 LTS",
+          "systemUUID": "df284d56-a9a2-e1cb-37b8-83b1ad1a5a0f"
+        },
+        "runtimeHandlers": [
+          {
+            "features": {
+              "recursiveReadOnlyMounts": true,
+              "userNamespaces": true
+            },
+            "name": ""
+          },
+          {
+            "features": {
+              "recursiveReadOnlyMounts": true,
+              "userNamespaces": true
+            },
+            "name": "runc"
+          }
+        ],
+        "volumesAttached": [
+          {
+            "devicePath": "",
+            "name": "kubernetes.io/csi/rook-ceph.rbd.csi.ceph.com^0001-0009-rook-ceph-0000000000000002-e77dbb67-a88b-4163-87b5-4f446a64f366"
+          }
+        ],
+        "volumesInUse": [
+          "kubernetes.io/csi/rook-ceph.rbd.csi.ceph.com^0001-0009-rook-ceph-0000000000000002-e77dbb67-a88b-4163-87b5-4f446a64f366"
+        ]
+      }
+    },
+    {
+      "apiVersion": "v1",
+      "kind": "Node",
+      "metadata": {
+        "annotations": {
+          "csi.volume.kubernetes.io/nodeid": "{\"rook-ceph.cephfs.csi.ceph.com\":\"ani-03\",\"rook-ceph.rbd.csi.ceph.com\":\"ani-03\"}",
+          "network.rook.io/mon-ip": "172.16.202.12",
+          "networking.kubercloud.com/allocated": "true",
+          "networking.kubercloud.com/chassis": "a82f676e-c603-4c68-a7de-0bafa7115bc4",
+          "networking.kubercloud.com/managed_netdevs": "{\"ens35\":true}",
+          "networking.kubercloud.com/service_ip": "100.64.0.4",
+          "node.alpha.kubernetes.io/ttl": "0",
+          "volumes.kubernetes.io/controller-managed-attach-detach": "true"
+        },
+        "creationTimestamp": "2026-09-14T12:26:45Z",
+        "labels": {
+          "beta.kubernetes.io/arch": "amd64",
+          "beta.kubernetes.io/os": "linux",
+          "kubernetes.io/arch": "amd64",
+          "kubernetes.io/hostname": "ani-03",
+          "kubernetes.io/os": "linux",
+          "networking.kubercloud.com/role": "master",
+          "node-role.kubernetes.io/control-plane": "",
+          "node-role.kubernetes.io/worker": "",
+          "node.kubernetes.io/exclude-from-external-load-balancers": ""
+        },
+        "name": "ani-03",
+        "resourceVersion": "231107",
+        "uid": "2507940b-6901-44c6-aadd-ba1bb6875bde"
+      },
+      "spec": {
+        "podCIDR": "10.16.2.0/24",
+        "podCIDRs": [
+          "10.16.2.0/24"
+        ]
+      },
+      "status": {
+        "addresses": [
+          {
+            "address": "172.16.101.12",
+            "type": "InternalIP"
+          },
+          {
+            "address": "ani-03",
+            "type": "Hostname"
+          }
+        ],
+        "allocatable": {
+          "cpu": "15600m",
+          "ephemeral-storage": "204227624Ki",
+          "hugepages-1Gi": "0",
+          "hugepages-2Mi": "0",
+          "memory": "31492248756",
+          "pods": "110"
+        },
+        "capacity": {
+          "cpu": "16",
+          "ephemeral-storage": "204227624Ki",
+          "hugepages-1Gi": "0",
+          "hugepages-2Mi": "0",
+          "memory": "32911736Ki",
+          "pods": "110"
+        },
+        "conditions": [
+          {
+            "lastHeartbeatTime": "2026-09-15T01:47:30Z",
+            "lastTransitionTime": "2026-09-14T12:26:45Z",
+            "message": "kubelet has sufficient memory available",
+            "reason": "KubeletHasSufficientMemory",
+            "status": "False",
+            "type": "MemoryPressure"
+          },
+          {
+            "lastHeartbeatTime": "2026-09-15T01:47:30Z",
+            "lastTransitionTime": "2026-09-14T12:26:45Z",
+            "message": "kubelet has no disk pressure",
+            "reason": "KubeletHasNoDiskPressure",
+            "status": "False",
+            "type": "DiskPressure"
+          },
+          {
+            "lastHeartbeatTime": "2026-09-15T01:47:30Z",
+            "lastTransitionTime": "2026-09-14T12:26:45Z",
+            "message": "kubelet has sufficient PID available",
+            "reason": "KubeletHasSufficientPID",
+            "status": "False",
+            "type": "PIDPressure"
+          },
+          {
+            "lastHeartbeatTime": "2026-09-15T01:47:30Z",
+            "lastTransitionTime": "2026-09-14T12:26:54Z",
+            "message": "kubelet is posting ready status",
+            "reason": "KubeletReady",
+            "status": "True",
+            "type": "Ready"
+          }
+        ],
+        "daemonEndpoints": {
+          "kubeletEndpoint": {
+            "Port": 10250
+          }
+        },
+        "features": {
+          "supplementalGroupsPolicy": true
+        },
+        "images": [
+          {
+            "names": [
+              "quay.io/cephcsi/cephcsi@sha256:0b62db8afc9b174619186c87084a8952157daa719415c598603be22b63cc1293",
+              "quay.io/cephcsi/cephcsi:v3.17.1"
+            ],
+            "sizeBytes": 728705143
+          },
+          {
+            "names": [
+              "ghcr.io/rook/ceph@sha256:2f970c4256179d56fa9f7867a634701f533103908c4e2ad43cf3954c1f7e33f9",
+              "ghcr.io/rook/ceph:v1.20.7"
+            ],
+            "sizeBytes": 560713658
+          },
+          {
+            "names": [
+              "quay.io/ceph/ceph@sha256:6bb1c8a42fbc0bf87938946990b65174466997bc11c31eb5a323225a779fd8f9",
+              "quay.io/ceph/ceph:v20.2.4"
+            ],
+            "sizeBytes": 542860098
+          },
+          {
+            "names": [
+              "docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2"
+            ],
+            "sizeBytes": 220160436
+          },
+          {
+            "names": [
+              "docker.io/library/postgres@sha256:5660c2cbfea50c7a9127d17dc4e48543eedd3d7a41a595a2dfa572471e37e64c"
+            ],
+            "sizeBytes": 99175927
+          },
+          {
+            "names": [
+              "docker.changqingyun.cn/kubercloud/gateway-dev:latest"
+            ],
+            "sizeBytes": 74678202
+          },
+          {
+            "names": [
+              "docker.changqingyun.cn/kubercloud/gateway:v1.8.3"
+            ],
+            "sizeBytes": 73617646
+          },
+          {
+            "names": [
+              "docker.changqingyun.cn/kubercloud/nginx:latest"
+            ],
+            "sizeBytes": 63338606
+          },
+          {
+            "names": [
+              "docker.changqingyun.cn/kubercloud/envoy:distroless-v1.38.3"
+            ],
+            "sizeBytes": 41907319
+          },
+          {
+            "names": [
+              "registry.k8s.io/sig-storage/csi-provisioner:v6.2.0"
+            ],
+            "sizeBytes": 39524047
+          },
+          {
+            "names": [
+              "registry.k8s.io/sig-storage/csi-attacher:v4.12.0"
+            ],
+            "sizeBytes": 38606137
+          },
+          {
+            "names": [
+              "registry.k8s.io/sig-storage/csi-snapshotter:v8.5.0"
+            ],
+            "sizeBytes": 37294559
+          },
+          {
+            "names": [
+              "registry.k8s.io/sig-storage/csi-resizer:v2.1.0"
+            ],
+            "sizeBytes": 37248216
+          },
+          {
+            "names": [
+              "hub.kubesphere.com.cn/kubernetes/kube-apiserver@sha256:6a7b73e718540d2c097cbcdc84c0f2cffad7a51ebccaf7f0b8cceb464715e1d9",
+              "hub.kubesphere.com.cn/kubernetes/kube-apiserver:v1.35.8"
+            ],
+            "sizeBytes": 27860169
+          },
+          {
+            "names": [
+              "hub.kubesphere.com.cn/kubernetes/kube-proxy@sha256:5d641d163114b212229b8bceba9f859cff1265ba40e02a2bb0ec8743f56c1033",
+              "hub.kubesphere.com.cn/kubernetes/kube-proxy:v1.35.8"
+            ],
+            "sizeBytes": 27156357
+          },
+          {
+            "names": [
+              "hub.kubesphere.com.cn/coredns/coredns@sha256:9b9128672209474da07c91439bf15ed704ae05ad918dd6454e5b6ae14e35fee6",
+              "hub.kubesphere.com.cn/coredns/coredns:v1.13.1"
+            ],
+            "sizeBytes": 23553139
+          },
+          {
+            "names": [
+              "quay.io/coreos/etcd@sha256:ea8a4698f22200bf0322fd8ed6e0b106a3107db649bd61f654e1a9fc14d9a17e",
+              "quay.io/coreos/etcd:v3.6.6"
+            ],
+            "sizeBytes": 23550832
+          },
+          {
+            "names": [
+              "hub.kubesphere.com.cn/kubernetes/kube-controller-manager@sha256:b27c0bf88a81437747b257a1e6d019a921ec3a97b724e67dfc180efe3125998b",
+              "hub.kubesphere.com.cn/kubernetes/kube-controller-manager:v1.35.8"
+            ],
+            "sizeBytes": 23295495
+          },
+          {
+            "names": [
+              "docker.io/valkey/valkey:8.1.10-alpine"
+            ],
+            "sizeBytes": 19960462
+          },
+          {
+            "names": [
+              "hub.kubesphere.com.cn/kubernetes/kube-scheduler@sha256:f4334826c53876b700f73cd06a69c405c6f882a4116c5813786e046ee6eca1ac",
+              "hub.kubesphere.com.cn/kubernetes/kube-scheduler:v1.35.8"
+            ],
+            "sizeBytes": 17434783
+          },
+          {
+            "names": [
+              "ghcr.io/axllent/mailpit@sha256:9d85d6bd20c834ec2b7d08ff97976af7b13e2330d9c56ecade4a231dcd3481ba"
+            ],
+            "sizeBytes": 16919821
+          },
+          {
+            "names": [
+              "docker.io/library/redis@sha256:ff02b58f971e7d7d156a1267e283fcbbeee91773b6aa36c49dac28ecfe28eadf"
+            ],
+            "sizeBytes": 16276863
+          },
+          {
+            "names": [
+              "hub.kubesphere.com.cn/plndr/kube-vip@sha256:452659d4e25968d42a000143114437f97f0ec0a0d06193a1b1b38fc55490d2d1",
+              "hub.kubesphere.com.cn/plndr/kube-vip:v0.7.2"
+            ],
+            "sizeBytes": 15644860
+          },
+          {
+            "names": [
+              "registry.k8s.io/sig-storage/csi-node-driver-registrar:v2.17.0"
+            ],
+            "sizeBytes": 14637974
+          },
+          {
+            "names": [
+              "docker.io/library/nats@sha256:065e8355c20a5575b3c77224be1855e8103fd148b68fba05130b9b8ddfa40ccc"
+            ],
+            "sizeBytes": 11110376
+          },
+          {
+            "names": [
+              "docker.changqingyun.cn/kubercloud/ratelimit:1e50889b"
+            ],
+            "sizeBytes": 9210622
+          },
+          {
+            "names": [
+              "hub.kubesphere.com.cn/kubernetes/pause@sha256:278fb9dbcca9518083ad1e11276933a2e96f23de604a3a08cc3c80002767d24c",
+              "hub.kubesphere.com.cn/kubernetes/pause:3.10.1"
+            ],
+            "sizeBytes": 320448
+          }
+        ],
+        "nodeInfo": {
+          "architecture": "amd64",
+          "bootID": "6c95cc81-2a74-44d8-a45e-9d8c4ba38471",
+          "containerRuntimeVersion": "containerd://2.3.4",
+          "kernelVersion": "6.8.0-139-generic",
+          "kubeProxyVersion": "",
+          "kubeletVersion": "v1.35.8",
+          "machineID": "2e5cc7ce6b9c4666a1943a6fa65c1858",
+          "operatingSystem": "linux",
+          "osImage": "Ubuntu 24.04.4 LTS",
+          "systemUUID": "7d684d56-3a85-6705-eaeb-649365e93245"
+        },
+        "runtimeHandlers": [
+          {
+            "features": {
+              "recursiveReadOnlyMounts": true,
+              "userNamespaces": true
+            },
+            "name": ""
+          },
+          {
+            "features": {
+              "recursiveReadOnlyMounts": true,
+              "userNamespaces": true
+            },
+            "name": "runc"
+          }
+        ],
+        "volumesAttached": [
+          {
+            "devicePath": "",
+            "name": "kubernetes.io/csi/rook-ceph.rbd.csi.ceph.com^0001-0009-rook-ceph-0000000000000002-4f6451ce-ecae-4ee0-8519-7a2b678795b1"
+          },
+          {
+            "devicePath": "",
+            "name": "kubernetes.io/csi/rook-ceph.rbd.csi.ceph.com^0001-0009-rook-ceph-0000000000000002-b9ae3e4f-4531-42e4-bd47-4df696a42b38"
+          }
+        ],
+        "volumesInUse": [
+          "kubernetes.io/csi/rook-ceph.rbd.csi.ceph.com^0001-0009-rook-ceph-0000000000000002-4f6451ce-ecae-4ee0-8519-7a2b678795b1",
+          "kubernetes.io/csi/rook-ceph.rbd.csi.ceph.com^0001-0009-rook-ceph-0000000000000002-b9ae3e4f-4531-42e4-bd47-4df696a42b38"
+        ]
+      }
+    }
+  ],
+  "kind": "List",
+  "metadata": {
+    "resourceVersion": ""
+  }
+}

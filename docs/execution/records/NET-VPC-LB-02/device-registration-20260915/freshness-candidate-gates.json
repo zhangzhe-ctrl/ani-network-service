@@ -1,0 +1,124 @@
+{
+  "at": "2026-09-15T04:58:16.092281+00:00",
+  "result": "pass",
+  "execution_host": "ubuntu",
+  "source_run": "20260915T044217Z-a4d7785d",
+  "archive_sha256": "34322dd224c0542957189c4d26bd7b2589432c924ab5cf6b1200caae68bc7a0f",
+  "manifest_sha256": "8428b6d44c9cfb86eb20d2b822c78d51a6cc60f0696fe4b1bd5280c87afce309",
+  "make_verify": "pass in initial invocation",
+  "fixed_baseline_contracts": "pass in initial invocation",
+  "postgres_race": "all required tests pass across two same-source attempts; no single uninterrupted full invocation claimed",
+  "original_command": [
+    "bash",
+    "-e",
+    "-c",
+    "validation_tmp=$(mktemp -d /var/tmp/nlb2.XXXXXX); chmod 700 \"$validation_tmp\"; export TMPDIR=\"$validation_tmp\"; printf \"%s\\n\" \"$TMPDIR\" > ../test-tmpdir.txt; make verify && scripts/check-vpc-lb-contracts && go test -race -list \"^Test\" ./internal/data > ../audit-data-test-list.txt && scripts/integration -race ./... -timeout 12m -json && mkdir ../artifacts && go build -trimpath -o ../artifacts/lb-api ./scripts/lb-api && go build -trimpath -o ../artifacts/network ./cmd/ani-network-service && sha256sum ../artifacts/lb-api ../artifacts/network"
+  ],
+  "attempts": [
+    {
+      "exit": 75,
+      "log": "freshness-candidate-command.txt",
+      "reason": "resource guard: sustained load1 above 6; final sample 11.1621; no failed Go test event"
+    },
+    {
+      "exit": 0,
+      "command": "freshness-completion-01.sh",
+      "log": "freshness-completion-01.txt",
+      "selection": "freshness-completion-01-selection.json"
+    }
+  ],
+  "data_top_level_expected": 116,
+  "data_top_level_passed": 115,
+  "explicit_out_of_scope_not_run": [
+    "TestNET05ACapacity"
+  ],
+  "unique_passing_test_and_subtest_events": 409,
+  "package_results": [
+    {
+      "Package": "github.com/zhangzhe-ctrl/ani-network-service/api/network/v1",
+      "Action": "skip",
+      "Elapsed": 0
+    },
+    {
+      "Package": "github.com/zhangzhe-ctrl/ani-network-service/internal/biz",
+      "Action": "pass",
+      "Elapsed": 1.035
+    },
+    {
+      "Package": "github.com/zhangzhe-ctrl/ani-network-service/internal/conf/v1",
+      "Action": "pass",
+      "Elapsed": 1.044
+    },
+    {
+      "Package": "github.com/zhangzhe-ctrl/ani-network-service/cmd/ani-network-service",
+      "Action": "pass",
+      "Elapsed": 8.568999999999999
+    },
+    {
+      "Package": "github.com/zhangzhe-ctrl/ani-network-service/internal/data/sqlcgen",
+      "Action": "skip",
+      "Elapsed": 0
+    },
+    {
+      "Package": "github.com/zhangzhe-ctrl/ani-network-service/internal/server",
+      "Action": "pass",
+      "Elapsed": 3.055
+    },
+    {
+      "Package": "github.com/zhangzhe-ctrl/ani-network-service/internal/service",
+      "Action": "pass",
+      "Elapsed": 1.024
+    },
+    {
+      "Package": "github.com/zhangzhe-ctrl/ani-network-service/migrations",
+      "Action": "skip",
+      "Elapsed": 0
+    },
+    {
+      "Package": "github.com/zhangzhe-ctrl/ani-network-service/scripts/lb-api",
+      "Action": "pass",
+      "Elapsed": 1.036
+    },
+    {
+      "Package": "github.com/zhangzhe-ctrl/ani-network-service/tests/net05",
+      "Action": "skip",
+      "Elapsed": 0
+    },
+    {
+      "Package": "github.com/zhangzhe-ctrl/ani-network-service/tests/net05/relay",
+      "Action": "skip",
+      "Elapsed": 0
+    },
+    {
+      "Package": "github.com/zhangzhe-ctrl/ani-network-service/tests/net05/rpc",
+      "Action": "skip",
+      "Elapsed": 0
+    },
+    {
+      "Package": "github.com/zhangzhe-ctrl/ani-network-service/tests/net05a/provider",
+      "Action": "pass",
+      "Elapsed": 1.039
+    },
+    {
+      "Package": "github.com/zhangzhe-ctrl/ani-network-service/tests/runtime",
+      "Action": "pass",
+      "Elapsed": 1.133
+    },
+    {
+      "Package": "github.com/zhangzhe-ctrl/ani-network-service/tests/testenv",
+      "Action": "pass",
+      "Elapsed": 1.031
+    },
+    {
+      "Package": "github.com/zhangzhe-ctrl/ani-network-service/internal/data",
+      "Action": "pass",
+      "Elapsed": 187.154
+    }
+  ],
+  "artifact_sha256": {
+    "lb-api": "c42ff0ac4e8b0782d24f05c2c2960692020738b7f00ce3410284707f6ce5a741",
+    "network": "b4b465f733d910a62912c113d7fb92d710a131051a4a85092787bb4da2c2276d"
+  },
+  "current_runtime_source_drift": [],
+  "live_u09": "not_verified on this new candidate"
+}

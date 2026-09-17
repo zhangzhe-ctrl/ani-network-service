@@ -1,0 +1,119 @@
+{
+  "at": "2026-09-15T09:44:05.014040+00:00",
+  "execution_host": "ubuntu",
+  "command": [
+    "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/lb-api",
+    "call",
+    "-target",
+    "unix:///home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-a.sock",
+    "-service",
+    "TenantLoadBalancerService",
+    "-method",
+    "CreateLoadBalancer"
+  ],
+  "request": {
+    "name": "lb02-2b3122-snat-first-conflict",
+    "description": "U09 direct external EIP entry without VPC Public SNAT",
+    "vpc_id": "vpc_d06f28e82fe847f7bf2cedd57dad82f4",
+    "subnet_id": "subnet_f74d90cbb5484f7fb37f8a8f6782da1d",
+    "exposure": "LOAD_BALANCER_EXPOSURE_PUBLIC",
+    "flavor": "small",
+    "public_eip_id": "eip_f20581cca5d34cc7a25af17cd95dc4cb",
+    "backends": [
+      {
+        "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+        "address": "10.233.1.2",
+        "port": 8080
+      },
+      {
+        "subnet_id": "subnet_2a3f02dc6b444cc4b708a38d345a88c7",
+        "address": "10.233.1.3",
+        "port": 8080
+      }
+    ],
+    "idempotency_key": "lb02-2b3122-snat-first-lb-competition"
+  },
+  "result": "fail",
+  "records": [
+    {
+      "at": "2026-09-15T09:43:49.967804+00:00",
+      "exit": 1,
+      "response": {
+        "code": "Unavailable",
+        "status": {
+          "code": 14,
+          "message": "VPC base connectivity is not fresh and ready",
+          "details": [
+            {
+              "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+              "reason": "BASE_CONNECTIVITY_NOT_READY",
+              "domain": "network.ani.io",
+              "metadata": {}
+            }
+          ]
+        }
+      },
+      "stderr": "RPC failed; structured status is in stdout\n"
+    },
+    {
+      "at": "2026-09-15T09:43:54.981930+00:00",
+      "exit": 1,
+      "response": {
+        "code": "Unavailable",
+        "status": {
+          "code": 14,
+          "message": "VPC base connectivity is not fresh and ready",
+          "details": [
+            {
+              "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+              "reason": "BASE_CONNECTIVITY_NOT_READY",
+              "domain": "network.ani.io",
+              "metadata": {}
+            }
+          ]
+        }
+      },
+      "stderr": "RPC failed; structured status is in stdout\n"
+    },
+    {
+      "at": "2026-09-15T09:43:59.994789+00:00",
+      "exit": 1,
+      "response": {
+        "code": "Unavailable",
+        "status": {
+          "code": 14,
+          "message": "VPC base connectivity is not fresh and ready",
+          "details": [
+            {
+              "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+              "reason": "BASE_CONNECTIVITY_NOT_READY",
+              "domain": "network.ani.io",
+              "metadata": {}
+            }
+          ]
+        }
+      },
+      "stderr": "RPC failed; structured status is in stdout\n"
+    },
+    {
+      "at": "2026-09-15T09:44:05.014014+00:00",
+      "exit": 1,
+      "response": {
+        "code": "FailedPrecondition",
+        "status": {
+          "code": 9,
+          "message": "EIP is reserved by a binding",
+          "details": [
+            {
+              "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+              "reason": "EIP_IN_USE",
+              "domain": "network.ani.io",
+              "metadata": {}
+            }
+          ]
+        }
+      },
+      "stderr": "RPC failed; structured status is in stdout\n"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "at": "2026-09-15T06:13:02.832584+00:00",
+  "result": "pass",
+  "source_run": "20260915T051609Z-70cbcaa3",
+  "old_lb_id": "lb_d9f847eef7eb453a8388672718959ec8",
+  "new_lb_id": "lb_cc562f7d8be147afae8144555aa7243b",
+  "vip": "10.233.0.200",
+  "create_operation": "8c9ea3f5-dbcf-4b1e-b027-0869bbdb6ee2",
+  "direct_vip_requests": 12,
+  "backend_counts": {
+    "lb02-2b3122-base-b": 5,
+    "lb02-2b3122-base-a": 7
+  },
+  "duplicate_vip_rejected": "VIP_IN_USE",
+  "evidence": [
+    "private-lb-delete-assessment.json",
+    "private-lb-reuse-create-02.json",
+    "private-lb-reuse-operation-03.json",
+    "private-vip-reused-assessment.json",
+    "private-lb-vip-collision.json"
+  ],
+  "limitations": "Initial reused create was rejected by base freshness; first two operation polling windows timed out before eventual success. Public EIP release/rebind remains not_verified."
+}

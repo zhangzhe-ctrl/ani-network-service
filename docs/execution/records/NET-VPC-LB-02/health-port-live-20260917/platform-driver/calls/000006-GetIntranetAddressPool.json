@@ -1,0 +1,22 @@
+{
+  "at": "2026-09-17T11:21:46.465600+00:00",
+  "command": [
+    "/home/chabking/workspace/ani-network-service-runs/lb-health-e2e-20260917/private/runtime/bin/lb-api",
+    "call",
+    "-target",
+    "unix:///home/chabking/.local/state/lbhp0917/sockets/platform.sock",
+    "-service",
+    "PlatformNetworkService",
+    "-method",
+    "GetIntranetAddressPool"
+  ],
+  "completed_at": "2026-09-17T11:21:46.483738+00:00",
+  "exit": 0,
+  "phase": "qualify",
+  "request": {
+    "pool_id": "pool_ed275c704abe414dbdba5c205044977c"
+  },
+  "stderr": "",
+  "stdout": "{\"code\":\"OK\",\"response\":{\"resource\":{\"id\":\"pool_ed275c704abe414dbdba5c205044977c\",\"cluster_id\":\"lbhealth-0917\",\"name\":\"lbhealth-0917-intranet-pool\",\"description\":\"NET-VPC-LB-02-HEALTH isolated Intranet qualification\",\"state\":\"RESOURCE_STATE_PROVISIONING\",\"reason\":\"\",\"reason_message\":\"\",\"version\":\"1\",\"created_at\":\"2026-09-17T11:21:36.101570Z\",\"updated_at\":\"2026-09-17T11:21:36.101570Z\",\"observed_at\":null,\"observation_stale\":true,\"last_operation_id\":\"4c5c153c-7f94-40d0-b788-63f042395229\",\"intranet_pool\":{\"cidr\":\"10.242.251.0/24\",\"ovn_gateway_ip\":\"10.242.251.1\",\"excluded_ips\":[\"10.242.251.1\"],\"default_vpc_name\":\"kcn-cluster\",\"default_vpc_uid\":\"a852bc64-3d41-4925-b6a1-de3db56e5a76\",\"intranet_networks\":[\"10.96.0.0/16\",\"172.16.101.0/24\",\"172.16.201.0/24\",\"172.16.202.0/24\"],\"allocation_enabled\":false,\"is_default\":false,\"config_revision\":\"1\",\"verification\":null,\"topology_fingerprint\":\"a37890aabab3dc6989f73ce814c4630ebbe9db022e8e3ef3792a08a6d2b6ceb8\",\"observed_provider_images\":[],\"scope\":\"intranet\"}}}}\n",
+  "step": "intranet-pods"
+}

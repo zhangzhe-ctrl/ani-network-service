@@ -1,0 +1,12 @@
+{
+  "at": "2026-09-15T08:08:54.246554+00:00",
+  "execution_host": "ubuntu",
+  "transport_exit": 0,
+  "result": {
+    "query": "SELECT jsonb_build_object('resource',to_jsonb(r),'operation',to_jsonb(o),'reconciliation',to_jsonb(q)) FROM network_platform_resources r JOIN network_platform_operations o ON o.operation_id=r.last_operation_id JOIN network_platform_reconciliations q ON q.resource_id=r.resource_id WHERE r.resource_id='vlan_de1416d0a8d2473ba6da717f6282c290';",
+    "exit": 0,
+    "stdout": "BEGIN\n{\"resource\": {\"kind\": \"vlan\", \"name\": \"lb02-2b3122-untagged\", \"state\": \"provisioning\", \"reason\": \"PROVIDER_UNAVAILABLE\", \"version\": 256, \"binding_id\": \"feef8adb-7766-4d2b-a280-89c221f63d5a\", \"cluster_id\": \"lb02-09141908-2b3122\", \"created_at\": \"2026-09-15T02:22:46.56289+00:00\", \"updated_at\": \"2026-09-15T08:05:37.636948+00:00\", \"description\": \"U09 logical VLAN 102, guest untagged; existing kc-managed ens35\", \"observed_at\": \"2026-09-15T07:18:27.919583+00:00\", \"resource_id\": \"vlan_de1416d0a8d2473ba6da717f6282c290\", \"provider_uid\": \"\", \"pending_since\": null, \"provider_name\": \"vlan-de1416d0a8d2473ba6da717f6282c290\", \"pending_action\": \"\", \"provider_images\": [], \"last_operation_id\": \"0295db34-1441-4ba4-bf87-1523168c3f6c\"}, \"operation\": {\"kind\": \"create_vlan\", \"state\": \"running\", \"reason\": \"PROVIDER_UNAVAILABLE\", \"attempt\": 257, \"created_at\": \"2026-09-15T02:22:46.56289+00:00\", \"updated_at\": \"2026-09-15T08:08:46.459538+00:00\", \"resource_id\": \"vlan_de1416d0a8d2473ba6da717f6282c290\", \"completed_at\": null, \"operation_id\": \"0295db34-1441-4ba4-bf87-1523168c3f6c\", \"execution_epoch\": 258, \"next_attempt_at\": \"2026-09-15T08:05:37.637404+00:00\"}, \"reconciliation\": {\"lease_epoch\": 258, \"lease_owner\": \"d9ce62c9-2691-498c-9a46-5f12203a1b5f\", \"lease_until\": \"2026-09-15T08:10:06.458559+00:00\", \"next_run_at\": \"2026-09-15T08:05:37.637552+00:00\", \"resource_id\": \"vlan_de1416d0a8d2473ba6da717f6282c290\", \"evidence_hash\": \"6f5658aae428f9e9d3c1714674ccad3781e60dfcd7d7812fc883d436dfeb60cf\", \"retry_not_before\": \"2026-09-15T08:05:37.637552+00:00\", \"evidence_applied_at\": \"2026-09-15T07:18:37.780283+00:00\", \"processed_generation\": 815, \"requested_generation\": 819}}\nROLLBACK\n",
+    "stderr": ""
+  },
+  "stderr": ""
+}

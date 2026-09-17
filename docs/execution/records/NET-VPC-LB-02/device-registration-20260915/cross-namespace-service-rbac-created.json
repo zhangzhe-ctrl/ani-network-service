@@ -1,0 +1,167 @@
+{
+  "execution_host": "ani-01, minimal owner RBAC setup only",
+  "records": [
+    {
+      "at": "2026-09-15T11:06:06.158700+00:00",
+      "command": [
+        "sudo",
+        "kubectl",
+        "create",
+        "-f",
+        "-",
+        "-o",
+        "json"
+      ],
+      "request": {
+        "apiVersion": "rbac.authorization.k8s.io/v1",
+        "kind": "Role",
+        "metadata": {
+          "namespace": "lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832",
+          "name": "lb02-2b3122-crossns-eip-owner",
+          "labels": {
+            "network.ani.io/test-run": "lb02-09141908-2b3122",
+            "network.ani.io/test-role": "crossns-eip-fault"
+          }
+        },
+        "rules": [
+          {
+            "apiGroups": [
+              ""
+            ],
+            "resources": [
+              "services"
+            ],
+            "verbs": [
+              "create"
+            ]
+          },
+          {
+            "apiGroups": [
+              ""
+            ],
+            "resources": [
+              "services"
+            ],
+            "resourceNames": [
+              "lb02-2b3122-crossns-eip"
+            ],
+            "verbs": [
+              "get",
+              "delete"
+            ]
+          }
+        ]
+      },
+      "exit": 0,
+      "response": {
+        "apiVersion": "rbac.authorization.k8s.io/v1",
+        "kind": "Role",
+        "metadata": {
+          "creationTimestamp": "2026-09-15T11:06:06Z",
+          "labels": {
+            "network.ani.io/test-role": "crossns-eip-fault",
+            "network.ani.io/test-run": "lb02-09141908-2b3122"
+          },
+          "name": "lb02-2b3122-crossns-eip-owner",
+          "namespace": "lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832",
+          "resourceVersion": "396465",
+          "uid": "81f55ec8-c7a8-4785-93ba-4fb4f2454404"
+        },
+        "rules": [
+          {
+            "apiGroups": [
+              ""
+            ],
+            "resources": [
+              "services"
+            ],
+            "verbs": [
+              "create"
+            ]
+          },
+          {
+            "apiGroups": [
+              ""
+            ],
+            "resourceNames": [
+              "lb02-2b3122-crossns-eip"
+            ],
+            "resources": [
+              "services"
+            ],
+            "verbs": [
+              "get",
+              "delete"
+            ]
+          }
+        ]
+      },
+      "stderr": ""
+    },
+    {
+      "at": "2026-09-15T11:06:06.685114+00:00",
+      "command": [
+        "sudo",
+        "kubectl",
+        "create",
+        "-f",
+        "-",
+        "-o",
+        "json"
+      ],
+      "request": {
+        "apiVersion": "rbac.authorization.k8s.io/v1",
+        "kind": "RoleBinding",
+        "metadata": {
+          "namespace": "lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832",
+          "name": "lb02-2b3122-crossns-eip-owner",
+          "labels": {
+            "network.ani.io/test-run": "lb02-09141908-2b3122",
+            "network.ani.io/test-role": "crossns-eip-fault"
+          }
+        },
+        "subjects": [
+          {
+            "kind": "ServiceAccount",
+            "namespace": "lb02-09141908-2b3122",
+            "name": "lb02-2b3122-workload-owner"
+          }
+        ],
+        "roleRef": {
+          "apiGroup": "rbac.authorization.k8s.io",
+          "kind": "Role",
+          "name": "lb02-2b3122-crossns-eip-owner"
+        }
+      },
+      "exit": 0,
+      "response": {
+        "apiVersion": "rbac.authorization.k8s.io/v1",
+        "kind": "RoleBinding",
+        "metadata": {
+          "creationTimestamp": "2026-09-15T11:06:06Z",
+          "labels": {
+            "network.ani.io/test-role": "crossns-eip-fault",
+            "network.ani.io/test-run": "lb02-09141908-2b3122"
+          },
+          "name": "lb02-2b3122-crossns-eip-owner",
+          "namespace": "lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832",
+          "resourceVersion": "396468",
+          "uid": "f11a0f21-dea9-47c7-874a-70a913f01386"
+        },
+        "roleRef": {
+          "apiGroup": "rbac.authorization.k8s.io",
+          "kind": "Role",
+          "name": "lb02-2b3122-crossns-eip-owner"
+        },
+        "subjects": [
+          {
+            "kind": "ServiceAccount",
+            "name": "lb02-2b3122-workload-owner",
+            "namespace": "lb02-09141908-2b3122"
+          }
+        ]
+      },
+      "stderr": ""
+    }
+  ]
+}

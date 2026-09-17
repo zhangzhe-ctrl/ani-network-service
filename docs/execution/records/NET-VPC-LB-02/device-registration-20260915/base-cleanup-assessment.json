@@ -1,0 +1,38 @@
+{
+  "at": "2026-09-15T05:54:48.978334+00:00",
+  "source_run": "20260915T051609Z-70cbcaa3",
+  "result": "pass",
+  "vpc_id": "vpc_a43ae8279bd54524bcf3f7f137e6a2d4",
+  "system_eip_id": "eip_bb1caa4c7b204c2da11a43fc57151784",
+  "system_snat_id": "snat_6f56ca5c087e4d1fa49670684d011207",
+  "claim_released": true,
+  "provider_resources_absent": [
+    "eip-bb1caa4c7b204c2da11a43fc57151784",
+    "snat-6f56ca5c087e4d1fa49670684d011207",
+    "vpc-a43ae8279bd54524bcf3f7f137e6a2d4"
+  ],
+  "existing_legacy_provider_uids_preserved": true,
+  "operation_order": [
+    {
+      "kind": "delete_snat",
+      "created_at": "2026-09-15T05:49:31.61768+00:00",
+      "completed_at": "2026-09-15T05:50:41.139163+00:00"
+    },
+    {
+      "kind": "delete_eip",
+      "created_at": "2026-09-15T05:50:51.523055+00:00",
+      "completed_at": "2026-09-15T05:52:40.059721+00:00"
+    },
+    {
+      "kind": "delete_vpc",
+      "created_at": "2026-09-15T05:49:11.059623+00:00",
+      "completed_at": "2026-09-15T05:53:34.995827+00:00"
+    }
+  ],
+  "evidence": [
+    "base-cleanup-vpc-ready-02.json",
+    "base-provider-ready-before-cleanup.json",
+    "base-cleanup-final-sql.json",
+    "base-cleanup-provider-progress.json"
+  ]
+}

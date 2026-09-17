@@ -1,0 +1,24 @@
+{
+  "at": "2026-09-15T11:25:11.428119+00:00",
+  "result": "pass",
+  "execution_host": "ubuntu",
+  "old_sha256": {
+    "lb-api": "d39b956bc52f0b0762085086b8766e9edafdfd5282e64eb114590b2e96d7a711",
+    "network": "e145656061a225d10dfbc6ba714a9bac0b7f219f5fc9082062fc2e0c3b9cdd9f"
+  },
+  "new_sha256": {
+    "lb-api": "a6a9140190b27cf55aef48bc5df425a7e782ca603a36619326f3b0193d9e8fb8",
+    "network": "fbe460011614f8ba5960d95370bbcd80657a6484babb818d9ccebbcf9c66ede8"
+  },
+  "backup": "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin-before-observation-debug",
+  "source_run": "20260915T112356Z-8a8f27c9",
+  "temporary_diagnostics": true,
+  "archive_sha256": "f806150831679479d25260c1840a6869c7564ec386e7f52d1269ec9df63f4311",
+  "manifest_sha256": "942291fa643250a280abae2714694e8d9f251ffa819610287c5518b834b7cd30",
+  "command": [
+    "bash",
+    "-e",
+    "-c",
+    "mkdir ../artifacts; go build -trimpath -o ../artifacts/lb-api ./scripts/lb-api; go build -trimpath -o ../artifacts/network ./cmd/ani-network-service; sha256sum ../artifacts/lb-api ../artifacts/network"
+  ]
+}

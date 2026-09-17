@@ -1,0 +1,119 @@
+{
+  "at": "2026-09-15T02:19:52.615152+00:00",
+  "steps": [
+    {
+      "name": "ani-node-facts-51a80915f0169d9a92ce6bf0",
+      "patch": [
+        {
+          "op": "test",
+          "path": "/metadata/uid",
+          "value": "590adf58-de4b-4642-8f73-30d8fb96a056"
+        },
+        {
+          "op": "test",
+          "path": "/metadata/resourceVersion",
+          "value": "237688"
+        },
+        {
+          "op": "replace",
+          "path": "/spec/template/spec/containers/0/image",
+          "value": "localhost/ani-node-facts@sha256:fe7aaee4509778b464121fb7c536e59675dee821a74c1ced62ca6da6ff9ab0c9"
+        },
+        {
+          "op": "replace",
+          "path": "/spec/template/spec/containers/0/securityContext",
+          "value": {
+            "runAsUser": 65534,
+            "runAsNonRoot": true,
+            "allowPrivilegeEscalation": false,
+            "readOnlyRootFilesystem": true,
+            "capabilities": {
+              "drop": [
+                "ALL"
+              ]
+            }
+          }
+        }
+      ],
+      "exit": 0,
+      "stdout": "{\n    \"apiVersion\": \"apps/v1\",\n    \"kind\": \"Deployment\",\n    \"metadata\": {\n        \"annotations\": {\n            \"deployment.kubernetes.io/revision\": \"1\"\n        },\n        \"creationTimestamp\": \"2026-09-15T02:10:32Z\",\n        \"generation\": 2,\n        \"labels\": {\n            \"network.ani.io/managed-by\": \"ani-network-node-facts\",\n            \"network.ani.io/node-uid\": \"3693178a-d4d4-4fb3-a39a-82b7d875391d\",\n            \"network.ani.io/test-run\": \"lb02-09141908-2b3122\"\n        },\n        \"name\": \"ani-node-facts-51a80915f0169d9a92ce6bf0\",\n        \"namespace\": \"kcn-system\",\n        \"resourceVersion\": \"240315\",\n        \"uid\": \"590adf58-de4b-4642-8f73-30d8fb96a056\"\n    },\n    \"spec\": {\n        \"progressDeadlineSeconds\": 600,\n        \"replicas\": 1,\n        \"revisionHistoryLimit\": 10,\n        \"selector\": {\n            \"matchLabels\": {\n                \"app\": \"ani-node-facts-51a80915f0169d9a92ce6bf0\"\n            }\n        },\n        \"strategy\": {\n            \"type\": \"Recreate\"\n        },\n        \"template\": {\n            \"metadata\": {\n                \"labels\": {\n                    \"app\": \"ani-node-facts-51a80915f0169d9a92ce6bf0\",\n                    \"network.ani.io/test-run\": \"lb02-09141908-2b3122\"\n                }\n            },\n            \"spec\": {\n                \"automountServiceAccountToken\": true,\n                \"containers\": [\n                    {\n                        \"args\": [\n                            \"-node-facts\"\n                        ],\n                        \"env\": [\n                            {\n                                \"name\": \"NETWORK_FACTS_NODE_NAME\",\n                                \"value\": \"ani-01\"\n                            },\n                            {\n                                \"name\": \"NETWORK_FACTS_NODE_UID\",\n                                \"value\": \"3693178a-d4d4-4fb3-a39a-82b7d875391d\"\n                            }\n                        ],\n                        \"image\": \"localhost/ani-node-facts@sha256:fe7aaee4509778b464121fb7c536e59675dee821a74c1ced62ca6da6ff9ab0c9\",\n                        \"imagePullPolicy\": \"IfNotPresent\",\n                        \"name\": \"facts\",\n                        \"resources\": {\n                            \"limits\": {\n                                \"cpu\": \"100m\",\n                                \"memory\": \"96Mi\"\n                            },\n                            \"requests\": {\n                                \"cpu\": \"10m\",\n                                \"memory\": \"32Mi\"\n                            }\n                        },\n                        \"securityContext\": {\n                            \"allowPrivilegeEscalation\": false,\n                            \"capabilities\": {\n                                \"drop\": [\n                                    \"ALL\"\n                                ]\n                            },\n                            \"readOnlyRootFilesystem\": true,\n                            \"runAsNonRoot\": true,\n                            \"runAsUser\": 65534\n                        },\n                        \"terminationMessagePath\": \"/dev/termination-log\",\n                        \"terminationMessagePolicy\": \"File\",\n                        \"volumeMounts\": [\n                            {\n                                \"mountPath\": \"/sys\",\n                                \"name\": \"sys\",\n                                \"readOnly\": true\n                            },\n                            {\n                                \"mountPath\": \"/var/run/openvswitch\",\n                                \"name\": \"ovs\",\n                                \"readOnly\": true\n                            }\n                        ]\n                    }\n                ],\n                \"dnsPolicy\": \"ClusterFirstWithHostNet\",\n                \"hostNetwork\": true,\n                \"nodeName\": \"ani-01\",\n                \"restartPolicy\": \"Always\",\n                \"schedulerName\": \"default-scheduler\",\n                \"securityContext\": {\n                    \"seccompProfile\": {\n                        \"type\": \"RuntimeDefault\"\n                    }\n                },\n                \"serviceAccount\": \"ani-node-facts-51a80915f0169d9a92ce6bf0\",\n                \"serviceAccountName\": \"ani-node-facts-51a80915f0169d9a92ce6bf0\",\n                \"terminationGracePeriodSeconds\": 15,\n                \"tolerations\": [\n                    {\n                        \"operator\": \"Exists\"\n                    }\n                ],\n                \"volumes\": [\n                    {\n                        \"hostPath\": {\n                            \"path\": \"/sys\",\n                            \"type\": \"Directory\"\n                        },\n                        \"name\": \"sys\"\n                    },\n                    {\n                        \"hostPath\": {\n                            \"path\": \"/var/run/openvswitch\",\n                            \"type\": \"Directory\"\n                        },\n                        \"name\": \"ovs\"\n                    }\n                ]\n            }\n        }\n    },\n    \"status\": {\n        \"availableReplicas\": 1,\n        \"conditions\": [\n            {\n                \"lastTransitionTime\": \"2026-09-15T02:10:34Z\",\n                \"lastUpdateTime\": \"2026-09-15T02:10:34Z\",\n                \"message\": \"Deployment has minimum availability.\",\n                \"reason\": \"MinimumReplicasAvailable\",\n                \"status\": \"True\",\n                \"type\": \"Available\"\n            },\n            {\n                \"lastTransitionTime\": \"2026-09-15T02:10:32Z\",\n                \"lastUpdateTime\": \"2026-09-15T02:10:34Z\",\n                \"message\": \"ReplicaSet \\\"ani-node-facts-51a80915f0169d9a92ce6bf0-6894584bff\\\" has successfully progressed.\",\n                \"reason\": \"NewReplicaSetAvailable\",\n                \"status\": \"True\",\n                \"type\": \"Progressing\"\n            }\n        ],\n        \"observedGeneration\": 1,\n        \"readyReplicas\": 1,\n        \"replicas\": 1,\n        \"terminatingReplicas\": 0,\n        \"updatedReplicas\": 1\n    }\n}\n",
+      "stderr": ""
+    },
+    {
+      "name": "ani-node-facts-7b398d4ee406a252345c20ca",
+      "patch": [
+        {
+          "op": "test",
+          "path": "/metadata/uid",
+          "value": "7c7a26d1-2c52-42f9-80e1-278a6513e38d"
+        },
+        {
+          "op": "test",
+          "path": "/metadata/resourceVersion",
+          "value": "237696"
+        },
+        {
+          "op": "replace",
+          "path": "/spec/template/spec/containers/0/image",
+          "value": "localhost/ani-node-facts@sha256:fe7aaee4509778b464121fb7c536e59675dee821a74c1ced62ca6da6ff9ab0c9"
+        },
+        {
+          "op": "replace",
+          "path": "/spec/template/spec/containers/0/securityContext",
+          "value": {
+            "runAsUser": 65534,
+            "runAsNonRoot": true,
+            "allowPrivilegeEscalation": false,
+            "readOnlyRootFilesystem": true,
+            "capabilities": {
+              "drop": [
+                "ALL"
+              ]
+            }
+          }
+        }
+      ],
+      "exit": 0,
+      "stdout": "{\n    \"apiVersion\": \"apps/v1\",\n    \"kind\": \"Deployment\",\n    \"metadata\": {\n        \"annotations\": {\n            \"deployment.kubernetes.io/revision\": \"1\"\n        },\n        \"creationTimestamp\": \"2026-09-15T02:10:32Z\",\n        \"generation\": 2,\n        \"labels\": {\n            \"network.ani.io/managed-by\": \"ani-network-node-facts\",\n            \"network.ani.io/node-uid\": \"2f954d6f-31d0-49d9-83ee-2f8888408236\",\n            \"network.ani.io/test-run\": \"lb02-09141908-2b3122\"\n        },\n        \"name\": \"ani-node-facts-7b398d4ee406a252345c20ca\",\n        \"namespace\": \"kcn-system\",\n        \"resourceVersion\": \"240344\",\n        \"uid\": \"7c7a26d1-2c52-42f9-80e1-278a6513e38d\"\n    },\n    \"spec\": {\n        \"progressDeadlineSeconds\": 600,\n        \"replicas\": 1,\n        \"revisionHistoryLimit\": 10,\n        \"selector\": {\n            \"matchLabels\": {\n                \"app\": \"ani-node-facts-7b398d4ee406a252345c20ca\"\n            }\n        },\n        \"strategy\": {\n            \"type\": \"Recreate\"\n        },\n        \"template\": {\n            \"metadata\": {\n                \"labels\": {\n                    \"app\": \"ani-node-facts-7b398d4ee406a252345c20ca\",\n                    \"network.ani.io/test-run\": \"lb02-09141908-2b3122\"\n                }\n            },\n            \"spec\": {\n                \"automountServiceAccountToken\": true,\n                \"containers\": [\n                    {\n                        \"args\": [\n                            \"-node-facts\"\n                        ],\n                        \"env\": [\n                            {\n                                \"name\": \"NETWORK_FACTS_NODE_NAME\",\n                                \"value\": \"ani-02\"\n                            },\n                            {\n                                \"name\": \"NETWORK_FACTS_NODE_UID\",\n                                \"value\": \"2f954d6f-31d0-49d9-83ee-2f8888408236\"\n                            }\n                        ],\n                        \"image\": \"localhost/ani-node-facts@sha256:fe7aaee4509778b464121fb7c536e59675dee821a74c1ced62ca6da6ff9ab0c9\",\n                        \"imagePullPolicy\": \"IfNotPresent\",\n                        \"name\": \"facts\",\n                        \"resources\": {\n                            \"limits\": {\n                                \"cpu\": \"100m\",\n                                \"memory\": \"96Mi\"\n                            },\n                            \"requests\": {\n                                \"cpu\": \"10m\",\n                                \"memory\": \"32Mi\"\n                            }\n                        },\n                        \"securityContext\": {\n                            \"allowPrivilegeEscalation\": false,\n                            \"capabilities\": {\n                                \"drop\": [\n                                    \"ALL\"\n                                ]\n                            },\n                            \"readOnlyRootFilesystem\": true,\n                            \"runAsNonRoot\": true,\n                            \"runAsUser\": 65534\n                        },\n                        \"terminationMessagePath\": \"/dev/termination-log\",\n                        \"terminationMessagePolicy\": \"File\",\n                        \"volumeMounts\": [\n                            {\n                                \"mountPath\": \"/sys\",\n                                \"name\": \"sys\",\n                                \"readOnly\": true\n                            },\n                            {\n                                \"mountPath\": \"/var/run/openvswitch\",\n                                \"name\": \"ovs\",\n                                \"readOnly\": true\n                            }\n                        ]\n                    }\n                ],\n                \"dnsPolicy\": \"ClusterFirstWithHostNet\",\n                \"hostNetwork\": true,\n                \"nodeName\": \"ani-02\",\n                \"restartPolicy\": \"Always\",\n                \"schedulerName\": \"default-scheduler\",\n                \"securityContext\": {\n                    \"seccompProfile\": {\n                        \"type\": \"RuntimeDefault\"\n                    }\n                },\n                \"serviceAccount\": \"ani-node-facts-7b398d4ee406a252345c20ca\",\n                \"serviceAccountName\": \"ani-node-facts-7b398d4ee406a252345c20ca\",\n                \"terminationGracePeriodSeconds\": 15,\n                \"tolerations\": [\n                    {\n                        \"operator\": \"Exists\"\n                    }\n                ],\n                \"volumes\": [\n                    {\n                        \"hostPath\": {\n                            \"path\": \"/sys\",\n                            \"type\": \"Directory\"\n                        },\n                        \"name\": \"sys\"\n                    },\n                    {\n                        \"hostPath\": {\n                            \"path\": \"/var/run/openvswitch\",\n                            \"type\": \"Directory\"\n                        },\n                        \"name\": \"ovs\"\n                    }\n                ]\n            }\n        }\n    },\n    \"status\": {\n        \"availableReplicas\": 1,\n        \"conditions\": [\n            {\n                \"lastTransitionTime\": \"2026-09-15T02:10:34Z\",\n                \"lastUpdateTime\": \"2026-09-15T02:10:34Z\",\n                \"message\": \"Deployment has minimum availability.\",\n                \"reason\": \"MinimumReplicasAvailable\",\n                \"status\": \"True\",\n                \"type\": \"Available\"\n            },\n            {\n                \"lastTransitionTime\": \"2026-09-15T02:10:32Z\",\n                \"lastUpdateTime\": \"2026-09-15T02:10:34Z\",\n                \"message\": \"ReplicaSet \\\"ani-node-facts-7b398d4ee406a252345c20ca-7b5f5f45c\\\" has successfully progressed.\",\n                \"reason\": \"NewReplicaSetAvailable\",\n                \"status\": \"True\",\n                \"type\": \"Progressing\"\n            }\n        ],\n        \"observedGeneration\": 1,\n        \"readyReplicas\": 1,\n        \"replicas\": 1,\n        \"terminatingReplicas\": 0,\n        \"updatedReplicas\": 1\n    }\n}\n",
+      "stderr": ""
+    },
+    {
+      "name": "ani-node-facts-ab0e432da17dfce745d60958",
+      "patch": [
+        {
+          "op": "test",
+          "path": "/metadata/uid",
+          "value": "639c67d2-b10e-42c2-a27b-a665e6c5abf7"
+        },
+        {
+          "op": "test",
+          "path": "/metadata/resourceVersion",
+          "value": "237692"
+        },
+        {
+          "op": "replace",
+          "path": "/spec/template/spec/containers/0/image",
+          "value": "localhost/ani-node-facts@sha256:fe7aaee4509778b464121fb7c536e59675dee821a74c1ced62ca6da6ff9ab0c9"
+        },
+        {
+          "op": "replace",
+          "path": "/spec/template/spec/containers/0/securityContext",
+          "value": {
+            "runAsUser": 65534,
+            "runAsNonRoot": true,
+            "allowPrivilegeEscalation": false,
+            "readOnlyRootFilesystem": true,
+            "capabilities": {
+              "drop": [
+                "ALL"
+              ]
+            }
+          }
+        }
+      ],
+      "exit": 0,
+      "stdout": "{\n    \"apiVersion\": \"apps/v1\",\n    \"kind\": \"Deployment\",\n    \"metadata\": {\n        \"annotations\": {\n            \"deployment.kubernetes.io/revision\": \"1\"\n        },\n        \"creationTimestamp\": \"2026-09-15T02:10:32Z\",\n        \"generation\": 2,\n        \"labels\": {\n            \"network.ani.io/managed-by\": \"ani-network-node-facts\",\n            \"network.ani.io/node-uid\": \"2507940b-6901-44c6-aadd-ba1bb6875bde\",\n            \"network.ani.io/test-run\": \"lb02-09141908-2b3122\"\n        },\n        \"name\": \"ani-node-facts-ab0e432da17dfce745d60958\",\n        \"namespace\": \"kcn-system\",\n        \"resourceVersion\": \"240376\",\n        \"uid\": \"639c67d2-b10e-42c2-a27b-a665e6c5abf7\"\n    },\n    \"spec\": {\n        \"progressDeadlineSeconds\": 600,\n        \"replicas\": 1,\n        \"revisionHistoryLimit\": 10,\n        \"selector\": {\n            \"matchLabels\": {\n                \"app\": \"ani-node-facts-ab0e432da17dfce745d60958\"\n            }\n        },\n        \"strategy\": {\n            \"type\": \"Recreate\"\n        },\n        \"template\": {\n            \"metadata\": {\n                \"labels\": {\n                    \"app\": \"ani-node-facts-ab0e432da17dfce745d60958\",\n                    \"network.ani.io/test-run\": \"lb02-09141908-2b3122\"\n                }\n            },\n            \"spec\": {\n                \"automountServiceAccountToken\": true,\n                \"containers\": [\n                    {\n                        \"args\": [\n                            \"-node-facts\"\n                        ],\n                        \"env\": [\n                            {\n                                \"name\": \"NETWORK_FACTS_NODE_NAME\",\n                                \"value\": \"ani-03\"\n                            },\n                            {\n                                \"name\": \"NETWORK_FACTS_NODE_UID\",\n                                \"value\": \"2507940b-6901-44c6-aadd-ba1bb6875bde\"\n                            }\n                        ],\n                        \"image\": \"localhost/ani-node-facts@sha256:fe7aaee4509778b464121fb7c536e59675dee821a74c1ced62ca6da6ff9ab0c9\",\n                        \"imagePullPolicy\": \"IfNotPresent\",\n                        \"name\": \"facts\",\n                        \"resources\": {\n                            \"limits\": {\n                                \"cpu\": \"100m\",\n                                \"memory\": \"96Mi\"\n                            },\n                            \"requests\": {\n                                \"cpu\": \"10m\",\n                                \"memory\": \"32Mi\"\n                            }\n                        },\n                        \"securityContext\": {\n                            \"allowPrivilegeEscalation\": false,\n                            \"capabilities\": {\n                                \"drop\": [\n                                    \"ALL\"\n                                ]\n                            },\n                            \"readOnlyRootFilesystem\": true,\n                            \"runAsNonRoot\": true,\n                            \"runAsUser\": 65534\n                        },\n                        \"terminationMessagePath\": \"/dev/termination-log\",\n                        \"terminationMessagePolicy\": \"File\",\n                        \"volumeMounts\": [\n                            {\n                                \"mountPath\": \"/sys\",\n                                \"name\": \"sys\",\n                                \"readOnly\": true\n                            },\n                            {\n                                \"mountPath\": \"/var/run/openvswitch\",\n                                \"name\": \"ovs\",\n                                \"readOnly\": true\n                            }\n                        ]\n                    }\n                ],\n                \"dnsPolicy\": \"ClusterFirstWithHostNet\",\n                \"hostNetwork\": true,\n                \"nodeName\": \"ani-03\",\n                \"restartPolicy\": \"Always\",\n                \"schedulerName\": \"default-scheduler\",\n                \"securityContext\": {\n                    \"seccompProfile\": {\n                        \"type\": \"RuntimeDefault\"\n                    }\n                },\n                \"serviceAccount\": \"ani-node-facts-ab0e432da17dfce745d60958\",\n                \"serviceAccountName\": \"ani-node-facts-ab0e432da17dfce745d60958\",\n                \"terminationGracePeriodSeconds\": 15,\n                \"tolerations\": [\n                    {\n                        \"operator\": \"Exists\"\n                    }\n                ],\n                \"volumes\": [\n                    {\n                        \"hostPath\": {\n                            \"path\": \"/sys\",\n                            \"type\": \"Directory\"\n                        },\n                        \"name\": \"sys\"\n                    },\n                    {\n                        \"hostPath\": {\n                            \"path\": \"/var/run/openvswitch\",\n                            \"type\": \"Directory\"\n                        },\n                        \"name\": \"ovs\"\n                    }\n                ]\n            }\n        }\n    },\n    \"status\": {\n        \"availableReplicas\": 1,\n        \"conditions\": [\n            {\n                \"lastTransitionTime\": \"2026-09-15T02:10:34Z\",\n                \"lastUpdateTime\": \"2026-09-15T02:10:34Z\",\n                \"message\": \"Deployment has minimum availability.\",\n                \"reason\": \"MinimumReplicasAvailable\",\n                \"status\": \"True\",\n                \"type\": \"Available\"\n            },\n            {\n                \"lastTransitionTime\": \"2026-09-15T02:10:32Z\",\n                \"lastUpdateTime\": \"2026-09-15T02:10:34Z\",\n                \"message\": \"ReplicaSet \\\"ani-node-facts-ab0e432da17dfce745d60958-67c9b5b476\\\" has successfully progressed.\",\n                \"reason\": \"NewReplicaSetAvailable\",\n                \"status\": \"True\",\n                \"type\": \"Progressing\"\n            }\n        ],\n        \"observedGeneration\": 1,\n        \"readyReplicas\": 1,\n        \"replicas\": 1,\n        \"terminatingReplicas\": 0,\n        \"updatedReplicas\": 1\n    }\n}\n",
+      "stderr": ""
+    }
+  ]
+}

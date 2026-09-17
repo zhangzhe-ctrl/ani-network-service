@@ -286,6 +286,9 @@ func operation(row sqlcgen.NetworkOperation) biz.Operation {
 	if row.SnatID != nil {
 		resourceID, kind = *row.SnatID, "snat"
 	}
+	if row.LbID != nil {
+		resourceID, kind = *row.LbID, "load_balancer"
+	}
 	return biz.Operation{
 		ID: row.OperationID, TenantID: row.TenantID, ResourceID: resourceID, ResourceType: kind, Kind: row.Kind,
 		State: biz.OperationState(row.State), Reason: biz.Reason(row.Reason), CreatedAt: row.CreatedAt,

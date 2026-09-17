@@ -1,0 +1,161 @@
+{
+  "at": "2026-09-15T04:03:32.814372+00:00",
+  "creation_command": "sudo -n /usr/local/bin/kubectl --kubeconfig /etc/kubernetes/admin.conf --context kubernetes-admin@ani-platform --request-timeout=15s create -f - -o json",
+  "creation_exit": 0,
+  "note": "create emitted sequential JSON objects; local single-object parser failed after successful create. No repeat create. This is direct readback of all five objects.",
+  "objects": [
+    {
+      "apiVersion": "v1",
+      "automountServiceAccountToken": false,
+      "kind": "ServiceAccount",
+      "metadata": {
+        "creationTimestamp": "2026-09-15T04:03:05Z",
+        "labels": {
+          "network.ani.io/test-run": "lb02-09141908-2b3122"
+        },
+        "name": "lb02-2b3122-workload-owner",
+        "namespace": "lb02-09141908-2b3122",
+        "resourceVersion": "270812",
+        "uid": "0f8210f3-0c4a-44af-83c4-89c30b521939"
+      }
+    },
+    {
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "Role",
+      "metadata": {
+        "creationTimestamp": "2026-09-15T04:03:05Z",
+        "labels": {
+          "network.ani.io/test-run": "lb02-09141908-2b3122"
+        },
+        "name": "lb02-2b3122-workload-owner",
+        "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+        "resourceVersion": "270813",
+        "uid": "7279dd58-8cae-4c8f-b874-992f15826883"
+      },
+      "rules": [
+        {
+          "apiGroups": [
+            ""
+          ],
+          "resources": [
+            "pods"
+          ],
+          "verbs": [
+            "create",
+            "get",
+            "list",
+            "watch",
+            "delete"
+          ]
+        },
+        {
+          "apiGroups": [
+            ""
+          ],
+          "resources": [
+            "pods/exec"
+          ],
+          "verbs": [
+            "create",
+            "get"
+          ]
+        }
+      ]
+    },
+    {
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "RoleBinding",
+      "metadata": {
+        "creationTimestamp": "2026-09-15T04:03:05Z",
+        "labels": {
+          "network.ani.io/test-run": "lb02-09141908-2b3122"
+        },
+        "name": "lb02-2b3122-workload-owner",
+        "namespace": "lb022b3122-d896f754-ab06-4cbe-a7fd-53148d16d0ad",
+        "resourceVersion": "270814",
+        "uid": "05a1a014-4058-4b8a-ab44-f9b0b807a1f1"
+      },
+      "roleRef": {
+        "apiGroup": "rbac.authorization.k8s.io",
+        "kind": "Role",
+        "name": "lb02-2b3122-workload-owner"
+      },
+      "subjects": [
+        {
+          "kind": "ServiceAccount",
+          "name": "lb02-2b3122-workload-owner",
+          "namespace": "lb02-09141908-2b3122"
+        }
+      ]
+    },
+    {
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "Role",
+      "metadata": {
+        "creationTimestamp": "2026-09-15T04:03:05Z",
+        "labels": {
+          "network.ani.io/test-run": "lb02-09141908-2b3122"
+        },
+        "name": "lb02-2b3122-workload-owner",
+        "namespace": "lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832",
+        "resourceVersion": "270815",
+        "uid": "664f0a13-c2b3-45c7-9c72-7b9b72e2ec18"
+      },
+      "rules": [
+        {
+          "apiGroups": [
+            ""
+          ],
+          "resources": [
+            "pods"
+          ],
+          "verbs": [
+            "create",
+            "get",
+            "list",
+            "watch",
+            "delete"
+          ]
+        },
+        {
+          "apiGroups": [
+            ""
+          ],
+          "resources": [
+            "pods/exec"
+          ],
+          "verbs": [
+            "create",
+            "get"
+          ]
+        }
+      ]
+    },
+    {
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "RoleBinding",
+      "metadata": {
+        "creationTimestamp": "2026-09-15T04:03:05Z",
+        "labels": {
+          "network.ani.io/test-run": "lb02-09141908-2b3122"
+        },
+        "name": "lb02-2b3122-workload-owner",
+        "namespace": "lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832",
+        "resourceVersion": "270816",
+        "uid": "b086ea18-66ba-4e8d-9179-bcb0af3599ba"
+      },
+      "roleRef": {
+        "apiGroup": "rbac.authorization.k8s.io",
+        "kind": "Role",
+        "name": "lb02-2b3122-workload-owner"
+      },
+      "subjects": [
+        {
+          "kind": "ServiceAccount",
+          "name": "lb02-2b3122-workload-owner",
+          "namespace": "lb02-09141908-2b3122"
+        }
+      ]
+    }
+  ]
+}

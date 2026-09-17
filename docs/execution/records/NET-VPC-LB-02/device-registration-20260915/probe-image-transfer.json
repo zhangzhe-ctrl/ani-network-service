@@ -1,0 +1,126 @@
+{
+  "source_run": "20260915T025202Z-d88ee066",
+  "archive_sha256": "8e1a38c0ff7e4025e024f51d0d1747171fcb8e1df9d08a6a002f9791242217b6",
+  "manifest_digest": "sha256:647c2acd8e115511a18506014995ec01b7d0d62fbc05f2a6e51a5c65c2a3fcce",
+  "config_digest": "sha256:ce7574f8dd6ec7bf512cd5a665bbecfe0e783285d243e2ebbe7f54f3c544ae67",
+  "docker_inspect_id": "sha256:647c2acd8e115511a18506014995ec01b7d0d62fbc05f2a6e51a5c65c2a3fcce",
+  "image_reference": "localhost/lb02-2b3122-probe@sha256:647c2acd8e115511a18506014995ec01b7d0d62fbc05f2a6e51a5c65c2a3fcce",
+  "build": {
+    "at": "2026-09-15T03:28:33.099386+00:00",
+    "execution_host": "ubuntu",
+    "source_run": "20260915T025202Z-d88ee066",
+    "source_archive_sha256": "17d30aa89b7f9d100120166c4c6c218038c01f7fd8b8627a7c874a658980dbad",
+    "image": "localhost/lb02-2b3122-probe:20260915",
+    "config_digest": "sha256:647c2acd8e115511a18506014995ec01b7d0d62fbc05f2a6e51a5c65c2a3fcce",
+    "smoke": [
+      {
+        "state": "initial",
+        "exit": 0,
+        "stdout": "status 200\n{\"fixture_id\":\"lb02-09141908-2b3122-image-smoke\",\"hostname\":\"b09e2a785730\",\"instance_id\":\"\",\"nonce\":\"\",\"port\":\"8080\"}\n",
+        "pass": true
+      },
+      {
+        "state": "listener_closed",
+        "exit": 2,
+        "stdout": "Get \"http://127.0.0.1:8080/\": dial tcp 127.0.0.1:8080: connect: connection refused\n",
+        "pass": true
+      },
+      {
+        "state": "recovered",
+        "exit": 0,
+        "stdout": "status 200\n{\"fixture_id\":\"lb02-09141908-2b3122-image-smoke\",\"hostname\":\"b09e2a785730\",\"instance_id\":\"\",\"nonce\":\"\",\"port\":\"8080\"}\n",
+        "pass": true
+      }
+    ],
+    "files": {
+      "tests/net05/probe.go": "fbbdc2e8a4bf4841e58699ea8b7b20822ea5be2907bcccde478c096fafad8439",
+      "../probe-image/probe": "ffcf0c98acaedd82d52d8b9b9f981a8bbc8b1fbc4499be94947d9040f0014bed",
+      "../probe-image/Probe.Dockerfile": "cedcf91dfb3f0eb4bb1aed9a0d9ed2cadcb8a6a0fbe5061cae2042c23a69bc92",
+      "../probe-image/probe-entrypoint.sh": "38ef3bd46235fd3a4f36ce9b0ccd3834b272c42b27c52e52ca24dece58cfd78f",
+      "../probe-image/image.tar": "8e1a38c0ff7e4025e024f51d0d1747171fcb8e1df9d08a6a002f9791242217b6"
+    },
+    "purpose": "ordinary Attachment workload and client; run/backend identity in response; same Pod/IP TCP listener failure and recovery",
+    "data_plane": "not_verified by image smoke"
+  },
+  "local_relay": "/home/chabking/workspace/.worktrees/network-vpc-lb-02/.work/lb-probe-20260915",
+  "nodes": [
+    {
+      "host": "ani-test-1",
+      "archive_sha256": "8e1a38c0ff7e4025e024f51d0d1747171fcb8e1df9d08a6a002f9791242217b6",
+      "temporary_archive": "/var/tmp/lb02-2b3122-probe.Yu7hJI/image.tar",
+      "steps": [
+        {
+          "command": "sudo -n /usr/local/bin/ctr -n k8s.io images import --digests /var/tmp/lb02-2b3122-probe.Yu7hJI/image.tar",
+          "exit": 0,
+          "stdout": "import 2026 09 15@sha256:6dc16949364cbd6\tsaved\t\napplication/vnd.oci.image.index.v1+json sha256:6dc16949364cbd67c142d6d0ca3aa6353146917816936e63beb672621fcb9295\nImporting\telapsed: 1.0 s\ttotal:   0.0 B\t(0.0 B/s)\t\nimport 2026 09 15@sha256:6dc16949364cbd6\tsaved\t\nlocalhost/lb02 2b3122 probe:20260915    \tsaved\t\napplication/vnd.oci.image.index.v1+json sha256:6dc16949364cbd67c142d6d0ca3aa6353146917816936e63beb672621fcb9295\napplication/vnd.oci.image.manifest.v1+json sha256:647c2acd8e115511a18506014995ec01b7d0d62fbc05f2a6e51a5c65c2a3fcce\nImporting\telapsed: 1.0 s\ttotal:   0.0 B\t(0.0 B/s)\t\n",
+          "stderr": "time=\"2026-09-15T11:32:47+08:00\" level=warning msg=\"DEPRECATION: The `mirrors` property of `[plugins.\\\"io.containerd.grpc.v1.cri\\\".registry]` is deprecated since containerd v1.5 and will be removed in containerd v2.4. Use `config_path` instead.\"\n"
+        },
+        {
+          "command": "sudo -n /usr/local/bin/ctr -n k8s.io images tag localhost/lb02-2b3122-probe:20260915 localhost/lb02-2b3122-probe@sha256:647c2acd8e115511a18506014995ec01b7d0d62fbc05f2a6e51a5c65c2a3fcce",
+          "exit": 0,
+          "stdout": "localhost/lb02-2b3122-probe@sha256:647c2acd8e115511a18506014995ec01b7d0d62fbc05f2a6e51a5c65c2a3fcce\n",
+          "stderr": "time=\"2026-09-15T11:32:49+08:00\" level=warning msg=\"DEPRECATION: The `mirrors` property of `[plugins.\\\"io.containerd.grpc.v1.cri\\\".registry]` is deprecated since containerd v1.5 and will be removed in containerd v2.4. Use `config_path` instead.\"\n"
+        },
+        {
+          "command": "sudo -n /usr/local/bin/ctr -n k8s.io images ls name==localhost/lb02-2b3122-probe@sha256:647c2acd8e115511a18506014995ec01b7d0d62fbc05f2a6e51a5c65c2a3fcce",
+          "exit": 0,
+          "stdout": "REF                                                                                                 TYPE                                       DIGEST                                                                  SIZE     PLATFORMS   LABELS                          \nlocalhost/lb02-2b3122-probe@sha256:647c2acd8e115511a18506014995ec01b7d0d62fbc05f2a6e51a5c65c2a3fcce application/vnd.oci.image.manifest.v1+json sha256:647c2acd8e115511a18506014995ec01b7d0d62fbc05f2a6e51a5c65c2a3fcce 31.9 MiB linux/amd64 io.cri-containerd.image=managed \n",
+          "stderr": "time=\"2026-09-15T11:32:50+08:00\" level=warning msg=\"DEPRECATION: The `mirrors` property of `[plugins.\\\"io.containerd.grpc.v1.cri\\\".registry]` is deprecated since containerd v1.5 and will be removed in containerd v2.4. Use `config_path` instead.\"\n"
+        }
+      ]
+    },
+    {
+      "host": "ani-test-2",
+      "archive_sha256": "8e1a38c0ff7e4025e024f51d0d1747171fcb8e1df9d08a6a002f9791242217b6",
+      "temporary_archive": "/var/tmp/lb02-2b3122-probe.q8ItoK/image.tar",
+      "steps": [
+        {
+          "command": "sudo -n /usr/local/bin/ctr -n k8s.io images import --digests /var/tmp/lb02-2b3122-probe.q8ItoK/image.tar",
+          "exit": 0,
+          "stdout": "import 2026 09 15@sha256:6dc16949364cbd6\tsaved\t\napplication/vnd.oci.image.index.v1+json sha256:6dc16949364cbd67c142d6d0ca3aa6353146917816936e63beb672621fcb9295\nImporting\telapsed: 0.9 s\ttotal:   0.0 B\t(0.0 B/s)\t\nimport 2026 09 15@sha256:6dc16949364cbd6\tsaved\t\nlocalhost/lb02 2b3122 probe:20260915    \tsaved\t\napplication/vnd.oci.image.index.v1+json sha256:6dc16949364cbd67c142d6d0ca3aa6353146917816936e63beb672621fcb9295\napplication/vnd.oci.image.manifest.v1+json sha256:647c2acd8e115511a18506014995ec01b7d0d62fbc05f2a6e51a5c65c2a3fcce\nImporting\telapsed: 0.9 s\ttotal:   0.0 B\t(0.0 B/s)\t\n",
+          "stderr": "time=\"2026-09-15T11:33:05+08:00\" level=warning msg=\"DEPRECATION: The `mirrors` property of `[plugins.\\\"io.containerd.grpc.v1.cri\\\".registry]` is deprecated since containerd v1.5 and will be removed in containerd v2.4. Use `config_path` instead.\"\n"
+        },
+        {
+          "command": "sudo -n /usr/local/bin/ctr -n k8s.io images tag localhost/lb02-2b3122-probe:20260915 localhost/lb02-2b3122-probe@sha256:647c2acd8e115511a18506014995ec01b7d0d62fbc05f2a6e51a5c65c2a3fcce",
+          "exit": 0,
+          "stdout": "localhost/lb02-2b3122-probe@sha256:647c2acd8e115511a18506014995ec01b7d0d62fbc05f2a6e51a5c65c2a3fcce\n",
+          "stderr": "time=\"2026-09-15T11:33:07+08:00\" level=warning msg=\"DEPRECATION: The `mirrors` property of `[plugins.\\\"io.containerd.grpc.v1.cri\\\".registry]` is deprecated since containerd v1.5 and will be removed in containerd v2.4. Use `config_path` instead.\"\n"
+        },
+        {
+          "command": "sudo -n /usr/local/bin/ctr -n k8s.io images ls name==localhost/lb02-2b3122-probe@sha256:647c2acd8e115511a18506014995ec01b7d0d62fbc05f2a6e51a5c65c2a3fcce",
+          "exit": 0,
+          "stdout": "REF                                                                                                 TYPE                                       DIGEST                                                                  SIZE     PLATFORMS   LABELS                          \nlocalhost/lb02-2b3122-probe@sha256:647c2acd8e115511a18506014995ec01b7d0d62fbc05f2a6e51a5c65c2a3fcce application/vnd.oci.image.manifest.v1+json sha256:647c2acd8e115511a18506014995ec01b7d0d62fbc05f2a6e51a5c65c2a3fcce 31.9 MiB linux/amd64 io.cri-containerd.image=managed \n",
+          "stderr": "time=\"2026-09-15T11:33:07+08:00\" level=warning msg=\"DEPRECATION: The `mirrors` property of `[plugins.\\\"io.containerd.grpc.v1.cri\\\".registry]` is deprecated since containerd v1.5 and will be removed in containerd v2.4. Use `config_path` instead.\"\n"
+        }
+      ]
+    },
+    {
+      "host": "ani-test-3",
+      "archive_sha256": "8e1a38c0ff7e4025e024f51d0d1747171fcb8e1df9d08a6a002f9791242217b6",
+      "temporary_archive": "/var/tmp/lb02-2b3122-probe.ZqXXOe/image.tar",
+      "steps": [
+        {
+          "command": "sudo -n /usr/local/bin/ctr -n k8s.io images import --digests /var/tmp/lb02-2b3122-probe.ZqXXOe/image.tar",
+          "exit": 0,
+          "stdout": "import 2026 09 15@sha256:6dc16949364cbd6\tsaved\t\napplication/vnd.oci.image.index.v1+json sha256:6dc16949364cbd67c142d6d0ca3aa6353146917816936e63beb672621fcb9295\nImporting\telapsed: 0.9 s\ttotal:   0.0 B\t(0.0 B/s)\t\nimport 2026 09 15@sha256:6dc16949364cbd6\tsaved\t\nlocalhost/lb02 2b3122 probe:20260915    \tsaved\t\napplication/vnd.oci.image.index.v1+json sha256:6dc16949364cbd67c142d6d0ca3aa6353146917816936e63beb672621fcb9295\napplication/vnd.oci.image.manifest.v1+json sha256:647c2acd8e115511a18506014995ec01b7d0d62fbc05f2a6e51a5c65c2a3fcce\nImporting\telapsed: 0.9 s\ttotal:   0.0 B\t(0.0 B/s)\t\n",
+          "stderr": "time=\"2026-09-15T11:33:22+08:00\" level=warning msg=\"DEPRECATION: The `mirrors` property of `[plugins.\\\"io.containerd.grpc.v1.cri\\\".registry]` is deprecated since containerd v1.5 and will be removed in containerd v2.4. Use `config_path` instead.\"\n"
+        },
+        {
+          "command": "sudo -n /usr/local/bin/ctr -n k8s.io images tag localhost/lb02-2b3122-probe:20260915 localhost/lb02-2b3122-probe@sha256:647c2acd8e115511a18506014995ec01b7d0d62fbc05f2a6e51a5c65c2a3fcce",
+          "exit": 0,
+          "stdout": "localhost/lb02-2b3122-probe@sha256:647c2acd8e115511a18506014995ec01b7d0d62fbc05f2a6e51a5c65c2a3fcce\n",
+          "stderr": "time=\"2026-09-15T11:33:23+08:00\" level=warning msg=\"DEPRECATION: The `mirrors` property of `[plugins.\\\"io.containerd.grpc.v1.cri\\\".registry]` is deprecated since containerd v1.5 and will be removed in containerd v2.4. Use `config_path` instead.\"\n"
+        },
+        {
+          "command": "sudo -n /usr/local/bin/ctr -n k8s.io images ls name==localhost/lb02-2b3122-probe@sha256:647c2acd8e115511a18506014995ec01b7d0d62fbc05f2a6e51a5c65c2a3fcce",
+          "exit": 0,
+          "stdout": "REF                                                                                                 TYPE                                       DIGEST                                                                  SIZE     PLATFORMS   LABELS                          \nlocalhost/lb02-2b3122-probe@sha256:647c2acd8e115511a18506014995ec01b7d0d62fbc05f2a6e51a5c65c2a3fcce application/vnd.oci.image.manifest.v1+json sha256:647c2acd8e115511a18506014995ec01b7d0d62fbc05f2a6e51a5c65c2a3fcce 31.9 MiB linux/amd64 io.cri-containerd.image=managed \n",
+          "stderr": "time=\"2026-09-15T11:33:24+08:00\" level=warning msg=\"DEPRECATION: The `mirrors` property of `[plugins.\\\"io.containerd.grpc.v1.cri\\\".registry]` is deprecated since containerd v1.5 and will be removed in containerd v2.4. Use `config_path` instead.\"\n"
+        }
+      ]
+    }
+  ],
+  "build_metadata_note": "The build.json field named config_digest contains docker inspect .Id, which this engine reports as the manifest digest. The authoritative config_digest above is extracted from the OCI manifest.",
+  "at": "2026-09-15T03:33:24.231701+00:00",
+  "result": "pass"
+}

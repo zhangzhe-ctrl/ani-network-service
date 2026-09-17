@@ -103,6 +103,9 @@ message LoadBalancerHealthCheck {
   optional uint32 timeout_seconds = 3;
   optional uint32 unhealthy_threshold = 4;
   optional uint32 healthy_threshold = 5;
+  // Required on create/update: 1..65535, equal to every backend service port.
+  // Absent on legacy records that use the endpoint serving port.
+  optional uint32 port = 6;
 }
 
 message LoadBalancer {

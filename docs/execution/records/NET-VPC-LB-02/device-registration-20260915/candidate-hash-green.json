@@ -1,0 +1,26 @@
+{
+  "at": "2026-09-15T05:16:09.437585+00:00",
+  "result": "pass",
+  "run": "20260915T051510Z-fd2fe69f",
+  "archive_sha256": "9374fdfcf94ccf42f893c773a3542d4abcd26a84888ef20203694f9499f96bfc",
+  "command": [
+    "go",
+    "test",
+    "-race",
+    "./internal/data",
+    "-run",
+    "^TestAuditCandidateHashIgnoresListOrderButPreservesFacts$|^TestNET05ANodeFactsRenewalsKeepAuditWhileChangesInvalidate$",
+    "-count=1",
+    "-v"
+  ],
+  "exit": 0,
+  "log": "candidate-hash-green-command.txt",
+  "regressions": [
+    "same set reordered preserves evidence hash and covers previously applied facts",
+    "input slices not reordered",
+    "UID/resourceVersion/address changes remain distinct",
+    "node facts renewal safety regressions"
+  ],
+  "fix": "Canonical ordering on cloned object slices; all object contents and audit collection timestamps preserved.",
+  "live": "not_verified on canonical-hash candidate"
+}

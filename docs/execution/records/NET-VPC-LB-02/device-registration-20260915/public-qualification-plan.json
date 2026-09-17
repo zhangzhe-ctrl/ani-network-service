@@ -1,0 +1,346 @@
+{
+  "scope": "platform prerequisite qualification only; no tenant LB/SNAT acceptance or backend ownership is replaced",
+  "pool_id": "pool_f28b9d470c0147f6a66646b8976c36f9",
+  "tenant_allocation": "disabled until real qualification evidence",
+  "owner": "dedicated existing fixture ServiceAccount, pod create receipts and UID-guarded deletion",
+  "rbac": [
+    {
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "Role",
+      "metadata": {
+        "name": "lb02-2b3122-public-probe-owner",
+        "namespace": "lb02-09141908-2b3122",
+        "labels": {
+          "network.ani.io/test-run": "lb02-09141908-2b3122"
+        }
+      },
+      "rules": [
+        {
+          "apiGroups": [
+            ""
+          ],
+          "resources": [
+            "pods"
+          ],
+          "verbs": [
+            "create"
+          ]
+        },
+        {
+          "apiGroups": [
+            ""
+          ],
+          "resources": [
+            "pods"
+          ],
+          "resourceNames": [
+            "lb02-2b3122-public-probe-a",
+            "lb02-2b3122-public-probe-b",
+            "lb02-2b3122-outside-observer"
+          ],
+          "verbs": [
+            "get",
+            "delete"
+          ]
+        },
+        {
+          "apiGroups": [
+            ""
+          ],
+          "resources": [
+            "pods/exec"
+          ],
+          "resourceNames": [
+            "lb02-2b3122-public-probe-a",
+            "lb02-2b3122-public-probe-b",
+            "lb02-2b3122-outside-observer"
+          ],
+          "verbs": [
+            "get",
+            "create"
+          ]
+        }
+      ]
+    },
+    {
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "RoleBinding",
+      "metadata": {
+        "name": "lb02-2b3122-public-probe-owner",
+        "namespace": "lb02-09141908-2b3122",
+        "labels": {
+          "network.ani.io/test-run": "lb02-09141908-2b3122"
+        }
+      },
+      "roleRef": {
+        "apiGroup": "rbac.authorization.k8s.io",
+        "kind": "Role",
+        "name": "lb02-2b3122-public-probe-owner"
+      },
+      "subjects": [
+        {
+          "kind": "ServiceAccount",
+          "name": "lb02-2b3122-workload-owner",
+          "namespace": "lb02-09141908-2b3122"
+        }
+      ]
+    }
+  ],
+  "pods": [
+    {
+      "apiVersion": "v1",
+      "kind": "Pod",
+      "metadata": {
+        "name": "lb02-2b3122-public-probe-a",
+        "namespace": "lb02-09141908-2b3122",
+        "labels": {
+          "network.ani.io/test-run": "lb02-09141908-2b3122",
+          "network.ani.io/fixture-scope": "platform-public-qualification"
+        },
+        "annotations": {
+          "networking.kubercloud.com/subnet": "kcn-system/pool-f28b9d470c0147f6a66646b8976c36f9"
+        }
+      },
+      "spec": {
+        "automountServiceAccountToken": false,
+        "nodeSelector": {
+          "kubernetes.io/hostname": "ani-02"
+        },
+        "restartPolicy": "Always",
+        "securityContext": {
+          "runAsNonRoot": true,
+          "runAsUser": 65532,
+          "runAsGroup": 65532,
+          "seccompProfile": {
+            "type": "RuntimeDefault"
+          }
+        },
+        "containers": [
+          {
+            "name": "probe",
+            "image": "localhost/lb02-2b3122-probe@sha256:647c2acd8e115511a18506014995ec01b7d0d62fbc05f2a6e51a5c65c2a3fcce",
+            "imagePullPolicy": "Never",
+            "env": [
+              {
+                "name": "NET05_ID",
+                "value": "lb02-09141908-2b3122"
+              },
+              {
+                "name": "ANI_WORKLOAD_ID",
+                "value": "lb02-2b3122-public-probe-a"
+              },
+              {
+                "name": "NET05_PORT",
+                "value": "8080"
+              }
+            ],
+            "ports": [
+              {
+                "containerPort": 8080
+              }
+            ],
+            "resources": {
+              "requests": {
+                "cpu": "10m",
+                "memory": "32Mi"
+              },
+              "limits": {
+                "cpu": "100m",
+                "memory": "64Mi"
+              }
+            },
+            "securityContext": {
+              "allowPrivilegeEscalation": false,
+              "readOnlyRootFilesystem": true,
+              "capabilities": {
+                "drop": [
+                  "ALL"
+                ]
+              }
+            },
+            "readinessProbe": {
+              "httpGet": {
+                "path": "/",
+                "port": 8080
+              },
+              "periodSeconds": 2,
+              "timeoutSeconds": 1
+            }
+          }
+        ]
+      }
+    },
+    {
+      "apiVersion": "v1",
+      "kind": "Pod",
+      "metadata": {
+        "name": "lb02-2b3122-public-probe-b",
+        "namespace": "lb02-09141908-2b3122",
+        "labels": {
+          "network.ani.io/test-run": "lb02-09141908-2b3122",
+          "network.ani.io/fixture-scope": "platform-public-qualification"
+        },
+        "annotations": {
+          "networking.kubercloud.com/subnet": "kcn-system/pool-f28b9d470c0147f6a66646b8976c36f9"
+        }
+      },
+      "spec": {
+        "automountServiceAccountToken": false,
+        "nodeSelector": {
+          "kubernetes.io/hostname": "ani-03"
+        },
+        "restartPolicy": "Always",
+        "securityContext": {
+          "runAsNonRoot": true,
+          "runAsUser": 65532,
+          "runAsGroup": 65532,
+          "seccompProfile": {
+            "type": "RuntimeDefault"
+          }
+        },
+        "containers": [
+          {
+            "name": "probe",
+            "image": "localhost/lb02-2b3122-probe@sha256:647c2acd8e115511a18506014995ec01b7d0d62fbc05f2a6e51a5c65c2a3fcce",
+            "imagePullPolicy": "Never",
+            "env": [
+              {
+                "name": "NET05_ID",
+                "value": "lb02-09141908-2b3122"
+              },
+              {
+                "name": "ANI_WORKLOAD_ID",
+                "value": "lb02-2b3122-public-probe-b"
+              },
+              {
+                "name": "NET05_PORT",
+                "value": "8080"
+              }
+            ],
+            "ports": [
+              {
+                "containerPort": 8080
+              }
+            ],
+            "resources": {
+              "requests": {
+                "cpu": "10m",
+                "memory": "32Mi"
+              },
+              "limits": {
+                "cpu": "100m",
+                "memory": "64Mi"
+              }
+            },
+            "securityContext": {
+              "allowPrivilegeEscalation": false,
+              "readOnlyRootFilesystem": true,
+              "capabilities": {
+                "drop": [
+                  "ALL"
+                ]
+              }
+            },
+            "readinessProbe": {
+              "httpGet": {
+                "path": "/",
+                "port": 8080
+              },
+              "periodSeconds": 2,
+              "timeoutSeconds": 1
+            }
+          }
+        ]
+      }
+    },
+    {
+      "apiVersion": "v1",
+      "kind": "Pod",
+      "metadata": {
+        "name": "lb02-2b3122-outside-observer",
+        "namespace": "lb02-09141908-2b3122",
+        "labels": {
+          "network.ani.io/test-run": "lb02-09141908-2b3122",
+          "network.ani.io/fixture-scope": "platform-public-qualification"
+        }
+      },
+      "spec": {
+        "automountServiceAccountToken": false,
+        "nodeSelector": {
+          "kubernetes.io/hostname": "ani-01"
+        },
+        "restartPolicy": "Always",
+        "securityContext": {
+          "runAsNonRoot": true,
+          "runAsUser": 65532,
+          "runAsGroup": 65532,
+          "seccompProfile": {
+            "type": "RuntimeDefault"
+          }
+        },
+        "containers": [
+          {
+            "name": "probe",
+            "image": "localhost/lb02-2b3122-probe@sha256:647c2acd8e115511a18506014995ec01b7d0d62fbc05f2a6e51a5c65c2a3fcce",
+            "imagePullPolicy": "Never",
+            "env": [
+              {
+                "name": "NET05_ID",
+                "value": "lb02-09141908-2b3122"
+              },
+              {
+                "name": "ANI_WORKLOAD_ID",
+                "value": "lb02-2b3122-outside-observer"
+              },
+              {
+                "name": "NET05_PORT",
+                "value": "18808"
+              }
+            ],
+            "ports": [
+              {
+                "containerPort": 18808
+              }
+            ],
+            "resources": {
+              "requests": {
+                "cpu": "10m",
+                "memory": "32Mi"
+              },
+              "limits": {
+                "cpu": "100m",
+                "memory": "64Mi"
+              }
+            },
+            "securityContext": {
+              "allowPrivilegeEscalation": false,
+              "readOnlyRootFilesystem": true,
+              "capabilities": {
+                "drop": [
+                  "ALL"
+                ]
+              }
+            },
+            "readinessProbe": {
+              "httpGet": {
+                "path": "/",
+                "port": 18808
+              },
+              "periodSeconds": 2,
+              "timeoutSeconds": 1
+            }
+          }
+        ],
+        "hostNetwork": true,
+        "dnsPolicy": "ClusterFirstWithHostNet",
+        "tolerations": [
+          {
+            "key": "node-role.kubernetes.io/control-plane",
+            "operator": "Exists",
+            "effect": "NoSchedule"
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+source.tar.gz: OK
+verified source files: 1723
+go version go1.26.7 linux/amd64
+1.60.0
+v1.31.1
+127.0.0.1:5432 - accepting connections
+PostgreSQL image=docker.io/library/postgres@sha256:4ef4dbc939d61acea57712655ddb4b4ab27419c913f94cca0cd57cb3ea3c2280 container=e1a106220bb60d4105b84cfe742210e1ac6fa0491bf78b67d12df177f1e60e79
+=== RUN   TestLBBackendObservationUsesCurrentDatabaseTime
+=== RUN   TestLBBackendObservationUsesCurrentDatabaseTime/renewed_after_claim
+=== RUN   TestLBBackendObservationUsesCurrentDatabaseTime/future_timestamp
+=== RUN   TestLBBackendObservationUsesCurrentDatabaseTime/expired_timestamp
+=== RUN   TestLBBackendObservationUsesCurrentDatabaseTime/fresh_again
+--- PASS: TestLBBackendObservationUsesCurrentDatabaseTime (16.65s)
+    --- PASS: TestLBBackendObservationUsesCurrentDatabaseTime/renewed_after_claim (1.21s)
+    --- PASS: TestLBBackendObservationUsesCurrentDatabaseTime/future_timestamp (3.20s)
+    --- PASS: TestLBBackendObservationUsesCurrentDatabaseTime/expired_timestamp (3.20s)
+    --- PASS: TestLBBackendObservationUsesCurrentDatabaseTime/fresh_again (3.20s)
+=== RUN   TestLBActualAdapterIdentityLossRemovesRouteAndRetainsAppliedVersion
+--- PASS: TestLBActualAdapterIdentityLossRemovesRouteAndRetainsAppliedVersion (4.36s)
+PASS
+ok  	github.com/zhangzhe-ctrl/ani-network-service/internal/data	22.113s
+removed task container=e1a106220bb60d4105b84cfe742210e1ac6fa0491bf78b67d12df177f1e60e79
+REMOTE_COMMAND_EXIT=0

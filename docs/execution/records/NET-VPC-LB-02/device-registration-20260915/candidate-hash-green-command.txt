@@ -1,0 +1,42 @@
+source.tar.gz: OK
+verified source files: 1806
+go version go1.26.7 linux/amd64
+1.60.0
+v1.31.1
+=== RUN   TestAuditCandidateHashIgnoresListOrderButPreservesFacts
+=== RUN   TestAuditCandidateHashIgnoresListOrderButPreservesFacts/uid
+=== RUN   TestAuditCandidateHashIgnoresListOrderButPreservesFacts/resourceVersion
+=== RUN   TestAuditCandidateHashIgnoresListOrderButPreservesFacts/podIP
+--- PASS: TestAuditCandidateHashIgnoresListOrderButPreservesFacts (0.00s)
+    --- PASS: TestAuditCandidateHashIgnoresListOrderButPreservesFacts/uid (0.00s)
+    --- PASS: TestAuditCandidateHashIgnoresListOrderButPreservesFacts/resourceVersion (0.00s)
+    --- PASS: TestAuditCandidateHashIgnoresListOrderButPreservesFacts/podIP (0.00s)
+=== RUN   TestNET05ANodeFactsRenewalsKeepAuditWhileChangesInvalidate
+=== RUN   TestNET05ANodeFactsRenewalsKeepAuditWhileChangesInvalidate/fresh_renewal
+=== RUN   TestNET05ANodeFactsRenewalsKeepAuditWhileChangesInvalidate/MAC_replacement
+=== RUN   TestNET05ANodeFactsRenewalsKeepAuditWhileChangesInvalidate/bridge_changed
+=== RUN   TestNET05ANodeFactsRenewalsKeepAuditWhileChangesInvalidate/unknown_document_field_changed
+=== RUN   TestNET05ANodeFactsRenewalsKeepAuditWhileChangesInvalidate/unknown_interface_field_changed
+=== RUN   TestNET05ANodeFactsRenewalsKeepAuditWhileChangesInvalidate/UID_replacement
+=== RUN   TestNET05ANodeFactsRenewalsKeepAuditWhileChangesInvalidate/owner_changed
+=== RUN   TestNET05ANodeFactsRenewalsKeepAuditWhileChangesInvalidate/timestamp_regression
+=== RUN   TestNET05ANodeFactsRenewalsKeepAuditWhileChangesInvalidate/future_timestamp
+=== RUN   TestNET05ANodeFactsRenewalsKeepAuditWhileChangesInvalidate/stale_timestamp
+=== RUN   TestNET05ANodeFactsRenewalsKeepAuditWhileChangesInvalidate/malformed_document
+=== RUN   TestNET05ANodeFactsRenewalsKeepAuditWhileChangesInvalidate/fresh_renewal_cannot_revive_stale_source
+--- PASS: TestNET05ANodeFactsRenewalsKeepAuditWhileChangesInvalidate (0.02s)
+    --- PASS: TestNET05ANodeFactsRenewalsKeepAuditWhileChangesInvalidate/fresh_renewal (0.00s)
+    --- PASS: TestNET05ANodeFactsRenewalsKeepAuditWhileChangesInvalidate/MAC_replacement (0.00s)
+    --- PASS: TestNET05ANodeFactsRenewalsKeepAuditWhileChangesInvalidate/bridge_changed (0.00s)
+    --- PASS: TestNET05ANodeFactsRenewalsKeepAuditWhileChangesInvalidate/unknown_document_field_changed (0.00s)
+    --- PASS: TestNET05ANodeFactsRenewalsKeepAuditWhileChangesInvalidate/unknown_interface_field_changed (0.00s)
+    --- PASS: TestNET05ANodeFactsRenewalsKeepAuditWhileChangesInvalidate/UID_replacement (0.00s)
+    --- PASS: TestNET05ANodeFactsRenewalsKeepAuditWhileChangesInvalidate/owner_changed (0.00s)
+    --- PASS: TestNET05ANodeFactsRenewalsKeepAuditWhileChangesInvalidate/timestamp_regression (0.00s)
+    --- PASS: TestNET05ANodeFactsRenewalsKeepAuditWhileChangesInvalidate/future_timestamp (0.00s)
+    --- PASS: TestNET05ANodeFactsRenewalsKeepAuditWhileChangesInvalidate/stale_timestamp (0.00s)
+    --- PASS: TestNET05ANodeFactsRenewalsKeepAuditWhileChangesInvalidate/malformed_document (0.00s)
+    --- PASS: TestNET05ANodeFactsRenewalsKeepAuditWhileChangesInvalidate/fresh_renewal_cannot_revive_stale_source (0.00s)
+PASS
+ok  	github.com/zhangzhe-ctrl/ani-network-service/internal/data	1.097s
+REMOTE_COMMAND_EXIT=0

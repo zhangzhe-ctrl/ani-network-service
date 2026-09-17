@@ -1,0 +1,39 @@
+source.tar.gz: OK
+verified source files: 1395
+go version go1.26.7 linux/amd64
+1.60.0
+v1.31.1
+test "$(/home/ubuntu/workspace/ani-network-service-runs/snat-20260914T184655Z-be9fd699/source/.tools/bin/buf --version)" = "1.60.0"
+test "$(go version -m /home/ubuntu/workspace/ani-network-service-runs/snat-20260914T184655Z-be9fd699/source/.tools/bin/buf | awk '$1 == "mod" {print $2 "@" $3; exit}')" = "github.com/bufbuild/buf@v1.60.0"
+test "$(/home/ubuntu/workspace/ani-network-service-runs/snat-20260914T184655Z-be9fd699/source/.tools/bin/sqlc version)" = "v1.31.1"
+test "$(go version -m /home/ubuntu/workspace/ani-network-service-runs/snat-20260914T184655Z-be9fd699/source/.tools/bin/sqlc | awk '$1 == "mod" {print $2 "@" $3; exit}')" = "github.com/sqlc-dev/sqlc@v1.31.1"
+./scripts/verify-source /home/ubuntu/workspace/ani-network-service-runs/snat-20260914T184655Z-be9fd699/source/.tools/bin/buf /home/ubuntu/workspace/ani-network-service-runs/snat-20260914T184655Z-be9fd699/source/.tools/bin/sqlc
+./scripts/verify-boundaries
+domain and repository ownership boundaries verified
+go mod tidy -diff
+go test -count=1 ./...
+?   	github.com/zhangzhe-ctrl/ani-network-service/api/network/v1	[no test files]
+ok  	github.com/zhangzhe-ctrl/ani-network-service/cmd/ani-network-service	0.011s
+ok  	github.com/zhangzhe-ctrl/ani-network-service/internal/biz	0.007s
+ok  	github.com/zhangzhe-ctrl/ani-network-service/internal/conf/v1	0.012s
+ok  	github.com/zhangzhe-ctrl/ani-network-service/internal/data	0.025s
+?   	github.com/zhangzhe-ctrl/ani-network-service/internal/data/sqlcgen	[no test files]
+ok  	github.com/zhangzhe-ctrl/ani-network-service/internal/server	2.028s
+ok  	github.com/zhangzhe-ctrl/ani-network-service/internal/service	0.006s
+?   	github.com/zhangzhe-ctrl/ani-network-service/migrations	[no test files]
+ok  	github.com/zhangzhe-ctrl/ani-network-service/scripts/lb-api	0.012s
+?   	github.com/zhangzhe-ctrl/ani-network-service/tests/net05	[no test files]
+?   	github.com/zhangzhe-ctrl/ani-network-service/tests/net05/relay	[no test files]
+?   	github.com/zhangzhe-ctrl/ani-network-service/tests/net05/rpc	[no test files]
+ok  	github.com/zhangzhe-ctrl/ani-network-service/tests/net05a/provider	0.010s
+ok  	github.com/zhangzhe-ctrl/ani-network-service/tests/runtime	0.044s
+?   	github.com/zhangzhe-ctrl/ani-network-service/tests/testenv	[no test files]
+go vet ./...
+go build -trimpath ./...
+go mod verify
+all modules verified
+git diff --check
+ok  	github.com/zhangzhe-ctrl/ani-network-service/scripts/lb-api	1.045s
+476ddf0b47a43f8df4c0420ad39ff044da3fdb85795d585af7e49fbce7fe0854  ../artifacts/lb-api
+a1099786989510ccafc2b02237f9e614512064894e448f3ae0e8da886a7203c3  ../artifacts/network
+REMOTE_COMMAND_EXIT=0

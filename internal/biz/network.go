@@ -137,7 +137,7 @@ func (n *Network) GetOperation(ctx context.Context, tenant, id string) (Operatio
 		return Operation{}, Fail(ResourceNotFound, "operation not found")
 	}
 	op, err := n.repository.GetOperation(ctx, tenant, parsed.String())
-	if err == nil && (op.ResourceType == "eip" || op.ResourceType == "snat") {
+	if err == nil && (op.ResourceType == "eip" || op.ResourceType == "snat" || op.ResourceType == "load_balancer") {
 		if _, _, err = (ContextEgressAuthorization{}).Tenant(ctx, tenant); err != nil {
 			return Operation{}, err
 		}

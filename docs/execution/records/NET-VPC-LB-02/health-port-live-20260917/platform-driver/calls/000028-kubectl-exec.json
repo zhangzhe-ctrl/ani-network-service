@@ -1,0 +1,26 @@
+{
+  "at": "2026-09-17T11:22:21.779186+00:00",
+  "command": [
+    "/home/chabking/workspace/ani-network-service-runs/lb-health-e2e-20260917/private/runtime/bin/kubectl",
+    "--kubeconfig",
+    "/home/chabking/workspace/ani-network-service-runs/lb-health-e2e-20260917/private/runtime/owner-kubeconfig.json",
+    "--request-timeout=20s",
+    "exec",
+    "-n",
+    "lbhealth-0917",
+    "lbhealth-0917-intranet-b",
+    "-c",
+    "probe",
+    "--",
+    "getent",
+    "hosts",
+    "kubernetes.default.svc.cluster.local"
+  ],
+  "completed_at": "2026-09-17T11:22:23.204704+00:00",
+  "exit": 0,
+  "phase": "qualify",
+  "request": null,
+  "stderr": "",
+  "stdout": "10.96.0.1       kubernetes.default.svc.cluster.local\n",
+  "step": "intranet-evidence"
+}

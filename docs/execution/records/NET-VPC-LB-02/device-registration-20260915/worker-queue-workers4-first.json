@@ -1,0 +1,12 @@
+{
+  "at": "2026-09-15T09:29:05.229410+00:00",
+  "execution_host": "ubuntu",
+  "transport_exit": 0,
+  "result": {
+    "query": "SELECT CASE WHEN vpc_id IS NOT NULL THEN 'vpc' WHEN subnet_id IS NOT NULL THEN 'subnet' WHEN eip_id IS NOT NULL THEN 'eip' WHEN snat_id IS NOT NULL THEN 'snat' ELSE 'lb' END AS kind,count(*),round(max(extract(epoch FROM clock_timestamp()-next_run_at))) AS max_due_seconds FROM network_reconciliations WHERE next_run_at<clock_timestamp() AND (lease_until IS NULL OR lease_until<clock_timestamp()) GROUP BY 1;",
+    "exit": 0,
+    "stdout": "BEGIN\nsnat|4|16\nsubnet|4|7\neip|5|15\nlb|1|5\nvpc|2|15\nROLLBACK\n",
+    "stderr": ""
+  },
+  "stderr": ""
+}

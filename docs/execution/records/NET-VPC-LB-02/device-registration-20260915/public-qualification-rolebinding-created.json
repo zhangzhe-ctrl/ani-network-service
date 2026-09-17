@@ -1,0 +1,63 @@
+{
+  "at": "2026-09-15T08:24:19.728968+00:00",
+  "command": [
+    "ssh",
+    "-F",
+    "/home/chabking/.ssh/config",
+    "-o",
+    "BatchMode=yes",
+    "ani-test-1",
+    "sudo -n /usr/local/bin/kubectl --kubeconfig /etc/kubernetes/admin.conf --context kubernetes-admin@ani-platform --request-timeout=20s create -f - -o json"
+  ],
+  "request": {
+    "apiVersion": "rbac.authorization.k8s.io/v1",
+    "kind": "RoleBinding",
+    "metadata": {
+      "name": "lb02-2b3122-public-probe-owner",
+      "namespace": "lb02-09141908-2b3122",
+      "labels": {
+        "network.ani.io/test-run": "lb02-09141908-2b3122"
+      }
+    },
+    "roleRef": {
+      "apiGroup": "rbac.authorization.k8s.io",
+      "kind": "Role",
+      "name": "lb02-2b3122-public-probe-owner"
+    },
+    "subjects": [
+      {
+        "kind": "ServiceAccount",
+        "name": "lb02-2b3122-workload-owner",
+        "namespace": "lb02-09141908-2b3122"
+      }
+    ]
+  },
+  "exit": 0,
+  "object": {
+    "apiVersion": "rbac.authorization.k8s.io/v1",
+    "kind": "RoleBinding",
+    "metadata": {
+      "creationTimestamp": "2026-09-15T08:24:19Z",
+      "labels": {
+        "network.ani.io/test-run": "lb02-09141908-2b3122"
+      },
+      "name": "lb02-2b3122-public-probe-owner",
+      "namespace": "lb02-09141908-2b3122",
+      "resourceVersion": "348384",
+      "uid": "19cb4bd2-8b62-4e76-9b16-06637b57d8d6"
+    },
+    "roleRef": {
+      "apiGroup": "rbac.authorization.k8s.io",
+      "kind": "Role",
+      "name": "lb02-2b3122-public-probe-owner"
+    },
+    "subjects": [
+      {
+        "kind": "ServiceAccount",
+        "name": "lb02-2b3122-workload-owner",
+        "namespace": "lb02-09141908-2b3122"
+      }
+    ]
+  },
+  "stderr": ""
+}

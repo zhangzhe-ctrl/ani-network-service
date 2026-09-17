@@ -1,0 +1,57 @@
+{
+  "at": "2026-09-15T04:14:59.709582+00:00",
+  "execution_host": "ubuntu",
+  "context": "tenant-b",
+  "command": "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/lb-api call -target unix:///home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-b.sock -service NetworkService -method ConfirmAttachment",
+  "request": {
+    "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+    "attachment_id": "att_e17cd1ca47b741e6a637c44fbc7789cb",
+    "expected_version": "34",
+    "cluster_id": "lb02-09141908-2b3122",
+    "namespace": "lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832",
+    "pod_name": "lb02-2b3122-legacy-a",
+    "pod_uid": "26b5bdc1-240e-48eb-b0b0-8daafab076af"
+  },
+  "exit": 0,
+  "response": {
+    "code": "OK",
+    "response": {
+      "attachment": {
+        "id": "att_e17cd1ca47b741e6a637c44fbc7789cb",
+        "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+        "vpc_id": "vpc_1004994c0bde496f9ff64a4c812c9607",
+        "subnet_id": "subnet_a5fb362460324310bc0401d044d699bb",
+        "instance_id": "lb02-2b3122-legacy-a",
+        "slot": "primary",
+        "submission_id": "c913fc0a-8a24-42d8-b748-787d130294c8",
+        "generation": "1",
+        "cluster_id": "lb02-09141908-2b3122",
+        "namespace": "lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832",
+        "binding_revision": "229f136e-8f55-4540-811f-b63c0129b6af:eea2ba11-e6d1-407d-899a-39c55b531f17",
+        "state": "ATTACHMENT_STATE_ATTACHED",
+        "reason": "",
+        "version": "34",
+        "pod_primary": {
+          "format_version": 1,
+          "namespace": "lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832",
+          "subnet_annotation": "lb022b3122-93b06aeb-e445-4823-ade8-e7b7d8e19832/subnet-a5fb362460324310bc0401d044d699bb",
+          "labels": {
+            "tenant_id": "93b06aeb-e445-4823-ade8-e7b7d8e19832",
+            "instance_id": "lb02-2b3122-legacy-a",
+            "attachment_id": "att_e17cd1ca47b741e6a637c44fbc7789cb",
+            "submission_id": "c913fc0a-8a24-42d8-b748-787d130294c8",
+            "generation": "1"
+          }
+        },
+        "pod_name": "lb02-2b3122-legacy-a",
+        "pod_uid": "26b5bdc1-240e-48eb-b0b0-8daafab076af",
+        "consumer_finalization_id": "",
+        "created_at": "2026-09-15T04:11:52.922433Z",
+        "updated_at": "2026-09-15T04:14:57.702432Z",
+        "observed_at": "2026-09-15T04:14:52.564550Z",
+        "released_at": null
+      }
+    }
+  },
+  "stderr": ""
+}

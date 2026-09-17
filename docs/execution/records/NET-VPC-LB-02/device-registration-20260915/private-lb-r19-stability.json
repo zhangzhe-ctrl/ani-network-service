@@ -1,0 +1,444 @@
+{
+  "execution_host": "ubuntu",
+  "command": [
+    "/home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/bin/lb-api",
+    "call",
+    "-target",
+    "unix:///home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-a.sock",
+    "-service",
+    "TenantLoadBalancerService",
+    "-method",
+    "GetLoadBalancer"
+  ],
+  "request": {
+    "load_balancer_id": "lb_cc562f7d8be147afae8144555aa7243b"
+  },
+  "expected": {
+    "response.load_balancer.state": "RESOURCE_STATE_AVAILABLE",
+    "response.load_balancer.configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_CONFIGURED",
+    "response.load_balancer.observation_stale": false
+  },
+  "result": "fail",
+  "records": [
+    {
+      "at": "2026-09-15T10:50:22.740532+00:00",
+      "exit": 1,
+      "response": {
+        "code": "Unavailable",
+        "status": {
+          "code": 14,
+          "message": "connection error: desc = \"transport: Error while dialing: dial unix /home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-a.sock: connect: no such file or directory\"",
+          "details": []
+        }
+      },
+      "stderr": "RPC failed; structured status is in stdout\n",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T10:50:27.751398+00:00",
+      "exit": 1,
+      "response": {
+        "code": "Unavailable",
+        "status": {
+          "code": 14,
+          "message": "connection error: desc = \"transport: Error while dialing: dial unix /home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-a.sock: connect: no such file or directory\"",
+          "details": []
+        }
+      },
+      "stderr": "RPC failed; structured status is in stdout\n",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T10:50:32.760589+00:00",
+      "exit": 1,
+      "response": {
+        "code": "Unavailable",
+        "status": {
+          "code": 14,
+          "message": "connection error: desc = \"transport: Error while dialing: dial unix /home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-a.sock: connect: no such file or directory\"",
+          "details": []
+        }
+      },
+      "stderr": "RPC failed; structured status is in stdout\n",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T10:50:37.770184+00:00",
+      "exit": 1,
+      "response": {
+        "code": "Unavailable",
+        "status": {
+          "code": 14,
+          "message": "connection error: desc = \"transport: Error while dialing: dial unix /home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-a.sock: connect: no such file or directory\"",
+          "details": []
+        }
+      },
+      "stderr": "RPC failed; structured status is in stdout\n",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T10:50:42.779807+00:00",
+      "exit": 1,
+      "response": {
+        "code": "Unavailable",
+        "status": {
+          "code": 14,
+          "message": "connection error: desc = \"transport: Error while dialing: dial unix /home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-a.sock: connect: no such file or directory\"",
+          "details": []
+        }
+      },
+      "stderr": "RPC failed; structured status is in stdout\n",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T10:50:47.789134+00:00",
+      "exit": 1,
+      "response": {
+        "code": "Unavailable",
+        "status": {
+          "code": 14,
+          "message": "connection error: desc = \"transport: Error while dialing: dial unix /home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-a.sock: connect: no such file or directory\"",
+          "details": []
+        }
+      },
+      "stderr": "RPC failed; structured status is in stdout\n",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T10:50:52.799778+00:00",
+      "exit": 1,
+      "response": {
+        "code": "Unavailable",
+        "status": {
+          "code": 14,
+          "message": "connection error: desc = \"transport: Error while dialing: dial unix /home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-a.sock: connect: no such file or directory\"",
+          "details": []
+        }
+      },
+      "stderr": "RPC failed; structured status is in stdout\n",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T10:50:57.810234+00:00",
+      "exit": 1,
+      "response": {
+        "code": "Unavailable",
+        "status": {
+          "code": 14,
+          "message": "connection error: desc = \"transport: Error while dialing: dial unix /home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-a.sock: connect: no such file or directory\"",
+          "details": []
+        }
+      },
+      "stderr": "RPC failed; structured status is in stdout\n",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T10:51:02.821569+00:00",
+      "exit": 1,
+      "response": {
+        "code": "Unavailable",
+        "status": {
+          "code": 14,
+          "message": "connection error: desc = \"transport: Error while dialing: dial unix /home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-a.sock: connect: no such file or directory\"",
+          "details": []
+        }
+      },
+      "stderr": "RPC failed; structured status is in stdout\n",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T10:51:07.832295+00:00",
+      "exit": 1,
+      "response": {
+        "code": "Unavailable",
+        "status": {
+          "code": 14,
+          "message": "connection error: desc = \"transport: Error while dialing: dial unix /home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-a.sock: connect: no such file or directory\"",
+          "details": []
+        }
+      },
+      "stderr": "RPC failed; structured status is in stdout\n",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T10:51:12.842636+00:00",
+      "exit": 1,
+      "response": {
+        "code": "Unavailable",
+        "status": {
+          "code": 14,
+          "message": "connection error: desc = \"transport: Error while dialing: dial unix /home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-a.sock: connect: no such file or directory\"",
+          "details": []
+        }
+      },
+      "stderr": "RPC failed; structured status is in stdout\n",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T10:51:17.853346+00:00",
+      "exit": 1,
+      "response": {
+        "code": "Unavailable",
+        "status": {
+          "code": 14,
+          "message": "connection error: desc = \"transport: Error while dialing: dial unix /home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-a.sock: connect: no such file or directory\"",
+          "details": []
+        }
+      },
+      "stderr": "RPC failed; structured status is in stdout\n",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T10:51:22.863639+00:00",
+      "exit": 1,
+      "response": {
+        "code": "Unavailable",
+        "status": {
+          "code": 14,
+          "message": "connection error: desc = \"transport: Error while dialing: dial unix /home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-a.sock: connect: no such file or directory\"",
+          "details": []
+        }
+      },
+      "stderr": "RPC failed; structured status is in stdout\n",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T10:51:27.873376+00:00",
+      "exit": 1,
+      "response": {
+        "code": "Unavailable",
+        "status": {
+          "code": 14,
+          "message": "connection error: desc = \"transport: Error while dialing: dial unix /home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-a.sock: connect: no such file or directory\"",
+          "details": []
+        }
+      },
+      "stderr": "RPC failed; structured status is in stdout\n",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T10:51:32.882933+00:00",
+      "exit": 1,
+      "response": {
+        "code": "Unavailable",
+        "status": {
+          "code": 14,
+          "message": "connection error: desc = \"transport: Error while dialing: dial unix /home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-a.sock: connect: no such file or directory\"",
+          "details": []
+        }
+      },
+      "stderr": "RPC failed; structured status is in stdout\n",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T10:51:37.892133+00:00",
+      "exit": 1,
+      "response": {
+        "code": "Unavailable",
+        "status": {
+          "code": 14,
+          "message": "connection error: desc = \"transport: Error while dialing: dial unix /home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-a.sock: connect: no such file or directory\"",
+          "details": []
+        }
+      },
+      "stderr": "RPC failed; structured status is in stdout\n",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T10:51:42.902302+00:00",
+      "exit": 1,
+      "response": {
+        "code": "Unavailable",
+        "status": {
+          "code": 14,
+          "message": "connection error: desc = \"transport: Error while dialing: dial unix /home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-a.sock: connect: no such file or directory\"",
+          "details": []
+        }
+      },
+      "stderr": "RPC failed; structured status is in stdout\n",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T10:51:47.911551+00:00",
+      "exit": 1,
+      "response": {
+        "code": "Unavailable",
+        "status": {
+          "code": 14,
+          "message": "connection error: desc = \"transport: Error while dialing: dial unix /home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-a.sock: connect: no such file or directory\"",
+          "details": []
+        }
+      },
+      "stderr": "RPC failed; structured status is in stdout\n",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T10:51:52.921543+00:00",
+      "exit": 1,
+      "response": {
+        "code": "Unavailable",
+        "status": {
+          "code": 14,
+          "message": "connection error: desc = \"transport: Error while dialing: dial unix /home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-a.sock: connect: no such file or directory\"",
+          "details": []
+        }
+      },
+      "stderr": "RPC failed; structured status is in stdout\n",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T10:51:57.931636+00:00",
+      "exit": 1,
+      "response": {
+        "code": "Unavailable",
+        "status": {
+          "code": 14,
+          "message": "connection error: desc = \"transport: Error while dialing: dial unix /home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-a.sock: connect: no such file or directory\"",
+          "details": []
+        }
+      },
+      "stderr": "RPC failed; structured status is in stdout\n",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T10:52:02.942709+00:00",
+      "exit": 1,
+      "response": {
+        "code": "Unavailable",
+        "status": {
+          "code": 14,
+          "message": "connection error: desc = \"transport: Error while dialing: dial unix /home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-a.sock: connect: no such file or directory\"",
+          "details": []
+        }
+      },
+      "stderr": "RPC failed; structured status is in stdout\n",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T10:52:07.952927+00:00",
+      "exit": 1,
+      "response": {
+        "code": "Unavailable",
+        "status": {
+          "code": 14,
+          "message": "connection error: desc = \"transport: Error while dialing: dial unix /home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-a.sock: connect: no such file or directory\"",
+          "details": []
+        }
+      },
+      "stderr": "RPC failed; structured status is in stdout\n",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T10:52:12.963726+00:00",
+      "exit": 1,
+      "response": {
+        "code": "Unavailable",
+        "status": {
+          "code": 14,
+          "message": "connection error: desc = \"transport: Error while dialing: dial unix /home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-a.sock: connect: no such file or directory\"",
+          "details": []
+        }
+      },
+      "stderr": "RPC failed; structured status is in stdout\n",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T10:52:17.974732+00:00",
+      "exit": 1,
+      "response": {
+        "code": "Unavailable",
+        "status": {
+          "code": 14,
+          "message": "connection error: desc = \"transport: Error while dialing: dial unix /home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-a.sock: connect: no such file or directory\"",
+          "details": []
+        }
+      },
+      "stderr": "RPC failed; structured status is in stdout\n",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T10:52:22.985090+00:00",
+      "exit": 1,
+      "response": {
+        "code": "Unavailable",
+        "status": {
+          "code": 14,
+          "message": "connection error: desc = \"transport: Error while dialing: dial unix /home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-a.sock: connect: no such file or directory\"",
+          "details": []
+        }
+      },
+      "stderr": "RPC failed; structured status is in stdout\n",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T10:52:27.995127+00:00",
+      "exit": 1,
+      "response": {
+        "code": "Unavailable",
+        "status": {
+          "code": 14,
+          "message": "connection error: desc = \"transport: Error while dialing: dial unix /home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-a.sock: connect: no such file or directory\"",
+          "details": []
+        }
+      },
+      "stderr": "RPC failed; structured status is in stdout\n",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T10:52:33.005354+00:00",
+      "exit": 1,
+      "response": {
+        "code": "Unavailable",
+        "status": {
+          "code": 14,
+          "message": "connection error: desc = \"transport: Error while dialing: dial unix /home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-a.sock: connect: no such file or directory\"",
+          "details": []
+        }
+      },
+      "stderr": "RPC failed; structured status is in stdout\n",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T10:52:38.017447+00:00",
+      "exit": 1,
+      "response": {
+        "code": "Unavailable",
+        "status": {
+          "code": 14,
+          "message": "connection error: desc = \"transport: Error while dialing: dial unix /home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-a.sock: connect: no such file or directory\"",
+          "details": []
+        }
+      },
+      "stderr": "RPC failed; structured status is in stdout\n",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T10:52:43.028577+00:00",
+      "exit": 1,
+      "response": {
+        "code": "Unavailable",
+        "status": {
+          "code": 14,
+          "message": "connection error: desc = \"transport: Error while dialing: dial unix /home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-a.sock: connect: no such file or directory\"",
+          "details": []
+        }
+      },
+      "stderr": "RPC failed; structured status is in stdout\n",
+      "matches": false
+    },
+    {
+      "at": "2026-09-15T10:52:48.038574+00:00",
+      "exit": 1,
+      "response": {
+        "code": "Unavailable",
+        "status": {
+          "code": 14,
+          "message": "connection error: desc = \"transport: Error while dialing: dial unix /home/ubuntu/workspace/ani-network-service-runs/lb02-09141908-2b3122/private/sockets/tenant-a.sock: connect: no such file or directory\"",
+          "details": []
+        }
+      },
+      "stderr": "RPC failed; structured status is in stdout\n",
+      "matches": false
+    }
+  ]
+}
