@@ -20,6 +20,7 @@ CYCLONEDX_GOMOD_MODULE := github.com/CycloneDX/cyclonedx-gomod@$(CYCLONEDX_GOMOD
 GITLEAKS_MODULE := github.com/zricethezav/gitleaks/v8@$(GITLEAKS_VERSION)
 
 SERVICE_NAME ?= ani-network-service
+INTEGRATION_TIMEOUT ?= 20m
 VERSION ?= $(shell git describe --tags --always --dirty 2>/dev/null || echo dev)
 LDFLAGS := -X main.Name=$(SERVICE_NAME) -X main.Version=$(VERSION)
 
@@ -98,10 +99,10 @@ verify: check-buf check-sqlc
 	git diff --check
 
 integration:
-	./scripts/integration ./...
+	./scripts/integration -timeout $(INTEGRATION_TIMEOUT) ./...
 
 race:
-	./scripts/integration -race ./...
+	./scripts/integration -timeout $(INTEGRATION_TIMEOUT) -race ./...
 
 tenant-mutations: check-sqlc
 	./scripts/integration --mutations

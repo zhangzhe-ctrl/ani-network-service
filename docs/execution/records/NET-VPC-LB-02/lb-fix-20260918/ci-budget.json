@@ -1,0 +1,54 @@
+{
+  "at": "2026-09-17T16:54:47.829269+00:00",
+  "previous_commit": "a7ff14462cc12f6712c670884db4d0a5fbe824a2",
+  "ci_run": 35246326927,
+  "ci_verify": "pass",
+  "ci_full_integration": "pass",
+  "ci_full_race": "fail: package timeout after 600.063 seconds",
+  "active_test_at_timeout": "TestSubnetStaleParentRejectsNewIntentButNotPersistentReplay (0s)",
+  "race_report_or_assertion_failure": false,
+  "makefile_sha256": "e91c1cf198455b8fca7dc2339d4fde7de7341b0bbe2588ac47d3d9f8a901995c",
+  "only_snapshot_change": [
+    "Makefile"
+  ],
+  "fedora_make_verify": "pass",
+  "make_targets": "explicit -timeout 20m for integration and race",
+  "next_commit_ci": "not_verified_at_record_creation",
+  "archive_sha256": "832dde70df82296ccac12780ebc6a0b72d8edbb00ee491615adb9aab1a87fa1c",
+  "archive_bytes": 6952,
+  "secret_scan": "pass: zero findings",
+  "files": [
+    {
+      "path": "Makefile.ci-budget",
+      "sha256": "e91c1cf198455b8fca7dc2339d4fde7de7341b0bbe2588ac47d3d9f8a901995c"
+    },
+    {
+      "path": "budget-commands.txt",
+      "sha256": "c3d154d118bec28bd0c0b7fed389e38477f0d7a9de660d1095ba0987cbbfd7fa"
+    },
+    {
+      "path": "ci-a7ff144.json",
+      "sha256": "f702f2ed75668cc28f5aba0a733a86bb270a5e27e318faf09e18e29e28898c36"
+    },
+    {
+      "path": "ci-budget-meta.json",
+      "sha256": "224bf8036bd4de6811f2e2ac4162e95406d2c8bb25d2f9b0cf84f856a99642e9"
+    },
+    {
+      "path": "ci-race-failed.log",
+      "sha256": "55c96474bbe034d6c4cdad6b7d4788007fb3ebd47ec74a1542a8777e58702830"
+    },
+    {
+      "path": "verify-budget.exit",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "verify-budget.log",
+      "sha256": "a12832fc2568bddf8d4430cd31cc952b3a61fdac78427d27721fda90be168117"
+    },
+    {
+      "path": "verify-budget.sh",
+      "sha256": "fa7492179204e0a298ac9b68cb123767febcd8fff2ba04fae49da781d1130849"
+    }
+  ]
+}

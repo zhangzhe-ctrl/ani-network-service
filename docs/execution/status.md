@@ -4,7 +4,7 @@
 
 ## 当前工作：NET-VPC-LB-02
 
-2026-09-18 [LB 正式修复及 CI 修正](records/NET-VPC-LB-02/lb-fix-20260918/README.md)已实现：LB 关系核验前后两处审计失效均改为在原调用截止时间内重新完整采集，保留身份、时效与并发检查；无截止时间调用仍最多一次刷新，取消/超时不返回可用证明。原代码在私网/双入口均能复现剩余约 27 秒却提前 unknown/PROVIDER_UNAVAILABLE；修复后的真实 PG/adapter/worker 单次调用在约 5.5 秒内 configured/fresh，Provider 对象摘要不变。Fedora UTC 环境中相关 PostgreSQL/race 27 项顶层测试、54 项子测试及 `make verify` 均 pass，包含六种真实进程恢复场景。四个隔离 PG 容器已清理，本轮没有集群写入。交付目标为原分支；精确提交与推送后的 CI 以最终发布回执为准。此结果不扩展为真实双入口稳定窗口或所有历史退化均修复。
+2026-09-18 [LB 正式修复及 CI 修正](records/NET-VPC-LB-02/lb-fix-20260918/README.md)已实现：LB 关系核验前后两处审计失效均改为在原调用截止时间内重新完整采集，保留身份、时效与并发检查；无截止时间调用仍最多一次刷新，取消/超时不返回可用证明。原代码在私网/双入口均能复现剩余约 27 秒却提前 unknown/PROVIDER_UNAVAILABLE；修复后的真实 PG/adapter/worker 单次调用在约 5.5 秒内 configured/fresh，Provider 对象摘要不变。Fedora UTC 环境中相关 PostgreSQL/race 27 项顶层测试、54 项子测试及 `make verify` 均 pass，包含六种真实进程恢复场景。四个隔离 PG 容器已清理，本轮没有集群写入。首次修复提交 `a7ff144` 已推送原分支，其 CI 的 Verify 与完整 PG/进程恢复均 pass；全仓 race 触发 Go 默认整包 10 分钟时限，未报告竞争或断言失败。现为全仓 integration/race 显式设置 20 分钟测试预算；产品请求超时不变。预算补正提交及后续 CI 以最终发布回执为准。此结果不扩展为真实双入口稳定窗口或所有历史退化均修复。
 
 上一提交 `83a4346` 的两组 CI 失败也已定位：进程测试缺少必填健康检查端口，现已补齐；更新回执比较是 UTC 环境下 `time.Local` 与 `time.UTC` 的相同时刻被 reflect.DeepEqual 误判，现改为比较完整 JSON 回执，产品幂等实现未变。原始 red 与隔离字段差异留证。前序 [LB 分支诊断](records/NET-VPC-LB-02/lb-branch-20260917/README.md)保留其诊断时点事实。
 

@@ -48,3 +48,9 @@ bash verify.sh
 这里证明的是已定位失效路径的正式修复与回归；没有重新执行真实双入口 LB 的产品观察稳定窗口，也没有将历史所有 `PROVIDER_NOT_READY`/stale 追认为同因。手工 Public 场景不被收养为产品资源，kcn 流量问题仍按用户决定独立跟进。整个 NET-VPC-LB-02 的范围与验收状态继续看[当前执行状态](../../../status.md)。
 
 原始日志、诊断差异与哈希清单放在 [证据包](evidence.tar.gz)，未压缩内容先经过 Gitleaks 扫描；[归档清单](evidence-manifest.json)记录哈希。提交、远端 ref 与 CI 结论以最终发布回执为准。
+
+## CI 整包预算补正
+
+首次修复提交 `a7ff14462cc12f6712c670884db4d0a5fbe824a2` 的 [CI 35246326927](https://github.com/zhangzhe-ctrl/ani-network-service/actions/runs/35246326927)中 Verify、完整 PostgreSQL/进程恢复均 pass；旧的两组失败已消失。全仓 race 在 `internal/data` 包累计 600.063 秒时被 Go 默认 10 分钟 alarm 终止，正在执行的 `TestSubnetStaleParentRejectsNewIntentButNotPersistentReplay` 仅运行 0 秒、处于新数据库初始化。日志没有数据竞争报告或测试断言失败；这是整包预算耗尽，不能记录为 race pass。
+
+[Makefile](../../../../../Makefile)为 `make integration` / `make race` 显式增加 `INTEGRATION_TIMEOUT ?= 20m`。保持全部测试、race 检测、每个业务操作的超时及断言，预算仍有上界并允许调用者覆盖。仅该测试配置变化，产品代码保持已验证版本。Fedora 独立 `budget-source` 再执行 `make verify`；`make -n integration race`确认参数传入。相关 [CI 预算证据](ci-budget.json)固定失败日志、有效 Makefile 哈希和检查结果；后续精确提交 CI 结论以最终发布回执为准。
