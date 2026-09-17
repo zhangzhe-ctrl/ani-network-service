@@ -1,0 +1,509 @@
+{
+  "verdict": "divergence_captured",
+  "sample_counts": {
+    "pending": 43,
+    "ready": 442,
+    "degraded": 159
+  },
+  "divergent_samples": 159,
+  "watch_gaps": 0,
+  "episodes": [
+    {
+      "database_at": "2026-09-17T14:12:18.029463+00:00",
+      "state": "pending",
+      "reason": ""
+    },
+    {
+      "database_at": "2026-09-17T14:13:01.031132+00:00",
+      "state": "ready",
+      "reason": ""
+    },
+    {
+      "database_at": "2026-09-17T14:14:51.050346+00:00",
+      "state": "degraded",
+      "reason": "BASE_CONNECTIVITY_NOT_READY"
+    },
+    {
+      "database_at": "2026-09-17T14:15:22.063779+00:00",
+      "state": "ready",
+      "reason": ""
+    },
+    {
+      "database_at": "2026-09-17T14:15:29.058895+00:00",
+      "state": "degraded",
+      "reason": "BASE_CONNECTIVITY_NOT_READY"
+    },
+    {
+      "database_at": "2026-09-17T14:15:59.058477+00:00",
+      "state": "ready",
+      "reason": ""
+    },
+    {
+      "database_at": "2026-09-17T14:16:51.06681+00:00",
+      "state": "degraded",
+      "reason": "BASE_CONNECTIVITY_NOT_READY"
+    },
+    {
+      "database_at": "2026-09-17T14:17:21.075458+00:00",
+      "state": "ready",
+      "reason": ""
+    },
+    {
+      "database_at": "2026-09-17T14:17:36.074463+00:00",
+      "state": "degraded",
+      "reason": "BASE_CONNECTIVITY_NOT_READY"
+    },
+    {
+      "database_at": "2026-09-17T14:18:14.080079+00:00",
+      "state": "ready",
+      "reason": ""
+    },
+    {
+      "database_at": "2026-09-17T14:21:19.104489+00:00",
+      "state": "degraded",
+      "reason": "BASE_CONNECTIVITY_NOT_READY"
+    },
+    {
+      "database_at": "2026-09-17T14:21:49.115126+00:00",
+      "state": "ready",
+      "reason": ""
+    }
+  ],
+  "first_divergence": {
+    "database_at": "2026-09-17T14:14:51.050346+00:00",
+    "vpc_state": "degraded",
+    "base": {
+      "tenant_id": "d01b8dee-3371-4053-b0df-bdad82fba4bc",
+      "vpc_id": "vpc_f1b4df0c3bac4ba1b5f33467ff3ff383",
+      "cluster_id": "basewatch-0917",
+      "namespace": "bw-d01b8dee-3371-4053-b0df-bdad82fba4bc",
+      "pool_id": "pool_d96b3b705e5f4b1695a0415393154004",
+      "pool_revision": 1,
+      "purpose": "intranet",
+      "eip_id": "eip_58eb0309affb4082bf9ee0b07fb96939",
+      "snat_id": "snat_5d8a7592d907462c826c706f806caa03",
+      "operation_id": "006c5f79-d9ff-41e1-946a-2d6c158a0a1e",
+      "state": "degraded",
+      "reason": "BASE_CONNECTIVITY_NOT_READY",
+      "provider_ready": true,
+      "provider_observed_at": "2026-09-17T14:14:50.628563+00:00",
+      "observed_at": null,
+      "terminating": false,
+      "version": 34,
+      "created_at": "2026-09-17T14:12:17.95519+00:00"
+    },
+    "eip": {
+      "state": "available",
+      "reason": "PROVIDER_UNAVAILABLE",
+      "observed_at": "2026-09-17T14:14:37.940721+00:00"
+    },
+    "snat": {
+      "state": "available",
+      "reason": "PROVIDER_UNAVAILABLE",
+      "observed_at": "2026-09-17T14:14:37.940721+00:00",
+      "applied_enabled": null
+    },
+    "ages_seconds": {
+      "provider": 0.421783,
+      "eip": 13.109625,
+      "snat": 13.109625
+    },
+    "crs": [
+      {
+        "kind": "VPC",
+        "name": "vpc-f1b4df0c3bac4ba1b5f33467ff3ff383",
+        "uid": "2c9c8e08-5a45-4b6f-be77-6d6c74b31b86",
+        "resourceVersion": "1297632",
+        "generation": 1,
+        "status": {
+          "boundResources": {
+            "chassisNode": "ani-03",
+            "router": "vpc.bw-d01b8dee-3371-4053-b0df-bdad82fba4bc.vpc-f1b4df0c3bac4ba1b5f33467ff3ff383"
+          },
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-09-17T14:12:21Z",
+              "message": "",
+              "reason": "Valid",
+              "status": "True",
+              "type": "Valid"
+            },
+            {
+              "lastTransitionTime": "2026-09-17T14:12:21Z",
+              "message": "",
+              "reason": "Initialized",
+              "status": "True",
+              "type": "Initialized"
+            },
+            {
+              "lastTransitionTime": "2026-09-17T14:12:21Z",
+              "message": "",
+              "reason": "Ready",
+              "status": "True",
+              "type": "Ready"
+            }
+          ],
+          "eips": {
+            "bw-d01b8dee-3371-4053-b0df-bdad82fba4bc/eip-58eb0309affb4082bf9ee0b07fb96939": "10.242.250.2"
+          },
+          "observedGeneration": 1
+        },
+        "basic_cr_ready": true
+      },
+      {
+        "kind": "EIP",
+        "name": "eip-58eb0309affb4082bf9ee0b07fb96939",
+        "uid": "72d3122e-a1ab-4ffc-8667-83d41f98e2b2",
+        "resourceVersion": "1297630",
+        "generation": 2,
+        "status": {
+          "boundResource": {
+            "disabled": false,
+            "nodeName": "ani-03",
+            "observedGeneration": 1,
+            "resource": "snat-5d8a7592d907462c826c706f806caa03",
+            "resourceType": "Snat",
+            "vpc": "bw-d01b8dee-3371-4053-b0df-bdad82fba4bc/vpc-f1b4df0c3bac4ba1b5f33467ff3ff383"
+          },
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-09-17T14:12:32Z",
+              "message": "",
+              "reason": "Initialized",
+              "status": "True",
+              "type": "Initialized"
+            },
+            {
+              "lastTransitionTime": "2026-09-17T14:12:32Z",
+              "message": "",
+              "reason": "Valid",
+              "status": "True",
+              "type": "Valid"
+            }
+          ],
+          "gateway": "kcn-system/kcn-cluster",
+          "phase": "Bound"
+        },
+        "basic_cr_ready": true
+      },
+      {
+        "kind": "Snat",
+        "name": "snat-5d8a7592d907462c826c706f806caa03",
+        "uid": "6d029cc9-fcd7-42d4-b546-026d5ed84ae1",
+        "resourceVersion": "1297631",
+        "generation": 1,
+        "status": {
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-09-17T14:12:51Z",
+              "message": "",
+              "reason": "Valid",
+              "status": "True",
+              "type": "Valid"
+            }
+          ],
+          "eipAddress": "10.242.250.2",
+          "phase": "Bound"
+        },
+        "basic_cr_ready": true
+      }
+    ],
+    "reconciliations": [
+      {
+        "tenant_id": "d01b8dee-3371-4053-b0df-bdad82fba4bc",
+        "vpc_id": "vpc_7f3494da45954d74a05bb1a348e103e8",
+        "next_run_at": "2026-09-17T14:14:46.664618+00:00",
+        "lease_owner": "eeabfb40-6017-4a69-b5a4-eb0955bcec48",
+        "lease_until": "2026-09-17T14:16:46.916403+00:00",
+        "lease_epoch": 42,
+        "subnet_id": null,
+        "reconciliation_id": "c2f845fc-011b-455b-8f0d-96f2fa9ec98a",
+        "requested_generation": 6,
+        "processed_generation": 5,
+        "retry_not_before": "1970-01-01T00:00:00+00:00",
+        "evidence_hash": "ca84b426f1f1598401f08bf3bd5c7c6195069a8b42aa4b474eb7bbfb5702739b",
+        "evidence_applied_at": "2026-09-17T14:14:45.21225+00:00",
+        "eip_id": null,
+        "snat_id": null,
+        "retired": false,
+        "lb_id": null
+      },
+      {
+        "tenant_id": "d01b8dee-3371-4053-b0df-bdad82fba4bc",
+        "vpc_id": null,
+        "next_run_at": "2026-09-17T14:15:20.623807+00:00",
+        "lease_owner": null,
+        "lease_until": null,
+        "lease_epoch": 44,
+        "subnet_id": null,
+        "reconciliation_id": "db75184f-9b5d-4227-a65d-fb651250c67c",
+        "requested_generation": 9,
+        "processed_generation": 6,
+        "retry_not_before": "2026-09-17T14:15:20.623809+00:00",
+        "evidence_hash": "f8b4b9437ae675de2acce4bc75776731bc140157bc98a6286e1cb46de3250e7a",
+        "evidence_applied_at": "2026-09-17T14:14:41.231448+00:00",
+        "eip_id": null,
+        "snat_id": "snat_5d8a7592d907462c826c706f806caa03",
+        "retired": false,
+        "lb_id": null
+      },
+      {
+        "tenant_id": "d01b8dee-3371-4053-b0df-bdad82fba4bc",
+        "vpc_id": null,
+        "next_run_at": "2026-09-17T14:15:20.822257+00:00",
+        "lease_owner": null,
+        "lease_until": null,
+        "lease_epoch": 25,
+        "subnet_id": null,
+        "reconciliation_id": "04d2bc6f-59bb-4b8f-b916-2a7329ad0af8",
+        "requested_generation": 9,
+        "processed_generation": 6,
+        "retry_not_before": "2026-09-17T14:15:20.82226+00:00",
+        "evidence_hash": "276a6949dbec376830edced9931a41f9a6b9b450fab7c324c1c38eafda6f63a2",
+        "evidence_applied_at": "2026-09-17T14:14:41.563483+00:00",
+        "eip_id": "eip_58eb0309affb4082bf9ee0b07fb96939",
+        "snat_id": null,
+        "retired": false,
+        "lb_id": null
+      },
+      {
+        "tenant_id": "d01b8dee-3371-4053-b0df-bdad82fba4bc",
+        "vpc_id": "vpc_f1b4df0c3bac4ba1b5f33467ff3ff383",
+        "next_run_at": "2026-09-17T14:14:50.915032+00:00",
+        "lease_owner": "eeabfb40-6017-4a69-b5a4-eb0955bcec48",
+        "lease_until": "2026-09-17T14:16:50.917209+00:00",
+        "lease_epoch": 34,
+        "subnet_id": null,
+        "reconciliation_id": "44c70bb0-21e3-42aa-9eef-f08dd48e4c14",
+        "requested_generation": 16,
+        "processed_generation": 15,
+        "retry_not_before": "1970-01-01T00:00:00+00:00",
+        "evidence_hash": "75e80a462743cea0c18721b23366742c146f501bbd6b2ff1b4c31169c598e47c",
+        "evidence_applied_at": "2026-09-17T14:14:50.915033+00:00",
+        "eip_id": null,
+        "snat_id": null,
+        "retired": false,
+        "lb_id": null
+      }
+    ]
+  },
+  "last_divergence": {
+    "database_at": "2026-09-17T14:21:48.116294+00:00",
+    "vpc_state": "degraded",
+    "base": {
+      "tenant_id": "d01b8dee-3371-4053-b0df-bdad82fba4bc",
+      "vpc_id": "vpc_f1b4df0c3bac4ba1b5f33467ff3ff383",
+      "cluster_id": "basewatch-0917",
+      "namespace": "bw-d01b8dee-3371-4053-b0df-bdad82fba4bc",
+      "pool_id": "pool_d96b3b705e5f4b1695a0415393154004",
+      "pool_revision": 1,
+      "purpose": "intranet",
+      "eip_id": "eip_58eb0309affb4082bf9ee0b07fb96939",
+      "snat_id": "snat_5d8a7592d907462c826c706f806caa03",
+      "operation_id": "006c5f79-d9ff-41e1-946a-2d6c158a0a1e",
+      "state": "degraded",
+      "reason": "BASE_CONNECTIVITY_NOT_READY",
+      "provider_ready": true,
+      "provider_observed_at": "2026-09-17T14:21:48.019523+00:00",
+      "observed_at": null,
+      "terminating": false,
+      "version": 138,
+      "created_at": "2026-09-17T14:12:17.95519+00:00"
+    },
+    "eip": {
+      "state": "available",
+      "reason": "",
+      "observed_at": "2026-09-17T14:21:41.070848+00:00"
+    },
+    "snat": {
+      "state": "available",
+      "reason": "PROVIDER_UNAVAILABLE",
+      "observed_at": "2026-09-17T14:21:07.45497+00:00",
+      "applied_enabled": null
+    },
+    "ages_seconds": {
+      "provider": 0.096771,
+      "eip": 7.045446,
+      "snat": 40.661324
+    },
+    "crs": [
+      {
+        "kind": "VPC",
+        "name": "vpc-f1b4df0c3bac4ba1b5f33467ff3ff383",
+        "uid": "2c9c8e08-5a45-4b6f-be77-6d6c74b31b86",
+        "resourceVersion": "1297632",
+        "generation": 1,
+        "status": {
+          "boundResources": {
+            "chassisNode": "ani-03",
+            "router": "vpc.bw-d01b8dee-3371-4053-b0df-bdad82fba4bc.vpc-f1b4df0c3bac4ba1b5f33467ff3ff383"
+          },
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-09-17T14:12:21Z",
+              "message": "",
+              "reason": "Valid",
+              "status": "True",
+              "type": "Valid"
+            },
+            {
+              "lastTransitionTime": "2026-09-17T14:12:21Z",
+              "message": "",
+              "reason": "Initialized",
+              "status": "True",
+              "type": "Initialized"
+            },
+            {
+              "lastTransitionTime": "2026-09-17T14:12:21Z",
+              "message": "",
+              "reason": "Ready",
+              "status": "True",
+              "type": "Ready"
+            }
+          ],
+          "eips": {
+            "bw-d01b8dee-3371-4053-b0df-bdad82fba4bc/eip-58eb0309affb4082bf9ee0b07fb96939": "10.242.250.2"
+          },
+          "observedGeneration": 1
+        },
+        "basic_cr_ready": true
+      },
+      {
+        "kind": "EIP",
+        "name": "eip-58eb0309affb4082bf9ee0b07fb96939",
+        "uid": "72d3122e-a1ab-4ffc-8667-83d41f98e2b2",
+        "resourceVersion": "1297630",
+        "generation": 2,
+        "status": {
+          "boundResource": {
+            "disabled": false,
+            "nodeName": "ani-03",
+            "observedGeneration": 1,
+            "resource": "snat-5d8a7592d907462c826c706f806caa03",
+            "resourceType": "Snat",
+            "vpc": "bw-d01b8dee-3371-4053-b0df-bdad82fba4bc/vpc-f1b4df0c3bac4ba1b5f33467ff3ff383"
+          },
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-09-17T14:12:32Z",
+              "message": "",
+              "reason": "Initialized",
+              "status": "True",
+              "type": "Initialized"
+            },
+            {
+              "lastTransitionTime": "2026-09-17T14:12:32Z",
+              "message": "",
+              "reason": "Valid",
+              "status": "True",
+              "type": "Valid"
+            }
+          ],
+          "gateway": "kcn-system/kcn-cluster",
+          "phase": "Bound"
+        },
+        "basic_cr_ready": true
+      },
+      {
+        "kind": "Snat",
+        "name": "snat-5d8a7592d907462c826c706f806caa03",
+        "uid": "6d029cc9-fcd7-42d4-b546-026d5ed84ae1",
+        "resourceVersion": "1297631",
+        "generation": 1,
+        "status": {
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-09-17T14:12:51Z",
+              "message": "",
+              "reason": "Valid",
+              "status": "True",
+              "type": "Valid"
+            }
+          ],
+          "eipAddress": "10.242.250.2",
+          "phase": "Bound"
+        },
+        "basic_cr_ready": true
+      }
+    ],
+    "reconciliations": [
+      {
+        "tenant_id": "d01b8dee-3371-4053-b0df-bdad82fba4bc",
+        "vpc_id": null,
+        "next_run_at": "2026-09-17T14:21:48.164459+00:00",
+        "lease_owner": null,
+        "lease_until": null,
+        "lease_epoch": 88,
+        "subnet_id": null,
+        "reconciliation_id": "db75184f-9b5d-4227-a65d-fb651250c67c",
+        "requested_generation": 38,
+        "processed_generation": 36,
+        "retry_not_before": "2026-09-17T14:21:48.16446+00:00",
+        "evidence_hash": "f8b4b9437ae675de2acce4bc75776731bc140157bc98a6286e1cb46de3250e7a",
+        "evidence_applied_at": "2026-09-17T14:21:08.967875+00:00",
+        "eip_id": null,
+        "snat_id": "snat_5d8a7592d907462c826c706f806caa03",
+        "retired": false,
+        "lb_id": null
+      },
+      {
+        "tenant_id": "d01b8dee-3371-4053-b0df-bdad82fba4bc",
+        "vpc_id": null,
+        "next_run_at": "2026-09-17T14:21:53.01546+00:00",
+        "lease_owner": null,
+        "lease_until": null,
+        "lease_epoch": 70,
+        "subnet_id": null,
+        "reconciliation_id": "04d2bc6f-59bb-4b8f-b916-2a7329ad0af8",
+        "requested_generation": 38,
+        "processed_generation": 38,
+        "retry_not_before": "1970-01-01T00:00:00+00:00",
+        "evidence_hash": "276a6949dbec376830edced9931a41f9a6b9b450fab7c324c1c38eafda6f63a2",
+        "evidence_applied_at": "2026-09-17T14:21:48.015462+00:00",
+        "eip_id": "eip_58eb0309affb4082bf9ee0b07fb96939",
+        "snat_id": null,
+        "retired": false,
+        "lb_id": null
+      },
+      {
+        "tenant_id": "d01b8dee-3371-4053-b0df-bdad82fba4bc",
+        "vpc_id": "vpc_f1b4df0c3bac4ba1b5f33467ff3ff383",
+        "next_run_at": "2026-09-17T14:21:53.074196+00:00",
+        "lease_owner": null,
+        "lease_until": null,
+        "lease_epoch": 137,
+        "subnet_id": null,
+        "reconciliation_id": "44c70bb0-21e3-42aa-9eef-f08dd48e4c14",
+        "requested_generation": 62,
+        "processed_generation": 62,
+        "retry_not_before": "1970-01-01T00:00:00+00:00",
+        "evidence_hash": "75e80a462743cea0c18721b23366742c146f501bbd6b2ff1b4c31169c598e47c",
+        "evidence_applied_at": "2026-09-17T14:21:48.074198+00:00",
+        "eip_id": null,
+        "snat_id": null,
+        "retired": false,
+        "lb_id": null
+      },
+      {
+        "tenant_id": "d01b8dee-3371-4053-b0df-bdad82fba4bc",
+        "vpc_id": "vpc_7f3494da45954d74a05bb1a348e103e8",
+        "next_run_at": "2026-09-17T14:21:47.196064+00:00",
+        "lease_owner": "eeabfb40-6017-4a69-b5a4-eb0955bcec48",
+        "lease_until": "2026-09-17T14:23:47.264944+00:00",
+        "lease_epoch": 101,
+        "subnet_id": null,
+        "reconciliation_id": "c2f845fc-011b-455b-8f0d-96f2fa9ec98a",
+        "requested_generation": 30,
+        "processed_generation": 30,
+        "retry_not_before": "1970-01-01T00:00:00+00:00",
+        "evidence_hash": "ca84b426f1f1598401f08bf3bd5c7c6195069a8b42aa4b474eb7bbfb5702739b",
+        "evidence_applied_at": "2026-09-17T14:21:42.196066+00:00",
+        "eip_id": null,
+        "snat_id": null,
+        "retired": false,
+        "lb_id": null
+      }
+    ]
+  },
+  "scope": "CR basic readiness versus stored base readiness; not a traffic test or proof all adapter dependencies ready"
+}

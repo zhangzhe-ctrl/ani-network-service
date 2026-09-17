@@ -1,0 +1,166 @@
+{
+  "verdict": "not_captured",
+  "comparison_exit": 0,
+  "first_ready": "2026-09-17T15:02:07.544341+00:00",
+  "lifecycle": [
+    {
+      "received_at": "2026-09-17T15:02:07.391555+00:00",
+      "monotonic_ns": 125453417994218,
+      "record": "start",
+      "run": "basediag-0917",
+      "source_commit": "f07178a6bd2100ae6fb9583a25de06703e586c94",
+      "pid": 776909,
+      "maximum_seconds": 1800,
+      "post_ready_seconds": 600
+    },
+    {
+      "received_at": "2026-09-17T15:12:08.608971+00:00",
+      "monotonic_ns": 126054635395587,
+      "record": "window_complete",
+      "seconds_after_first_ready": 600
+    },
+    {
+      "received_at": "2026-09-17T15:12:08.614540+00:00",
+      "monotonic_ns": 126054640968796,
+      "record": "stopped",
+      "elapsed_seconds": 601.2231461489864
+    }
+  ],
+  "sample_counts": {
+    "ready": 602
+  },
+  "api_base_sample_counts": {
+    "ready": 602
+  },
+  "api_errors": [],
+  "collector_errors": [],
+  "degraded_episodes": [],
+  "watch": {
+    "platform-subnets": {
+      "events": 6,
+      "gaps": 0,
+      "starts": 1,
+      "ends": [
+        {
+          "received_at": "2026-09-17T15:12:08.612024+00:00",
+          "monotonic_ns": 126054638455371,
+          "record": "watch_end",
+          "connection": 1,
+          "exit": 1,
+          "intentional": true,
+          "unparsed_bytes": 1
+        }
+      ]
+    },
+    "platform-vpcs": {
+      "events": 1,
+      "gaps": 0,
+      "starts": 1,
+      "ends": [
+        {
+          "received_at": "2026-09-17T15:12:08.611683+00:00",
+          "monotonic_ns": 126054638117207,
+          "record": "watch_end",
+          "connection": 1,
+          "exit": 1,
+          "intentional": true,
+          "unparsed_bytes": 1
+        }
+      ]
+    },
+    "tenant-eips": {
+      "events": 1,
+      "gaps": 0,
+      "starts": 1,
+      "ends": [
+        {
+          "received_at": "2026-09-17T15:12:08.613315+00:00",
+          "monotonic_ns": 126054639750040,
+          "record": "watch_end",
+          "connection": 1,
+          "exit": 1,
+          "intentional": true,
+          "unparsed_bytes": 1
+        }
+      ]
+    },
+    "tenant-snats": {
+      "events": 1,
+      "gaps": 0,
+      "starts": 1,
+      "ends": [
+        {
+          "received_at": "2026-09-17T15:12:08.613206+00:00",
+          "monotonic_ns": 126054639639147,
+          "record": "watch_end",
+          "connection": 1,
+          "exit": 1,
+          "intentional": true,
+          "unparsed_bytes": 1
+        }
+      ]
+    },
+    "tenant-vpcs": {
+      "events": 1,
+      "gaps": 0,
+      "starts": 1,
+      "ends": [
+        {
+          "received_at": "2026-09-17T15:12:08.614266+00:00",
+          "monotonic_ns": 126054640696005,
+          "record": "watch_end",
+          "connection": 1,
+          "exit": 1,
+          "intentional": true,
+          "unparsed_bytes": 1
+        }
+      ]
+    }
+  },
+  "direct_get_revision_sets": {
+    "VPC/vpc-9ffa67f03b4b41bc8a2daf3d43845266": [
+      [
+        "2bc67f2b-c9da-4634-ba14-fb0ab6026898",
+        "1305580",
+        1
+      ]
+    ],
+    "EIP/eip-1ba3579f3313452395fdbcb8a9eccde8": [
+      [
+        "a31fec79-c7e9-4ecc-baa1-59f5cf697de0",
+        "1305578",
+        2
+      ]
+    ],
+    "Snat/snat-c5ccfc00e1634c9a80300ef9292f28e7": [
+      [
+        "4ce9b966-0f27-479a-8f90-b93272795f7f",
+        "1305579",
+        1
+      ]
+    ]
+  },
+  "metrics_first": {
+    "at": "2026-09-17T15:02:07.690283+00:00",
+    "ani_network_observation_source_boundaries_total": 24.0,
+    "ani_network_observation_watch_errors_total": 0.0,
+    "ani_network_observation_audit_failures_total": 0.0,
+    "ani_network_observation_source_synced": 1.0,
+    "ani_network_observation_audit_collection_max_seconds": 2.995788337
+  },
+  "metrics_last": {
+    "at": "2026-09-17T15:12:08.608652+00:00",
+    "ani_network_observation_source_boundaries_total": 48.0,
+    "ani_network_observation_watch_errors_total": 0.0,
+    "ani_network_observation_audit_failures_total": 0.0,
+    "ani_network_observation_source_synced": 1.0,
+    "ani_network_observation_audit_collection_max_seconds": 4.600418908
+  },
+  "all_watch_error_values": [
+    0.0
+  ],
+  "all_audit_failure_values": [
+    0.0
+  ],
+  "limits": "Basic CR readiness and direct GET are not a traffic test or proof of every adapter dependency. Exact ProviderTemporary return branch is not logged."
+}

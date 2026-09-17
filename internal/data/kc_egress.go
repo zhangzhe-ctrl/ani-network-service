@@ -3,6 +3,7 @@ package data
 import (
 	"context"
 	"encoding/json"
+	"errors"
 	"net/netip"
 	"reflect"
 	"regexp"
@@ -446,7 +447,32 @@ type egressReadSet struct {
 func objectKey(b sqlcgen.NetworkProviderBinding) string {
 	return "object:" + egressCRKind(b.ResourceKind) + "/" + b.Namespace + "/" + b.ProviderName
 }
+
+var errEgressAuditInvalid = errors.New("egress audit needs a fresh collection")
+
 func (p *KCProvider) readEgressSet(ctx context.Context, r egressResolved, critical bool) (egressReadSet, error) {
+	for {
+		if err := ctx.Err(); err != nil {
+			return egressReadSet{}, readFailure(err)
+		}
+		set, err := p.readEgressSetOnce(ctx, r, critical)
+		if err != errEgressAuditInvalid {
+			return set, err
+		}
+		// Consecutive Watch renewals can invalidate more than one collection.
+		// Keep the original caller deadline and collect after a new database
+		// boundary on each attempt. Read failures and identity conflicts are
+		// not retry signals. Unbounded callers retain one critical fallback.
+		if critical {
+			if _, bounded := ctx.Deadline(); !bounded {
+				return egressReadSet{}, &biz.ProviderError{Kind: biz.ProviderTemporary}
+			}
+		}
+		critical = true
+	}
+}
+
+func (p *KCProvider) readEgressSetOnce(ctx context.Context, r egressResolved, critical bool) (egressReadSet, error) {
 	result := egressReadSet{objects: map[string]*unstructured.Unstructured{}, all: map[schema.GroupVersionResource][]unstructured.Unstructured{}}
 	now, err := p.repository.queries.DatabaseTime(ctx)
 	if err != nil {
@@ -531,7 +557,7 @@ func (p *KCProvider) readEgressSet(ctx context.Context, r egressResolved, critic
 			}
 			// Cache absence is never a lifecycle deletion/ownership conclusion.
 			if o == nil {
-				return p.readEgressSet(ctx, r, true)
+				return result, errEgressAuditInvalid
 			}
 		}
 		result.objects[key] = o
@@ -590,20 +616,10 @@ func (p *KCProvider) readEgressSet(ctx context.Context, r egressResolved, critic
 		result.proof.Hash = contentHash([]string{result.proof.Hash, device.Proof.Hash})
 	}
 	if result.view != nil && !p.observation.valid(result.view, result.keys) {
-		// A cached audit can be invalidated between worker attempts by a
-		// related event or Watch boundary. Verify once against a new complete
-		// collection before reporting unknown facts. The critical path keeps
-		// the same timeout and rejects another invalidation without looping.
-		if !critical {
-			return p.readEgressSet(ctx, r, true)
-		}
-		return result, &biz.ProviderError{Kind: biz.ProviderTemporary}
+		return result, errEgressAuditInvalid
 	}
 	if !result.proof.Covers(r.target.Requirement) {
-		if !critical {
-			return p.readEgressSet(ctx, r, true)
-		}
-		return result, &biz.ProviderError{Kind: biz.ProviderTemporary}
+		return result, errEgressAuditInvalid
 	}
 	return result, nil
 }

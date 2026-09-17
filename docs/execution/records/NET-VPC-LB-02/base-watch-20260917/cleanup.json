@@ -1,0 +1,99 @@
+{
+  "at": "2026-09-17T14:28:24.469167+00:00",
+  "result": "pass",
+  "product": {
+    "vpcs": [
+      {
+        "vpc_id": "vpc_7f3494da45954d74a05bb1a348e103e8",
+        "state": "deleted",
+        "reason": ""
+      },
+      {
+        "vpc_id": "vpc_f1b4df0c3bac4ba1b5f33467ff3ff383",
+        "state": "deleted",
+        "reason": ""
+      }
+    ],
+    "eips": [
+      {
+        "eip_id": "eip_58eb0309affb4082bf9ee0b07fb96939",
+        "state": "deleted",
+        "reason": ""
+      }
+    ],
+    "snats": [
+      {
+        "snat_id": "snat_5d8a7592d907462c826c706f806caa03",
+        "state": "deleted",
+        "reason": "RESOURCE_IN_USE"
+      }
+    ],
+    "platform": [
+      {
+        "resource_id": "pool_d96b3b705e5f4b1695a0415393154004",
+        "state": "deleted",
+        "reason": ""
+      }
+    ],
+    "claims": [
+      {
+        "tenant_id": "d01b8dee-3371-4053-b0df-bdad82fba4bc",
+        "claim_id": "25f75433-5745-4a90-81c6-50f8bc67b9eb",
+        "cluster_id": "basewatch-0917",
+        "namespace": "bw-d01b8dee-3371-4053-b0df-bdad82fba4bc",
+        "eip_id": "eip_58eb0309affb4082bf9ee0b07fb96939",
+        "target_kind": "vpc_snat",
+        "snat_id": "snat_5d8a7592d907462c826c706f806caa03",
+        "lb_id": null,
+        "state": "bound",
+        "created_at": "2026-09-17T14:12:17.942125+00:00",
+        "released_at": "2026-09-17T14:24:03.598441+00:00"
+      }
+    ]
+  },
+  "runtime": {
+    "at": "2026-09-17T14:09:38.531179+00:00",
+    "run": "basewatch-0917",
+    "state": "stopped",
+    "processes": [
+      {
+        "name": "owner",
+        "pid": 706211,
+        "start_ticks": "12230455"
+      },
+      {
+        "name": "network",
+        "pid": 706212,
+        "start_ticks": "12230455"
+      },
+      {
+        "name": "tenant-a",
+        "pid": 706213,
+        "start_ticks": "12230455"
+      },
+      {
+        "name": "platform",
+        "pid": 706214,
+        "start_ticks": "12230456"
+      }
+    ],
+    "stopped_at": "2026-09-17T14:28:23.524443+00:00"
+  },
+  "postgres_removed": "a7562691d36194c45f0c7e92c478032ab596cb30091f8bd2bcc99765c9224257",
+  "private_backup": {
+    "path": "/home/chabking/workspace/ani-network-service-runs/base-watch-20260917T1405/private/runtime/final-private.dump",
+    "bytes": 228102,
+    "sha256": "8614c6b7eff0ad13fb5d760f5ea29a2e43e76a94645330b9ae67f387bd21ebff"
+  },
+  "watch_stopped": true,
+  "own_namespaces_empty_before_support_cleanup": true,
+  "support_cleanup": {
+    "result": "pass",
+    "checked_at": "2026-09-17T14:29:59.842257+00:00",
+    "command": "ssh ani-test-1 kubectl delete -f task-owned rbac.json --wait=true --timeout=45s",
+    "namespace_absence_confirmed": true,
+    "public_subnet_uid": "39619c25-703e-4db2-a35a-d44ee2acb780",
+    "public_subnet_generation": 1
+  },
+  "public_subnet": "not touched"
+}

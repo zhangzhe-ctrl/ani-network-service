@@ -1,0 +1,191 @@
+{
+  "verdict": "divergence_captured",
+  "comparison_exit": 2,
+  "first_ready": "2026-09-17T14:39:23.482187+00:00",
+  "lifecycle": [
+    {
+      "received_at": "2026-09-17T14:38:21.360879+00:00",
+      "monotonic_ns": 124027387318730,
+      "record": "start",
+      "run": "basediag-0917",
+      "source_commit": "f07178a6bd2100ae6fb9583a25de06703e586c94",
+      "pid": 738033,
+      "maximum_seconds": 1800,
+      "post_ready_seconds": 600
+    },
+    {
+      "received_at": "2026-09-17T14:49:23.578880+00:00",
+      "monotonic_ns": 124689605314547,
+      "record": "window_complete",
+      "seconds_after_first_ready": 600
+    },
+    {
+      "received_at": "2026-09-17T14:49:23.585135+00:00",
+      "monotonic_ns": 124689611565607,
+      "record": "stopped",
+      "elapsed_seconds": 662.2243817969866
+    }
+  ],
+  "sample_counts": {
+    "pending": 61,
+    "ready": 487,
+    "degraded": 114
+  },
+  "api_base_sample_counts": {
+    "pending": 61,
+    "ready": 487,
+    "degraded": 114
+  },
+  "api_errors": [],
+  "collector_errors": [],
+  "degraded_episodes": [
+    {
+      "start": "2026-09-17T14:42:24.509546+00:00",
+      "end": "2026-09-17T14:42:49.507429+00:00",
+      "sampled_duration_seconds": 24.997883
+    },
+    {
+      "start": "2026-09-17T14:45:17.530012+00:00",
+      "end": "2026-09-17T14:45:47.532676+00:00",
+      "sampled_duration_seconds": 30.002664
+    },
+    {
+      "start": "2026-09-17T14:46:00.537334+00:00",
+      "end": "2026-09-17T14:46:30.539757+00:00",
+      "sampled_duration_seconds": 30.002423
+    },
+    {
+      "start": "2026-09-17T14:46:46.545799+00:00",
+      "end": "2026-09-17T14:47:15.549701+00:00",
+      "sampled_duration_seconds": 29.003902
+    }
+  ],
+  "watch": {
+    "platform-subnets": {
+      "events": 7,
+      "gaps": 0,
+      "starts": 1,
+      "ends": [
+        {
+          "received_at": "2026-09-17T14:49:23.582671+00:00",
+          "monotonic_ns": 124689609122728,
+          "record": "watch_end",
+          "connection": 1,
+          "exit": 1,
+          "intentional": true,
+          "unparsed_bytes": 1
+        }
+      ]
+    },
+    "platform-vpcs": {
+      "events": 1,
+      "gaps": 0,
+      "starts": 1,
+      "ends": [
+        {
+          "received_at": "2026-09-17T14:49:23.583898+00:00",
+          "monotonic_ns": 124689610328406,
+          "record": "watch_end",
+          "connection": 1,
+          "exit": 1,
+          "intentional": true,
+          "unparsed_bytes": 1
+        }
+      ]
+    },
+    "tenant-eips": {
+      "events": 5,
+      "gaps": 0,
+      "starts": 1,
+      "ends": [
+        {
+          "received_at": "2026-09-17T14:49:23.584869+00:00",
+          "monotonic_ns": 124689611298401,
+          "record": "watch_end",
+          "connection": 1,
+          "exit": 1,
+          "intentional": true,
+          "unparsed_bytes": 1
+        }
+      ]
+    },
+    "tenant-snats": {
+      "events": 4,
+      "gaps": 0,
+      "starts": 1,
+      "ends": [
+        {
+          "received_at": "2026-09-17T14:49:23.582368+00:00",
+          "monotonic_ns": 124689608803057,
+          "record": "watch_end",
+          "connection": 1,
+          "exit": 1,
+          "intentional": true,
+          "unparsed_bytes": 1
+        }
+      ]
+    },
+    "tenant-vpcs": {
+      "events": 5,
+      "gaps": 0,
+      "starts": 1,
+      "ends": [
+        {
+          "received_at": "2026-09-17T14:49:23.581862+00:00",
+          "monotonic_ns": 124689608297806,
+          "record": "watch_end",
+          "connection": 1,
+          "exit": 1,
+          "intentional": true,
+          "unparsed_bytes": 1
+        }
+      ]
+    }
+  },
+  "direct_get_revision_sets": {
+    "VPC/vpc-9ffa67f03b4b41bc8a2daf3d43845266": [
+      [
+        "2bc67f2b-c9da-4634-ba14-fb0ab6026898",
+        "1305580",
+        1
+      ]
+    ],
+    "EIP/eip-1ba3579f3313452395fdbcb8a9eccde8": [
+      [
+        "a31fec79-c7e9-4ecc-baa1-59f5cf697de0",
+        "1305578",
+        2
+      ]
+    ],
+    "Snat/snat-c5ccfc00e1634c9a80300ef9292f28e7": [
+      [
+        "4ce9b966-0f27-479a-8f90-b93272795f7f",
+        "1305579",
+        1
+      ]
+    ]
+  },
+  "metrics_first": {
+    "at": "2026-09-17T14:38:21.534040+00:00",
+    "ani_network_observation_source_boundaries_total": 24.0,
+    "ani_network_observation_watch_errors_total": 0.0,
+    "ani_network_observation_audit_failures_total": 0.0,
+    "ani_network_observation_source_synced": 1.0,
+    "ani_network_observation_audit_collection_max_seconds": 2.806000382
+  },
+  "metrics_last": {
+    "at": "2026-09-17T14:49:19.580719+00:00",
+    "ani_network_observation_source_boundaries_total": 50.0,
+    "ani_network_observation_watch_errors_total": 0.0,
+    "ani_network_observation_audit_failures_total": 0.0,
+    "ani_network_observation_source_synced": 1.0,
+    "ani_network_observation_audit_collection_max_seconds": 4.599507462
+  },
+  "all_watch_error_values": [
+    0.0
+  ],
+  "all_audit_failure_values": [
+    0.0
+  ],
+  "limits": "Basic CR readiness and direct GET are not a traffic test or proof of every adapter dependency. Exact ProviderTemporary return branch is not logged."
+}

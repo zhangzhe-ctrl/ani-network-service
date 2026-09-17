@@ -1,0 +1,159 @@
+{
+  "result": "pass",
+  "before": {
+    "window_seconds": 600,
+    "sample_counts_after_ready": {
+      "ready": 487,
+      "degraded": 114
+    },
+    "api_states": {
+      "ready": 487,
+      "degraded": 114
+    },
+    "api_stale": 114,
+    "snat_applied_unknown": 115,
+    "maximum_observation_age_seconds": {
+      "vpcs": 19.373517,
+      "eips": 50.085865,
+      "snats": 49.08247,
+      "base": 50.085865
+    },
+    "degraded_episodes": [
+      {
+        "start": "2026-09-17T14:42:24.509546+00:00",
+        "end": "2026-09-17T14:42:49.507429+00:00",
+        "sampled_duration_seconds": 24.997883
+      },
+      {
+        "start": "2026-09-17T14:45:17.530012+00:00",
+        "end": "2026-09-17T14:45:47.532676+00:00",
+        "sampled_duration_seconds": 30.002664
+      },
+      {
+        "start": "2026-09-17T14:46:00.537334+00:00",
+        "end": "2026-09-17T14:46:30.539757+00:00",
+        "sampled_duration_seconds": 30.002423
+      },
+      {
+        "start": "2026-09-17T14:46:46.545799+00:00",
+        "end": "2026-09-17T14:47:15.549701+00:00",
+        "sampled_duration_seconds": 29.003902
+      }
+    ],
+    "source_boundaries_delta": 26.0,
+    "watch_errors": [
+      0.0
+    ],
+    "audit_failures": [
+      0.0
+    ],
+    "independent_watch_gaps": 0,
+    "direct_get_revision_sets": {
+      "VPC/vpc-9ffa67f03b4b41bc8a2daf3d43845266": [
+        [
+          "2bc67f2b-c9da-4634-ba14-fb0ab6026898",
+          "1305580",
+          1
+        ]
+      ],
+      "EIP/eip-1ba3579f3313452395fdbcb8a9eccde8": [
+        [
+          "a31fec79-c7e9-4ecc-baa1-59f5cf697de0",
+          "1305578",
+          2
+        ]
+      ],
+      "Snat/snat-c5ccfc00e1634c9a80300ef9292f28e7": [
+        [
+          "4ce9b966-0f27-479a-8f90-b93272795f7f",
+          "1305579",
+          1
+        ]
+      ]
+    },
+    "collector_errors": [],
+    "api_errors": []
+  },
+  "after": {
+    "window_seconds": 600,
+    "sample_counts_after_ready": {
+      "ready": 602
+    },
+    "api_states": {
+      "ready": 602
+    },
+    "api_stale": 0,
+    "snat_applied_unknown": 0,
+    "maximum_observation_age_seconds": {
+      "vpcs": 19.934469,
+      "eips": 33.156966,
+      "snats": 38.555984,
+      "base": 40.54835
+    },
+    "degraded_episodes": [],
+    "source_boundaries_delta": 24.0,
+    "watch_errors": [
+      0.0
+    ],
+    "audit_failures": [
+      0.0
+    ],
+    "independent_watch_gaps": 0,
+    "direct_get_revision_sets": {
+      "VPC/vpc-9ffa67f03b4b41bc8a2daf3d43845266": [
+        [
+          "2bc67f2b-c9da-4634-ba14-fb0ab6026898",
+          "1305580",
+          1
+        ]
+      ],
+      "EIP/eip-1ba3579f3313452395fdbcb8a9eccde8": [
+        [
+          "a31fec79-c7e9-4ecc-baa1-59f5cf697de0",
+          "1305578",
+          2
+        ]
+      ],
+      "Snat/snat-c5ccfc00e1634c9a80300ef9292f28e7": [
+        [
+          "4ce9b966-0f27-479a-8f90-b93272795f7f",
+          "1305579",
+          1
+        ]
+      ]
+    },
+    "collector_errors": [],
+    "api_errors": []
+  },
+  "same_cr_uid_resource_version_generation": true,
+  "final_direct_get_revisions": {
+    "VPC/vpc-9ffa67f03b4b41bc8a2daf3d43845266": [
+      [
+        "2bc67f2b-c9da-4634-ba14-fb0ab6026898",
+        "1305580",
+        1
+      ]
+    ],
+    "EIP/eip-1ba3579f3313452395fdbcb8a9eccde8": [
+      [
+        "a31fec79-c7e9-4ecc-baa1-59f5cf697de0",
+        "1305578",
+        2
+      ]
+    ],
+    "Snat/snat-c5ccfc00e1634c9a80300ef9292f28e7": [
+      [
+        "4ce9b966-0f27-479a-8f90-b93272795f7f",
+        "1305579",
+        1
+      ]
+    ]
+  },
+  "fixed_runtime_nonempty_reason_events_in_window": 0,
+  "limits": [
+    "Finite 600 second window; not perpetual stability, traffic, HA or full LB observation proof.",
+    "Same database, configuration and CR identities. Fixed runtime additionally has CPU/memory limits; this is a functional comparison, not a single-variable performance benchmark.",
+    "Strict code red/green evidence comes from the controlled consecutive-Watch-boundary regression."
+  ],
+  "at": "2026-09-17T15:16:10.485363+00:00"
+}

@@ -1,0 +1,196 @@
+{
+  "verdict": "divergence_captured",
+  "comparison_exit": 2,
+  "first_ready": "2026-09-17T14:13:01.031132+00:00",
+  "lifecycle": [
+    {
+      "received_at": "2026-09-17T14:12:15.916456+00:00",
+      "monotonic_ns": 122461942891755,
+      "record": "start",
+      "run": "basewatch-0917",
+      "source_commit": "f07178a6bd2100ae6fb9583a25de06703e586c94",
+      "pid": 710581,
+      "maximum_seconds": 1800,
+      "post_ready_seconds": 600
+    },
+    {
+      "received_at": "2026-09-17T14:23:01.137339+00:00",
+      "monotonic_ns": 123107163764812,
+      "record": "window_complete",
+      "seconds_after_first_ready": 600
+    },
+    {
+      "received_at": "2026-09-17T14:23:01.142319+00:00",
+      "monotonic_ns": 123107168747057,
+      "record": "stopped",
+      "elapsed_seconds": 645.226003431002
+    }
+  ],
+  "sample_counts": {
+    "pending": 43,
+    "ready": 442,
+    "degraded": 159
+  },
+  "api_base_sample_counts": {
+    "pending": 43,
+    "ready": 441,
+    "degraded": 160
+  },
+  "api_errors": [],
+  "collector_errors": [],
+  "degraded_episodes": [
+    {
+      "start": "2026-09-17T14:14:51.050346+00:00",
+      "end": "2026-09-17T14:15:22.063779+00:00",
+      "sampled_duration_seconds": 31.013433
+    },
+    {
+      "start": "2026-09-17T14:15:29.058895+00:00",
+      "end": "2026-09-17T14:15:59.058477+00:00",
+      "sampled_duration_seconds": 29.999582
+    },
+    {
+      "start": "2026-09-17T14:16:51.06681+00:00",
+      "end": "2026-09-17T14:17:21.075458+00:00",
+      "sampled_duration_seconds": 30.008648
+    },
+    {
+      "start": "2026-09-17T14:17:36.074463+00:00",
+      "end": "2026-09-17T14:18:14.080079+00:00",
+      "sampled_duration_seconds": 38.005616
+    },
+    {
+      "start": "2026-09-17T14:21:19.104489+00:00",
+      "end": "2026-09-17T14:21:49.115126+00:00",
+      "sampled_duration_seconds": 30.010637
+    }
+  ],
+  "watch": {
+    "platform-subnets": {
+      "events": 7,
+      "gaps": 0,
+      "starts": 1,
+      "ends": [
+        {
+          "received_at": "2026-09-17T14:23:01.141002+00:00",
+          "monotonic_ns": 123107167432290,
+          "record": "watch_end",
+          "connection": 1,
+          "exit": 1,
+          "intentional": true,
+          "unparsed_bytes": 1
+        }
+      ]
+    },
+    "platform-vpcs": {
+      "events": 1,
+      "gaps": 0,
+      "starts": 1,
+      "ends": [
+        {
+          "received_at": "2026-09-17T14:23:01.139783+00:00",
+          "monotonic_ns": 123107166217379,
+          "record": "watch_end",
+          "connection": 1,
+          "exit": 1,
+          "intentional": true,
+          "unparsed_bytes": 1
+        }
+      ]
+    },
+    "tenant-eips": {
+      "events": 5,
+      "gaps": 0,
+      "starts": 1,
+      "ends": [
+        {
+          "received_at": "2026-09-17T14:23:01.142045+00:00",
+          "monotonic_ns": 123107168477341,
+          "record": "watch_end",
+          "connection": 1,
+          "exit": 1,
+          "intentional": true,
+          "unparsed_bytes": 1
+        }
+      ]
+    },
+    "tenant-snats": {
+      "events": 4,
+      "gaps": 0,
+      "starts": 1,
+      "ends": [
+        {
+          "received_at": "2026-09-17T14:23:01.141159+00:00",
+          "monotonic_ns": 123107167591045,
+          "record": "watch_end",
+          "connection": 1,
+          "exit": 1,
+          "intentional": true,
+          "unparsed_bytes": 1
+        }
+      ]
+    },
+    "tenant-vpcs": {
+      "events": 5,
+      "gaps": 0,
+      "starts": 1,
+      "ends": [
+        {
+          "received_at": "2026-09-17T14:23:01.140633+00:00",
+          "monotonic_ns": 123107167061245,
+          "record": "watch_end",
+          "connection": 1,
+          "exit": 1,
+          "intentional": true,
+          "unparsed_bytes": 1
+        }
+      ]
+    }
+  },
+  "direct_get_revision_sets": {
+    "VPC/vpc-f1b4df0c3bac4ba1b5f33467ff3ff383": [
+      [
+        "2c9c8e08-5a45-4b6f-be77-6d6c74b31b86",
+        "1297632",
+        1
+      ]
+    ],
+    "EIP/eip-58eb0309affb4082bf9ee0b07fb96939": [
+      [
+        "72d3122e-a1ab-4ffc-8667-83d41f98e2b2",
+        "1297630",
+        2
+      ]
+    ],
+    "Snat/snat-5d8a7592d907462c826c706f806caa03": [
+      [
+        "6d029cc9-fcd7-42d4-b546-026d5ed84ae1",
+        "1297631",
+        1
+      ]
+    ]
+  },
+  "metrics_first": {
+    "at": "2026-09-17T14:12:16.081112+00:00",
+    "ani_network_observation_source_boundaries_total": 24.0,
+    "ani_network_observation_watch_errors_total": 0.0,
+    "ani_network_observation_audit_failures_total": 0.0,
+    "ani_network_observation_source_synced": 1.0,
+    "ani_network_observation_audit_collection_max_seconds": 3.2160684330000002
+  },
+  "metrics_last": {
+    "at": "2026-09-17T14:23:00.139017+00:00",
+    "ani_network_observation_source_boundaries_total": 53.0,
+    "ani_network_observation_watch_errors_total": 0.0,
+    "ani_network_observation_audit_failures_total": 0.0,
+    "ani_network_observation_source_synced": 1.0,
+    "ani_network_observation_audit_collection_max_seconds": 5.49854922
+  },
+  "all_watch_error_values": [
+    0.0
+  ],
+  "all_audit_failure_values": [
+    0.0
+  ],
+  "limits": "Basic CR readiness and direct GET are not a traffic test or proof of every adapter dependency. Exact ProviderTemporary return branch is not logged."
+}

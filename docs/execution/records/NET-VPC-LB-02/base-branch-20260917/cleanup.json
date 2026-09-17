@@ -1,0 +1,152 @@
+{
+  "at": "2026-09-17T15:19:08.250244+00:00",
+  "result": "pass",
+  "product": {
+    "vpcs": [
+      {
+        "vpc_id": "vpc_9ffa67f03b4b41bc8a2daf3d43845266",
+        "state": "deleted",
+        "reason": "PROVIDER_UNAVAILABLE"
+      }
+    ],
+    "eips": [
+      {
+        "eip_id": "eip_1ba3579f3313452395fdbcb8a9eccde8",
+        "state": "deleted",
+        "reason": ""
+      }
+    ],
+    "snats": [
+      {
+        "snat_id": "snat_c5ccfc00e1634c9a80300ef9292f28e7",
+        "state": "deleted",
+        "reason": "RESOURCE_IN_USE"
+      }
+    ],
+    "platform": [
+      {
+        "resource_id": "pool_1859b313632c4692a5b6d5ecb612284e",
+        "state": "deleted",
+        "reason": ""
+      }
+    ],
+    "claims": [
+      {
+        "tenant_id": "ba2860dc-d656-43e5-9dae-effd084419ac",
+        "claim_id": "a09454a0-7b30-48d5-b255-293b3f7a60d0",
+        "cluster_id": "basediag-0917",
+        "namespace": "bd-ba2860dc-d656-43e5-9dae-effd084419ac",
+        "eip_id": "eip_1ba3579f3313452395fdbcb8a9eccde8",
+        "target_kind": "vpc_snat",
+        "snat_id": "snat_c5ccfc00e1634c9a80300ef9292f28e7",
+        "lb_id": null,
+        "state": "bound",
+        "created_at": "2026-09-17T14:38:21.805684+00:00",
+        "released_at": "2026-09-17T15:16:41.514242+00:00"
+      }
+    ],
+    "bindings": [
+      {
+        "tenant_id": "ba2860dc-d656-43e5-9dae-effd084419ac",
+        "vpc_id": null,
+        "binding_id": "83fc2fa0-336d-4390-ac88-01ad28dca6c0",
+        "cluster_id": "basediag-0917",
+        "namespace": "bd-ba2860dc-d656-43e5-9dae-effd084419ac",
+        "provider_name": "eip-1ba3579f3313452395fdbcb8a9eccde8",
+        "provider_uid": "a31fec79-c7e9-4ecc-baa1-59f5cf697de0",
+        "pending_action": "",
+        "pending_since": null,
+        "subnet_id": null,
+        "resource_kind": "eip",
+        "eip_id": "eip_1ba3579f3313452395fdbcb8a9eccde8",
+        "snat_id": null,
+        "create_dispatched": true,
+        "lb_id": null
+      },
+      {
+        "tenant_id": "ba2860dc-d656-43e5-9dae-effd084419ac",
+        "vpc_id": null,
+        "binding_id": "233f8369-322f-4973-9d85-d2df0dd5be05",
+        "cluster_id": "basediag-0917",
+        "namespace": "bd-ba2860dc-d656-43e5-9dae-effd084419ac",
+        "provider_name": "snat-c5ccfc00e1634c9a80300ef9292f28e7",
+        "provider_uid": "4ce9b966-0f27-479a-8f90-b93272795f7f",
+        "pending_action": "",
+        "pending_since": null,
+        "subnet_id": null,
+        "resource_kind": "snat",
+        "eip_id": null,
+        "snat_id": "snat_c5ccfc00e1634c9a80300ef9292f28e7",
+        "create_dispatched": true,
+        "lb_id": null
+      },
+      {
+        "tenant_id": "ba2860dc-d656-43e5-9dae-effd084419ac",
+        "vpc_id": "vpc_9ffa67f03b4b41bc8a2daf3d43845266",
+        "binding_id": "6a22292d-ef4c-497b-b357-05d2bf06ac8d",
+        "cluster_id": "basediag-0917",
+        "namespace": "bd-ba2860dc-d656-43e5-9dae-effd084419ac",
+        "provider_name": "vpc-9ffa67f03b4b41bc8a2daf3d43845266",
+        "provider_uid": "2bc67f2b-c9da-4634-ba14-fb0ab6026898",
+        "pending_action": "",
+        "pending_since": null,
+        "subnet_id": null,
+        "resource_kind": "vpc",
+        "eip_id": null,
+        "snat_id": null,
+        "create_dispatched": true,
+        "lb_id": null
+      }
+    ]
+  },
+  "runtime": {
+    "at": "2026-09-17T15:01:59.757900+00:00",
+    "run": "basediag-0917",
+    "state": "stopped",
+    "processes": [
+      {
+        "name": "owner",
+        "pid": 776786,
+        "start_ticks": "12544578"
+      },
+      {
+        "name": "network",
+        "pid": 776787,
+        "start_ticks": "12544578"
+      },
+      {
+        "name": "tenant-a",
+        "pid": 776788,
+        "start_ticks": "12544578"
+      },
+      {
+        "name": "platform",
+        "pid": 776794,
+        "start_ticks": "12544578"
+      }
+    ],
+    "stopped_at": "2026-09-17T15:19:07.581287+00:00"
+  },
+  "postgres_removed": "d40dbd67b828e5fe2e0b5277ada7ab3bee19102a5cbf9dcec30d01bf249f695e",
+  "remaining_owned_test_databases_removed_with_container": [
+    "network_test_aaa0bb48c4704bd5abf8840c1f9b4997"
+  ],
+  "private_backup": {
+    "path": "/home/chabking/workspace/ani-network-service-runs/base-diag-20260917T1437/private/runtime/final-private.dump",
+    "bytes": 226170,
+    "sha256": "62b954f1bda5111561b6ecf9e538840c83c2c72b7bcffc2e00a9ffbf4579f31b"
+  },
+  "watch_stopped": true,
+  "own_namespaces_empty_before_support_cleanup": true,
+  "support_cleanup": {
+    "result": "pass",
+    "namespaces_absent": true,
+    "support_delete_output": "namespace \"basediag-0917\" deleted\nnamespace \"bd-ba2860dc-d656-43e5-9dae-effd084419ac\" deleted\nserviceaccount \"network\" deleted from basediag-0917 namespace\nserviceaccount \"workload-owner\" deleted from basediag-0917 namespace\nclusterrole.rbac.authorization.k8s.io \"basediag-0917-read\" deleted\nclusterrolebinding.rbac.authorization.k8s.io \"basediag-0917-read\" deleted\nrole.rbac.authorization.k8s.io \"basediag-0917-write\" deleted from bd-ba2860dc-d656-43e5-9dae-effd084419ac namespace\nrolebinding.rbac.authorization.k8s.io \"basediag-0917-write\" deleted from bd-ba2860dc-d656-43e5-9dae-effd084419ac namespace\nrole.rbac.authorization.k8s.io \"basediag-0917-write\" deleted from kcn-system namespace\nrolebinding.rbac.authorization.k8s.io \"basediag-0917-write\" deleted from kcn-system namespace\nrole.rbac.authorization.k8s.io \"basediag-0917-pods\" deleted from bd-ba2860dc-d656-43e5-9dae-effd084419ac namespace\nrolebinding.rbac.authorization.k8s.io \"basediag-0917-pods\" deleted from bd-ba2860dc-d656-43e5-9dae-effd084419ac namespace\nrole.rbac.authorization.k8s.io \"basediag-0917-pods\" deleted from basediag-0917 namespace\nrolebinding.rbac.authorization.k8s.io \"basediag-0917-pods\" deleted from basediag-0917 namespace\n",
+    "public_subnet": {
+      "uid": "39619c25-703e-4db2-a35a-d44ee2acb780",
+      "generation": 1,
+      "spec_unchanged": true
+    }
+  },
+  "public_subnet": "not touched"
+}

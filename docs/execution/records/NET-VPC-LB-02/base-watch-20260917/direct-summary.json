@@ -1,0 +1,1179 @@
+[
+  {
+    "started_at": "2026-09-17T14:13:01.046200+00:00",
+    "transition": [
+      "available",
+      "ready",
+      "",
+      true
+    ],
+    "exit": 0,
+    "objects": [
+      {
+        "kind": "VPC",
+        "name": "vpc-f1b4df0c3bac4ba1b5f33467ff3ff383",
+        "uid": "2c9c8e08-5a45-4b6f-be77-6d6c74b31b86",
+        "resourceVersion": "1297632",
+        "generation": 1,
+        "status": {
+          "boundResources": {
+            "chassisNode": "ani-03",
+            "router": "vpc.bw-d01b8dee-3371-4053-b0df-bdad82fba4bc.vpc-f1b4df0c3bac4ba1b5f33467ff3ff383"
+          },
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-09-17T14:12:21Z",
+              "message": "",
+              "reason": "Valid",
+              "status": "True",
+              "type": "Valid"
+            },
+            {
+              "lastTransitionTime": "2026-09-17T14:12:21Z",
+              "message": "",
+              "reason": "Initialized",
+              "status": "True",
+              "type": "Initialized"
+            },
+            {
+              "lastTransitionTime": "2026-09-17T14:12:21Z",
+              "message": "",
+              "reason": "Ready",
+              "status": "True",
+              "type": "Ready"
+            }
+          ],
+          "eips": {
+            "bw-d01b8dee-3371-4053-b0df-bdad82fba4bc/eip-58eb0309affb4082bf9ee0b07fb96939": "10.242.250.2"
+          },
+          "observedGeneration": 1
+        }
+      },
+      {
+        "kind": "EIP",
+        "name": "eip-58eb0309affb4082bf9ee0b07fb96939",
+        "uid": "72d3122e-a1ab-4ffc-8667-83d41f98e2b2",
+        "resourceVersion": "1297630",
+        "generation": 2,
+        "status": {
+          "boundResource": {
+            "disabled": false,
+            "nodeName": "ani-03",
+            "observedGeneration": 1,
+            "resource": "snat-5d8a7592d907462c826c706f806caa03",
+            "resourceType": "Snat",
+            "vpc": "bw-d01b8dee-3371-4053-b0df-bdad82fba4bc/vpc-f1b4df0c3bac4ba1b5f33467ff3ff383"
+          },
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-09-17T14:12:32Z",
+              "message": "",
+              "reason": "Initialized",
+              "status": "True",
+              "type": "Initialized"
+            },
+            {
+              "lastTransitionTime": "2026-09-17T14:12:32Z",
+              "message": "",
+              "reason": "Valid",
+              "status": "True",
+              "type": "Valid"
+            }
+          ],
+          "gateway": "kcn-system/kcn-cluster",
+          "phase": "Bound"
+        }
+      },
+      {
+        "kind": "Snat",
+        "name": "snat-5d8a7592d907462c826c706f806caa03",
+        "uid": "6d029cc9-fcd7-42d4-b546-026d5ed84ae1",
+        "resourceVersion": "1297631",
+        "generation": 1,
+        "status": {
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-09-17T14:12:51Z",
+              "message": "",
+              "reason": "Valid",
+              "status": "True",
+              "type": "Valid"
+            }
+          ],
+          "eipAddress": "10.242.250.2",
+          "phase": "Bound"
+        }
+      }
+    ]
+  },
+  {
+    "started_at": "2026-09-17T14:14:51.066189+00:00",
+    "transition": [
+      "degraded",
+      "degraded",
+      "BASE_CONNECTIVITY_NOT_READY",
+      true
+    ],
+    "exit": 0,
+    "objects": [
+      {
+        "kind": "VPC",
+        "name": "vpc-f1b4df0c3bac4ba1b5f33467ff3ff383",
+        "uid": "2c9c8e08-5a45-4b6f-be77-6d6c74b31b86",
+        "resourceVersion": "1297632",
+        "generation": 1,
+        "status": {
+          "boundResources": {
+            "chassisNode": "ani-03",
+            "router": "vpc.bw-d01b8dee-3371-4053-b0df-bdad82fba4bc.vpc-f1b4df0c3bac4ba1b5f33467ff3ff383"
+          },
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-09-17T14:12:21Z",
+              "message": "",
+              "reason": "Valid",
+              "status": "True",
+              "type": "Valid"
+            },
+            {
+              "lastTransitionTime": "2026-09-17T14:12:21Z",
+              "message": "",
+              "reason": "Initialized",
+              "status": "True",
+              "type": "Initialized"
+            },
+            {
+              "lastTransitionTime": "2026-09-17T14:12:21Z",
+              "message": "",
+              "reason": "Ready",
+              "status": "True",
+              "type": "Ready"
+            }
+          ],
+          "eips": {
+            "bw-d01b8dee-3371-4053-b0df-bdad82fba4bc/eip-58eb0309affb4082bf9ee0b07fb96939": "10.242.250.2"
+          },
+          "observedGeneration": 1
+        }
+      },
+      {
+        "kind": "EIP",
+        "name": "eip-58eb0309affb4082bf9ee0b07fb96939",
+        "uid": "72d3122e-a1ab-4ffc-8667-83d41f98e2b2",
+        "resourceVersion": "1297630",
+        "generation": 2,
+        "status": {
+          "boundResource": {
+            "disabled": false,
+            "nodeName": "ani-03",
+            "observedGeneration": 1,
+            "resource": "snat-5d8a7592d907462c826c706f806caa03",
+            "resourceType": "Snat",
+            "vpc": "bw-d01b8dee-3371-4053-b0df-bdad82fba4bc/vpc-f1b4df0c3bac4ba1b5f33467ff3ff383"
+          },
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-09-17T14:12:32Z",
+              "message": "",
+              "reason": "Initialized",
+              "status": "True",
+              "type": "Initialized"
+            },
+            {
+              "lastTransitionTime": "2026-09-17T14:12:32Z",
+              "message": "",
+              "reason": "Valid",
+              "status": "True",
+              "type": "Valid"
+            }
+          ],
+          "gateway": "kcn-system/kcn-cluster",
+          "phase": "Bound"
+        }
+      },
+      {
+        "kind": "Snat",
+        "name": "snat-5d8a7592d907462c826c706f806caa03",
+        "uid": "6d029cc9-fcd7-42d4-b546-026d5ed84ae1",
+        "resourceVersion": "1297631",
+        "generation": 1,
+        "status": {
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-09-17T14:12:51Z",
+              "message": "",
+              "reason": "Valid",
+              "status": "True",
+              "type": "Valid"
+            }
+          ],
+          "eipAddress": "10.242.250.2",
+          "phase": "Bound"
+        }
+      }
+    ]
+  },
+  {
+    "started_at": "2026-09-17T14:15:22.080821+00:00",
+    "transition": [
+      "available",
+      "ready",
+      "",
+      true
+    ],
+    "exit": 0,
+    "objects": [
+      {
+        "kind": "VPC",
+        "name": "vpc-f1b4df0c3bac4ba1b5f33467ff3ff383",
+        "uid": "2c9c8e08-5a45-4b6f-be77-6d6c74b31b86",
+        "resourceVersion": "1297632",
+        "generation": 1,
+        "status": {
+          "boundResources": {
+            "chassisNode": "ani-03",
+            "router": "vpc.bw-d01b8dee-3371-4053-b0df-bdad82fba4bc.vpc-f1b4df0c3bac4ba1b5f33467ff3ff383"
+          },
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-09-17T14:12:21Z",
+              "message": "",
+              "reason": "Valid",
+              "status": "True",
+              "type": "Valid"
+            },
+            {
+              "lastTransitionTime": "2026-09-17T14:12:21Z",
+              "message": "",
+              "reason": "Initialized",
+              "status": "True",
+              "type": "Initialized"
+            },
+            {
+              "lastTransitionTime": "2026-09-17T14:12:21Z",
+              "message": "",
+              "reason": "Ready",
+              "status": "True",
+              "type": "Ready"
+            }
+          ],
+          "eips": {
+            "bw-d01b8dee-3371-4053-b0df-bdad82fba4bc/eip-58eb0309affb4082bf9ee0b07fb96939": "10.242.250.2"
+          },
+          "observedGeneration": 1
+        }
+      },
+      {
+        "kind": "EIP",
+        "name": "eip-58eb0309affb4082bf9ee0b07fb96939",
+        "uid": "72d3122e-a1ab-4ffc-8667-83d41f98e2b2",
+        "resourceVersion": "1297630",
+        "generation": 2,
+        "status": {
+          "boundResource": {
+            "disabled": false,
+            "nodeName": "ani-03",
+            "observedGeneration": 1,
+            "resource": "snat-5d8a7592d907462c826c706f806caa03",
+            "resourceType": "Snat",
+            "vpc": "bw-d01b8dee-3371-4053-b0df-bdad82fba4bc/vpc-f1b4df0c3bac4ba1b5f33467ff3ff383"
+          },
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-09-17T14:12:32Z",
+              "message": "",
+              "reason": "Initialized",
+              "status": "True",
+              "type": "Initialized"
+            },
+            {
+              "lastTransitionTime": "2026-09-17T14:12:32Z",
+              "message": "",
+              "reason": "Valid",
+              "status": "True",
+              "type": "Valid"
+            }
+          ],
+          "gateway": "kcn-system/kcn-cluster",
+          "phase": "Bound"
+        }
+      },
+      {
+        "kind": "Snat",
+        "name": "snat-5d8a7592d907462c826c706f806caa03",
+        "uid": "6d029cc9-fcd7-42d4-b546-026d5ed84ae1",
+        "resourceVersion": "1297631",
+        "generation": 1,
+        "status": {
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-09-17T14:12:51Z",
+              "message": "",
+              "reason": "Valid",
+              "status": "True",
+              "type": "Valid"
+            }
+          ],
+          "eipAddress": "10.242.250.2",
+          "phase": "Bound"
+        }
+      }
+    ]
+  },
+  {
+    "started_at": "2026-09-17T14:15:29.076608+00:00",
+    "transition": [
+      "degraded",
+      "degraded",
+      "BASE_CONNECTIVITY_NOT_READY",
+      true
+    ],
+    "exit": 0,
+    "objects": [
+      {
+        "kind": "VPC",
+        "name": "vpc-f1b4df0c3bac4ba1b5f33467ff3ff383",
+        "uid": "2c9c8e08-5a45-4b6f-be77-6d6c74b31b86",
+        "resourceVersion": "1297632",
+        "generation": 1,
+        "status": {
+          "boundResources": {
+            "chassisNode": "ani-03",
+            "router": "vpc.bw-d01b8dee-3371-4053-b0df-bdad82fba4bc.vpc-f1b4df0c3bac4ba1b5f33467ff3ff383"
+          },
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-09-17T14:12:21Z",
+              "message": "",
+              "reason": "Valid",
+              "status": "True",
+              "type": "Valid"
+            },
+            {
+              "lastTransitionTime": "2026-09-17T14:12:21Z",
+              "message": "",
+              "reason": "Initialized",
+              "status": "True",
+              "type": "Initialized"
+            },
+            {
+              "lastTransitionTime": "2026-09-17T14:12:21Z",
+              "message": "",
+              "reason": "Ready",
+              "status": "True",
+              "type": "Ready"
+            }
+          ],
+          "eips": {
+            "bw-d01b8dee-3371-4053-b0df-bdad82fba4bc/eip-58eb0309affb4082bf9ee0b07fb96939": "10.242.250.2"
+          },
+          "observedGeneration": 1
+        }
+      },
+      {
+        "kind": "EIP",
+        "name": "eip-58eb0309affb4082bf9ee0b07fb96939",
+        "uid": "72d3122e-a1ab-4ffc-8667-83d41f98e2b2",
+        "resourceVersion": "1297630",
+        "generation": 2,
+        "status": {
+          "boundResource": {
+            "disabled": false,
+            "nodeName": "ani-03",
+            "observedGeneration": 1,
+            "resource": "snat-5d8a7592d907462c826c706f806caa03",
+            "resourceType": "Snat",
+            "vpc": "bw-d01b8dee-3371-4053-b0df-bdad82fba4bc/vpc-f1b4df0c3bac4ba1b5f33467ff3ff383"
+          },
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-09-17T14:12:32Z",
+              "message": "",
+              "reason": "Initialized",
+              "status": "True",
+              "type": "Initialized"
+            },
+            {
+              "lastTransitionTime": "2026-09-17T14:12:32Z",
+              "message": "",
+              "reason": "Valid",
+              "status": "True",
+              "type": "Valid"
+            }
+          ],
+          "gateway": "kcn-system/kcn-cluster",
+          "phase": "Bound"
+        }
+      },
+      {
+        "kind": "Snat",
+        "name": "snat-5d8a7592d907462c826c706f806caa03",
+        "uid": "6d029cc9-fcd7-42d4-b546-026d5ed84ae1",
+        "resourceVersion": "1297631",
+        "generation": 1,
+        "status": {
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-09-17T14:12:51Z",
+              "message": "",
+              "reason": "Valid",
+              "status": "True",
+              "type": "Valid"
+            }
+          ],
+          "eipAddress": "10.242.250.2",
+          "phase": "Bound"
+        }
+      }
+    ]
+  },
+  {
+    "started_at": "2026-09-17T14:15:59.074380+00:00",
+    "transition": [
+      "available",
+      "ready",
+      "",
+      true
+    ],
+    "exit": 0,
+    "objects": [
+      {
+        "kind": "VPC",
+        "name": "vpc-f1b4df0c3bac4ba1b5f33467ff3ff383",
+        "uid": "2c9c8e08-5a45-4b6f-be77-6d6c74b31b86",
+        "resourceVersion": "1297632",
+        "generation": 1,
+        "status": {
+          "boundResources": {
+            "chassisNode": "ani-03",
+            "router": "vpc.bw-d01b8dee-3371-4053-b0df-bdad82fba4bc.vpc-f1b4df0c3bac4ba1b5f33467ff3ff383"
+          },
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-09-17T14:12:21Z",
+              "message": "",
+              "reason": "Valid",
+              "status": "True",
+              "type": "Valid"
+            },
+            {
+              "lastTransitionTime": "2026-09-17T14:12:21Z",
+              "message": "",
+              "reason": "Initialized",
+              "status": "True",
+              "type": "Initialized"
+            },
+            {
+              "lastTransitionTime": "2026-09-17T14:12:21Z",
+              "message": "",
+              "reason": "Ready",
+              "status": "True",
+              "type": "Ready"
+            }
+          ],
+          "eips": {
+            "bw-d01b8dee-3371-4053-b0df-bdad82fba4bc/eip-58eb0309affb4082bf9ee0b07fb96939": "10.242.250.2"
+          },
+          "observedGeneration": 1
+        }
+      },
+      {
+        "kind": "EIP",
+        "name": "eip-58eb0309affb4082bf9ee0b07fb96939",
+        "uid": "72d3122e-a1ab-4ffc-8667-83d41f98e2b2",
+        "resourceVersion": "1297630",
+        "generation": 2,
+        "status": {
+          "boundResource": {
+            "disabled": false,
+            "nodeName": "ani-03",
+            "observedGeneration": 1,
+            "resource": "snat-5d8a7592d907462c826c706f806caa03",
+            "resourceType": "Snat",
+            "vpc": "bw-d01b8dee-3371-4053-b0df-bdad82fba4bc/vpc-f1b4df0c3bac4ba1b5f33467ff3ff383"
+          },
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-09-17T14:12:32Z",
+              "message": "",
+              "reason": "Initialized",
+              "status": "True",
+              "type": "Initialized"
+            },
+            {
+              "lastTransitionTime": "2026-09-17T14:12:32Z",
+              "message": "",
+              "reason": "Valid",
+              "status": "True",
+              "type": "Valid"
+            }
+          ],
+          "gateway": "kcn-system/kcn-cluster",
+          "phase": "Bound"
+        }
+      },
+      {
+        "kind": "Snat",
+        "name": "snat-5d8a7592d907462c826c706f806caa03",
+        "uid": "6d029cc9-fcd7-42d4-b546-026d5ed84ae1",
+        "resourceVersion": "1297631",
+        "generation": 1,
+        "status": {
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-09-17T14:12:51Z",
+              "message": "",
+              "reason": "Valid",
+              "status": "True",
+              "type": "Valid"
+            }
+          ],
+          "eipAddress": "10.242.250.2",
+          "phase": "Bound"
+        }
+      }
+    ]
+  },
+  {
+    "started_at": "2026-09-17T14:16:51.083103+00:00",
+    "transition": [
+      "degraded",
+      "degraded",
+      "BASE_CONNECTIVITY_NOT_READY",
+      true
+    ],
+    "exit": 0,
+    "objects": [
+      {
+        "kind": "VPC",
+        "name": "vpc-f1b4df0c3bac4ba1b5f33467ff3ff383",
+        "uid": "2c9c8e08-5a45-4b6f-be77-6d6c74b31b86",
+        "resourceVersion": "1297632",
+        "generation": 1,
+        "status": {
+          "boundResources": {
+            "chassisNode": "ani-03",
+            "router": "vpc.bw-d01b8dee-3371-4053-b0df-bdad82fba4bc.vpc-f1b4df0c3bac4ba1b5f33467ff3ff383"
+          },
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-09-17T14:12:21Z",
+              "message": "",
+              "reason": "Valid",
+              "status": "True",
+              "type": "Valid"
+            },
+            {
+              "lastTransitionTime": "2026-09-17T14:12:21Z",
+              "message": "",
+              "reason": "Initialized",
+              "status": "True",
+              "type": "Initialized"
+            },
+            {
+              "lastTransitionTime": "2026-09-17T14:12:21Z",
+              "message": "",
+              "reason": "Ready",
+              "status": "True",
+              "type": "Ready"
+            }
+          ],
+          "eips": {
+            "bw-d01b8dee-3371-4053-b0df-bdad82fba4bc/eip-58eb0309affb4082bf9ee0b07fb96939": "10.242.250.2"
+          },
+          "observedGeneration": 1
+        }
+      },
+      {
+        "kind": "EIP",
+        "name": "eip-58eb0309affb4082bf9ee0b07fb96939",
+        "uid": "72d3122e-a1ab-4ffc-8667-83d41f98e2b2",
+        "resourceVersion": "1297630",
+        "generation": 2,
+        "status": {
+          "boundResource": {
+            "disabled": false,
+            "nodeName": "ani-03",
+            "observedGeneration": 1,
+            "resource": "snat-5d8a7592d907462c826c706f806caa03",
+            "resourceType": "Snat",
+            "vpc": "bw-d01b8dee-3371-4053-b0df-bdad82fba4bc/vpc-f1b4df0c3bac4ba1b5f33467ff3ff383"
+          },
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-09-17T14:12:32Z",
+              "message": "",
+              "reason": "Initialized",
+              "status": "True",
+              "type": "Initialized"
+            },
+            {
+              "lastTransitionTime": "2026-09-17T14:12:32Z",
+              "message": "",
+              "reason": "Valid",
+              "status": "True",
+              "type": "Valid"
+            }
+          ],
+          "gateway": "kcn-system/kcn-cluster",
+          "phase": "Bound"
+        }
+      },
+      {
+        "kind": "Snat",
+        "name": "snat-5d8a7592d907462c826c706f806caa03",
+        "uid": "6d029cc9-fcd7-42d4-b546-026d5ed84ae1",
+        "resourceVersion": "1297631",
+        "generation": 1,
+        "status": {
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-09-17T14:12:51Z",
+              "message": "",
+              "reason": "Valid",
+              "status": "True",
+              "type": "Valid"
+            }
+          ],
+          "eipAddress": "10.242.250.2",
+          "phase": "Bound"
+        }
+      }
+    ]
+  },
+  {
+    "started_at": "2026-09-17T14:17:21.093659+00:00",
+    "transition": [
+      "available",
+      "ready",
+      "",
+      true
+    ],
+    "exit": 0,
+    "objects": [
+      {
+        "kind": "VPC",
+        "name": "vpc-f1b4df0c3bac4ba1b5f33467ff3ff383",
+        "uid": "2c9c8e08-5a45-4b6f-be77-6d6c74b31b86",
+        "resourceVersion": "1297632",
+        "generation": 1,
+        "status": {
+          "boundResources": {
+            "chassisNode": "ani-03",
+            "router": "vpc.bw-d01b8dee-3371-4053-b0df-bdad82fba4bc.vpc-f1b4df0c3bac4ba1b5f33467ff3ff383"
+          },
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-09-17T14:12:21Z",
+              "message": "",
+              "reason": "Valid",
+              "status": "True",
+              "type": "Valid"
+            },
+            {
+              "lastTransitionTime": "2026-09-17T14:12:21Z",
+              "message": "",
+              "reason": "Initialized",
+              "status": "True",
+              "type": "Initialized"
+            },
+            {
+              "lastTransitionTime": "2026-09-17T14:12:21Z",
+              "message": "",
+              "reason": "Ready",
+              "status": "True",
+              "type": "Ready"
+            }
+          ],
+          "eips": {
+            "bw-d01b8dee-3371-4053-b0df-bdad82fba4bc/eip-58eb0309affb4082bf9ee0b07fb96939": "10.242.250.2"
+          },
+          "observedGeneration": 1
+        }
+      },
+      {
+        "kind": "EIP",
+        "name": "eip-58eb0309affb4082bf9ee0b07fb96939",
+        "uid": "72d3122e-a1ab-4ffc-8667-83d41f98e2b2",
+        "resourceVersion": "1297630",
+        "generation": 2,
+        "status": {
+          "boundResource": {
+            "disabled": false,
+            "nodeName": "ani-03",
+            "observedGeneration": 1,
+            "resource": "snat-5d8a7592d907462c826c706f806caa03",
+            "resourceType": "Snat",
+            "vpc": "bw-d01b8dee-3371-4053-b0df-bdad82fba4bc/vpc-f1b4df0c3bac4ba1b5f33467ff3ff383"
+          },
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-09-17T14:12:32Z",
+              "message": "",
+              "reason": "Initialized",
+              "status": "True",
+              "type": "Initialized"
+            },
+            {
+              "lastTransitionTime": "2026-09-17T14:12:32Z",
+              "message": "",
+              "reason": "Valid",
+              "status": "True",
+              "type": "Valid"
+            }
+          ],
+          "gateway": "kcn-system/kcn-cluster",
+          "phase": "Bound"
+        }
+      },
+      {
+        "kind": "Snat",
+        "name": "snat-5d8a7592d907462c826c706f806caa03",
+        "uid": "6d029cc9-fcd7-42d4-b546-026d5ed84ae1",
+        "resourceVersion": "1297631",
+        "generation": 1,
+        "status": {
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-09-17T14:12:51Z",
+              "message": "",
+              "reason": "Valid",
+              "status": "True",
+              "type": "Valid"
+            }
+          ],
+          "eipAddress": "10.242.250.2",
+          "phase": "Bound"
+        }
+      }
+    ]
+  },
+  {
+    "started_at": "2026-09-17T14:17:36.091636+00:00",
+    "transition": [
+      "degraded",
+      "degraded",
+      "BASE_CONNECTIVITY_NOT_READY",
+      true
+    ],
+    "exit": 0,
+    "objects": [
+      {
+        "kind": "VPC",
+        "name": "vpc-f1b4df0c3bac4ba1b5f33467ff3ff383",
+        "uid": "2c9c8e08-5a45-4b6f-be77-6d6c74b31b86",
+        "resourceVersion": "1297632",
+        "generation": 1,
+        "status": {
+          "boundResources": {
+            "chassisNode": "ani-03",
+            "router": "vpc.bw-d01b8dee-3371-4053-b0df-bdad82fba4bc.vpc-f1b4df0c3bac4ba1b5f33467ff3ff383"
+          },
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-09-17T14:12:21Z",
+              "message": "",
+              "reason": "Valid",
+              "status": "True",
+              "type": "Valid"
+            },
+            {
+              "lastTransitionTime": "2026-09-17T14:12:21Z",
+              "message": "",
+              "reason": "Initialized",
+              "status": "True",
+              "type": "Initialized"
+            },
+            {
+              "lastTransitionTime": "2026-09-17T14:12:21Z",
+              "message": "",
+              "reason": "Ready",
+              "status": "True",
+              "type": "Ready"
+            }
+          ],
+          "eips": {
+            "bw-d01b8dee-3371-4053-b0df-bdad82fba4bc/eip-58eb0309affb4082bf9ee0b07fb96939": "10.242.250.2"
+          },
+          "observedGeneration": 1
+        }
+      },
+      {
+        "kind": "EIP",
+        "name": "eip-58eb0309affb4082bf9ee0b07fb96939",
+        "uid": "72d3122e-a1ab-4ffc-8667-83d41f98e2b2",
+        "resourceVersion": "1297630",
+        "generation": 2,
+        "status": {
+          "boundResource": {
+            "disabled": false,
+            "nodeName": "ani-03",
+            "observedGeneration": 1,
+            "resource": "snat-5d8a7592d907462c826c706f806caa03",
+            "resourceType": "Snat",
+            "vpc": "bw-d01b8dee-3371-4053-b0df-bdad82fba4bc/vpc-f1b4df0c3bac4ba1b5f33467ff3ff383"
+          },
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-09-17T14:12:32Z",
+              "message": "",
+              "reason": "Initialized",
+              "status": "True",
+              "type": "Initialized"
+            },
+            {
+              "lastTransitionTime": "2026-09-17T14:12:32Z",
+              "message": "",
+              "reason": "Valid",
+              "status": "True",
+              "type": "Valid"
+            }
+          ],
+          "gateway": "kcn-system/kcn-cluster",
+          "phase": "Bound"
+        }
+      },
+      {
+        "kind": "Snat",
+        "name": "snat-5d8a7592d907462c826c706f806caa03",
+        "uid": "6d029cc9-fcd7-42d4-b546-026d5ed84ae1",
+        "resourceVersion": "1297631",
+        "generation": 1,
+        "status": {
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-09-17T14:12:51Z",
+              "message": "",
+              "reason": "Valid",
+              "status": "True",
+              "type": "Valid"
+            }
+          ],
+          "eipAddress": "10.242.250.2",
+          "phase": "Bound"
+        }
+      }
+    ]
+  },
+  {
+    "started_at": "2026-09-17T14:18:14.097822+00:00",
+    "transition": [
+      "available",
+      "ready",
+      "",
+      true
+    ],
+    "exit": 0,
+    "objects": [
+      {
+        "kind": "VPC",
+        "name": "vpc-f1b4df0c3bac4ba1b5f33467ff3ff383",
+        "uid": "2c9c8e08-5a45-4b6f-be77-6d6c74b31b86",
+        "resourceVersion": "1297632",
+        "generation": 1,
+        "status": {
+          "boundResources": {
+            "chassisNode": "ani-03",
+            "router": "vpc.bw-d01b8dee-3371-4053-b0df-bdad82fba4bc.vpc-f1b4df0c3bac4ba1b5f33467ff3ff383"
+          },
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-09-17T14:12:21Z",
+              "message": "",
+              "reason": "Valid",
+              "status": "True",
+              "type": "Valid"
+            },
+            {
+              "lastTransitionTime": "2026-09-17T14:12:21Z",
+              "message": "",
+              "reason": "Initialized",
+              "status": "True",
+              "type": "Initialized"
+            },
+            {
+              "lastTransitionTime": "2026-09-17T14:12:21Z",
+              "message": "",
+              "reason": "Ready",
+              "status": "True",
+              "type": "Ready"
+            }
+          ],
+          "eips": {
+            "bw-d01b8dee-3371-4053-b0df-bdad82fba4bc/eip-58eb0309affb4082bf9ee0b07fb96939": "10.242.250.2"
+          },
+          "observedGeneration": 1
+        }
+      },
+      {
+        "kind": "EIP",
+        "name": "eip-58eb0309affb4082bf9ee0b07fb96939",
+        "uid": "72d3122e-a1ab-4ffc-8667-83d41f98e2b2",
+        "resourceVersion": "1297630",
+        "generation": 2,
+        "status": {
+          "boundResource": {
+            "disabled": false,
+            "nodeName": "ani-03",
+            "observedGeneration": 1,
+            "resource": "snat-5d8a7592d907462c826c706f806caa03",
+            "resourceType": "Snat",
+            "vpc": "bw-d01b8dee-3371-4053-b0df-bdad82fba4bc/vpc-f1b4df0c3bac4ba1b5f33467ff3ff383"
+          },
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-09-17T14:12:32Z",
+              "message": "",
+              "reason": "Initialized",
+              "status": "True",
+              "type": "Initialized"
+            },
+            {
+              "lastTransitionTime": "2026-09-17T14:12:32Z",
+              "message": "",
+              "reason": "Valid",
+              "status": "True",
+              "type": "Valid"
+            }
+          ],
+          "gateway": "kcn-system/kcn-cluster",
+          "phase": "Bound"
+        }
+      },
+      {
+        "kind": "Snat",
+        "name": "snat-5d8a7592d907462c826c706f806caa03",
+        "uid": "6d029cc9-fcd7-42d4-b546-026d5ed84ae1",
+        "resourceVersion": "1297631",
+        "generation": 1,
+        "status": {
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-09-17T14:12:51Z",
+              "message": "",
+              "reason": "Valid",
+              "status": "True",
+              "type": "Valid"
+            }
+          ],
+          "eipAddress": "10.242.250.2",
+          "phase": "Bound"
+        }
+      }
+    ]
+  },
+  {
+    "started_at": "2026-09-17T14:21:19.120064+00:00",
+    "transition": [
+      "degraded",
+      "degraded",
+      "BASE_CONNECTIVITY_NOT_READY",
+      true
+    ],
+    "exit": 0,
+    "objects": [
+      {
+        "kind": "VPC",
+        "name": "vpc-f1b4df0c3bac4ba1b5f33467ff3ff383",
+        "uid": "2c9c8e08-5a45-4b6f-be77-6d6c74b31b86",
+        "resourceVersion": "1297632",
+        "generation": 1,
+        "status": {
+          "boundResources": {
+            "chassisNode": "ani-03",
+            "router": "vpc.bw-d01b8dee-3371-4053-b0df-bdad82fba4bc.vpc-f1b4df0c3bac4ba1b5f33467ff3ff383"
+          },
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-09-17T14:12:21Z",
+              "message": "",
+              "reason": "Valid",
+              "status": "True",
+              "type": "Valid"
+            },
+            {
+              "lastTransitionTime": "2026-09-17T14:12:21Z",
+              "message": "",
+              "reason": "Initialized",
+              "status": "True",
+              "type": "Initialized"
+            },
+            {
+              "lastTransitionTime": "2026-09-17T14:12:21Z",
+              "message": "",
+              "reason": "Ready",
+              "status": "True",
+              "type": "Ready"
+            }
+          ],
+          "eips": {
+            "bw-d01b8dee-3371-4053-b0df-bdad82fba4bc/eip-58eb0309affb4082bf9ee0b07fb96939": "10.242.250.2"
+          },
+          "observedGeneration": 1
+        }
+      },
+      {
+        "kind": "EIP",
+        "name": "eip-58eb0309affb4082bf9ee0b07fb96939",
+        "uid": "72d3122e-a1ab-4ffc-8667-83d41f98e2b2",
+        "resourceVersion": "1297630",
+        "generation": 2,
+        "status": {
+          "boundResource": {
+            "disabled": false,
+            "nodeName": "ani-03",
+            "observedGeneration": 1,
+            "resource": "snat-5d8a7592d907462c826c706f806caa03",
+            "resourceType": "Snat",
+            "vpc": "bw-d01b8dee-3371-4053-b0df-bdad82fba4bc/vpc-f1b4df0c3bac4ba1b5f33467ff3ff383"
+          },
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-09-17T14:12:32Z",
+              "message": "",
+              "reason": "Initialized",
+              "status": "True",
+              "type": "Initialized"
+            },
+            {
+              "lastTransitionTime": "2026-09-17T14:12:32Z",
+              "message": "",
+              "reason": "Valid",
+              "status": "True",
+              "type": "Valid"
+            }
+          ],
+          "gateway": "kcn-system/kcn-cluster",
+          "phase": "Bound"
+        }
+      },
+      {
+        "kind": "Snat",
+        "name": "snat-5d8a7592d907462c826c706f806caa03",
+        "uid": "6d029cc9-fcd7-42d4-b546-026d5ed84ae1",
+        "resourceVersion": "1297631",
+        "generation": 1,
+        "status": {
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-09-17T14:12:51Z",
+              "message": "",
+              "reason": "Valid",
+              "status": "True",
+              "type": "Valid"
+            }
+          ],
+          "eipAddress": "10.242.250.2",
+          "phase": "Bound"
+        }
+      }
+    ]
+  },
+  {
+    "started_at": "2026-09-17T14:21:49.131516+00:00",
+    "transition": [
+      "available",
+      "ready",
+      "",
+      true
+    ],
+    "exit": 0,
+    "objects": [
+      {
+        "kind": "VPC",
+        "name": "vpc-f1b4df0c3bac4ba1b5f33467ff3ff383",
+        "uid": "2c9c8e08-5a45-4b6f-be77-6d6c74b31b86",
+        "resourceVersion": "1297632",
+        "generation": 1,
+        "status": {
+          "boundResources": {
+            "chassisNode": "ani-03",
+            "router": "vpc.bw-d01b8dee-3371-4053-b0df-bdad82fba4bc.vpc-f1b4df0c3bac4ba1b5f33467ff3ff383"
+          },
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-09-17T14:12:21Z",
+              "message": "",
+              "reason": "Valid",
+              "status": "True",
+              "type": "Valid"
+            },
+            {
+              "lastTransitionTime": "2026-09-17T14:12:21Z",
+              "message": "",
+              "reason": "Initialized",
+              "status": "True",
+              "type": "Initialized"
+            },
+            {
+              "lastTransitionTime": "2026-09-17T14:12:21Z",
+              "message": "",
+              "reason": "Ready",
+              "status": "True",
+              "type": "Ready"
+            }
+          ],
+          "eips": {
+            "bw-d01b8dee-3371-4053-b0df-bdad82fba4bc/eip-58eb0309affb4082bf9ee0b07fb96939": "10.242.250.2"
+          },
+          "observedGeneration": 1
+        }
+      },
+      {
+        "kind": "EIP",
+        "name": "eip-58eb0309affb4082bf9ee0b07fb96939",
+        "uid": "72d3122e-a1ab-4ffc-8667-83d41f98e2b2",
+        "resourceVersion": "1297630",
+        "generation": 2,
+        "status": {
+          "boundResource": {
+            "disabled": false,
+            "nodeName": "ani-03",
+            "observedGeneration": 1,
+            "resource": "snat-5d8a7592d907462c826c706f806caa03",
+            "resourceType": "Snat",
+            "vpc": "bw-d01b8dee-3371-4053-b0df-bdad82fba4bc/vpc-f1b4df0c3bac4ba1b5f33467ff3ff383"
+          },
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-09-17T14:12:32Z",
+              "message": "",
+              "reason": "Initialized",
+              "status": "True",
+              "type": "Initialized"
+            },
+            {
+              "lastTransitionTime": "2026-09-17T14:12:32Z",
+              "message": "",
+              "reason": "Valid",
+              "status": "True",
+              "type": "Valid"
+            }
+          ],
+          "gateway": "kcn-system/kcn-cluster",
+          "phase": "Bound"
+        }
+      },
+      {
+        "kind": "Snat",
+        "name": "snat-5d8a7592d907462c826c706f806caa03",
+        "uid": "6d029cc9-fcd7-42d4-b546-026d5ed84ae1",
+        "resourceVersion": "1297631",
+        "generation": 1,
+        "status": {
+          "conditions": [
+            {
+              "lastTransitionTime": "2026-09-17T14:12:51Z",
+              "message": "",
+              "reason": "Valid",
+              "status": "True",
+              "type": "Valid"
+            }
+          ],
+          "eipAddress": "10.242.250.2",
+          "phase": "Bound"
+        }
+      }
+    ]
+  }
+]

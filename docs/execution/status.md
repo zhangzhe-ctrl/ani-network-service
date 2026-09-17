@@ -4,11 +4,15 @@
 
 ## 当前工作：NET-VPC-LB-02
 
+2026-09-17 [失败分支诊断与修正](records/NET-VPC-LB-02/base-branch-20260917/README.md)完成验证：正常 Watch 连续续接令关键审计再次失效，Egress 在仍余 21.5–25.3 秒时提前返回 ProviderTemporary，导致 SNAT 应用事实未知、基础连接退化。修正改为原调用截止时间内重新采集，保留身份/时效/并发检查；不是 worker 未调度。真实同对象窗口由修正前 4 段退化，变为修正后 600 秒内数据库/API **602/602 ready、0 stale、0 应用事实未知**，覆盖 24 次来源续接。受控回归原代码 red/修正 green，相关 PostgreSQL/race 44 项顶层测试及 `make verify` 通过；首轮测试运行器超时及后续剩余选集结果分别留证。临时定点日志已移除。隔离产品、支持资源、运行进程及 PG 容器均已清理，私有备份保留；已有 Public Subnet UID/generation/spec 保持。交付目标为原分支，提交与远端一致性以最终回执为准，未合并 main、未部署，不将本次修正认定为整个 Goal 完成。
+
+前序[独立 CR Watch 对照](records/NET-VPC-LB-02/base-watch-20260917/README.md)曾捕获 5 段 degraded：五条 Watch 和 CR 身份/版本保持，临时观察失败使 SNAT 应用事实未知，随后重试恢复。该阶段尚未确认具体失败分支；上段定点诊断已补齐原因。两轮观察均不等于业务流量中断证据。
+
 2026-09-17 本次用户要求的健康检查端口真实闭环已通过：[补验与发布记录](records/NET-VPC-LB-02/health-port-live-20260917/README.md)。Fedora 上完整 `make verify` 通过；独立 PostgreSQL 正常迁移到 0008；Network API 传入 listener=8081、backend/health=8080，自动生成两个 Backend 和显式健康检查配置；ani-02/ani-03 经 VIP 各 6/6 HTTP 200，覆盖两后端。只有这一轮有限流量，不宣称持续健康或观察稳定性已修复。本次测试产品资源、支持 namespace/RBAC 与隔离运行进程均已清理，私有 PG 备份保留。
 
 本次代码交付分支为 `codex/net-vpc-lb-02`，固定基线 `e534bb0e8ef83055e18e91d1d41a6c821348a887`，按用户授权本地提交并推送，远端 main 保持。提交和远端一致性以该分支 Git 历史及最终回执为准。已有 Public Subnet `pubdebug-20260917-public` 保持；Public/双入口/SNAT 功能按用户决定正常处理，残留偶发超时交接 kcn。
 
-完整 Goal 仍保留独立的观察稳定性未解决项；管理员二层诊断接口仍为提案，真实 IAM/UI、生产/正式存量迁移、容量/HA 保持 not_verified。本次补验和代码交付完成不自动改写这些范围。
+本次已解决基础连接 Egress 采集的提前失败，完整 Goal 仍保留独立的 LB 观察稳定性未解决项；管理员二层诊断接口仍为提案，真实 IAM/UI、生产/正式存量迁移、容量/HA 保持 not_verified。本次补验和代码交付完成不自动改写这些范围。
 
 ### 2026-09-17 本次补验之前（历史）
 

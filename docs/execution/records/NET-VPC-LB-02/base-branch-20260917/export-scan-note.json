@@ -1,0 +1,35 @@
+{
+  "result": "pass_after_exact_hash_false_positive_review",
+  "scanner": "gitleaks dir on uncompressed evidence-export",
+  "first_findings": [
+    {
+      "rule": "generic-api-key",
+      "file": "evidence-export/build.log",
+      "line": 2,
+      "fingerprint": "evidence-export/build.log:generic-api-key:2"
+    },
+    {
+      "rule": "generic-api-key",
+      "file": "evidence-export/before-fix.json",
+      "line": 201,
+      "fingerprint": "evidence-export/before-fix.json:generic-api-key:201"
+    },
+    {
+      "rule": "generic-api-key",
+      "file": "evidence-export/plan.json",
+      "line": 170,
+      "fingerprint": "evidence-export/plan.json:generic-api-key:170"
+    }
+  ],
+  "ignored_value_kind": "SHA-256 of lb-api executable",
+  "verified_binary_sha256": "694b5f80db05672e463ebc6c4322517d5e98a8441f8792c53aef1c3cda37eb50",
+  "excluded": [
+    "credentials",
+    "kubeconfigs",
+    "private config",
+    "owner registry",
+    "database dumps",
+    "binaries"
+  ],
+  "ignore_scope": "only the three exact fingerprints; no generic rule suppression"
+}
