@@ -14,3 +14,7 @@ date: 2026-09-09
 IAM 就绪后，在 Network 入站接线处接入届时明确的服务身份与调用上下文契约，并单独验证真实调用方和租户授权链路。此阶段不在 Network 提前复制 IAM 的 Principal、Membership、Role、Token 或 Workload Grant 实现，也不预建一套临时服务间鉴权协议。
 
 相关词汇见[领域词汇表](../../CONTEXT.md)，数据边界见[ADR-0002](0002-use-tenant-owned-data-without-rls.md)，实施状态见[执行状态](../execution/status.md)。
+
+## 2026-09-19 范围补充
+
+用户在 Governance→Model 完成后要求接入 Network GetVPC，验证相同治理规则的复用。新增显式的 [Governance VPC 只读组合](../specs/governance-vpc-read.md)，复用已采用的专用 CA/mTLS + Governance 租户断言，仅开放 GetVPC。该有限接入由当前用户请求授权，不新增 IAM 模型，也不代表原 full 模式的服务间认证或 NET-AUTH 已经完成；其余历史暂缓范围保留。

@@ -102,14 +102,14 @@ var operationsToWire = map[biz.OperationState]networkv1.OperationState{
 var kindsToWire = map[string]networkv1.OperationKind{"create_subnet": networkv1.OperationKind_OPERATION_KIND_CREATE_SUBNET, "delete_subnet": networkv1.OperationKind_OPERATION_KIND_DELETE_SUBNET, "create_vpc": networkv1.OperationKind_OPERATION_KIND_CREATE_VPC, "delete_vpc": networkv1.OperationKind_OPERATION_KIND_DELETE_VPC}
 
 func rpcError(err error) error {
-	if errors.Is(err, context.Canceled) {
+	reason := biz.ReasonOf(err)
+	if reason == "" && errors.Is(err, context.Canceled) {
 		return status.Error(codes.Canceled, "request canceled")
 	}
-	if errors.Is(err, context.DeadlineExceeded) {
+	if reason == "" && errors.Is(err, context.DeadlineExceeded) {
 		return status.Error(codes.DeadlineExceeded, "request deadline exceeded; replay creation with the same key")
 	}
 	code := codes.Internal
-	reason := biz.ReasonOf(err)
 	message := "Network request failed"
 	var failure *biz.Error
 	if errors.As(err, &failure) {

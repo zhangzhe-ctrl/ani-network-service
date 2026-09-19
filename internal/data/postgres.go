@@ -191,7 +191,17 @@ func (p *Postgres) GetVPC(ctx context.Context, tenant, id string) (biz.VPC, erro
 	row, err := p.queries.GetVPC(ctx, sqlcgen.GetVPCParams{TenantID: tenant, VpcID: id})
 	value := vpc(row.NetworkVpc)
 	value.SubnetCount = row.SubnetCount
-	return value, databaseFailure(err)
+	return value, vpcQueryFailure(ctx, err)
+}
+
+// pgx connection deadlines can expire before the request deadline. Preserve
+// that distinction: a broken database is unavailable, a canceled query follows
+// the caller's context. Keep the original cause for diagnostics.
+func vpcQueryFailure(ctx context.Context, err error) error {
+	if err != nil && errors.Is(err, context.DeadlineExceeded) && ctx.Err() == nil {
+		return &biz.Error{Reason: biz.DependencyUnavailable, Message: "Network database connection timed out", Cause: err}
+	}
+	return databaseFailure(err)
 }
 
 func (p *Postgres) GetOperation(ctx context.Context, tenant, id string) (biz.Operation, error) {

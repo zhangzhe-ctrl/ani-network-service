@@ -4,6 +4,8 @@
 
 ## 当前工作
 
+2026-09-19 新增 Governance GetVPC 只读接入，执行与证据见 [独立记录](records/governance-vpc-read-20260919.md)。本片仅涉及新的显式 vpc-read 模式，不替代下述 full 模式、NET-AUTH、数据面或容量的既有结论。
+
 NET-05A 按用户调整后的范围完成，状态为 `completed_with_deferred_capacity`；1,000/2,000 容量未完成、延期，原完整容量矩阵仍为 `not_verified`。成果位于独立 `codex/net-05a` worktree；Goal 结束时保持未提交，后续提交推送授权见本页末尾；固定输入及证据见 [NET-05A 记录](records/NET-05A-implementation.md)。配额等待 Core 重构后独立接入。NET-05 历史验收及发布事实保留，持续观察豁免不适用于 NET-05A。
 
 NET-05 已按用户调整后的范围完成，复用固定远端 `kind-kc062`，实际普通容器主链、带身份数据面、故障恢复及产品/临时环境清理均通过。独立 Network/ANI worktree、环境身份、用例断言和实际证据见 [NET-05 记录](records/NET-05-implementation.md)。验收完成后的新授权仅将 Network 提交至远端 main；ANI 继续保留本地。NET-06、部署和整体切换不在本次发布范围。

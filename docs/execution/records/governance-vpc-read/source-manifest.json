@@ -1,0 +1,63 @@
+{
+  "execution_host": "ssh fedora",
+  "namespace": "gov-model-20260919-01",
+  "node": "ani-01 / 172.16.101.10",
+  "repositories": {
+    "governance": {
+      "base_commit": "604d0fab96e423c65f5c042a7f87bad5050cb021",
+      "changed_source_sha256": {
+        "backend/api/buf.network.gen.yaml": "0ae157fe229b54e454030ab2e36089d2b657f9ea583588448170bc7bcdeaf309",
+        "backend/api/gen/go/admin/service/v1/i_network.pb.go": "db4e56a34c2cde0e3327f2c2717274f3b82a84c1899b2aefa587ca6411a9a059",
+        "backend/api/gen/go/admin/service/v1/i_network_grpc.pb.go": "f387b2c103b2cbd776c32048da64ac7dd3a579ebb91517e4263a76dcfa1986e1",
+        "backend/api/gen/go/admin/service/v1/i_network_http.pb.go": "2939174e253643c30f4431f89b21f7f7633c8084db90fc002192a0481ded421f",
+        "backend/api/gen/go/catalog/service/v1/vpc.pb.go": "640942905ca586806805a5e7544ace60307e28683c0da076e4e738eefd93ef25",
+        "backend/api/gen/go/identity/service/v1/module.pb.go": "440913a9c559afddaab80c1a4fe82f72eaeda5676916ff33647120a5af22409c",
+        "backend/api/protos/admin/service/v1/i_network.proto": "d4e42c9e959d64baacde2f6b45136493cadd4498ea8f4778490793813e23fbcb",
+        "backend/api/protos/catalog/service/v1/vpc.proto": "485456fed49509396fd7b07f59d7ae10f6b2e407e4f5d013ab533f6dd03fce32",
+        "backend/api/protos/identity/service/v1/module.proto": "7673d0c1f5429c4734485a7c1843180792dc133a246f210505f99b704ee0666f",
+        "backend/app/admin/service/cmd/server/assets/openapi.yaml": "7966506448965e4ee504c00b0d4990773ca69ffea7bf907deb7e88bd14135d6b",
+        "backend/app/admin/service/cmd/server/wiring_ent.go": "9d14bff1c2500884d9de72ac9aabe50ce813af8744a97977d58f86732ce93cb7",
+        "backend/app/admin/service/internal/data/ent/api/api.go": "3066343381b24800d1c54c0fe0aa21acf3eea37acbd11d037fa7676d18ead072",
+        "backend/app/admin/service/internal/data/ent/migrate/schema.go": "b8037388b1d9f2ffd5ea829691c8f9d049ab673fc25a9e0f28cb1d6e281bf123",
+        "backend/app/admin/service/internal/data/ent/planmodule/planmodule.go": "88283997e7fb83803912c538a900240bc327dee11bb4362da6062cee18740913",
+        "backend/app/admin/service/internal/data/ent/schema/api.go": "bf8e6e541f125ac0e1fda935e435e08814a6e640e4c05b85f9b4eb1dd9f98606",
+        "backend/app/admin/service/internal/data/ent/schema/plan_module.go": "3cf62d72e5486dd92a93eaee91fb794e9bd0a608091d83f2cd4c10b96cf8824c",
+        "backend/app/admin/service/internal/data/network_client.go": "12b2477f991b171cd97a7dde4fcd27c0157688f358f95390860f0d3b79eaec00",
+        "backend/app/admin/service/internal/data/network_client_test.go": "0c25cbb031f0fae970ad96a1aba174d9b793555a3af89013aed51ba0dc6f9ab3",
+        "backend/app/admin/service/internal/data/tenant_access_checker.go": "057319edd7f247b4893ff30484a56dfca9b9a1b6516b66f1f0e0112e749cfa2e",
+        "backend/app/admin/service/internal/server/rest_server.go": "71ae0ece05f653a89c1e1cd334588a24822d41d62a59adeb966382e04d8b4ed2",
+        "backend/app/admin/service/internal/service/network_service.go": "5e04b3686049727122af5ed7f143e6292db5bf47769130adad054ac1fc8e2b89",
+        "backend/app/admin/service/internal/service/network_service_test.go": "60c1c6a1a42d79f2aa77a2139f1508151dd88f6fb4dd18a082c85e04a95d158f",
+        "backend/go.mod": "3e5006b30b4df6c1f63bb9dbee407eefba72ddfcf0b9b22d44be73f2f4e8db73",
+        "backend/go.sum": "a588a6771788d406b3f197f57e05b88dcd090f723e03903a3dc005242de633cc",
+        "backend/pkg/constants/module_mapping.go": "a91a87e5171bff8348f6845d6b4b3704a03ac1ab0a082baec4b6173727206ce4",
+        "backend/scripts/bootstrap-network-access.sql": "38a8441d0cb180089beaa8ceba56ed0ccb22cc65fbefce8dd822a009cc90af76",
+        "backend/scripts/generate-network-slice.sh": "58ab6f173235cd5309cf90a5adfe6cc4f41f873b7a49f13fd6bbb94a481080d5",
+        "backend/scripts/network-lab/accept.py": "e6f30d17eb6329ed89690273659e614ca16c51109bb2378737bed0122ad22f28",
+        "backend/scripts/network-lab/build-images.sh": "4617ff6c7975bbb49a0aad1b1292ecc30888be1f7c7cafc6a8849679358ec5f7",
+        "backend/scripts/network-lab/collect.py": "15e50fc014851ffb5c978b8ea1c2a54ece394aa604c380434c5188435aeae386",
+        "backend/scripts/network-lab/forward.sh": "29f9947a531e208906e1b4f9fc4bc48290f18ff1b36306a740537b8cccd28c7c",
+        "backend/scripts/network-lab/prepare.py": "da4290e0db134227a394282921f8d874faa38006fcd4d948f73453791cf374a9",
+        "backend/scripts/network-lab/probe.go": "19858765effd3a14d8b48d6377452ebbfbe72482e5f1895acc222bf6231992f5",
+        "backend/scripts/network-lab/validation-commands.md": "e4dc50cacc94886baa5a5d4288fc4c2681f237b0c299c1e5149c1f91672207d3",
+        "backend/scripts/package-network-contract.py": "fb4bf53461a00952570f6e3454521c7e2057cb252356b6b4dc4e2d194700cb50"
+      },
+      "binary_sha256": "35296d1e720a9b9f6b6245aaa5d7ffd96efb0d34929f28699fa17ede6dfcf21b"
+    },
+    "network": {
+      "base_commit": "e481e968d3cc2f17bc4c6a736c438428519b09a0",
+      "changed_source_sha256": {
+        "cmd/ani-network-service/main.go": "86c5699d91326d26d8163e09b640debbec98670c851498e29b414cc148e54af9",
+        "cmd/ani-network-service/vpc_read.go": "177b0dff7c252b5734fc57135903cc1ff4febc25dd005c2244a77ab53dd6019c",
+        "internal/data/postgres.go": "418dfd4cb2499e22b3c961c22f00d17e8a15829c13fb4122e1add71f4f405794",
+        "internal/data/vpc_query_failure_test.go": "6ab02afac0d0ee174443997811cbda688194c9ef9d24b6462e7495a2a41e9bd1",
+        "internal/server/governance.go": "83bea04a74000b17c18557a9bb766f5b23d2c16743a122814c24ada9bcca1fbc",
+        "internal/server/governance_test.go": "5a6422972d8390a71b758df080acd4d83bf4c2e37d291cc2a82070fbcf4c17ea",
+        "internal/service/network.go": "88b6473c2a2e3a45ad91e726c1683af665375f0c337dc2e7b5aaac31e5e59d8c",
+        "internal/service/network_error_test.go": "d13919b9d7ea8a8c3d621c085ad2aa0008c6f88702f812172505b647d4b950b2"
+      },
+      "binary_sha256": "2fc094499e052497a04c62825fad441eab6226bb99affa6a850e08f1016fcc65"
+    }
+  },
+  "login_authorization_tenant_mapping_and_model_unchanged": true
+}

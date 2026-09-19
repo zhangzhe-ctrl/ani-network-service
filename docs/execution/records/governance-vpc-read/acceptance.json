@@ -1,0 +1,362 @@
+{
+  "status": "pass",
+  "cases": [
+    {
+      "case": "N01-isolated-deployment",
+      "status": "pass",
+      "namespace": "gov-model-20260919-01",
+      "network_mode": "vpc-read",
+      "runtime_role": "network_read",
+      "kubernetes_credentials": false
+    },
+    {
+      "case": "N02-incremental-api-inventory",
+      "status": "pass",
+      "before": 204,
+      "after": 205,
+      "old_ids_preserved": true
+    },
+    {
+      "case": "N03-real-pg-fixtures",
+      "status": "pass",
+      "rows": 2,
+      "network_provisioning": "not_verified"
+    },
+    {
+      "case": "real-login-a",
+      "status": "pass",
+      "http": 200,
+      "http_only_refresh_cookie": true,
+      "tenant_code": "model-lab-a"
+    },
+    {
+      "case": "real-login-b",
+      "status": "pass",
+      "http": 200,
+      "http_only_refresh_cookie": true,
+      "tenant_code": "model-lab-b"
+    },
+    {
+      "case": "real-login-empty",
+      "status": "pass",
+      "http": 200,
+      "http_only_refresh_cookie": true,
+      "tenant_code": "model-lab-empty"
+    },
+    {
+      "case": "real-login-denied",
+      "status": "pass",
+      "http": 200,
+      "http_only_refresh_cookie": true,
+      "tenant_code": "model-lab-denied"
+    },
+    {
+      "case": "real-login-platform",
+      "status": "pass",
+      "http": 200,
+      "http_only_refresh_cookie": true,
+      "tenant_code": ""
+    },
+    {
+      "case": "N04-tenant-a",
+      "status": "pass",
+      "http": 200,
+      "seconds": 0.209,
+      "vpc_id": "vpc_19c7ffbe896e58a3a2ef1f2ba4622de6",
+      "vpc_name": "network-a"
+    },
+    {
+      "case": "N04-tenant-b",
+      "status": "pass",
+      "http": 200,
+      "seconds": 0.034,
+      "vpc_id": "vpc_4de5cccb80585a39ad91f1fe62df2a7b",
+      "vpc_name": "network-b"
+    },
+    {
+      "case": "N05-cross-tenant",
+      "status": "pass",
+      "http": 404,
+      "seconds": 0.037,
+      "reason": "VPC_NOT_FOUND"
+    },
+    {
+      "case": "N05-absent",
+      "status": "pass",
+      "http": 404,
+      "seconds": 0.055,
+      "reason": "VPC_NOT_FOUND"
+    },
+    {
+      "case": "N05-no-existence-leak",
+      "status": "pass"
+    },
+    {
+      "case": "N06-no-login",
+      "status": "pass",
+      "http": 401,
+      "seconds": 0.01,
+      "network_business_calls_delta": 0.0,
+      "reason": "UNAUTHORIZED"
+    },
+    {
+      "case": "N06-no-permission",
+      "status": "pass",
+      "http": 403,
+      "seconds": 0.042,
+      "network_business_calls_delta": 0.0,
+      "reason": "FORBIDDEN"
+    },
+    {
+      "case": "N06-no-network-plan",
+      "status": "pass",
+      "http": 403,
+      "seconds": 0.039,
+      "network_business_calls_delta": 0.0,
+      "reason": "FORBIDDEN"
+    },
+    {
+      "case": "N06-platform",
+      "status": "pass",
+      "http": 403,
+      "seconds": 0.041,
+      "network_business_calls_delta": 0.0,
+      "reason": "FORBIDDEN"
+    },
+    {
+      "case": "N07-invalid-id-bad",
+      "status": "pass",
+      "http": 400,
+      "seconds": 0.03,
+      "network_business_calls_delta": 0.0,
+      "reason": "INVALID_VPC_ID"
+    },
+    {
+      "case": "N07-invalid-id-vpc_AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+      "status": "pass",
+      "http": 400,
+      "seconds": 0.028,
+      "network_business_calls_delta": 0.0,
+      "reason": "INVALID_VPC_ID"
+    },
+    {
+      "case": "N07-query-tenant_id=x",
+      "status": "pass",
+      "http": 400,
+      "seconds": 0.03,
+      "network_business_calls_delta": 0.0,
+      "reason": "INVALID_QUERY"
+    },
+    {
+      "case": "N07-query-vpc_id=vpc_4de5cccb80585a39ad91f1fe62df2a7b",
+      "status": "pass",
+      "http": 400,
+      "seconds": 0.042,
+      "network_business_calls_delta": 0.0,
+      "reason": "INVALID_QUERY"
+    },
+    {
+      "case": "N07-query-unknown=1",
+      "status": "pass",
+      "http": 400,
+      "seconds": 0.028,
+      "network_business_calls_delta": 0.0,
+      "reason": "INVALID_QUERY"
+    },
+    {
+      "case": "N07-query-tenantId=1",
+      "status": "pass",
+      "http": 400,
+      "seconds": 0.03,
+      "network_business_calls_delta": 0.0,
+      "reason": "INVALID_QUERY"
+    },
+    {
+      "case": "N07-query-limit=1",
+      "status": "pass",
+      "http": 400,
+      "seconds": 0.035,
+      "network_business_calls_delta": 0.0,
+      "reason": "INVALID_QUERY"
+    },
+    {
+      "case": "N07-spoof-headers",
+      "status": "pass",
+      "http": 200,
+      "seconds": 0.033,
+      "vpc_id": "vpc_19c7ffbe896e58a3a2ef1f2ba4622de6",
+      "vpc_name": "network-a"
+    },
+    {
+      "case": "N07-spoof-cross-tenant",
+      "status": "pass",
+      "http": 404,
+      "seconds": 0.035,
+      "reason": "VPC_NOT_FOUND"
+    },
+    {
+      "case": "N08-real-mtls",
+      "status": "pass",
+      "code": "OK"
+    },
+    {
+      "case": "N08-mismatch",
+      "status": "pass",
+      "code": "PermissionDenied",
+      "error": "request tenant differs from authenticated governance scope"
+    },
+    {
+      "case": "N08-duplicate",
+      "status": "pass",
+      "code": "Unauthenticated",
+      "error": "trusted governance identity required"
+    },
+    {
+      "case": "N08-missing-actor",
+      "status": "pass",
+      "code": "Unauthenticated",
+      "error": "trusted governance identity required"
+    },
+    {
+      "case": "N08-other-rpc",
+      "status": "pass",
+      "code": "PermissionDenied",
+      "error": "governance credential only permits GetVPC"
+    },
+    {
+      "case": "N08-no-cert",
+      "status": "pass",
+      "code": "Unavailable",
+      "error": "connection error: desc = \"error reading server preface: remote error: tls: certificate required\""
+    },
+    {
+      "case": "N08-wrong-cert",
+      "status": "pass",
+      "code": "Unavailable",
+      "error": "connection error: desc = \"error reading server preface: remote error: tls: bad certificate\""
+    },
+    {
+      "case": "N09-same-session-model-a",
+      "status": "pass",
+      "http": 200,
+      "count": 100
+    },
+    {
+      "case": "N09-same-session-model-b",
+      "status": "pass",
+      "http": 200,
+      "count": 3
+    },
+    {
+      "case": "N10-network-unavailable",
+      "status": "pass",
+      "http": 503,
+      "seconds": 2.047,
+      "reason": "NETWORK_UNAVAILABLE"
+    },
+    {
+      "case": "N10-model-unaffected-network",
+      "status": "pass",
+      "http": 200
+    },
+    {
+      "case": "N10-network-recovered",
+      "status": "pass",
+      "http": 200,
+      "seconds": 0.065,
+      "vpc_id": "vpc_19c7ffbe896e58a3a2ef1f2ba4622de6",
+      "vpc_name": "network-a"
+    },
+    {
+      "case": "N10-network-bounded-reconnect",
+      "status": "pass",
+      "seconds": 0.042,
+      "attempts": [
+        {
+          "http": 200,
+          "seconds": 0.041
+        }
+      ]
+    },
+    {
+      "case": "N10-network-db-unavailable",
+      "status": "pass",
+      "http": 503,
+      "seconds": 1.042,
+      "reason": "NETWORK_UNAVAILABLE"
+    },
+    {
+      "case": "N10-model-unaffected-network-db",
+      "status": "pass",
+      "http": 200
+    },
+    {
+      "case": "N10-network-readiness-db-down",
+      "status": "pass",
+      "http": 503
+    },
+    {
+      "case": "N10-network-db-bounded-reconnect",
+      "status": "pass",
+      "seconds": 1.536,
+      "attempts": [
+        {
+          "http": 200,
+          "seconds": 1.535
+        }
+      ]
+    },
+    {
+      "case": "N10-network-db-recovered",
+      "status": "pass",
+      "http": 200,
+      "seconds": 0.045,
+      "vpc_id": "vpc_19c7ffbe896e58a3a2ef1f2ba4622de6",
+      "vpc_name": "network-a"
+    },
+    {
+      "case": "N10-connected-query-timeout",
+      "status": "pass",
+      "http": 504,
+      "seconds": 2.041,
+      "reason": "NETWORK_TIMEOUT"
+    },
+    {
+      "case": "N10-after-query-timeout",
+      "status": "pass",
+      "http": 200,
+      "seconds": 0.075,
+      "vpc_id": "vpc_19c7ffbe896e58a3a2ef1f2ba4622de6",
+      "vpc_name": "network-a"
+    },
+    {
+      "case": "N11-permission-revoked",
+      "status": "pass",
+      "http": 403,
+      "seconds": 0.068,
+      "network_business_calls_delta": 0.0,
+      "reason": "FORBIDDEN"
+    },
+    {
+      "case": "N11-model-permission-retained",
+      "status": "pass",
+      "http": 200
+    },
+    {
+      "case": "N11-permission-restored",
+      "status": "pass",
+      "http": 200,
+      "seconds": 0.066,
+      "vpc_id": "vpc_19c7ffbe896e58a3a2ef1f2ba4622de6",
+      "vpc_name": "network-a"
+    }
+  ],
+  "not_verified": [
+    "network provisioning/data-plane",
+    "full-mode authentication",
+    "IAM workload grants",
+    "HA/capacity",
+    "frontend",
+    "production cutover"
+  ]
+}

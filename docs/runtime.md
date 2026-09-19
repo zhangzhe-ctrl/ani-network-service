@@ -72,3 +72,7 @@ Kratos 同时启动 gRPC、admin、共享观察与 worker。请求方退出不�
 ## 验证边界
 
 运行入口和命令见 [运行验证](runtime-verification.md)。受控 HTTP/API server 验证实际适配器请求，真实 PostgreSQL 验证持久事务，独立进程验证恢复；它们都不能证明真实 kc、OVN、kind、Pod/VM 或 IAM 已验收。
+
+## Governance VPC 只读组合
+
+2026-09-19 增加显式 `ANI_NETWORK_MODE=vpc-read`，专用于 Governance 的 GetVPC 查询。该模式使用 mTLS 和已验证的 Governance 租户断言，加载原 PostgreSQL/schema/角色检查及查询用例，不启动 worker/KC/观察器。所需环境、拒绝条件、只读数据库权限和健康语义见 [Governance 只读规格](specs/governance-vpc-read.md)。上文的 full 模式及其认证延期说明仍适用于原入口；不要以只读模式的验收替代 full 模式的 NET-AUTH。
