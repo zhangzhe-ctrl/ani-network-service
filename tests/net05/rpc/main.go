@@ -8,7 +8,7 @@ import (
 	"os"
 	"time"
 
-	networkv1 "github.com/zhangzhe-ctrl/ani-network-service/api/network/v1"
+	networkv1 "github.com/zhangzhe-ctrl/ani-resource-service/api/network/v1"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 	"google.golang.org/grpc/status"

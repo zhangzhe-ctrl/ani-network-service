@@ -13,7 +13,7 @@ run = Path(sys.argv[1]).resolve()
 meta = json.loads((run / 'snapshot.json').read_text())
 records = {r['path']: r for r in meta['files']}
 paths = ['api/network/v1/network.pb.go', 'api/network/v1/network_grpc.pb.go',
-         'internal/conf/v1/conf.pb.go', 'internal/data/sqlcgen']
+         'internal/conf/v1/conf.pb.go', 'internal/data/network/sqlcgen']
 archive = run / 'generated.tar.gz'
 with archive.open('wb') as output:
     subprocess.run(['ssh', '-F', '/home/chabking/.ssh/config', '-o', 'BatchMode=yes',

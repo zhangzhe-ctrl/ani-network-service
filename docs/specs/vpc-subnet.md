@@ -42,7 +42,7 @@ VPC/Subnet 的持久操作、后台推进、状态判定、失败恢复、占用
 
 ### 2.1 仓库内职责
 
-- `cmd/ani-network-service`：显式装配数据连接、Provider、worker、服务和传输生命周期。
+- `cmd/ani-resource-service`：显式装配数据连接、Provider、worker、服务和传输生命周期。
 - `internal/biz`：领域对象、规则、用例及所需 ports；不得依赖 Kratos/protobuf/pgx/Kubernetes 类型。
 - `internal/data`：sqlc/pgx 事务、kc Provider、接入观测、时钟与 ID 等实际外部适配。
 - `internal/service`：生成的入站契约与用例之间的转换，不直接调用数据库或 Provider client。

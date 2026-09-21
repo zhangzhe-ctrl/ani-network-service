@@ -1,0 +1,112 @@
+test "$(/home/chabking/workspace/ani-resource-service-runs/rsmod-20260921T1640Z/candidate/.tools/bin/buf --version)" = "1.60.0"
+test "$(go version -m /home/chabking/workspace/ani-resource-service-runs/rsmod-20260921T1640Z/candidate/.tools/bin/buf | awk '$1 == "mod" {print $2 "@" $3; exit}')" = "github.com/bufbuild/buf@v1.60.0"
+test "$(/home/chabking/workspace/ani-resource-service-runs/rsmod-20260921T1640Z/candidate/.tools/bin/sqlc version)" = "v1.31.1"
+test "$(go version -m /home/chabking/workspace/ani-resource-service-runs/rsmod-20260921T1640Z/candidate/.tools/bin/sqlc | awk '$1 == "mod" {print $2 "@" $3; exit}')" = "github.com/sqlc-dev/sqlc@v1.31.1"
+mkdir -p /home/chabking/workspace/ani-resource-service-runs/rsmod-20260921T1640Z/candidate/.tools/bin
+GOBIN=/home/chabking/workspace/ani-resource-service-runs/rsmod-20260921T1640Z/candidate/.tools/bin go install golang.org/x/vuln/cmd/govulncheck@v1.7.0
+go: downloading golang.org/x/vuln v1.7.0
+go: downloading golang.org/x/telemetry v0.0.0-20260811182544-a038080d80e5
+go: downloading golang.org/x/mod v0.39.0
+go: downloading golang.org/x/tools v0.49.0
+/home/chabking/workspace/ani-resource-service-runs/rsmod-20260921T1640Z/candidate/.tools/bin/govulncheck -version | grep --fixed-strings --line-regexp "Scanner: govulncheck@v1.7.0"
+Scanner: govulncheck@v1.7.0
+test "$(go version -m /home/chabking/workspace/ani-resource-service-runs/rsmod-20260921T1640Z/candidate/.tools/bin/govulncheck | awk '$1 == "mod" {print $2 "@" $3; exit}')" = "golang.org/x/vuln@v1.7.0"
+mkdir -p /home/chabking/workspace/ani-resource-service-runs/rsmod-20260921T1640Z/candidate/.tools/bin
+GOBIN=/home/chabking/workspace/ani-resource-service-runs/rsmod-20260921T1640Z/candidate/.tools/bin go install github.com/CycloneDX/cyclonedx-gomod/cmd/cyclonedx-gomod@v1.12.0
+go: downloading github.com/CycloneDX/cyclonedx-gomod v1.12.0
+go: downloading github.com/rs/zerolog v1.35.1
+go: downloading github.com/CycloneDX/cyclonedx-go v0.11.0
+go: downloading github.com/peterbourgon/ff/v3 v3.4.0
+go: downloading github.com/go-enry/go-license-detector/v4 v4.3.1
+go: downloading github.com/go-git/go-git/v5 v5.19.2
+go: downloading golang.org/x/mod v0.40.0
+go: downloading dario.cat/mergo v1.0.0
+go: downloading github.com/ProtonMail/go-crypto v1.1.6
+go: downloading github.com/go-git/go-billy/v5 v5.9.0
+go: downloading github.com/sergi/go-diff v1.3.2-0.20230802210424-5b0b94c5c0d3
+go: downloading github.com/emirpasic/gods v1.18.1
+go: downloading github.com/ekzhu/minhash-lsh v0.0.0-20190924033628-faac2c6342f8
+go: downloading github.com/jdkato/prose v1.2.1
+go: downloading github.com/pjbgf/sha1cd v0.6.0
+go: downloading golang.org/x/crypto v0.54.0
+go: downloading github.com/cyphar/filepath-securejoin v0.6.1
+go: downloading github.com/go-git/gcfg v1.5.1-0.20230307220236-3a3c6141e376
+go: downloading github.com/jbenet/go-context v0.0.0-20150711004518-d14ea06fba99
+go: downloading github.com/hhatto/gorst v0.0.0-20181029133204-ca9f730cac5b
+go: downloading golang.org/x/net v0.56.0
+go: downloading golang.org/x/exp v0.0.0-20260410095643-746e56fc9e2f
+go: downloading gonum.org/v1/gonum v0.8.2
+go: downloading github.com/dgryski/go-minhash v0.0.0-20190315135803-ad340ca03076
+go: downloading gopkg.in/neurosnap/sentences.v1 v1.0.7
+go: downloading github.com/montanaflynn/stats v0.6.6
+go: downloading github.com/shogo82148/go-shuffle v1.0.1
+go: downloading github.com/cloudflare/circl v1.6.3
+go: downloading github.com/klauspost/cpuid/v2 v2.3.0
+go: downloading gopkg.in/warnings.v0 v0.1.2
+go: downloading github.com/golang/groupcache v0.0.0-20241129210726-2c02b8208cf8
+go: downloading github.com/kevinburke/ssh_config v1.2.0
+go: downloading github.com/skeema/knownhosts v1.3.1
+go: downloading github.com/xanzy/ssh-agent v0.3.3
+test "$(/home/chabking/workspace/ani-resource-service-runs/rsmod-20260921T1640Z/candidate/.tools/bin/cyclonedx-gomod version | awk -F '\t' '$1 == "Version:" {print $2}')" = "v1.12.0"
+test "$(go version -m /home/chabking/workspace/ani-resource-service-runs/rsmod-20260921T1640Z/candidate/.tools/bin/cyclonedx-gomod | awk '$1 == "mod" {print $2 "@" $3; exit}')" = "github.com/CycloneDX/cyclonedx-gomod@v1.12.0"
+mkdir -p /home/chabking/workspace/ani-resource-service-runs/rsmod-20260921T1640Z/candidate/.tools/bin
+GOBIN=/home/chabking/workspace/ani-resource-service-runs/rsmod-20260921T1640Z/candidate/.tools/bin go install github.com/zricethezav/gitleaks/v8@v8.30.1
+go: downloading github.com/zricethezav/gitleaks/v8 v8.30.1
+go: downloading github.com/rs/zerolog v1.33.0
+go: downloading github.com/spf13/cobra v1.9.1
+go: downloading github.com/spf13/viper v1.19.0
+go: downloading github.com/spf13/pflag v1.0.6
+go: downloading github.com/BobuSumisu/aho-corasick v1.0.3
+go: downloading github.com/hashicorp/go-version v1.7.0
+go: downloading golang.org/x/exp v0.0.0-20250218142911-aa4b98e5adaa
+go: downloading github.com/charmbracelet/lipgloss v0.5.0
+go: downloading github.com/fatih/semgroup v1.2.0
+go: downloading github.com/Masterminds/sprig/v3 v3.3.0
+go: downloading github.com/gitleaks/go-gitdiff v0.9.1
+go: downloading github.com/h2non/filetype v1.1.3
+go: downloading github.com/mholt/archives v0.1.2
+go: downloading github.com/fsnotify/fsnotify v1.8.0
+go: downloading github.com/mitchellh/mapstructure v1.5.0
+go: downloading github.com/sagikazarmark/slog-shim v0.1.0
+go: downloading github.com/spf13/afero v1.12.0
+go: downloading github.com/spf13/cast v1.7.1
+go: downloading github.com/lucasb-eyer/go-colorful v1.2.0
+go: downloading github.com/mattn/go-runewidth v0.0.14
+go: downloading github.com/muesli/reflow v0.2.1-0.20210115123740-9e1d0d53df68
+go: downloading github.com/muesli/termenv v0.15.1
+go: downloading golang.org/x/sync v0.11.0
+go: downloading dario.cat/mergo v1.0.1
+go: downloading github.com/Masterminds/goutils v1.1.1
+go: downloading github.com/Masterminds/semver/v3 v3.3.0
+go: downloading github.com/huandu/xstrings v1.5.0
+go: downloading github.com/mitchellh/copystructure v1.2.0
+go: downloading github.com/shopspring/decimal v1.4.0
+go: downloading golang.org/x/crypto v0.35.0
+go: downloading golang.org/x/sys v0.30.0
+go: downloading github.com/STARRY-S/zip v0.2.1
+go: downloading github.com/andybalholm/brotli v1.1.2-0.20250424173009-453214e765f3
+go: downloading github.com/bodgit/sevenzip v1.6.0
+go: downloading github.com/dsnet/compress v0.0.2-0.20230904184137-39efe44ab707
+go: downloading github.com/klauspost/compress v1.17.11
+go: downloading github.com/minio/minlz v1.0.0
+go: downloading github.com/nwaples/rardecode/v2 v2.1.0
+go: downloading github.com/pierrec/lz4/v4 v4.1.21
+go: downloading github.com/sorairolake/lzip-go v0.3.5
+go: downloading github.com/therootcompany/xz v1.0.1
+go: downloading github.com/ulikunitz/xz v0.5.12
+go: downloading golang.org/x/text v0.22.0
+go: downloading github.com/subosito/gotenv v1.6.0
+go: downloading github.com/hashicorp/hcl v1.0.0
+go: downloading gopkg.in/ini.v1 v1.67.0
+go: downloading github.com/magiconair/properties v1.8.9
+go: downloading github.com/pelletier/go-toml/v2 v2.2.3
+go: downloading github.com/rivo/uniseg v0.2.0
+go: downloading github.com/aymanbagabas/go-osc52/v2 v2.0.1
+go: downloading github.com/mitchellh/reflectwalk v1.0.2
+go: downloading github.com/bodgit/plumbing v1.3.0
+go: downloading github.com/bodgit/windows v1.0.1
+go: downloading github.com/hashicorp/go-multierror v1.1.1
+go: downloading go4.org v0.0.0-20230225012048-214862532bf5
+go: downloading github.com/hashicorp/golang-lru/v2 v2.0.7
+go: downloading github.com/hashicorp/errwrap v1.1.0
+test "$(go version -m /home/chabking/workspace/ani-resource-service-runs/rsmod-20260921T1640Z/candidate/.tools/bin/gitleaks | awk '$1 == "mod" {print $2 "@" $3; exit}')" = "github.com/zricethezav/gitleaks/v8@v8.30.1"

@@ -4,7 +4,7 @@ import (
 	"github.com/go-kratos/kratos/v3/middleware"
 	kratosgrpc "github.com/go-kratos/kratos/v3/transport/grpc"
 
-	conf "github.com/zhangzhe-ctrl/ani-network-service/internal/conf/v1"
+	conf "github.com/zhangzhe-ctrl/ani-resource-service/internal/conf/v1"
 	"google.golang.org/grpc/health/grpc_health_v1"
 )
 

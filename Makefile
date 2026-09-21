@@ -19,7 +19,7 @@ GOVULNCHECK_MODULE := golang.org/x/vuln@$(GOVULNCHECK_VERSION)
 CYCLONEDX_GOMOD_MODULE := github.com/CycloneDX/cyclonedx-gomod@$(CYCLONEDX_GOMOD_VERSION)
 GITLEAKS_MODULE := github.com/zricethezav/gitleaks/v8@$(GITLEAKS_VERSION)
 
-SERVICE_NAME ?= ani-network-service
+SERVICE_NAME ?= ani-resource-service
 INTEGRATION_TIMEOUT ?= 20m
 VERSION ?= $(shell git describe --tags --always --dirty 2>/dev/null || echo dev)
 LDFLAGS := -X main.Name=$(SERVICE_NAME) -X main.Version=$(VERSION)
@@ -91,6 +91,7 @@ test:
 verify: check-buf check-sqlc
 	./scripts/verify-source $(BUF) $(SQLC)
 	./scripts/verify-boundaries
+	./scripts/net05a-build-faults.py --network-only
 	$(GO) mod tidy -diff
 	$(GO) test -count=1 ./...
 	$(GO) vet ./...

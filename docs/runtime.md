@@ -4,7 +4,7 @@
 
 ## 启动和迁移
 
-`cmd/ani-network-service` 是唯一组合根。正常启动装配受限 PostgreSQL、实际 kc adapter、共享观察器、Network 用例、持久 worker、gRPC 和 admin HTTP；不存在 fake、内存数据库或旧 ANI 后端的运行配置开关。
+`cmd/ani-resource-service` 是唯一组合根。正常启动装配受限 PostgreSQL、实际 kc adapter、共享观察器、Network 用例、持久 worker、gRPC 和 admin HTTP；不存在 fake、内存数据库或旧 ANI 后端的运行配置开关。
 
 先为专用的空 Network 数据库准备不同的 migration owner 和 runtime login role。owner 拥有数据库与 schema；runtime 不拥有表，不具有 superuser、BYPASSRLS、CREATEDB、CREATEROLE、持久或临时 DDL 权限，也不能 SET ROLE 为 owner/管理角色。迁移会撤销 PUBLIC 的数据库 CREATE/TEMP 和 public schema CREATE，给 runtime 授予具体表权限；不会创建 IAM Tenant 表、启用 RLS 或访问其他服务的数据库。
 
@@ -14,7 +14,7 @@
 # 以下变量由本次环境的凭据管理方式注入，不把连接串写进源码或日志。
 # ANI_NETWORK_MIGRATION_DSN：migration owner 的连接串
 # ANI_NETWORK_RUNTIME_ROLE：事先创建的受限 login role 名
-./bin/ani-network-service -migrate
+./bin/ani-resource-service -migrate
 ```
 
 迁移入口拒绝包含其他 public 业务表的数据库及未经版本管理的 Network 表，核对已应用 migration checksum，支持相同 migration 的重放。正常启动只检查权限、schema 版本和 checksum，不读取 owner 变量或隐式执行迁移。
@@ -31,7 +31,7 @@
 | `ANI_NETWORK_NAMESPACE_PREFIX` | 默认 `tenant-`；DNS 前缀，长度受限，末尾为 `-` |
 
 ```bash
-./bin/ani-network-service -conf ./configs
+./bin/ani-resource-service -conf ./configs
 ```
 
 不要把默认前缀/集群标识变更当作已有资源迁移。产品 ID 与 Provider 位置、对象名、UID 的映射在受理时持久化。kc 凭据需允许管理专用租户 namespace、GET/CREATE/DELETE VPC 与 Subnet、跨 namespace LIST/WATCH VPC/Subnet/Pod/VNic/VNicIP/EIP；Network 不写 Pod/VNic/VNicIP、不删除 namespace，不移除 kc finalizer。namespace 首次由 Network 创建并验证管理者/租户标签，同租户多个 VPC 共享该 namespace。NET-05A 的真实验收由 fixture 预先建立并标记租户 namespace，Network runtime 仅能 GET namespace；不会以管理员身份运行服务。真实权限与数据面结果见 [NET-05A 记录](execution/records/NET-05A-implementation.md)。

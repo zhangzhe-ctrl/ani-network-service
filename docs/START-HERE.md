@@ -1,7 +1,9 @@
-# ANI Network 文档导航
+# ANI Resource 文档导航
 
 这是本仓库唯一正式文档导航。项目入口为 [README](../README.md)，工程约定为 [AGENTS](../AGENTS.md)。
 当前实施与验证进度只在 [执行状态](execution/status.md) 维护，本文不复制进度表。
+
+[ani-resource-service 改名与模块整理计划](plans/resource-service-modularization.md)：沿用现有仓库和 Kratos 分层，先整理 Network，使用 Fedora 与既有远程 Kubernetes 环境验证旧客户端、旧数据、资源接管和回退；Compute/Storage 功能留待后续切片。
 
 ## 阅读顺序
 
@@ -26,6 +28,7 @@
 | [ADR-0003](adr/0003-defer-workload-authentication.md) | 本期暂缓服务间身份验证，IAM 就绪后单独接入；租户业务边界继续实现和测试。 |
 | [ADR-0004](adr/0004-observe-cr-with-durable-reconciliation.md) | 共享 CR 观察与 Network 持久执行，NET-05A 位于 NET-06 前；兄弟服务框架自主选择，配额延后到 Core 重构之后。 |
 | [ADR-0005](adr/0005-separate-vpc-connectivity-and-exclusive-eip-bindings.md) | 用户确认 EIP 目标独占，VPC 内网/公网 SNAT 分用途限制，基础内网资源随 VPC 管理。 |
+| [ADR-0006](adr/0006-evolve-resource-service-preserving-network.md) | 原历史上演进 Resource 单进程，保留 Network 数据、契约、资源身份与回退边界。 |
 
 ADR 记录已确认的方向及理由；规格中本轮补齐的数值、字段和协议细节是工程设计，不冒充已经逐项人工批准或实际验收。
 当前用户明确决定优先。规格、ADR、代码或证据出现差异时，标明是待实现目标、过期材料还是需要变更的决定，并更新对应权威材料，不能静默挑选有利版本。

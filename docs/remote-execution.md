@@ -45,3 +45,19 @@ ANI 完整固定 manifest 用于检查身份，传输时排除 `.claude/settings
 本轮 Goal 要求重任务必须在 ubuntu 串行执行，远端不可用时仅继续本地编辑/静态检查，不允许自动回退本地重任务。`scripts/snat-remote` 创建任务独占快照目录，沿用共享重任务 flock，GOMAXPROCS=2、GOFLAGS=-p=2、CPUQuota=200%、MemoryMax=2300M，日志及精确清单保留在 `.work/snat-runs/` 并在正式记录归档。临时 Git 索引仅用于静态门禁，不创建提交。生成物由 `scripts/snat-return-generated` 先回传审查，再检查期间本地哈希后应用。
 
 2026-09-11 本仓分支提交推送另获用户授权。发布时 `scripts/snat-remote --publication` 传递完整显式暂存树，包含本次发布的历史/新增证据，核对 index blob 与文件模式；独占远端目录内建立仅供 SBOM/供应链验证的临时提交。普通实施模式保持原有排除项及不创建验证提交的行为。真实分支与 exact-SHA CI 见 [发布记录](execution/records/VPC-SNAT-PUBLICATION-20260911/README.md)。
+
+## Resource 改名任务：Fedora 强制执行
+
+2026-09-22 用户为本次 R0—R5 指定 `ssh fedora`。本地仅编辑、静态检查、Git 和转运；
+依赖下载、生成、构建、测试、PG、镜像和 API 驱动全部在 Fedora 执行，不自动回退本地。
+任务根目录为 `/home/chabking/workspace/ani-resource-service-runs/rsmod-20260921T1640Z`；
+baseline/candidate 分离，共用本 run 独立缓存、相同工具链与 UTC 环境。
+继续使用原 `/home/chabking/workspace/ani-network-service-runs/net05a-heavy.lock`，不能因
+改名创建第二把锁。systemd CPUQuota=200%、MemoryMax=2300M、MemorySwapMax=0；
+GOMAXPROCS=2、GOFLAGS=-p=2、GOMEMLIMIT=1536MiB、GOTOOLCHAIN=local、GOWORK=off。
+PG 单实例 768 MiB/1 CPU、随机 loopback 端口；保留 INTEGRATION_TIMEOUT=20m。
+
+源码以完整文件清单及 SHA-256 核验，保留全历史 Git bundle 用于供应链扫描；凭据、kubeconfig
+和私有配置不进入源码归档或公开证据。集群写入前重新冻结当前身份/权限/fingerprint，
+对照保护清单；只操作本 run 资源。历史 Ubuntu 运行器仍保留原环境路径，不能将旧记录
+改成 Fedora 已执行。实际命令/产物/退出码见[本次记录](execution/records/RESOURCE-MOD-20260922/README.md)。

@@ -1,7 +1,7 @@
 package conf
 
 import (
-	"github.com/zhangzhe-ctrl/ani-network-service/tests/testenv"
+	"github.com/zhangzhe-ctrl/ani-resource-service/tests/testenv"
 	"strings"
 	"testing"
 	"time"

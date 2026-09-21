@@ -1,12 +1,13 @@
-# ani-network-service
+# ani-resource-service
 
-Module: `github.com/zhangzhe-ctrl/ani-network-service`
+Module: `github.com/zhangzhe-ctrl/ani-resource-service`
 
 This repository was generated from ANI's pinned Kratos layout. It is an
 independent source snapshot: builds and runtime do not require the layout.
 
-本仓库承接 ANI Network 独立服务，拥有租户网络资源的生命周期与状态。
-首片为 VPC/Subnet 及普通容器接入，随后验证 VM。
+本仓库在原 Network 服务完整历史上演进为 Resource 服务，一个 Go module、一个进程。
+现有 Network 实现在 internal/{biz,data,service}/network；本批不包含 Compute/Storage。
+Network 契约、数据与资源身份保持原值，演进依据见 [ADR-0006](docs/adr/0006-evolve-resource-service-preserving-network.md)。
 
 从 [文档导航](docs/START-HERE.md) 开始阅读；其中链接当前规格、领域词汇、
 设计决定、实施计划和唯一执行状态。设计目标与实际实现/验证结果分别记录。
@@ -25,7 +26,7 @@ make race
 make tenant-mutations
 ```
 
-编译、完整测试和依赖工具构建优先在 SSH `ubuntu` 执行，见 [远程约定](docs/remote-execution.md)。
+本次改名的生成、编译、测试及 API 驱动仅在 SSH `fedora` 执行，见 [远程约定](docs/remote-execution.md)。
 正常启动需要专用 PostgreSQL 的 runtime 连接串、游标签名 secret 和 kc 集群凭据；
 迁移使用独立 owner，通过显式 `-migrate` 入口执行。
 具体变量、权限、启动命令和健康含义见 [运行说明](docs/runtime.md)。

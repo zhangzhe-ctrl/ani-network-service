@@ -1,0 +1,31 @@
+#!/usr/bin/env python3
+"""Reuse the frozen live drivers for this rename run, with checked path adapters.
+
+No business logic, Provider rules, or qualification assertions are replaced.
+This entry runs only on Fedora and only under the task-private R0 run root.
+"""
+import sys
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+SOURCE = ROOT / 'docs/execution/records/NET-VPC-LB-02/health-port-live-20260917'
+RUN = '/home/chabking/workspace/ani-resource-service-runs/rsmod-20260921T1640Z/private/runtime'
+
+if len(sys.argv) < 2 or sys.argv[1] not in ('runtime', 'platform', 'product'):
+    raise SystemExit('usage: resource-rename-live runtime|platform|product <original driver arguments>')
+component = sys.argv.pop(1)
+name = {'runtime': 'live-runtime.py', 'platform': 'live-platform-driver.py', 'product': 'live-product-driver.py'}[component]
+text = (SOURCE / name).read_text()
+if component == 'runtime':
+    before = "if directory != Path('/home/chabking/workspace/ani-network-service-runs/lb-health-e2e-20260917/private/runtime') or plan[\"run\"] != 'lbhealth-0917':"
+    after = f"if directory != Path({RUN!r}) or plan[\"run\"] != 'rsmod-0922':"
+else:
+    before, after = 'NET-VPC-LB-02-HEALTH', 'RESOURCE-MOD-20260922'
+    # The original string appears in task checks and fixture descriptions only.
+    assert text.count(before) == (4 if component == 'platform' else 2), (component, text.count(before))
+    text = text.replace(before, after)
+    before = None
+if before:
+    assert text.count(before) == 1, (component, before)
+    text = text.replace(before, after)
+exec(compile(text, str(SOURCE / name), 'exec'), {'__name__': '__main__', '__file__': str(SOURCE / name)})

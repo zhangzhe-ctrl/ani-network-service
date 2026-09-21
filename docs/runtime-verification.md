@@ -26,12 +26,12 @@ make audit
 
 | 位置 | 证据范围 |
 |---|---|
-| [data 集成测试](../internal/data/postgres_integration_test.go) | 原子受理/回滚、租户边界、分页、角色隔离和无 RLS |
-| [worker 故障测试](../internal/data/faults_integration_test.go) | 同键并发、迟到 HTTP POST、租约和 epoch、纯查询/观测过期 |
-| [kc 契约测试](../internal/data/kc_integration_test.go) 与 [拒绝路径](../internal/data/provider_faults_integration_test.go) | 真实 dynamic client、VPC spec、UID/resourceVersion 删除条件、归属/占用/失联/拒绝 |
-| [RPC 测试](../internal/data/grpc_integration_test.go) | 生成契约、真实数据库、错误映射和租户隔离 |
-| [独立进程测试](../internal/data/process_integration_test.go) | 实际二进制和原有持久事实的故障恢复 |
-| [生产装配](../cmd/ani-network-service/app_test.go) / [进程信号](../cmd/ani-network-service/main_test.go) / [worker 生命周期](../internal/server/worker_test.go) | readiness、健康、异常退出与优雅停机 |
+| [data 集成测试](../internal/data/network/postgres_integration_test.go) | 原子受理/回滚、租户边界、分页、角色隔离和无 RLS |
+| [worker 故障测试](../internal/data/network/faults_integration_test.go) | 同键并发、迟到 HTTP POST、租约和 epoch、纯查询/观测过期 |
+| [kc 契约测试](../internal/data/network/kc_integration_test.go) 与 [拒绝路径](../internal/data/network/provider_faults_integration_test.go) | 真实 dynamic client、VPC spec、UID/resourceVersion 删除条件、归属/占用/失联/拒绝 |
+| [RPC 测试](../internal/data/network/grpc_integration_test.go) | 生成契约、真实数据库、错误映射和租户隔离 |
+| [独立进程测试](../internal/data/network/process_integration_test.go) | 实际二进制和原有持久事实的故障恢复 |
+| [生产装配](../cmd/ani-resource-service/app_test.go) / [进程信号](../cmd/ani-resource-service/main_test.go) / [worker 生命周期](../internal/server/worker_test.go) | readiness、健康、异常退出与优雅停机 |
 | [通用运行回归](../tests/runtime/runtime_test.go) | 日志、trace、metrics、中间件、生成配置和 reflection |
 
 供应链流程保留原门禁：固定 govulncheck 1.7.0、Gitleaks 8.30.1、cyclonedx-gomod 1.12.0；需要 jq 和 rg。`make audit` 扫描依赖、当前 Git 全 refs，并检查 notice 与许可证据、生成 Linux/amd64 runtime SBOM。SBOM 要求源 checkout 已提交且干净（仅允许 SBOM 输出变化）；本轮使用经核对源码快照的远程临时验证提交，不提交原仓库。原仓库历史扫描与远程单快照扫描须分别记范围。CI 使用 full-history checkout。
@@ -52,7 +52,7 @@ scripts/remote-pair -- bash -c '"$NETWORK_SOURCE/scripts/integration-pair" "$NET
 
 ## NET-05A 持续观察与真实复验
 
-单仓重任务入口为 `scripts/net05a-remote -- scripts/net05a-gates`，从专用 dirty worktree 建立逐文件校验快照。`scripts/net05a-stage` 提供开发期间定向生成与真实 PG 测试；不能替代完整门禁。观察受控用例位于 [kc_observation_integration_test.go](../internal/data/kc_observation_integration_test.go)，通知/公平性位于 [observation_integration_test.go](../internal/data/observation_integration_test.go)。协议 fixture 使用真实 dynamic client 的 HTTP List/Watch，仅证明受控层。
+单仓重任务入口为 `scripts/net05a-remote -- scripts/net05a-gates`，从专用 dirty worktree 建立逐文件校验快照。`scripts/net05a-stage` 提供开发期间定向生成与真实 PG 测试；不能替代完整门禁。观察受控用例位于 [kc_observation_integration_test.go](../internal/data/network/kc_observation_integration_test.go)，通知/公平性位于 [observation_integration_test.go](../internal/data/network/observation_integration_test.go)。协议 fixture 使用真实 dynamic client 的 HTTP List/Watch，仅证明受控层。
 
 固定容量入口为 `scripts/net05a-remote -- scripts/net05a-capacity --matrix --verify-first`。同一进程串行执行旧/新版本、100/1000/2000 Attachment、1/2 副本和五个固定阶段；每组独立真实 PG。条件与随机种子见 [容量合同](execution/records/NET-05A/capacity-contract.json)。导出后通过 `scripts/net05a-capacity-report <run-directory>` 生成判定，保留基线失败、丢失/截尾样本和未完成组；Go 测量程序 exit=0 不等于性能通过。
 

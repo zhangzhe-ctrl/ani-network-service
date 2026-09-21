@@ -9,7 +9,7 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/zhangzhe-ctrl/ani-network-service/internal/biz"
+	"github.com/zhangzhe-ctrl/ani-resource-service/internal/biz/network"
 )
 
 type DatabaseReadiness interface{ CheckReady(context.Context) error }

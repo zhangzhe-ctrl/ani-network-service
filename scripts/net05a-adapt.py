@@ -33,26 +33,26 @@ def adapted(name):
     write('rbac.json', checks)""")
         replace("    mounts = ['-v', str(private) + ':' + str(private) + ':ro', '-v', argv[0] + ':' + argv[0] + ':ro']", """    mounts = ['-v', str(private) + ':' + str(private) + ':ro']
     image=PG_IMAGE
-    if name == 'network' and pathlib.Path(argv[0]) == root/'bin/ani-network-service':
+    if name == 'network' and pathlib.Path(argv[0]) == root/'bin/ani-resource-service':
         image=state['network_image']
-        argv=['/ani-network-service',*argv[1:]]
+        argv=['/ani-resource-service',*argv[1:]]
     else:
         mounts += ['-v',argv[0]+':'+argv[0]+':ro']""")
         replace("    if name.startswith('network'): mounts += ['-v', str(root / 'configs') + ':' + str(root / 'configs') + ':ro']", "    if '-conf' in argv:\n        config_dir=argv[argv.index('-conf')+1]\n        mounts += ['-v',config_dir+':'+config_dir+':ro']")
         replace("*envargs, *mounts, '--entrypoint', argv[0], PG_IMAGE, *argv[1:]", "*envargs, *mounts, '--entrypoint', argv[0], image, *argv[1:]")
-        replace("    state.setdefault('processes', {})[name] = cid", """    if name=='network' and argv[0]=='/ani-network-service':
+        replace("    state.setdefault('processes', {})[name] = cid", """    if name=='network' and argv[0]=='/ani-resource-service':
         info=json.loads(run(['docker','inspect',cid]).stdout)[0]
         expected=json.loads((evidence/'network-image.json').read_text())
         assert info['Image']==expected['image_id']
-        binary_hash=run(['docker','exec',cid,'sha256sum','/ani-network-service']).stdout.split()[0]
+        binary_hash=run(['docker','exec',cid,'sha256sum','/ani-resource-service']).stdout.split()[0]
         assert binary_hash==expected['binary_sha256']
         write('network-image-runtime.json',{'container':cid,'image_id':info['Image'],'binary_sha256':binary_hash,'argv':argv})
     state.setdefault('processes', {})[name] = cid""")
         replace('    credentials()\n    check_permissions()', """    context=private/'network-image';context.mkdir()
     import shutil
-    shutil.copy2(root/'bin/ani-network-service',context/'ani-network-service')
+    shutil.copy2(root/'bin/ani-resource-service',context/'ani-resource-service')
     shutil.copy2(root/'tests/net05a/Network.Dockerfile',context/'Dockerfile')
-    digest=hashlib.sha256((context/'ani-network-service').read_bytes()).hexdigest()
+    digest=hashlib.sha256((context/'ani-resource-service').read_bytes()).hexdigest()
     tag='docker.io/library/'+state['id']+'-network:'+digest[:16]
     build=run(['docker','build','--network=none','-t',tag,str(context)],timeout=180)
     state['network_image']=tag;save()
@@ -62,7 +62,7 @@ def adapted(name):
     if name=='build-faults':
         replace("('\\t\\tworked, stepErr := s.worker.Step(ctx)', '\\t\\tnet05Hook(ctx, \"pause-worker\", \"*\", nil)\\n\\t\\tworked, stepErr := s.worker.Step(ctx)')", "('\\t\\tworked, stepErr := stepper.Step(ctx)', '\\t\\tnet05Hook(ctx, \"pause-worker\", \"*\", nil)\\n\\t\\tworked, stepErr := stepper.Step(ctx)')")
         # Separate observer pause covers both audit and durable hint bridge.
-        insert='''edit('network','internal/data/kc_observation.go',[
+        insert='''edit('network','internal/data/network/kc_observation.go',[
  ('go func() { defer group.Done(); informer.Run(ctx.Done()) }()', 'go func() { defer group.Done(); net05Hook(ctx,"pause-observer","*",nil); informer.Run(ctx.Done()) }()'),
  ('\\t\\t\\to.flush(ctx)','\\t\\t\\tnet05Hook(ctx,"pause-observer","*",nil)\\n\\t\\t\\to.flush(ctx)'),
  ('\\t\\t_, _ = o.refresh(ctx, time.Time{}, true)','\\t\\tnet05Hook(ctx,"pause-observer","*",nil)\\n\\t\\t_, _ = o.refresh(ctx, time.Time{}, true)')],helper=True)

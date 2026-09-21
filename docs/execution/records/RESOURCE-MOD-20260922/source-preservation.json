@@ -1,0 +1,624 @@
+{
+  "result": "pass",
+  "normalized_only": [
+    "Go import module and layer paths",
+    "process test repository root and binary path"
+  ],
+  "unchanged": [
+    {
+      "before": "internal/biz/README.md",
+      "after": "internal/biz/network/README.md"
+    },
+    {
+      "before": "internal/biz/attachment.go",
+      "after": "internal/biz/network/attachment.go"
+    },
+    {
+      "before": "internal/biz/attachment_worker.go",
+      "after": "internal/biz/network/attachment_worker.go"
+    },
+    {
+      "before": "internal/biz/doc.go",
+      "after": "internal/biz/network/doc.go"
+    },
+    {
+      "before": "internal/biz/egress.go",
+      "after": "internal/biz/network/egress.go"
+    },
+    {
+      "before": "internal/biz/egress_test.go",
+      "after": "internal/biz/network/egress_test.go"
+    },
+    {
+      "before": "internal/biz/egress_worker.go",
+      "after": "internal/biz/network/egress_worker.go"
+    },
+    {
+      "before": "internal/biz/list.go",
+      "after": "internal/biz/network/list.go"
+    },
+    {
+      "before": "internal/biz/load_balancer.go",
+      "after": "internal/biz/network/load_balancer.go"
+    },
+    {
+      "before": "internal/biz/load_balancer_health_port_test.go",
+      "after": "internal/biz/network/load_balancer_health_port_test.go"
+    },
+    {
+      "before": "internal/biz/load_balancer_test.go",
+      "after": "internal/biz/network/load_balancer_test.go"
+    },
+    {
+      "before": "internal/biz/load_balancer_worker.go",
+      "after": "internal/biz/network/load_balancer_worker.go"
+    },
+    {
+      "before": "internal/biz/network.go",
+      "after": "internal/biz/network/network.go"
+    },
+    {
+      "before": "internal/biz/observation.go",
+      "after": "internal/biz/network/observation.go"
+    },
+    {
+      "before": "internal/biz/platform_intranet.go",
+      "after": "internal/biz/network/platform_intranet.go"
+    },
+    {
+      "before": "internal/biz/platform_intranet_test.go",
+      "after": "internal/biz/network/platform_intranet_test.go"
+    },
+    {
+      "before": "internal/biz/subnet.go",
+      "after": "internal/biz/network/subnet.go"
+    },
+    {
+      "before": "internal/biz/subnet_test.go",
+      "after": "internal/biz/network/subnet_test.go"
+    },
+    {
+      "before": "internal/biz/vpc.go",
+      "after": "internal/biz/network/vpc.go"
+    },
+    {
+      "before": "internal/biz/vpc_test.go",
+      "after": "internal/biz/network/vpc_test.go"
+    },
+    {
+      "before": "internal/biz/worker.go",
+      "after": "internal/biz/network/worker.go"
+    },
+    {
+      "before": "internal/biz/worker_test.go",
+      "after": "internal/biz/network/worker_test.go"
+    },
+    {
+      "before": "internal/data/README.md",
+      "after": "internal/data/network/README.md"
+    },
+    {
+      "before": "internal/data/attachment.go",
+      "after": "internal/data/network/attachment.go"
+    },
+    {
+      "before": "internal/data/attachment_audit_retry_integration_test.go",
+      "after": "internal/data/network/attachment_audit_retry_integration_test.go"
+    },
+    {
+      "before": "internal/data/attachment_integration_test.go",
+      "after": "internal/data/network/attachment_integration_test.go"
+    },
+    {
+      "before": "internal/data/attachment_worker.go",
+      "after": "internal/data/network/attachment_worker.go"
+    },
+    {
+      "before": "internal/data/audit_refresh_integration_test.go",
+      "after": "internal/data/network/audit_refresh_integration_test.go"
+    },
+    {
+      "before": "internal/data/base_backfill.go",
+      "after": "internal/data/network/base_backfill.go"
+    },
+    {
+      "before": "internal/data/base_backfill_integration_test.go",
+      "after": "internal/data/network/base_backfill_integration_test.go"
+    },
+    {
+      "before": "internal/data/base_concurrency_integration_test.go",
+      "after": "internal/data/network/base_concurrency_integration_test.go"
+    },
+    {
+      "before": "internal/data/base_connectivity.go",
+      "after": "internal/data/network/base_connectivity.go"
+    },
+    {
+      "before": "internal/data/base_connectivity_integration_test.go",
+      "after": "internal/data/network/base_connectivity_integration_test.go"
+    },
+    {
+      "before": "internal/data/base_process_integration_test.go",
+      "after": "internal/data/network/base_process_integration_test.go"
+    },
+    {
+      "before": "internal/data/base_schema_integration_test.go",
+      "after": "internal/data/network/base_schema_integration_test.go"
+    },
+    {
+      "before": "internal/data/doc.go",
+      "after": "internal/data/network/doc.go"
+    },
+    {
+      "before": "internal/data/egress.go",
+      "after": "internal/data/network/egress.go"
+    },
+    {
+      "before": "internal/data/egress_audit_retry_integration_test.go",
+      "after": "internal/data/network/egress_audit_retry_integration_test.go"
+    },
+    {
+      "before": "internal/data/egress_device_integration_test.go",
+      "after": "internal/data/network/egress_device_integration_test.go"
+    },
+    {
+      "before": "internal/data/egress_grpc_integration_test.go",
+      "after": "internal/data/network/egress_grpc_integration_test.go"
+    },
+    {
+      "before": "internal/data/egress_integration_test.go",
+      "after": "internal/data/network/egress_integration_test.go"
+    },
+    {
+      "before": "internal/data/egress_kc_integration_test.go",
+      "after": "internal/data/network/egress_kc_integration_test.go"
+    },
+    {
+      "before": "internal/data/egress_process_integration_test.go",
+      "after": "internal/data/network/egress_process_integration_test.go"
+    },
+    {
+      "before": "internal/data/egress_public_integration_test.go",
+      "after": "internal/data/network/egress_public_integration_test.go"
+    },
+    {
+      "before": "internal/data/faults_integration_test.go",
+      "after": "internal/data/network/faults_integration_test.go"
+    },
+    {
+      "before": "internal/data/grpc_integration_test.go",
+      "after": "internal/data/network/grpc_integration_test.go"
+    },
+    {
+      "before": "internal/data/instance_consumer.go",
+      "after": "internal/data/network/instance_consumer.go"
+    },
+    {
+      "before": "internal/data/kc.go",
+      "after": "internal/data/network/kc.go"
+    },
+    {
+      "before": "internal/data/kc_attachment.go",
+      "after": "internal/data/network/kc_attachment.go"
+    },
+    {
+      "before": "internal/data/kc_candidate_hash_test.go",
+      "after": "internal/data/network/kc_candidate_hash_test.go"
+    },
+    {
+      "before": "internal/data/kc_egress.go",
+      "after": "internal/data/network/kc_egress.go"
+    },
+    {
+      "before": "internal/data/kc_egress_test.go",
+      "after": "internal/data/network/kc_egress_test.go"
+    },
+    {
+      "before": "internal/data/kc_index.go",
+      "after": "internal/data/network/kc_index.go"
+    },
+    {
+      "before": "internal/data/kc_index_test.go",
+      "after": "internal/data/network/kc_index_test.go"
+    },
+    {
+      "before": "internal/data/kc_integration_test.go",
+      "after": "internal/data/network/kc_integration_test.go"
+    },
+    {
+      "before": "internal/data/kc_intranet.go",
+      "after": "internal/data/network/kc_intranet.go"
+    },
+    {
+      "before": "internal/data/kc_intranet_test.go",
+      "after": "internal/data/network/kc_intranet_test.go"
+    },
+    {
+      "before": "internal/data/kc_load_balancer.go",
+      "after": "internal/data/network/kc_load_balancer.go"
+    },
+    {
+      "before": "internal/data/kc_load_balancer_capability.go",
+      "after": "internal/data/network/kc_load_balancer_capability.go"
+    },
+    {
+      "before": "internal/data/kc_load_balancer_eip.go",
+      "after": "internal/data/network/kc_load_balancer_eip.go"
+    },
+    {
+      "before": "internal/data/kc_load_balancer_generated.go",
+      "after": "internal/data/network/kc_load_balancer_generated.go"
+    },
+    {
+      "before": "internal/data/kc_metrics.go",
+      "after": "internal/data/network/kc_metrics.go"
+    },
+    {
+      "before": "internal/data/kc_node_facts.go",
+      "after": "internal/data/network/kc_node_facts.go"
+    },
+    {
+      "before": "internal/data/kc_node_facts_renewal.go",
+      "after": "internal/data/network/kc_node_facts_renewal.go"
+    },
+    {
+      "before": "internal/data/kc_node_facts_renewal_test.go",
+      "after": "internal/data/network/kc_node_facts_renewal_test.go"
+    },
+    {
+      "before": "internal/data/kc_observation.go",
+      "after": "internal/data/network/kc_observation.go"
+    },
+    {
+      "before": "internal/data/kc_observation_integration_test.go",
+      "after": "internal/data/network/kc_observation_integration_test.go"
+    },
+    {
+      "before": "internal/data/kc_observed_provider.go",
+      "after": "internal/data/network/kc_observed_provider.go"
+    },
+    {
+      "before": "internal/data/lb_audit_retry_integration_test.go",
+      "after": "internal/data/network/lb_audit_retry_integration_test.go"
+    },
+    {
+      "before": "internal/data/lb_health_port_test.go",
+      "after": "internal/data/network/lb_health_port_test.go"
+    },
+    {
+      "before": "internal/data/load_balancer_capability_integration_test.go",
+      "after": "internal/data/network/load_balancer_capability_integration_test.go"
+    },
+    {
+      "before": "internal/data/load_balancer_composition_integration_test.go",
+      "after": "internal/data/network/load_balancer_composition_integration_test.go"
+    },
+    {
+      "before": "internal/data/load_balancer_concurrency_integration_test.go",
+      "after": "internal/data/network/load_balancer_concurrency_integration_test.go"
+    },
+    {
+      "before": "internal/data/load_balancer_freshness_integration_test.go",
+      "after": "internal/data/network/load_balancer_freshness_integration_test.go"
+    },
+    {
+      "before": "internal/data/load_balancer_lifecycle_integration_test.go",
+      "after": "internal/data/network/load_balancer_lifecycle_integration_test.go"
+    },
+    {
+      "before": "internal/data/load_balancer_ownership_integration_test.go",
+      "after": "internal/data/network/load_balancer_ownership_integration_test.go"
+    },
+    {
+      "before": "internal/data/load_balancer_process_integration_test.go",
+      "after": "internal/data/network/load_balancer_process_integration_test.go"
+    },
+    {
+      "before": "internal/data/load_balancer_schema_integration_test.go",
+      "after": "internal/data/network/load_balancer_schema_integration_test.go"
+    },
+    {
+      "before": "internal/data/load_balancer_update_integration_test.go",
+      "after": "internal/data/network/load_balancer_update_integration_test.go"
+    },
+    {
+      "before": "internal/data/load_balancer_worker.go",
+      "after": "internal/data/network/load_balancer_worker.go"
+    },
+    {
+      "before": "internal/data/load_balancers.go",
+      "after": "internal/data/network/load_balancers.go"
+    },
+    {
+      "before": "internal/data/load_balancers_integration_test.go",
+      "after": "internal/data/network/load_balancers_integration_test.go"
+    },
+    {
+      "before": "internal/data/migrate.go",
+      "after": "internal/data/network/migrate.go"
+    },
+    {
+      "before": "internal/data/net05a_capacity_current_test.go",
+      "after": "internal/data/network/net05a_capacity_current_test.go"
+    },
+    {
+      "before": "internal/data/net05a_capacity_test.go",
+      "after": "internal/data/network/net05a_capacity_test.go"
+    },
+    {
+      "before": "internal/data/node_facts_collector.go",
+      "after": "internal/data/network/node_facts_collector.go"
+    },
+    {
+      "before": "internal/data/node_facts_ovs.go",
+      "after": "internal/data/network/node_facts_ovs.go"
+    },
+    {
+      "before": "internal/data/node_facts_ovs_test.go",
+      "after": "internal/data/network/node_facts_ovs_test.go"
+    },
+    {
+      "before": "internal/data/observation.go",
+      "after": "internal/data/network/observation.go"
+    },
+    {
+      "before": "internal/data/observation_integration_test.go",
+      "after": "internal/data/network/observation_integration_test.go"
+    },
+    {
+      "before": "internal/data/observation_telemetry.go",
+      "after": "internal/data/network/observation_telemetry.go"
+    },
+    {
+      "before": "internal/data/observation_upgrade_integration_test.go",
+      "after": "internal/data/network/observation_upgrade_integration_test.go"
+    },
+    {
+      "before": "internal/data/platform.go",
+      "after": "internal/data/network/platform.go"
+    },
+    {
+      "before": "internal/data/platform_capabilities.go",
+      "after": "internal/data/network/platform_capabilities.go"
+    },
+    {
+      "before": "internal/data/platform_intranet_integration_test.go",
+      "after": "internal/data/network/platform_intranet_integration_test.go"
+    },
+    {
+      "before": "internal/data/platform_intranet_kc_integration_test.go",
+      "after": "internal/data/network/platform_intranet_kc_integration_test.go"
+    },
+    {
+      "before": "internal/data/platform_worker.go",
+      "after": "internal/data/network/platform_worker.go"
+    },
+    {
+      "before": "internal/data/postgres.go",
+      "after": "internal/data/network/postgres.go"
+    },
+    {
+      "before": "internal/data/postgres_integration_test.go",
+      "after": "internal/data/network/postgres_integration_test.go"
+    },
+    {
+      "before": "internal/data/provider_faults_integration_test.go",
+      "after": "internal/data/network/provider_faults_integration_test.go"
+    },
+    {
+      "before": "internal/data/queries/attachments.sql",
+      "after": "internal/data/network/queries/attachments.sql"
+    },
+    {
+      "before": "internal/data/queries/base_backfill.sql",
+      "after": "internal/data/network/queries/base_backfill.sql"
+    },
+    {
+      "before": "internal/data/queries/base_connectivity.sql",
+      "after": "internal/data/network/queries/base_connectivity.sql"
+    },
+    {
+      "before": "internal/data/queries/egress.sql",
+      "after": "internal/data/network/queries/egress.sql"
+    },
+    {
+      "before": "internal/data/queries/load_balancers.sql",
+      "after": "internal/data/network/queries/load_balancers.sql"
+    },
+    {
+      "before": "internal/data/queries/observation.sql",
+      "after": "internal/data/network/queries/observation.sql"
+    },
+    {
+      "before": "internal/data/queries/platform.sql",
+      "after": "internal/data/network/queries/platform.sql"
+    },
+    {
+      "before": "internal/data/queries/subnets.sql",
+      "after": "internal/data/network/queries/subnets.sql"
+    },
+    {
+      "before": "internal/data/queries/vpcs.sql",
+      "after": "internal/data/network/queries/vpcs.sql"
+    },
+    {
+      "before": "internal/data/queries/worker.sql",
+      "after": "internal/data/network/queries/worker.sql"
+    },
+    {
+      "before": "internal/data/resource_work.go",
+      "after": "internal/data/network/resource_work.go"
+    },
+    {
+      "before": "internal/data/resource_work_net05_integration_test.go",
+      "after": "internal/data/network/resource_work_net05_integration_test.go"
+    },
+    {
+      "before": "internal/data/sqlcgen/attachments.sql.go",
+      "after": "internal/data/network/sqlcgen/attachments.sql.go"
+    },
+    {
+      "before": "internal/data/sqlcgen/base_backfill.sql.go",
+      "after": "internal/data/network/sqlcgen/base_backfill.sql.go"
+    },
+    {
+      "before": "internal/data/sqlcgen/base_connectivity.sql.go",
+      "after": "internal/data/network/sqlcgen/base_connectivity.sql.go"
+    },
+    {
+      "before": "internal/data/sqlcgen/db.go",
+      "after": "internal/data/network/sqlcgen/db.go"
+    },
+    {
+      "before": "internal/data/sqlcgen/egress.sql.go",
+      "after": "internal/data/network/sqlcgen/egress.sql.go"
+    },
+    {
+      "before": "internal/data/sqlcgen/load_balancers.sql.go",
+      "after": "internal/data/network/sqlcgen/load_balancers.sql.go"
+    },
+    {
+      "before": "internal/data/sqlcgen/models.go",
+      "after": "internal/data/network/sqlcgen/models.go"
+    },
+    {
+      "before": "internal/data/sqlcgen/observation.sql.go",
+      "after": "internal/data/network/sqlcgen/observation.sql.go"
+    },
+    {
+      "before": "internal/data/sqlcgen/platform.sql.go",
+      "after": "internal/data/network/sqlcgen/platform.sql.go"
+    },
+    {
+      "before": "internal/data/sqlcgen/subnets.sql.go",
+      "after": "internal/data/network/sqlcgen/subnets.sql.go"
+    },
+    {
+      "before": "internal/data/sqlcgen/vpcs.sql.go",
+      "after": "internal/data/network/sqlcgen/vpcs.sql.go"
+    },
+    {
+      "before": "internal/data/sqlcgen/worker.sql.go",
+      "after": "internal/data/network/sqlcgen/worker.sql.go"
+    },
+    {
+      "before": "internal/data/subnet.go",
+      "after": "internal/data/network/subnet.go"
+    },
+    {
+      "before": "internal/data/subnet_integration_test.go",
+      "after": "internal/data/network/subnet_integration_test.go"
+    },
+    {
+      "before": "internal/data/subnet_kc_integration_test.go",
+      "after": "internal/data/network/subnet_kc_integration_test.go"
+    },
+    {
+      "before": "internal/data/subnet_process_integration_test.go",
+      "after": "internal/data/network/subnet_process_integration_test.go"
+    },
+    {
+      "before": "internal/data/subnet_upgrade_integration_test.go",
+      "after": "internal/data/network/subnet_upgrade_integration_test.go"
+    },
+    {
+      "before": "internal/data/worker.go",
+      "after": "internal/data/network/worker.go"
+    },
+    {
+      "before": "internal/data/worker_cancellation_integration_test.go",
+      "after": "internal/data/network/worker_cancellation_integration_test.go"
+    },
+    {
+      "before": "internal/data/worker_integration_test.go",
+      "after": "internal/data/network/worker_integration_test.go"
+    },
+    {
+      "before": "internal/service/README.md",
+      "after": "internal/service/network/README.md"
+    },
+    {
+      "before": "internal/service/attachment.go",
+      "after": "internal/service/network/attachment.go"
+    },
+    {
+      "before": "internal/service/doc.go",
+      "after": "internal/service/network/doc.go"
+    },
+    {
+      "before": "internal/service/egress.go",
+      "after": "internal/service/network/egress.go"
+    },
+    {
+      "before": "internal/service/egress_public_test.go",
+      "after": "internal/service/network/egress_public_test.go"
+    },
+    {
+      "before": "internal/service/load_balancer.go",
+      "after": "internal/service/network/load_balancer.go"
+    },
+    {
+      "before": "internal/service/load_balancer_test.go",
+      "after": "internal/service/network/load_balancer_test.go"
+    },
+    {
+      "before": "internal/service/network.go",
+      "after": "internal/service/network/network.go"
+    },
+    {
+      "before": "internal/service/platform_intranet.go",
+      "after": "internal/service/network/platform_intranet.go"
+    },
+    {
+      "before": "internal/service/platform_operation_test.go",
+      "after": "internal/service/network/platform_operation_test.go"
+    },
+    {
+      "before": "internal/service/subnet.go",
+      "after": "internal/service/network/subnet.go"
+    },
+    {
+      "before": "migrations/0001_vpc.sql",
+      "after": "migrations/0001_vpc.sql"
+    },
+    {
+      "before": "migrations/0002_subnet.sql",
+      "after": "migrations/0002_subnet.sql"
+    },
+    {
+      "before": "migrations/0003_attachment.sql",
+      "after": "migrations/0003_attachment.sql"
+    },
+    {
+      "before": "migrations/0004_observation.sql",
+      "after": "migrations/0004_observation.sql"
+    },
+    {
+      "before": "migrations/0005_vpc_egress.sql",
+      "after": "migrations/0005_vpc_egress.sql"
+    },
+    {
+      "before": "migrations/0006_vpc_base_connectivity.sql",
+      "after": "migrations/0006_vpc_base_connectivity.sql"
+    },
+    {
+      "before": "migrations/0007_load_balancers.sql",
+      "after": "migrations/0007_load_balancers.sql"
+    },
+    {
+      "before": "migrations/0008_lb_health_check_port.sql",
+      "after": "migrations/0008_lb_health_check_port.sql"
+    },
+    {
+      "before": "migrations/embed.go",
+      "after": "migrations/embed.go"
+    }
+  ],
+  "reviewed_exceptions": [
+    {
+      "before": "internal/data/process_integration_test.go",
+      "after": "internal/data/network/process_integration_test.go"
+    }
+  ],
+  "exception_reason": "test helper adds fixed endpoint options for the same-address A/B compatibility check; existing callers and assertions unchanged"
+}

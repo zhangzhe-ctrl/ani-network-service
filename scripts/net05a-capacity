@@ -23,9 +23,9 @@ for item in base['files']:
  assert ('100755' if path.stat().st_mode&0o111 else '100644')==item['mode']
 # Only the shared measuring harness and controlled HTTP fixture augment baseline.
 shutil.copytree(root/'tests/net05a/provider',baseline/'tests/net05a/provider')
-shutil.copy2(root/'internal/data/net05a_capacity_test.go',baseline/'internal/data/net05a_capacity_test.go')
-shutil.copy2(root/'tests/net05a/capacity-baseline.txt',baseline/'internal/data/net05a_capacity_current_test.go')
-augmented=[{'path':str(f.relative_to(baseline)),'sha256':hashlib.sha256(f.read_bytes()).hexdigest()} for f in [*sorted((baseline/'tests/net05a/provider').glob('*.go')),baseline/'internal/data/net05a_capacity_test.go',baseline/'internal/data/net05a_capacity_current_test.go']]
+shutil.copy2(root/'internal/data/network/net05a_capacity_test.go',baseline/'internal/data/network/net05a_capacity_test.go')
+shutil.copy2(root/'tests/net05a/capacity-baseline.txt',baseline/'internal/data/network/net05a_capacity_current_test.go')
+augmented=[{'path':str(f.relative_to(baseline)),'sha256':hashlib.sha256(f.read_bytes()).hexdigest()} for f in [*sorted((baseline/'tests/net05a/provider').glob('*.go')),baseline/'internal/data/network/net05a_capacity_test.go',baseline/'internal/data/network/net05a_capacity_current_test.go']]
 (run/'capacity-baseline-harness.json').write_text(json.dumps(augmented,indent=2)+'\n')
 if a.verify_first:
  subprocess.run(['scripts/net05a-gates','verify','integration','race'],cwd=root,check=True)
@@ -36,7 +36,7 @@ for attachment_count,replica_count in cases:
   source=baseline if variant=='net05' else root
   output=run/'capacity'/f'{variant}-{attachment_count}-{replica_count}';output.mkdir(parents=True)
   env=os.environ.copy();env.update(NET05A_CAPACITY_ATTACHMENTS=str(attachment_count),NET05A_CAPACITY_REPLICAS=str(replica_count),NET05A_CAPACITY_OUTPUT=str(output))
-  command=['scripts/integration','-run','^TestNET05ACapacity$','-timeout','18m','-v','./internal/data']
+  command=['scripts/integration','-run','^TestNET05ACapacity$','-timeout','18m','-v','./internal/data/network']
   print(f'capacity start {variant} attachments={attachment_count} replicas={replica_count}',flush=True)
   with (output/'command.log').open('w') as log:
    started=time.time();proc=subprocess.Popen(command,cwd=source,env=env,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,text=True)

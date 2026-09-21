@@ -4,7 +4,7 @@ set -Eeuo pipefail
 root=$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd -P)
 cd "$root"
 temporary=$(mktemp -d)
-tar -cf "$temporary/original.tar" internal/data/queries internal/data/sqlcgen
+tar -cf "$temporary/original.tar" internal/data/network/queries internal/data/network/sqlcgen
 restore() { tar -xf "$temporary/original.tar"; }
 cleanup() { restore; rm -rf -- "$temporary"; }
 trap cleanup EXIT
@@ -13,7 +13,7 @@ for query in GetVPC GetOperation ListVPCs GetSubnet ListSubnets GetAttachment; d
   python3 - "$query" <<'PY'
 import pathlib,sys
 name=sys.argv[1]
-path=pathlib.Path('internal/data/queries/attachments.sql' if name=='GetAttachment' else 'internal/data/queries/subnets.sql' if name in ('GetSubnet','ListSubnets') else 'internal/data/queries/vpcs.sql')
+path=pathlib.Path('internal/data/network/queries/attachments.sql' if name=='GetAttachment' else 'internal/data/network/queries/subnets.sql' if name in ('GetSubnet','ListSubnets') else 'internal/data/network/queries/vpcs.sql')
 text=path.read_text()
 start=text.index('-- name: '+name+' :');end=text.find('-- name:',start+1)
 if end<0:end=len(text)
@@ -33,7 +33,7 @@ path.write_text(text[:start]+part.replace(before,after)+text[end:])
 PY
   .tools/bin/sqlc generate
   set +e
-  go test -count=1 ./internal/data -run 'TestVPCAcceptanceIsTenantScopedAndReplaysExactly|TestPostgresRejectsPartialAcceptanceAndCrossTenantReferences|TestSubnetConcurrentPermanentIdempotencyAndDeletion|TestSubnetTargetConstraintsAndPagination|TestAttachmentPermanentIdentityTenantScopeAndParentDeletion' >"$temporary/result.log" 2>&1
+  go test -count=1 ./internal/data/network -run 'TestVPCAcceptanceIsTenantScopedAndReplaysExactly|TestPostgresRejectsPartialAcceptanceAndCrossTenantReferences|TestSubnetConcurrentPermanentIdempotencyAndDeletion|TestSubnetTargetConstraintsAndPagination|TestAttachmentPermanentIdentityTenantScopeAndParentDeletion' >"$temporary/result.log" 2>&1
   result=$?
   set -e
   [[ $result -ne 0 ]] || { echo "tenant mutation survived: $query"; exit 1; }

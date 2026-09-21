@@ -33,9 +33,9 @@ def build():
   if name.startswith(('.claude/','docs/execution/records/')):continue
   assert kind=='blob' and mode in ['100644','100755']
   target=baseline/name;target.parent.mkdir(parents=True,exist_ok=True);target.write_bytes(subprocess.check_output(['git','cat-file','blob',oid],cwd=root));target.chmod(0o755 if mode=='100755' else 0o644)
- command(['go','build','-trimpath','-o',str(pair/'fault-build/network-fixed-main'),'./cmd/ani-network-service'],baseline)
+ command(['go','build','-trimpath','-o',str(pair/'fault-build/network-fixed-main'),'./cmd/ani-resource-service'],baseline)
  identities={}
- for name,path in {'network':root/'bin/ani-network-service','ani':pair/'ani/ani-gateway-net05','network_fixed':pair/'fault-build/network-fixed-main'}.items():
+ for name,path in {'network':root/'bin/ani-resource-service','ani':pair/'ani/ani-gateway-net05','network_fixed':pair/'fault-build/network-fixed-main'}.items():
   identities[name]={'path':str(path),'sha256':hashlib.sha256(path.read_bytes()).hexdigest(),'build_info':subprocess.check_output(['go','version','-m',str(path)],text=True)}
  (pair/'runtime-build-identities.json').write_text(json.dumps(identities,indent=2)+'\n')
  print('NET05A exact runtime builds complete',flush=True)
@@ -48,7 +48,7 @@ def production_network(n,proxy=True):
  'ANI_NETWORK_CURSOR_SIGNING_KEY':s['cursor_key'],'ANI_NETWORK_CLUSTER_ID':s['cluster_id'],'ANI_NETWORK_NAMESPACE_PREFIX':s['prefix'],
  'ANI_NETWORK_INSTANCE_CONSUMER_ENDPOINT':'127.0.0.1:'+str(s['ports']['consumer']),'ANI_SERVER_GRPC_ADDR':'127.0.0.1:'+str(s['ports']['grpc']),
  'ANI_SERVER_ADMIN_ADDR':'0.0.0.0:'+str(s['ports']['admin'])}
- n.launch('network',[str(n.root/'bin/ani-network-service'),'-conf',str(n.root/'configs')],ne)
+ n.launch('network',[str(n.root/'bin/ani-resource-service'),'-conf',str(n.root/'configs')],ne)
  until(lambda: query_metrics(n).get('ani_network_observation_source_synced')==1,'six real informer sources synchronized')
  return ne
 
@@ -56,7 +56,7 @@ def upgrade():
  n=load();s=n.state;n.fence()
  assert not list(n.private.glob('hooks-*/*.rule.json')) and not list((n.private/'proxy').glob('*.rule.json'))
  old=json.loads((n.evidence/'network-image.json').read_text())
- binary=root/'bin/ani-network-service';digest=hashlib.sha256(binary.read_bytes()).hexdigest()
+ binary=root/'bin/ani-resource-service';digest=hashlib.sha256(binary.read_bytes()).hexdigest()
  assert digest!=old['binary_sha256'] and not s.get('upgrade_started'), 'inspect recorded upgrade before any retry'
  s['upgrade_started']=True;n.save()
  prior=n.evidence/('prior-runtime-'+old['binary_sha256'][:12]);prior.mkdir()

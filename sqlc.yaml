@@ -2,11 +2,11 @@ version: "2"
 sql:
   - engine: postgresql
     schema: migrations
-    queries: internal/data/queries
+    queries: internal/data/network/queries
     gen:
       go:
         package: sqlcgen
-        out: internal/data/sqlcgen
+        out: internal/data/network/sqlcgen
         sql_package: pgx/v5
         emit_empty_slices: true
         query_parameter_limit: 0

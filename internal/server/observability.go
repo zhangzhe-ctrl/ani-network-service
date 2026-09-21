@@ -4,7 +4,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"github.com/zhangzhe-ctrl/ani-network-service/internal/biz"
+	"github.com/zhangzhe-ctrl/ani-resource-service/internal/biz/network"
 	"go.opentelemetry.io/otel/attribute"
 	"log/slog"
 	"time"

@@ -1,16 +1,98 @@
-#!/usr/bin/env bash
-set -Eeuo pipefail
-imports=$(go list -f '{{join .Imports "\n"}}' ./internal/biz)
-if printf '%s\n' "$imports" | grep -E 'kratos|protobuf|grpc|jackc|k8s.io|internal/(conf|data|server|service)' >/dev/null; then
-  echo 'biz imports framework, transport or infrastructure implementation' >&2
-  exit 1
-fi
-if go list -m all | grep -E '(ani-iam|ani-notification-service|kubercloud.com/networking|ani-kratos-layout)' >/dev/null; then
-  echo 'runtime graph depends on a sibling repository implementation' >&2
-  exit 1
-fi
-if grep -E '^[[:space:]]*replace[[:space:]]|=>[[:space:]]*\.{1,2}/' go.mod >/dev/null; then
-  echo 'runtime graph must not contain local replace directives' >&2
-  exit 1
-fi
-printf 'domain and repository ownership boundaries verified\n'
+#!/usr/bin/env python3
+"""Check actual recursive Go imports, including nested domain packages."""
+import json
+import re
+import subprocess
+import tempfile
+from pathlib import Path
+
+
+def packages(root):
+    output = subprocess.check_output(['go', 'list', '-json', './internal/...'], cwd=root, text=True)
+    decoder = json.JSONDecoder()
+    result = []
+    while output.strip():
+        package, end = decoder.raw_decode(output.lstrip())
+        result.append(package)
+        output = output.lstrip()[end:]
+    return result
+
+
+def violations(items, module):
+    errors = []
+    domain_count = 0
+    for package in items:
+        name = package['ImportPath'].removeprefix(module + '/')
+        parts = name.split('/')
+        if len(parts) < 2 or parts[0] != 'internal':
+            continue
+        layer = parts[1]
+        domain = parts[2] if len(parts) > 2 else ''
+        domain_count += layer == 'biz'
+        imports = list(package.get('Imports', []))
+        if layer == 'biz':
+            imports += package.get('TestImports', []) + package.get('XTestImports', [])
+        for dependency in imports:
+            target = dependency.removeprefix(module + '/').split('/')
+            forbidden = layer == 'biz' and bool(re.search(
+                r'kratos|protobuf|grpc|jackc|k8s\.io|^database/sql(?:/|$)|^net/http(?:/|$)|'
+                r'/api/|/internal/(conf|data|server|service)(?:/|$)', dependency))
+            if target[0] == 'internal' and len(target) >= 2:
+                target_layer = target[1]
+                target_domain = target[2] if len(target) > 2 else ''
+                forbidden |= layer == 'service' and target_layer in ('data', 'server')
+                forbidden |= layer == 'data' and target_layer in ('service', 'server')
+                forbidden |= (layer in ('biz', 'data', 'service') and
+                              target_layer in ('data', 'service') and target_domain != domain)
+            if forbidden:
+                errors.append(f'{name} imports forbidden {dependency}')
+    if not domain_count:
+        errors.append('no domain packages found (boundary check cannot be empty)')
+    return errors
+
+
+def self_test():
+    # Real nested packages exercise go list recursion, not a mocked import list.
+    module = 'example.invalid/boundary-fixture'
+    cases = [
+        ('internal/biz/network/nested', 'database/sql'),
+        ('internal/biz/network/nested', module + '/internal/data/network'),
+        ('internal/service/network', module + '/internal/data/network'),
+        ('internal/data/network', module + '/internal/service/network'),
+        ('internal/data/network', module + '/internal/data/storage'),
+        ('internal/service/network', module + '/internal/service/storage'),
+    ]
+    with tempfile.TemporaryDirectory(prefix='ani-boundaries-') as directory:
+        root = Path(directory)
+        (root / 'go.mod').write_text(f'module {module}\n\ngo 1.26.1\n')
+        for package in {p for p, _ in cases} | {'internal/data/storage', 'internal/service/storage'}:
+            path = root / package
+            path.mkdir(parents=True, exist_ok=True)
+            (path / 'fixture.go').write_text('package fixture\n')
+        assert not violations(packages(root), module), 'valid fixture rejected'
+        for package, dependency in cases:
+            path = root / package / 'fixture.go'
+            path.write_text(f'package fixture\nimport _ "{dependency}"\n')
+            found = violations(packages(root), module)
+            assert any(package in error and dependency in error for error in found), (package, found)
+            path.write_text('package fixture\n')
+            print(f'boundary fixture rejected: {package} -> {dependency}')
+
+
+def main():
+    root = Path(__file__).resolve().parents[1]
+    module = subprocess.check_output(['go', 'list', '-m'], cwd=root, text=True).strip()
+    errors = violations(packages(root), module)
+    graph = subprocess.check_output(['go', 'list', '-m', 'all'], cwd=root, text=True)
+    if re.search(r'ani-iam|ani-notification-service|kubercloud.com/networking|ani-kratos-layout', graph):
+        errors.append('runtime graph depends on a sibling repository implementation')
+    if re.search(r'^\s*replace\s|=>\s*\.{1,2}/', (root / 'go.mod').read_text(), re.MULTILINE):
+        errors.append('runtime graph must not contain local replace directives')
+    if errors:
+        raise SystemExit('\n'.join(errors))
+    self_test()
+    print('recursive domain and repository ownership boundaries verified')
+
+
+if __name__ == '__main__':
+    main()

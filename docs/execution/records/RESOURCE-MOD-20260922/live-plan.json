@@ -1,0 +1,253 @@
+{
+  "prepared_at": "2026-09-21T17:00:00Z",
+  "task": "RESOURCE-MOD-20260922",
+  "run_id": "rsmod-20260921T1640Z",
+  "live_run": "rsmod-0922",
+  "state": "prepared_not_applied",
+  "execution_alias": "fedora",
+  "cluster_access_alias": "ani-test-1",
+  "cluster_uid": "be57b911-892c-4e75-aa9d-4a05d819c59e",
+  "cluster_id": "rsmod-0922",
+  "cluster_id_reason": "new isolated database",
+  "management_namespace": "rsmod-0922",
+  "network_service_account": "network",
+  "owner_service_account": "workload-owner",
+  "namespace_prefix": "rsmod-",
+  "tenant_id": "87bac0ed-a516-444a-b49c-0d6d292911d4",
+  "tenants": {
+    "a": "87bac0ed-a516-444a-b49c-0d6d292911d4",
+    "b": "d013b7ac-e53f-46cd-9a06-2b01013262e6"
+  },
+  "tenant_namespace": "rsmod-87bac0ed-a516-444a-b49c-0d6d292911d4",
+  "tenant_namespaces": {
+    "a": "rsmod-87bac0ed-a516-444a-b49c-0d6d292911d4",
+    "b": "rsmod-d013b7ac-e53f-46cd-9a06-2b01013262e6"
+  },
+  "retained_device": {
+    "device_id": "device_3290174cfb644473b5b5e260bcea085c",
+    "binding_id": "a1fdc522-a807-40b7-89a6-986b0039ff43",
+    "device_name": "ens35",
+    "kcn_config_uid": "dcca6e9e-db3f-4ebe-8b27-8898e3a2939e",
+    "registration_annotation": "network.ani.io/device-adoption-2f5c91188d083599",
+    "action": "reference existing registration after fresh observation; do not Adopt or patch shared ConfigMap"
+  },
+  "installation_fingerprint": "d632b5e7d5de7c442055cf8200b84d9e22a4e03826b2d1843d78686a6778a5e3",
+  "images": {
+    "controller": "sha256:6f1bf5d9c9b108b0aa98986e187d8a62366bb38d19ed7e15e50863b30de9d755",
+    "kc": "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4",
+    "envoy": "sha256:67f1cf44a5109717285c5aef449d02180762121747cbef3c261fe7e62e934b9a",
+    "shutdown": "sha256:5f75b495bf07beb23f8ac4f97649e876ed723f1c6d02031bbc7cd23028b490b6"
+  },
+  "installation_evidence": {
+    "path": "installation.json",
+    "fingerprint": "d632b5e7d5de7c442055cf8200b84d9e22a4e03826b2d1843d78686a6778a5e3"
+  },
+  "display_names": {
+    "vpc": "rsmod-0922-vpc",
+    "entry_subnet": "rsmod-0922-entry-subnet",
+    "backend_subnet": "rsmod-0922-backend-subnet",
+    "intranet_pool": "rsmod-0922-intranet-pool",
+    "public_vlan": "rsmod-0922-public-vlan",
+    "public_gateway": "rsmod-0922-public-gateway",
+    "public_pool": "rsmod-0922-public-pool",
+    "public_eip": "rsmod-0922-public-eip",
+    "private_lb": "rsmod-0922-private-lb",
+    "public_private_lb": "rsmod-0922-public-private-lb"
+  },
+  "new_product_ids": "Generated only by Network product API and recorded from actual receipts. No old LB/VPC/Subnet/EIP/pool/Gateway/VLAN IDs reused.",
+  "workload_instances": [
+    {
+      "role": "backend-a",
+      "instance_id": "78dc265a-f6e1-48c5-afae-d4642851204d",
+      "pod_name": "rsmod-0922-backend-a",
+      "namespace": "rsmod-87bac0ed-a516-444a-b49c-0d6d292911d4"
+    },
+    {
+      "role": "backend-b",
+      "instance_id": "4dbddf9c-3d07-473c-8d52-de3867434c24",
+      "pod_name": "rsmod-0922-backend-b",
+      "namespace": "rsmod-87bac0ed-a516-444a-b49c-0d6d292911d4"
+    },
+    {
+      "role": "client",
+      "instance_id": "3b750c8b-53ab-4c22-91cd-79dc06a6d33c",
+      "pod_name": "rsmod-0922-client",
+      "namespace": "rsmod-87bac0ed-a516-444a-b49c-0d6d292911d4"
+    }
+  ],
+  "platform_fixture_names": [
+    {
+      "role": "intranet-a",
+      "pod_name": "rsmod-0922-intranet-a",
+      "namespace": "rsmod-0922",
+      "instance_id": "59e7d33e-4272-42da-9257-80cf4bd20809"
+    },
+    {
+      "role": "intranet-b",
+      "pod_name": "rsmod-0922-intranet-b",
+      "namespace": "rsmod-0922",
+      "instance_id": "0d6d969c-f370-4f6a-8a0f-a1cde46f754a"
+    },
+    {
+      "role": "public-a",
+      "pod_name": "rsmod-0922-public-a",
+      "namespace": "rsmod-0922",
+      "instance_id": "0b788e5b-e54c-47bd-8a80-5cdb72cc718d"
+    },
+    {
+      "role": "public-b",
+      "pod_name": "rsmod-0922-public-b",
+      "namespace": "rsmod-0922",
+      "instance_id": "973e4b16-4b90-4156-95e2-5fe327c3294f"
+    },
+    {
+      "role": "outside",
+      "pod_name": "rsmod-0922-outside",
+      "namespace": "rsmod-0922",
+      "instance_id": "7db12f12-e706-4984-b640-3a326f6b0085"
+    }
+  ],
+  "observation_config": {
+    "network.worker.lease": "120s",
+    "network.worker.request_timeout": "30s",
+    "network.worker.observe_every": "5s",
+    "network.worker.stale_after": "60s",
+    "network.observation.audit_interval": "15s",
+    "network.observation.audit_jitter": "1s",
+    "network.observation.audit_timeout": "15s",
+    "network.observation.workers_per_kind": 4,
+    "network.observation.request_qps": 10,
+    "network.observation.request_burst": 20
+  },
+  "rbac_design": {
+    "namespace_create": "not granted; prebuilt tenant namespace has exact owner/tenant labels; ensureNamespace GET at internal/data/kc.go:250 creates only after NotFound",
+    "network_shared_writes": {
+      "cluster": [
+        "eipgateways:create/delete",
+        "vlannetworks:create/delete",
+        "subjectaccessreviews:create"
+      ],
+      "kcn-system": [
+        "subnets:create/delete"
+      ]
+    },
+    "network_management_namespace_writes": "none needed; platform fixtures are written by workload-owner",
+    "network_tenant_writes": [
+      "vpcs/subnets/eips:create/delete",
+      "snats:create/patch/delete",
+      "gateways/httproutes/backends/backendtrafficpolicies:create/patch/delete"
+    ],
+    "network_read_scope": "Full unlabeled audit sets across namespaces from observationGVRs and lbObservationGVRs; no Secret access",
+    "owner_scope": "Pods and pods/exec only in the two newly prebuilt task namespaces; no RBAC, node, product CR, ConfigMap or Secret permission",
+    "forbidden_permissions_absent": [
+      "secrets:any",
+      "configmaps:write",
+      "services:write",
+      "deployments:write",
+      "namespaces:create/delete/patch",
+      "roles/rolebindings/clusterroles/clusterrolebindings:write",
+      "nodes:write",
+      "pods:Network-write",
+      "envoyproxies:write",
+      "gatewayclasses:write",
+      "customresourcedefinitions:write"
+    ],
+    "native_rbac_limit": "Kubernetes RBAC cannot restrict create by labels or a not-yet-returned product ID. In kcn-system and cluster platform CR scopes, permitted create/delete remain constrained to task-owned resources by Network tenant/owner/binding/UID fences and task instructions; never issue raw deletes against existing objects. After receipts, narrower named-delete roles may be added without changing product behavior.",
+    "preapply_check": "Reject any existing manifest object with this name unless exact task ownership and UID are already recorded; do not apply over unknown existing objects."
+  },
+  "authorization_limits": {
+    "public_pool_qualification": "New applicable direct-workload egress/return evidence required before allocation; no fabricated verification or copied historical validity",
+    "public_flow_failures": "Required by this Goal; blocked until an independently usable platform device is provided. Existing shared registration must not be adopted, changed or copied into this database.",
+    "physical_topology": "Historical ens35 untagged/VLAN0/upstream logical VLAN102/172.16.102.0/24/gateway .1 require fresh read-only and product prerequisite validation; this file does not reserve addresses"
+  },
+  "manifest": "live-rbac.json",
+  "cleanup_inventory": "live-rbac-object-inventory.json",
+  "secrets": "none; no token, password, private key, DSN or kubeconfig in these inputs",
+  "run": "rsmod-0922",
+  "database": "net_vpc_lb_02_a92201",
+  "execution_host": "fedora",
+  "sockets": "/home/chabking/.local/state/rsmod0922/sockets",
+  "binary_sha256": {},
+  "driver": {
+    "vpc_cidr": "10.236.0.0/16",
+    "entry_cidr": "10.236.0.0/24",
+    "backend_cidr": "10.236.1.0/24",
+    "private_vip": "10.236.0.200",
+    "dual_vip": "10.236.0.201",
+    "backend_nodes": [
+      "ani-02",
+      "ani-03"
+    ]
+  },
+  "platform": {
+    "intranet": {
+      "cidr": "10.242.250.0/24",
+      "ovn_gateway_ip": "10.242.250.1",
+      "excluded_ips": [
+        "10.242.250.1"
+      ],
+      "default_vpc_name": "kcn-cluster",
+      "default_vpc_uid": "a852bc64-3d41-4925-b6a1-de3db56e5a76",
+      "intranet_networks": [
+        "172.16.101.0/24",
+        "172.16.201.0/24",
+        "172.16.202.0/24",
+        "10.96.0.0/16"
+      ]
+    },
+    "public": {
+      "cidr": "172.16.102.0/24",
+      "ovn_gateway_ip": "172.16.102.2",
+      "excluded_ips": [
+        "172.16.102.1..172.16.102.191",
+        "172.16.102.208..172.16.102.254"
+      ],
+      "upstream_gateway_ip": "172.16.102.1"
+    },
+    "nodes": [
+      "ani-02",
+      "ani-03"
+    ],
+    "outside_node": "ani-01",
+    "outside_port": 28057,
+    "outside_port_preflight": {
+      "state": "not_verified_public_blocked"
+    },
+    "dns_name": "kubernetes.default.svc.cluster.local",
+    "dns_expected_ip": "10.96.0.1",
+    "http_targets": [
+      {
+        "url": "http://10.96.0.10:9153/metrics",
+        "contains": "# HELP"
+      },
+      {
+        "url": "http://10.96.1.31:19001/metrics",
+        "contains": "# HELP"
+      }
+    ],
+    "provider_source_revision": "735abf81cb728f30bd0f15e1885dcd7f88b56ab0",
+    "provider_source_evidence": {
+      "path": "/home/chabking/workspace/ani-resource-service-runs/rsmod-20260921T1640Z/private/runtime/provider-provenance.json",
+      "sha256": "5c7d851d7114c2c4cc798851a4bf952e8e61bd28e4f95ef317a7597d89c97bbb",
+      "repository_source": "docs/execution/records/NET-VPC-LB-02/provider-provenance-20260915.json",
+      "origin": "historical embedded build-origin mapping for same immutable running image; not a new rebuild or signed attestation"
+    },
+    "network_kubeconfig": "/home/chabking/workspace/ani-resource-service-runs/rsmod-20260921T1640Z/private/runtime/kubeconfig.json",
+    "probe": {
+      "image": "localhost/lb02-2b3122-probe@sha256:647c2acd8e115511a18506014995ec01b7d0d62fbc05f2a6e51a5c65c2a3fcce",
+      "binary_sha256": "ffcf0c98acaedd82d52d8b9b9f981a8bbc8b1fbc4499be94947d9040f0014bed",
+      "image_present_on_nodes": [
+        "ani-01",
+        "ani-02",
+        "ani-03"
+      ],
+      "current_pod_binary_check": "not_verified until qualification Pod exec; driver checks sha256sum before traffic",
+      "origin": "historical immutable OCI/binary proof; present image names freshly checked via Node status"
+    },
+    "read_only_preflight": {
+      "path": "preflight.json",
+      "public_device_status": "blocked_existing_foreign_binding",
+      "resource_changes": "none yet"
+    }
+  }
+}

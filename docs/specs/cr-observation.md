@@ -27,7 +27,7 @@ flowchart TD
     W --> K
 ```
 
-观察 adapter 位于 `internal/data`，隐藏 Kubernetes 类型、GVR、索引和连接管理。`internal/biz` 保留状态转换及所需端口；`internal/server` 和 `cmd/ani-network-service` 管理启动、停止、有界并发、健康及遥测。沿用固定版本 client-go 的 Reflector/ListWatch 恢复能力，不手写断线重列举协议。
+观察 adapter 位于 `internal/data`，隐藏 Kubernetes 类型、GVR、索引和连接管理。`internal/biz` 保留状态转换及所需端口；`internal/server` 和 `cmd/ani-resource-service` 管理启动、停止、有界并发、健康及遥测。沿用固定版本 client-go 的 Reflector/ListWatch 恢复能力，不手写断线重列举协议。
 
 Watch handler 只提取对象键、旧/新关系提示并进入有界合并队列，不直接执行 Provider 写入、状态转换或慢 PG/RPC。队列桥接到 PG 调度；溢出或持久化失败须记录范围失效并安排完整清点，进程退出后由启动清点和持久 deadline 补回。内存队列不是唯一恢复依据。
 

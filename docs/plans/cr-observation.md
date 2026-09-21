@@ -18,10 +18,10 @@ NET-01～04 → NET-05 普通容器真实验收 → NET-05A 持续观察改造 �
 
 | 计划路径 | 用途 |
 |---|---|
-| `internal/biz/worker.go`、`attachment_worker.go` 及相关端口/测试 | 统一领域执行、证据输入、并发与恢复规则 |
-| `internal/data/kc*.go` 及新增观察/索引 adapter、相应测试 | 标准 informer、直接核验、共享关系事实、Provider 归属 |
-| `internal/data/queries/`、`internal/data/sqlcgen/` 和既有迁移目录 | 持久代次、调度、公平领取与租户约束；启动时列明具体迁移路径 |
-| `internal/server/worker.go`、`cmd/ani-network-service/`、实际配置入口 | 观察与执行生命周期、运行参数、健康及遥测 |
+| `internal/biz/network/worker.go`、`attachment_worker.go` 及相关端口/测试 | 统一领域执行、证据输入、并发与恢复规则 |
+| `internal/data/network/kc*.go` 及新增观察/索引 adapter、相应测试 | 标准 informer、直接核验、共享关系事实、Provider 归属 |
+| `internal/data/network/queries/`、`internal/data/network/sqlcgen/` 和既有迁移目录 | 持久代次、调度、公平领取与租户约束；启动时列明具体迁移路径 |
+| `internal/server/worker.go`、`cmd/ani-resource-service/`、实际配置入口 | 观察与执行生命周期、运行参数、健康及遥测 |
 | 现有测试/构建入口、`docs/runtime*.md`、本包记录 | 可复现验证与运维说明；具体新增脚本在启动时固定 |
 
 API 字段、公开状态、Gateway、ANI 实例实现及 kc controller 均不是默认变更范围。需要跨仓修改或改变公开契约时，先记录触发原因和具体差异再单独限定工作；不借本包扩展兄弟服务、VM 或旧 Core 控制权交接。

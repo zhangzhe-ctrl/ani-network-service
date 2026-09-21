@@ -3,5 +3,5 @@
 FROM debian:bookworm-slim
 RUN apt-get update && apt-get install -y --no-install-recommends iproute2 openvswitch-switch ca-certificates \
     && ip -Version && ovs-vsctl --version && rm -rf /var/lib/apt/lists/*
-COPY bin/ani-network-service /usr/local/bin/ani-network-service
-ENTRYPOINT ["/usr/local/bin/ani-network-service"]
+COPY bin/ani-resource-service /usr/local/bin/ani-resource-service
+ENTRYPOINT ["/usr/local/bin/ani-resource-service"]

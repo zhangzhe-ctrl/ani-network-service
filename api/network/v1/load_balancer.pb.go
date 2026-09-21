@@ -1991,7 +1991,7 @@ const file_network_v1_load_balancer_proto_rawDesc = "" +
 	"\x11ListLoadBalancers\x12$.network.v1.ListLoadBalancersRequest\x1a%.network.v1.ListLoadBalancersResponse\x12c\n" +
 	"\x12UpdateLoadBalancer\x12%.network.v1.UpdateLoadBalancerRequest\x1a&.network.v1.UpdateLoadBalancerResponse\x12c\n" +
 	"\x12DeleteLoadBalancer\x12%.network.v1.DeleteLoadBalancerRequest\x1a&.network.v1.DeleteLoadBalancerResponse\x12u\n" +
-	"\x18GetLoadBalancerOperation\x12+.network.v1.GetLoadBalancerOperationRequest\x1a,.network.v1.GetLoadBalancerOperationResponseBGZEgithub.com/zhangzhe-ctrl/ani-network-service/api/network/v1;networkv1b\x06proto3"
+	"\x18GetLoadBalancerOperation\x12+.network.v1.GetLoadBalancerOperationRequest\x1a,.network.v1.GetLoadBalancerOperationResponseBHZFgithub.com/zhangzhe-ctrl/ani-resource-service/api/network/v1;networkv1b\x06proto3"
 
 var (
 	file_network_v1_load_balancer_proto_rawDescOnce sync.Once

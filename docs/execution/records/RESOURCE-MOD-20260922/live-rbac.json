@@ -1,0 +1,622 @@
+{
+  "apiVersion": "v1",
+  "kind": "List",
+  "items": [
+    {
+      "apiVersion": "v1",
+      "kind": "Namespace",
+      "metadata": {
+        "name": "rsmod-0922",
+        "labels": {
+          "network.ani.io/test-run": "rsmod-0922"
+        }
+      }
+    },
+    {
+      "apiVersion": "v1",
+      "kind": "Namespace",
+      "metadata": {
+        "name": "rsmod-87bac0ed-a516-444a-b49c-0d6d292911d4",
+        "labels": {
+          "network.ani.io/test-run": "rsmod-0922",
+          "network.ani.io/managed-by": "ani-network-service",
+          "network.ani.io/tenant-id": "87bac0ed-a516-444a-b49c-0d6d292911d4"
+        }
+      }
+    },
+    {
+      "apiVersion": "v1",
+      "kind": "ServiceAccount",
+      "metadata": {
+        "name": "network",
+        "labels": {
+          "network.ani.io/test-run": "rsmod-0922"
+        },
+        "namespace": "rsmod-0922"
+      }
+    },
+    {
+      "apiVersion": "v1",
+      "kind": "ServiceAccount",
+      "metadata": {
+        "name": "workload-owner",
+        "labels": {
+          "network.ani.io/test-run": "rsmod-0922"
+        },
+        "namespace": "rsmod-0922"
+      }
+    },
+    {
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "ClusterRole",
+      "metadata": {
+        "name": "rsmod-0922-read",
+        "labels": {
+          "network.ani.io/test-run": "rsmod-0922"
+        }
+      },
+      "rules": [
+        {
+          "apiGroups": [
+            ""
+          ],
+          "resources": [
+            "namespaces",
+            "nodes",
+            "pods",
+            "services",
+            "configmaps"
+          ],
+          "verbs": [
+            "get",
+            "list",
+            "watch"
+          ]
+        },
+        {
+          "apiGroups": [
+            "networking.kubercloud.com"
+          ],
+          "resources": [
+            "vpcs",
+            "subnets",
+            "vnics",
+            "vnicips",
+            "eips",
+            "snats",
+            "nats",
+            "eipgateways",
+            "vlannetworks"
+          ],
+          "verbs": [
+            "get",
+            "list",
+            "watch"
+          ]
+        },
+        {
+          "apiGroups": [
+            "gateway.networking.k8s.io"
+          ],
+          "resources": [
+            "gateways",
+            "httproutes",
+            "gatewayclasses"
+          ],
+          "verbs": [
+            "get",
+            "list",
+            "watch"
+          ]
+        },
+        {
+          "apiGroups": [
+            "gateway.envoyproxy.io"
+          ],
+          "resources": [
+            "backends",
+            "backendtrafficpolicies",
+            "envoyproxies"
+          ],
+          "verbs": [
+            "get",
+            "list",
+            "watch"
+          ]
+        },
+        {
+          "apiGroups": [
+            "apps"
+          ],
+          "resources": [
+            "deployments",
+            "replicasets"
+          ],
+          "verbs": [
+            "get",
+            "list",
+            "watch"
+          ]
+        },
+        {
+          "apiGroups": [
+            "discovery.k8s.io"
+          ],
+          "resources": [
+            "endpointslices"
+          ],
+          "verbs": [
+            "get",
+            "list",
+            "watch"
+          ]
+        },
+        {
+          "apiGroups": [
+            "apiextensions.k8s.io"
+          ],
+          "resources": [
+            "customresourcedefinitions"
+          ],
+          "verbs": [
+            "get",
+            "list",
+            "watch"
+          ]
+        },
+        {
+          "apiGroups": [
+            "networking.k8s.io"
+          ],
+          "resources": [
+            "servicecidrs"
+          ],
+          "verbs": [
+            "get",
+            "list",
+            "watch"
+          ]
+        },
+        {
+          "apiGroups": [
+            "authorization.k8s.io"
+          ],
+          "resources": [
+            "subjectaccessreviews"
+          ],
+          "verbs": [
+            "create"
+          ]
+        }
+      ]
+    },
+    {
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "ClusterRoleBinding",
+      "metadata": {
+        "name": "rsmod-0922-read",
+        "labels": {
+          "network.ani.io/test-run": "rsmod-0922"
+        }
+      },
+      "roleRef": {
+        "apiGroup": "rbac.authorization.k8s.io",
+        "kind": "ClusterRole",
+        "name": "rsmod-0922-read"
+      },
+      "subjects": [
+        {
+          "kind": "ServiceAccount",
+          "name": "network",
+          "namespace": "rsmod-0922"
+        }
+      ]
+    },
+    {
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "Role",
+      "metadata": {
+        "name": "rsmod-0922-write",
+        "labels": {
+          "network.ani.io/test-run": "rsmod-0922"
+        },
+        "namespace": "rsmod-87bac0ed-a516-444a-b49c-0d6d292911d4"
+      },
+      "rules": [
+        {
+          "apiGroups": [
+            "networking.kubercloud.com"
+          ],
+          "resources": [
+            "vpcs",
+            "subnets",
+            "eips",
+            "snats"
+          ],
+          "verbs": [
+            "create",
+            "patch",
+            "delete"
+          ]
+        },
+        {
+          "apiGroups": [
+            "gateway.networking.k8s.io"
+          ],
+          "resources": [
+            "gateways",
+            "httproutes"
+          ],
+          "verbs": [
+            "create",
+            "patch",
+            "delete"
+          ]
+        },
+        {
+          "apiGroups": [
+            "gateway.envoyproxy.io"
+          ],
+          "resources": [
+            "backends",
+            "backendtrafficpolicies"
+          ],
+          "verbs": [
+            "create",
+            "patch",
+            "delete"
+          ]
+        }
+      ]
+    },
+    {
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "RoleBinding",
+      "metadata": {
+        "name": "rsmod-0922-write",
+        "labels": {
+          "network.ani.io/test-run": "rsmod-0922"
+        },
+        "namespace": "rsmod-87bac0ed-a516-444a-b49c-0d6d292911d4"
+      },
+      "roleRef": {
+        "apiGroup": "rbac.authorization.k8s.io",
+        "kind": "Role",
+        "name": "rsmod-0922-write"
+      },
+      "subjects": [
+        {
+          "kind": "ServiceAccount",
+          "name": "network",
+          "namespace": "rsmod-0922"
+        }
+      ]
+    },
+    {
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "Role",
+      "metadata": {
+        "name": "rsmod-0922-write",
+        "labels": {
+          "network.ani.io/test-run": "rsmod-0922"
+        },
+        "namespace": "kcn-system"
+      },
+      "rules": [
+        {
+          "apiGroups": [
+            "networking.kubercloud.com"
+          ],
+          "resources": [
+            "subnets"
+          ],
+          "verbs": [
+            "create",
+            "delete"
+          ]
+        }
+      ]
+    },
+    {
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "RoleBinding",
+      "metadata": {
+        "name": "rsmod-0922-write",
+        "labels": {
+          "network.ani.io/test-run": "rsmod-0922"
+        },
+        "namespace": "kcn-system"
+      },
+      "roleRef": {
+        "apiGroup": "rbac.authorization.k8s.io",
+        "kind": "Role",
+        "name": "rsmod-0922-write"
+      },
+      "subjects": [
+        {
+          "kind": "ServiceAccount",
+          "name": "network",
+          "namespace": "rsmod-0922"
+        }
+      ]
+    },
+    {
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "Role",
+      "metadata": {
+        "name": "rsmod-0922-pods",
+        "labels": {
+          "network.ani.io/test-run": "rsmod-0922"
+        },
+        "namespace": "rsmod-87bac0ed-a516-444a-b49c-0d6d292911d4"
+      },
+      "rules": [
+        {
+          "apiGroups": [
+            ""
+          ],
+          "resources": [
+            "pods"
+          ],
+          "verbs": [
+            "get",
+            "list",
+            "create",
+            "delete"
+          ]
+        },
+        {
+          "apiGroups": [
+            ""
+          ],
+          "resources": [
+            "pods/exec"
+          ],
+          "verbs": [
+            "create",
+            "get"
+          ]
+        }
+      ]
+    },
+    {
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "RoleBinding",
+      "metadata": {
+        "name": "rsmod-0922-pods",
+        "labels": {
+          "network.ani.io/test-run": "rsmod-0922"
+        },
+        "namespace": "rsmod-87bac0ed-a516-444a-b49c-0d6d292911d4"
+      },
+      "roleRef": {
+        "apiGroup": "rbac.authorization.k8s.io",
+        "kind": "Role",
+        "name": "rsmod-0922-pods"
+      },
+      "subjects": [
+        {
+          "kind": "ServiceAccount",
+          "name": "workload-owner",
+          "namespace": "rsmod-0922"
+        }
+      ]
+    },
+    {
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "Role",
+      "metadata": {
+        "name": "rsmod-0922-pods",
+        "labels": {
+          "network.ani.io/test-run": "rsmod-0922"
+        },
+        "namespace": "rsmod-0922"
+      },
+      "rules": [
+        {
+          "apiGroups": [
+            ""
+          ],
+          "resources": [
+            "pods"
+          ],
+          "verbs": [
+            "get",
+            "list",
+            "create",
+            "delete"
+          ]
+        },
+        {
+          "apiGroups": [
+            ""
+          ],
+          "resources": [
+            "pods/exec"
+          ],
+          "verbs": [
+            "create",
+            "get"
+          ]
+        }
+      ]
+    },
+    {
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "RoleBinding",
+      "metadata": {
+        "name": "rsmod-0922-pods",
+        "labels": {
+          "network.ani.io/test-run": "rsmod-0922"
+        },
+        "namespace": "rsmod-0922"
+      },
+      "roleRef": {
+        "apiGroup": "rbac.authorization.k8s.io",
+        "kind": "Role",
+        "name": "rsmod-0922-pods"
+      },
+      "subjects": [
+        {
+          "kind": "ServiceAccount",
+          "name": "workload-owner",
+          "namespace": "rsmod-0922"
+        }
+      ]
+    },
+    {
+      "apiVersion": "v1",
+      "kind": "Namespace",
+      "metadata": {
+        "name": "rsmod-d013b7ac-e53f-46cd-9a06-2b01013262e6",
+        "labels": {
+          "network.ani.io/test-run": "rsmod-0922",
+          "network.ani.io/managed-by": "ani-network-service",
+          "network.ani.io/tenant-id": "d013b7ac-e53f-46cd-9a06-2b01013262e6"
+        }
+      }
+    },
+    {
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "Role",
+      "metadata": {
+        "name": "rsmod-0922-write",
+        "labels": {
+          "network.ani.io/test-run": "rsmod-0922"
+        },
+        "namespace": "rsmod-d013b7ac-e53f-46cd-9a06-2b01013262e6"
+      },
+      "rules": [
+        {
+          "apiGroups": [
+            "networking.kubercloud.com"
+          ],
+          "resources": [
+            "vpcs",
+            "subnets",
+            "eips",
+            "snats"
+          ],
+          "verbs": [
+            "create",
+            "patch",
+            "delete"
+          ]
+        },
+        {
+          "apiGroups": [
+            "gateway.networking.k8s.io"
+          ],
+          "resources": [
+            "gateways",
+            "httproutes"
+          ],
+          "verbs": [
+            "create",
+            "patch",
+            "delete"
+          ]
+        },
+        {
+          "apiGroups": [
+            "gateway.envoyproxy.io"
+          ],
+          "resources": [
+            "backends",
+            "backendtrafficpolicies"
+          ],
+          "verbs": [
+            "create",
+            "patch",
+            "delete"
+          ]
+        }
+      ]
+    },
+    {
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "RoleBinding",
+      "metadata": {
+        "name": "rsmod-0922-write",
+        "labels": {
+          "network.ani.io/test-run": "rsmod-0922"
+        },
+        "namespace": "rsmod-d013b7ac-e53f-46cd-9a06-2b01013262e6"
+      },
+      "roleRef": {
+        "apiGroup": "rbac.authorization.k8s.io",
+        "kind": "Role",
+        "name": "rsmod-0922-write"
+      },
+      "subjects": [
+        {
+          "kind": "ServiceAccount",
+          "name": "network",
+          "namespace": "rsmod-0922"
+        }
+      ]
+    },
+    {
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "Role",
+      "metadata": {
+        "name": "rsmod-0922-pods",
+        "labels": {
+          "network.ani.io/test-run": "rsmod-0922"
+        },
+        "namespace": "rsmod-d013b7ac-e53f-46cd-9a06-2b01013262e6"
+      },
+      "rules": [
+        {
+          "apiGroups": [
+            ""
+          ],
+          "resources": [
+            "pods"
+          ],
+          "verbs": [
+            "get",
+            "list",
+            "create",
+            "delete"
+          ]
+        },
+        {
+          "apiGroups": [
+            ""
+          ],
+          "resources": [
+            "pods/exec"
+          ],
+          "verbs": [
+            "create",
+            "get"
+          ]
+        }
+      ]
+    },
+    {
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "RoleBinding",
+      "metadata": {
+        "name": "rsmod-0922-pods",
+        "labels": {
+          "network.ani.io/test-run": "rsmod-0922"
+        },
+        "namespace": "rsmod-d013b7ac-e53f-46cd-9a06-2b01013262e6"
+      },
+      "roleRef": {
+        "apiGroup": "rbac.authorization.k8s.io",
+        "kind": "Role",
+        "name": "rsmod-0922-pods"
+      },
+      "subjects": [
+        {
+          "kind": "ServiceAccount",
+          "name": "workload-owner",
+          "namespace": "rsmod-0922"
+        }
+      ]
+    }
+  ]
+}

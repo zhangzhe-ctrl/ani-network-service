@@ -1,0 +1,335 @@
+package data
+
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"regexp"
+	"sort"
+	"strings"
+	"time"
+
+	"github.com/zhangzhe-ctrl/ani-resource-service/internal/data/network/sqlcgen"
+	"k8s.io/apimachinery/pkg/api/resource"
+	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
+	"k8s.io/apimachinery/pkg/runtime/schema"
+	"k8s.io/client-go/tools/cache"
+	"sigs.k8s.io/yaml"
+)
+
+// This is a pinned installation expectation, not a readiness override. The
+// shared audit must independently match the installation and running images.
+type LoadBalancerInstallation struct {
+	Fingerprint, ControllerImageID, EnvoyImageID, ShutdownImageID, KCImageID string
+}
+
+var lbCRDs = schema.GroupVersionResource{Group: "apiextensions.k8s.io", Version: "v1", Resource: "customresourcedefinitions"}
+var lbReviews = schema.GroupVersionResource{Group: "authorization.k8s.io", Version: "v1", Resource: "subjectaccessreviews"}
+var lbObservationGVRs = []schema.GroupVersionResource{lbGateways, lbRoutes, lbBackends, lbPolicies, lbDeployments, lbReplicaSets, lbEndpointSlices, lbGatewayClasses, lbEnvoyProxies, lbCRDs}
+
+func (p *KCProvider) ConfigureLoadBalancer(expected LoadBalancerInstallation) error {
+	if p.observation != nil {
+		return fmt.Errorf("LB installation must be configured before starting observation")
+	}
+	if !regexp.MustCompile(`^[a-f0-9]{64}$`).MatchString(expected.Fingerprint) {
+		return fmt.Errorf("LB installation fingerprint must be sha256")
+	}
+	for _, id := range []string{expected.ControllerImageID, expected.EnvoyImageID, expected.ShutdownImageID, expected.KCImageID} {
+		if !regexp.MustCompile(`^(?:[^\s@]+@)?sha256:[a-f0-9]{64}$`).MatchString(id) {
+			return fmt.Errorf("LB expected running image IDs must have fixed sha256 digests")
+		}
+	}
+	p.loadBalancerInstallation = &expected
+	return nil
+}
+func lbViewObject(v *auditView, gvr schema.GroupVersionResource, ns, name string) *unstructured.Unstructured {
+	index := v.indices[gvr]
+	if index == nil {
+		return nil
+	}
+	key := name
+	if ns != "" {
+		key = ns + "/" + name
+	}
+	obj, exists, err := index.GetByKey(key)
+	if err != nil || !exists {
+		return nil
+	}
+	return obj.(*unstructured.Unstructured)
+}
+func lbInstallationBundle(v *auditView) map[string]any {
+	bundle := map[string]any{}
+	add := func(gvr schema.GroupVersionResource, ns, name string) {
+		obj := lbViewObject(v, gvr, ns, name)
+		if obj == nil {
+			bundle[gvr.Resource+"/"+ns+"/"+name] = nil
+			return
+		}
+		content := obj.Object["spec"]
+		if gvr == kcConfigMaps {
+			content = obj.Object["data"]
+		}
+		bundle[gvr.Resource+"/"+ns+"/"+name] = map[string]any{"uid": string(obj.GetUID()), "content": content}
+	}
+	for _, name := range []string{"lb-small", "lb-small-noeip"} {
+		add(lbGatewayClasses, "", name)
+	}
+	for _, name := range []string{"envoy-proxy-small", "envoy-proxy-small-noeip"} {
+		add(lbEnvoyProxies, "envoy-gateway-system", name)
+	}
+	add(kcConfigMaps, "envoy-gateway-system", "envoy-gateway-config")
+	for _, name := range []string{"gateways.gateway.networking.k8s.io", "httproutes.gateway.networking.k8s.io", "backends.gateway.envoyproxy.io", "backendtrafficpolicies.gateway.envoyproxy.io"} {
+		add(lbCRDs, "", name)
+	}
+	return bundle
+}
+func (p *KCProvider) inspectLBCapability(ctx context.Context, v *auditView) (bool, string, []string) {
+	expected := p.loadBalancerInstallation
+	fingerprint := contentHash(lbInstallationBundle(v))
+	if expected == nil || fingerprint != expected.Fingerprint {
+		return false, fingerprint, nil
+	}
+	config := lbViewObject(v, kcConfigMaps, "envoy-gateway-system", "envoy-gateway-config")
+	if config == nil {
+		return false, fingerprint, nil
+	}
+	raw, _, _ := unstructured.NestedString(config.Object, "data", "envoy-gateway.yaml")
+	body, err := yaml.YAMLToJSONStrict([]byte(raw))
+	if err != nil {
+		return false, fingerprint, nil
+	}
+	var parsed map[string]any
+	if json.Unmarshal(body, &parsed) != nil {
+		return false, fingerprint, nil
+	}
+	s := &unstructured.Unstructured{Object: parsed}
+	if !crBool(s, "extensionApis", "enableBackend") || !crBool(s, "extensionApis", "enableEnvoyPatchPolicy") || crString(s, "provider", "type") != "Kubernetes" || crString(s, "provider", "kubernetes", "deploy", "type") != "GatewayNamespace" || crString(s, "gateway", "controllerName") != lbController {
+		return false, fingerprint, nil
+	}
+	for _, suffix := range []string{"", "-noeip"} {
+		class := lbViewObject(v, lbGatewayClasses, "", "lb-small"+suffix)
+		proxy := lbViewObject(v, lbEnvoyProxies, "envoy-gateway-system", "envoy-proxy-small"+suffix)
+		if class == nil || proxy == nil || class.GetDeletionTimestamp() != nil || proxy.GetDeletionTimestamp() != nil {
+			return false, fingerprint, nil
+		}
+		conditions, _, _ := unstructured.NestedSlice(class.Object, "status", "conditions")
+		if !lbConditions(conditions, class.GetGeneration(), "Accepted") || crString(class, "spec", "controllerName") != lbController || crString(class, "spec", "parametersRef", "group") != lbEnvoyProxies.Group || crString(class, "spec", "parametersRef", "kind") != "EnvoyProxy" || crString(class, "spec", "parametersRef", "namespace") != "envoy-gateway-system" || crString(class, "spec", "parametersRef", "name") != proxy.GetName() {
+			return false, fingerprint, nil
+		}
+		typeName := "LoadBalancer"
+		if suffix != "" {
+			typeName = "ClusterIP"
+		}
+		serviceType := crString(proxy, "spec", "provider", "kubernetes", "envoyService", "type")
+		// The supplied EnvoyProxy CRD defaults an omitted Service type to
+		// LoadBalancer, including installations omitting envoyService entirely.
+		if serviceType == "" && !hasField(proxy, "spec", "provider", "kubernetes", "envoyService", "type") {
+			serviceType = "LoadBalancer"
+		}
+		if serviceType != typeName || crInt(proxy, "spec", "provider", "kubernetes", "envoyDeployment", "replicas") != 2 || !lbQuantityEquals(proxy, "1", "spec", "provider", "kubernetes", "envoyDeployment", "container", "resources", "requests", "cpu") || !lbQuantityEquals(proxy, "1Gi", "spec", "provider", "kubernetes", "envoyDeployment", "container", "resources", "requests", "memory") {
+			return false, fingerprint, nil
+		}
+		if !crBool(proxy, "spec", "preserveRouteOrder") || crString(proxy, "spec", "provider", "type") != "Kubernetes" {
+			return false, fingerprint, nil
+		}
+	}
+	for _, name := range []string{"gateways.gateway.networking.k8s.io", "httproutes.gateway.networking.k8s.io", "backends.gateway.envoyproxy.io", "backendtrafficpolicies.gateway.envoyproxy.io"} {
+		crd := lbViewObject(v, lbCRDs, "", name)
+		if crd == nil || crd.GetDeletionTimestamp() != nil {
+			return false, fingerprint, nil
+		}
+		established := false
+		conditions, _, _ := unstructured.NestedSlice(crd.Object, "status", "conditions")
+		for _, raw := range conditions {
+			c, _ := raw.(map[string]any)
+			if c["type"] == "Established" && c["status"] == "True" {
+				established = true
+			}
+		}
+		served := false
+		version := "v1"
+		if strings.Contains(name, "envoyproxy") {
+			version = "v1alpha1"
+		}
+		versions, _, _ := unstructured.NestedSlice(crd.Object, "spec", "versions")
+		for _, raw := range versions {
+			v, _ := raw.(map[string]any)
+			served = served || v["name"] == version && v["served"] == true
+		}
+		if !established || !served {
+			return false, fingerprint, nil
+		}
+	}
+	seen := map[string]bool{}
+	// A digest-pinned installation can bootstrap its first Envoy instance.
+	// Mutable image references require an existing running owner chain below.
+	pinnedProxyImages := true
+	for _, suffix := range []string{"", "-noeip"} {
+		proxy := lbViewObject(v, lbEnvoyProxies, "envoy-gateway-system", "envoy-proxy-small"+suffix)
+		if proxy == nil {
+			pinnedProxyImages = false
+			continue
+		}
+		image := crString(proxy, "spec", "provider", "kubernetes", "envoyDeployment", "container", "image")
+		containers, _, _ := unstructured.NestedSlice(proxy.Object, "spec", "provider", "kubernetes", "envoyDeployment", "patch", "value", "spec", "template", "spec", "containers")
+		shutdown := ""
+		for _, raw := range containers {
+			c, _ := raw.(map[string]any)
+			if c["name"] == "shutdown-manager" {
+				shutdown, _ = c["image"].(string)
+			}
+		}
+		// A bare runtime image ID may be an OCI configuration digest, not a
+		// pullable manifest digest. It requires the live owner chain below.
+		envoyDigest, shutdownDigest := lbImageDigest(expected.EnvoyImageID), lbImageDigest(expected.ShutdownImageID)
+		pinnedProxyImages = pinnedProxyImages && envoyDigest != "" && shutdownDigest != "" && strings.HasSuffix(image, "@sha256:"+envoyDigest) && strings.HasSuffix(shutdown, "@sha256:"+shutdownDigest)
+	}
+	if pinnedProxyImages {
+		seen[expected.EnvoyImageID] = true
+		seen[expected.ShutdownImageID] = true
+	}
+	validImages := true
+	index := v.indices[pods]
+	if index == nil {
+		return false, fingerprint, nil
+	}
+	for _, raw := range index.List() {
+		pod := raw.(*unstructured.Unstructured)
+		if pod.GetDeletionTimestamp() != nil || crString(pod, "status", "phase") != "Running" {
+			continue
+		}
+		statuses, _, _ := unstructured.NestedSlice(pod.Object, "status", "containerStatuses")
+		for _, raw := range statuses {
+			c, _ := raw.(map[string]any)
+			name, _ := c["name"].(string)
+			id, _ := c["imageID"].(string)
+			want := ""
+			if pod.GetNamespace() == "envoy-gateway-system" && name == "envoy-gateway" {
+				want = expected.ControllerImageID
+			}
+			if pod.GetNamespace() == kcSystemNamespace && (name == "kcn-controller" || name == "kcn-cni-server") {
+				want = expected.KCImageID
+			}
+			if lbInstalledProxyPod(v, pod) {
+				if name == "envoy" {
+					want = expected.EnvoyImageID
+				}
+				if name == "shutdown-manager" {
+					want = expected.ShutdownImageID
+				}
+			}
+			if want != "" {
+				validImages = validImages && id == want && c["ready"] == true
+				seen[id] = true
+			}
+		}
+	}
+	images := []string{}
+	for id := range seen {
+		images = append(images, id)
+	}
+	sort.Strings(images)
+	for _, id := range []string{expected.ControllerImageID, expected.EnvoyImageID, expected.ShutdownImageID, expected.KCImageID} {
+		if !seen[id] {
+			validImages = false
+		}
+	}
+	if !validImages {
+		return false, fingerprint, images
+	}
+	// The installed controller's permissions are checked through Kubernetes'
+	// authorization API; no owner-supplied flag substitutes for that result.
+	for _, permission := range []struct{ group, resource, namespace, verb string }{{"authentication.k8s.io", "tokenreviews", "", "create"}, {"apps", "deployments", p.repository.placement.NamespacePrefix + "capability", "create"}, {"", "services", p.repository.placement.NamespacePrefix + "capability", "create"}, {lbBackends.Group, "backends", p.repository.placement.NamespacePrefix + "capability", "get"}} {
+		request := &unstructured.Unstructured{Object: map[string]any{"apiVersion": "authorization.k8s.io/v1", "kind": "SubjectAccessReview", "spec": map[string]any{"user": "system:serviceaccount:envoy-gateway-system:envoy-gateway", "groups": []any{"system:serviceaccounts", "system:serviceaccounts:envoy-gateway-system", "system:authenticated"}, "resourceAttributes": map[string]any{"group": permission.group, "resource": permission.resource, "namespace": permission.namespace, "verb": permission.verb}}}}
+		response, err := p.client.Resource(lbReviews).Create(ctx, request, metav1.CreateOptions{})
+		if err != nil || !crBool(response, "status", "allowed") || crBool(response, "status", "denied") {
+			return false, fingerprint, images
+		}
+	}
+	return true, fingerprint, images
+}
+func lbInstalledProxyPod(v *auditView, pod *unstructured.Unstructured) bool {
+	ns := pod.GetNamespace()
+	gwName := pod.GetLabels()["gateway.envoyproxy.io/owning-gateway-name"]
+	if gwName == "" || pod.GetLabels()["gateway.envoyproxy.io/owning-gateway-namespace"] != ns {
+		return false
+	}
+	gateway := lbViewObject(v, lbGateways, ns, gwName)
+	if gateway == nil {
+		return false
+	}
+	deployment := lbViewObject(v, lbDeployments, ns, gwName)
+	if !lbOwnedBy(deployment, "Gateway", gwName, string(gateway.GetUID())) {
+		return false
+	}
+	for _, ref := range pod.GetOwnerReferences() {
+		if ref.Kind != "ReplicaSet" {
+			continue
+		}
+		rs := lbViewObject(v, lbReplicaSets, ns, ref.Name)
+		if rs != nil && rs.GetUID() == ref.UID && lbOwnedBy(rs, "Deployment", deployment.GetName(), string(deployment.GetUID())) {
+			return true
+		}
+	}
+	return false
+}
+func (o *KCObservation) collectLB(ctx context.Context, v *auditView) error {
+	if o.provider.loadBalancerInstallation == nil {
+		return nil
+	}
+	// Optional LB prerequisites may be missing without making ordinary VPC
+	// observations unavailable. Bound their I/O inside the existing audit.
+	optional, cancel := context.WithTimeout(ctx, 4*time.Second)
+	defer cancel()
+	complete := true
+	for _, gvr := range lbObservationGVRs {
+		objects, err := o.provider.listAll(optional, gvr)
+		if err != nil {
+			complete = false
+			break
+		}
+		index := cache.NewIndexer(cache.MetaNamespaceKeyFunc, cache.Indexers{relationshipIndex: relationshipKeys})
+		for _, obj := range objects {
+			if err = index.Add(obj.DeepCopy()); err != nil {
+				return err
+			}
+		}
+		v.indices[gvr] = index
+	}
+	ready, fingerprint, images := o.provider.inspectLBCapability(optional, v)
+	ready = ready && complete
+	reason := ""
+	if !ready {
+		reason = "LOAD_BALANCER_INSTALLATION_NOT_READY"
+	}
+	if images == nil {
+		images = []string{}
+	}
+	if !o.valid(v, []string{"lb-capability"}) {
+		return nil
+	}
+	return o.provider.repository.queries.SaveLBCapability(ctx, sqlcgen.SaveLBCapabilityParams{ClusterID: o.provider.repository.placement.ClusterID, Ready: ready, Reason: reason, ObservedAt: v.collected, Fingerprint: fingerprint, ProviderImages: images})
+}
+func (p *KCProvider) observationResources() []schema.GroupVersionResource {
+	values := append([]schema.GroupVersionResource{}, observationGVRs...)
+	if p.loadBalancerInstallation != nil {
+		values = append(values, lbObservationGVRs...)
+	}
+	return values
+}
+func lbImageDigest(id string) string { _, digest, _ := strings.Cut(id, "@sha256:"); return digest }
+
+func lbQuantityEquals(obj *unstructured.Unstructured, expected string, fields ...string) bool {
+	value, found, err := unstructured.NestedFieldNoCopy(obj.Object, fields...)
+	if err != nil || !found {
+		return false
+	}
+	switch value.(type) {
+	case string, int64, float64:
+	default:
+		return false
+	}
+	quantity, err := resource.ParseQuantity(fmt.Sprint(value))
+	return err == nil && quantity.Cmp(resource.MustParse(expected)) == 0
+}

@@ -10,8 +10,8 @@ import (
 	"time"
 
 	"github.com/google/uuid"
-	"github.com/zhangzhe-ctrl/ani-network-service/internal/biz"
-	"github.com/zhangzhe-ctrl/ani-network-service/internal/server"
+	"github.com/zhangzhe-ctrl/ani-resource-service/internal/biz/network"
+	"github.com/zhangzhe-ctrl/ani-resource-service/internal/server"
 )
 
 // Lifecycle tests exercise the process interface. They do not establish any

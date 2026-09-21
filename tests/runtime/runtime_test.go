@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"context"
 	"errors"
-	"github.com/zhangzhe-ctrl/ani-network-service/tests/testenv"
+	"github.com/zhangzhe-ctrl/ani-resource-service/tests/testenv"
 	"go/parser"
 	"go/token"
 	"io"
@@ -39,8 +39,8 @@ import (
 	"google.golang.org/protobuf/types/known/durationpb"
 	"google.golang.org/protobuf/types/known/emptypb"
 
-	conf "github.com/zhangzhe-ctrl/ani-network-service/internal/conf/v1"
-	serverpkg "github.com/zhangzhe-ctrl/ani-network-service/internal/server"
+	conf "github.com/zhangzhe-ctrl/ani-resource-service/internal/conf/v1"
+	serverpkg "github.com/zhangzhe-ctrl/ani-resource-service/internal/server"
 )
 
 func TestRuntimeLifecycle(t *testing.T) {

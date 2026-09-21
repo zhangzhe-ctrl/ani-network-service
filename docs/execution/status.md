@@ -1,8 +1,27 @@
 # Network 执行状态
 
-更新日期：2026-09-18。本文件是唯一当前进度入口；[规格](../specs/vpc-subnet.md)描述目标，[计划](../plans/vpc-subnet.md)描述工作包。
+更新日期：2026-09-22。本文件是唯一当前进度入口；[规格](../specs/vpc-subnet.md)描述目标，[计划](../plans/vpc-subnet.md)描述工作包。
 
-## 当前工作：NET-VPC-LB-02
+## 2026-09-22：Resource 改名与 Network 模块整理
+
+状态 `in_progress`，完整 R0—R5 尚未完成。独立分支 `codex/resource-service-modularization`，
+工作树 `/home/chabking/workspace/.worktrees/resource-service-modularization`；原工作树和历史保留。
+[实施记录](records/RESOURCE-MOD-20260922/README.md)及[改名清单](records/RESOURCE-MOD-20260922/rename-inventory.md)。
+
+| 阶段 | 当前证据 | 结果 |
+|---|---|---|
+| R0 | HEAD/main、dirty 文档、Fedora/三节点身份和安装 fingerprint 冻结；旧版 verify/build | pass；Public 独立设备前置不足 |
+| R1/R2 | 新 module/cmd、三层 Network 整理、固定生成、descriptor 精确差异、递归违规 fixture、候选 verify/build | pass；故障注入入口最终检查进行中 |
+| 兼容增量 | 独立旧客户端、旧库、cursor/回执、候选在途任务原版恢复、反向旧消费者、API 清理 | pass（受控 PG/Provider） |
+| R3 | tools/verify/integration/race/tenant-mutations/audit | in_progress，最终门禁尚未齐全 |
+| R4 | 真实旧对象接管、数据面、回退、产品清理 | not_verified；Public 前置受共享设备登记限制 |
+| R5 | 最终提交/CI/合入、托管仓库/正式目录改名、新旧 module 消费 | not_verified；不得提前发布 |
+
+下一步：完成最终候选远程门禁及可独立执行的真实验收，保留 Public 阻塞证据。
+现有 ens35 的外部 binding 不属于本 run；不改共享登记/节点网络，也不复制旧平台产品身份冒充新建。
+只有所有必需验收通过才完成 Goal。下述历史证据保持其原时点与范围。
+
+## 既有 Network 实施状态：NET-VPC-LB-02
 
 2026-09-18 [LB 正式修复及 CI 修正](records/NET-VPC-LB-02/lb-fix-20260918/README.md)已实现：LB 关系核验前后两处审计失效均改为在原调用截止时间内重新完整采集，保留身份、时效与并发检查；无截止时间调用仍最多一次刷新，取消/超时不返回可用证明。原代码在私网/双入口均能复现剩余约 27 秒却提前 unknown/PROVIDER_UNAVAILABLE；修复后的真实 PG/adapter/worker 单次调用在约 5.5 秒内 configured/fresh，Provider 对象摘要不变。Fedora UTC 环境中相关 PostgreSQL/race 27 项顶层测试、54 项子测试及 `make verify` 均 pass，包含六种真实进程恢复场景。四个隔离 PG 容器已清理，本轮没有集群写入。首次修复提交 `a7ff144` 已推送原分支，其 CI 的 Verify 与完整 PG/进程恢复均 pass；全仓 race 触发 Go 默认整包 10 分钟时限，未报告竞争或断言失败。现为全仓 integration/race 显式设置 20 分钟测试预算；产品请求超时不变。预算补正提交及后续 CI 以最终发布回执为准。此结果不扩展为真实双入口稳定窗口或所有历史退化均修复。
 

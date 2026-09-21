@@ -13,7 +13,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/zhangzhe-ctrl/ani-network-service/tests/testenv"
+	"github.com/zhangzhe-ctrl/ani-resource-service/tests/testenv"
 )
 
 type event struct {

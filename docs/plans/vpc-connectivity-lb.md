@@ -7,7 +7,7 @@
 - Network 从 `d8835a22d905e358b7f60756d3113baa97d7c762` 的已实现 EIP/SNAT 基础继续；当前设计工作树为 `codex/vpc-lb-plan-20260914`，只修改文档。实施时先接入本设计文件快照，再创建独立干净实现工作树，不能直接改 main 或覆盖原 EIP/SNAT 工作树。
 - ANI 当前只读参考为 `50aa9fe2099b7ff4c276f883939a8d26c9d9eff8`；这是参考时点，开始 ANI 接线任务前必须固定届时认可的基线与允许文件。不得在 Network 任务内顺带合并/部署 ANI。
 - kc/Envoy 使用明确源码与镜像 digest、安装参数和集群身份；手工实验最新证据可作为回归输入，不能替代产品接口验收。kc 修复是外部前提，不在本计划写源码或自动重启工作流。
-- 业务实现只在 `cmd/ani-network-service`、`internal/{biz,data,service,server}`、`api/network`、对应生成文件、`migrations`、`deployments`、必要 `scripts` 和正式 `docs` 内推进；保持本仓分层。具体任务卡继续收窄范围。
+- 业务实现只在 `cmd/ani-resource-service`、`internal/{biz,data,service,server}`、`api/network`、对应生成文件、`migrations`、`deployments`、必要 `scripts` 和正式 `docs` 内推进；保持本仓分层。具体任务卡继续收窄范围。
 - 各任务在提交前运行必要门禁及 `make verify`，重任务优先 ubuntu，使用固定源码manifest、资源上限和独立运行目录；参考[远程执行约定](../remote-execution.md)。任务完成不自动授权提交、推送、部署或存量迁移执行。
 - 每个任务交付：代码/迁移或契约、相关文档、实际命令与退出码、pass/fail/not_verified、未解决边界。不能只交 YAML renderer 或单元测试就称生命周期完成。
 
@@ -59,7 +59,7 @@ U05 的纯契约/领域工作可与 U02—U04 独立准备；U10 可在契约冻
 ### NET-U01：地址池用途、系统归属和统一 EIP 占用
 
 - 依赖：U00。
-- 修改范围：新 migration、`internal/data/queries`、sqlc生成、对应 biz/data模型和真实PG测试。
+- 修改范围：新 migration、`internal/data/network/queries`、sqlc生成、对应 biz/data模型和真实PG测试。
 - 工作：演进池scope与双默认池；EIP scope/managed_by/system_owner；SNAT purpose唯一性；基础连接步骤；LB身份/父关系的最小表；统一EIP claim；VIP意图。旧Public记录按可靠来源回填，已有SNAT生成claim，保留ID/UID/历史幂等。追加migration，不编辑0005。
 - 验收：U-V03/04数据库部分；同EIP的SNAT/LB并发竞争只有一个事务成功；同VPC可一内一公但不能两条同用途；不同租户的typed FK拒绝；迁移前后旧Public读取/历史重放不变；冲突数据报告并停止，不能按名称猜归属。锁顺序与清理事务有测试。
 - 后继：U02、U03、U04、U05。数据库升级测试使用独立数据库，不迁移现有环境。
@@ -75,7 +75,7 @@ U05 的纯契约/领域工作可与 U02—U04 独立准备；U10 可在契约冻
 ### NET-U03：VPC 基础连接创建、删除、终止与观察
 
 - 依赖：U01、U02。
-- 修改范围：`internal/biz/network.go`、VPC worker、VPC受理/删除数据层、内部基础连接用例、kc adapter、观察索引和VPC响应；相关集成测试。
+- 修改范围：`internal/biz/network/network.go`、VPC worker、VPC受理/删除数据层、内部基础连接用例、kc adapter、观察索引和VPC响应；相关集成测试。
 - 工作：首次受理持久固定池与基础子资源；VPC ProviderReady→Intranet EIP→Snat→聚合完成；内部Snat不依赖VPC产品available。实现系统资源隐藏/禁止租户独立操作、VPC依赖退化恢复、失败创建终止、自动清理基础资源和删除封闭。
 - 验收：U-V01/02/09/11；VPC尚无任何CR即终止、EIP已分配未Snat、POST响应丢失、绑定失败、删除各步重启都可恢复；从未发送步骤可直接取消、未知步骤不能提前释放。已有Subnet/Attachment仍阻止删除，系统SNAT不导致永久占用。GET/List纯读，旧成功operation不回写。
 - 交付边界：须包括本卡依赖观察和删除，不只实现“创建成功路径”。
@@ -83,7 +83,7 @@ U05 的纯契约/领域工作可与 U02—U04 独立准备；U10 可在契约冻
 ### NET-U04：既有 Public EIP/SNAT 流程适配
 
 - 依赖：U01、U03。
-- 修改范围：`internal/biz/egress*`、`internal/data/egress*`、`queries/egress.sql`、`kc_egress.go`、egress契约/测试。
+- 修改范围：`internal/biz/network/egress*`、`internal/data/network/egress*`、`queries/egress.sql`、`kc_egress.go`、egress契约/测试。
 - 工作：Public API按purpose查询；申请固定Public默认池；Public绑定使用统一claim；启停/解绑/释放仅影响Public；EIP查询返回目标类型，基础系统资源不能按猜测ID操作。Public准入不得复用Intranet验证绕过公网要求。
 - 验收：U-V03/04/05；一内一公同时存在时GetSnat稳定返回Public；停用/解绑Public前后Intranet资源ID、地址、ProviderUID/spec及内网访问不变；新旧binding字段投影符合U00；EIP释放检查所有合法和外来目标。
 

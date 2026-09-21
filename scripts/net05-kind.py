@@ -222,7 +222,7 @@ def prepare_database():
     for i, (tenant, actor) in enumerate(zip(state['tenants'], state['actors'])):
         sql('ani', "INSERT INTO tenants(id,name,display_name) VALUES('%s','%s','NET-05 fixture'); INSERT INTO users(id,tenant_id,username,email) VALUES('%s','%s','probe','probe@net05.invalid');" % (tenant, state['id'] + '-' + str(i), actor, tenant), role='ani_owner')
     env = os.environ | {'ANI_NETWORK_MIGRATION_DSN': dsn('network', 'network_owner'), 'ANI_NETWORK_RUNTIME_ROLE': 'network'}
-    p = run([str(root / 'bin/ani-network-service'), '-migrate'], env=env)
+    p = run([str(root / 'bin/ani-resource-service'), '-migrate'], env=env)
     write('network-migrate.json', {'exit': p.returncode, 'stdout': redact(p.stdout), 'stderr': redact(p.stderr)})
     tests = []
     for role, db in [('network', 'ani'), ('ani', 'network')]:
@@ -292,7 +292,7 @@ def start(which='both'):
             'ANI_NETWORK_CURSOR_SIGNING_KEY': state['cursor_key'], 'ANI_NETWORK_CLUSTER_ID': state['cluster_id'],
             'ANI_NETWORK_NAMESPACE_PREFIX': state['prefix'], 'ANI_NETWORK_INSTANCE_CONSUMER_ENDPOINT': '127.0.0.1:' + str(state['ports']['consumer']),
             'ANI_SERVER_GRPC_ADDR': '127.0.0.1:' + str(state['ports']['grpc']), 'ANI_SERVER_ADMIN_ADDR': '127.0.0.1:' + str(state['ports']['admin'])}
-        launch('network', [str(root / 'bin/ani-network-service'), '-conf', str(root / 'configs')], ne)
+        launch('network', [str(root / 'bin/ani-resource-service'), '-conf', str(root / 'configs')], ne)
     if which in ['both', 'gateway']:
         if not state.get('redis_container'):
             state['redis_container'] = run(['docker', 'run', '-d', '--name', state['id'] + '-redis', '--label', 'net05.ani.io/run=' + state['id'],

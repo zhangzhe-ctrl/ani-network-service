@@ -3523,7 +3523,7 @@ const file_network_v1_network_proto_rawDesc = "" +
 	"\x11ConfirmAttachment\x12$.network.v1.ConfirmAttachmentRequest\x1a%.network.v1.ConfirmAttachmentResponse\x12`\n" +
 	"\x11ReleaseAttachment\x12$.network.v1.ReleaseAttachmentRequest\x1a%.network.v1.ReleaseAttachmentResponse2v\n" +
 	"\x1eInstanceNetworkConsumerService\x12T\n" +
-	"\rGetSubmission\x12 .network.v1.GetSubmissionRequest\x1a!.network.v1.GetSubmissionResponseBGZEgithub.com/zhangzhe-ctrl/ani-network-service/api/network/v1;networkv1b\x06proto3"
+	"\rGetSubmission\x12 .network.v1.GetSubmissionRequest\x1a!.network.v1.GetSubmissionResponseBHZFgithub.com/zhangzhe-ctrl/ani-resource-service/api/network/v1;networkv1b\x06proto3"
 
 var (
 	file_network_v1_network_proto_rawDescOnce sync.Once

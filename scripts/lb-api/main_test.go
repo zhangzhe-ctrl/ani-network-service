@@ -6,8 +6,8 @@ import (
 	"path/filepath"
 	"testing"
 
-	networkv1 "github.com/zhangzhe-ctrl/ani-network-service/api/network/v1"
-	"github.com/zhangzhe-ctrl/ani-network-service/internal/biz"
+	networkv1 "github.com/zhangzhe-ctrl/ani-resource-service/api/network/v1"
+	"github.com/zhangzhe-ctrl/ani-resource-service/internal/biz/network"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"

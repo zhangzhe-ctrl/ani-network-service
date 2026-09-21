@@ -1,4 +1,4 @@
-module github.com/zhangzhe-ctrl/ani-network-service
+module github.com/zhangzhe-ctrl/ani-resource-service
 
 go 1.26.7
 

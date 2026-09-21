@@ -20,7 +20,7 @@
 
 **依赖。** 已确认的规格、Network 自有数据库安排，以及该包使用的固定 kc Provider 契约。IAM 后续接线和全平台改造不作为本包启动前提。
 
-**仓库路径角色。** 本仓库 `api/`（待新增）承载业务契约，`internal/service/` 适配契约，`internal/biz/` 实现 VPC 用例与端口，`internal/data/` 实现 sqlc/pgx 与 Provider Adapter，`internal/server/`、`cmd/ani-network-service/` 装配运行流程；迁移、sqlc SQL/配置和专项测试的具体新增路径在包启动时列明。此处只规划 Network 自有表，不修改 ANI 旧表。
+**仓库路径角色。** 本仓库 `api/`（待新增）承载业务契约，`internal/service/` 适配契约，`internal/biz/` 实现 VPC 用例与端口，`internal/data/` 实现 sqlc/pgx 与 Provider Adapter，`internal/server/`、`cmd/ani-resource-service/` 装配运行流程；迁移、sqlc SQL/配置和专项测试的具体新增路径在包启动时列明。此处只规划 Network 自有表，不修改 ANI 旧表。
 
 **行为验证。** 通过 Module Interface 验证创建接受后的查询、同请求重放、同键冲突、跨租户隔离和非法输入；真实 PostgreSQL 验证原子提交、并发幂等及重启后的恢复；受控 Provider 验证超时、重复执行、迟到观测和删除确认，确保无法确认底层删除时不完成删除状态。Get/List 不执行 Provider 写入。
 

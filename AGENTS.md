@@ -11,7 +11,7 @@ task scope and authorization.
 
 ## Boundaries
 
-- `cmd/ani-network-service` is the explicit composition root.
+- `cmd/ani-resource-service` is the explicit composition root.
 - `internal/service` adapts inbound transport contracts to use cases.
 - `internal/biz` owns domain concepts, behavior, use cases, and required ports;
   it must not import Kratos, protobuf, transports, or storage drivers.
@@ -26,6 +26,8 @@ switches unrelated to a real slice. Generate protobuf output through the pinned
 workflow and run `make verify` before committing.
 
 ## Execution location
+
+- Resource modularization R0—R5 uses `ssh fedora` exclusively for generation, builds, tests, PostgreSQL, images and API drivers. No local fallback for this task; see `docs/remote-execution.md`.
 
 - Prefer SSH host `ubuntu` for compilation, full test suites, image builds,
   dependency-tool builds, and PostgreSQL integration tests. Keep local work to

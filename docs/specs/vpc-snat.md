@@ -228,7 +228,7 @@ Snat/EIP Bound 不证明 OVN 下一跳有效、物理网关可达、DNS 可用�
 
 新增 EIPGateway、Public Subnet、VlanNetwork、EIP、Snat 及必要的 Nat/Service 绑定冲突观察，遵循 [共享观察与持久执行](cr-observation.md)。索引按 cluster + namespace + name/UID、EIP→绑定、VPC→绑定、池→EIP、网关/二层网络→池构建；平台依赖变化按持久关系唤醒租户资源，不全租户逐对象查询。status-only、旧/新引用、同名异 UID、断线和迟到事实均须处理。既有系统 namespace 下观察范围不等于租户查询权限。
 
-实现定位：[出网用例与授权端口](../../internal/biz/egress.go)、[平台受理事务](../../internal/data/platform.go)、[租户受理事务](../../internal/data/egress.go)、[kc 出网 adapter](../../internal/data/kc_egress.go)以及[共用 worker](../../internal/biz/worker.go)。平台资源通过同一 worker 的持久租约分支处理，未增设平行生命周期 worker。网卡事实采集器只提供节点原始事实，不受理产品意图，部署契约见[说明](../../deployments/egress/README.md)。
+实现定位：[出网用例与授权端口](../../internal/biz/network/egress.go)、[平台受理事务](../../internal/data/network/platform.go)、[租户受理事务](../../internal/data/network/egress.go)、[kc 出网 adapter](../../internal/data/network/kc_egress.go)以及[共用 worker](../../internal/biz/network/worker.go)。平台资源通过同一 worker 的持久租约分支处理，未增设平行生命周期 worker。网卡事实采集器只提供节点原始事实，不受理产品意图，部署契约见[说明](../../deployments/egress/README.md)。
 
 平台地址池返回的 `topology_fingerprint` 覆盖固定配置、配置版本、池/网关/VLAN/设备配置对象 UID 和实际观察到的 provider 镜像集合。验收记录同时匹配该 fingerprint 与运行镜像 digest；失效或镜像变化阻止新的准入，已有地址及占用不自动清理。VLAN/池的唯一占用槽仅在外部删除被确认后退休；旧资源记录及幂等快照保留。
 

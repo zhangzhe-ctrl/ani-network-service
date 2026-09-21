@@ -18,7 +18,7 @@
 
 ```bash
 go build -trimpath -o "$LB_RUN/lb-api" ./scripts/lb-api
-go build -trimpath -o "$LB_RUN/network" ./cmd/ani-network-service
+go build -trimpath -o "$LB_RUN/network" ./cmd/ani-resource-service
 "$LB_RUN/lb-api" installation -kubeconfig "$KUBECONFIG" -output "$LB_RUN/installation.json"
 ```
 

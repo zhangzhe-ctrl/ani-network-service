@@ -12,7 +12,7 @@ import (
 	"github.com/google/uuid"
 	"github.com/jackc/pgx/v5"
 	"github.com/jackc/pgx/v5/pgxpool"
-	"github.com/zhangzhe-ctrl/ani-network-service/internal/data"
+	"github.com/zhangzhe-ctrl/ani-resource-service/internal/data/network"
 )
 
 type Database struct {

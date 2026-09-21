@@ -6089,7 +6089,7 @@ const file_network_v1_egress_proto_rawDesc = "" +
 	" SetIntranetPoolAllocationEnabled\x123.network.v1.SetIntranetPoolAllocationEnabledRequest\x1a4.network.v1.SetIntranetPoolAllocationEnabledResponse\x12o\n" +
 	"\x16SetDefaultIntranetPool\x12).network.v1.SetDefaultIntranetPoolRequest\x1a*.network.v1.SetDefaultIntranetPoolResponse\x12\x87\x01\n" +
 	"\x1eGetPlatformNetworkCapabilities\x121.network.v1.GetPlatformNetworkCapabilitiesRequest\x1a2.network.v1.GetPlatformNetworkCapabilitiesResponse\x12i\n" +
-	"\x14GetPlatformOperation\x12'.network.v1.GetPlatformOperationRequest\x1a(.network.v1.GetPlatformOperationResponseBGZEgithub.com/zhangzhe-ctrl/ani-network-service/api/network/v1;networkv1b\x06proto3"
+	"\x14GetPlatformOperation\x12'.network.v1.GetPlatformOperationRequest\x1a(.network.v1.GetPlatformOperationResponseBHZFgithub.com/zhangzhe-ctrl/ani-resource-service/api/network/v1;networkv1b\x06proto3"
 
 var (
 	file_network_v1_egress_proto_rawDescOnce sync.Once

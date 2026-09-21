@@ -3,7 +3,7 @@
 import argparse,hashlib,json,pathlib,shutil,subprocess
 p=argparse.ArgumentParser(description=__doc__);p.add_argument('run');p.add_argument('--apply',action='store_true');args=p.parse_args()
 root=pathlib.Path(__file__).resolve().parents[1];run=root/'.work/net05a-runs'/args.run;meta=json.loads((run/'snapshot.json').read_text());items={r['path']:r for r in meta['files']}
-paths=['internal/conf/v1/conf.pb.go','go.mod','go.sum']+[x for x in items if x.startswith('internal/data/sqlcgen/')]
+paths=['internal/conf/v1/conf.pb.go','go.mod','go.sum']+[x for x in items if x.startswith('internal/data/network/sqlcgen/')]
 out=run/'generated';out.mkdir(exist_ok=True);changes=[]
 for name in paths:
     local=root/name;f=out/name;f.parent.mkdir(parents=True,exist_ok=True)

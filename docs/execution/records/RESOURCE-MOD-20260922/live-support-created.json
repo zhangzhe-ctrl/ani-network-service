@@ -1,0 +1,138 @@
+{
+  "at": "2026-09-21T16:59:29.607347+00:00",
+  "objects": [
+    {
+      "apiVersion": "v1",
+      "kind": "Namespace",
+      "name": "rsmod-0922",
+      "namespace": null,
+      "uid": "b539b047-dae9-4630-bb1d-54d33b3f08f4"
+    },
+    {
+      "apiVersion": "v1",
+      "kind": "Namespace",
+      "name": "rsmod-87bac0ed-a516-444a-b49c-0d6d292911d4",
+      "namespace": null,
+      "uid": "06ba400d-ea33-4072-b95a-1ad9c0aea970"
+    },
+    {
+      "apiVersion": "v1",
+      "kind": "Namespace",
+      "name": "rsmod-d013b7ac-e53f-46cd-9a06-2b01013262e6",
+      "namespace": null,
+      "uid": "673db1dc-81ab-48de-b09f-4d6ba311a06c"
+    },
+    {
+      "apiVersion": "v1",
+      "kind": "ServiceAccount",
+      "name": "network",
+      "namespace": "rsmod-0922",
+      "uid": "ab265729-2240-4edc-8a4f-aba4f553e100"
+    },
+    {
+      "apiVersion": "v1",
+      "kind": "ServiceAccount",
+      "name": "workload-owner",
+      "namespace": "rsmod-0922",
+      "uid": "22f86b66-d9ad-4c60-99ad-8167f14689a1"
+    },
+    {
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "ClusterRole",
+      "name": "rsmod-0922-read",
+      "namespace": null,
+      "uid": "3bf9cda2-0405-45d3-9230-68790399b5ed"
+    },
+    {
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "ClusterRoleBinding",
+      "name": "rsmod-0922-read",
+      "namespace": null,
+      "uid": "01ebfebd-ae28-4463-808c-cfb5b97a781b"
+    },
+    {
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "Role",
+      "name": "rsmod-0922-write",
+      "namespace": "rsmod-87bac0ed-a516-444a-b49c-0d6d292911d4",
+      "uid": "4cc3e3c1-c3e9-4e88-8061-3337c710c6f3"
+    },
+    {
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "RoleBinding",
+      "name": "rsmod-0922-write",
+      "namespace": "rsmod-87bac0ed-a516-444a-b49c-0d6d292911d4",
+      "uid": "515796d5-47ab-478c-8b64-2531484e343f"
+    },
+    {
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "Role",
+      "name": "rsmod-0922-write",
+      "namespace": "kcn-system",
+      "uid": "4b96807b-6451-435b-a41c-8ae61bb102e2"
+    },
+    {
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "RoleBinding",
+      "name": "rsmod-0922-write",
+      "namespace": "kcn-system",
+      "uid": "d4e990b2-0a30-40d6-abc1-29eb2cb9b751"
+    },
+    {
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "Role",
+      "name": "rsmod-0922-pods",
+      "namespace": "rsmod-87bac0ed-a516-444a-b49c-0d6d292911d4",
+      "uid": "c7805b47-0ed4-4942-ae93-0163724329de"
+    },
+    {
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "RoleBinding",
+      "name": "rsmod-0922-pods",
+      "namespace": "rsmod-87bac0ed-a516-444a-b49c-0d6d292911d4",
+      "uid": "d97cc9e0-73b3-4a66-8abe-5c83656ac685"
+    },
+    {
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "Role",
+      "name": "rsmod-0922-pods",
+      "namespace": "rsmod-0922",
+      "uid": "6f695788-4f6a-49f3-be73-e3c000703e2c"
+    },
+    {
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "RoleBinding",
+      "name": "rsmod-0922-pods",
+      "namespace": "rsmod-0922",
+      "uid": "eeb3e70d-fbad-4e9c-9899-c151f2f27fc8"
+    },
+    {
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "Role",
+      "name": "rsmod-0922-write",
+      "namespace": "rsmod-d013b7ac-e53f-46cd-9a06-2b01013262e6",
+      "uid": "9a67fdc6-37c4-48cd-af44-1936f9bf5de8"
+    },
+    {
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "RoleBinding",
+      "name": "rsmod-0922-write",
+      "namespace": "rsmod-d013b7ac-e53f-46cd-9a06-2b01013262e6",
+      "uid": "478061b6-1082-4684-9fea-78bf63aaab9e"
+    },
+    {
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "Role",
+      "name": "rsmod-0922-pods",
+      "namespace": "rsmod-d013b7ac-e53f-46cd-9a06-2b01013262e6",
+      "uid": "5fe57fd1-06d1-421a-898c-ac5a9edb9615"
+    },
+    {
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "RoleBinding",
+      "name": "rsmod-0922-pods",
+      "namespace": "rsmod-d013b7ac-e53f-46cd-9a06-2b01013262e6",
+      "uid": "3c7c3d10-aaed-432d-89b5-ddb482a5f294"
+    }
+  ]
+}

@@ -10,16 +10,20 @@ import json
 import os
 import pathlib
 import subprocess
+import sys
 
 root = pathlib.Path(__file__).resolve().parents[1]
 pair = root.parent
-out = pair / 'fault-build'
-out.mkdir(exist_ok=True)
+network_only = sys.argv[1:] == ['--network-only']
+assert not sys.argv[1:] or network_only, 'only --network-only is supported'
+out = root / '.work/fault-build' if network_only else pair / 'fault-build'
+out.mkdir(parents=True, exist_ok=True)
 hook = (root / 'tests/net05/hook.txt').read_text()
 manifest = {'network': {}, 'ani': {}}
 replacements = {'network': {}, 'ani': {}}
 
 def edit(repo, path, edits, helper=False):
+    if network_only and repo != 'network': return
     source = (root if repo == 'network' else pair / 'ani') / path
     original = source.read_text()
     text = original
@@ -37,14 +41,15 @@ def edit(repo, path, edits, helper=False):
     replacements[repo][str(source)] = str(destination)
     manifest[repo][path] = {'source_sha256': hashlib.sha256(original.encode()).hexdigest(), 'overlay_sha256': hashlib.sha256(destination.read_bytes()).hexdigest()}
 
-edit('network', 'internal/biz/worker.go', [
-    ('\t\terr = w.repository.Finish(ctx, work, progress)', '''
+edit('network', 'internal/biz/network/worker.go', [
+    ('\treturn w.repository.Finish(completionCtx, work, progress)', '''
         fresh := net05Hook(ctx, "before-finish", work.Resource.ID, map[string]any{"work":work,"progress":progress})
-        if fresh { ctx = context.WithoutCancel(ctx) }
-        err = w.repository.Finish(ctx, work, progress)
+        if fresh { completionCtx = context.WithoutCancel(completionCtx) }
+        err := w.repository.Finish(completionCtx, work, progress)
         if fresh { net05Note("stale-write-"+work.Resource.ID, map[string]any{"work":work,"progress":progress,"lease_lost":errors.Is(err,ErrLeaseLost)}) }
+        return err
 ''')], helper=True)
-edit('network', 'internal/biz/network.go', [
+edit('network', 'internal/biz/network/network.go', [
     ('\treturn n.repository.AcceptVPC(ctx, intent, request.Attribution)', '''
  value, err := n.repository.AcceptVPC(ctx, intent, request.Attribution)
  if err == nil { net05Hook(ctx, "accepted", value.Name, map[string]any{"resource":value}) }
@@ -63,7 +68,8 @@ edit('ani', 'repo/pkg/adapters/runtime/network_submission_finalize.go', [
 edit('ani', 'repo/pkg/adapters/runtime/network_submission_rpc.go', [
     ('\treturn out, nil', '\tif net05Hook(ctx,"consumer-query",value.InstanceID,map[string]any{"state":value.State,"finalization_id":value.FinalizationID}) { return nil,status.Error(codes.Unavailable,"NET-05 consumer transport fault") }\n\treturn out, nil')])
 
-for repo, target, cwd in [('network', './cmd/ani-network-service', root), ('ani', './services/ani-gateway', pair / 'ani/repo')]:
+for repo, target, cwd in [('network', './cmd/ani-resource-service', root), ('ani', './services/ani-gateway', pair / 'ani/repo')]:
+    if network_only and repo != 'network': continue
     overlay = out / (repo + '-overlay.json')
     overlay.write_text(json.dumps({'Replace': replacements[repo]}, indent=2) + '\n')
     binary = out / (repo + '-main')

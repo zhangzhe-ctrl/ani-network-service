@@ -5,14 +5,14 @@ p=argparse.ArgumentParser(description=__doc__);p.add_argument('run');p.add_argum
 root=pathlib.Path(__file__).resolve().parents[1];run=root/'.work/snat-runs'/args.run;meta=json.loads((run/'snapshot.json').read_text());items={r['path']:r for r in meta['files']}
 out=run/'generated';out.mkdir(exist_ok=True)
 archive=run/('generated-with-modules.tar' if args.modules else 'generated.tar')
-remote="cd "+shlex.quote(meta['remote']+'/source')+" && tar -cf - api/network/v1/*pb.go internal/conf/v1/conf.pb.go internal/data/sqlcgen/*.go"+(" go.mod go.sum" if args.modules else "")
+remote="cd "+shlex.quote(meta['remote']+'/source')+" && tar -cf - api/network/v1/*pb.go internal/conf/v1/conf.pb.go internal/data/network/sqlcgen/*.go"+(" go.mod go.sum" if args.modules else "")
 if not archive.exists():
  with archive.open('wb') as f:subprocess.run(['ssh','-F','/home/chabking/.ssh/config','-o','BatchMode=yes','ubuntu',remote],stdout=f,check=True)
 with tarfile.open(archive) as t:
  for m in t:
   name=m.name
   assert m.isfile() and not pathlib.PurePosixPath(name).is_absolute() and '..' not in pathlib.PurePosixPath(name).parts
-  assert (args.modules and name in ('go.mod','go.sum')) or (name.startswith('api/network/v1/') and name.endswith('pb.go')) or name=='internal/conf/v1/conf.pb.go' or (name.startswith('internal/data/sqlcgen/') and name.endswith('.go'))
+  assert (args.modules and name in ('go.mod','go.sum')) or (name.startswith('api/network/v1/') and name.endswith('pb.go')) or name=='internal/conf/v1/conf.pb.go' or (name.startswith('internal/data/network/sqlcgen/') and name.endswith('.go'))
   f=out/name;f.parent.mkdir(parents=True,exist_ok=True);f.write_bytes(t.extractfile(m).read())
 changes=[]
 for f in sorted(list(out.rglob('*.go'))+([out/'go.mod',out/'go.sum'] if args.modules else [])):
