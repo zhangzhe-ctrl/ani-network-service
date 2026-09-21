@@ -1,0 +1,89 @@
+{
+  "at": "2026-09-21T17:43:13.205516+00:00",
+  "intent": {
+    "body": {
+      "apiVersion": "v1",
+      "kind": "Pod",
+      "metadata": {
+        "labels": {
+          "network.ani.io/fixture-scope": "platform-intranet-qualification",
+          "network.ani.io/instance-id": "59e7d33e-4272-42da-9257-80cf4bd20809",
+          "network.ani.io/test-run": "rsmod-0922"
+        },
+        "name": "rsmod-0922-intranet-a",
+        "namespace": "rsmod-0922"
+      },
+      "spec": {
+        "automountServiceAccountToken": false,
+        "containers": [
+          {
+            "env": [
+              {
+                "name": "NET05_ID",
+                "value": "rsmod-0922"
+              },
+              {
+                "name": "ANI_WORKLOAD_ID",
+                "value": "59e7d33e-4272-42da-9257-80cf4bd20809"
+              },
+              {
+                "name": "NET05_PORT",
+                "value": "8080"
+              }
+            ],
+            "image": "localhost/lb02-2b3122-probe@sha256:647c2acd8e115511a18506014995ec01b7d0d62fbc05f2a6e51a5c65c2a3fcce",
+            "imagePullPolicy": "Never",
+            "name": "probe",
+            "ports": [
+              {
+                "containerPort": 8080
+              }
+            ],
+            "resources": {
+              "limits": {
+                "cpu": "100m",
+                "memory": "64Mi"
+              },
+              "requests": {
+                "cpu": "10m",
+                "memory": "32Mi"
+              }
+            },
+            "securityContext": {
+              "allowPrivilegeEscalation": false,
+              "capabilities": {
+                "drop": [
+                  "ALL"
+                ]
+              },
+              "readOnlyRootFilesystem": true
+            }
+          }
+        ],
+        "nodeSelector": {
+          "kubernetes.io/hostname": "ani-02"
+        },
+        "restartPolicy": "Always",
+        "securityContext": {
+          "runAsGroup": 65532,
+          "runAsNonRoot": true,
+          "runAsUser": 65532,
+          "seccompProfile": {
+            "type": "RuntimeDefault"
+          }
+        }
+      }
+    },
+    "command": [
+      "/home/chabking/workspace/ani-resource-service-runs/rsmod-20260921T1640Z/private/runtime/bin/kubectl",
+      "--kubeconfig",
+      "/home/chabking/workspace/ani-resource-service-runs/rsmod-20260921T1640Z/private/runtime/owner-kubeconfig.json",
+      "--request-timeout=20s",
+      "create",
+      "-f",
+      "-",
+      "-o",
+      "json"
+    ]
+  }
+}

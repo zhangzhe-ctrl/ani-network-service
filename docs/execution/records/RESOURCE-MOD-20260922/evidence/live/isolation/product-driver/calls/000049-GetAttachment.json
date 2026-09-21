@@ -1,0 +1,23 @@
+{
+  "at": "2026-09-21T18:15:58.152844+00:00",
+  "command": [
+    "/home/chabking/workspace/ani-resource-service-runs/rsmod-20260921T1640Z/private/isolation/bin/lb-api",
+    "call",
+    "-target",
+    "unix:///home/chabking/.local/state/rsmod0922/b/tenant-a.sock",
+    "-service",
+    "NetworkService",
+    "-method",
+    "GetAttachment"
+  ],
+  "completed_at": "2026-09-21T18:15:58.165016+00:00",
+  "exit": 0,
+  "phase": "cleanup",
+  "request": {
+    "attachment_id": "att_5a2eaaf7cd62469c8e36df8f37cb06b4",
+    "tenant_id": "d013b7ac-e53f-46cd-9a06-2b01013262e6"
+  },
+  "stderr": "",
+  "stdout": "{\"code\":\"OK\",\"response\":{\"attachment\":{\"id\":\"att_5a2eaaf7cd62469c8e36df8f37cb06b4\",\"tenant_id\":\"d013b7ac-e53f-46cd-9a06-2b01013262e6\",\"vpc_id\":\"vpc_868ab3c226e94983bf6c6bb2a88caaa2\",\"subnet_id\":\"subnet_db741a90ced74d2fadbacb8e2f8777a9\",\"instance_id\":\"ad446055-25bd-45da-b797-348fbbf77456\",\"slot\":\"primary\",\"submission_id\":\"5069f5fe-f0a9-462e-871b-226b6d059004\",\"generation\":\"1\",\"cluster_id\":\"rsmod-0922\",\"namespace\":\"rsmod-d013b7ac-e53f-46cd-9a06-2b01013262e6\",\"binding_revision\":\"e7c2da1b-179c-4704-bd2e-ae9687848af7:5238f07e-4ef0-4b39-850a-90c259cb12de\",\"state\":\"ATTACHMENT_STATE_ATTACHED\",\"reason\":\"\",\"version\":\"218\",\"pod_primary\":{\"format_version\":1,\"namespace\":\"rsmod-d013b7ac-e53f-46cd-9a06-2b01013262e6\",\"subnet_annotation\":\"rsmod-d013b7ac-e53f-46cd-9a06-2b01013262e6/subnet-db741a90ced74d2fadbacb8e2f8777a9\",\"labels\":{\"tenant_id\":\"d013b7ac-e53f-46cd-9a06-2b01013262e6\",\"instance_id\":\"ad446055-25bd-45da-b797-348fbbf77456\",\"attachment_id\":\"att_5a2eaaf7cd62469c8e36df8f37cb06b4\",\"submission_id\":\"5069f5fe-f0a9-462e-871b-226b6d059004\",\"generation\":\"1\"}},\"pod_name\":\"rsmod-0922-b-backend-a\",\"pod_uid\":\"c8c359d5-eb84-4509-a634-fbd3f19d5bf2\",\"consumer_finalization_id\":\"\",\"created_at\":\"2026-09-21T17:50:19.690740Z\",\"updated_at\":\"2026-09-21T18:15:56.245411Z\",\"observed_at\":\"2026-09-21T18:15:49.318225Z\",\"released_at\":null}}}\n",
+  "step": "attachments"
+}

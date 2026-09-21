@@ -1,0 +1,86 @@
+{
+  "at": "2026-09-21T18:14:55.767997+00:00",
+  "result": {
+    "load_balancer": {
+      "algorithm": "LOAD_BALANCER_ALGORITHM_ROUND_ROBIN",
+      "applied_version": "1",
+      "backends": [
+        {
+          "address": "10.236.1.3",
+          "attachment_id": "att_ec07187265f74a6da6d9e22ef2f993ac",
+          "id": "979644cb-a078-4c25-8e94-f9719093e17d",
+          "observation_stale": false,
+          "observed_at": "2026-09-21T18:14:40.068695Z",
+          "port": 8080,
+          "reason": "",
+          "state": "available",
+          "subnet_id": "subnet_4511ea76ee1f4a39a433b6e075275eb9",
+          "weight": 1
+        },
+        {
+          "address": "10.236.1.2",
+          "attachment_id": "att_af65f9d28d32484e87cd9ee9d689cada",
+          "id": "e1189c8a-5587-4c13-816b-d425cc7bc454",
+          "observation_stale": false,
+          "observed_at": "2026-09-21T18:14:40.068695Z",
+          "port": 8080,
+          "reason": "",
+          "state": "available",
+          "subnet_id": "subnet_4511ea76ee1f4a39a433b6e075275eb9",
+          "weight": 1
+        }
+      ],
+      "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_CONFIGURED",
+      "created_at": "2026-09-21T17:51:02.653849Z",
+      "data_plane_observed_at": null,
+      "data_plane_state": "LOAD_BALANCER_DATA_PLANE_STATE_UNKNOWN",
+      "description": "",
+      "desired_version": "1",
+      "exposure": "LOAD_BALANCER_EXPOSURE_PRIVATE",
+      "flavor": "small",
+      "health_check": {
+        "healthy_threshold": 1,
+        "interval_seconds": 5,
+        "port": 8080,
+        "protocol": "LOAD_BALANCER_HEALTH_CHECK_PROTOCOL_TCP",
+        "timeout_seconds": 3,
+        "unhealthy_threshold": 3
+      },
+      "id": "lb_3c7b5018c7a94a3799c4a06af7f7c5eb",
+      "last_operation_id": "cc0355ce-013e-4ee4-9f50-4485dfa27d7c",
+      "listener": {
+        "id": "f910e77f-2a50-41d1-ad82-cfa59803cd0c",
+        "port": 8081,
+        "protocol": "LOAD_BALANCER_LISTENER_PROTOCOL_HTTP"
+      },
+      "name": "rsmod-0922-private-lb",
+      "observation_stale": false,
+      "observed_at": "2026-09-21T18:14:40.068695Z",
+      "private_ip": "10.236.0.200",
+      "public_address": "",
+      "public_eip_id": "",
+      "reason": "",
+      "reason_message": "",
+      "state": "RESOURCE_STATE_DELETING",
+      "subnet_id": "subnet_657c3153d996410193208d9ff775a091",
+      "tenant_id": "87bac0ed-a516-444a-b49c-0d6d292911d4",
+      "updated_at": "2026-09-21T18:14:55.762965Z",
+      "version": "206",
+      "vpc_id": "vpc_be10f89aea0a4a04af74b176431b7749"
+    },
+    "operation": {
+      "completed_at": null,
+      "created_at": "2026-09-21T18:14:55.761645Z",
+      "id": "cc0355ce-013e-4ee4-9f50-4485dfa27d7c",
+      "kind": "OPERATION_KIND_DELETE_LOAD_BALANCER",
+      "next_attempt_at": "2026-09-21T18:14:55.761645Z",
+      "reason": "",
+      "reason_message": "",
+      "resource_id": "lb_3c7b5018c7a94a3799c4a06af7f7c5eb",
+      "resource_type": "RESOURCE_TYPE_LOAD_BALANCER",
+      "state": "OPERATION_STATE_QUEUED",
+      "tenant_id": "87bac0ed-a516-444a-b49c-0d6d292911d4",
+      "updated_at": "2026-09-21T18:14:55.761645Z"
+    }
+  }
+}

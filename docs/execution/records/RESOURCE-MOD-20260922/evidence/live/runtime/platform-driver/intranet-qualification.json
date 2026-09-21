@@ -1,0 +1,43 @@
+{
+  "at": "2026-09-21T17:43:58.750449+00:00",
+  "completed_at": "2026-09-21T17:43:59.737436+00:00",
+  "contract": {
+    "configured_ranges": [
+      "172.16.101.0/24",
+      "172.16.201.0/24",
+      "172.16.202.0/24",
+      "10.96.0.0/16"
+    ],
+    "declared_ranges": [
+      "10.96.0.0/16",
+      "172.16.101.0/24",
+      "172.16.201.0/24",
+      "172.16.202.0/24"
+    ],
+    "default_vpc_uid": "a852bc64-3d41-4925-b6a1-de3db56e5a76",
+    "pool_uid": "95f811df-231d-463f-a08a-4ffc170b301e",
+    "provider_roles": [
+      "cni-ds",
+      "controller",
+      "ovn-central",
+      "ovs-ds"
+    ],
+    "result": "pass_for_platform_contract_prerequisites"
+  },
+  "pool_id": "pool_e1088cbbfd2a45e5b0e024919bcda3d5",
+  "provider_image_digests": [
+    "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4"
+  ],
+  "provider_source_revision": "735abf81cb728f30bd0f15e1885dcd7f88b56ab0",
+  "provider_uid": "95f811df-231d-463f-a08a-4ffc170b301e",
+  "reason": "request failed; no retry; inspect /home/chabking/workspace/ani-resource-service-runs/rsmod-20260921T1640Z/private/runtime/platform-driver/calls/000022-kubectl-exec.json",
+  "source_evidence": {
+    "origin": "historical embedded build-origin mapping for same immutable running image; not a new rebuild or signed attestation",
+    "path": "/home/chabking/workspace/ani-resource-service-runs/rsmod-20260921T1640Z/private/runtime/provider-provenance.json",
+    "repository_source": "docs/execution/records/NET-VPC-LB-02/provider-provenance-20260915.json",
+    "sha256": "5c7d851d7114c2c4cc798851a4bf952e8e61bd28e4f95ef317a7597d89c97bbb"
+  },
+  "status": "fail",
+  "topology_fingerprint": "8bec7c88e09426a8a9e9f60ab594f7b960704c859ef447c28aaf4e533cbab469",
+  "traffic": []
+}

@@ -1,0 +1,50 @@
+{
+  "at": "2026-09-21T18:33:35.595466+00:00",
+  "host": "fedora",
+  "result": "pass",
+  "support_objects_absent": 19,
+  "runtime_unit": "inactive",
+  "verified_processes_exited": [
+    {
+      "name": "owner",
+      "pid": 257927,
+      "start_ticks": "5617979"
+    },
+    {
+      "name": "network",
+      "pid": 257928,
+      "start_ticks": "5617979"
+    },
+    {
+      "name": "tenant-a",
+      "pid": 257929,
+      "start_ticks": "5617979"
+    },
+    {
+      "name": "platform",
+      "pid": 257933,
+      "start_ticks": "5617980"
+    }
+  ],
+  "postgres_container_removed": "1b7e9b94105b9eff55a6301c23da160f3b8034049a4099f2d8d13118b1e5ea72",
+  "commands": [
+    {
+      "command": "docker stop --time=30 1b7e9b94105b9eff55a6301c23da160f3b8034049a4099f2d8d13118b1e5ea72",
+      "exit": 0
+    },
+    {
+      "command": "docker rm 1b7e9b94105b9eff55a6301c23da160f3b8034049a4099f2d8d13118b1e5ea72",
+      "exit": 0
+    }
+  ],
+  "retained": {
+    "private_backup": "/home/chabking/workspace/ani-resource-service-runs/rsmod-20260921T1640Z/private/runtime/checkpoints/products-cleaned/database.dump",
+    "backup_sha256": "bbd2dc31565b28a2825845ef33d607ce79a444759770cc097a72cc1707f0ef9b",
+    "private_configs": "/home/chabking/workspace/ani-resource-service-runs/rsmod-20260921T1640Z/private/runtime",
+    "sources_and_caches": "/home/chabking/workspace/ani-resource-service-runs/rsmod-20260921T1640Z",
+    "images": [
+      "ani-resource-service:rsmod0922-baseline",
+      "ani-resource-service:rsmod0922-candidate"
+    ]
+  }
+}

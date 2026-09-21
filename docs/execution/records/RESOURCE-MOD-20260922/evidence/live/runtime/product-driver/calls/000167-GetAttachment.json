@@ -1,0 +1,23 @@
+{
+  "at": "2026-09-21T18:28:15.558816+00:00",
+  "command": [
+    "/home/chabking/workspace/ani-resource-service-runs/rsmod-20260921T1640Z/private/runtime/bin/lb-api",
+    "call",
+    "-target",
+    "unix:///home/chabking/.local/state/rsmod0922/sockets/tenant-a.sock",
+    "-service",
+    "NetworkService",
+    "-method",
+    "GetAttachment"
+  ],
+  "completed_at": "2026-09-21T18:28:15.568847+00:00",
+  "exit": 0,
+  "phase": "snapshot",
+  "request": {
+    "attachment_id": "att_ec07187265f74a6da6d9e22ef2f993ac",
+    "tenant_id": "87bac0ed-a516-444a-b49c-0d6d292911d4"
+  },
+  "stderr": "",
+  "stdout": "{\"code\":\"OK\",\"response\":{\"attachment\":{\"id\":\"att_ec07187265f74a6da6d9e22ef2f993ac\",\"tenant_id\":\"87bac0ed-a516-444a-b49c-0d6d292911d4\",\"vpc_id\":\"vpc_be10f89aea0a4a04af74b176431b7749\",\"subnet_id\":\"subnet_4511ea76ee1f4a39a433b6e075275eb9\",\"instance_id\":\"4dbddf9c-3d07-473c-8d52-de3867434c24\",\"slot\":\"primary\",\"submission_id\":\"983f69a5-17f8-4400-be46-960bc17b6567\",\"generation\":\"1\",\"cluster_id\":\"rsmod-0922\",\"namespace\":\"rsmod-87bac0ed-a516-444a-b49c-0d6d292911d4\",\"binding_revision\":\"6bc80f3d-08e5-4464-97d8-6b4e485144ad:eef6c41a-ad34-48f2-be18-540fe9695f0d\",\"state\":\"ATTACHMENT_STATE_RELEASED\",\"reason\":\"\",\"version\":\"366\",\"pod_primary\":null,\"pod_name\":\"rsmod-0922-backend-b\",\"pod_uid\":\"da3ada27-e5c7-4070-b519-9ed0928de090\",\"consumer_finalization_id\":\"e3d46e6f-9338-48f4-89a3-2a2bcaa2e137\",\"created_at\":\"2026-09-21T17:50:19.522108Z\",\"updated_at\":\"2026-09-21T18:28:10.944256Z\",\"observed_at\":\"2026-09-21T18:28:07.644146Z\",\"released_at\":\"2026-09-21T18:24:38.784994Z\"}}}\n",
+  "step": null
+}

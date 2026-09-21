@@ -1,0 +1,466 @@
+{
+  "instances": {
+    "backend-a": {
+      "attachment": {
+        "binding_revision": "6bc80f3d-08e5-4464-97d8-6b4e485144ad:eef6c41a-ad34-48f2-be18-540fe9695f0d",
+        "cluster_id": "rsmod-0922",
+        "consumer_finalization_id": "",
+        "created_at": "2026-09-21T17:50:19.482292Z",
+        "generation": "1",
+        "id": "att_af65f9d28d32484e87cd9ee9d689cada",
+        "instance_id": "78dc265a-f6e1-48c5-afae-d4642851204d",
+        "namespace": "rsmod-87bac0ed-a516-444a-b49c-0d6d292911d4",
+        "observed_at": "2026-09-21T17:52:40.721157Z",
+        "pod_name": "rsmod-0922-backend-a",
+        "pod_primary": {
+          "format_version": 1,
+          "labels": {
+            "attachment_id": "att_af65f9d28d32484e87cd9ee9d689cada",
+            "generation": "1",
+            "instance_id": "78dc265a-f6e1-48c5-afae-d4642851204d",
+            "submission_id": "a6c2cd16-2d3d-4006-8393-ee9d7fb3f573",
+            "tenant_id": "87bac0ed-a516-444a-b49c-0d6d292911d4"
+          },
+          "namespace": "rsmod-87bac0ed-a516-444a-b49c-0d6d292911d4",
+          "subnet_annotation": "rsmod-87bac0ed-a516-444a-b49c-0d6d292911d4/subnet-4511ea76ee1f4a39a433b6e075275eb9"
+        },
+        "pod_uid": "7106203a-4bc9-4a56-9e7c-0b647c779cc0",
+        "reason": "",
+        "released_at": null,
+        "slot": "primary",
+        "state": "ATTACHMENT_STATE_ATTACHED",
+        "submission_id": "a6c2cd16-2d3d-4006-8393-ee9d7fb3f573",
+        "subnet_id": "subnet_4511ea76ee1f4a39a433b6e075275eb9",
+        "tenant_id": "87bac0ed-a516-444a-b49c-0d6d292911d4",
+        "updated_at": "2026-09-21T17:52:50.839740Z",
+        "version": "28",
+        "vpc_id": "vpc_be10f89aea0a4a04af74b176431b7749"
+      },
+      "owner": {
+        "attachment_id": "att_af65f9d28d32484e87cd9ee9d689cada",
+        "cluster_id": "rsmod-0922",
+        "controller_uids": [],
+        "generation": "1",
+        "instance_id": "78dc265a-f6e1-48c5-afae-d4642851204d",
+        "namespace": "rsmod-87bac0ed-a516-444a-b49c-0d6d292911d4",
+        "pod_uids": [
+          "7106203a-4bc9-4a56-9e7c-0b647c779cc0"
+        ],
+        "protocol_version": 1,
+        "state": "SUBMISSION_STATE_OPEN",
+        "submission_id": "a6c2cd16-2d3d-4006-8393-ee9d7fb3f573",
+        "tenant_id": "87bac0ed-a516-444a-b49c-0d6d292911d4"
+      },
+      "pod": {
+        "apiVersion": "v1",
+        "kind": "Pod",
+        "metadata": {
+          "annotations": {
+            "networking.kubercloud.com/subnet": "rsmod-87bac0ed-a516-444a-b49c-0d6d292911d4/subnet-4511ea76ee1f4a39a433b6e075275eb9"
+          },
+          "creationTimestamp": "2026-09-21T17:50:27Z",
+          "generation": 1,
+          "labels": {
+            "network.ani.io/attachment-id": "att_af65f9d28d32484e87cd9ee9d689cada",
+            "network.ani.io/generation": "1",
+            "network.ani.io/instance-id": "78dc265a-f6e1-48c5-afae-d4642851204d",
+            "network.ani.io/submission-id": "a6c2cd16-2d3d-4006-8393-ee9d7fb3f573",
+            "network.ani.io/tenant-id": "87bac0ed-a516-444a-b49c-0d6d292911d4",
+            "network.ani.io/test-run": "rsmod-0922"
+          },
+          "name": "rsmod-0922-backend-a",
+          "namespace": "rsmod-87bac0ed-a516-444a-b49c-0d6d292911d4",
+          "resourceVersion": "3093118",
+          "uid": "7106203a-4bc9-4a56-9e7c-0b647c779cc0"
+        },
+        "spec": {
+          "automountServiceAccountToken": false,
+          "containers": [
+            {
+              "env": [
+                {
+                  "name": "NET05_ID",
+                  "value": "rsmod-0922"
+                },
+                {
+                  "name": "ANI_WORKLOAD_ID",
+                  "value": "78dc265a-f6e1-48c5-afae-d4642851204d"
+                },
+                {
+                  "name": "NET05_PORT",
+                  "value": "8080"
+                }
+              ],
+              "image": "localhost/lb02-2b3122-probe@sha256:647c2acd8e115511a18506014995ec01b7d0d62fbc05f2a6e51a5c65c2a3fcce",
+              "imagePullPolicy": "Never",
+              "name": "probe",
+              "ports": [
+                {
+                  "containerPort": 8080,
+                  "protocol": "TCP"
+                }
+              ],
+              "resources": {
+                "limits": {
+                  "cpu": "100m",
+                  "memory": "64Mi"
+                },
+                "requests": {
+                  "cpu": "10m",
+                  "memory": "32Mi"
+                }
+              },
+              "securityContext": {
+                "allowPrivilegeEscalation": false,
+                "capabilities": {
+                  "drop": [
+                    "ALL"
+                  ]
+                },
+                "readOnlyRootFilesystem": true
+              },
+              "terminationMessagePath": "/dev/termination-log",
+              "terminationMessagePolicy": "File"
+            }
+          ],
+          "dnsPolicy": "ClusterFirst",
+          "enableServiceLinks": true,
+          "nodeSelector": {
+            "kubernetes.io/hostname": "ani-02"
+          },
+          "preemptionPolicy": "PreemptLowerPriority",
+          "priority": 0,
+          "restartPolicy": "Always",
+          "schedulerName": "default-scheduler",
+          "securityContext": {
+            "runAsGroup": 65532,
+            "runAsNonRoot": true,
+            "runAsUser": 65532,
+            "seccompProfile": {
+              "type": "RuntimeDefault"
+            }
+          },
+          "serviceAccount": "default",
+          "serviceAccountName": "default",
+          "terminationGracePeriodSeconds": 30,
+          "tolerations": [
+            {
+              "effect": "NoExecute",
+              "key": "node.kubernetes.io/not-ready",
+              "operator": "Exists",
+              "tolerationSeconds": 300
+            },
+            {
+              "effect": "NoExecute",
+              "key": "node.kubernetes.io/unreachable",
+              "operator": "Exists",
+              "tolerationSeconds": 300
+            }
+          ]
+        },
+        "status": {
+          "phase": "Pending",
+          "qosClass": "Burstable"
+        }
+      },
+      "submission_id": "a6c2cd16-2d3d-4006-8393-ee9d7fb3f573"
+    },
+    "backend-b": {
+      "attachment": {
+        "binding_revision": "6bc80f3d-08e5-4464-97d8-6b4e485144ad:eef6c41a-ad34-48f2-be18-540fe9695f0d",
+        "cluster_id": "rsmod-0922",
+        "consumer_finalization_id": "",
+        "created_at": "2026-09-21T17:50:19.522108Z",
+        "generation": "1",
+        "id": "att_ec07187265f74a6da6d9e22ef2f993ac",
+        "instance_id": "4dbddf9c-3d07-473c-8d52-de3867434c24",
+        "namespace": "rsmod-87bac0ed-a516-444a-b49c-0d6d292911d4",
+        "observed_at": "2026-09-21T17:52:40.721157Z",
+        "pod_name": "rsmod-0922-backend-b",
+        "pod_primary": {
+          "format_version": 1,
+          "labels": {
+            "attachment_id": "att_ec07187265f74a6da6d9e22ef2f993ac",
+            "generation": "1",
+            "instance_id": "4dbddf9c-3d07-473c-8d52-de3867434c24",
+            "submission_id": "983f69a5-17f8-4400-be46-960bc17b6567",
+            "tenant_id": "87bac0ed-a516-444a-b49c-0d6d292911d4"
+          },
+          "namespace": "rsmod-87bac0ed-a516-444a-b49c-0d6d292911d4",
+          "subnet_annotation": "rsmod-87bac0ed-a516-444a-b49c-0d6d292911d4/subnet-4511ea76ee1f4a39a433b6e075275eb9"
+        },
+        "pod_uid": "da3ada27-e5c7-4070-b519-9ed0928de090",
+        "reason": "",
+        "released_at": null,
+        "slot": "primary",
+        "state": "ATTACHMENT_STATE_ATTACHED",
+        "submission_id": "983f69a5-17f8-4400-be46-960bc17b6567",
+        "subnet_id": "subnet_4511ea76ee1f4a39a433b6e075275eb9",
+        "tenant_id": "87bac0ed-a516-444a-b49c-0d6d292911d4",
+        "updated_at": "2026-09-21T17:52:50.813722Z",
+        "version": "28",
+        "vpc_id": "vpc_be10f89aea0a4a04af74b176431b7749"
+      },
+      "owner": {
+        "attachment_id": "att_ec07187265f74a6da6d9e22ef2f993ac",
+        "cluster_id": "rsmod-0922",
+        "controller_uids": [],
+        "generation": "1",
+        "instance_id": "4dbddf9c-3d07-473c-8d52-de3867434c24",
+        "namespace": "rsmod-87bac0ed-a516-444a-b49c-0d6d292911d4",
+        "pod_uids": [
+          "da3ada27-e5c7-4070-b519-9ed0928de090"
+        ],
+        "protocol_version": 1,
+        "state": "SUBMISSION_STATE_OPEN",
+        "submission_id": "983f69a5-17f8-4400-be46-960bc17b6567",
+        "tenant_id": "87bac0ed-a516-444a-b49c-0d6d292911d4"
+      },
+      "pod": {
+        "apiVersion": "v1",
+        "kind": "Pod",
+        "metadata": {
+          "annotations": {
+            "networking.kubercloud.com/subnet": "rsmod-87bac0ed-a516-444a-b49c-0d6d292911d4/subnet-4511ea76ee1f4a39a433b6e075275eb9"
+          },
+          "creationTimestamp": "2026-09-21T17:50:27Z",
+          "generation": 1,
+          "labels": {
+            "network.ani.io/attachment-id": "att_ec07187265f74a6da6d9e22ef2f993ac",
+            "network.ani.io/generation": "1",
+            "network.ani.io/instance-id": "4dbddf9c-3d07-473c-8d52-de3867434c24",
+            "network.ani.io/submission-id": "983f69a5-17f8-4400-be46-960bc17b6567",
+            "network.ani.io/tenant-id": "87bac0ed-a516-444a-b49c-0d6d292911d4",
+            "network.ani.io/test-run": "rsmod-0922"
+          },
+          "name": "rsmod-0922-backend-b",
+          "namespace": "rsmod-87bac0ed-a516-444a-b49c-0d6d292911d4",
+          "resourceVersion": "3093141",
+          "uid": "da3ada27-e5c7-4070-b519-9ed0928de090"
+        },
+        "spec": {
+          "automountServiceAccountToken": false,
+          "containers": [
+            {
+              "env": [
+                {
+                  "name": "NET05_ID",
+                  "value": "rsmod-0922"
+                },
+                {
+                  "name": "ANI_WORKLOAD_ID",
+                  "value": "4dbddf9c-3d07-473c-8d52-de3867434c24"
+                },
+                {
+                  "name": "NET05_PORT",
+                  "value": "8080"
+                }
+              ],
+              "image": "localhost/lb02-2b3122-probe@sha256:647c2acd8e115511a18506014995ec01b7d0d62fbc05f2a6e51a5c65c2a3fcce",
+              "imagePullPolicy": "Never",
+              "name": "probe",
+              "ports": [
+                {
+                  "containerPort": 8080,
+                  "protocol": "TCP"
+                }
+              ],
+              "resources": {
+                "limits": {
+                  "cpu": "100m",
+                  "memory": "64Mi"
+                },
+                "requests": {
+                  "cpu": "10m",
+                  "memory": "32Mi"
+                }
+              },
+              "securityContext": {
+                "allowPrivilegeEscalation": false,
+                "capabilities": {
+                  "drop": [
+                    "ALL"
+                  ]
+                },
+                "readOnlyRootFilesystem": true
+              },
+              "terminationMessagePath": "/dev/termination-log",
+              "terminationMessagePolicy": "File"
+            }
+          ],
+          "dnsPolicy": "ClusterFirst",
+          "enableServiceLinks": true,
+          "nodeSelector": {
+            "kubernetes.io/hostname": "ani-03"
+          },
+          "preemptionPolicy": "PreemptLowerPriority",
+          "priority": 0,
+          "restartPolicy": "Always",
+          "schedulerName": "default-scheduler",
+          "securityContext": {
+            "runAsGroup": 65532,
+            "runAsNonRoot": true,
+            "runAsUser": 65532,
+            "seccompProfile": {
+              "type": "RuntimeDefault"
+            }
+          },
+          "serviceAccount": "default",
+          "serviceAccountName": "default",
+          "terminationGracePeriodSeconds": 30,
+          "tolerations": [
+            {
+              "effect": "NoExecute",
+              "key": "node.kubernetes.io/not-ready",
+              "operator": "Exists",
+              "tolerationSeconds": 300
+            },
+            {
+              "effect": "NoExecute",
+              "key": "node.kubernetes.io/unreachable",
+              "operator": "Exists",
+              "tolerationSeconds": 300
+            }
+          ]
+        },
+        "status": {
+          "phase": "Pending",
+          "qosClass": "Burstable"
+        }
+      },
+      "submission_id": "983f69a5-17f8-4400-be46-960bc17b6567"
+    }
+  },
+  "resources": {
+    "backend_subnet": {
+      "cidr": "10.236.1.0/24",
+      "created_at": "2026-09-21T17:49:34.445180Z",
+      "description": "",
+      "gateway": "10.236.1.1",
+      "id": "subnet_4511ea76ee1f4a39a433b6e075275eb9",
+      "last_operation_id": "575af250-7927-4034-ab11-70681d952941",
+      "name": "rsmod-0922-backend-subnet",
+      "observation_stale": false,
+      "observed_at": "2026-09-21T17:52:47.289872Z",
+      "reason": "",
+      "reason_message": "",
+      "state": "RESOURCE_STATE_AVAILABLE",
+      "tenant_id": "87bac0ed-a516-444a-b49c-0d6d292911d4",
+      "updated_at": "2026-09-21T17:52:51.786679Z",
+      "version": "34",
+      "vpc_id": "vpc_be10f89aea0a4a04af74b176431b7749"
+    },
+    "entry_subnet": {
+      "cidr": "10.236.0.0/24",
+      "created_at": "2026-09-21T17:49:34.422318Z",
+      "description": "",
+      "gateway": "10.236.0.1",
+      "id": "subnet_657c3153d996410193208d9ff775a091",
+      "last_operation_id": "411acdcf-94e4-4e56-bd73-31ee63f20ae1",
+      "name": "rsmod-0922-entry-subnet",
+      "observation_stale": false,
+      "observed_at": "2026-09-21T17:52:47.289872Z",
+      "reason": "",
+      "reason_message": "",
+      "state": "RESOURCE_STATE_AVAILABLE",
+      "tenant_id": "87bac0ed-a516-444a-b49c-0d6d292911d4",
+      "updated_at": "2026-09-21T17:52:51.791858Z",
+      "version": "36",
+      "vpc_id": "vpc_be10f89aea0a4a04af74b176431b7749"
+    },
+    "private_lb": {
+      "algorithm": "LOAD_BALANCER_ALGORITHM_ROUND_ROBIN",
+      "applied_version": "1",
+      "backends": [
+        {
+          "address": "10.236.1.3",
+          "attachment_id": "att_ec07187265f74a6da6d9e22ef2f993ac",
+          "id": "979644cb-a078-4c25-8e94-f9719093e17d",
+          "observation_stale": false,
+          "observed_at": "2026-09-21T17:52:40.721157Z",
+          "port": 8080,
+          "reason": "",
+          "state": "available",
+          "subnet_id": "subnet_4511ea76ee1f4a39a433b6e075275eb9",
+          "weight": 1
+        },
+        {
+          "address": "10.236.1.2",
+          "attachment_id": "att_af65f9d28d32484e87cd9ee9d689cada",
+          "id": "e1189c8a-5587-4c13-816b-d425cc7bc454",
+          "observation_stale": false,
+          "observed_at": "2026-09-21T17:52:40.721157Z",
+          "port": 8080,
+          "reason": "",
+          "state": "available",
+          "subnet_id": "subnet_4511ea76ee1f4a39a433b6e075275eb9",
+          "weight": 1
+        }
+      ],
+      "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_CONFIGURED",
+      "created_at": "2026-09-21T17:51:02.653849Z",
+      "data_plane_observed_at": null,
+      "data_plane_state": "LOAD_BALANCER_DATA_PLANE_STATE_UNKNOWN",
+      "description": "",
+      "desired_version": "1",
+      "exposure": "LOAD_BALANCER_EXPOSURE_PRIVATE",
+      "flavor": "small",
+      "health_check": {
+        "healthy_threshold": 1,
+        "interval_seconds": 5,
+        "port": 8080,
+        "protocol": "LOAD_BALANCER_HEALTH_CHECK_PROTOCOL_TCP",
+        "timeout_seconds": 3,
+        "unhealthy_threshold": 3
+      },
+      "id": "lb_3c7b5018c7a94a3799c4a06af7f7c5eb",
+      "last_operation_id": "ee52ce8b-0e71-4e24-b05b-62660b33b7b0",
+      "listener": {
+        "id": "f910e77f-2a50-41d1-ad82-cfa59803cd0c",
+        "port": 8081,
+        "protocol": "LOAD_BALANCER_LISTENER_PROTOCOL_HTTP"
+      },
+      "name": "rsmod-0922-private-lb",
+      "observation_stale": false,
+      "observed_at": "2026-09-21T17:52:40.721157Z",
+      "private_ip": "10.236.0.200",
+      "public_address": "",
+      "public_eip_id": "",
+      "reason": "",
+      "reason_message": "",
+      "state": "RESOURCE_STATE_AVAILABLE",
+      "subnet_id": "subnet_657c3153d996410193208d9ff775a091",
+      "tenant_id": "87bac0ed-a516-444a-b49c-0d6d292911d4",
+      "updated_at": "2026-09-21T17:52:45.561512Z",
+      "version": "11",
+      "vpc_id": "vpc_be10f89aea0a4a04af74b176431b7749"
+    },
+    "vpc": {
+      "base_connectivity": {
+        "observation_stale": false,
+        "observed_at": "2026-09-21T17:52:47.289872Z",
+        "reason": "",
+        "reason_message": "",
+        "state": "ready"
+      },
+      "cidr": "10.236.0.0/16",
+      "created_at": "2026-09-21T17:47:43.915872Z",
+      "description": "",
+      "id": "vpc_be10f89aea0a4a04af74b176431b7749",
+      "last_operation_id": "aafefbc7-9108-4eee-a86f-13c55dfd0154",
+      "name": "rsmod-0922-vpc",
+      "observation_stale": false,
+      "observed_at": "2026-09-21T17:52:47.289872Z",
+      "reason": "",
+      "reason_message": "",
+      "state": "RESOURCE_STATE_AVAILABLE",
+      "subnet_count": "2",
+      "tenant_id": "87bac0ed-a516-444a-b49c-0d6d292911d4",
+      "updated_at": "2026-09-21T17:52:52.281293Z",
+      "version": "52"
+    }
+  },
+  "run": "rsmod-0922",
+  "task": "RESOURCE-MOD-20260922",
+  "tenant": "87bac0ed-a516-444a-b49c-0d6d292911d4"
+}

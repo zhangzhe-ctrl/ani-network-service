@@ -13,12 +13,17 @@
 | R0 | HEAD/main、dirty 文档、Fedora/三节点身份和安装 fingerprint 冻结；旧版 verify/build | pass；Public 独立设备前置不足 |
 | R1/R2 | 新 module/cmd、三层 Network 整理、固定生成、descriptor 精确差异、递归违规 fixture、候选 verify/build | pass；故障注入入口已编译验证 |
 | 兼容增量 | 独立旧客户端、旧库、cursor/回执、候选在途任务原版恢复、反向旧消费者、API 清理 | pass（受控 PG/Provider） |
-| R3 | 最终 tools/verify pass；PG 路径遗漏已定向修复，完整 PG/race/mutations 重跑中；audit 命中基线同有的 gRPC 漏洞，secrets 发现待核对 | in_progress；audit fail |
-| R4 | 真实旧对象接管、数据面、回退、产品清理 | not_verified；Public 前置受共享设备登记限制 |
-| R5 | 最终提交/CI/合入、托管仓库/正式目录改名、新旧 module 消费 | not_verified；不得提前发布 |
+| R3 | cf75cf6 最终 tools/verify/integration/race/tenant-mutations pass；旧库及双向旧客户端兼容 pass；audit 命中基线同有 gRPC 漏洞 | audit fail，其他功能门禁 pass |
+| R4 | 真实同库接管、候选正常操作/在途恢复、原版处理候选操作、再次启动 pass；Pod/隔离/Intranet/private LB 有界功能观测 pass | 完整阶段未通过：Public not_verified，严格六次矩阵因重复正向控制 fail |
+| R5 | 候选证据与供应链收尾中；默认分支、GitHub 仓库名及正式目录均保持 | not_verified；必需条件未齐，不得提前合入/改名 |
 
-下一步：完成最终候选远程门禁及可独立执行的真实验收，保留 Public 阻塞证据。
-现有 ens35 的外部 binding 不属于本 run；不改共享登记/节点网络，也不复制旧平台产品身份冒充新建。
+阻塞：固定 grpc v1.82.1 的 GO-2026-6443 / GO-2026-6348 使 audit fail，计划不授权依赖升级；
+共享 ens35 外部 binding 不属于本 run，独立数据库无法合法重新收养，Public 必需验收缺失。
+不修改共享登记/节点网络，不复制旧平台身份；本轮采样重叠另记本任务失败，不能归为环境原因。
+修正后的不重叠驱动已留存但本 run 未重测，全部原始请求与失败保留。
+
+故障重启后曾短暂触发原有租约/新鲜度保护，HTTPRoute 后端移除；自然恢复前的比较 fail 与
+恢复后 pass 分开留证，不声称故障期间无中断。清理与发布证据见实施记录。
 只有所有必需验收通过才完成 Goal。下述历史证据保持其原时点与范围。
 
 ## 既有 Network 实施状态：NET-VPC-LB-02

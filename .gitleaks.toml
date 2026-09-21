@@ -60,3 +60,99 @@ regexes = [
   '''^lbhealth\-0917\-private_lb$''',
   '''^lbhealth\-0917\-vpc$''',
 ]
+
+[[allowlists]]
+description = "Reviewed exact public source hashes in immutable evidence"
+targetRules = ["generic-api-key"]
+condition = "AND"
+paths = ['''^docs/execution/records/governance\-vpc\-read/source\-manifest\.json$''']
+regexTarget = "secret"
+regexes = [
+  '''^057319edd7f247b4893ff30484a56dfca9b9a1b6516b66f1f0e0112e749cfa2e$''',
+  '''^3066343381b24800d1c54c0fe0aa21acf3eea37acbd11d037fa7676d18ead072$''',
+  '''^38a8441d0cb180089beaa8ceba56ed0ccb22cc65fbefce8dd822a009cc90af76$''',
+  '''^7966506448965e4ee504c00b0d4990773ca69ffea7bf907deb7e88bd14135d6b$''',
+  '''^bf8e6e541f125ac0e1fda935e435e08814a6e640e4c05b85f9b4eb1dd9f98606$''',
+]
+
+[[allowlists]]
+description = "Reviewed exact public source hashes in immutable evidence"
+targetRules = ["generic-api-key"]
+condition = "AND"
+paths = ['''^docs/execution/records/RESOURCE\-MOD\-20260922/baseline\-source\.json$''']
+regexTarget = "secret"
+regexes = [
+  '''^0184eacddac5f2efe777f2b9da0ae32e79e09ba679b4b8069e59bc3a4a16adf0$''',
+  '''^0557026c13ca245ccac9f3431e3b4cbef50db9e6a0f1d9b6f975b8f2737f9b7f$''',
+  '''^05aa13b44260db3067a03ebceaa4b6569b99390fb6fd76412e2209070221ac71$''',
+  '''^10af489156166e29a12161f781a68a6b0e5d4d92ef9d66804ca9e737fcb80a7f$''',
+  '''^11e9f9634faecd12ebfef009309b12208e6fb1dfb6d797b7b40086435096302b$''',
+  '''^13afb5bc903178c54cfb6f1e1a3ab415e0224e323d66680effc810ce918c3e4a$''',
+  '''^26d6d9352ce4442f2f000df1dd15e9164bc852825bd79cc1a366410ce0c014e5$''',
+  '''^28d648455115c319b22fe11b41c97ed38066142b51ecb8ad6ee141f17212fa54$''',
+  '''^295a9ee26236875343a5bd95b9aa442b977db47e18be801bc2f3d688a5de988a$''',
+  '''^3034bf0255d1b4d3632a9be6bec4f4a7a7802bcc672c5739748929c455850efa$''',
+  '''^496b4752ea13e3d6d0d236a31c4c344592bd974c20fad28b989aaa9068a2e4c7$''',
+  '''^4c866cfca9c951dddeea94eae778bef9924b3ff4319ad87c0098a9cf4ba6f5d1$''',
+  '''^4ff2020567cb0f56088e0ef263e98240eb1e0d3f8eda5fc9bc20cc6247d07857$''',
+  '''^57cbbdcbc44198c0183f3db320184a136925a21dc904325ca3ce9fad62c6e051$''',
+  '''^58db3dce5dbecbbe2e9a7770f9147dc2514c4722e568a88574036e9a14fe58d0$''',
+  '''^5a0c4664377830abf23f0c7e90e710057913ef4ef6c4f803add25f317d225b92$''',
+  '''^5a1b6c43dc49036fba3fb962878cd028105302cff36a6743a3b2cbeaf9a582b2$''',
+  '''^71a5a6165b86b650a71fe0bb2a9dca8279fb7e827010e9758d461da646660c33$''',
+  '''^807054a8ec8dff3a25347e54c1c037ec8dfdea4e2581300b2b17f44aaaab927a$''',
+  '''^820283b1dcada07b75b466f4fa35b67c625feff2ca0c0b1b2da8b60d62fe06ed$''',
+  '''^8933e0af4cafc7f5b35015024536e33d85e39785aa1ce144f67dc76f74efc799$''',
+  '''^94497ba30fde9d2bc10b5fac16222dbbea8323aacfc191045cd683afe0ec566f$''',
+  '''^9852bef871e10ddddff88f49bf7c3b3f5ab79061c941cc309d4bc29ead8ff2f1$''',
+  '''^9df9730282fe077af427f35e2aa08deca25be688831a1385d91be27988de4b10$''',
+  '''^a0d3306a6c2df19bcda11da3a2fb88ae4ba48e7f2e80e50a99bad422b6a66a9a$''',
+  '''^a82b21004aea22313092e45a63fcf4383b2e90e34617b55c1c8dfe55bddab6ca$''',
+  '''^a9b3835cae704176c502dafcaa6d36a2687b8bcd53fd3a42d79e67ab84f0fe1a$''',
+  '''^ad9d1611df5b25fd2e9c55763a9c0b47cc6bfda0557c6b27db181343799809df$''',
+  '''^b434f71c81bebb6435038bb9c546fcc498751a59b13eefc89c076da350ea65f6$''',
+  '''^cf2915fa66c6e938569d4917e888b38cfbe02aa929f9ce1edf7466daf3b922dc$''',
+  '''^d2d74e214c6ae0f7407db04f6519859451b3f69d987662b22d157e638ba70ac5$''',
+  '''^d3be879580c222bee1c8eb72c430ddc665f25903a448a1871fb6fadfff7ae034$''',
+  '''^d4920e49ea734b5a8c9b502e62d5e56186bc2955f5f3f474e51e92958a99a436$''',
+  '''^de39ddb2ffa422cdea483a4a30832839840f77da81f18af982cd896350167aaa$''',
+  '''^ea51d8a7150ab6565b272bcb0d413bed6f50099e8516f880d172cfc975575902$''',
+  '''^ec0f278e0793a04a140dd0b7e6ab0d7622d6863514f64974fe38e169dcc5e9f6$''',
+  '''^ef9096aa595581454c181783b689d74b640a399973b0920b1077bfc781a874b3$''',
+  '''^f09824b4cc6e0fd77b19a54ec3479009d54b51444d64b6b58c82938057419ce5$''',
+  '''^f49049c00ba0095b776adf7302add5841b9ec36cc7c87e7ea8ee1e0c0c77c48f$''',
+  '''^f8294246c036d8e358565db5a064ad04020b5edf16c731a9a94679420c89e359$''',
+]
+
+[[allowlists]]
+description = "Reviewed RESOURCE-MOD live client binary hashes and Go build module checksums"
+targetRules = ["generic-api-key"]
+condition = "AND"
+regexTarget = "line"
+paths = [
+  '''^docs/execution/records/RESOURCE\-MOD\-20260922/evidence/live/runtime/checkpoints/baseline\-after\-traffic/summary\.json$''',
+  '''^docs/execution/records/RESOURCE\-MOD\-20260922/evidence/live/runtime/checkpoints/baseline\-before\-traffic/summary\.json$''',
+  '''^docs/execution/records/RESOURCE\-MOD\-20260922/evidence/live/runtime/checkpoints/candidate\-after\-lease\-recovery/summary\.json$''',
+  '''^docs/execution/records/RESOURCE\-MOD\-20260922/evidence/live/runtime/checkpoints/candidate\-after\-traffic/summary\.json$''',
+  '''^docs/execution/records/RESOURCE\-MOD\-20260922/evidence/live/runtime/checkpoints/candidate\-before\-traffic/summary\.json$''',
+  '''^docs/execution/records/RESOURCE\-MOD\-20260922/evidence/live/runtime/checkpoints/candidate\-final\-start/summary\.json$''',
+  '''^docs/execution/records/RESOURCE\-MOD\-20260922/evidence/live/runtime/checkpoints/candidate\-takeover/summary\.json$''',
+  '''^docs/execution/records/RESOURCE\-MOD\-20260922/evidence/live/runtime/checkpoints/products\-cleaned/summary\.json$''',
+  '''^docs/execution/records/RESOURCE\-MOD\-20260922/evidence/live/runtime/checkpoints/rollback\-before\-delete/summary\.json$''',
+  '''^docs/execution/records/RESOURCE\-MOD\-20260922/evidence/live/runtime/compatibility/candidate\-final\-start\.json$''',
+  '''^docs/execution/records/RESOURCE\-MOD\-20260922/evidence/live/runtime/compatibility/cleanup\-extras\.json$''',
+  '''^docs/execution/records/RESOURCE\-MOD\-20260922/evidence/live/runtime/compatibility/rollback\-managed\-candidate\-subnet\.json$''',
+  '''^docs/execution/records/RESOURCE\-MOD\-20260922/evidence/live/runtime/switches/1\-baseline\.json$''',
+  '''^docs/execution/records/RESOURCE\-MOD\-20260922/evidence/live/runtime/switches/2\-baseline\.json$''',
+  '''^docs/execution/records/RESOURCE\-MOD\-20260922/evidence/live/runtime/switches/3\-candidate\.json$''',
+  '''^docs/execution/records/RESOURCE\-MOD\-20260922/evidence/live/runtime/switches/4\-candidate\.json$''',
+  '''^docs/execution/records/RESOURCE\-MOD\-20260922/evidence/live/runtime/switches/5\-baseline\.json$''',
+  '''^docs/execution/records/RESOURCE\-MOD\-20260922/evidence/live/runtime/switches/6\-candidate\.json$''',
+  '''^docs/execution/records/RESOURCE\-MOD\-20260922/evidence/remote/final\-artifact\-go\-version\.txt$''',
+]
+regexes = [
+  '''^\s*"lb\-api": "d1752f743e42fb2b9b780bec5dec9630c50db19e9734e30f8016ccaa9a34855f"\s*$''',
+  '''^\s*"lb\-api": "dcf760f4e4c8dc341f859cfe7e43e7c520901f5b2ece791721a14e2412d75165"\s*$''',
+  '''^\s*dep\tgolang\.org/x/oauth2\tv0\.36\.0\th1:peZ/1z27fi9hUOFCAZaHyrpWG5lwe0RJEEEeH0ThlIs=\s*$''',
+  '''^\s*dep\tk8s\.io/apimachinery\tv0\.36\.0\th1:jZyPzhd5Z\+3h9vJLt0z9XdzW9VzNzWAUw\+P1xZ9PXtQ=\s*$''',
+]

@@ -1,0 +1,23 @@
+{
+  "at": "2026-09-21T17:43:58.811596+00:00",
+  "command": [
+    "/home/chabking/workspace/ani-resource-service-runs/rsmod-20260921T1640Z/private/runtime/bin/kubectl",
+    "--kubeconfig",
+    "/home/chabking/workspace/ani-resource-service-runs/rsmod-20260921T1640Z/private/runtime/kubeconfig.json",
+    "--request-timeout=20s",
+    "get",
+    "vpcs.networking.kubercloud.com",
+    "kcn-cluster",
+    "-n",
+    "kcn-system",
+    "-o",
+    "json"
+  ],
+  "completed_at": "2026-09-21T17:43:58.964770+00:00",
+  "exit": 0,
+  "phase": "qualify",
+  "request": null,
+  "stderr": "",
+  "stdout": "{\n    \"apiVersion\": \"networking.kubercloud.com/v1\",\n    \"kind\": \"VPC\",\n    \"metadata\": {\n        \"creationTimestamp\": \"2026-09-14T12:26:28Z\",\n        \"finalizers\": [\n            \"networking.kubercloud.com/finalizer\"\n        ],\n        \"generation\": 1,\n        \"name\": \"kcn-cluster\",\n        \"namespace\": \"kcn-system\",\n        \"resourceVersion\": \"3090568\",\n        \"uid\": \"a852bc64-3d41-4925-b6a1-de3db56e5a76\"\n    },\n    \"spec\": {\n        \"allowedNamespaces\": {\n            \"from\": \"All\"\n        },\n        \"ipVersion\": \"IPv4\"\n    },\n    \"status\": {\n        \"boundResources\": {\n            \"chassisNode\": \"\",\n            \"router\": \"vpc.kcn-system.kcn-cluster\"\n        },\n        \"conditions\": [\n            {\n                \"lastTransitionTime\": \"2026-09-14T12:26:28Z\",\n                \"message\": \"\",\n                \"reason\": \"Valid\",\n                \"status\": \"True\",\n                \"type\": \"Valid\"\n            },\n            {\n                \"lastTransitionTime\": \"2026-09-14T12:26:28Z\",\n                \"message\": \"\",\n                \"reason\": \"Initialized\",\n                \"status\": \"True\",\n                \"type\": \"Initialized\"\n            },\n            {\n                \"lastTransitionTime\": \"2026-09-14T12:26:28Z\",\n                \"message\": \"\",\n                \"reason\": \"Ready\",\n                \"status\": \"True\",\n                \"type\": \"Ready\"\n            }\n        ],\n        \"default\": true,\n        \"observedGeneration\": 1,\n        \"subnets\": {\n            \"kcn-system/kcn-default\": \"10.16.0.0/16\",\n            \"kcn-system/pool-e1088cbbfd2a45e5b0e024919bcda3d5\": \"10.242.250.0/24\",\n            \"kcn-system/pubdebug-20260917-intranet\": \"10.242.252.0/24\"\n        }\n    }\n}\n",
+  "step": "intranet-evidence"
+}

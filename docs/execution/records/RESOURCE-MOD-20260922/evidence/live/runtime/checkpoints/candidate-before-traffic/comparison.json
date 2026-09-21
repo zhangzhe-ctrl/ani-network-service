@@ -1,0 +1,75 @@
+{
+  "result": "fail",
+  "original_objects": 28,
+  "differences": {
+    "gateway.networking.k8s.io/v1/HTTPRoute/rsmod-87bac0ed-a516-444a-b49c-0d6d292911d4/lb-route-0910b6768fd24b76899880e3e05ea2fb": {
+      "spec": {
+        "before": {
+          "parentRefs": [
+            {
+              "group": "gateway.networking.k8s.io",
+              "kind": "Gateway",
+              "name": "lb-3c7b5018c7a94a3799c4a06af7f7c5eb",
+              "sectionName": "http"
+            }
+          ],
+          "rules": [
+            {
+              "backendRefs": [
+                {
+                  "group": "gateway.envoyproxy.io",
+                  "kind": "Backend",
+                  "name": "lb-backend-fc80fd6de52e476b81c43b1773512afe",
+                  "port": 8080,
+                  "weight": 1
+                },
+                {
+                  "group": "gateway.envoyproxy.io",
+                  "kind": "Backend",
+                  "name": "lb-backend-7e44c09918f14b35b30f14a6e77ee2a3",
+                  "port": 8080,
+                  "weight": 1
+                }
+              ],
+              "matches": [
+                {
+                  "path": {
+                    "type": "PathPrefix",
+                    "value": "/"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "after": {
+          "parentRefs": [
+            {
+              "group": "gateway.networking.k8s.io",
+              "kind": "Gateway",
+              "name": "lb-3c7b5018c7a94a3799c4a06af7f7c5eb",
+              "sectionName": "http"
+            }
+          ],
+          "rules": [
+            {
+              "matches": [
+                {
+                  "path": {
+                    "type": "PathPrefix",
+                    "value": "/"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  },
+  "allowed_candidate_subnets": [
+    "networking.kubercloud.com/v1/Subnet/rsmod-87bac0ed-a516-444a-b49c-0d6d292911d4/subnet-5cfd4b1c96c04aa78078798f844510da",
+    "networking.kubercloud.com/v1/Subnet/rsmod-87bac0ed-a516-444a-b49c-0d6d292911d4/subnet-62f0f3d35c0d44caaf64f8f5b3fe1d81"
+  ],
+  "allowed_additions_match": true
+}

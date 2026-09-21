@@ -1,0 +1,48 @@
+{
+  "at": "2026-09-21T17:59:21.108435+00:00",
+  "state": "pass",
+  "action": "create",
+  "label": "normal",
+  "calls": [
+    {
+      "method": "CreateSubnet",
+      "request": {
+        "tenant_id": "87bac0ed-a516-444a-b49c-0d6d292911d4",
+        "vpc_id": "vpc_be10f89aea0a4a04af74b176431b7749",
+        "name": "rsmod-0922-candidate-normal",
+        "cidr": "10.236.2.0/24",
+        "idempotency_key": "rsmod-0922-candidate-normal"
+      },
+      "exit": 0,
+      "stdout": "{\"code\":\"OK\",\"response\":{\"subnet\":{\"id\":\"subnet_5cfd4b1c96c04aa78078798f844510da\",\"tenant_id\":\"87bac0ed-a516-444a-b49c-0d6d292911d4\",\"name\":\"rsmod-0922-candidate-normal\",\"description\":\"\",\"cidr\":\"10.236.2.0/24\",\"state\":\"RESOURCE_STATE_PROVISIONING\",\"reason\":\"\",\"created_at\":\"2026-09-21T17:59:21.094411Z\",\"updated_at\":\"2026-09-21T17:59:21.094411Z\",\"version\":\"1\",\"observed_at\":null,\"observation_stale\":true,\"last_operation_id\":\"52280e26-c5a9-46a4-bec0-02a3981aa012\",\"vpc_id\":\"vpc_be10f89aea0a4a04af74b176431b7749\",\"reason_message\":\"\",\"gateway\":\"10.236.2.1\"}}}\n",
+      "stderr": ""
+    }
+  ],
+  "request": {
+    "tenant_id": "87bac0ed-a516-444a-b49c-0d6d292911d4",
+    "vpc_id": "vpc_be10f89aea0a4a04af74b176431b7749",
+    "name": "rsmod-0922-candidate-normal",
+    "cidr": "10.236.2.0/24",
+    "idempotency_key": "rsmod-0922-candidate-normal"
+  },
+  "accepted": {
+    "subnet": {
+      "id": "subnet_5cfd4b1c96c04aa78078798f844510da",
+      "tenant_id": "87bac0ed-a516-444a-b49c-0d6d292911d4",
+      "name": "rsmod-0922-candidate-normal",
+      "description": "",
+      "cidr": "10.236.2.0/24",
+      "state": "RESOURCE_STATE_PROVISIONING",
+      "reason": "",
+      "created_at": "2026-09-21T17:59:21.094411Z",
+      "updated_at": "2026-09-21T17:59:21.094411Z",
+      "version": "1",
+      "observed_at": null,
+      "observation_stale": true,
+      "last_operation_id": "52280e26-c5a9-46a4-bec0-02a3981aa012",
+      "vpc_id": "vpc_be10f89aea0a4a04af74b176431b7749",
+      "reason_message": "",
+      "gateway": "10.236.2.1"
+    }
+  }
+}

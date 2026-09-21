@@ -1,0 +1,20 @@
+{
+  "at": "2026-09-21T17:43:59.071597+00:00",
+  "command": [
+    "/home/chabking/workspace/ani-resource-service-runs/rsmod-20260921T1640Z/private/runtime/bin/kubectl",
+    "--kubeconfig",
+    "/home/chabking/workspace/ani-resource-service-runs/rsmod-20260921T1640Z/private/runtime/kubeconfig.json",
+    "--request-timeout=20s",
+    "get",
+    "servicecidrs.networking.k8s.io",
+    "-o",
+    "json"
+  ],
+  "completed_at": "2026-09-21T17:43:59.231483+00:00",
+  "exit": 0,
+  "phase": "qualify",
+  "request": null,
+  "stderr": "",
+  "stdout": "{\n    \"apiVersion\": \"v1\",\n    \"items\": [\n        {\n            \"apiVersion\": \"networking.k8s.io/v1\",\n            \"kind\": \"ServiceCIDR\",\n            \"metadata\": {\n                \"creationTimestamp\": \"2026-09-14T12:23:05Z\",\n                \"finalizers\": [\n                    \"networking.k8s.io/service-cidr-finalizer\"\n                ],\n                \"name\": \"kubernetes\",\n                \"resourceVersion\": \"381\",\n                \"uid\": \"6b88c794-9210-48bb-938b-7f546bcc1d24\"\n            },\n            \"spec\": {\n                \"cidrs\": [\n                    \"10.96.0.0/16\"\n                ]\n            },\n            \"status\": {\n                \"conditions\": [\n                    {\n                        \"lastTransitionTime\": \"2026-09-14T12:23:14Z\",\n                        \"message\": \"Kubernetes Service CIDR is ready\",\n                        \"reason\": \"\",\n                        \"status\": \"True\",\n                        \"type\": \"Ready\"\n                    }\n                ]\n            }\n        }\n    ],\n    \"kind\": \"List\",\n    \"metadata\": {\n        \"resourceVersion\": \"\"\n    }\n}\n",
+  "step": "intranet-evidence"
+}

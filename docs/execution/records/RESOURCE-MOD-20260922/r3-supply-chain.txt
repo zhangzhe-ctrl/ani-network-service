@@ -1,0 +1,7 @@
+test "$(/home/chabking/workspace/ani-resource-service-runs/rsmod-20260921T1640Z/publication/.tools/bin/cyclonedx-gomod version | awk -F '\t' '$1 == "Version:" {print $2}')" = "v1.12.0"
+test "$(go version -m /home/chabking/workspace/ani-resource-service-runs/rsmod-20260921T1640Z/publication/.tools/bin/cyclonedx-gomod | awk '$1 == "mod" {print $2 "@" $3; exit}')" = "github.com/CycloneDX/cyclonedx-gomod@v1.12.0"
+./scripts/generate-sbom /home/chabking/workspace/ani-resource-service-runs/rsmod-20260921T1640Z/publication/.tools/bin/cyclonedx-gomod
+[90m5:10PM[0m [33mWRN[0m [1mno licenses detected[0m [36mmodule=[0mgithub.com/zhangzhe-ctrl/ani-resource-service@v0.0.0-20000101000000-ae35ea83ca58
+generated /home/chabking/workspace/ani-resource-service-runs/rsmod-20260921T1640Z/publication/docs/scaffold/bom.cdx.json from repository commit 13f2eaa0dd26d6ba97712c592602af4ed9c133d5, source snapshot ae35ea83ca580241a78728763c04aab1b7dc8c1a, tool SHA-256 ff268b19e15d9e74166a3fa67cff228d4c49cacca6bde257972d7e9da4fa5d77
+./scripts/verify-supply-chain
+supply-chain evidence verified: components=60 notice_sha256=3b44929bdd575a570c42165d4fd4eac57a5055745d2ecf3f121aa6a084cf9230 license_review=not-present

@@ -1,0 +1,23 @@
+{
+  "at": "2026-09-21T17:50:19.456494+00:00",
+  "command": [
+    "/home/chabking/workspace/ani-resource-service-runs/rsmod-20260921T1640Z/private/runtime/bin/lb-api",
+    "call",
+    "-target",
+    "unix:///home/chabking/.local/state/rsmod0922/sockets/tenant-a.sock",
+    "-service",
+    "NetworkService",
+    "-method",
+    "GetSubnet"
+  ],
+  "completed_at": "2026-09-21T17:50:19.466054+00:00",
+  "exit": 0,
+  "phase": "create-business",
+  "request": {
+    "subnet_id": "subnet_4511ea76ee1f4a39a433b6e075275eb9",
+    "tenant_id": "87bac0ed-a516-444a-b49c-0d6d292911d4"
+  },
+  "stderr": "",
+  "stdout": "{\"code\":\"OK\",\"response\":{\"subnet\":{\"id\":\"subnet_4511ea76ee1f4a39a433b6e075275eb9\",\"tenant_id\":\"87bac0ed-a516-444a-b49c-0d6d292911d4\",\"name\":\"rsmod-0922-backend-subnet\",\"description\":\"\",\"cidr\":\"10.236.1.0/24\",\"state\":\"RESOURCE_STATE_AVAILABLE\",\"reason\":\"\",\"created_at\":\"2026-09-21T17:49:34.445180Z\",\"updated_at\":\"2026-09-21T17:50:16.701477Z\",\"version\":\"8\",\"observed_at\":\"2026-09-21T17:50:16.638449Z\",\"observation_stale\":false,\"last_operation_id\":\"575af250-7927-4034-ab11-70681d952941\",\"vpc_id\":\"vpc_be10f89aea0a4a04af74b176431b7749\",\"reason_message\":\"\",\"gateway\":\"10.236.1.1\"}}}\n",
+  "step": "attachments"
+}

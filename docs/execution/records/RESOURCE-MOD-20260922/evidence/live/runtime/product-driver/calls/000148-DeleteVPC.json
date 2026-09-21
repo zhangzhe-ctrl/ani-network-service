@@ -1,0 +1,23 @@
+{
+  "at": "2026-09-21T18:26:10.857700+00:00",
+  "command": [
+    "/home/chabking/workspace/ani-resource-service-runs/rsmod-20260921T1640Z/private/runtime/bin/lb-api",
+    "call",
+    "-target",
+    "unix:///home/chabking/.local/state/rsmod0922/sockets/tenant-a.sock",
+    "-service",
+    "NetworkService",
+    "-method",
+    "DeleteVPC"
+  ],
+  "completed_at": "2026-09-21T18:26:10.878368+00:00",
+  "exit": 0,
+  "phase": "cleanup",
+  "request": {
+    "tenant_id": "87bac0ed-a516-444a-b49c-0d6d292911d4",
+    "vpc_id": "vpc_be10f89aea0a4a04af74b176431b7749"
+  },
+  "stderr": "",
+  "stdout": "{\"code\":\"OK\",\"response\":{\"vpc\":{\"id\":\"vpc_be10f89aea0a4a04af74b176431b7749\",\"tenant_id\":\"87bac0ed-a516-444a-b49c-0d6d292911d4\",\"name\":\"rsmod-0922-vpc\",\"description\":\"\",\"cidr\":\"10.236.0.0/16\",\"state\":\"RESOURCE_STATE_DELETING\",\"reason\":\"\",\"created_at\":\"2026-09-21T17:47:43.915872Z\",\"updated_at\":\"2026-09-21T18:26:10.874266Z\",\"version\":\"357\",\"observed_at\":\"2026-09-21T18:25:57.868600Z\",\"observation_stale\":false,\"last_operation_id\":\"e43ebd95-122d-465a-ab5e-3696b16acb38\",\"subnet_count\":\"0\",\"reason_message\":\"\",\"base_connectivity\":null}}}\n",
+  "step": "vpc"
+}

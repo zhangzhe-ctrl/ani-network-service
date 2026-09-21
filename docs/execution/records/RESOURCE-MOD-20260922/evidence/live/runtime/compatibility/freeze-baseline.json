@@ -1,0 +1,36 @@
+{
+  "at": "2026-09-21T17:51:53.407907+00:00",
+  "state": "pass",
+  "action": "freeze",
+  "label": "baseline",
+  "calls": [
+    {
+      "method": "ListSubnets",
+      "request": {
+        "tenant_id": "87bac0ed-a516-444a-b49c-0d6d292911d4",
+        "vpc_id": "vpc_be10f89aea0a4a04af74b176431b7749",
+        "limit": 1
+      },
+      "exit": 0,
+      "stdout": "{\"code\":\"OK\",\"response\":{\"items\":[{\"id\":\"subnet_4511ea76ee1f4a39a433b6e075275eb9\",\"tenant_id\":\"87bac0ed-a516-444a-b49c-0d6d292911d4\",\"name\":\"rsmod-0922-backend-subnet\",\"description\":\"\",\"cidr\":\"10.236.1.0/24\",\"state\":\"RESOURCE_STATE_AVAILABLE\",\"reason\":\"\",\"created_at\":\"2026-09-21T17:49:34.445180Z\",\"updated_at\":\"2026-09-21T17:51:52.567236Z\",\"version\":\"27\",\"observed_at\":\"2026-09-21T17:51:48.112520Z\",\"observation_stale\":false,\"last_operation_id\":\"575af250-7927-4034-ab11-70681d952941\",\"vpc_id\":\"vpc_be10f89aea0a4a04af74b176431b7749\",\"reason_message\":\"\",\"gateway\":\"10.236.1.1\"}],\"next_cursor\":\"eyJWZXJzaW9uIjoxLCJLaW5kIjoic3VibmV0IiwiVGVuYW50SUQiOiI4N2JhYzBlZC1hNTE2LTQ0NGEtYjQ5Yy0wZDZkMjkyOTExZDQiLCJOYW1lIjoiIiwiU3RhdGUiOiIiLCJWUENJRCI6InZwY19iZTEwZjg5YWVhMGE0YTA0YWY3NGIxNzY0MzFiNzc0OSIsIklEIjoic3VibmV0XzQ1MTFlYTc2ZWUxZjRhMzlhNDMzYjZlMDc1Mjc1ZWI5IiwiQ3JlYXRlZEF0IjoiMjAyNi0wOS0yMVQxNzo0OTozNC40NDUxOFoifQ.19-_AA8aLmj3_CiUAb_fRhNi5wFeYrXFEfFQl9u2ppc\"}}\n",
+      "stderr": ""
+    },
+    {
+      "method": "ListSubnets",
+      "request": {
+        "tenant_id": "87bac0ed-a516-444a-b49c-0d6d292911d4",
+        "vpc_id": "vpc_be10f89aea0a4a04af74b176431b7749",
+        "limit": 1,
+        "cursor": "eyJWZXJzaW9uIjoxLCJLaW5kIjoic3VibmV0IiwiVGVuYW50SUQiOiI4N2JhYzBlZC1hNTE2LTQ0NGEtYjQ5Yy0wZDZkMjkyOTExZDQiLCJOYW1lIjoiIiwiU3RhdGUiOiIiLCJWUENJRCI6InZwY19iZTEwZjg5YWVhMGE0YTA0YWY3NGIxNzY0MzFiNzc0OSIsIklEIjoic3VibmV0XzQ1MTFlYTc2ZWUxZjRhMzlhNDMzYjZlMDc1Mjc1ZWI5IiwiQ3JlYXRlZEF0IjoiMjAyNi0wOS0yMVQxNzo0OTozNC40NDUxOFoifQ.19-_AA8aLmj3_CiUAb_fRhNi5wFeYrXFEfFQl9u2ppc"
+      },
+      "exit": 0,
+      "stdout": "{\"code\":\"OK\",\"response\":{\"items\":[{\"id\":\"subnet_657c3153d996410193208d9ff775a091\",\"tenant_id\":\"87bac0ed-a516-444a-b49c-0d6d292911d4\",\"name\":\"rsmod-0922-entry-subnet\",\"description\":\"\",\"cidr\":\"10.236.0.0/24\",\"state\":\"RESOURCE_STATE_AVAILABLE\",\"reason\":\"\",\"created_at\":\"2026-09-21T17:49:34.422318Z\",\"updated_at\":\"2026-09-21T17:51:52.581187Z\",\"version\":\"29\",\"observed_at\":\"2026-09-21T17:51:48.112520Z\",\"observation_stale\":false,\"last_operation_id\":\"411acdcf-94e4-4e56-bd73-31ee63f20ae1\",\"vpc_id\":\"vpc_be10f89aea0a4a04af74b176431b7749\",\"reason_message\":\"\",\"gateway\":\"10.236.0.1\"}],\"next_cursor\":\"\"}}\n",
+      "stderr": ""
+    }
+  ],
+  "cursor": "eyJWZXJzaW9uIjoxLCJLaW5kIjoic3VibmV0IiwiVGVuYW50SUQiOiI4N2JhYzBlZC1hNTE2LTQ0NGEtYjQ5Yy0wZDZkMjkyOTExZDQiLCJOYW1lIjoiIiwiU3RhdGUiOiIiLCJWUENJRCI6InZwY19iZTEwZjg5YWVhMGE0YTA0YWY3NGIxNzY0MzFiNzc0OSIsIklEIjoic3VibmV0XzQ1MTFlYTc2ZWUxZjRhMzlhNDMzYjZlMDc1Mjc1ZWI5IiwiQ3JlYXRlZEF0IjoiMjAyNi0wOS0yMVQxNzo0OTozNC40NDUxOFoifQ.19-_AA8aLmj3_CiUAb_fRhNi5wFeYrXFEfFQl9u2ppc",
+  "next_ids": [
+    "subnet_657c3153d996410193208d9ff775a091"
+  ],
+  "schema": "[{\"version\": 1, \"checksum\": \"c9c99dd3cfba59f5a6fcf8025e7d0d433a8bd322df1088c58912a44d1e32736a\", \"applied_at\": \"2026-09-21T17:40:25.949432+00:00\"}, {\"version\": 2, \"checksum\": \"ab5dfbc25cc9f2323d2fbee2dbb109d28115597a6f8322e1242f4484dc6a5fdb\", \"applied_at\": \"2026-09-21T17:40:25.974057+00:00\"}, {\"version\": 3, \"checksum\": \"9617a45668d6f0a4c0590f07f36889acbd56c4b966dcd0c9f2b3d1f093ee69dd\", \"applied_at\": \"2026-09-21T17:40:25.983864+00:00\"}, {\"version\": 4, \"checksum\": \"6ff6142ba197f3a8e62e6433daf2deb672c3f125d634d4f63441f3b11e9c58b6\", \"applied_at\": \"2026-09-21T17:40:25.989068+00:00\"}, {\"version\": 5, \"checksum\": \"03391a468313dbf64050840dda02a2d9da4845fdf864364bc34aade4069818e6\", \"applied_at\": \"2026-09-21T17:40:26.052027+00:00\"}, {\"version\": 6, \"checksum\": \"bf8918f6a357850bd54f3d1b4e6120d7cfcb9b9be76a5e2825436bd19be3ef13\", \"applied_at\": \"2026-09-21T17:40:26.101666+00:00\"}, {\"version\": 7, \"checksum\": \"d19d3204acf4a0c41358b7bfbcd413685596a25568086fd63afb86e549d8ab77\", \"applied_at\": \"2026-09-21T17:40:26.160502+00:00\"}, {\"version\": 8, \"checksum\": \"4cec6755827dd7be87759f31a6d4c7accc9089c4b4f96ffd0197cd23ded2e0b5\", \"applied_at\": \"2026-09-21T17:40:26.161788+00:00\"}]"
+}

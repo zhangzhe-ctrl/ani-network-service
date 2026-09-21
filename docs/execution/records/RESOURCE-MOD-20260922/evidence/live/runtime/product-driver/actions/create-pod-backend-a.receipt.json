@@ -1,0 +1,115 @@
+{
+  "at": "2026-09-21T17:50:27.323664+00:00",
+  "result": {
+    "apiVersion": "v1",
+    "kind": "Pod",
+    "metadata": {
+      "annotations": {
+        "networking.kubercloud.com/subnet": "rsmod-87bac0ed-a516-444a-b49c-0d6d292911d4/subnet-4511ea76ee1f4a39a433b6e075275eb9"
+      },
+      "creationTimestamp": "2026-09-21T17:50:27Z",
+      "generation": 1,
+      "labels": {
+        "network.ani.io/attachment-id": "att_af65f9d28d32484e87cd9ee9d689cada",
+        "network.ani.io/generation": "1",
+        "network.ani.io/instance-id": "78dc265a-f6e1-48c5-afae-d4642851204d",
+        "network.ani.io/submission-id": "a6c2cd16-2d3d-4006-8393-ee9d7fb3f573",
+        "network.ani.io/tenant-id": "87bac0ed-a516-444a-b49c-0d6d292911d4",
+        "network.ani.io/test-run": "rsmod-0922"
+      },
+      "name": "rsmod-0922-backend-a",
+      "namespace": "rsmod-87bac0ed-a516-444a-b49c-0d6d292911d4",
+      "resourceVersion": "3093118",
+      "uid": "7106203a-4bc9-4a56-9e7c-0b647c779cc0"
+    },
+    "spec": {
+      "automountServiceAccountToken": false,
+      "containers": [
+        {
+          "env": [
+            {
+              "name": "NET05_ID",
+              "value": "rsmod-0922"
+            },
+            {
+              "name": "ANI_WORKLOAD_ID",
+              "value": "78dc265a-f6e1-48c5-afae-d4642851204d"
+            },
+            {
+              "name": "NET05_PORT",
+              "value": "8080"
+            }
+          ],
+          "image": "localhost/lb02-2b3122-probe@sha256:647c2acd8e115511a18506014995ec01b7d0d62fbc05f2a6e51a5c65c2a3fcce",
+          "imagePullPolicy": "Never",
+          "name": "probe",
+          "ports": [
+            {
+              "containerPort": 8080,
+              "protocol": "TCP"
+            }
+          ],
+          "resources": {
+            "limits": {
+              "cpu": "100m",
+              "memory": "64Mi"
+            },
+            "requests": {
+              "cpu": "10m",
+              "memory": "32Mi"
+            }
+          },
+          "securityContext": {
+            "allowPrivilegeEscalation": false,
+            "capabilities": {
+              "drop": [
+                "ALL"
+              ]
+            },
+            "readOnlyRootFilesystem": true
+          },
+          "terminationMessagePath": "/dev/termination-log",
+          "terminationMessagePolicy": "File"
+        }
+      ],
+      "dnsPolicy": "ClusterFirst",
+      "enableServiceLinks": true,
+      "nodeSelector": {
+        "kubernetes.io/hostname": "ani-02"
+      },
+      "preemptionPolicy": "PreemptLowerPriority",
+      "priority": 0,
+      "restartPolicy": "Always",
+      "schedulerName": "default-scheduler",
+      "securityContext": {
+        "runAsGroup": 65532,
+        "runAsNonRoot": true,
+        "runAsUser": 65532,
+        "seccompProfile": {
+          "type": "RuntimeDefault"
+        }
+      },
+      "serviceAccount": "default",
+      "serviceAccountName": "default",
+      "terminationGracePeriodSeconds": 30,
+      "tolerations": [
+        {
+          "effect": "NoExecute",
+          "key": "node.kubernetes.io/not-ready",
+          "operator": "Exists",
+          "tolerationSeconds": 300
+        },
+        {
+          "effect": "NoExecute",
+          "key": "node.kubernetes.io/unreachable",
+          "operator": "Exists",
+          "tolerationSeconds": 300
+        }
+      ]
+    },
+    "status": {
+      "phase": "Pending",
+      "qosClass": "Burstable"
+    }
+  }
+}

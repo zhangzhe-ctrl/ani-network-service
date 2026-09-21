@@ -1,0 +1,191 @@
+{
+  "at": "2026-09-21T18:13:47.207835+00:00",
+  "state": "pass",
+  "runtime_binaries": {
+    "network": "aaad4674d3df506a5aee76dc578b09522d0a61d556df354ca3d40be07951e3c6",
+    "lb-api": "d1752f743e42fb2b9b780bec5dec9630c50db19e9734e30f8016ccaa9a34855f"
+  },
+  "calls": [
+    {
+      "method": "CreateSubnet",
+      "request": {
+        "tenant_id": "87bac0ed-a516-444a-b49c-0d6d292911d4",
+        "vpc_id": "vpc_be10f89aea0a4a04af74b176431b7749",
+        "name": "rsmod-0922-candidate-normal",
+        "cidr": "10.236.2.0/24",
+        "idempotency_key": "rsmod-0922-candidate-normal"
+      },
+      "result": {
+        "code": "OK",
+        "response": {
+          "subnet": {
+            "id": "subnet_5cfd4b1c96c04aa78078798f844510da",
+            "tenant_id": "87bac0ed-a516-444a-b49c-0d6d292911d4",
+            "name": "rsmod-0922-candidate-normal",
+            "description": "",
+            "cidr": "10.236.2.0/24",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "",
+            "created_at": "2026-09-21T17:59:21.094411Z",
+            "updated_at": "2026-09-21T17:59:21.094411Z",
+            "version": "1",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "52280e26-c5a9-46a4-bec0-02a3981aa012",
+            "vpc_id": "vpc_be10f89aea0a4a04af74b176431b7749",
+            "reason_message": "",
+            "gateway": "10.236.2.1"
+          }
+        }
+      }
+    },
+    {
+      "method": "GetSubnet",
+      "request": {
+        "tenant_id": "87bac0ed-a516-444a-b49c-0d6d292911d4",
+        "subnet_id": "subnet_5cfd4b1c96c04aa78078798f844510da"
+      },
+      "result": {
+        "code": "OK",
+        "response": {
+          "subnet": {
+            "id": "subnet_5cfd4b1c96c04aa78078798f844510da",
+            "tenant_id": "87bac0ed-a516-444a-b49c-0d6d292911d4",
+            "name": "rsmod-0922-candidate-normal",
+            "description": "",
+            "cidr": "10.236.2.0/24",
+            "state": "RESOURCE_STATE_DELETED",
+            "reason": "",
+            "created_at": "2026-09-21T17:59:21.094411Z",
+            "updated_at": "2026-09-21T18:13:42.114232Z",
+            "version": "145",
+            "observed_at": "2026-09-21T18:13:38.664278Z",
+            "observation_stale": false,
+            "last_operation_id": "4c41f2a3-b184-4eac-8001-2f89db180922",
+            "vpc_id": "vpc_be10f89aea0a4a04af74b176431b7749",
+            "reason_message": "",
+            "gateway": "10.236.2.1"
+          }
+        }
+      }
+    },
+    {
+      "method": "GetOperation",
+      "request": {
+        "tenant_id": "87bac0ed-a516-444a-b49c-0d6d292911d4",
+        "operation_id": "4c41f2a3-b184-4eac-8001-2f89db180922"
+      },
+      "result": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "4c41f2a3-b184-4eac-8001-2f89db180922",
+            "tenant_id": "87bac0ed-a516-444a-b49c-0d6d292911d4",
+            "resource_id": "subnet_5cfd4b1c96c04aa78078798f844510da",
+            "kind": "OPERATION_KIND_DELETE_SUBNET",
+            "state": "OPERATION_STATE_SUCCEEDED",
+            "reason": "",
+            "created_at": "2026-09-21T18:12:45.238445Z",
+            "updated_at": "2026-09-21T18:12:56.827748Z",
+            "completed_at": "2026-09-21T18:12:56.827748Z",
+            "next_attempt_at": null,
+            "resource_type": "RESOURCE_TYPE_SUBNET",
+            "reason_message": ""
+          }
+        }
+      }
+    },
+    {
+      "method": "CreateSubnet",
+      "request": {
+        "tenant_id": "87bac0ed-a516-444a-b49c-0d6d292911d4",
+        "vpc_id": "vpc_be10f89aea0a4a04af74b176431b7749",
+        "name": "rsmod-0922-candidate-pending",
+        "cidr": "10.236.3.0/24",
+        "idempotency_key": "rsmod-0922-candidate-pending"
+      },
+      "result": {
+        "code": "OK",
+        "response": {
+          "subnet": {
+            "id": "subnet_62f0f3d35c0d44caaf64f8f5b3fe1d81",
+            "tenant_id": "87bac0ed-a516-444a-b49c-0d6d292911d4",
+            "name": "rsmod-0922-candidate-pending",
+            "description": "",
+            "cidr": "10.236.3.0/24",
+            "state": "RESOURCE_STATE_PROVISIONING",
+            "reason": "",
+            "created_at": "2026-09-21T18:01:12.015041Z",
+            "updated_at": "2026-09-21T18:01:12.015041Z",
+            "version": "1",
+            "observed_at": null,
+            "observation_stale": true,
+            "last_operation_id": "c9955c65-f2b8-4726-a393-af508118e492",
+            "vpc_id": "vpc_be10f89aea0a4a04af74b176431b7749",
+            "reason_message": "",
+            "gateway": "10.236.3.1"
+          }
+        }
+      }
+    },
+    {
+      "method": "GetSubnet",
+      "request": {
+        "tenant_id": "87bac0ed-a516-444a-b49c-0d6d292911d4",
+        "subnet_id": "subnet_62f0f3d35c0d44caaf64f8f5b3fe1d81"
+      },
+      "result": {
+        "code": "OK",
+        "response": {
+          "subnet": {
+            "id": "subnet_62f0f3d35c0d44caaf64f8f5b3fe1d81",
+            "tenant_id": "87bac0ed-a516-444a-b49c-0d6d292911d4",
+            "name": "rsmod-0922-candidate-pending",
+            "description": "",
+            "cidr": "10.236.3.0/24",
+            "state": "RESOURCE_STATE_AVAILABLE",
+            "reason": "",
+            "created_at": "2026-09-21T18:01:12.015041Z",
+            "updated_at": "2026-09-21T18:13:47.231153Z",
+            "version": "127",
+            "observed_at": "2026-09-21T18:13:38.691078Z",
+            "observation_stale": false,
+            "last_operation_id": "c9955c65-f2b8-4726-a393-af508118e492",
+            "vpc_id": "vpc_be10f89aea0a4a04af74b176431b7749",
+            "reason_message": "",
+            "gateway": "10.236.3.1"
+          }
+        }
+      }
+    },
+    {
+      "method": "GetOperation",
+      "request": {
+        "tenant_id": "87bac0ed-a516-444a-b49c-0d6d292911d4",
+        "operation_id": "c9955c65-f2b8-4726-a393-af508118e492"
+      },
+      "result": {
+        "code": "OK",
+        "response": {
+          "operation": {
+            "id": "c9955c65-f2b8-4726-a393-af508118e492",
+            "tenant_id": "87bac0ed-a516-444a-b49c-0d6d292911d4",
+            "resource_id": "subnet_62f0f3d35c0d44caaf64f8f5b3fe1d81",
+            "kind": "OPERATION_KIND_CREATE_SUBNET",
+            "state": "OPERATION_STATE_SUCCEEDED",
+            "reason": "",
+            "created_at": "2026-09-21T18:01:12.015041Z",
+            "updated_at": "2026-09-21T18:01:30.184481Z",
+            "completed_at": "2026-09-21T18:01:30.184481Z",
+            "next_attempt_at": null,
+            "resource_type": "RESOURCE_TYPE_SUBNET",
+            "reason_message": ""
+          }
+        }
+      }
+    }
+  ],
+  "normal": "DELETED",
+  "pending": "AVAILABLE",
+  "immutable_candidate_receipts_preserved": true
+}

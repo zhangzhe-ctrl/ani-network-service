@@ -1,0 +1,46 @@
+{
+  "at": "2026-09-21T18:12:45.126585+00:00",
+  "label": "rollback-before-delete",
+  "execution_host": "fedora",
+  "database": "net_vpc_lb_02_a92201",
+  "container": "1b7e9b94105b9eff55a6301c23da160f3b8034049a4099f2d8d13118b1e5ea72",
+  "provider_count": 30,
+  "binary_sha256": {
+    "network": "aaad4674d3df506a5aee76dc578b09522d0a61d556df354ca3d40be07951e3c6",
+    "lb-api": "d1752f743e42fb2b9b780bec5dec9630c50db19e9734e30f8016ccaa9a34855f"
+  },
+  "config_sha256": "a8fb7b7bbd39e456a6c69fe386716099dd8f49fd312194451d9cdf8a3f092f77",
+  "backup_sha256": "44a8c6b3025d25c924974500f927f64c3cfc9b835b939c0e764acb84e58fd9a2",
+  "identity_sha256": "977b472344a30bdd4c57dee791cef2f400f72a137969f3cbfec5049eec062602",
+  "listeners": {
+    "standard": "127.0.0.1:60571",
+    "admin": "127.0.0.1:39183"
+  },
+  "processes": {
+    "at": "2026-09-21T18:11:09.710184+00:00",
+    "run": "rsmod-0922",
+    "state": "running",
+    "processes": [
+      {
+        "name": "owner",
+        "pid": 257372,
+        "start_ticks": "5602073"
+      },
+      {
+        "name": "network",
+        "pid": 257373,
+        "start_ticks": "5602073"
+      },
+      {
+        "name": "tenant-a",
+        "pid": 257374,
+        "start_ticks": "5602073"
+      },
+      {
+        "name": "platform",
+        "pid": 257379,
+        "start_ticks": "5602073"
+      }
+    ]
+  }
+}

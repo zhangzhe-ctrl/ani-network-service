@@ -1,0 +1,209 @@
+{
+  "method": "read-only pg_restore --file=- of retained dumps; no database restore or write",
+  "checkpoints": {
+    "baseline-after-traffic": {
+      "network_attachments": [
+        {
+          "tenant_id": "d013b7ac-e53f-46cd-9a06-2b01013262e6",
+          "attachment_id": "att_83eb0f0438b04c0b84d0cc7f4063c6e3",
+          "state": "attached",
+          "reason": "",
+          "pod_uid": "489760ba-1b41-44b6-82d3-c8bdbdb6f4a2",
+          "observed_at": "2026-09-21 17:57:52.937864+00",
+          "lease_owner": "\\N",
+          "lease_until": "\\N",
+          "epoch": "65"
+        },
+        {
+          "tenant_id": "d013b7ac-e53f-46cd-9a06-2b01013262e6",
+          "attachment_id": "att_5a2eaaf7cd62469c8e36df8f37cb06b4",
+          "state": "attached",
+          "reason": "",
+          "pod_uid": "c8c359d5-eb84-4509-a634-fbd3f19d5bf2",
+          "observed_at": "2026-09-21 17:57:52.937864+00",
+          "lease_owner": "\\N",
+          "lease_until": "\\N",
+          "epoch": "65"
+        },
+        {
+          "tenant_id": "87bac0ed-a516-444a-b49c-0d6d292911d4",
+          "attachment_id": "att_af65f9d28d32484e87cd9ee9d689cada",
+          "state": "attached",
+          "reason": "",
+          "pod_uid": "7106203a-4bc9-4a56-9e7c-0b647c779cc0",
+          "observed_at": "2026-09-21 17:57:52.937864+00",
+          "lease_owner": "\\N",
+          "lease_until": "\\N",
+          "epoch": "75"
+        },
+        {
+          "tenant_id": "87bac0ed-a516-444a-b49c-0d6d292911d4",
+          "attachment_id": "att_ec07187265f74a6da6d9e22ef2f993ac",
+          "state": "attached",
+          "reason": "",
+          "pod_uid": "da3ada27-e5c7-4070-b519-9ed0928de090",
+          "observed_at": "2026-09-21 17:57:52.937864+00",
+          "lease_owner": "\\N",
+          "lease_until": "\\N",
+          "epoch": "75"
+        }
+      ],
+      "network_lb_members": [
+        {
+          "tenant_id": "87bac0ed-a516-444a-b49c-0d6d292911d4",
+          "member_id": "979644cb-a078-4c25-8e94-f9719093e17d",
+          "attachment_id": "att_ec07187265f74a6da6d9e22ef2f993ac",
+          "pod_uid": "da3ada27-e5c7-4070-b519-9ed0928de090",
+          "state": "available",
+          "reason": "",
+          "observed_at": "2026-09-21 17:57:52.937864+00"
+        },
+        {
+          "tenant_id": "87bac0ed-a516-444a-b49c-0d6d292911d4",
+          "member_id": "e1189c8a-5587-4c13-816b-d425cc7bc454",
+          "attachment_id": "att_af65f9d28d32484e87cd9ee9d689cada",
+          "pod_uid": "7106203a-4bc9-4a56-9e7c-0b647c779cc0",
+          "state": "available",
+          "reason": "",
+          "observed_at": "2026-09-21 17:57:52.937864+00"
+        }
+      ]
+    },
+    "candidate-takeover": {
+      "network_attachments": [
+        {
+          "tenant_id": "87bac0ed-a516-444a-b49c-0d6d292911d4",
+          "attachment_id": "att_ec07187265f74a6da6d9e22ef2f993ac",
+          "state": "attached",
+          "reason": "",
+          "pod_uid": "da3ada27-e5c7-4070-b519-9ed0928de090",
+          "observed_at": "2026-09-21 17:59:03.453177+00",
+          "lease_owner": "\\N",
+          "lease_until": "\\N",
+          "epoch": "86"
+        },
+        {
+          "tenant_id": "87bac0ed-a516-444a-b49c-0d6d292911d4",
+          "attachment_id": "att_af65f9d28d32484e87cd9ee9d689cada",
+          "state": "attached",
+          "reason": "",
+          "pod_uid": "7106203a-4bc9-4a56-9e7c-0b647c779cc0",
+          "observed_at": "2026-09-21 17:59:03.453177+00",
+          "lease_owner": "\\N",
+          "lease_until": "\\N",
+          "epoch": "86"
+        },
+        {
+          "tenant_id": "d013b7ac-e53f-46cd-9a06-2b01013262e6",
+          "attachment_id": "att_5a2eaaf7cd62469c8e36df8f37cb06b4",
+          "state": "attached",
+          "reason": "",
+          "pod_uid": "c8c359d5-eb84-4509-a634-fbd3f19d5bf2",
+          "observed_at": "2026-09-21 17:59:03.453177+00",
+          "lease_owner": "\\N",
+          "lease_until": "\\N",
+          "epoch": "76"
+        },
+        {
+          "tenant_id": "d013b7ac-e53f-46cd-9a06-2b01013262e6",
+          "attachment_id": "att_83eb0f0438b04c0b84d0cc7f4063c6e3",
+          "state": "attached",
+          "reason": "",
+          "pod_uid": "489760ba-1b41-44b6-82d3-c8bdbdb6f4a2",
+          "observed_at": "2026-09-21 17:59:03.453177+00",
+          "lease_owner": "\\N",
+          "lease_until": "\\N",
+          "epoch": "76"
+        }
+      ],
+      "network_lb_members": [
+        {
+          "tenant_id": "87bac0ed-a516-444a-b49c-0d6d292911d4",
+          "member_id": "979644cb-a078-4c25-8e94-f9719093e17d",
+          "attachment_id": "att_ec07187265f74a6da6d9e22ef2f993ac",
+          "pod_uid": "da3ada27-e5c7-4070-b519-9ed0928de090",
+          "state": "available",
+          "reason": "",
+          "observed_at": "2026-09-21 17:59:00.069556+00"
+        },
+        {
+          "tenant_id": "87bac0ed-a516-444a-b49c-0d6d292911d4",
+          "member_id": "e1189c8a-5587-4c13-816b-d425cc7bc454",
+          "attachment_id": "att_af65f9d28d32484e87cd9ee9d689cada",
+          "pod_uid": "7106203a-4bc9-4a56-9e7c-0b647c779cc0",
+          "state": "available",
+          "reason": "",
+          "observed_at": "2026-09-21 17:59:00.069556+00"
+        }
+      ]
+    },
+    "candidate-before-traffic": {
+      "network_attachments": [
+        {
+          "tenant_id": "87bac0ed-a516-444a-b49c-0d6d292911d4",
+          "attachment_id": "att_af65f9d28d32484e87cd9ee9d689cada",
+          "state": "attached",
+          "reason": "",
+          "pod_uid": "7106203a-4bc9-4a56-9e7c-0b647c779cc0",
+          "observed_at": "2026-09-21 18:00:51.486386+00",
+          "lease_owner": "f3f1ad12-a1e4-48b9-9f87-bb88c87087e9",
+          "lease_until": "2026-09-21 18:03:10.477128+00",
+          "epoch": "108"
+        },
+        {
+          "tenant_id": "d013b7ac-e53f-46cd-9a06-2b01013262e6",
+          "attachment_id": "att_5a2eaaf7cd62469c8e36df8f37cb06b4",
+          "state": "attached",
+          "reason": "",
+          "pod_uid": "c8c359d5-eb84-4509-a634-fbd3f19d5bf2",
+          "observed_at": "2026-09-21 18:00:51.486386+00",
+          "lease_owner": "f3f1ad12-a1e4-48b9-9f87-bb88c87087e9",
+          "lease_until": "2026-09-21 18:03:10.477181+00",
+          "epoch": "98"
+        },
+        {
+          "tenant_id": "87bac0ed-a516-444a-b49c-0d6d292911d4",
+          "attachment_id": "att_ec07187265f74a6da6d9e22ef2f993ac",
+          "state": "attached",
+          "reason": "",
+          "pod_uid": "da3ada27-e5c7-4070-b519-9ed0928de090",
+          "observed_at": "2026-09-21 18:00:51.486386+00",
+          "lease_owner": "f3f1ad12-a1e4-48b9-9f87-bb88c87087e9",
+          "lease_until": "2026-09-21 18:03:10.376186+00",
+          "epoch": "108"
+        },
+        {
+          "tenant_id": "d013b7ac-e53f-46cd-9a06-2b01013262e6",
+          "attachment_id": "att_83eb0f0438b04c0b84d0cc7f4063c6e3",
+          "state": "attached",
+          "reason": "",
+          "pod_uid": "489760ba-1b41-44b6-82d3-c8bdbdb6f4a2",
+          "observed_at": "2026-09-21 18:00:51.486386+00",
+          "lease_owner": "f3f1ad12-a1e4-48b9-9f87-bb88c87087e9",
+          "lease_until": "2026-09-21 18:03:10.376261+00",
+          "epoch": "98"
+        }
+      ],
+      "network_lb_members": [
+        {
+          "tenant_id": "87bac0ed-a516-444a-b49c-0d6d292911d4",
+          "member_id": "979644cb-a078-4c25-8e94-f9719093e17d",
+          "attachment_id": "att_ec07187265f74a6da6d9e22ef2f993ac",
+          "pod_uid": "da3ada27-e5c7-4070-b519-9ed0928de090",
+          "state": "unavailable",
+          "reason": "BACKEND_IDENTITY_MISMATCH",
+          "observed_at": "2026-09-21 18:02:20.465511+00"
+        },
+        {
+          "tenant_id": "87bac0ed-a516-444a-b49c-0d6d292911d4",
+          "member_id": "e1189c8a-5587-4c13-816b-d425cc7bc454",
+          "attachment_id": "att_af65f9d28d32484e87cd9ee9d689cada",
+          "pod_uid": "7106203a-4bc9-4a56-9e7c-0b647c779cc0",
+          "state": "unavailable",
+          "reason": "BACKEND_IDENTITY_MISMATCH",
+          "observed_at": "2026-09-21 18:02:20.465511+00"
+        }
+      ]
+    }
+  }
+}

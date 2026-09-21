@@ -1,0 +1,22 @@
+{
+  "at": "2026-09-21T17:52:54.712305+00:00",
+  "command": [
+    "/home/chabking/workspace/ani-resource-service-runs/rsmod-20260921T1640Z/private/runtime/bin/lb-api",
+    "call",
+    "-target",
+    "unix:///home/chabking/.local/state/rsmod0922/sockets/tenant-a.sock",
+    "-service",
+    "TenantLoadBalancerService",
+    "-method",
+    "GetLoadBalancer"
+  ],
+  "completed_at": "2026-09-21T17:52:54.723591+00:00",
+  "exit": 0,
+  "phase": "snapshot",
+  "request": {
+    "load_balancer_id": "lb_3c7b5018c7a94a3799c4a06af7f7c5eb"
+  },
+  "stderr": "",
+  "stdout": "{\"code\":\"OK\",\"response\":{\"load_balancer\":{\"id\":\"lb_3c7b5018c7a94a3799c4a06af7f7c5eb\",\"tenant_id\":\"87bac0ed-a516-444a-b49c-0d6d292911d4\",\"vpc_id\":\"vpc_be10f89aea0a4a04af74b176431b7749\",\"subnet_id\":\"subnet_657c3153d996410193208d9ff775a091\",\"name\":\"rsmod-0922-private-lb\",\"description\":\"\",\"exposure\":\"LOAD_BALANCER_EXPOSURE_PRIVATE\",\"flavor\":\"small\",\"public_eip_id\":\"\",\"private_ip\":\"10.236.0.200\",\"listener\":{\"id\":\"f910e77f-2a50-41d1-ad82-cfa59803cd0c\",\"protocol\":\"LOAD_BALANCER_LISTENER_PROTOCOL_HTTP\",\"port\":8081},\"backends\":[{\"id\":\"979644cb-a078-4c25-8e94-f9719093e17d\",\"subnet_id\":\"subnet_4511ea76ee1f4a39a433b6e075275eb9\",\"address\":\"10.236.1.3\",\"port\":8080,\"weight\":1,\"attachment_id\":\"att_ec07187265f74a6da6d9e22ef2f993ac\",\"state\":\"available\",\"reason\":\"\",\"observed_at\":\"2026-09-21T17:52:40.721157Z\",\"observation_stale\":false},{\"id\":\"e1189c8a-5587-4c13-816b-d425cc7bc454\",\"subnet_id\":\"subnet_4511ea76ee1f4a39a433b6e075275eb9\",\"address\":\"10.236.1.2\",\"port\":8080,\"weight\":1,\"attachment_id\":\"att_af65f9d28d32484e87cd9ee9d689cada\",\"state\":\"available\",\"reason\":\"\",\"observed_at\":\"2026-09-21T17:52:40.721157Z\",\"observation_stale\":false}],\"health_check\":{\"protocol\":\"LOAD_BALANCER_HEALTH_CHECK_PROTOCOL_TCP\",\"interval_seconds\":5,\"timeout_seconds\":3,\"unhealthy_threshold\":3,\"healthy_threshold\":1,\"port\":8080},\"algorithm\":\"LOAD_BALANCER_ALGORITHM_ROUND_ROBIN\",\"state\":\"RESOURCE_STATE_AVAILABLE\",\"reason\":\"\",\"reason_message\":\"\",\"version\":\"11\",\"desired_version\":\"1\",\"applied_version\":\"1\",\"configuration_state\":\"LOAD_BALANCER_CONFIGURATION_STATE_CONFIGURED\",\"data_plane_state\":\"LOAD_BALANCER_DATA_PLANE_STATE_UNKNOWN\",\"observed_at\":\"2026-09-21T17:52:40.721157Z\",\"observation_stale\":false,\"created_at\":\"2026-09-21T17:51:02.653849Z\",\"updated_at\":\"2026-09-21T17:52:45.561512Z\",\"last_operation_id\":\"ee52ce8b-0e71-4e24-b05b-62660b33b7b0\",\"public_address\":\"\",\"data_plane_observed_at\":null}}}\n",
+  "step": null
+}
