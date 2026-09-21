@@ -127,3 +127,14 @@ Fedora run 根目录保留源码、工具链/cache、旧/新镜像与二进制�
 全部流量、API 调用、切换、兼容回执和公开对象快照保留在 evidence/live。
 发布收尾不等于通过：audit 和 R4 必需项未通过前，默认分支合入、GitHub/正式目录改名、
 改名后新旧 module 获取及最终默认分支 CI 均为 not_verified。
+
+
+## 交付快照检查
+
+证据提交 `def9c9d` 的 Fedora `make verify` 再次通过；全历史 `make secrets` 扫描 20 个
+提交、148.70 MB，未发现泄露。`make audit` 仍因上述两个既有漏洞失败。
+首次 SBOM 生成被 `scripts/__pycache__/net05a-adapt.cpython-314.pyc` 阻止：新增到 verify 的
+故障注入构建调用既有 Python loader 后产生普通字节码缓存。现将 `__pycache__/` 加入
+生成缓存忽略规则，不忽略源文件、证据或检测规则；失败日志保留，修正后单独复核。
+[源码对照](delivery-source-comparison.json)说明交付阶段仅修改安全检查配置和缓存忽略，
+受测 Go/SQL/配置/生成契约及真实运行二进制不变。

@@ -1,0 +1,5 @@
+test "$(/home/chabking/workspace/ani-resource-service-runs/rsmod-20260921T1640Z/publication/.tools/bin/cyclonedx-gomod version | awk -F '\t' '$1 == "Version:" {print $2}')" = "v1.12.0"
+test "$(go version -m /home/chabking/workspace/ani-resource-service-runs/rsmod-20260921T1640Z/publication/.tools/bin/cyclonedx-gomod | awk '$1 == "mod" {print $2 "@" $3; exit}')" = "github.com/CycloneDX/cyclonedx-gomod@v1.12.0"
+./scripts/generate-sbom /home/chabking/workspace/ani-resource-service-runs/rsmod-20260921T1640Z/publication/.tools/bin/cyclonedx-gomod
+generate-sbom: repository must be clean before SBOM generation
+make: *** [Makefile:118：sbom] 错误 1

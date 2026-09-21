@@ -1,0 +1,30 @@
+{
+  "source": "def9c9d",
+  "host": "fedora",
+  "commands": [
+    {
+      "command": "make verify",
+      "exit": 0,
+      "status": "pass"
+    },
+    {
+      "command": "make audit",
+      "exit": 2,
+      "status": "fail",
+      "reason": "baseline and candidate gRPC vulnerabilities"
+    },
+    {
+      "command": "make secrets",
+      "exit": 0,
+      "status": "pass",
+      "coverage": "all Git history"
+    },
+    {
+      "command": "make supply-chain-verify",
+      "exit": 2,
+      "status": "fail",
+      "reason": "untracked Python bytecode; ignore repaired separately"
+    }
+  ],
+  "secrets_negative_fixtures": "pass"
+}
