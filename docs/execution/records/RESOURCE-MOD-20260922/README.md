@@ -138,3 +138,10 @@ Fedora run 根目录保留源码、工具链/cache、旧/新镜像与二进制�
 生成缓存忽略规则，不忽略源文件、证据或检测规则；失败日志保留，修正后单独复核。
 [源码对照](delivery-source-comparison.json)说明交付阶段仅修改安全检查配置和缓存忽略，
 受测 Go/SQL/配置/生成契约及真实运行二进制不变。
+
+修正后提交 `41eb265` 的 [完整 verify](final-clean-verify.txt)、干净工作树检查及
+[SBOM/许可证/原始 notice 门禁](final-clean-supply-chain.txt)全部通过，60 个非主运行依赖。
+[扫描反例](secrets-negative.json)确认未批准路径和不同值仍被检测。最终 SBOM 随文档定稿后
+重新生成；最终提交的重生成零差异、全历史扫描与 GitHub 分支/CI 回执保留在同一 Fedora run
+的 `evidence/publication-final*` 文件，避免在被证明的提交内嵌入自己的 SHA 或变更其 SBOM 输入。
+完整 R0—R5 未通过，不因这些独立门禁通过而提前发布改名。
