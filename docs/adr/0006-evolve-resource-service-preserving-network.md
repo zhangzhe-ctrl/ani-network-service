@@ -22,7 +22,9 @@ Provider 或实现包。递归边界门禁覆盖这些方向，并以真实可�
 [ADR-0002](0002-use-tenant-owned-data-without-rls.md) 的数据库独占、显式租户查询和复合约束
 继续有效。本批保持原 Network 数据库、migration 字节与 checksum；不为未来模块预先变更数据库。
 network.v1、原配置与环境变量、健康服务名、CR owner/FieldManager/命名保持原身份，
-允许变化限于 Go 路径、构建入口和进程 service.name。详见[计划兼容清单](../plans/resource-service-modularization.md#3-改名清单与兼容不变量)。
+改名本身允许变化限于 Go 路径、构建入口和进程 service.name。
+2026-09-22 用户另行同意修复阻塞发布的 gRPC 漏洞；该安全修复及必需传递依赖是
+依赖冻结的明确例外，必须重新验证受影响的运行兼容性，不沿用旧候选验收结论。详见[计划兼容清单](../plans/resource-service-modularization.md#3-改名清单与兼容不变量)。
 
 发布必须有独立旧客户端、同库同对象接管、原版回退与有限真实数据面对照证据；代码改名、
 生成成功或 Ready 都不是兼容验收。生产切流和正式存量迁移不在授权内。

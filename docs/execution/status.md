@@ -13,12 +13,13 @@
 | R0 | HEAD/main、dirty 文档、Fedora/三节点身份和安装 fingerprint 冻结；旧版 verify/build | pass；Public 独立设备前置不足 |
 | R1/R2 | 新 module/cmd、三层 Network 整理、固定生成、descriptor 精确差异、递归违规 fixture、候选 verify/build | pass；故障注入入口已编译验证 |
 | 兼容增量 | 独立旧客户端、旧库、cursor/回执、候选在途任务原版恢复、反向旧消费者、API 清理 | pass（受控 PG/Provider） |
-| R3 | cf75cf6 最终 tools/verify/integration/race/tenant-mutations pass；旧库及双向旧客户端兼容 pass；audit 命中基线同有 gRPC 漏洞 | audit fail，其他功能门禁 pass |
+| R3 | 安全修复 8153af4 的 tools/verify/integration/race/tenant-mutations/vuln pass；PG 含旧客户端同库回退；审计唯一公开 checksum 命中已精确复核，完整重扫中 | 功能门禁 pass；最终 audit 待重扫；原失败保留 |
 | R4 | 真实同库接管、候选正常操作/在途恢复、原版处理候选操作、再次启动 pass；Pod/隔离/Intranet/private LB 有界功能观测 pass | 完整阶段未通过：Public not_verified，严格六次矩阵因重复正向控制 fail |
 | R5 | 证据、清理、完整历史扫描及 SBOM 门禁已留存；实施分支用于草稿审阅，最终 head/CI 按该分支回执核对；默认分支及仓库/正式目录名保持 | not_verified；必需条件未齐，不得提前合入/改名 |
 
 后续安全修复进行中：原候选 grpc v1.82.1 的 GO-2026-6443 / GO-2026-6348 使 audit fail；
-用户已同意升级到同时消除漏洞的最低稳定版本，并重跑受影响门禁。新候选结果尚未取得。
+用户已同意升级到同时消除漏洞的最低稳定版本。gRPC v1.83.2 新扫描零命中，完整门禁重验中；
+具体依赖与逐项结果见[安全修复记录](records/RESOURCE-MOD-20260922/security-followup/README.md)。
 共享 ens35 外部 binding 不属于本 run，独立数据库无法合法重新收养，Public 必需验收缺失。
 不修改共享登记/节点网络，不复制旧平台身份；本轮采样重叠另记本任务失败，不能归为环境原因。
 修正后的不重叠驱动已留存但本 run 未重测，全部原始请求与失败保留。

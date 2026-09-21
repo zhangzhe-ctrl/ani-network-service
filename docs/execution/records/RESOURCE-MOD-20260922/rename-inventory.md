@@ -23,3 +23,11 @@
 A/B 同 Fedora Go 1.26.7-X:nodwarf5、UTC、GOWORK=off、GOTOOLCHAIN=local；Buf 1.60.0、sqlc 1.31.1、protoc-gen-go 1.36.11、protoc-gen-go-grpc 1.5.1。共享 net05a-heavy.lock，CPUQuota=200%、MemoryMax=2300M、MemorySwapMax=0、GOMAXPROCS=2、GOFLAGS=-p=2；任务独立缓存。PG 使用 scripts/integration 固定 digest，768 MiB/1 CPU、loopback 随机端口。完整 R3 命令与 20m 整包预算按计划，不删除/缩小业务测试。
 
 旧客户端在独立进程链接原 module；descriptor 只允许 go_package 路径变化。R4 旧版建数紧邻接管；原 DB/配置/分页密钥/对象不变，旧→新→旧→新，产品 API 清理。两版本每入口每来源各 6 次请求，保留全部失败；不循环测绿。既有 Public 问题不自动归因本改名。
+
+## 2026-09-22 后续授权差异
+
+以上表格保留改名前冻结时点。用户随后同意修复阻塞 audit 的 gRPC 漏洞；
+依赖冻结新增的唯一例外及实际版本变化见[安全修复记录](security-followup/README.md)。
+该变更单独提交并重新完成受影响的兼容/门禁验证，不能继续声称新候选依赖版本完全不变。
+上游修复会拒绝同时缺少 `:authority` 和 `Host` 的畸形 HTTP/2 请求，并限制细碎 DATA 帧的
+缓冲内存开销；这是已授权的传输安全行为差异，不改变 Network 业务 RPC、字段、权限或持久规则。

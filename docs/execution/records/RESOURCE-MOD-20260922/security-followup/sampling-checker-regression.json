@@ -1,0 +1,61 @@
+{
+  "host": "fedora",
+  "scope": "offline checker regression; zero new traffic; does not change original R4 fail",
+  "versions": {
+    "baseline": {
+      "projected_corrected_matrix": {
+        "result": "pass",
+        "requests": 108,
+        "physical_pairs": 18,
+        "expected_pairs": 18,
+        "requests_per_pair": 6,
+        "incorrect_counts": [],
+        "traffic_success_checked": false
+      },
+      "duplicate_under_another_case_label": {
+        "result": "fail",
+        "requests": 109,
+        "physical_pairs": 18,
+        "expected_pairs": 18,
+        "requests_per_pair": 6,
+        "incorrect_counts": [
+          {
+            "source_uid": "7106203a-4bc9-4a56-9e7c-0b647c779cc0",
+            "address": "10.236.0.200",
+            "port": 8081,
+            "requests": 7
+          }
+        ],
+        "traffic_success_checked": false
+      }
+    },
+    "candidate": {
+      "projected_corrected_matrix": {
+        "result": "pass",
+        "requests": 108,
+        "physical_pairs": 18,
+        "expected_pairs": 18,
+        "requests_per_pair": 6,
+        "incorrect_counts": [],
+        "traffic_success_checked": false
+      },
+      "duplicate_under_another_case_label": {
+        "result": "fail",
+        "requests": 109,
+        "physical_pairs": 18,
+        "expected_pairs": 18,
+        "requests_per_pair": 6,
+        "incorrect_counts": [
+          {
+            "source_uid": "7106203a-4bc9-4a56-9e7c-0b647c779cc0",
+            "address": "10.236.0.200",
+            "port": 8081,
+            "requests": 7
+          }
+        ],
+        "traffic_success_checked": false
+      }
+    }
+  },
+  "checker_sha256": "c357cd0993face6d8088103f907d113c24c250fdbef4078a249209ad5ea1597b"
+}

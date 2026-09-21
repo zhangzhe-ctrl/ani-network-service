@@ -156,3 +156,11 @@ regexes = [
   '''^\s*dep\tgolang\.org/x/oauth2\tv0\.36\.0\th1:peZ/1z27fi9hUOFCAZaHyrpWG5lwe0RJEEEeH0ThlIs=\s*$''',
   '''^\s*dep\tk8s\.io/apimachinery\tv0\.36\.0\th1:jZyPzhd5Z\+3h9vJLt0z9XdzW9VzNzWAUw\+P1xZ9PXtQ=\s*$''',
 ]
+
+[[allowlists]]
+description = "Exact public oauth2 module checksum in the reviewed security dependency patch"
+targetRules = ["generic-api-key"]
+condition = "AND"
+regexTarget = "line"
+paths = ['''^docs/execution/records/RESOURCE\-MOD\-20260922/security\-followup/dependency\-diff\.patch$''']
+regexes = ['''^ golang\.org/x/oauth2 v0\.36\.0 h1:peZ/1z27fi9hUOFCAZaHyrpWG5lwe0RJEEEeH0ThlIs=$''']
