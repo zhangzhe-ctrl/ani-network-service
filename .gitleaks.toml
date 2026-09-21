@@ -172,3 +172,14 @@ condition = "AND"
 regexTarget = "line"
 paths = ['''^docs/execution/records/RESOURCE\-MOD\-20260922/security\-followup/runners/secret\-check\.py$''']
 regexes = ['''^\s*assert actual==' golang\.org/x/oauth2 v0\.36\.0 h1:peZ/1z27fi9hUOFCAZaHyrpWG5lwe0RJEEEeH0ThlIs='\s*$''']
+
+[[allowlists]]
+description = "Exact reviewed public module versions in the security artifact build information"
+targetRules = ["generic-api-key"]
+condition = "AND"
+regexTarget = "line"
+paths = ['''^docs/execution/records/RESOURCE\-MOD\-20260922/security\-followup/evidence/artifact\.json$''']
+regexes = [
+  '''^\s*"google\.golang\.org/genproto/googleapis/api": "v0\.0\.0\-20260526163538\-3dc84a4a5aaa",\s*$''',
+  '''^\s*"k8s\.io/kube\-openapi": "v0\.0\.0\-20260317180543\-43fb72c5454a",\s*$''',
+]
