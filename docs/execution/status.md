@@ -14,7 +14,7 @@
 | R1/R2 | 新 module/cmd、三层 Network 整理、固定生成、descriptor 精确差异、递归违规 fixture、候选 verify/build | pass；故障注入入口已编译验证 |
 | 兼容增量 | 独立旧客户端、旧库、cursor/回执、候选在途任务原版恢复、反向旧消费者、API 清理 | pass（受控 PG/Provider） |
 | R3 | 安全修复 8153af4 的 tools/verify/integration/race/tenant-mutations pass；后续 7b39e53 完整 audit、verify、构建、镜像入口检查 pass；运行源码逐项相同 | pass；原失败及精确公开元数据例外的 24 个正反例保留 |
-| R4 | 真实同库接管、候选正常操作/在途恢复、原版处理候选操作、再次启动 pass；Pod/隔离/Intranet/private LB 有界功能观测 pass | 完整阶段未通过：Public not_verified，严格六次矩阵因重复正向控制 fail |
+| R4 | 原 cf75cf6 的真实同库接管/恢复/回退及非 Public 有界观测 pass；原严格六次矩阵 fail 保留；新增计数检查的离线正反例 pass | 新安全候选 R4 not_verified：独立 Public 前置未提供，新 run 未启动 |
 | R5 | 证据、清理、完整历史扫描及 SBOM 门禁已留存；实施分支用于草稿审阅，最终 head/CI 按该分支回执核对；默认分支及仓库/正式目录名保持 | not_verified；必需条件未齐，不得提前合入/改名 |
 
 后续安全修复进行中：原候选 grpc v1.82.1 的 GO-2026-6443 / GO-2026-6348 使 audit fail；
