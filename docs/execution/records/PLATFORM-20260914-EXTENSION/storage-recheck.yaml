@@ -1,0 +1,112 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: platform-smoke
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: cephfs
+  namespace: platform-smoke
+spec:
+  accessModes:
+  - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: rook-cephfs
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: fs-writer
+  namespace: platform-smoke
+spec:
+  containers:
+  - command:
+    - /bin/sh
+    - -c
+    - sleep 86400
+    image: docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2
+    imagePullPolicy: IfNotPresent
+    name: probe
+    volumeMounts:
+    - mountPath: /data
+      name: data
+  nodeSelector:
+    kubernetes.io/hostname: ani-01
+  volumes:
+  - name: data
+    persistentVolumeClaim:
+      claimName: cephfs
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: fs-reader
+  namespace: platform-smoke
+spec:
+  containers:
+  - command:
+    - /bin/sh
+    - -c
+    - sleep 86400
+    image: docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2
+    imagePullPolicy: IfNotPresent
+    name: probe
+    volumeMounts:
+    - mountPath: /data
+      name: data
+  nodeSelector:
+    kubernetes.io/hostname: ani-02
+  volumes:
+  - name: data
+    persistentVolumeClaim:
+      claimName: cephfs
+---
+apiVersion: objectbucket.io/v1alpha1
+kind: ObjectBucketClaim
+metadata:
+  name: platform-smoke-bucket
+  namespace: platform-smoke
+spec:
+  generateBucketName: platform-smoke
+  storageClassName: rook-ceph-bucket
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: s3-probe
+  namespace: platform-smoke
+spec:
+  containers:
+  - command:
+    - /bin/sh
+    - -ec
+    - 'printf ''platform-storage-smoke-20260914\n'' > /tmp/payload
+
+      url="http://${BUCKET_HOST}:${BUCKET_PORT}/${BUCKET_NAME}/smoke.txt"
+
+      curl -fsS --max-time 30 --aws-sigv4 aws:amz:us-east-1:s3 --user "${AWS_ACCESS_KEY_ID}:${AWS_SECRET_ACCESS_KEY}"
+      -T /tmp/payload "$url" >/dev/null
+
+      curl -fsS --max-time 30 --aws-sigv4 aws:amz:us-east-1:s3 --user "${AWS_ACCESS_KEY_ID}:${AWS_SECRET_ACCESS_KEY}"
+      "$url" > /tmp/readback
+
+      cmp /tmp/payload /tmp/readback
+
+      curl -fsS --max-time 30 --aws-sigv4 aws:amz:us-east-1:s3 --user "${AWS_ACCESS_KEY_ID}:${AWS_SECRET_ACCESS_KEY}"
+      -X DELETE "$url" >/dev/null
+
+      printf ''S3 PUT GET DELETE PASS\n''
+
+      '
+    envFrom:
+    - configMapRef:
+        name: platform-smoke-bucket
+    - secretRef:
+        name: platform-smoke-bucket
+    image: docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2
+    imagePullPolicy: IfNotPresent
+    name: probe
+  restartPolicy: Never

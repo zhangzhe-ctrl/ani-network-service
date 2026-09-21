@@ -1,0 +1,74 @@
+apiVersion: kubekey.kubesphere.io/v1
+kind: Config
+spec:
+  zone: cn
+  kubernetes:
+    kube_version: v1.35.8
+    helm_version: v3.18.5
+    sandbox_image:
+      tag: 3.10.1
+    control_plane_endpoint:
+      type: kube-vip
+      kube_vip:
+        address: 172.16.101.9
+        mode: ARP
+        image:
+          tag: v0.7.2
+        env:
+          svc_enable: 'false'
+      haproxy:
+        image:
+          tag: 2.9.6-alpine
+      host: api.ani.internal
+      port: 6443
+    cluster_name: ani-platform
+    kube_proxy:
+      mode: iptables
+    custom_labels:
+      networking.kubercloud.com/role: master
+    apiserver:
+      certSANs:
+      - 172.16.101.9
+      - 172.16.101.10
+      - 172.16.101.11
+      - 172.16.101.12
+      - api.ani.internal
+  etcd:
+    etcd_version: v3.6.6
+    deployment_type: internal
+    image:
+      registry: quay.io/coreos
+      repository: etcd
+      tag: v3.6.6
+  image_registry:
+    type: ''
+    ha_vip: ''
+  cri:
+    container_manager: containerd
+    crictl_version: v1.35.0
+  cni:
+    type: none
+    multi_cni: none
+    calico_version: v3.32.2
+    pod_cidr: 10.16.0.0/16
+    service_cidr: 10.96.0.0/16
+  storage_class:
+    local:
+      enabled: false
+      default: false
+    localpv_provisioner_version: 4.4.0
+    nfs:
+      enabled: false
+  dns:
+    coredns:
+      image:
+        tag: v1.13.1
+      ip: 10.96.0.10
+    nodelocaldns:
+      enabled: false
+      image:
+        tag: 1.26.4
+  image_manifests: []
+  work_dir: /home/ubuntu/platform-20260914/artifacts
+  native:
+    set_hostname: false

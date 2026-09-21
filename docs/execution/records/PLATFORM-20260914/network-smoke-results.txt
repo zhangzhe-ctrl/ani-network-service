@@ -1,0 +1,11 @@
+2026-09-14 live verification
+Three nodes Ready v1.35.8, containerd2.3.4.
+kcn-controller 3/3; kcn-ovn-central 3/3; kcn-cni-ds 3/3; kcn-ovs-ds 3/3.
+Three ordinary Pod IPs: ani-01=10.16.0.6 ani-02=10.16.0.7 ani-03=10.16.0.8.
+All 9 directed ping checks passed (2 packets each).
+Each Pod resolved kubernetes.default.svc.cluster.local.
+Each Pod reached https://kubernetes.default.svc: HTTP403 (unauthenticated connectivity check).
+VIP172.16.101.9:6443 /readyz returned ok with cluster credentials.
+Three etcd endpoints passed etcdctl endpoint health (committed proposal).
+Network probe DaemonSet removed after verification.
+VIP failover and business physical L2 traffic not_verified.

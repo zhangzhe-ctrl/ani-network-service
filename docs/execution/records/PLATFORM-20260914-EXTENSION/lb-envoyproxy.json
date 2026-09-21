@@ -1,0 +1,423 @@
+{
+    "apiVersion": "v1",
+    "items": [
+        {
+            "apiVersion": "gateway.envoyproxy.io/v1alpha1",
+            "kind": "EnvoyProxy",
+            "metadata": {
+                "creationTimestamp": "2026-09-14T14:43:57Z",
+                "generation": 1,
+                "name": "envoy-proxy-large",
+                "namespace": "envoy-gateway-system",
+                "resourceVersion": "40118",
+                "uid": "c1084a3c-2630-4ffa-85d6-4fdab2870265"
+            },
+            "spec": {
+                "logging": {
+                    "level": {
+                        "default": "warn"
+                    }
+                },
+                "preserveRouteOrder": true,
+                "provider": {
+                    "kubernetes": {
+                        "envoyDeployment": {
+                            "container": {
+                                "image": "docker.changqingyun.cn/kubercloud/envoy:distroless-v1.38.3",
+                                "resources": {
+                                    "limits": {
+                                        "cpu": 8,
+                                        "memory": "8Gi"
+                                    },
+                                    "requests": {
+                                        "cpu": 4,
+                                        "memory": "4Gi"
+                                    }
+                                }
+                            },
+                            "patch": {
+                                "type": "StrategicMerge",
+                                "value": {
+                                    "spec": {
+                                        "template": {
+                                            "spec": {
+                                                "containers": [
+                                                    {
+                                                        "livenessProbe": null,
+                                                        "name": "envoy",
+                                                        "readinessProbe": null,
+                                                        "startupProbe": null
+                                                    },
+                                                    {
+                                                        "image": "docker.changqingyun.cn/kubercloud/gateway-dev:latest",
+                                                        "livenessProbe": null,
+                                                        "name": "shutdown-manager",
+                                                        "readinessProbe": null,
+                                                        "startupProbe": null
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "replicas": 6
+                        }
+                    },
+                    "type": "Kubernetes"
+                }
+            }
+        },
+        {
+            "apiVersion": "gateway.envoyproxy.io/v1alpha1",
+            "kind": "EnvoyProxy",
+            "metadata": {
+                "creationTimestamp": "2026-09-14T14:43:57Z",
+                "generation": 1,
+                "name": "envoy-proxy-large-noeip",
+                "namespace": "envoy-gateway-system",
+                "resourceVersion": "40115",
+                "uid": "f858bd99-24fd-41d5-a35f-566ff571ab96"
+            },
+            "spec": {
+                "logging": {
+                    "level": {
+                        "default": "warn"
+                    }
+                },
+                "preserveRouteOrder": true,
+                "provider": {
+                    "kubernetes": {
+                        "envoyDeployment": {
+                            "container": {
+                                "image": "docker.changqingyun.cn/kubercloud/envoy:distroless-v1.38.3",
+                                "resources": {
+                                    "limits": {
+                                        "cpu": 8,
+                                        "memory": "8Gi"
+                                    },
+                                    "requests": {
+                                        "cpu": 4,
+                                        "memory": "4Gi"
+                                    }
+                                }
+                            },
+                            "patch": {
+                                "type": "StrategicMerge",
+                                "value": {
+                                    "spec": {
+                                        "template": {
+                                            "spec": {
+                                                "containers": [
+                                                    {
+                                                        "livenessProbe": null,
+                                                        "name": "envoy",
+                                                        "readinessProbe": null,
+                                                        "startupProbe": null
+                                                    },
+                                                    {
+                                                        "image": "docker.changqingyun.cn/kubercloud/gateway-dev:latest",
+                                                        "livenessProbe": null,
+                                                        "name": "shutdown-manager",
+                                                        "readinessProbe": null,
+                                                        "startupProbe": null
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "replicas": 6
+                        },
+                        "envoyService": {
+                            "externalTrafficPolicy": "Local",
+                            "type": "ClusterIP"
+                        }
+                    },
+                    "type": "Kubernetes"
+                }
+            }
+        },
+        {
+            "apiVersion": "gateway.envoyproxy.io/v1alpha1",
+            "kind": "EnvoyProxy",
+            "metadata": {
+                "creationTimestamp": "2026-09-14T14:43:57Z",
+                "generation": 1,
+                "name": "envoy-proxy-medium",
+                "namespace": "envoy-gateway-system",
+                "resourceVersion": "40116",
+                "uid": "8002dd85-1f0c-4fb9-b3c6-4db1914ef5cc"
+            },
+            "spec": {
+                "logging": {
+                    "level": {
+                        "default": "warn"
+                    }
+                },
+                "preserveRouteOrder": true,
+                "provider": {
+                    "kubernetes": {
+                        "envoyDeployment": {
+                            "container": {
+                                "image": "docker.changqingyun.cn/kubercloud/envoy:distroless-v1.38.3",
+                                "resources": {
+                                    "limits": {
+                                        "cpu": 4,
+                                        "memory": "4Gi"
+                                    },
+                                    "requests": {
+                                        "cpu": 2,
+                                        "memory": "2Gi"
+                                    }
+                                }
+                            },
+                            "patch": {
+                                "type": "StrategicMerge",
+                                "value": {
+                                    "spec": {
+                                        "template": {
+                                            "spec": {
+                                                "containers": [
+                                                    {
+                                                        "livenessProbe": null,
+                                                        "name": "envoy",
+                                                        "readinessProbe": null,
+                                                        "startupProbe": null
+                                                    },
+                                                    {
+                                                        "image": "docker.changqingyun.cn/kubercloud/gateway-dev:latest",
+                                                        "livenessProbe": null,
+                                                        "name": "shutdown-manager",
+                                                        "readinessProbe": null,
+                                                        "startupProbe": null
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "replicas": 4
+                        }
+                    },
+                    "type": "Kubernetes"
+                }
+            }
+        },
+        {
+            "apiVersion": "gateway.envoyproxy.io/v1alpha1",
+            "kind": "EnvoyProxy",
+            "metadata": {
+                "creationTimestamp": "2026-09-14T14:43:57Z",
+                "generation": 1,
+                "name": "envoy-proxy-medium-noeip",
+                "namespace": "envoy-gateway-system",
+                "resourceVersion": "40114",
+                "uid": "058902a9-0677-4834-87f8-0fc7e16e2e9a"
+            },
+            "spec": {
+                "logging": {
+                    "level": {
+                        "default": "warn"
+                    }
+                },
+                "preserveRouteOrder": true,
+                "provider": {
+                    "kubernetes": {
+                        "envoyDeployment": {
+                            "container": {
+                                "image": "docker.changqingyun.cn/kubercloud/envoy:distroless-v1.38.3",
+                                "resources": {
+                                    "limits": {
+                                        "cpu": 4,
+                                        "memory": "4Gi"
+                                    },
+                                    "requests": {
+                                        "cpu": 2,
+                                        "memory": "2Gi"
+                                    }
+                                }
+                            },
+                            "patch": {
+                                "type": "StrategicMerge",
+                                "value": {
+                                    "spec": {
+                                        "template": {
+                                            "spec": {
+                                                "containers": [
+                                                    {
+                                                        "livenessProbe": null,
+                                                        "name": "envoy",
+                                                        "readinessProbe": null,
+                                                        "startupProbe": null
+                                                    },
+                                                    {
+                                                        "image": "docker.changqingyun.cn/kubercloud/gateway-dev:latest",
+                                                        "livenessProbe": null,
+                                                        "name": "shutdown-manager",
+                                                        "readinessProbe": null,
+                                                        "startupProbe": null
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "replicas": 4
+                        },
+                        "envoyService": {
+                            "externalTrafficPolicy": "Local",
+                            "type": "ClusterIP"
+                        }
+                    },
+                    "type": "Kubernetes"
+                }
+            }
+        },
+        {
+            "apiVersion": "gateway.envoyproxy.io/v1alpha1",
+            "kind": "EnvoyProxy",
+            "metadata": {
+                "creationTimestamp": "2026-09-14T14:43:57Z",
+                "generation": 1,
+                "name": "envoy-proxy-small",
+                "namespace": "envoy-gateway-system",
+                "resourceVersion": "40112",
+                "uid": "2f629f75-21cb-4aae-b44f-df952c0c430e"
+            },
+            "spec": {
+                "logging": {
+                    "level": {
+                        "default": "warn"
+                    }
+                },
+                "preserveRouteOrder": true,
+                "provider": {
+                    "kubernetes": {
+                        "envoyDeployment": {
+                            "container": {
+                                "image": "docker.changqingyun.cn/kubercloud/envoy:distroless-v1.38.3",
+                                "resources": {
+                                    "limits": {
+                                        "cpu": 2,
+                                        "memory": "2Gi"
+                                    },
+                                    "requests": {
+                                        "cpu": 1,
+                                        "memory": "1Gi"
+                                    }
+                                }
+                            },
+                            "patch": {
+                                "type": "StrategicMerge",
+                                "value": {
+                                    "spec": {
+                                        "template": {
+                                            "spec": {
+                                                "containers": [
+                                                    {
+                                                        "livenessProbe": null,
+                                                        "name": "envoy",
+                                                        "readinessProbe": null,
+                                                        "startupProbe": null
+                                                    },
+                                                    {
+                                                        "image": "docker.changqingyun.cn/kubercloud/gateway-dev:latest",
+                                                        "livenessProbe": null,
+                                                        "name": "shutdown-manager",
+                                                        "readinessProbe": null,
+                                                        "startupProbe": null
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "replicas": 2
+                        }
+                    },
+                    "type": "Kubernetes"
+                }
+            }
+        },
+        {
+            "apiVersion": "gateway.envoyproxy.io/v1alpha1",
+            "kind": "EnvoyProxy",
+            "metadata": {
+                "creationTimestamp": "2026-09-14T14:43:57Z",
+                "generation": 1,
+                "name": "envoy-proxy-small-noeip",
+                "namespace": "envoy-gateway-system",
+                "resourceVersion": "40113",
+                "uid": "c8338c79-948e-4a7e-b1ae-2db64c5a13e1"
+            },
+            "spec": {
+                "logging": {
+                    "level": {
+                        "default": "warn"
+                    }
+                },
+                "preserveRouteOrder": true,
+                "provider": {
+                    "kubernetes": {
+                        "envoyDeployment": {
+                            "container": {
+                                "image": "docker.changqingyun.cn/kubercloud/envoy:distroless-v1.38.3",
+                                "resources": {
+                                    "limits": {
+                                        "cpu": 2,
+                                        "memory": "2Gi"
+                                    },
+                                    "requests": {
+                                        "cpu": 1,
+                                        "memory": "1Gi"
+                                    }
+                                }
+                            },
+                            "patch": {
+                                "type": "StrategicMerge",
+                                "value": {
+                                    "spec": {
+                                        "template": {
+                                            "spec": {
+                                                "containers": [
+                                                    {
+                                                        "livenessProbe": null,
+                                                        "name": "envoy",
+                                                        "readinessProbe": null,
+                                                        "startupProbe": null
+                                                    },
+                                                    {
+                                                        "image": "docker.changqingyun.cn/kubercloud/gateway-dev:latest",
+                                                        "livenessProbe": null,
+                                                        "name": "shutdown-manager",
+                                                        "readinessProbe": null,
+                                                        "startupProbe": null
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "replicas": 2
+                        },
+                        "envoyService": {
+                            "externalTrafficPolicy": "Local",
+                            "type": "ClusterIP"
+                        }
+                    },
+                    "type": "Kubernetes"
+                }
+            }
+        }
+    ],
+    "kind": "List",
+    "metadata": {
+        "resourceVersion": ""
+    }
+}

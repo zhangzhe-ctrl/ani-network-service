@@ -1,0 +1,122 @@
+---
+apiVersion: kubeadm.k8s.io/v1beta4
+kind: ClusterConfiguration
+etcd:
+  local:
+    imageRepository: quay.io/coreos
+    imageTag: v3.6.6
+    serverCertSANs:
+      - 172.16.101.10
+      - 172.16.101.11
+      - 172.16.101.12
+dns:
+  imageRepository: hub.kubesphere.com.cn/coredns
+  imageTag: v1.13.1
+imageRepository: hub.kubesphere.com.cn/kubernetes
+kubernetesVersion: v1.35.8
+certificatesDir: /etc/kubernetes/pki
+clusterName: ani-platform
+controlPlaneEndpoint: api.ani.internal:6443
+networking:
+  dnsDomain: cluster.local
+  podSubnet: 10.16.0.0/16
+  serviceSubnet: 10.96.0.0/16
+apiServer:
+  extraArgs:
+    - name: bind-address
+      value: 0.0.0.0
+  certSANs:
+    - localhost
+    - 127.0.0.1
+    - ::1
+    - kubernetes
+    - kubernetes.default
+    - kubernetes.default.svc
+    - kubernetes.default.svc.ani-platform
+    - kubernetes.default.svc.ani-platform.cluster.local
+    - 10.96.0.1
+    - api.ani.internal
+    - ani-01
+    - ani-01.ani-platform
+    - ani-01.ani-platform.cluster.local
+    - 172.16.101.10
+    - ani-02
+    - ani-02.ani-platform
+    - ani-02.ani-platform.cluster.local
+    - 172.16.101.11
+    - ani-03
+    - ani-03.ani-platform
+    - ani-03.ani-platform.cluster.local
+    - 172.16.101.12
+    - 172.16.101.9
+    - 172.16.101.10
+    - 172.16.101.11
+    - 172.16.101.12
+    - api.ani.internal
+controllerManager:
+  extraArgs:
+    - name: node-cidr-mask-size-ipv4
+      value: "24"
+    - name: bind-address
+      value: 0.0.0.0
+    - name: cluster-signing-duration
+      value: 87600h
+  extraVolumes:
+    - name: host-time
+      hostPath: /etc/localtime
+      mountPath: /etc/localtime
+      readOnly: true
+scheduler:
+  extraArgs:
+    - name: bind-address
+      value: 0.0.0.0
+---
+apiVersion: kubeadm.k8s.io/v1beta4
+kind: InitConfiguration
+localAPIEndpoint:
+  advertiseAddress: 172.16.101.10
+  bindPort: 6443
+nodeRegistration:
+  criSocket: unix:///var/run/containerd/containerd.sock
+  kubeletExtraArgs:
+    - name: cgroup-driver
+      value: systemd
+skipPhases:
+  []
+---
+apiVersion: kubeproxy.config.k8s.io/v1alpha1
+kind: KubeProxyConfiguration
+clusterCIDR: 10.16.0.0/16
+mode: iptables
+iptables:
+    masqueradeAll: false
+    masqueradeBit: 14
+    minSyncPeriod: 0s
+    syncPeriod: 30s
+---
+apiVersion: kubelet.config.k8s.io/v1beta1
+kind: KubeletConfiguration
+clusterDomain: cluster.local
+clusterDNS:
+  - 10.96.0.10
+maxPods: 110
+podPidsLimit: 10000
+rotateCertificates: true
+kubeReserved:
+  cpu: 200m
+  memory: 250Mi
+systemReserved:
+  cpu: 200m
+  memory: 250Mi
+evictionHard:
+  memory.available: 5%
+  pid.available: 10%
+evictionSoft:
+  memory.available: 10%
+evictionSoftGracePeriod:
+  memory.available: 2m
+evictionMaxPodGracePeriod: 120
+evictionPressureTransitionPeriod: 30s
+cgroupDriver: systemd
+containerLogMaxSize: 5Mi
+containerLogMaxFiles: 3

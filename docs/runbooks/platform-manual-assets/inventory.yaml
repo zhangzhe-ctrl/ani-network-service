@@ -1,0 +1,48 @@
+apiVersion: kubekey.kubesphere.io/v1
+kind: Inventory
+metadata:
+  name: platform
+spec:
+  hosts:
+    localhost:
+      connector:
+        type: local
+        user: ubuntu
+      internal_ipv4: 172.16.101.10
+    ani-02:
+      connector:
+        type: ssh
+        host: 172.16.101.11
+        port: 22
+        user: ubuntu
+        private_key: /home/ubuntu/platform-20260914/installer-key
+      internal_ipv4: 172.16.101.11
+    ani-03:
+      connector:
+        type: ssh
+        host: 172.16.101.12
+        port: 22
+        user: ubuntu
+        private_key: /home/ubuntu/platform-20260914/installer-key
+      internal_ipv4: 172.16.101.12
+  groups:
+    k8s_cluster:
+      groups:
+      - kube_control_plane
+      - kube_worker
+    kube_control_plane:
+      hosts: &id001
+      - localhost
+      - ani-02
+      - ani-03
+    kube_worker:
+      hosts: *id001
+    etcd:
+      hosts:
+      - localhost
+      - ani-02
+      - ani-03
+    image_registry:
+      hosts: []
+    nfs:
+      hosts: []

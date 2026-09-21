@@ -1,0 +1,167 @@
+{
+    "apiVersion": "v1",
+    "items": [
+        {
+            "apiVersion": "gateway.networking.k8s.io/v1",
+            "kind": "HTTPRoute",
+            "metadata": {
+                "creationTimestamp": "2026-09-14T14:48:44Z",
+                "generation": 1,
+                "name": "my-lb-http-a",
+                "namespace": "lb-validation",
+                "resourceVersion": "43433",
+                "uid": "7115d4a5-40e3-4371-b883-1af29e8faae2"
+            },
+            "spec": {
+                "hostnames": [
+                    "lb-test.ani.internal"
+                ],
+                "parentRefs": [
+                    {
+                        "group": "gateway.networking.k8s.io",
+                        "kind": "Gateway",
+                        "name": "my-lb",
+                        "sectionName": "http-a"
+                    }
+                ],
+                "rules": [
+                    {
+                        "backendRefs": [
+                            {
+                                "group": "gateway.envoyproxy.io",
+                                "kind": "Backend",
+                                "name": "backend-http-a",
+                                "weight": 1
+                            },
+                            {
+                                "group": "gateway.envoyproxy.io",
+                                "kind": "Backend",
+                                "name": "backend-http-b",
+                                "weight": 1
+                            }
+                        ],
+                        "matches": [
+                            {
+                                "path": {
+                                    "type": "PathPrefix",
+                                    "value": "/"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
+            "status": {
+                "parents": [
+                    {
+                        "conditions": [
+                            {
+                                "lastTransitionTime": "2026-09-14T14:48:44Z",
+                                "message": "Route is accepted",
+                                "observedGeneration": 1,
+                                "reason": "Accepted",
+                                "status": "True",
+                                "type": "Accepted"
+                            },
+                            {
+                                "lastTransitionTime": "2026-09-14T14:48:44Z",
+                                "message": "Resolved all the Object references for the Route",
+                                "observedGeneration": 1,
+                                "reason": "ResolvedRefs",
+                                "status": "True",
+                                "type": "ResolvedRefs"
+                            }
+                        ],
+                        "controllerName": "gateway.envoyproxy.io/gatewayclass-controller",
+                        "parentRef": {
+                            "group": "gateway.networking.k8s.io",
+                            "kind": "Gateway",
+                            "name": "my-lb",
+                            "sectionName": "http-a"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "apiVersion": "gateway.networking.k8s.io/v1",
+            "kind": "HTTPRoute",
+            "metadata": {
+                "creationTimestamp": "2026-09-14T14:48:44Z",
+                "generation": 1,
+                "name": "my-lb-http-b",
+                "namespace": "lb-validation",
+                "resourceVersion": "43434",
+                "uid": "10b99ef2-0b87-4884-a5d8-a591d959c10d"
+            },
+            "spec": {
+                "hostnames": [
+                    "lb-test.ani.internal"
+                ],
+                "parentRefs": [
+                    {
+                        "group": "gateway.networking.k8s.io",
+                        "kind": "Gateway",
+                        "name": "my-lb",
+                        "sectionName": "http-b"
+                    }
+                ],
+                "rules": [
+                    {
+                        "backendRefs": [
+                            {
+                                "group": "gateway.envoyproxy.io",
+                                "kind": "Backend",
+                                "name": "backend-http-b",
+                                "weight": 1
+                            }
+                        ],
+                        "matches": [
+                            {
+                                "path": {
+                                    "type": "PathPrefix",
+                                    "value": "/"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
+            "status": {
+                "parents": [
+                    {
+                        "conditions": [
+                            {
+                                "lastTransitionTime": "2026-09-14T14:48:44Z",
+                                "message": "Route is accepted",
+                                "observedGeneration": 1,
+                                "reason": "Accepted",
+                                "status": "True",
+                                "type": "Accepted"
+                            },
+                            {
+                                "lastTransitionTime": "2026-09-14T14:48:44Z",
+                                "message": "Resolved all the Object references for the Route",
+                                "observedGeneration": 1,
+                                "reason": "ResolvedRefs",
+                                "status": "True",
+                                "type": "ResolvedRefs"
+                            }
+                        ],
+                        "controllerName": "gateway.envoyproxy.io/gatewayclass-controller",
+                        "parentRef": {
+                            "group": "gateway.networking.k8s.io",
+                            "kind": "Gateway",
+                            "name": "my-lb",
+                            "sectionName": "http-b"
+                        }
+                    }
+                ]
+            }
+        }
+    ],
+    "kind": "List",
+    "metadata": {
+        "resourceVersion": ""
+    }
+}

@@ -1,0 +1,12 @@
+- hosts: [k8s_cluster]
+  gather_facts: true
+  tasks:
+  - name: Verify authorized hosts and online exact Kubernetes release
+    command: |
+      hostname
+      id -u
+      uname -r
+      curl -fsSL --connect-timeout 5 --max-time 20 https://dl.k8s.io/release/v1.35.8/bin/linux/amd64/kubeadm.sha256
+      echo
+      test -b /dev/sdb
+      test ! -f /etc/kubernetes/admin.conf

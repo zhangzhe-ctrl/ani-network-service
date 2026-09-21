@@ -1,0 +1,99 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: lb-validation
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: backend-a
+  namespace: lb-validation
+data:
+  default.conf: server { listen 3000; location / { default_type text/plain; return
+    200 "BACKEND-A XFF=[$http_x_forwarded_for] RemoteAddr=[$remote_addr]\n"; } }
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: customer-vm-a
+  namespace: lb-validation
+spec:
+  nodeSelector:
+    kubernetes.io/hostname: ani-01
+  containers:
+  - name: http-backend
+    image: docker.changqingyun.cn/kubercloud/nginx:latest
+    imagePullPolicy: IfNotPresent
+    volumeMounts:
+    - name: conf
+      mountPath: /etc/nginx/conf.d
+    resources:
+      requests:
+        cpu: 50m
+        memory: 32Mi
+      limits:
+        memory: 128Mi
+  volumes:
+  - name: conf
+    configMap:
+      name: backend-a
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: backend-b
+  namespace: lb-validation
+data:
+  default.conf: server { listen 3000; location / { default_type text/plain; return
+    200 "BACKEND-B XFF=[$http_x_forwarded_for] RemoteAddr=[$remote_addr]\n"; } }
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: customer-vm-b
+  namespace: lb-validation
+spec:
+  nodeSelector:
+    kubernetes.io/hostname: ani-02
+  containers:
+  - name: http-backend
+    image: docker.changqingyun.cn/kubercloud/nginx:latest
+    imagePullPolicy: IfNotPresent
+    volumeMounts:
+    - name: conf
+      mountPath: /etc/nginx/conf.d
+    resources:
+      requests:
+        cpu: 50m
+        memory: 32Mi
+      limits:
+        memory: 128Mi
+  volumes:
+  - name: conf
+    configMap:
+      name: backend-b
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: my-lb
+  namespace: lb-validation
+spec:
+  gatewayClassName: lb-small-noeip
+  listeners:
+  - name: http-a
+    port: 8080
+    protocol: HTTP
+    allowedRoutes:
+      namespaces:
+        from: Same
+  - name: http-b
+    port: 9090
+    protocol: HTTP
+    allowedRoutes:
+      namespaces:
+        from: Same
+  infrastructure:
+    annotations:
+      networking.kubercloud.com/lb_vip_address: 10.16.250.9
+      networking.kubercloud.com/subnet: kcn-system/kcn-default

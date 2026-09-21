@@ -1,0 +1,240 @@
+# EnvoyProxy：定义各规格数据面的副本数、资源配置和 Service 类型。
+# - small / medium / large：默认规格
+# - small-noeip / medium-noeip / large-noeip：不创建 LoadBalancer Service，
+#   Envoy Gateway 自动创建的数据面 Service 使用 ClusterIP
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: EnvoyProxy
+metadata:
+  name: envoy-proxy-small
+  namespace: envoy-gateway-system
+spec:
+  preserveRouteOrder: true
+  provider:
+    type: Kubernetes
+    kubernetes:
+      envoyDeployment:
+        replicas: 2
+        container:
+          image: docker.changqingyun.cn/kubercloud/envoy:distroless-v1.38.3
+          resources:
+            requests:
+              cpu: 1
+              memory: 1Gi
+            limits:
+              cpu: 2
+              memory: 2Gi
+        patch:
+          type: StrategicMerge
+          value:
+            spec:
+              template:
+                spec:
+                  containers:
+                  - name: envoy
+                    startupProbe: null
+                    readinessProbe: null
+                    livenessProbe: null
+                  - name: shutdown-manager
+                    image: docker.changqingyun.cn/kubercloud/gateway-dev:latest
+                    startupProbe: null
+                    readinessProbe: null
+                    livenessProbe: null
+---
+# 小型 NoEIP：适合低流量、测试、内部服务；数据面 Service 为 ClusterIP
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: EnvoyProxy
+metadata:
+  name: envoy-proxy-small-noeip
+  namespace: envoy-gateway-system
+spec:
+  preserveRouteOrder: true
+  provider:
+    type: Kubernetes
+    kubernetes:
+      envoyService:
+        type: ClusterIP
+      envoyDeployment:
+        replicas: 2
+        container:
+          image: docker.changqingyun.cn/kubercloud/envoy:distroless-v1.38.3
+          resources:
+            requests:
+              cpu: 1
+              memory: 1Gi
+            limits:
+              cpu: 2
+              memory: 2Gi
+        patch:
+          type: StrategicMerge
+          value:
+            spec:
+              template:
+                spec:
+                  containers:
+                  - name: envoy
+                    startupProbe: null
+                    readinessProbe: null
+                    livenessProbe: null
+                  - name: shutdown-manager
+                    image: docker.changqingyun.cn/kubercloud/gateway-dev:latest
+                    startupProbe: null
+                    readinessProbe: null
+                    livenessProbe: null
+---
+# 中型 NoEIP：适合常规业务流量；数据面 Service 为 ClusterIP
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: EnvoyProxy
+metadata:
+  name: envoy-proxy-medium-noeip
+  namespace: envoy-gateway-system
+spec:
+  preserveRouteOrder: true
+  provider:
+    type: Kubernetes
+    kubernetes:
+      envoyService:
+        type: ClusterIP
+      envoyDeployment:
+        replicas: 4
+        container:
+          image: docker.changqingyun.cn/kubercloud/envoy:distroless-v1.38.3
+          resources:
+            requests:
+              cpu: 2
+              memory: 2Gi
+            limits:
+              cpu: 4
+              memory: 4Gi
+        patch:
+          type: StrategicMerge
+          value:
+            spec:
+              template:
+                spec:
+                  containers:
+                  - name: envoy
+                    startupProbe: null
+                    readinessProbe: null
+                    livenessProbe: null
+                  - name: shutdown-manager
+                    image: docker.changqingyun.cn/kubercloud/gateway-dev:latest
+                    startupProbe: null
+                    readinessProbe: null
+                    livenessProbe: null
+---
+# 大型 NoEIP：适合高流量、核心入口；数据面 Service 为 ClusterIP
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: EnvoyProxy
+metadata:
+  name: envoy-proxy-large-noeip
+  namespace: envoy-gateway-system
+spec:
+  preserveRouteOrder: true
+  provider:
+    type: Kubernetes
+    kubernetes:
+      envoyService:
+        type: ClusterIP
+      envoyDeployment:
+        replicas: 6
+        container:
+          image: docker.changqingyun.cn/kubercloud/envoy:distroless-v1.38.3
+          resources:
+            requests:
+              cpu: 4
+              memory: 4Gi
+            limits:
+              cpu: 8
+              memory: 8Gi
+        patch:
+          type: StrategicMerge
+          value:
+            spec:
+              template:
+                spec:
+                  containers:
+                  - name: envoy
+                    startupProbe: null
+                    readinessProbe: null
+                    livenessProbe: null
+                  - name: shutdown-manager
+                    image: docker.changqingyun.cn/kubercloud/gateway-dev:latest
+                    startupProbe: null
+                    readinessProbe: null
+                    livenessProbe: null
+---
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: EnvoyProxy
+metadata:
+  name: envoy-proxy-medium
+  namespace: envoy-gateway-system
+spec:
+  preserveRouteOrder: true
+  provider:
+    type: Kubernetes
+    kubernetes:
+      envoyDeployment:
+        replicas: 4
+        container:
+          image: docker.changqingyun.cn/kubercloud/envoy:distroless-v1.38.3
+          resources:
+            requests:
+              cpu: 2
+              memory: 2Gi
+            limits:
+              cpu: 4
+              memory: 4Gi
+        patch:
+          type: StrategicMerge
+          value:
+            spec:
+              template:
+                spec:
+                  containers:
+                  - name: envoy
+                    startupProbe: null
+                    readinessProbe: null
+                    livenessProbe: null
+                  - name: shutdown-manager
+                    image: docker.changqingyun.cn/kubercloud/gateway-dev:latest
+                    startupProbe: null
+                    readinessProbe: null
+                    livenessProbe: null
+---
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: EnvoyProxy
+metadata:
+  name: envoy-proxy-large
+  namespace: envoy-gateway-system
+spec:
+  preserveRouteOrder: true
+  provider:
+    type: Kubernetes
+    kubernetes:
+      envoyDeployment:
+        replicas: 6
+        container:
+          image: docker.changqingyun.cn/kubercloud/envoy:distroless-v1.38.3
+          resources:
+            requests:
+              cpu: 4
+              memory: 4Gi
+            limits:
+              cpu: 8
+              memory: 8Gi
+        patch:
+          type: StrategicMerge
+          value:
+            spec:
+              template:
+                spec:
+                  containers:
+                  - name: envoy
+                    startupProbe: null
+                    readinessProbe: null
+                    livenessProbe: null
+                  - name: shutdown-manager
+                    image: docker.changqingyun.cn/kubercloud/gateway-dev:latest
+                    startupProbe: null
+                    readinessProbe: null
+                    livenessProbe: null

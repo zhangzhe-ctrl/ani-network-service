@@ -1,0 +1,79 @@
+{
+    "apiVersion": "v1",
+    "items": [
+        {
+            "apiVersion": "gateway.envoyproxy.io/v1alpha1",
+            "kind": "Backend",
+            "metadata": {
+                "creationTimestamp": "2026-09-14T14:48:44Z",
+                "generation": 1,
+                "name": "backend-http-a",
+                "namespace": "lb-validation",
+                "resourceVersion": "43428",
+                "uid": "323a434b-9a87-45b8-bcee-37ee899d6d35"
+            },
+            "spec": {
+                "endpoints": [
+                    {
+                        "ip": {
+                            "address": "10.16.0.9",
+                            "port": 3000
+                        }
+                    }
+                ],
+                "type": "Endpoints"
+            },
+            "status": {
+                "conditions": [
+                    {
+                        "lastTransitionTime": "2026-09-14T14:48:44Z",
+                        "message": "The Backend was accepted",
+                        "observedGeneration": 1,
+                        "reason": "Accepted",
+                        "status": "True",
+                        "type": "Accepted"
+                    }
+                ]
+            }
+        },
+        {
+            "apiVersion": "gateway.envoyproxy.io/v1alpha1",
+            "kind": "Backend",
+            "metadata": {
+                "creationTimestamp": "2026-09-14T14:48:44Z",
+                "generation": 1,
+                "name": "backend-http-b",
+                "namespace": "lb-validation",
+                "resourceVersion": "43430",
+                "uid": "3ed8a8ab-95b2-4aad-b7e6-5aabde64e28c"
+            },
+            "spec": {
+                "endpoints": [
+                    {
+                        "ip": {
+                            "address": "10.16.0.10",
+                            "port": 3000
+                        }
+                    }
+                ],
+                "type": "Endpoints"
+            },
+            "status": {
+                "conditions": [
+                    {
+                        "lastTransitionTime": "2026-09-14T14:48:44Z",
+                        "message": "The Backend was accepted",
+                        "observedGeneration": 1,
+                        "reason": "Accepted",
+                        "status": "True",
+                        "type": "Accepted"
+                    }
+                ]
+            }
+        }
+    ],
+    "kind": "List",
+    "metadata": {
+        "resourceVersion": ""
+    }
+}

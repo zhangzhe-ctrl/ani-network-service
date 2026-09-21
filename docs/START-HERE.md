@@ -42,6 +42,10 @@ NET-05A 的观察、时效、调度与增量验收统一见[持续观察规格](
 
 ## 运行与来源
 
+- [三节点基础平台手动部署实操](runbooks/platform-manual-install.md)：KubeKey/kubeadm、kcn、kube-vip、Ceph 存储网重建、附件 Envoy 安装及逐层验收，附可执行清单。
+- [2026-09-14 存储网与 Envoy 扩展记录](execution/records/PLATFORM-20260914-EXTENSION/README.md)：实际改网、HTTP 链路和基础服务复验及已知问题。
+
+- [2026-09-14 三节点基础平台探测与安装尝试](execution/records/PLATFORM-20260914/README.md)：三节点 Kubernetes/kcn/kube-vip 与 Rook-Ceph 部署、三类存储读写验证及保留的内核认证兼容性告警。
 - [NET-05 普通容器真实网络验收](execution/records/NET-05-implementation.md)：实际 main、数据面、故障、权限与清理证据。
 - [运行说明](runtime.md)
 - [运行验证](runtime-verification.md)：已有通用骨架门禁的范围。

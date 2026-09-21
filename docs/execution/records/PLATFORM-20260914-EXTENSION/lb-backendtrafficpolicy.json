@@ -1,0 +1,105 @@
+{
+    "apiVersion": "v1",
+    "items": [
+        {
+            "apiVersion": "gateway.envoyproxy.io/v1alpha1",
+            "kind": "BackendTrafficPolicy",
+            "metadata": {
+                "creationTimestamp": "2026-09-14T14:48:44Z",
+                "generation": 1,
+                "name": "my-lb-http-a-roundrobin",
+                "namespace": "lb-validation",
+                "resourceVersion": "43436",
+                "uid": "f9961653-a7e8-4024-9473-4f95901f4a17"
+            },
+            "spec": {
+                "loadBalancer": {
+                    "type": "RoundRobin"
+                },
+                "targetRefs": [
+                    {
+                        "group": "gateway.networking.k8s.io",
+                        "kind": "HTTPRoute",
+                        "name": "my-lb-http-a"
+                    }
+                ]
+            },
+            "status": {
+                "ancestors": [
+                    {
+                        "ancestorRef": {
+                            "group": "gateway.networking.k8s.io",
+                            "kind": "Gateway",
+                            "name": "my-lb",
+                            "namespace": "lb-validation",
+                            "sectionName": "http-a"
+                        },
+                        "conditions": [
+                            {
+                                "lastTransitionTime": "2026-09-14T14:48:44Z",
+                                "message": "Policy has been accepted.",
+                                "observedGeneration": 1,
+                                "reason": "Accepted",
+                                "status": "True",
+                                "type": "Accepted"
+                            }
+                        ],
+                        "controllerName": "gateway.envoyproxy.io/gatewayclass-controller"
+                    }
+                ]
+            }
+        },
+        {
+            "apiVersion": "gateway.envoyproxy.io/v1alpha1",
+            "kind": "BackendTrafficPolicy",
+            "metadata": {
+                "creationTimestamp": "2026-09-14T14:48:44Z",
+                "generation": 1,
+                "name": "my-lb-http-b-roundrobin",
+                "namespace": "lb-validation",
+                "resourceVersion": "43437",
+                "uid": "bc286e94-9b11-4bfb-aef5-fe60136982ef"
+            },
+            "spec": {
+                "loadBalancer": {
+                    "type": "RoundRobin"
+                },
+                "targetRefs": [
+                    {
+                        "group": "gateway.networking.k8s.io",
+                        "kind": "HTTPRoute",
+                        "name": "my-lb-http-b"
+                    }
+                ]
+            },
+            "status": {
+                "ancestors": [
+                    {
+                        "ancestorRef": {
+                            "group": "gateway.networking.k8s.io",
+                            "kind": "Gateway",
+                            "name": "my-lb",
+                            "namespace": "lb-validation",
+                            "sectionName": "http-b"
+                        },
+                        "conditions": [
+                            {
+                                "lastTransitionTime": "2026-09-14T14:48:44Z",
+                                "message": "Policy has been accepted.",
+                                "observedGeneration": 1,
+                                "reason": "Accepted",
+                                "status": "True",
+                                "type": "Accepted"
+                            }
+                        ],
+                        "controllerName": "gateway.envoyproxy.io/gatewayclass-controller"
+                    }
+                ]
+            }
+        }
+    ],
+    "kind": "List",
+    "metadata": {
+        "resourceVersion": ""
+    }
+}

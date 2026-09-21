@@ -1,0 +1,54 @@
+[
+  {
+    "pod": "my-lb-558d668dbd-bnrb8",
+    "destination": "10.16.0.13",
+    "replies": [
+      "BACKEND-B XFF=[10.16.0.9] RemoteAddr=[10.16.0.13]\n",
+      "BACKEND-B XFF=[10.16.0.9] RemoteAddr=[10.16.0.13]\n",
+      "BACKEND-A XFF=[10.16.0.9] RemoteAddr=[10.16.0.13]\n",
+      "BACKEND-A XFF=[10.16.0.9] RemoteAddr=[10.16.0.13]\n",
+      "BACKEND-B XFF=[10.16.0.9] RemoteAddr=[10.16.0.13]\n",
+      "BACKEND-B XFF=[10.16.0.9] RemoteAddr=[10.16.0.13]\n"
+    ],
+    "wrongHostStatus": "404"
+  },
+  {
+    "pod": "my-lb-558d668dbd-bnrb8",
+    "destination": "10.16.250.9",
+    "replies": [
+      "BACKEND-A XFF=[10.16.0.9] RemoteAddr=[10.16.0.13]\n",
+      "BACKEND-B XFF=[10.16.0.9] RemoteAddr=[10.16.0.12]\n",
+      "BACKEND-A XFF=[10.16.0.9] RemoteAddr=[10.16.0.12]\n",
+      "BACKEND-A XFF=[10.16.0.9] RemoteAddr=[10.16.0.12]\n",
+      "BACKEND-B XFF=[10.16.0.9] RemoteAddr=[10.16.0.12]\n",
+      "BACKEND-A XFF=[10.16.0.9] RemoteAddr=[10.16.0.13]\n"
+    ],
+    "wrongHostStatus": "404"
+  },
+  {
+    "pod": "my-lb-558d668dbd-rhmmp",
+    "destination": "10.16.0.12",
+    "replies": [
+      "BACKEND-A XFF=[10.16.0.9] RemoteAddr=[10.16.0.12]\n",
+      "BACKEND-B XFF=[10.16.0.9] RemoteAddr=[10.16.0.12]\n",
+      "BACKEND-A XFF=[10.16.0.9] RemoteAddr=[10.16.0.12]\n",
+      "BACKEND-B XFF=[10.16.0.9] RemoteAddr=[10.16.0.12]\n",
+      "BACKEND-B XFF=[10.16.0.9] RemoteAddr=[10.16.0.12]\n",
+      "BACKEND-A XFF=[10.16.0.9] RemoteAddr=[10.16.0.12]\n"
+    ],
+    "wrongHostStatus": "404"
+  },
+  {
+    "pod": "my-lb-558d668dbd-rhmmp",
+    "destination": "10.16.250.9",
+    "replies": [
+      "BACKEND-B XFF=[10.16.0.9] RemoteAddr=[10.16.0.13]\n",
+      "BACKEND-A XFF=[10.16.0.9] RemoteAddr=[10.16.0.13]\n",
+      "BACKEND-B XFF=[10.16.0.9] RemoteAddr=[10.16.0.13]\n",
+      "BACKEND-A XFF=[10.16.0.9] RemoteAddr=[10.16.0.12]\n",
+      "BACKEND-B XFF=[10.16.0.9] RemoteAddr=[10.16.0.13]\n",
+      "BACKEND-B XFF=[10.16.0.9] RemoteAddr=[10.16.0.12]\n"
+    ],
+    "wrongHostStatus": "404"
+  }
+]

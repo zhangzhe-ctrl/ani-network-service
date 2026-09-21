@@ -1,0 +1,160 @@
+{
+    "apiVersion": "v1",
+    "items": [
+        {
+            "apiVersion": "gateway.networking.k8s.io/v1",
+            "kind": "Gateway",
+            "metadata": {
+                "creationTimestamp": "2026-09-14T14:47:10Z",
+                "generation": 1,
+                "name": "my-lb",
+                "namespace": "lb-validation",
+                "resourceVersion": "43435",
+                "uid": "3e0fc158-a2c3-48ab-b06d-a9a9f1ea9a31"
+            },
+            "spec": {
+                "gatewayClassName": "lb-small-noeip",
+                "infrastructure": {
+                    "annotations": {
+                        "networking.kubercloud.com/lb_vip_address": "10.16.250.9",
+                        "networking.kubercloud.com/subnet": "kcn-system/kcn-default"
+                    }
+                },
+                "listeners": [
+                    {
+                        "allowedRoutes": {
+                            "namespaces": {
+                                "from": "Same"
+                            }
+                        },
+                        "name": "http-a",
+                        "port": 8080,
+                        "protocol": "HTTP"
+                    },
+                    {
+                        "allowedRoutes": {
+                            "namespaces": {
+                                "from": "Same"
+                            }
+                        },
+                        "name": "http-b",
+                        "port": 9090,
+                        "protocol": "HTTP"
+                    }
+                ]
+            },
+            "status": {
+                "addresses": [
+                    {
+                        "type": "IPAddress",
+                        "value": "10.96.175.154"
+                    }
+                ],
+                "conditions": [
+                    {
+                        "lastTransitionTime": "2026-09-14T14:48:44Z",
+                        "message": "The Gateway has been scheduled by Envoy Gateway",
+                        "observedGeneration": 1,
+                        "reason": "Accepted",
+                        "status": "True",
+                        "type": "Accepted"
+                    },
+                    {
+                        "lastTransitionTime": "2026-09-14T14:48:44Z",
+                        "message": "Address assigned to the Gateway, 2/2 envoy replicas available",
+                        "observedGeneration": 1,
+                        "reason": "Programmed",
+                        "status": "True",
+                        "type": "Programmed"
+                    }
+                ],
+                "listeners": [
+                    {
+                        "attachedRoutes": 1,
+                        "conditions": [
+                            {
+                                "lastTransitionTime": "2026-09-14T14:48:44Z",
+                                "message": "Sending translated listener configuration to the data plane",
+                                "observedGeneration": 1,
+                                "reason": "Programmed",
+                                "status": "True",
+                                "type": "Programmed"
+                            },
+                            {
+                                "lastTransitionTime": "2026-09-14T14:48:44Z",
+                                "message": "Listener has been successfully translated",
+                                "observedGeneration": 1,
+                                "reason": "Accepted",
+                                "status": "True",
+                                "type": "Accepted"
+                            },
+                            {
+                                "lastTransitionTime": "2026-09-14T14:48:44Z",
+                                "message": "Listener references have been resolved",
+                                "observedGeneration": 1,
+                                "reason": "ResolvedRefs",
+                                "status": "True",
+                                "type": "ResolvedRefs"
+                            }
+                        ],
+                        "name": "http-a",
+                        "supportedKinds": [
+                            {
+                                "group": "gateway.networking.k8s.io",
+                                "kind": "HTTPRoute"
+                            },
+                            {
+                                "group": "gateway.networking.k8s.io",
+                                "kind": "GRPCRoute"
+                            }
+                        ]
+                    },
+                    {
+                        "attachedRoutes": 1,
+                        "conditions": [
+                            {
+                                "lastTransitionTime": "2026-09-14T14:48:44Z",
+                                "message": "Sending translated listener configuration to the data plane",
+                                "observedGeneration": 1,
+                                "reason": "Programmed",
+                                "status": "True",
+                                "type": "Programmed"
+                            },
+                            {
+                                "lastTransitionTime": "2026-09-14T14:48:44Z",
+                                "message": "Listener has been successfully translated",
+                                "observedGeneration": 1,
+                                "reason": "Accepted",
+                                "status": "True",
+                                "type": "Accepted"
+                            },
+                            {
+                                "lastTransitionTime": "2026-09-14T14:48:44Z",
+                                "message": "Listener references have been resolved",
+                                "observedGeneration": 1,
+                                "reason": "ResolvedRefs",
+                                "status": "True",
+                                "type": "ResolvedRefs"
+                            }
+                        ],
+                        "name": "http-b",
+                        "supportedKinds": [
+                            {
+                                "group": "gateway.networking.k8s.io",
+                                "kind": "HTTPRoute"
+                            },
+                            {
+                                "group": "gateway.networking.k8s.io",
+                                "kind": "GRPCRoute"
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    ],
+    "kind": "List",
+    "metadata": {
+        "resourceVersion": ""
+    }
+}

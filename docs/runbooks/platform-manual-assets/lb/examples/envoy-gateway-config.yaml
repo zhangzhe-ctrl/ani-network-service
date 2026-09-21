@@ -1,0 +1,20 @@
+# Envoy Gateway 控制面配置示例
+# 该配置实际写入 ConfigMap `envoy-gateway-system/envoy-gateway-config` 的
+# key `envoy-gateway.yaml`，不能直接 kubectl apply 本文件。
+# 写回方式参考 loadbalancer/setup.md 的“导出 → 编辑 → 写回 ConfigMap”步骤。
+#
+# 当前包含：
+#   - GatewayNamespace Mode：数据面部署到 Gateway 所在 namespace
+#   - Backend API：开启后 HTTP/HTTPS 监听器可用 Backend 填 IP
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: EnvoyGateway
+gateway:
+  controllerName: gateway.envoyproxy.io/gatewayclass-controller
+provider:
+  type: Kubernetes
+  kubernetes:
+    deploy:
+      type: GatewayNamespace
+extensionApis:
+  enableBackend: true
+  enableEnvoyPatchPolicy: true

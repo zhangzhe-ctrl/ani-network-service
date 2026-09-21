@@ -1,0 +1,235 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    networking.kubercloud.com/vnic: auto-mailpit-0-vnic-bsqfg
+  creationTimestamp: "2026-09-14T14:56:22Z"
+  generateName: mailpit-
+  generation: 1
+  labels:
+    app: mailpit
+    apps.kubernetes.io/pod-index: "0"
+    controller-revision-hash: mailpit-6954c48f57
+    statefulset.kubernetes.io/pod-name: mailpit-0
+  name: mailpit-0
+  namespace: iam-test-infra
+  ownerReferences:
+  - apiVersion: apps/v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: StatefulSet
+    name: mailpit
+    uid: 7c35e766-559c-4ebe-8400-4fbb0e23aa8e
+  resourceVersion: "46555"
+  uid: 229a1179-8289-4eae-b4a9-ad42fd3c7138
+spec:
+  containers:
+  - env:
+    - name: MP_DATABASE
+      value: /data/mailpit.db
+    - name: MP_MAX_MESSAGES
+      value: "1000"
+    image: ghcr.io/axllent/mailpit@sha256:9d85d6bd20c834ec2b7d08ff97976af7b13e2330d9c56ecade4a231dcd3481ba
+    imagePullPolicy: IfNotPresent
+    name: mailpit
+    readinessProbe:
+      failureThreshold: 3
+      initialDelaySeconds: 5
+      periodSeconds: 5
+      successThreshold: 1
+      tcpSocket:
+        port: 1025
+      timeoutSeconds: 1
+    resources:
+      limits:
+        memory: 512Mi
+      requests:
+        cpu: 100m
+        memory: 64Mi
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /data
+      name: data
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-lkztl
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  hostname: mailpit-0
+  nodeName: ani-02
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: default
+  serviceAccountName: default
+  subdomain: mailpit
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - name: data
+    persistentVolumeClaim:
+      claimName: data-mailpit-0
+  - name: kube-api-access-lkztl
+    projected:
+      defaultMode: 420
+      sources:
+      - serviceAccountToken:
+          expirationSeconds: 3607
+          path: token
+      - configMap:
+          items:
+          - key: ca.crt
+            path: ca.crt
+          name: kube-root-ca.crt
+      - downwardAPI:
+          items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+            path: namespace
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2026-09-14T14:56:32Z"
+    observedGeneration: 1
+    status: "True"
+    type: PodReadyToStartContainers
+  - lastProbeTime: null
+    lastTransitionTime: "2026-09-14T14:56:22Z"
+    observedGeneration: 1
+    status: "True"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2026-09-14T14:57:14Z"
+    message: 'containers with unready status: [mailpit]'
+    observedGeneration: 1
+    reason: ContainersNotReady
+    status: "False"
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2026-09-14T14:57:14Z"
+    message: 'containers with unready status: [mailpit]'
+    observedGeneration: 1
+    reason: ContainersNotReady
+    status: "False"
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2026-09-14T14:56:22Z"
+    observedGeneration: 1
+    status: "True"
+    type: PodScheduled
+  containerStatuses:
+  - allocatedResources:
+      cpu: 100m
+      memory: 64Mi
+    containerID: containerd://9546bbfe368283be015100ebe4ea914d0f30b0e7ef6bd31d4c273a8aa57da798
+    image: sha256:1d52617d0450ec517d4868a9f452feb7c864f6dd1db9a45308325178981d399e
+    imageID: ghcr.io/axllent/mailpit@sha256:9d85d6bd20c834ec2b7d08ff97976af7b13e2330d9c56ecade4a231dcd3481ba
+    lastState: {}
+    name: mailpit
+    ready: false
+    resources:
+      limits:
+        memory: 512Mi
+      requests:
+        cpu: 100m
+        memory: 64Mi
+    restartCount: 0
+    started: true
+    state:
+      running:
+        startedAt: "2026-09-14T14:56:32Z"
+    user:
+      linux:
+        gid: 0
+        supplementalGroups:
+        - 0
+        - 1
+        - 2
+        - 3
+        - 4
+        - 6
+        - 10
+        - 11
+        - 20
+        - 26
+        - 27
+        uid: 0
+    volumeMounts:
+    - mountPath: /data
+      name: data
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-lkztl
+      readOnly: true
+      recursiveReadOnly: Disabled
+  hostIP: 172.16.101.11
+  hostIPs:
+  - ip: 172.16.101.11
+  observedGeneration: 1
+  phase: Running
+  podIP: 10.16.0.25
+  podIPs:
+  - ip: 10.16.0.25
+  qosClass: Burstable
+  startTime: "2026-09-14T14:56:22Z"
+apiVersion: networking.kubercloud.com/v1
+kind: VNic
+metadata:
+  annotations:
+    networking.kubercloud.com/allocate_ip_with_dhcp: "false"
+    networking.kubercloud.com/allocated_vnicip: auto-mailpit-0-vnic-bsqfg
+    pod.networking.kubercloud.com/mailpit-0: ani-02/eth0
+  creationTimestamp: "2026-09-14T14:56:22Z"
+  finalizers:
+  - networking.kubercloud.com/finalizer
+  generation: 2
+  labels:
+    node.networking.kubercloud.com/ani-02: ""
+  name: auto-mailpit-0-vnic-bsqfg
+  namespace: iam-test-infra
+  ownerReferences:
+  - apiVersion: v1
+    kind: Pod
+    name: mailpit-0
+    uid: 229a1179-8289-4eae-b4a9-ad42fd3c7138
+  resourceVersion: "46493"
+  uid: def64f8a-a411-455f-b00e-158672937961
+spec:
+  macAddress: fa:00:6f:e7:31:17
+  subnet: kcn-system/kcn-default
+  type: VETH
+status:
+  conditions:
+  - lastTransitionTime: "2026-09-14T14:56:22Z"
+    message: ""
+    reason: Initialized
+    status: "True"
+    type: Initialized
+  - lastTransitionTime: "2026-09-14T14:56:22Z"
+    message: ""
+    reason: Valid
+    status: "True"
+    type: Valid
+  - lastTransitionTime: "2026-09-14T14:56:22Z"
+    message: ""
+    reason: Ready
+    status: "True"
+    type: Ready
+  dstNic: ""
+  gateway: kcn-system/kcn-cluster
+  ips:
+    auto-mailpit-0-vnic-bsqfg: 10.16.0.25
+  nic: ""
+  nodeName: ""
+  primaryIP: 10.16.0.25

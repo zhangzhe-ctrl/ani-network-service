@@ -1,0 +1,65 @@
+apiVersion: ceph.rook.io/v1
+kind: CephCluster
+metadata:
+  name: rook-ceph
+  namespace: rook-ceph
+spec:
+  cephVersion:
+    image: quay.io/ceph/ceph:v20.2.4
+    allowUnsupported: false
+  dataDirHostPath: /var/lib/rook
+  mon:
+    count: 3
+    allowMultiplePerNode: false
+  mgr:
+    count: 2
+    allowMultiplePerNode: false
+  dashboard:
+    enabled: true
+    ssl: true
+  security:
+    cephx:
+      csi:
+        keyType: aes
+  network:
+    provider: host
+    addressRanges:
+      public:
+      - 172.16.101.0/24
+  storage:
+    useAllNodes: false
+    useAllDevices: false
+    nodes:
+    - name: ani-01
+      devices:
+      - name: sdb
+    - name: ani-02
+      devices:
+      - name: sdb
+    - name: ani-03
+      devices:
+      - name: sdb
+  cleanupPolicy:
+    confirmation: ''
+  disruptionManagement:
+    managePodBudgets: true
+    osdMaintenanceTimeout: 30
+  resources:
+    mon:
+      requests:
+        cpu: 500m
+        memory: 1Gi
+      limits:
+        memory: 2Gi
+    mgr:
+      requests:
+        cpu: 500m
+        memory: 1Gi
+      limits:
+        memory: 2Gi
+    osd:
+      requests:
+        cpu: '1'
+        memory: 4Gi
+      limits:
+        memory: 6Gi

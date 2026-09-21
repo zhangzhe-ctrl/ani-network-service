@@ -1,0 +1,94 @@
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: Backend
+metadata:
+  name: backend-http-a
+  namespace: lb-validation
+spec:
+  endpoints:
+  - ip:
+      address: 10.16.0.9
+      port: 3000
+---
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: Backend
+metadata:
+  name: backend-http-b
+  namespace: lb-validation
+spec:
+  endpoints:
+  - ip:
+      address: 10.16.0.10
+      port: 3000
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: my-lb-http-a
+  namespace: lb-validation
+spec:
+  parentRefs:
+  - name: my-lb
+    sectionName: http-a
+  rules:
+  - matches:
+    - path:
+        type: PathPrefix
+        value: /
+    backendRefs:
+    - group: gateway.envoyproxy.io
+      kind: Backend
+      name: backend-http-a
+      weight: 1
+    - group: gateway.envoyproxy.io
+      kind: Backend
+      name: backend-http-b
+      weight: 1
+  hostnames:
+  - lb-test.ani.internal
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: my-lb-http-b
+  namespace: lb-validation
+spec:
+  parentRefs:
+  - name: my-lb
+    sectionName: http-b
+  rules:
+  - matches:
+    - path:
+        type: PathPrefix
+        value: /
+    backendRefs:
+    - group: gateway.envoyproxy.io
+      kind: Backend
+      name: backend-http-b
+  hostnames:
+  - lb-test.ani.internal
+---
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: BackendTrafficPolicy
+metadata:
+  name: my-lb-http-a-roundrobin
+  namespace: lb-validation
+spec:
+  targetRefs:
+  - group: gateway.networking.k8s.io
+    kind: HTTPRoute
+    name: my-lb-http-a
+  loadBalancer:
+    type: RoundRobin
+---
+apiVersion: gateway.envoyproxy.io/v1alpha1
+kind: BackendTrafficPolicy
+metadata:
+  name: my-lb-http-b-roundrobin
+  namespace: lb-validation
+spec:
+  targetRefs:
+  - group: gateway.networking.k8s.io
+    kind: HTTPRoute
+    name: my-lb-http-b
+  loadBalancer:
+    type: RoundRobin

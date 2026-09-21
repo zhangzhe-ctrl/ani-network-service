@@ -1,0 +1,105 @@
+---
+# GatewayClass：声明「由哪个控制器实现这类 Gateway」，并通过 parametersRef
+# 挂载不同规格的 EnvoyProxy。基础规格分 small / medium / large 三档，
+# 另有三档 -noeip 变体；dynamic 本期仍为占位。
+# install.yaml 不含 GatewayClass，需平台一次性手动创建。
+# 上层开发者无需重复创建，按需在 Gateway 里引用对应 GatewayClass 即可。
+#
+# 七档规格对应关系：
+#   lb-small   → envoy-proxy-small   2 副本   CPU 1/2    内存 1Gi/2Gi
+#   lb-medium  → envoy-proxy-medium  4 副本   CPU 2/4    内存 2Gi/4Gi
+#   lb-large   → envoy-proxy-large   6 副本   CPU 4/8    内存 4Gi/8Gi
+#   lb-small-noeip   → envoy-proxy-small-noeip   2 副本  Service 为 ClusterIP
+#   lb-medium-noeip  → envoy-proxy-medium-noeip  4 副本  Service 为 ClusterIP
+#   lb-large-noeip   → envoy-proxy-large-noeip   6 副本  Service 为 ClusterIP
+#   lb-dynamic → envoy-proxy-dynamic  本期占位不实现（后续 HPA 自动扩缩）
+
+# 小型：低流量、测试、内部服务
+apiVersion: gateway.networking.k8s.io/v1
+kind: GatewayClass
+metadata:
+  name: lb-small
+spec:
+  controllerName: gateway.envoyproxy.io/gatewayclass-controller
+  parametersRef:
+    group: gateway.envoyproxy.io
+    kind: EnvoyProxy
+    name: envoy-proxy-small
+    namespace: envoy-gateway-system
+---
+# 中型：常规业务流量
+apiVersion: gateway.networking.k8s.io/v1
+kind: GatewayClass
+metadata:
+  name: lb-medium
+spec:
+  controllerName: gateway.envoyproxy.io/gatewayclass-controller
+  parametersRef:
+    group: gateway.envoyproxy.io
+    kind: EnvoyProxy
+    name: envoy-proxy-medium
+    namespace: envoy-gateway-system
+---
+# 大型：高流量、核心入口
+apiVersion: gateway.networking.k8s.io/v1
+kind: GatewayClass
+metadata:
+  name: lb-large
+spec:
+  controllerName: gateway.envoyproxy.io/gatewayclass-controller
+  parametersRef:
+    group: gateway.envoyproxy.io
+    kind: EnvoyProxy
+    name: envoy-proxy-large
+    namespace: envoy-gateway-system
+---
+# 动态型：本期占位不实现，后续用 HPA 自动扩缩。
+# parametersRef 先不挂，避免引用未创建的 EnvoyProxy 导致调协失败；
+# 待后续 envoy-proxy-dynamic 落地后再补上 parametersRef。
+apiVersion: gateway.networking.k8s.io/v1
+kind: GatewayClass
+metadata:
+  name: lb-dynamic
+  annotations:
+    loadbalancer.example.com/status: "placeholder-not-implemented"
+spec:
+  controllerName: gateway.envoyproxy.io/gatewayclass-controller
+---
+# 小型 NoEIP：默认 Service 为 ClusterIP，不创建 LoadBalancer Service
+apiVersion: gateway.networking.k8s.io/v1
+kind: GatewayClass
+metadata:
+  name: lb-small-noeip
+spec:
+  controllerName: gateway.envoyproxy.io/gatewayclass-controller
+  parametersRef:
+    group: gateway.envoyproxy.io
+    kind: EnvoyProxy
+    name: envoy-proxy-small-noeip
+    namespace: envoy-gateway-system
+---
+# 中型 NoEIP：默认 Service 为 ClusterIP，不创建 LoadBalancer Service
+apiVersion: gateway.networking.k8s.io/v1
+kind: GatewayClass
+metadata:
+  name: lb-medium-noeip
+spec:
+  controllerName: gateway.envoyproxy.io/gatewayclass-controller
+  parametersRef:
+    group: gateway.envoyproxy.io
+    kind: EnvoyProxy
+    name: envoy-proxy-medium-noeip
+    namespace: envoy-gateway-system
+---
+# 大型 NoEIP：默认 Service 为 ClusterIP，不创建 LoadBalancer Service
+apiVersion: gateway.networking.k8s.io/v1
+kind: GatewayClass
+metadata:
+  name: lb-large-noeip
+spec:
+  controllerName: gateway.envoyproxy.io/gatewayclass-controller
+  parametersRef:
+    group: gateway.envoyproxy.io
+    kind: EnvoyProxy
+    name: envoy-proxy-large-noeip
+    namespace: envoy-gateway-system

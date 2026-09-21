@@ -1,0 +1,233 @@
+{
+    "apiVersion": "v1",
+    "items": [
+        {
+            "apiVersion": "gateway.networking.k8s.io/v1",
+            "kind": "GatewayClass",
+            "metadata": {
+                "annotations": {
+                    "loadbalancer.example.com/status": "placeholder-not-implemented"
+                },
+                "creationTimestamp": "2026-09-14T14:43:58Z",
+                "generation": 1,
+                "name": "lb-dynamic",
+                "resourceVersion": "40131",
+                "uid": "e90fad80-aa5e-464d-8322-50853ba6397a"
+            },
+            "spec": {
+                "controllerName": "gateway.envoyproxy.io/gatewayclass-controller"
+            },
+            "status": {
+                "conditions": [
+                    {
+                        "lastTransitionTime": "2026-09-14T14:43:58Z",
+                        "message": "Valid GatewayClass",
+                        "observedGeneration": 1,
+                        "reason": "Accepted",
+                        "status": "True",
+                        "type": "Accepted"
+                    }
+                ]
+            }
+        },
+        {
+            "apiVersion": "gateway.networking.k8s.io/v1",
+            "kind": "GatewayClass",
+            "metadata": {
+                "creationTimestamp": "2026-09-14T14:43:58Z",
+                "generation": 1,
+                "name": "lb-large",
+                "resourceVersion": "40130",
+                "uid": "b249495c-f944-41c9-833b-7ede08dee76c"
+            },
+            "spec": {
+                "controllerName": "gateway.envoyproxy.io/gatewayclass-controller",
+                "parametersRef": {
+                    "group": "gateway.envoyproxy.io",
+                    "kind": "EnvoyProxy",
+                    "name": "envoy-proxy-large",
+                    "namespace": "envoy-gateway-system"
+                }
+            },
+            "status": {
+                "conditions": [
+                    {
+                        "lastTransitionTime": "2026-09-14T14:43:58Z",
+                        "message": "Valid GatewayClass",
+                        "observedGeneration": 1,
+                        "reason": "Accepted",
+                        "status": "True",
+                        "type": "Accepted"
+                    }
+                ]
+            }
+        },
+        {
+            "apiVersion": "gateway.networking.k8s.io/v1",
+            "kind": "GatewayClass",
+            "metadata": {
+                "creationTimestamp": "2026-09-14T14:43:58Z",
+                "generation": 1,
+                "name": "lb-large-noeip",
+                "resourceVersion": "40137",
+                "uid": "a08af060-bc79-4c57-9e7d-d06f15f74244"
+            },
+            "spec": {
+                "controllerName": "gateway.envoyproxy.io/gatewayclass-controller",
+                "parametersRef": {
+                    "group": "gateway.envoyproxy.io",
+                    "kind": "EnvoyProxy",
+                    "name": "envoy-proxy-large-noeip",
+                    "namespace": "envoy-gateway-system"
+                }
+            },
+            "status": {
+                "conditions": [
+                    {
+                        "lastTransitionTime": "2026-09-14T14:43:58Z",
+                        "message": "Valid GatewayClass",
+                        "observedGeneration": 1,
+                        "reason": "Accepted",
+                        "status": "True",
+                        "type": "Accepted"
+                    }
+                ]
+            }
+        },
+        {
+            "apiVersion": "gateway.networking.k8s.io/v1",
+            "kind": "GatewayClass",
+            "metadata": {
+                "creationTimestamp": "2026-09-14T14:43:58Z",
+                "generation": 1,
+                "name": "lb-medium",
+                "resourceVersion": "40128",
+                "uid": "4050f57d-6e3e-4c17-9e9c-bd712b6be2b8"
+            },
+            "spec": {
+                "controllerName": "gateway.envoyproxy.io/gatewayclass-controller",
+                "parametersRef": {
+                    "group": "gateway.envoyproxy.io",
+                    "kind": "EnvoyProxy",
+                    "name": "envoy-proxy-medium",
+                    "namespace": "envoy-gateway-system"
+                }
+            },
+            "status": {
+                "conditions": [
+                    {
+                        "lastTransitionTime": "2026-09-14T14:43:58Z",
+                        "message": "Valid GatewayClass",
+                        "observedGeneration": 1,
+                        "reason": "Accepted",
+                        "status": "True",
+                        "type": "Accepted"
+                    }
+                ]
+            }
+        },
+        {
+            "apiVersion": "gateway.networking.k8s.io/v1",
+            "kind": "GatewayClass",
+            "metadata": {
+                "creationTimestamp": "2026-09-14T14:43:58Z",
+                "generation": 1,
+                "name": "lb-medium-noeip",
+                "resourceVersion": "40135",
+                "uid": "754d43e3-0f64-420f-9b3c-4fda6c204f54"
+            },
+            "spec": {
+                "controllerName": "gateway.envoyproxy.io/gatewayclass-controller",
+                "parametersRef": {
+                    "group": "gateway.envoyproxy.io",
+                    "kind": "EnvoyProxy",
+                    "name": "envoy-proxy-medium-noeip",
+                    "namespace": "envoy-gateway-system"
+                }
+            },
+            "status": {
+                "conditions": [
+                    {
+                        "lastTransitionTime": "2026-09-14T14:43:58Z",
+                        "message": "Valid GatewayClass",
+                        "observedGeneration": 1,
+                        "reason": "Accepted",
+                        "status": "True",
+                        "type": "Accepted"
+                    }
+                ]
+            }
+        },
+        {
+            "apiVersion": "gateway.networking.k8s.io/v1",
+            "kind": "GatewayClass",
+            "metadata": {
+                "creationTimestamp": "2026-09-14T14:43:58Z",
+                "generation": 1,
+                "name": "lb-small",
+                "resourceVersion": "40125",
+                "uid": "98589ccd-d459-4063-8e5f-fea8c74fdc94"
+            },
+            "spec": {
+                "controllerName": "gateway.envoyproxy.io/gatewayclass-controller",
+                "parametersRef": {
+                    "group": "gateway.envoyproxy.io",
+                    "kind": "EnvoyProxy",
+                    "name": "envoy-proxy-small",
+                    "namespace": "envoy-gateway-system"
+                }
+            },
+            "status": {
+                "conditions": [
+                    {
+                        "lastTransitionTime": "2026-09-14T14:43:58Z",
+                        "message": "Valid GatewayClass",
+                        "observedGeneration": 1,
+                        "reason": "Accepted",
+                        "status": "True",
+                        "type": "Accepted"
+                    }
+                ]
+            }
+        },
+        {
+            "apiVersion": "gateway.networking.k8s.io/v1",
+            "kind": "GatewayClass",
+            "metadata": {
+                "creationTimestamp": "2026-09-14T14:43:58Z",
+                "finalizers": [
+                    "gateway-exists-finalizer.gateway.networking.k8s.io"
+                ],
+                "generation": 1,
+                "name": "lb-small-noeip",
+                "resourceVersion": "42267",
+                "uid": "8b1b4003-b4dd-4720-a3f9-a4d8fd3c449c"
+            },
+            "spec": {
+                "controllerName": "gateway.envoyproxy.io/gatewayclass-controller",
+                "parametersRef": {
+                    "group": "gateway.envoyproxy.io",
+                    "kind": "EnvoyProxy",
+                    "name": "envoy-proxy-small-noeip",
+                    "namespace": "envoy-gateway-system"
+                }
+            },
+            "status": {
+                "conditions": [
+                    {
+                        "lastTransitionTime": "2026-09-14T14:43:58Z",
+                        "message": "Valid GatewayClass",
+                        "observedGeneration": 1,
+                        "reason": "Accepted",
+                        "status": "True",
+                        "type": "Accepted"
+                    }
+                ]
+            }
+        }
+    ],
+    "kind": "List",
+    "metadata": {
+        "resourceVersion": ""
+    }
+}
