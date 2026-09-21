@@ -163,7 +163,7 @@ targetRules = ["generic-api-key"]
 condition = "AND"
 regexTarget = "line"
 paths = ['''^docs/execution/records/RESOURCE\-MOD\-20260922/security\-followup/dependency\-diff\.patch$''']
-regexes = ['''^ golang\.org/x/oauth2 v0\.36\.0 h1:peZ/1z27fi9hUOFCAZaHyrpWG5lwe0RJEEEeH0ThlIs=$''']
+regexes = ['''^\s*golang\.org/x/oauth2 v0\.36\.0 h1:peZ/1z27fi9hUOFCAZaHyrpWG5lwe0RJEEEeH0ThlIs=\s*$''']
 
 [[allowlists]]
 description = "Exact public oauth2 checksum assertion in the allowlist negative fixture"
@@ -171,4 +171,4 @@ targetRules = ["generic-api-key"]
 condition = "AND"
 regexTarget = "line"
 paths = ['''^docs/execution/records/RESOURCE\-MOD\-20260922/security\-followup/runners/secret\-check\.py$''']
-regexes = ['''^assert actual==' golang\.org/x/oauth2 v0\.36\.0 h1:peZ/1z27fi9hUOFCAZaHyrpWG5lwe0RJEEEeH0ThlIs='$''']
+regexes = ['''^\s*assert actual==' golang\.org/x/oauth2 v0\.36\.0 h1:peZ/1z27fi9hUOFCAZaHyrpWG5lwe0RJEEEeH0ThlIs='\s*$''']

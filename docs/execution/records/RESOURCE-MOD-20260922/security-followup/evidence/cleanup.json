@@ -1,0 +1,33 @@
+{
+  "host": "fedora",
+  "at": "2026-09-21T23:27:43.012584+00:00",
+  "postgresql": [
+    {
+      "gate": "integration",
+      "container": "e4acc6065b6f8866bb3675ae368a198b4865e8b4afece89306dd4f28c980a3ab",
+      "exit": 0,
+      "cleanup": "confirmed_absent",
+      "inspect_exit": 1,
+      "inspect_stderr": "error: no such object: e4acc6065b6f8866bb3675ae368a198b4865e8b4afece89306dd4f28c980a3ab\n"
+    },
+    {
+      "gate": "race",
+      "container": "5fa8973a0b85d5bcd6876a0ced2be040b1bdce5cdfea9f96991ecf0676d1f179",
+      "exit": 0,
+      "cleanup": "confirmed_absent",
+      "inspect_exit": 1,
+      "inspect_stderr": "error: no such object: 5fa8973a0b85d5bcd6876a0ced2be040b1bdce5cdfea9f96991ecf0676d1f179\n"
+    },
+    {
+      "gate": "tenant-mutations",
+      "container": "a9f5e836407136833777aa6e1ae0c62fb7a967ffef2e17d2f30eeba2a8c51d6b",
+      "exit": 0,
+      "cleanup": "confirmed_absent",
+      "inspect_exit": 1,
+      "inspect_stderr": "error: no such object: a9f5e836407136833777aa6e1ae0c62fb7a967ffef2e17d2f30eeba2a8c51d6b\n"
+    }
+  ],
+  "new_kubernetes_resources_created": false,
+  "verification_note": "Initial reporter expected capitalized No such object; Docker returned lowercase error: no such object. Case-normalized comparison confirms the same absence, without another cleanup mutation.",
+  "retained": "source snapshots, task caches, logs and binaries; previous R4 evidence preserved"
+}
