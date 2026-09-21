@@ -4,7 +4,7 @@
 
 ## 2026-09-22：Resource 改名与 Network 模块整理
 
-状态 `blocked`（发布前置未满足），完整 R0—R5 尚未完成。独立分支 `codex/resource-service-modularization`，
+状态 `in_progress`（用户已同意安全修复与修正矩阵重验；发布前置仍未满足），完整 R0—R5 尚未完成。独立分支 `codex/resource-service-modularization`，
 工作树 `/home/chabking/workspace/.worktrees/resource-service-modularization`；原工作树和历史保留。
 [实施记录](records/RESOURCE-MOD-20260922/README.md)及[改名清单](records/RESOURCE-MOD-20260922/rename-inventory.md)。
 
@@ -17,7 +17,8 @@
 | R4 | 真实同库接管、候选正常操作/在途恢复、原版处理候选操作、再次启动 pass；Pod/隔离/Intranet/private LB 有界功能观测 pass | 完整阶段未通过：Public not_verified，严格六次矩阵因重复正向控制 fail |
 | R5 | 证据、清理、完整历史扫描及 SBOM 门禁已留存；实施分支用于草稿审阅，最终 head/CI 按该分支回执核对；默认分支及仓库/正式目录名保持 | not_verified；必需条件未齐，不得提前合入/改名 |
 
-阻塞：固定 grpc v1.82.1 的 GO-2026-6443 / GO-2026-6348 使 audit fail，计划不授权依赖升级；
+后续安全修复进行中：原候选 grpc v1.82.1 的 GO-2026-6443 / GO-2026-6348 使 audit fail；
+用户已同意升级到同时消除漏洞的最低稳定版本，并重跑受影响门禁。新候选结果尚未取得。
 共享 ens35 外部 binding 不属于本 run，独立数据库无法合法重新收养，Public 必需验收缺失。
 不修改共享登记/节点网络，不复制旧平台身份；本轮采样重叠另记本任务失败，不能归为环境原因。
 修正后的不重叠驱动已留存但本 run 未重测，全部原始请求与失败保留。

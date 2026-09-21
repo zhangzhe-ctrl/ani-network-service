@@ -4,6 +4,9 @@
 `66f787bd30134141726c596612501a83cf75bdb7`。原 checkout 三项未提交文档完整带入，原工作区不动。
 唯一当前状态见 [status](../../status.md)，逐项名称处理见 [改名清单](rename-inventory.md)。
 
+后续用户已授权安全修复与修正矩阵重验，见 [安全修复记录](security-followup/README.md)。
+下文原 run 结论保持其原时点，不能当作新候选的验收。
+
 执行主机仅 Fedora，run 根目录
 `/home/chabking/workspace/ani-resource-service-runs/rsmod-20260921T1640Z`。
 源码完整 SHA 清单、固定 Go/生成器、独立缓存、共享锁、CPU/内存预算见

@@ -64,7 +64,7 @@ NET-05A 的观察、时效、调度与增量验收统一见[持续观察规格](
 - [NET-05 普通容器真实网络验收](execution/records/NET-05-implementation.md)：实际 main、数据面、故障、权限与清理证据。
 - [运行说明](runtime.md)
 - [运行验证](runtime-verification.md)：已有通用骨架门禁的范围。
-- [远程执行约定](remote-execution.md)：通用规则与本轮 Goal 的更严格边界；本轮重任务必须在 ubuntu，不自动回退本地。
+- [远程执行约定](remote-execution.md)：通用规则与本轮 Goal 的更严格边界；Resource 改名本轮重任务必须在 Fedora，不自动回退本地。
 - [生成溯源](scaffold/provenance.md) 与 [运行依赖 SBOM](scaffold/bom.cdx.json)
 - [2026-09-09 源码评估](execution/records/2026-09-09-source-assessment.md)：ANI、IAM、Notification、kc 的设计输入与快照。
 - [2026-09-09 文档交付检查](execution/records/2026-09-09-design-verification.md)

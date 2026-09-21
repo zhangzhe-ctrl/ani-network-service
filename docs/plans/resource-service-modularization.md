@@ -9,7 +9,15 @@
 - 仓库目标：`ani-resource-service`；Go module 目标：`github.com/zhangzhe-ctrl/ani-resource-service`；主程序目标：`cmd/ani-resource-service`。
 - 计划编制时本地为 `main`，HEAD 为 `66f787bd30134141726c596612501a83cf75bdb7`，编制前工作树干净。这是源码起点，不是部署版本或最新 CI 通过证明。实施前重新固定包含本计划的准确提交与文件清单。
 - 使用独立 worktree 和 `codex/resource-service-modularization` 分支；不覆盖原 checkout，不从新模板重建，不丢失 Git 历史、标签、测试及既有证据。
-- 不调整业务状态机、worker 重试/租约/并发参数、数据库结构、Provider 渲染规则、身份与租户判断，不升级 Go/Kratos/生成器/依赖或 kc/Envoy。
+- 不调整业务状态机、worker 重试/租约/并发参数、数据库结构、Provider 渲染规则、身份与租户判断，不升级 Go/Kratos/生成器或 kc/Envoy。依赖冻结的后续授权例外见下文。
+
+2026-09-22 后续授权：用户同意修复阻塞 audit 的 gRPC 漏洞，并使用修正后的不重叠矩阵重验。
+允许将 gRPC 从 v1.82.1 升至同时修复 GO-2026-6348 与 GO-2026-6443 的最低稳定版本
+v1.83.2，以及 Go 最小版本选择规则要求的传递依赖；逐项记录实际差异，不扩大到其他升级。
+旧版基线和原 run 的失败/清理记录不变。新依赖候选必须重新完成 R3 和 R4，不能沿用旧产物结果。
+Public 前置仍须提供独立且明确归属的设备/平台入口、地址范围及网关；此同意未指定资源，
+不授权改变现有共享 ens35 登记、节点网络或借用其他 run 的产品身份。
+
 - 不在本批迁移 ANI 的 Compute/Storage 数据或功能，不改变统一外部入口、IAM、Session、Accelerator 的职责，不引入共享 ANI runtime。
 - GitHub 仓库改名与正式环境切换安排在末尾发布步骤。本轮编制计划不执行这些动作；隔离测试与正式切换分别记录。
 
@@ -100,7 +108,7 @@ ani-resource-service/
 
 ### R1：仓库代码命名迁移
 
-- 调整 module/import、`cmd`、构建产物名、`go_package` 和生成配置；固定依赖版本不变。活跃脚本统一指向新入口，历史证据不批量重写。
+- 调整 module/import、`cmd`、构建产物名、`go_package` 和生成配置；除上述授权的安全修复外固定依赖版本不变。活跃脚本统一指向新入口，历史证据不批量重写。
 - 远程重生成 protobuf/config，检查所有 descriptor 差异。Go 源包位置会有意变化；wire/JSON 检查与“旧客户端进程调用新服务”同时证明传输兼容，不能以忽略全部 breaking 检查代替。
 - 对旧 Go module 的已发布版本做干净缓存解析/构建验证；调用方可继续固定旧客户端版本。以后升级新版本需显式迁移 import，不声称仓库重定向能保证旧 module 路径无限升级。
 - 不把新旧两套同名 protobuf 包装进同一测试进程；兼容测试使用独立旧客户端进程，避免全局 descriptor 重复注册。
