@@ -1,0 +1,10 @@
+test "$(/home/chabking/workspace/ani-resource-service-runs/rsmod-20260921T1640Z/security-20260921T2249Z/source/.tools/bin/buf --version)" = "1.60.0"
+test "$(go version -m /home/chabking/workspace/ani-resource-service-runs/rsmod-20260921T1640Z/security-20260921T2249Z/source/.tools/bin/buf | awk '$1 == "mod" {print $2 "@" $3; exit}')" = "github.com/bufbuild/buf@v1.60.0"
+test "$(/home/chabking/workspace/ani-resource-service-runs/rsmod-20260921T1640Z/security-20260921T2249Z/source/.tools/bin/sqlc version)" = "v1.31.1"
+test "$(go version -m /home/chabking/workspace/ani-resource-service-runs/rsmod-20260921T1640Z/security-20260921T2249Z/source/.tools/bin/sqlc | awk '$1 == "mod" {print $2 "@" $3; exit}')" = "github.com/sqlc-dev/sqlc@v1.31.1"
+/home/chabking/workspace/ani-resource-service-runs/rsmod-20260921T1640Z/security-20260921T2249Z/source/.tools/bin/govulncheck -version | grep --fixed-strings --line-regexp "Scanner: govulncheck@v1.7.0"
+Scanner: govulncheck@v1.7.0
+test "$(go version -m /home/chabking/workspace/ani-resource-service-runs/rsmod-20260921T1640Z/security-20260921T2249Z/source/.tools/bin/govulncheck | awk '$1 == "mod" {print $2 "@" $3; exit}')" = "golang.org/x/vuln@v1.7.0"
+test "$(/home/chabking/workspace/ani-resource-service-runs/rsmod-20260921T1640Z/security-20260921T2249Z/source/.tools/bin/cyclonedx-gomod version | awk -F '\t' '$1 == "Version:" {print $2}')" = "v1.12.0"
+test "$(go version -m /home/chabking/workspace/ani-resource-service-runs/rsmod-20260921T1640Z/security-20260921T2249Z/source/.tools/bin/cyclonedx-gomod | awk '$1 == "mod" {print $2 "@" $3; exit}')" = "github.com/CycloneDX/cyclonedx-gomod@v1.12.0"
+test "$(go version -m /home/chabking/workspace/ani-resource-service-runs/rsmod-20260921T1640Z/security-20260921T2249Z/source/.tools/bin/gitleaks | awk '$1 == "mod" {print $2 "@" $3; exit}')" = "github.com/zricethezav/gitleaks/v8@v8.30.1"

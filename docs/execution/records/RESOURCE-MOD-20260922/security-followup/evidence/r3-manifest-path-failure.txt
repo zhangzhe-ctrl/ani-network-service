@@ -1,0 +1,13 @@
+9月 22 06:52:14 fedora systemd[1663]: Started resource-security-r3-2249.service - [systemd-run] /bin/bash /home/chabking/workspace/ani-resource-service-runs/rsmod-20260921T1640Z/security-20260921T2249Z/r3.sh.
+9月 22 06:52:15 fedora python3[352228]: detected unhandled Python exception in 'interactive mode (python - ...)'
+9月 22 06:52:15 fedora bash[352228]: Traceback (most recent call last):
+9月 22 06:52:15 fedora bash[352228]:   File "<stdin>", line 6, in <module>
+9月 22 06:52:15 fedora bash[352228]:   File "/usr/lib64/python3.14/pathlib/__init__.py", line 809, in write_text
+9月 22 06:52:15 fedora bash[352228]:     with self.open(mode='w', encoding=encoding, errors=errors, newline=newline) as f:
+9月 22 06:52:15 fedora bash[352228]:          ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+9月 22 06:52:15 fedora bash[352228]:   File "/usr/lib64/python3.14/pathlib/__init__.py", line 771, in open
+9月 22 06:52:15 fedora bash[352228]:     return io.open(self, mode, buffering, encoding, errors, newline)
+9月 22 06:52:15 fedora bash[352228]:            ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+9月 22 06:52:15 fedora bash[352228]: FileNotFoundError: [Errno 2] No such file or directory: 'evidence/source-manifest.json'
+9月 22 06:52:15 fedora systemd[1663]: resource-security-r3-2249.service: Main process exited, code=exited, status=1/FAILURE
+9月 22 06:52:15 fedora systemd[1663]: resource-security-r3-2249.service: Failed with result 'exit-code'.
