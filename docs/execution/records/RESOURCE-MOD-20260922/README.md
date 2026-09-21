@@ -43,3 +43,17 @@
 保留原版和候选源码、产物、私有配置/备份；测试切换必须先确认旧进程退出，再使用同库同配置启动。
 不得恢复旧备份抹掉候选的新操作。只有全部必需门禁与真实验收通过后，才合入默认分支并进行仓库/正式目录改名。
 生产切流、正式存量迁移、IAM/UI、VM、容量/HA、共享 kc/Envoy 修复不属于本次交付。
+
+## 完整门禁首轮及修正
+
+首次完整 PG 门禁只有 `TestBaseBackfillCLIProcessRestartKeepsReviewedPlanAndSingleAdmission`
+因测试文件下移后仍使用两层父目录查找主程序而失败；改为三层后，Fedora 上同一用例 5.35 秒通过。
+最终 `make tools supply-chain-tools`、`make verify` 已通过，完整 integration/race/mutations 重跑中。
+首次失败日志和修正后的定向日志分别保留，不删除旧结果。
+
+基线与候选在同一 Fedora 扫描均命中 `GO-2026-6443`、`GO-2026-6348`，
+依赖均为固定的 grpc v1.82.1；故 `make audit` 为 fail。计划明确不升级依赖，
+不能在改名中放宽门禁或悄悄升级。独立 supply-chain-verify 已通过，secret 扫描发现尚在核对。
+旧 module `v0.0.0-20260917165536-66f787bd3013` 在 Fedora 独立干净缓存、
+GOWORK=off、无 replace 消费工程中 tidy/build 均通过；该结果发生在仓库改名前，
+不替代 R5 改名后的新旧消费验证。

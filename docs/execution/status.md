@@ -11,9 +11,9 @@
 | 阶段 | 当前证据 | 结果 |
 |---|---|---|
 | R0 | HEAD/main、dirty 文档、Fedora/三节点身份和安装 fingerprint 冻结；旧版 verify/build | pass；Public 独立设备前置不足 |
-| R1/R2 | 新 module/cmd、三层 Network 整理、固定生成、descriptor 精确差异、递归违规 fixture、候选 verify/build | pass；故障注入入口最终检查进行中 |
+| R1/R2 | 新 module/cmd、三层 Network 整理、固定生成、descriptor 精确差异、递归违规 fixture、候选 verify/build | pass；故障注入入口已编译验证 |
 | 兼容增量 | 独立旧客户端、旧库、cursor/回执、候选在途任务原版恢复、反向旧消费者、API 清理 | pass（受控 PG/Provider） |
-| R3 | tools/verify/integration/race/tenant-mutations/audit | in_progress，最终门禁尚未齐全 |
+| R3 | 最终 tools/verify pass；PG 路径遗漏已定向修复，完整 PG/race/mutations 重跑中；audit 命中基线同有的 gRPC 漏洞，secrets 发现待核对 | in_progress；audit fail |
 | R4 | 真实旧对象接管、数据面、回退、产品清理 | not_verified；Public 前置受共享设备登记限制 |
 | R5 | 最终提交/CI/合入、托管仓库/正式目录改名、新旧 module 消费 | not_verified；不得提前发布 |
 

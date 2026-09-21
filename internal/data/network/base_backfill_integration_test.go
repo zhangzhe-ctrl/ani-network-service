@@ -30,7 +30,7 @@ func TestBaseBackfillCLIProcessRestartKeepsReviewedPlanAndSingleAdmission(t *tes
 	if !ok {
 		t.Fatal("cannot locate process build source")
 	}
-	repositoryRoot := filepath.Clean(filepath.Join(filepath.Dir(filename), "..", ".."))
+	repositoryRoot := filepath.Clean(filepath.Join(filepath.Dir(filename), "..", "..", ".."))
 	binary := filepath.Join(t.TempDir(), "network")
 	build := exec.Command("go", "build", "-trimpath", "-o", binary, "./cmd/ani-resource-service")
 	build.Dir = repositoryRoot
