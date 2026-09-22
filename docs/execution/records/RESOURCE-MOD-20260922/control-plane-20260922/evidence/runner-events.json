@@ -1,0 +1,47 @@
+{
+  "host": "fedora",
+  "scope": "Control-plane continuation authorized by user; no waiver of original R4/R5 gates",
+  "events": [
+    {
+      "result": "fail",
+      "kind": "harness setup",
+      "detail": "Initial run omitted enable-new before VPC creation. Original subnet stage stopped pending base connectivity. No VPC was recreated. Existing admin CLI enabled new admission and reviewed/resumed/dispatched exactly the one isolated legacy VPC; original database and CR remained.",
+      "evidence": "admin-*.json; step-baseline-subnets.json"
+    },
+    {
+      "result": "fail",
+      "kind": "early mutation assertion",
+      "detail": "Immediate LB update check saw desired_version=2, applied_version=1. Kept initial result, strengthened readiness to require CONFIGURED and equal versions, then actual observation reached 2/2.",
+      "evidence": "lb-check-candidate.json; lb-check-candidate-applied.json; ready-initial.py"
+    },
+    {
+      "result": "fail",
+      "kind": "harness restart",
+      "detail": "After deliberate SIGKILL, transient systemd unit had unloaded; initial unconditional stop failed. Fixed harness to accept not-found only after recorded PID/start-tick exit checks. No product code changed.",
+      "evidence": "switch-initial.py; compatibility/pending-crash.json; switches/2-candidate.json"
+    },
+    {
+      "result": "fail",
+      "kind": "early recovery assertion",
+      "detail": "First post-restart compatibility assertion ran while extra pending Subnet was still provisioning. Strengthened readiness to include both extra Subnets; later original operation completed and full assertion passed. Initial running-state record and calls retained.",
+      "evidence": "compatibility/check-candidate-restarted.json; compatibility/check-candidate-recovery-complete.json; ready-before-extra-subnets.py"
+    },
+    {
+      "result": "fail",
+      "kind": "bounded cleanup wait",
+      "detail": "Private LB deletion did not finish within harness 180-second wait. Read-only checkpoint subsequently proved DELETED at 04:36 UTC; dependent cleanup then resumed normally. No finalizer removal or forced CR deletion.",
+      "evidence": "step-cleanup-eip-wait*.json; step-cleanup-inspect.json; checkpoints/cleanup-pending"
+    },
+    {
+      "result": "fail",
+      "kind": "read-only protection-check harness",
+      "detail": "Initial formatter concatenated nullable cluster-scoped namespace. Fixed None to empty string; no cluster mutation occurred; original script retained.",
+      "evidence": "protected-check-initial.py; protected-after.json"
+    }
+  ],
+  "async_polling": "Exit 3 means pending prerequisite; at most 180 seconds per advance invocation, five-second interval. Ready observations use ten-second interval. These are control-state polls, not repeated traffic requests.",
+  "product_timeouts_lease_workers": "unchanged",
+  "Public_lifecycle": "not_verified: legitimate platform records unavailable, actual CreateEIP rejected PUBLIC_EGRESS_NOT_READY",
+  "data_plane_matrix": "not_verified in this continuation; previous failures remain",
+  "publication": "not permitted while mandatory gates missing"
+}

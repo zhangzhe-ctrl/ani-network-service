@@ -1,0 +1,22 @@
+{
+  "at": "2026-09-22T04:04:16.570389+00:00",
+  "command": [
+    "/home/chabking/workspace/ani-resource-service-runs/rsmod-20260921T1640Z/control-20260922T0400Z/private/runtime/bin/lb-api",
+    "call",
+    "-target",
+    "unix:///home/chabking/.local/state/rsctl0922/sockets/platform.sock",
+    "-service",
+    "PlatformNetworkService",
+    "-method",
+    "GetIntranetAddressPool"
+  ],
+  "completed_at": "2026-09-22T04:04:16.583378+00:00",
+  "exit": 0,
+  "phase": "qualify",
+  "request": {
+    "pool_id": "pool_bccbe24eba884dc5a377e0bf48f6a2a2"
+  },
+  "stderr": "",
+  "stdout": "{\"code\":\"OK\",\"response\":{\"resource\":{\"id\":\"pool_bccbe24eba884dc5a377e0bf48f6a2a2\",\"cluster_id\":\"rsctl-0922\",\"name\":\"rsctl-0922-intranet-pool\",\"description\":\"RESOURCE-MOD-20260922 isolated Intranet qualification\",\"state\":\"RESOURCE_STATE_AVAILABLE\",\"reason\":\"\",\"reason_message\":\"\",\"version\":\"8\",\"created_at\":\"2026-09-22T04:03:25.966522Z\",\"updated_at\":\"2026-09-22T04:04:12.927512Z\",\"observed_at\":\"2026-09-22T04:04:03.110688Z\",\"observation_stale\":false,\"last_operation_id\":\"4857dd50-6d35-42ba-b2a7-31ac9e40b0c5\",\"intranet_pool\":{\"cidr\":\"10.242.249.0/24\",\"ovn_gateway_ip\":\"10.242.249.1\",\"excluded_ips\":[\"10.242.249.1\"],\"default_vpc_name\":\"kcn-cluster\",\"default_vpc_uid\":\"a852bc64-3d41-4925-b6a1-de3db56e5a76\",\"intranet_networks\":[\"10.96.0.0/16\",\"172.16.101.0/24\",\"172.16.201.0/24\",\"172.16.202.0/24\"],\"allocation_enabled\":false,\"is_default\":false,\"config_revision\":\"1\",\"verification\":null,\"topology_fingerprint\":\"033985db70eb2263d4e0e6380fb7082485100ac073907e049c6b7d1b6bced8b9\",\"observed_provider_images\":[\"sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4\"],\"scope\":\"intranet\"}}}}\n",
+  "step": "intranet-evidence"
+}

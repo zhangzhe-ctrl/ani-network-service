@@ -1,0 +1,23 @@
+{
+  "at": "2026-09-22T04:19:57.761942+00:00",
+  "command": [
+    "/home/chabking/workspace/ani-resource-service-runs/rsmod-20260921T1640Z/control-20260922T0400Z/private/runtime/bin/lb-api",
+    "call",
+    "-target",
+    "unix:///home/chabking/.local/state/rsctl0922/sockets/tenant-a.sock",
+    "-service",
+    "NetworkService",
+    "-method",
+    "GetAttachment"
+  ],
+  "completed_at": "2026-09-22T04:19:57.772219+00:00",
+  "exit": 0,
+  "phase": "snapshot",
+  "request": {
+    "attachment_id": "att_66f3ace97aaf4cb0872fd38996cfcb75",
+    "tenant_id": "fc8620ea-5560-4207-a9f0-09b73638ca2b"
+  },
+  "stderr": "",
+  "stdout": "{\"code\":\"OK\",\"response\":{\"attachment\":{\"id\":\"att_66f3ace97aaf4cb0872fd38996cfcb75\",\"tenant_id\":\"fc8620ea-5560-4207-a9f0-09b73638ca2b\",\"vpc_id\":\"vpc_6f6d95e73a1f44818cd9d9606b7f2cdd\",\"subnet_id\":\"subnet_5c7286a6979f48c58a8fb49de275b9c9\",\"instance_id\":\"680c8612-0689-4453-9a54-36b7d231d939\",\"slot\":\"primary\",\"submission_id\":\"08425f14-b4e5-4b2c-9b0c-bd30b2f86382\",\"generation\":\"1\",\"cluster_id\":\"rsctl-0922\",\"namespace\":\"rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b\",\"binding_revision\":\"b5583340-00e7-4cc5-a97f-d9bd341e4537:3970f05d-373b-4b3d-9600-ea9aa44a72e3\",\"state\":\"ATTACHMENT_STATE_ATTACHED\",\"reason\":\"\",\"version\":\"70\",\"pod_primary\":{\"format_version\":1,\"namespace\":\"rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b\",\"subnet_annotation\":\"rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b/subnet-5c7286a6979f48c58a8fb49de275b9c9\",\"labels\":{\"tenant_id\":\"fc8620ea-5560-4207-a9f0-09b73638ca2b\",\"instance_id\":\"680c8612-0689-4453-9a54-36b7d231d939\",\"attachment_id\":\"att_66f3ace97aaf4cb0872fd38996cfcb75\",\"submission_id\":\"08425f14-b4e5-4b2c-9b0c-bd30b2f86382\",\"generation\":\"1\"}},\"pod_name\":\"rsctl-0922-backend-b\",\"pod_uid\":\"abd54d7a-07fd-4bd8-9b2f-a2e9450f1eac\",\"consumer_finalization_id\":\"\",\"created_at\":\"2026-09-22T04:12:05.040357Z\",\"updated_at\":\"2026-09-22T04:19:53.979181Z\",\"observed_at\":\"2026-09-22T04:19:49.589523Z\",\"released_at\":null}}}\n",
+  "step": null
+}

@@ -7,6 +7,8 @@
 后续用户已授权安全修复与修正矩阵重验，见 [安全修复记录](security-followup/README.md)。
 下文原 run 结论保持其原时点，不能当作新候选的验收。
 
+用户授权的[真实控制面续测](control-plane-20260922/README.md)已补齐安全候选同库接管、正常变更、在途任务恢复、原版回退、再次启动与 API 清理。Public 产品前置拒绝如实留证，完整数据面和发布仍未通过。
+
 执行主机仅 Fedora，run 根目录
 `/home/chabking/workspace/ani-resource-service-runs/rsmod-20260921T1640Z`。
 源码完整 SHA 清单、固定 Go/生成器、独立缓存、共享锁、CPU/内存预算见

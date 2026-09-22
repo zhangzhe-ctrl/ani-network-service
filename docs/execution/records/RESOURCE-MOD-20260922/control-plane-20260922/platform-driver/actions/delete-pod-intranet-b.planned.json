@@ -1,0 +1,25 @@
+{
+  "at": "2026-09-22T04:38:08.379253+00:00",
+  "intent": {
+    "body": {
+      "apiVersion": "v1",
+      "gracePeriodSeconds": 30,
+      "kind": "DeleteOptions",
+      "preconditions": {
+        "uid": "13774c0d-d22e-4323-91d2-417616732b15"
+      },
+      "propagationPolicy": "Foreground"
+    },
+    "command": [
+      "/home/chabking/workspace/ani-resource-service-runs/rsmod-20260921T1640Z/control-20260922T0400Z/private/runtime/bin/kubectl",
+      "--kubeconfig",
+      "/home/chabking/workspace/ani-resource-service-runs/rsmod-20260921T1640Z/control-20260922T0400Z/private/runtime/owner-kubeconfig.json",
+      "--request-timeout=20s",
+      "delete",
+      "--raw",
+      "/api/v1/namespaces/rsctl-0922/pods/rsctl-0922-intranet-b",
+      "-f",
+      "-"
+    ]
+  }
+}

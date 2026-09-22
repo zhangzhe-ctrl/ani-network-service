@@ -1,0 +1,23 @@
+{
+  "at": "2026-09-22T04:24:13.152642+00:00",
+  "command": [
+    "/home/chabking/workspace/ani-resource-service-runs/rsmod-20260921T1640Z/control-20260922T0400Z/private/runtime/bin/lb-api",
+    "call",
+    "-target",
+    "unix:///home/chabking/.local/state/rsctl0922/sockets/tenant-a.sock",
+    "-service",
+    "NetworkService",
+    "-method",
+    "GetSubnet"
+  ],
+  "completed_at": "2026-09-22T04:24:13.164672+00:00",
+  "exit": 0,
+  "phase": "snapshot",
+  "request": {
+    "subnet_id": "subnet_5c7286a6979f48c58a8fb49de275b9c9",
+    "tenant_id": "fc8620ea-5560-4207-a9f0-09b73638ca2b"
+  },
+  "stderr": "",
+  "stdout": "{\"code\":\"OK\",\"response\":{\"subnet\":{\"id\":\"subnet_5c7286a6979f48c58a8fb49de275b9c9\",\"tenant_id\":\"fc8620ea-5560-4207-a9f0-09b73638ca2b\",\"name\":\"rsctl-0922-backend-subnet\",\"description\":\"\",\"cidr\":\"10.237.1.0/24\",\"state\":\"RESOURCE_STATE_AVAILABLE\",\"reason\":\"\",\"created_at\":\"2026-09-22T04:11:44.054832Z\",\"updated_at\":\"2026-09-22T04:24:10.826384Z\",\"version\":\"133\",\"observed_at\":\"2026-09-22T04:24:10.058303Z\",\"observation_stale\":false,\"last_operation_id\":\"fdff3306-fc44-43fb-8773-44ab58130d64\",\"vpc_id\":\"vpc_6f6d95e73a1f44818cd9d9606b7f2cdd\",\"reason_message\":\"\",\"gateway\":\"10.237.1.1\"}}}\n",
+  "step": null
+}

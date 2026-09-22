@@ -1,0 +1,23 @@
+{
+  "at": "2026-09-22T04:26:41.440954+00:00",
+  "command": [
+    "/home/chabking/workspace/ani-resource-service-runs/rsmod-20260921T1640Z/control-20260922T0400Z/private/runtime/bin/lb-api",
+    "call",
+    "-target",
+    "unix:///home/chabking/.local/state/rsctl0922/sockets/tenant-a.sock",
+    "-service",
+    "NetworkService",
+    "-method",
+    "GetSubnet"
+  ],
+  "completed_at": "2026-09-22T04:26:41.904831+00:00",
+  "exit": 1,
+  "phase": "snapshot",
+  "request": {
+    "subnet_id": "subnet_5c7286a6979f48c58a8fb49de275b9c9",
+    "tenant_id": "fc8620ea-5560-4207-a9f0-09b73638ca2b"
+  },
+  "stderr": "RPC failed; structured status is in stdout\n",
+  "stdout": "{\"code\":\"Unavailable\",\"status\":{\"code\":14,\"message\":\"connection error: desc = \\\"transport: Error while dialing: dial unix /home/chabking/.local/state/rsctl0922/sockets/tenant-a.sock: connect: no such file or directory\\\"\",\"details\":[]}}\n",
+  "step": null
+}

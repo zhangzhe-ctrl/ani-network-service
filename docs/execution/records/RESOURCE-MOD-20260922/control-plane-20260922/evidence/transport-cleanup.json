@@ -1,0 +1,51 @@
+{
+  "at": "2026-09-22T04:43:38.975092+00:00",
+  "host": "local",
+  "processes": [
+    {
+      "pid": 180662,
+      "command": [
+        "ssh",
+        "-N",
+        "-o",
+        "ControlMaster=no",
+        "-o",
+        "ControlPath=none",
+        "-o",
+        "ExitOnForwardFailure=yes",
+        "-L",
+        "127.0.0.1:44958:127.0.0.1:44957",
+        "ani-test-1"
+      ],
+      "signal": "SIGTERM"
+    },
+    {
+      "pid": 180664,
+      "command": [
+        "ssh",
+        "-N",
+        "-o",
+        "ControlMaster=no",
+        "-o",
+        "ControlPath=none",
+        "-o",
+        "ExitOnForwardFailure=yes",
+        "-R",
+        "127.0.0.1:44959:127.0.0.1:44958",
+        "fedora"
+      ],
+      "signal": "SIGTERM"
+    }
+  ],
+  "node_proxy_pid": 2012346,
+  "node_proxy_SIGTERM_exit": 0,
+  "Fedora_44959_closed": true,
+  "verified_at": "2026-09-22T04:43:39.831475+00:00",
+  "ani01_44957_closed": true,
+  "local_44958_closed": true,
+  "port_check_command": "ss -ltn sport = :44957 on ani-test-1; ss -ltn sport = :44958 locally",
+  "port_check_exit": [
+    0,
+    0
+  ]
+}

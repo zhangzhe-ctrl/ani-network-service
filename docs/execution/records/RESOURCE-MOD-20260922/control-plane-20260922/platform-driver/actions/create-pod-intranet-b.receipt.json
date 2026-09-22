@@ -1,0 +1,109 @@
+{
+  "at": "2026-09-22T04:03:52.040480+00:00",
+  "result": {
+    "apiVersion": "v1",
+    "kind": "Pod",
+    "metadata": {
+      "creationTimestamp": "2026-09-22T04:03:51Z",
+      "generation": 1,
+      "labels": {
+        "network.ani.io/fixture-scope": "platform-intranet-qualification",
+        "network.ani.io/instance-id": "95a8cb3b-499c-4ec1-ae33-079dbd067578",
+        "network.ani.io/test-run": "rsctl-0922"
+      },
+      "name": "rsctl-0922-intranet-b",
+      "namespace": "rsctl-0922",
+      "resourceVersion": "3280004",
+      "uid": "13774c0d-d22e-4323-91d2-417616732b15"
+    },
+    "spec": {
+      "automountServiceAccountToken": false,
+      "containers": [
+        {
+          "env": [
+            {
+              "name": "NET05_ID",
+              "value": "rsctl-0922"
+            },
+            {
+              "name": "ANI_WORKLOAD_ID",
+              "value": "95a8cb3b-499c-4ec1-ae33-079dbd067578"
+            },
+            {
+              "name": "NET05_PORT",
+              "value": "8080"
+            }
+          ],
+          "image": "localhost/lb02-2b3122-probe@sha256:647c2acd8e115511a18506014995ec01b7d0d62fbc05f2a6e51a5c65c2a3fcce",
+          "imagePullPolicy": "Never",
+          "name": "probe",
+          "ports": [
+            {
+              "containerPort": 8080,
+              "protocol": "TCP"
+            }
+          ],
+          "resources": {
+            "limits": {
+              "cpu": "100m",
+              "memory": "64Mi"
+            },
+            "requests": {
+              "cpu": "10m",
+              "memory": "32Mi"
+            }
+          },
+          "securityContext": {
+            "allowPrivilegeEscalation": false,
+            "capabilities": {
+              "drop": [
+                "ALL"
+              ]
+            },
+            "readOnlyRootFilesystem": true
+          },
+          "terminationMessagePath": "/dev/termination-log",
+          "terminationMessagePolicy": "File"
+        }
+      ],
+      "dnsPolicy": "ClusterFirst",
+      "enableServiceLinks": true,
+      "nodeSelector": {
+        "kubernetes.io/hostname": "ani-03"
+      },
+      "preemptionPolicy": "PreemptLowerPriority",
+      "priority": 0,
+      "restartPolicy": "Always",
+      "schedulerName": "default-scheduler",
+      "securityContext": {
+        "runAsGroup": 65532,
+        "runAsNonRoot": true,
+        "runAsUser": 65532,
+        "seccompProfile": {
+          "type": "RuntimeDefault"
+        }
+      },
+      "serviceAccount": "default",
+      "serviceAccountName": "default",
+      "terminationGracePeriodSeconds": 30,
+      "tolerations": [
+        {
+          "effect": "NoExecute",
+          "key": "node.kubernetes.io/not-ready",
+          "operator": "Exists",
+          "tolerationSeconds": 300
+        },
+        {
+          "effect": "NoExecute",
+          "key": "node.kubernetes.io/unreachable",
+          "operator": "Exists",
+          "tolerationSeconds": 300
+        }
+      ]
+    },
+    "status": {
+      "phase": "Pending",
+      "qosClass": "Burstable"
+    }
+  }
+}

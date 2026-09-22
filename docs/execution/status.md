@@ -4,7 +4,7 @@
 
 ## 2026-09-22：Resource 改名与 Network 模块整理
 
-状态 `in_progress`（提交 5f33dec 的远程门禁及两条 CI 通过；按用户新指示已替换共享 Public 并重启控制器，但真实通信 fail，发布暂停），完整 R0—R5 尚未完成。独立分支 `codex/resource-service-modularization`，
+状态 `in_progress`（9e491fa 精确提交的 Fedora verify/audit 与两条 CI 通过；最新真实控制面同库接管、恢复、回退、API 清理通过；Public 及必需数据面验收仍不完整，发布暂停），完整 R0—R5 尚未完成。独立分支 `codex/resource-service-modularization`，
 工作树 `/home/chabking/workspace/.worktrees/resource-service-modularization`；原工作树和历史保留。
 [实施记录](records/RESOURCE-MOD-20260922/README.md)及[改名清单](records/RESOURCE-MOD-20260922/rename-inventory.md)。
 
@@ -14,17 +14,19 @@
 | R1/R2 | 新 module/cmd、三层 Network 整理、固定生成、descriptor 精确差异、递归违规 fixture、候选 verify/build | pass；故障注入入口已编译验证 |
 | 兼容增量 | 独立旧客户端、旧库、cursor/回执、候选在途任务原版恢复、反向旧消费者、API 清理 | pass（受控 PG/Provider） |
 | R3 | 安全修复 8153af4 的 tools/verify/integration/race/tenant-mutations pass；后续 7b39e53 完整 audit、verify、构建、镜像入口检查 pass；运行源码逐项相同 | pass；原失败及精确公开元数据例外的 24 个正反例保留 |
-| R4 | 原 cf75cf6 的真实同库接管/恢复/回退及非 Public 有界观测 pass；原严格六次矩阵 fail 保留；新增计数检查的离线正反例 pass | 新安全候选 R4 not_verified：共享 Public 已创建，平台通信两轮均 36/36 超时，尚未执行完整产品链对照 |
+| R4 | 9e491fa 运行源码的真实同库链控制面 pass：21 个原对象接管、候选正常变更/强杀恢复、23 个对象回退、候选再次启动及 API 清理；[本轮记录](records/RESOURCE-MOD-20260922/control-plane-20260922/README.md) | 整体 not_verified：Public 产品链缺合法平台前置；本轮未跑数据面矩阵，既有严格六次计数 fail 与 Public 两轮 36/36 超时保留 |
 | R5 | 证据、清理、完整历史扫描及 SBOM 门禁已留存；实施分支用于草稿审阅，最终 head/CI 按该分支回执核对；默认分支及仓库/正式目录名保持 | not_verified；必需条件未齐，不得提前合入/改名 |
 
-后续安全修复进行中：原候选 grpc v1.82.1 的 GO-2026-6443 / GO-2026-6348 使 audit fail；
+后续安全依赖修复已通过门禁：原候选 grpc v1.82.1 的 GO-2026-6443 / GO-2026-6348 使 audit fail；
 用户已同意升级到同时消除漏洞的最低稳定版本。gRPC v1.83.2 新扫描零命中，完整 Fedora 门禁已通过；
 具体依赖与逐项结果见[安全修复记录](records/RESOURCE-MOD-20260922/security-followup/README.md)。
 用户先授权保留并复用原 Public，随后明确改为删除旧子网、创建公用子网并重启 kcn-controller；最新指示已执行。
 [共享 Public 操作记录](records/RESOURCE-MOD-20260922/shared-public-20260922/README.md)：旧池正常删除，新 `kcn-system/public` 为 All/Ready；三个 EIP 和两个探针 Pod 同名同地址迁移，UID 变化已记录。控制器重启后 3/3 可用，镜像与其他配置保持。
-但重启后两轮有界通信各 36/36 超时，原因未明；不算 R4 通过，不自动归因于改名或历史偶发。新共享池的 Network 平台登记及完整同库链路也未完成。
+但重启后两轮有界通信各 36/36 超时，原因未明；不算 R4 通过，不自动归因于改名或历史偶发。本轮实际调用证明：隔离库中原设备不存在、Public pool 列表为空，原版/候选/回退原版 CreateEIP 均返回 PUBLIC_EGRESS_NOT_READY。这里缺少的是 Network 数据库中的合法设备/池产品记录；非 Public 同库控制面链路已完成，Public SNAT 和 Public/双入口 LB 产品链仍未完成。
 此前[手工池复用诊断](records/RESOURCE-MOD-20260922/public-reuse-20260922/README.md)保留原时点结论；原 R4 采样重叠 fail 同样保留。
 修正后的不重叠驱动已留存但本 run 未重测，全部原始请求与失败保留。
+
+用户随后要求继续测试并如实记录。新增 [2026-09-22 控制面续测](records/RESOURCE-MOD-20260922/control-plane-20260922/README.md)使用同库、同配置、原旧客户端完成候选变更、在途任务恢复和原版回退，migration checksum/applied_at、回执/cursor 与对象身份保持。新建 4 个 Subnet（含两个增量）、1 VPC、1 private LB、基础 Intranet EIP/SNAT 和两个 Attachment 均按 API 清理；占用为 0，19 个支持对象、进程、PG 与临时隧道已清理，17 个共享保护对象保持。初次等待超时、过早断言及运行器错误均保留，不将最终 pass 覆盖这些失败。该续测没有取消原 R4 数据面和 R5 发布条件。
 
 故障重启后曾短暂触发原有租约/新鲜度保护，HTTPRoute 后端移除；自然恢复前的比较 fail 与
 恢复后 pass 分开留证，不声称故障期间无中断。清理与发布证据见实施记录。

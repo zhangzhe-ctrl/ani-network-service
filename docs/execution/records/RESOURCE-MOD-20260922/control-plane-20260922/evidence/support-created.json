@@ -1,0 +1,138 @@
+{
+  "at": "2026-09-22T04:00:28.580867+00:00",
+  "objects": [
+    {
+      "apiVersion": "v1",
+      "kind": "Namespace",
+      "name": "rsctl-0922",
+      "namespace": null,
+      "uid": "e8d97162-2687-43ab-8a51-7692e9a482b6"
+    },
+    {
+      "apiVersion": "v1",
+      "kind": "Namespace",
+      "name": "rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b",
+      "namespace": null,
+      "uid": "c421229f-507b-4343-a075-51c2ce1cbca7"
+    },
+    {
+      "apiVersion": "v1",
+      "kind": "Namespace",
+      "name": "rsctl-469eddc6-1432-4bbe-bdff-3bd4ed3dd54b",
+      "namespace": null,
+      "uid": "99e8c1ae-0c60-4206-ba2b-a12020df232a"
+    },
+    {
+      "apiVersion": "v1",
+      "kind": "ServiceAccount",
+      "name": "network",
+      "namespace": "rsctl-0922",
+      "uid": "19b3fa45-2bde-48a3-aa60-bf1cab2bbf94"
+    },
+    {
+      "apiVersion": "v1",
+      "kind": "ServiceAccount",
+      "name": "workload-owner",
+      "namespace": "rsctl-0922",
+      "uid": "9513b1d2-7aba-4794-9b39-918b72d751ff"
+    },
+    {
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "ClusterRole",
+      "name": "rsctl-0922-read",
+      "namespace": null,
+      "uid": "628d3e91-bf90-4067-b895-86dfa8ffb763"
+    },
+    {
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "ClusterRoleBinding",
+      "name": "rsctl-0922-read",
+      "namespace": null,
+      "uid": "6320c175-7c8a-44f8-8a9a-bb21efa8f3fd"
+    },
+    {
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "Role",
+      "name": "rsctl-0922-write",
+      "namespace": "rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b",
+      "uid": "0a277d42-090a-4047-9557-5e1ff6475cc4"
+    },
+    {
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "RoleBinding",
+      "name": "rsctl-0922-write",
+      "namespace": "rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b",
+      "uid": "86472d4a-c2c8-4f63-b296-30a88b0b12c0"
+    },
+    {
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "Role",
+      "name": "rsctl-0922-write",
+      "namespace": "kcn-system",
+      "uid": "c9cddf48-153c-4b86-b4a6-f59f8035e0f4"
+    },
+    {
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "RoleBinding",
+      "name": "rsctl-0922-write",
+      "namespace": "kcn-system",
+      "uid": "dfe32f7f-9878-4fc0-86a4-1b3e8930bad0"
+    },
+    {
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "Role",
+      "name": "rsctl-0922-pods",
+      "namespace": "rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b",
+      "uid": "71c40b51-f74a-4920-8bb1-2fb0b8afd6c6"
+    },
+    {
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "RoleBinding",
+      "name": "rsctl-0922-pods",
+      "namespace": "rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b",
+      "uid": "3e8657d2-ff8b-4960-868a-9ee26fe5da74"
+    },
+    {
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "Role",
+      "name": "rsctl-0922-pods",
+      "namespace": "rsctl-0922",
+      "uid": "1f563753-22f5-442b-8bb5-d0c9ffa55552"
+    },
+    {
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "RoleBinding",
+      "name": "rsctl-0922-pods",
+      "namespace": "rsctl-0922",
+      "uid": "f77906e3-4dcd-45f4-bd2a-cb08dc0a14a6"
+    },
+    {
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "Role",
+      "name": "rsctl-0922-write",
+      "namespace": "rsctl-469eddc6-1432-4bbe-bdff-3bd4ed3dd54b",
+      "uid": "7b0d407f-d538-49c9-96c8-305f56b0391c"
+    },
+    {
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "RoleBinding",
+      "name": "rsctl-0922-write",
+      "namespace": "rsctl-469eddc6-1432-4bbe-bdff-3bd4ed3dd54b",
+      "uid": "03b82cee-9006-45c7-bb47-e6168f877d28"
+    },
+    {
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "Role",
+      "name": "rsctl-0922-pods",
+      "namespace": "rsctl-469eddc6-1432-4bbe-bdff-3bd4ed3dd54b",
+      "uid": "757128bc-8de2-4b2b-b8b9-2ea3ef83f097"
+    },
+    {
+      "apiVersion": "rbac.authorization.k8s.io/v1",
+      "kind": "RoleBinding",
+      "name": "rsctl-0922-pods",
+      "namespace": "rsctl-469eddc6-1432-4bbe-bdff-3bd4ed3dd54b",
+      "uid": "f8071866-2fbb-4533-9780-655966186206"
+    }
+  ]
+}

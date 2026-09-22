@@ -1,0 +1,22 @@
+{
+  "at": "2026-09-22T04:40:31.010760+00:00",
+  "command": [
+    "/home/chabking/workspace/ani-resource-service-runs/rsmod-20260921T1640Z/control-20260922T0400Z/private/runtime/bin/lb-api",
+    "call",
+    "-target",
+    "unix:///home/chabking/.local/state/rsctl0922/sockets/platform.sock",
+    "-service",
+    "PlatformNetworkService",
+    "-method",
+    "GetIntranetAddressPool"
+  ],
+  "completed_at": "2026-09-22T04:40:31.022969+00:00",
+  "exit": 0,
+  "phase": "cleanup",
+  "request": {
+    "pool_id": "pool_bccbe24eba884dc5a377e0bf48f6a2a2"
+  },
+  "stderr": "",
+  "stdout": "{\"code\":\"OK\",\"response\":{\"resource\":{\"id\":\"pool_bccbe24eba884dc5a377e0bf48f6a2a2\",\"cluster_id\":\"rsctl-0922\",\"name\":\"rsctl-0922-intranet-pool\",\"description\":\"RESOURCE-MOD-20260922 isolated Intranet qualification\",\"state\":\"RESOURCE_STATE_DELETING\",\"reason\":\"\",\"reason_message\":\"\",\"version\":\"316\",\"created_at\":\"2026-09-22T04:03:25.966522Z\",\"updated_at\":\"2026-09-22T04:40:18.014777Z\",\"observed_at\":\"2026-09-22T04:40:02.848818Z\",\"observation_stale\":false,\"last_operation_id\":\"37c3039d-1ece-4985-b6b9-67d6b008847d\",\"intranet_pool\":{\"cidr\":\"10.242.249.0/24\",\"ovn_gateway_ip\":\"10.242.249.1\",\"excluded_ips\":[\"10.242.249.1\"],\"default_vpc_name\":\"kcn-cluster\",\"default_vpc_uid\":\"a852bc64-3d41-4925-b6a1-de3db56e5a76\",\"intranet_networks\":[\"10.96.0.0/16\",\"172.16.101.0/24\",\"172.16.201.0/24\",\"172.16.202.0/24\"],\"allocation_enabled\":false,\"is_default\":true,\"config_revision\":\"1\",\"verification\":{\"provider_source_revision\":\"735abf81cb728f30bd0f15e1885dcd7f88b56ab0\",\"provider_image_digests\":[\"sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4\"],\"topology_fingerprint\":\"033985db70eb2263d4e0e6380fb7082485100ac073907e049c6b7d1b6bced8b9\",\"evidence_reference\":\"RESOURCE-MOD-20260922/intranet-qualification.json sha256:38af408763c76bb4806ab1df7045bcaecd7ef0286fd0d8c1aaedc5633ac563d8\",\"scope\":\"base_intranet\",\"verified_at\":\"2026-09-22T04:04:16.585417Z\",\"expires_at\":\"2026-09-22T06:04:16.585417Z\"},\"topology_fingerprint\":\"033985db70eb2263d4e0e6380fb7082485100ac073907e049c6b7d1b6bced8b9\",\"observed_provider_images\":[\"sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4\"],\"scope\":\"intranet\"}}}}\n",
+  "step": "foundation"
+}

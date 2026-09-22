@@ -1,0 +1,22 @@
+{
+  "at": "2026-09-22T04:32:35.249516+00:00",
+  "command": [
+    "/home/chabking/workspace/ani-resource-service-runs/rsmod-20260921T1640Z/control-20260922T0400Z/private/runtime/bin/lb-api",
+    "call",
+    "-target",
+    "unix:///home/chabking/.local/state/rsctl0922/sockets/tenant-a.sock",
+    "-service",
+    "TenantLoadBalancerService",
+    "-method",
+    "GetLoadBalancer"
+  ],
+  "completed_at": "2026-09-22T04:32:35.260023+00:00",
+  "exit": 0,
+  "phase": "cleanup",
+  "request": {
+    "load_balancer_id": "lb_f70e064fde774daa95ececff63f5be91"
+  },
+  "stderr": "",
+  "stdout": "{\"code\":\"OK\",\"response\":{\"load_balancer\":{\"id\":\"lb_f70e064fde774daa95ececff63f5be91\",\"tenant_id\":\"fc8620ea-5560-4207-a9f0-09b73638ca2b\",\"vpc_id\":\"vpc_6f6d95e73a1f44818cd9d9606b7f2cdd\",\"subnet_id\":\"subnet_ec6f13bc33f2430c8fbb96e4b37240ef\",\"name\":\"rsctl-0922-private-lb\",\"description\":\"candidate control-plane mutation\",\"exposure\":\"LOAD_BALANCER_EXPOSURE_PRIVATE\",\"flavor\":\"small\",\"public_eip_id\":\"\",\"private_ip\":\"10.237.0.200\",\"listener\":{\"id\":\"45c90d89-0bb9-451b-89e9-d75110184540\",\"protocol\":\"LOAD_BALANCER_LISTENER_PROTOCOL_HTTP\",\"port\":8081},\"backends\":[{\"id\":\"99ccdc87-7ea7-4d30-91b6-6dd50ae57148\",\"subnet_id\":\"subnet_5c7286a6979f48c58a8fb49de275b9c9\",\"address\":\"10.237.1.2\",\"port\":8080,\"weight\":1,\"attachment_id\":\"att_ab341457d51549dcbea628f8147f8937\",\"state\":\"available\",\"reason\":\"\",\"observed_at\":\"2026-09-22T04:32:27.895198Z\",\"observation_stale\":false},{\"id\":\"eeddb8dc-5b67-4738-a42b-d19fe9bfa57d\",\"subnet_id\":\"subnet_5c7286a6979f48c58a8fb49de275b9c9\",\"address\":\"10.237.1.3\",\"port\":8080,\"weight\":1,\"attachment_id\":\"att_66f3ace97aaf4cb0872fd38996cfcb75\",\"state\":\"available\",\"reason\":\"\",\"observed_at\":\"2026-09-22T04:32:27.895198Z\",\"observation_stale\":false}],\"health_check\":{\"protocol\":\"LOAD_BALANCER_HEALTH_CHECK_PROTOCOL_TCP\",\"interval_seconds\":7,\"timeout_seconds\":3,\"unhealthy_threshold\":3,\"healthy_threshold\":1,\"port\":8080},\"algorithm\":\"LOAD_BALANCER_ALGORITHM_ROUND_ROBIN\",\"state\":\"RESOURCE_STATE_DELETING\",\"reason\":\"CLEANUP_PENDING\",\"reason_message\":\"Provider cleanup has been requested and awaits confirmation.\",\"version\":\"158\",\"desired_version\":\"2\",\"applied_version\":\"2\",\"configuration_state\":\"LOAD_BALANCER_CONFIGURATION_STATE_APPLYING\",\"data_plane_state\":\"LOAD_BALANCER_DATA_PLANE_STATE_UNKNOWN\",\"observed_at\":\"2026-09-22T04:32:27.895198Z\",\"observation_stale\":false,\"created_at\":\"2026-09-22T04:12:49.745848Z\",\"updated_at\":\"2026-09-22T04:32:32.330856Z\",\"last_operation_id\":\"b4abd5a8-3df9-4455-ae71-f121cf0fa17d\",\"public_address\":\"\",\"data_plane_observed_at\":null}}}\n",
+  "step": "eip"
+}

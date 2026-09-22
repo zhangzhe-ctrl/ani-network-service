@@ -1,0 +1,24 @@
+{
+  "at": "2026-09-22T04:36:57.817862+00:00",
+  "command": [
+    "/home/chabking/workspace/ani-resource-service-runs/rsmod-20260921T1640Z/control-20260922T0400Z/private/runtime/bin/kubectl",
+    "--kubeconfig",
+    "/home/chabking/workspace/ani-resource-service-runs/rsmod-20260921T1640Z/control-20260922T0400Z/private/runtime/owner-kubeconfig.json",
+    "--request-timeout=20s",
+    "get",
+    "pod",
+    "rsctl-0922-backend-a",
+    "-n",
+    "rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b",
+    "-o",
+    "json",
+    "--ignore-not-found"
+  ],
+  "completed_at": "2026-09-22T04:36:58.094546+00:00",
+  "exit": 0,
+  "phase": "cleanup",
+  "request": null,
+  "stderr": "",
+  "stdout": "",
+  "step": "owner-finish"
+}

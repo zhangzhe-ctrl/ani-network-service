@@ -1,0 +1,21 @@
+{
+  "at": "2026-09-22T04:40:17.328332+00:00",
+  "command": [
+    "/home/chabking/workspace/ani-resource-service-runs/rsmod-20260921T1640Z/control-20260922T0400Z/private/runtime/bin/kubectl",
+    "--kubeconfig",
+    "/home/chabking/workspace/ani-resource-service-runs/rsmod-20260921T1640Z/control-20260922T0400Z/private/runtime/kubeconfig.json",
+    "--request-timeout=20s",
+    "get",
+    "namespace",
+    "kube-system",
+    "-o",
+    "json"
+  ],
+  "completed_at": "2026-09-22T04:40:17.447535+00:00",
+  "exit": 0,
+  "phase": "cleanup",
+  "request": null,
+  "stderr": "",
+  "stdout": "{\n    \"apiVersion\": \"v1\",\n    \"kind\": \"Namespace\",\n    \"metadata\": {\n        \"creationTimestamp\": \"2026-09-14T12:23:05Z\",\n        \"labels\": {\n            \"kubernetes.io/metadata.name\": \"kube-system\"\n        },\n        \"name\": \"kube-system\",\n        \"resourceVersion\": \"3\",\n        \"uid\": \"be57b911-892c-4e75-aa9d-4a05d819c59e\"\n    },\n    \"spec\": {\n        \"finalizers\": [\n            \"kubernetes\"\n        ]\n    },\n    \"status\": {\n        \"phase\": \"Active\"\n    }\n}\n",
+  "step": "pools"
+}

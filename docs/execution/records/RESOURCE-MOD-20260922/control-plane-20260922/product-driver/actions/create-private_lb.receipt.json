@@ -1,0 +1,86 @@
+{
+  "at": "2026-09-22T04:12:49.780680+00:00",
+  "result": {
+    "load_balancer": {
+      "algorithm": "LOAD_BALANCER_ALGORITHM_ROUND_ROBIN",
+      "applied_version": "0",
+      "backends": [
+        {
+          "address": "10.237.1.3",
+          "attachment_id": "att_66f3ace97aaf4cb0872fd38996cfcb75",
+          "id": "31fbf5dc-a6a4-48a5-8a19-edfb925094d9",
+          "observation_stale": false,
+          "observed_at": "2026-09-22T04:12:39.797169Z",
+          "port": 8080,
+          "reason": "",
+          "state": "available",
+          "subnet_id": "subnet_5c7286a6979f48c58a8fb49de275b9c9",
+          "weight": 1
+        },
+        {
+          "address": "10.237.1.2",
+          "attachment_id": "att_ab341457d51549dcbea628f8147f8937",
+          "id": "76a858f2-84aa-425c-8b90-7c31b480f6ab",
+          "observation_stale": false,
+          "observed_at": "2026-09-22T04:12:39.797169Z",
+          "port": 8080,
+          "reason": "",
+          "state": "available",
+          "subnet_id": "subnet_5c7286a6979f48c58a8fb49de275b9c9",
+          "weight": 1
+        }
+      ],
+      "configuration_state": "LOAD_BALANCER_CONFIGURATION_STATE_PENDING",
+      "created_at": "2026-09-22T04:12:49.745848Z",
+      "data_plane_observed_at": null,
+      "data_plane_state": "LOAD_BALANCER_DATA_PLANE_STATE_UNKNOWN",
+      "description": "",
+      "desired_version": "1",
+      "exposure": "LOAD_BALANCER_EXPOSURE_PRIVATE",
+      "flavor": "small",
+      "health_check": {
+        "healthy_threshold": 1,
+        "interval_seconds": 5,
+        "port": 8080,
+        "protocol": "LOAD_BALANCER_HEALTH_CHECK_PROTOCOL_TCP",
+        "timeout_seconds": 3,
+        "unhealthy_threshold": 3
+      },
+      "id": "lb_f70e064fde774daa95ececff63f5be91",
+      "last_operation_id": "c5bb3d09-8c37-4027-8fa0-1408e9be5a37",
+      "listener": {
+        "id": "45c90d89-0bb9-451b-89e9-d75110184540",
+        "port": 8081,
+        "protocol": "LOAD_BALANCER_LISTENER_PROTOCOL_HTTP"
+      },
+      "name": "rsctl-0922-private-lb",
+      "observation_stale": true,
+      "observed_at": null,
+      "private_ip": "10.237.0.200",
+      "public_address": "",
+      "public_eip_id": "",
+      "reason": "",
+      "reason_message": "",
+      "state": "RESOURCE_STATE_PROVISIONING",
+      "subnet_id": "subnet_ec6f13bc33f2430c8fbb96e4b37240ef",
+      "tenant_id": "fc8620ea-5560-4207-a9f0-09b73638ca2b",
+      "updated_at": "2026-09-22T04:12:49.745848Z",
+      "version": "1",
+      "vpc_id": "vpc_6f6d95e73a1f44818cd9d9606b7f2cdd"
+    },
+    "operation": {
+      "completed_at": null,
+      "created_at": "2026-09-22T04:12:49.745848Z",
+      "id": "c5bb3d09-8c37-4027-8fa0-1408e9be5a37",
+      "kind": "OPERATION_KIND_CREATE_LOAD_BALANCER",
+      "next_attempt_at": "2026-09-22T04:12:49.745848Z",
+      "reason": "",
+      "reason_message": "",
+      "resource_id": "lb_f70e064fde774daa95ececff63f5be91",
+      "resource_type": "RESOURCE_TYPE_LOAD_BALANCER",
+      "state": "OPERATION_STATE_QUEUED",
+      "tenant_id": "fc8620ea-5560-4207-a9f0-09b73638ca2b",
+      "updated_at": "2026-09-22T04:12:49.745848Z"
+    }
+  }
+}

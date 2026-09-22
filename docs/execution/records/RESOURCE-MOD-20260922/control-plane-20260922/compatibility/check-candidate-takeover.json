@@ -1,0 +1,61 @@
+{
+  "at": "2026-09-22T04:17:34.994073+00:00",
+  "state": "pass",
+  "action": "check",
+  "label": "candidate-takeover",
+  "calls": [
+    {
+      "method": "ListSubnets",
+      "request": {
+        "tenant_id": "fc8620ea-5560-4207-a9f0-09b73638ca2b",
+        "vpc_id": "vpc_6f6d95e73a1f44818cd9d9606b7f2cdd",
+        "limit": 1,
+        "cursor": "eyJWZXJzaW9uIjoxLCJLaW5kIjoic3VibmV0IiwiVGVuYW50SUQiOiJmYzg2MjBlYS01NTYwLTQyMDctYTlmMC0wOWI3MzYzOGNhMmIiLCJOYW1lIjoiIiwiU3RhdGUiOiIiLCJWUENJRCI6InZwY182ZjZkOTVlNzNhMWY0NDgxOGNkOWQ5NjA2YjdmMmNkZCIsIklEIjoic3VibmV0XzVjNzI4NmE2OTc5ZjQ4YzU4YThmYjQ5ZGUyNzViOWM5IiwiQ3JlYXRlZEF0IjoiMjAyNi0wOS0yMlQwNDoxMTo0NC4wNTQ4MzJaIn0.DzuU2dr8zyKEeFynZg9VWarMbUm3fU6ZuR0Ph2OB7tQ"
+      },
+      "exit": 0,
+      "stdout": "{\"code\":\"OK\",\"response\":{\"items\":[{\"id\":\"subnet_ec6f13bc33f2430c8fbb96e4b37240ef\",\"tenant_id\":\"fc8620ea-5560-4207-a9f0-09b73638ca2b\",\"name\":\"rsctl-0922-entry-subnet\",\"description\":\"\",\"cidr\":\"10.237.0.0/24\",\"state\":\"RESOURCE_STATE_AVAILABLE\",\"reason\":\"\",\"created_at\":\"2026-09-22T04:11:44.027382Z\",\"updated_at\":\"2026-09-22T04:17:26.805327Z\",\"version\":\"65\",\"observed_at\":\"2026-09-22T04:17:25.187050Z\",\"observation_stale\":false,\"last_operation_id\":\"405c21f6-3d36-4798-a88b-183a7e526607\",\"vpc_id\":\"vpc_6f6d95e73a1f44818cd9d9606b7f2cdd\",\"reason_message\":\"\",\"gateway\":\"10.237.0.1\"}],\"next_cursor\":\"\"}}\n",
+      "stderr": ""
+    },
+    {
+      "method": "CreateVPC",
+      "request": {
+        "cidr": "10.237.0.0/16",
+        "idempotency_key": "rsctl-0922-vpc",
+        "name": "rsctl-0922-vpc",
+        "tenant_id": "fc8620ea-5560-4207-a9f0-09b73638ca2b"
+      },
+      "exit": 0,
+      "stdout": "{\"code\":\"OK\",\"response\":{\"vpc\":{\"id\":\"vpc_6f6d95e73a1f44818cd9d9606b7f2cdd\",\"tenant_id\":\"fc8620ea-5560-4207-a9f0-09b73638ca2b\",\"name\":\"rsctl-0922-vpc\",\"description\":\"\",\"cidr\":\"10.237.0.0/16\",\"state\":\"RESOURCE_STATE_PROVISIONING\",\"reason\":\"\",\"created_at\":\"2026-09-22T04:04:34.711328Z\",\"updated_at\":\"2026-09-22T04:04:34.711328Z\",\"version\":\"1\",\"observed_at\":null,\"observation_stale\":true,\"last_operation_id\":\"efe3cd6c-76eb-47c2-9e42-196604b95733\",\"subnet_count\":\"0\",\"reason_message\":\"\",\"base_connectivity\":null}}}\n",
+      "stderr": ""
+    },
+    {
+      "method": "CreateSubnet",
+      "request": {
+        "cidr": "10.237.0.0/24",
+        "idempotency_key": "rsctl-0922-entry",
+        "name": "rsctl-0922-entry-subnet",
+        "tenant_id": "fc8620ea-5560-4207-a9f0-09b73638ca2b",
+        "vpc_id": "vpc_6f6d95e73a1f44818cd9d9606b7f2cdd"
+      },
+      "exit": 0,
+      "stdout": "{\"code\":\"OK\",\"response\":{\"subnet\":{\"id\":\"subnet_ec6f13bc33f2430c8fbb96e4b37240ef\",\"tenant_id\":\"fc8620ea-5560-4207-a9f0-09b73638ca2b\",\"name\":\"rsctl-0922-entry-subnet\",\"description\":\"\",\"cidr\":\"10.237.0.0/24\",\"state\":\"RESOURCE_STATE_PROVISIONING\",\"reason\":\"\",\"created_at\":\"2026-09-22T04:11:44.027382Z\",\"updated_at\":\"2026-09-22T04:11:44.027382Z\",\"version\":\"1\",\"observed_at\":null,\"observation_stale\":true,\"last_operation_id\":\"405c21f6-3d36-4798-a88b-183a7e526607\",\"vpc_id\":\"vpc_6f6d95e73a1f44818cd9d9606b7f2cdd\",\"reason_message\":\"\",\"gateway\":\"10.237.0.1\"}}}\n",
+      "stderr": ""
+    },
+    {
+      "method": "CreateSubnet",
+      "request": {
+        "cidr": "10.237.1.0/24",
+        "idempotency_key": "rsctl-0922-backend",
+        "name": "rsctl-0922-backend-subnet",
+        "tenant_id": "fc8620ea-5560-4207-a9f0-09b73638ca2b",
+        "vpc_id": "vpc_6f6d95e73a1f44818cd9d9606b7f2cdd"
+      },
+      "exit": 0,
+      "stdout": "{\"code\":\"OK\",\"response\":{\"subnet\":{\"id\":\"subnet_5c7286a6979f48c58a8fb49de275b9c9\",\"tenant_id\":\"fc8620ea-5560-4207-a9f0-09b73638ca2b\",\"name\":\"rsctl-0922-backend-subnet\",\"description\":\"\",\"cidr\":\"10.237.1.0/24\",\"state\":\"RESOURCE_STATE_PROVISIONING\",\"reason\":\"\",\"created_at\":\"2026-09-22T04:11:44.054832Z\",\"updated_at\":\"2026-09-22T04:11:44.054832Z\",\"version\":\"1\",\"observed_at\":null,\"observation_stale\":true,\"last_operation_id\":\"fdff3306-fc44-43fb-8773-44ab58130d64\",\"vpc_id\":\"vpc_6f6d95e73a1f44818cd9d9606b7f2cdd\",\"reason_message\":\"\",\"gateway\":\"10.237.1.1\"}}}\n",
+      "stderr": ""
+    }
+  ],
+  "old_receipts_preserved": true,
+  "old_cursor_preserved": true,
+  "schema_unchanged": true
+}

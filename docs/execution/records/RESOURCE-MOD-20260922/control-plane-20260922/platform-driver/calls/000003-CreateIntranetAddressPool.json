@@ -1,0 +1,37 @@
+{
+  "at": "2026-09-22T04:03:21.188722+00:00",
+  "command": [
+    "/home/chabking/workspace/ani-resource-service-runs/rsmod-20260921T1640Z/control-20260922T0400Z/private/runtime/bin/lb-api",
+    "call",
+    "-target",
+    "unix:///home/chabking/.local/state/rsctl0922/sockets/platform.sock",
+    "-service",
+    "PlatformNetworkService",
+    "-method",
+    "CreateIntranetAddressPool"
+  ],
+  "completed_at": "2026-09-22T04:03:25.980486+00:00",
+  "exit": 0,
+  "phase": "prepare",
+  "request": {
+    "cidr": "10.242.249.0/24",
+    "default_vpc_name": "kcn-cluster",
+    "default_vpc_uid": "a852bc64-3d41-4925-b6a1-de3db56e5a76",
+    "description": "RESOURCE-MOD-20260922 isolated Intranet qualification",
+    "excluded_ips": [
+      "10.242.249.1"
+    ],
+    "idempotency_key": "rsctl-0922-intranet",
+    "intranet_networks": [
+      "172.16.101.0/24",
+      "172.16.201.0/24",
+      "172.16.202.0/24",
+      "10.96.0.0/16"
+    ],
+    "name": "rsctl-0922-intranet-pool",
+    "ovn_gateway_ip": "10.242.249.1"
+  },
+  "stderr": "",
+  "stdout": "{\"code\":\"OK\",\"response\":{\"resource\":{\"id\":\"pool_bccbe24eba884dc5a377e0bf48f6a2a2\",\"cluster_id\":\"rsctl-0922\",\"name\":\"rsctl-0922-intranet-pool\",\"description\":\"RESOURCE-MOD-20260922 isolated Intranet qualification\",\"state\":\"RESOURCE_STATE_PROVISIONING\",\"reason\":\"\",\"reason_message\":\"\",\"version\":\"1\",\"created_at\":\"2026-09-22T04:03:25.966522Z\",\"updated_at\":\"2026-09-22T04:03:25.966522Z\",\"observed_at\":null,\"observation_stale\":true,\"last_operation_id\":\"4857dd50-6d35-42ba-b2a7-31ac9e40b0c5\",\"intranet_pool\":{\"cidr\":\"10.242.249.0/24\",\"ovn_gateway_ip\":\"10.242.249.1\",\"excluded_ips\":[\"10.242.249.1\"],\"default_vpc_name\":\"kcn-cluster\",\"default_vpc_uid\":\"a852bc64-3d41-4925-b6a1-de3db56e5a76\",\"intranet_networks\":[\"10.96.0.0/16\",\"172.16.101.0/24\",\"172.16.201.0/24\",\"172.16.202.0/24\"],\"allocation_enabled\":false,\"is_default\":false,\"config_revision\":\"1\",\"verification\":null,\"topology_fingerprint\":\"d94628329a90d193e7af7ccf9f540f4ffac4d0eee39f254992d302696a18798a\",\"observed_provider_images\":[],\"scope\":\"intranet\"}}}}\n",
+  "step": "intranet"
+}

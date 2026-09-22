@@ -1,0 +1,23 @@
+{
+  "at": "2026-09-22T04:12:23.435886+00:00",
+  "command": [
+    "/home/chabking/workspace/ani-resource-service-runs/rsmod-20260921T1640Z/control-20260922T0400Z/private/runtime/bin/lb-api",
+    "call",
+    "-target",
+    "unix:///home/chabking/.local/state/rsctl0922/sockets/tenant-a.sock",
+    "-service",
+    "NetworkService",
+    "-method",
+    "GetVPC"
+  ],
+  "completed_at": "2026-09-22T04:12:23.445604+00:00",
+  "exit": 0,
+  "phase": "create-lbs",
+  "request": {
+    "tenant_id": "fc8620ea-5560-4207-a9f0-09b73638ca2b",
+    "vpc_id": "vpc_6f6d95e73a1f44818cd9d9606b7f2cdd"
+  },
+  "stderr": "",
+  "stdout": "{\"code\":\"OK\",\"response\":{\"vpc\":{\"id\":\"vpc_6f6d95e73a1f44818cd9d9606b7f2cdd\",\"tenant_id\":\"fc8620ea-5560-4207-a9f0-09b73638ca2b\",\"name\":\"rsctl-0922-vpc\",\"description\":\"\",\"cidr\":\"10.237.0.0/16\",\"state\":\"RESOURCE_STATE_AVAILABLE\",\"reason\":\"\",\"created_at\":\"2026-09-22T04:04:34.711328Z\",\"updated_at\":\"2026-09-22T04:12:22.916477Z\",\"version\":\"106\",\"observed_at\":\"2026-09-22T04:12:22.852229Z\",\"observation_stale\":false,\"last_operation_id\":\"cd626a73-a5a9-444f-907f-333cca623c85\",\"subnet_count\":\"2\",\"reason_message\":\"\",\"base_connectivity\":{\"state\":\"degraded\",\"reason\":\"BASE_CONNECTIVITY_NOT_READY\",\"observed_at\":null,\"observation_stale\":true,\"reason_message\":\"VPC base connectivity is not ready\"}}}}\n",
+  "step": "lbs"
+}

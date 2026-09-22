@@ -1,0 +1,26 @@
+{
+  "at": "2026-09-22T04:04:14.122440+00:00",
+  "command": [
+    "/home/chabking/workspace/ani-resource-service-runs/rsmod-20260921T1640Z/control-20260922T0400Z/private/runtime/bin/kubectl",
+    "--kubeconfig",
+    "/home/chabking/workspace/ani-resource-service-runs/rsmod-20260921T1640Z/control-20260922T0400Z/private/runtime/owner-kubeconfig.json",
+    "--request-timeout=20s",
+    "exec",
+    "-n",
+    "rsctl-0922",
+    "rsctl-0922-intranet-a",
+    "-c",
+    "probe",
+    "--",
+    "/probe",
+    "request",
+    "http://10.96.1.31:19001/metrics"
+  ],
+  "completed_at": "2026-09-22T04:04:14.844332+00:00",
+  "exit": 0,
+  "phase": "qualify",
+  "request": null,
+  "stderr": "",
+  "stdout": "status 200\n# HELP certwatcher_read_certificate_errors_total Total number of certificate read errors\n# TYPE certwatcher_read_certificate_errors_total counter\ncertwatcher_read_certificate_errors_total 0\n# HELP certwatcher_read_certificate_total Total number of certificate reads\n# TYPE certwatcher_read_certificate_total counter\ncertwatcher_read_certificate_total 51781\n# HELP controller_runtime_active_workers Number of currently used workers per controller\n# TYPE controller_runtime_active_workers gauge\ncontroller_runtime_active_workers{controller=\"gatewayapi-1789532052\"} 0\n# HELP controller_runtime_conversion_webhook_panics_total Total number of conversion webhook panics\n# TYPE controller_runtime_conversion_webhook_panics_total counter\ncontroller_runtime_conversion_webhook_panics_total 0\n# HELP controller_runtime_max_concurrent_reconciles Maximum number of concurrent reconciles per controller\n# TYPE controller_runtime_max_concurrent_reconciles gauge\ncontroller_runtime_max_concurrent_reconciles{controller=\"gatewayapi-1789532052\"} 1\n# HELP controller_runtime_reconcile_errors_total Total number of reconciliation errors per controller\n# TYPE controller_runtime_reconcile_errors_total counter\ncontroller_runtime_reconcile_errors_total{controller=\"gatewayapi-1789532052\"} 0\n# HELP controller_runtime_reconcile_panics_total Total number of reconciliation panics per controller\n# TYPE controller_runtime_reconcile_panics_total counter\ncontroller_runtime_reconcile_panics_total{controller=\"gatewayapi-1789532052\"} 0\n# HELP controller_runtime_reconcile_time_seconds Length of time per reconciliation per controller\n# TYPE controller_runtime_reconcile_time_seconds histogram\ncontroller_runtime_reconcile_time_seconds_bucket{controller=\"gatewayapi-1789532052\",le=\"0.005\"} 69\ncontroller_runtime_reconcile_time_seconds_bucket{controller=\"gatewayapi-1789532052\",le=\"0.01\"} 69\ncontroller_runtime_reconcile_time_seconds_bucket{controller=\"gatewayapi-1789532052\",le=\"0.025\"} 70\ncontroller_runtime_reconcile_time_seconds_bucket{controller=\"gatewayapi-1789532052\",le=\"0.05\"} 70\ncontroller_runtime_reconcile_time_seconds_bucket{controller=\"gatewayapi-1789532052\",le=\"0.1\"} 70\ncontroller_runtime_reconcile_time_seconds_bucket{controller=\"gatewayapi-1789532052\",le=\"0.15\"} 70\ncontroller_runtime_reconcile_time_seconds_bucket{controller=\"gatewayapi-1789532052\",le=\"0.2\"} 71\ncontroller_runtime_reconcile_time_seconds_bucket{controller=\"gatewayapi-1789532052\",le=\"0.25\"} 71\ncontroller_runtime_reconcile_time_seconds_bucket{controller=\"gatewayapi-1789532052\",le=\"0.3\"} 71\ncontroller_runtime_reconcile_time_seconds_bucket{controller=\"gatewayapi-1789532052\",le=\"0.35\"} 71\ncontroller_runtime_reconcile_time_seconds_bucket{controller=\"gatewayapi-1789532052\",le=\"0.4\"} 71\ncontroller_runtime_reconcile_time_seconds_bucket{controller=\"gatewayapi-1789532052\",le=\"0.45\"} 71\ncontroller_runtime_reconcile_time_seconds_bucket{controller=\"gatewayapi-1789532052\",le=\"0.5\"} 71\ncontroller_runtime_reconcile_time_seconds_bucket{controller=\"gatewayapi-1789532052\",le=\"0.6\"} 71\ncontroller_runtime_reconcile_time_seconds_bucket{controller=\"gatewayapi-1789532052\",le=\"0.7\"} 71\ncontroller_runtime_reconcile_time_seconds_bucket{controller=\"gatewayapi-1789532052\",le=\"0.8\"} 71\ncontroller_runtime_reconcile_time_seconds_bucket{controller=\"gatewayapi-1789532052\",le=\"0.9\"} 71\ncontroller_runtime_reconcile_time_seconds_bucket{controller=\"gatewayapi-1789532052\",le=\"1\"} 71\ncontroller_runtime_reconcile_time_seconds_bucket{controller=\"gatewayapi-1789532052\",le=\"1.25\"} 71\ncontroller_runtime_reconcile_time_seconds_bucket{controller=\"gatewayapi-1789532052\",le=\"1.5\"} 71\ncontroller_runtime_reconcile_time_seconds_bucket{controller=\"gatewayapi-1789532052\",le=\"1.75\"} 71\ncontroller_runtime_reconcile_time_seconds_bucket{controller=\"gatewayapi-1789532052\",le=\"2\"} 71\ncontroller_runtime_reconcile_time_seconds_bucket{controller=\"gatewayapi-1789532052\",le=\"2.5\"} 71\ncontroller_runtime_reconcile_time_seconds_bucket{controller=\"gatewayapi-1789532052\",le=\"3\"} 71\ncontroller_runtime_reconcile_time_seconds_bucket{controller=\"gatewayapi-1789532052\",le=\"3.5\"} 7",
+  "step": "intranet-evidence"
+}

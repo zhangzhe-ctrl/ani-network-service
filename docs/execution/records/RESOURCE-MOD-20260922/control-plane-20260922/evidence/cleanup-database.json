@@ -1,0 +1,108 @@
+{
+  "at": "2026-09-22T04:41:04.040967+00:00",
+  "host": "fedora",
+  "database": "net_vpc_lb_02_c92201",
+  "result": "pass",
+  "queries": {
+    "network_vpcs": {
+      "sql": "SELECT json_agg(t) FROM (SELECT state,count(*) FROM network_vpcs GROUP BY state)t",
+      "exit": 0,
+      "result": [
+        {
+          "state": "deleted",
+          "count": 1
+        }
+      ]
+    },
+    "network_subnets": {
+      "sql": "SELECT json_agg(t) FROM (SELECT state,count(*) FROM network_subnets GROUP BY state)t",
+      "exit": 0,
+      "result": [
+        {
+          "state": "deleted",
+          "count": 4
+        }
+      ]
+    },
+    "network_load_balancers": {
+      "sql": "SELECT json_agg(t) FROM (SELECT state,count(*) FROM network_load_balancers GROUP BY state)t",
+      "exit": 0,
+      "result": [
+        {
+          "state": "deleted",
+          "count": 1
+        }
+      ]
+    },
+    "network_eips": {
+      "sql": "SELECT json_agg(t) FROM (SELECT state,count(*) FROM network_eips GROUP BY state)t",
+      "exit": 0,
+      "result": [
+        {
+          "state": "deleted",
+          "count": 1
+        }
+      ]
+    },
+    "network_snat_bindings": {
+      "sql": "SELECT json_agg(t) FROM (SELECT state,count(*) FROM network_snat_bindings GROUP BY state)t",
+      "exit": 0,
+      "result": [
+        {
+          "state": "deleted",
+          "count": 1
+        }
+      ]
+    },
+    "network_platform_resources": {
+      "sql": "SELECT json_agg(t) FROM (SELECT state,count(*) FROM network_platform_resources GROUP BY state)t",
+      "exit": 0,
+      "result": [
+        {
+          "state": "deleted",
+          "count": 1
+        }
+      ]
+    },
+    "network_vpc_base_connectivity": {
+      "sql": "SELECT json_agg(t) FROM (SELECT state,count(*) FROM network_vpc_base_connectivity GROUP BY state)t",
+      "exit": 0,
+      "result": [
+        {
+          "state": "deleted",
+          "count": 1
+        }
+      ]
+    },
+    "network_attachments": {
+      "sql": "SELECT json_agg(t) FROM (SELECT state,count(*) FROM network_attachments GROUP BY state)t",
+      "exit": 0,
+      "result": [
+        {
+          "state": "released",
+          "count": 2
+        }
+      ]
+    },
+    "network_eip_claims": {
+      "sql": "SELECT count(*) FROM network_eip_claims WHERE released_at IS NULL",
+      "exit": 0,
+      "result": 0
+    },
+    "network_lb_vip_intents": {
+      "sql": "SELECT count(*) FROM network_lb_vip_intents WHERE released_at IS NULL",
+      "exit": 0,
+      "result": 0
+    },
+    "network_lb_subnet_refs": {
+      "sql": "SELECT count(*) FROM network_lb_subnet_refs WHERE released_at IS NULL",
+      "exit": 0,
+      "result": 0
+    },
+    "network_lb_generated_resources": {
+      "sql": "SELECT count(*) FROM network_lb_generated_resources WHERE released_at IS NULL",
+      "exit": 0,
+      "result": 0
+    }
+  }
+}

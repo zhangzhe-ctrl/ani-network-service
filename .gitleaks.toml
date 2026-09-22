@@ -183,3 +183,79 @@ regexes = [
   '''^\s*"google\.golang\.org/genproto/googleapis/api": "v0\.0\.0\-20260526163538\-3dc84a4a5aaa",\s*$''',
   '''^\s*"k8s\.io/kube\-openapi": "v0\.0\.0\-20260317180543\-43fb72c5454a",\s*$''',
 ]
+
+[[allowlists]]
+description = "Exact reviewed control-plane run public metadata"
+targetRules = ["generic-api-key"]
+condition = "AND"
+regexTarget = "line"
+paths = [
+  '''^docs/execution/records/RESOURCE\-MOD\-20260922/control\-plane\-20260922/platform\-driver/actions/create\-intranet\.planned\.json$''',
+  '''^docs/execution/records/RESOURCE\-MOD\-20260922/control\-plane\-20260922/platform\-driver/calls/000003\-CreateIntranetAddressPool\.json$''',
+]
+regexes = ['''^\s*"idempotency_key": "rsctl\-0922\-intranet",\s*$''']
+
+[[allowlists]]
+description = "Exact reviewed control-plane run public metadata"
+targetRules = ["generic-api-key"]
+condition = "AND"
+regexTarget = "line"
+paths = [
+  '''^docs/execution/records/RESOURCE\-MOD\-20260922/control\-plane\-20260922/product\-driver/actions/create\-private_lb\.planned\.json$''',
+  '''^docs/execution/records/RESOURCE\-MOD\-20260922/control\-plane\-20260922/product\-driver/calls/000105\-CreateLoadBalancer\.json$''',
+]
+regexes = ['''^\s*"idempotency_key": "rsctl\-0922\-private_lb",\s*$''']
+
+[[allowlists]]
+description = "Exact reviewed control-plane run public metadata"
+targetRules = ["generic-api-key"]
+condition = "AND"
+regexTarget = "line"
+paths = [
+  '''^docs/execution/records/RESOURCE\-MOD\-20260922/control\-plane\-20260922/checkpoints/candidate\-final/summary\.json$''',
+  '''^docs/execution/records/RESOURCE\-MOD\-20260922/control\-plane\-20260922/checkpoints/candidate\-mutated/summary\.json$''',
+  '''^docs/execution/records/RESOURCE\-MOD\-20260922/control\-plane\-20260922/checkpoints/candidate\-restarted/summary\.json$''',
+  '''^docs/execution/records/RESOURCE\-MOD\-20260922/control\-plane\-20260922/checkpoints/candidate\-takeover/summary\.json$''',
+  '''^docs/execution/records/RESOURCE\-MOD\-20260922/control\-plane\-20260922/checkpoints/cleanup\-pending/summary\.json$''',
+  '''^docs/execution/records/RESOURCE\-MOD\-20260922/control\-plane\-20260922/checkpoints/products\-cleaned/summary\.json$''',
+  '''^docs/execution/records/RESOURCE\-MOD\-20260922/control\-plane\-20260922/plan\.json$''',
+  '''^docs/execution/records/RESOURCE\-MOD\-20260922/control\-plane\-20260922/switches/1\-candidate\.json$''',
+  '''^docs/execution/records/RESOURCE\-MOD\-20260922/control\-plane\-20260922/switches/2\-candidate\.json$''',
+  '''^docs/execution/records/RESOURCE\-MOD\-20260922/control\-plane\-20260922/switches/4\-candidate\.json$''',
+]
+regexes = ['''^\s*"lb\-api": "6d48858651b90b3462ad8e3444bea9442944e9bfe2067ce7383ed95ab976e43a"\s*$''']
+
+[[allowlists]]
+description = "Exact reviewed control-plane run public metadata"
+targetRules = ["generic-api-key"]
+condition = "AND"
+regexTarget = "line"
+paths = [
+  '''^docs/execution/records/RESOURCE\-MOD\-20260922/control\-plane\-20260922/checkpoints/baseline/summary\.json$''',
+  '''^docs/execution/records/RESOURCE\-MOD\-20260922/control\-plane\-20260922/checkpoints/rollback\-after\-delete/summary\.json$''',
+  '''^docs/execution/records/RESOURCE\-MOD\-20260922/control\-plane\-20260922/checkpoints/rollback/summary\.json$''',
+  '''^docs/execution/records/RESOURCE\-MOD\-20260922/control\-plane\-20260922/switches/3\-baseline\.json$''',
+]
+regexes = ['''^\s*"lb\-api": "d1752f743e42fb2b9b780bec5dec9630c50db19e9734e30f8016ccaa9a34855f"\s*$''']
+
+[[allowlists]]
+description = "Exact reviewed control-plane run public metadata"
+targetRules = ["generic-api-key"]
+condition = "AND"
+regexTarget = "line"
+paths = [
+  '''^docs/execution/records/RESOURCE\-MOD\-20260922/control\-plane\-20260922/evidence/baseline\-build\-info\.txt$''',
+  '''^docs/execution/records/RESOURCE\-MOD\-20260922/control\-plane\-20260922/evidence/candidate\-build\-info\.txt$''',
+]
+regexes = ['''^\s*dep\tgolang\.org/x/oauth2\tv0\.36\.0\th1:peZ/1z27fi9hUOFCAZaHyrpWG5lwe0RJEEEeH0ThlIs=\s*$''']
+
+[[allowlists]]
+description = "Exact reviewed control-plane run public metadata"
+targetRules = ["generic-api-key"]
+condition = "AND"
+regexTarget = "line"
+paths = [
+  '''^docs/execution/records/RESOURCE\-MOD\-20260922/control\-plane\-20260922/evidence/baseline\-build\-info\.txt$''',
+  '''^docs/execution/records/RESOURCE\-MOD\-20260922/control\-plane\-20260922/evidence/candidate\-build\-info\.txt$''',
+]
+regexes = ['''^\s*dep\tk8s\.io/apimachinery\tv0\.36\.0\th1:jZyPzhd5Z\+3h9vJLt0z9XdzW9VzNzWAUw\+P1xZ9PXtQ=\s*$''']

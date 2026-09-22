@@ -1,0 +1,36 @@
+{
+  "at": "2026-09-22T04:12:30.808874+00:00",
+  "host": "fedora",
+  "version": "baseline",
+  "calls": [
+    {
+      "method": "GetNetworkDevice",
+      "request": {
+        "device_id": "device_3290174cfb644473b5b5e260bcea085c"
+      },
+      "exit": 1,
+      "stdout": "{\"code\":\"NotFound\",\"status\":{\"code\":5,\"message\":\"resource not found\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.ErrorInfo\",\"reason\":\"RESOURCE_NOT_FOUND\",\"domain\":\"network.ani.io\",\"metadata\":{}}]}}\n",
+      "stderr": "RPC failed; structured status is in stdout\n"
+    },
+    {
+      "method": "ListPublicAddressPools",
+      "request": {
+        "limit": 100
+      },
+      "exit": 0,
+      "stdout": "{\"code\":\"OK\",\"response\":{\"items\":[],\"next_cursor\":\"\"}}\n",
+      "stderr": ""
+    },
+    {
+      "method": "CreateEIP",
+      "request": {
+        "name": "rsctl-0922-public-probe",
+        "idempotency_key": "rsctl-0922-public-precondition"
+      },
+      "exit": 1,
+      "stdout": "{\"code\":\"Unavailable\",\"status\":{\"code\":14,\"message\":\"default public pool is not ready\",\"details\":[{\"@type\":\"type.googleapis.com/google.rpc.ErrorInfo\",\"reason\":\"PUBLIC_EGRESS_NOT_READY\",\"domain\":\"network.ani.io\",\"metadata\":{}}]}}\n",
+      "stderr": "RPC failed; structured status is in stdout\n"
+    }
+  ],
+  "classification": "actual precondition check; not successful Public SNAT/LB lifecycle"
+}

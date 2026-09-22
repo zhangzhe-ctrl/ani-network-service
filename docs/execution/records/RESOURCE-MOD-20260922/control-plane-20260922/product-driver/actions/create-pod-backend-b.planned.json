@@ -1,0 +1,95 @@
+{
+  "at": "2026-09-22T04:12:05.562104+00:00",
+  "intent": {
+    "body": {
+      "apiVersion": "v1",
+      "kind": "Pod",
+      "metadata": {
+        "annotations": {
+          "networking.kubercloud.com/subnet": "rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b/subnet-5c7286a6979f48c58a8fb49de275b9c9"
+        },
+        "labels": {
+          "network.ani.io/attachment-id": "att_66f3ace97aaf4cb0872fd38996cfcb75",
+          "network.ani.io/generation": "1",
+          "network.ani.io/instance-id": "680c8612-0689-4453-9a54-36b7d231d939",
+          "network.ani.io/submission-id": "08425f14-b4e5-4b2c-9b0c-bd30b2f86382",
+          "network.ani.io/tenant-id": "fc8620ea-5560-4207-a9f0-09b73638ca2b",
+          "network.ani.io/test-run": "rsctl-0922"
+        },
+        "name": "rsctl-0922-backend-b",
+        "namespace": "rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b"
+      },
+      "spec": {
+        "automountServiceAccountToken": false,
+        "containers": [
+          {
+            "env": [
+              {
+                "name": "NET05_ID",
+                "value": "rsctl-0922"
+              },
+              {
+                "name": "ANI_WORKLOAD_ID",
+                "value": "680c8612-0689-4453-9a54-36b7d231d939"
+              },
+              {
+                "name": "NET05_PORT",
+                "value": "8080"
+              }
+            ],
+            "image": "localhost/lb02-2b3122-probe@sha256:647c2acd8e115511a18506014995ec01b7d0d62fbc05f2a6e51a5c65c2a3fcce",
+            "imagePullPolicy": "Never",
+            "name": "probe",
+            "ports": [
+              {
+                "containerPort": 8080
+              }
+            ],
+            "resources": {
+              "limits": {
+                "cpu": "100m",
+                "memory": "64Mi"
+              },
+              "requests": {
+                "cpu": "10m",
+                "memory": "32Mi"
+              }
+            },
+            "securityContext": {
+              "allowPrivilegeEscalation": false,
+              "capabilities": {
+                "drop": [
+                  "ALL"
+                ]
+              },
+              "readOnlyRootFilesystem": true
+            }
+          }
+        ],
+        "nodeSelector": {
+          "kubernetes.io/hostname": "ani-03"
+        },
+        "restartPolicy": "Always",
+        "securityContext": {
+          "runAsGroup": 65532,
+          "runAsNonRoot": true,
+          "runAsUser": 65532,
+          "seccompProfile": {
+            "type": "RuntimeDefault"
+          }
+        }
+      }
+    },
+    "command": [
+      "/home/chabking/workspace/ani-resource-service-runs/rsmod-20260921T1640Z/control-20260922T0400Z/private/runtime/bin/kubectl",
+      "--kubeconfig",
+      "/home/chabking/workspace/ani-resource-service-runs/rsmod-20260921T1640Z/control-20260922T0400Z/private/runtime/owner-kubeconfig.json",
+      "--request-timeout=20s",
+      "create",
+      "-f",
+      "-",
+      "-o",
+      "json"
+    ]
+  }
+}

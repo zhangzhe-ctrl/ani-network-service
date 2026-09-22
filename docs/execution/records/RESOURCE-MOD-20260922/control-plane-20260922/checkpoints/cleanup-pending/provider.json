@@ -1,0 +1,2444 @@
+[
+  {
+    "apiVersion": "networking.kubercloud.com/v1",
+    "kind": "VPC",
+    "metadata": {
+      "creationTimestamp": "2026-09-22T04:04:38Z",
+      "finalizers": [
+        "networking.kubercloud.com/finalizer"
+      ],
+      "generation": 1,
+      "labels": {
+        "network.ani.io/binding-id": "e06e4b6a-a475-4b8a-9bc3-89e3cd0a6ae7",
+        "network.ani.io/managed-by": "ani-network-service",
+        "network.ani.io/resource-id": "vpc_6f6d95e73a1f44818cd9d9606b7f2cdd",
+        "network.ani.io/tenant-id": "fc8620ea-5560-4207-a9f0-09b73638ca2b"
+      },
+      "managedFields": [
+        {
+          "apiVersion": "networking.kubercloud.com/v1",
+          "fieldsType": "FieldsV1",
+          "fieldsV1": {
+            "f:metadata": {
+              "f:labels": {
+                ".": {},
+                "f:network.ani.io/binding-id": {},
+                "f:network.ani.io/managed-by": {},
+                "f:network.ani.io/resource-id": {},
+                "f:network.ani.io/tenant-id": {}
+              }
+            },
+            "f:spec": {
+              ".": {},
+              "f:allowedNamespaces": {
+                ".": {},
+                "f:from": {}
+              },
+              "f:cidrBlock": {},
+              "f:ipVersion": {}
+            }
+          },
+          "manager": "ani-network-service",
+          "operation": "Update",
+          "time": "2026-09-22T04:04:38Z"
+        },
+        {
+          "apiVersion": "networking.kubercloud.com/v1",
+          "fieldsType": "FieldsV1",
+          "fieldsV1": {
+            "f:metadata": {
+              "f:finalizers": {
+                ".": {},
+                "v:\"networking.kubercloud.com/finalizer\"": {}
+              }
+            }
+          },
+          "manager": "kc-networking-controller",
+          "operation": "Update",
+          "time": "2026-09-22T04:04:38Z"
+        },
+        {
+          "apiVersion": "networking.kubercloud.com/v1",
+          "fieldsType": "FieldsV1",
+          "fieldsV1": {
+            "f:status": {
+              ".": {},
+              "f:boundResources": {
+                ".": {},
+                "f:chassisNode": {},
+                "f:router": {}
+              },
+              "f:conditions": {
+                ".": {},
+                "k:{\"type\":\"Initialized\"}": {
+                  ".": {},
+                  "f:lastTransitionTime": {},
+                  "f:message": {},
+                  "f:reason": {},
+                  "f:status": {},
+                  "f:type": {}
+                },
+                "k:{\"type\":\"Ready\"}": {
+                  ".": {},
+                  "f:lastTransitionTime": {},
+                  "f:message": {},
+                  "f:reason": {},
+                  "f:status": {},
+                  "f:type": {}
+                },
+                "k:{\"type\":\"Valid\"}": {
+                  ".": {},
+                  "f:lastTransitionTime": {},
+                  "f:message": {},
+                  "f:reason": {},
+                  "f:status": {},
+                  "f:type": {}
+                }
+              },
+              "f:eips": {
+                ".": {},
+                "f:rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b/eip-9f335329a9f542e399a83e9d67484b9d": {}
+              },
+              "f:observedGeneration": {},
+              "f:subnets": {
+                ".": {},
+                "f:rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b/subnet-5c7286a6979f48c58a8fb49de275b9c9": {},
+                "f:rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b/subnet-ec6f13bc33f2430c8fbb96e4b37240ef": {}
+              }
+            }
+          },
+          "manager": "kc-networking-controller",
+          "operation": "Update",
+          "subresource": "status",
+          "time": "2026-09-22T04:24:20Z"
+        }
+      ],
+      "name": "vpc-6f6d95e73a1f44818cd9d9606b7f2cdd",
+      "namespace": "rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b",
+      "resourceVersion": "3288641",
+      "uid": "8a5ce9aa-a88e-4753-8ef6-29134d9afc35"
+    },
+    "spec": {
+      "allowedNamespaces": {
+        "from": "Same"
+      },
+      "cidrBlock": "10.237.0.0/16",
+      "ipVersion": "IPv4"
+    },
+    "status": {
+      "boundResources": {
+        "chassisNode": "ani-02",
+        "router": "vpc.rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b.vpc-6f6d95e73a1f44818cd9d9606b7f2cdd"
+      },
+      "conditions": [
+        {
+          "lastTransitionTime": "2026-09-22T04:04:38Z",
+          "message": "",
+          "reason": "Valid",
+          "status": "True",
+          "type": "Valid"
+        },
+        {
+          "lastTransitionTime": "2026-09-22T04:04:38Z",
+          "message": "",
+          "reason": "Initialized",
+          "status": "True",
+          "type": "Initialized"
+        },
+        {
+          "lastTransitionTime": "2026-09-22T04:04:39Z",
+          "message": "",
+          "reason": "Ready",
+          "status": "True",
+          "type": "Ready"
+        }
+      ],
+      "eips": {
+        "rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b/eip-9f335329a9f542e399a83e9d67484b9d": "10.242.249.2"
+      },
+      "observedGeneration": 1,
+      "subnets": {
+        "rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b/subnet-5c7286a6979f48c58a8fb49de275b9c9": "10.237.1.0/24",
+        "rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b/subnet-ec6f13bc33f2430c8fbb96e4b37240ef": "10.237.0.0/24"
+      }
+    }
+  },
+  {
+    "apiVersion": "networking.kubercloud.com/v1",
+    "kind": "Subnet",
+    "metadata": {
+      "creationTimestamp": "2026-09-22T04:03:38Z",
+      "finalizers": [
+        "networking.kubercloud.com/finalizer"
+      ],
+      "generation": 1,
+      "labels": {
+        "network.ani.io/binding-id": "4630076b-5ca4-4070-b65c-52477d4940aa",
+        "network.ani.io/managed-by": "ani-network-service",
+        "network.ani.io/resource-id": "pool_bccbe24eba884dc5a377e0bf48f6a2a2",
+        "networking.kubercloud.com/gateway": "kcn-system.pool-bccbe24eba884dc5a377e0bf48f6a2a2"
+      },
+      "managedFields": [
+        {
+          "apiVersion": "networking.kubercloud.com/v1",
+          "fieldsType": "FieldsV1",
+          "fieldsV1": {
+            "f:metadata": {
+              "f:labels": {
+                ".": {},
+                "f:network.ani.io/binding-id": {},
+                "f:network.ani.io/managed-by": {},
+                "f:network.ani.io/resource-id": {}
+              }
+            },
+            "f:spec": {
+              ".": {},
+              "f:allowedNamespaces": {
+                ".": {},
+                "f:from": {}
+              },
+              "f:cidrBlock": {},
+              "f:enableDHCP": {},
+              "f:excludeIPs": {},
+              "f:gateway": {},
+              "f:gatewayIP": {},
+              "f:ipVersion": {},
+              "f:natOutgoing": {},
+              "f:type": {}
+            }
+          },
+          "manager": "ani-network-service",
+          "operation": "Update",
+          "time": "2026-09-22T04:03:38Z"
+        },
+        {
+          "apiVersion": "networking.kubercloud.com/v1",
+          "fieldsType": "FieldsV1",
+          "fieldsV1": {
+            "f:metadata": {
+              "f:finalizers": {
+                ".": {},
+                "v:\"networking.kubercloud.com/finalizer\"": {}
+              },
+              "f:labels": {
+                "f:networking.kubercloud.com/gateway": {}
+              }
+            }
+          },
+          "manager": "kc-networking-controller",
+          "operation": "Update",
+          "time": "2026-09-22T04:03:38Z"
+        },
+        {
+          "apiVersion": "networking.kubercloud.com/v1",
+          "fieldsType": "FieldsV1",
+          "fieldsV1": {
+            "f:status": {
+              ".": {},
+              "f:boundResources": {
+                ".": {},
+                "f:gatewayPort": {},
+                "f:switch": {}
+              },
+              "f:conditions": {
+                ".": {},
+                "k:{\"type\":\"Initialized\"}": {
+                  ".": {},
+                  "f:lastTransitionTime": {},
+                  "f:message": {},
+                  "f:reason": {},
+                  "f:status": {},
+                  "f:type": {}
+                },
+                "k:{\"type\":\"Ready\"}": {
+                  ".": {},
+                  "f:lastTransitionTime": {},
+                  "f:message": {},
+                  "f:reason": {},
+                  "f:status": {},
+                  "f:type": {}
+                },
+                "k:{\"type\":\"Valid\"}": {
+                  ".": {},
+                  "f:lastTransitionTime": {},
+                  "f:message": {},
+                  "f:reason": {},
+                  "f:status": {},
+                  "f:type": {}
+                }
+              },
+              "f:gatewayMac": {},
+              "f:observedGeneration": {},
+              "f:v4availableIPrange": {},
+              "f:v4availableIPs": {},
+              "f:v4usingIPrange": {},
+              "f:v4usingIPs": {}
+            }
+          },
+          "manager": "kc-networking-controller",
+          "operation": "Update",
+          "subresource": "status",
+          "time": "2026-09-22T04:10:56Z"
+        }
+      ],
+      "name": "pool-bccbe24eba884dc5a377e0bf48f6a2a2",
+      "namespace": "kcn-system",
+      "resourceVersion": "3282190",
+      "uid": "c451fdc7-9cf3-4779-bc5a-b56843b4aeb2"
+    },
+    "spec": {
+      "allowedNamespaces": {
+        "from": "All"
+      },
+      "cidrBlock": "10.242.249.0/24",
+      "enableDHCP": false,
+      "excludeIPs": [
+        "10.242.249.1"
+      ],
+      "gateway": "kcn-system/kcn-cluster",
+      "gatewayIP": "10.242.249.1",
+      "ipVersion": "IPv4",
+      "natOutgoing": false,
+      "type": "Intranet"
+    },
+    "status": {
+      "boundResources": {
+        "gatewayPort": "vpc.kcn-system.kcn-cluster-kcn-system.pool-bccbe24eba884dc5a377e0bf48f6a2a2",
+        "switch": "kcn-system.pool-bccbe24eba884dc5a377e0bf48f6a2a2"
+      },
+      "conditions": [
+        {
+          "lastTransitionTime": "2026-09-22T04:03:38Z",
+          "message": "",
+          "reason": "Initialized",
+          "status": "True",
+          "type": "Initialized"
+        },
+        {
+          "lastTransitionTime": "2026-09-22T04:03:38Z",
+          "message": "",
+          "reason": "Valid",
+          "status": "True",
+          "type": "Valid"
+        },
+        {
+          "lastTransitionTime": "2026-09-22T04:03:38Z",
+          "message": "",
+          "reason": "Ready",
+          "status": "True",
+          "type": "Ready"
+        }
+      ],
+      "gatewayMac": "fa:00:3b:33:a2:44",
+      "observedGeneration": 1,
+      "v4availableIPrange": "10.242.249.3-10.242.249.254",
+      "v4availableIPs": 252,
+      "v4usingIPrange": "10.242.249.2",
+      "v4usingIPs": 1
+    }
+  },
+  {
+    "apiVersion": "networking.kubercloud.com/v1",
+    "kind": "Subnet",
+    "metadata": {
+      "creationTimestamp": "2026-09-22T04:11:58Z",
+      "finalizers": [
+        "networking.kubercloud.com/finalizer"
+      ],
+      "generation": 1,
+      "labels": {
+        "network.ani.io/binding-id": "b5583340-00e7-4cc5-a97f-d9bd341e4537",
+        "network.ani.io/managed-by": "ani-network-service",
+        "network.ani.io/resource-id": "subnet_5c7286a6979f48c58a8fb49de275b9c9",
+        "network.ani.io/tenant-id": "fc8620ea-5560-4207-a9f0-09b73638ca2b"
+      },
+      "managedFields": [
+        {
+          "apiVersion": "networking.kubercloud.com/v1",
+          "fieldsType": "FieldsV1",
+          "fieldsV1": {
+            "f:metadata": {
+              "f:labels": {
+                ".": {},
+                "f:network.ani.io/binding-id": {},
+                "f:network.ani.io/managed-by": {},
+                "f:network.ani.io/resource-id": {},
+                "f:network.ani.io/tenant-id": {}
+              }
+            },
+            "f:spec": {
+              ".": {},
+              "f:allowedNamespaces": {
+                ".": {},
+                "f:from": {}
+              },
+              "f:cidrBlock": {},
+              "f:gateway": {},
+              "f:gatewayIP": {},
+              "f:ipVersion": {},
+              "f:type": {}
+            }
+          },
+          "manager": "ani-network-service",
+          "operation": "Update",
+          "time": "2026-09-22T04:11:58Z"
+        },
+        {
+          "apiVersion": "networking.kubercloud.com/v1",
+          "fieldsType": "FieldsV1",
+          "fieldsV1": {
+            "f:metadata": {
+              "f:finalizers": {
+                ".": {},
+                "v:\"networking.kubercloud.com/finalizer\"": {}
+              }
+            }
+          },
+          "manager": "kc-networking-controller",
+          "operation": "Update",
+          "time": "2026-09-22T04:11:58Z"
+        },
+        {
+          "apiVersion": "networking.kubercloud.com/v1",
+          "fieldsType": "FieldsV1",
+          "fieldsV1": {
+            "f:metadata": {
+              "f:labels": {
+                "f:networking.kubercloud.com/gateway": {}
+              }
+            },
+            "f:status": {
+              ".": {},
+              "f:boundResources": {
+                ".": {},
+                "f:gatewayPort": {},
+                "f:switch": {}
+              },
+              "f:conditions": {
+                ".": {},
+                "k:{\"type\":\"Initialized\"}": {
+                  ".": {},
+                  "f:lastTransitionTime": {},
+                  "f:message": {},
+                  "f:reason": {},
+                  "f:status": {},
+                  "f:type": {}
+                },
+                "k:{\"type\":\"Ready\"}": {
+                  ".": {},
+                  "f:lastTransitionTime": {},
+                  "f:message": {},
+                  "f:reason": {},
+                  "f:status": {},
+                  "f:type": {}
+                },
+                "k:{\"type\":\"Valid\"}": {
+                  ".": {},
+                  "f:lastTransitionTime": {},
+                  "f:message": {},
+                  "f:reason": {},
+                  "f:status": {},
+                  "f:type": {}
+                }
+              },
+              "f:gatewayMac": {},
+              "f:observedGeneration": {},
+              "f:v4availableIPrange": {},
+              "f:v4availableIPs": {},
+              "f:v4usingIPrange": {},
+              "f:v4usingIPs": {}
+            }
+          },
+          "manager": "kc-networking-controller",
+          "operation": "Update",
+          "subresource": "status",
+          "time": "2026-09-22T04:12:06Z"
+        }
+      ],
+      "name": "subnet-5c7286a6979f48c58a8fb49de275b9c9",
+      "namespace": "rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b",
+      "resourceVersion": "3282602",
+      "uid": "3970f05d-373b-4b3d-9600-ea9aa44a72e3"
+    },
+    "spec": {
+      "allowedNamespaces": {
+        "from": "Same"
+      },
+      "cidrBlock": "10.237.1.0/24",
+      "gateway": "rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b/vpc-6f6d95e73a1f44818cd9d9606b7f2cdd",
+      "gatewayIP": "10.237.1.1",
+      "ipVersion": "IPv4",
+      "type": "VPC"
+    },
+    "status": {
+      "boundResources": {
+        "gatewayPort": "vpc.rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b.vpc-6f6d95e73a1f44818cd9d9606b7f2cdd-rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b.subnet-5c7286a6979f48c58a8fb49de275b9c9",
+        "switch": "rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b.subnet-5c7286a6979f48c58a8fb49de275b9c9"
+      },
+      "conditions": [
+        {
+          "lastTransitionTime": "2026-09-22T04:11:58Z",
+          "message": "",
+          "reason": "Initialized",
+          "status": "True",
+          "type": "Initialized"
+        },
+        {
+          "lastTransitionTime": "2026-09-22T04:11:58Z",
+          "message": "",
+          "reason": "Valid",
+          "status": "True",
+          "type": "Valid"
+        },
+        {
+          "lastTransitionTime": "2026-09-22T04:11:58Z",
+          "message": "",
+          "reason": "Ready",
+          "status": "True",
+          "type": "Ready"
+        }
+      ],
+      "gatewayMac": "fa:00:71:97:37:dd",
+      "observedGeneration": 1,
+      "v4availableIPrange": "10.237.1.4-10.237.1.254",
+      "v4availableIPs": 251,
+      "v4usingIPrange": "10.237.1.2-10.237.1.3",
+      "v4usingIPs": 2
+    }
+  },
+  {
+    "apiVersion": "networking.kubercloud.com/v1",
+    "kind": "Subnet",
+    "metadata": {
+      "creationTimestamp": "2026-09-22T04:11:49Z",
+      "finalizers": [
+        "networking.kubercloud.com/finalizer"
+      ],
+      "generation": 1,
+      "labels": {
+        "network.ani.io/binding-id": "dceb5acb-4189-434f-86b1-bf7f5bf8959a",
+        "network.ani.io/managed-by": "ani-network-service",
+        "network.ani.io/resource-id": "subnet_ec6f13bc33f2430c8fbb96e4b37240ef",
+        "network.ani.io/tenant-id": "fc8620ea-5560-4207-a9f0-09b73638ca2b"
+      },
+      "managedFields": [
+        {
+          "apiVersion": "networking.kubercloud.com/v1",
+          "fieldsType": "FieldsV1",
+          "fieldsV1": {
+            "f:metadata": {
+              "f:labels": {
+                ".": {},
+                "f:network.ani.io/binding-id": {},
+                "f:network.ani.io/managed-by": {},
+                "f:network.ani.io/resource-id": {},
+                "f:network.ani.io/tenant-id": {}
+              }
+            },
+            "f:spec": {
+              ".": {},
+              "f:allowedNamespaces": {
+                ".": {},
+                "f:from": {}
+              },
+              "f:cidrBlock": {},
+              "f:gateway": {},
+              "f:gatewayIP": {},
+              "f:ipVersion": {},
+              "f:type": {}
+            }
+          },
+          "manager": "ani-network-service",
+          "operation": "Update",
+          "time": "2026-09-22T04:11:49Z"
+        },
+        {
+          "apiVersion": "networking.kubercloud.com/v1",
+          "fieldsType": "FieldsV1",
+          "fieldsV1": {
+            "f:metadata": {
+              "f:finalizers": {
+                ".": {},
+                "v:\"networking.kubercloud.com/finalizer\"": {}
+              }
+            }
+          },
+          "manager": "kc-networking-controller",
+          "operation": "Update",
+          "time": "2026-09-22T04:11:49Z"
+        },
+        {
+          "apiVersion": "networking.kubercloud.com/v1",
+          "fieldsType": "FieldsV1",
+          "fieldsV1": {
+            "f:metadata": {
+              "f:labels": {
+                "f:networking.kubercloud.com/gateway": {}
+              }
+            },
+            "f:status": {
+              ".": {},
+              "f:boundResources": {
+                ".": {},
+                "f:gatewayPort": {},
+                "f:switch": {}
+              },
+              "f:conditions": {
+                ".": {},
+                "k:{\"type\":\"Initialized\"}": {
+                  ".": {},
+                  "f:lastTransitionTime": {},
+                  "f:message": {},
+                  "f:reason": {},
+                  "f:status": {},
+                  "f:type": {}
+                },
+                "k:{\"type\":\"Ready\"}": {
+                  ".": {},
+                  "f:lastTransitionTime": {},
+                  "f:message": {},
+                  "f:reason": {},
+                  "f:status": {},
+                  "f:type": {}
+                },
+                "k:{\"type\":\"Valid\"}": {
+                  ".": {},
+                  "f:lastTransitionTime": {},
+                  "f:message": {},
+                  "f:reason": {},
+                  "f:status": {},
+                  "f:type": {}
+                }
+              },
+              "f:gatewayMac": {},
+              "f:observedGeneration": {},
+              "f:v4availableIPrange": {},
+              "f:v4availableIPs": {},
+              "f:v4usingIPrange": {},
+              "f:v4usingIPs": {}
+            }
+          },
+          "manager": "kc-networking-controller",
+          "operation": "Update",
+          "subresource": "status",
+          "time": "2026-09-22T04:32:10Z"
+        }
+      ],
+      "name": "subnet-ec6f13bc33f2430c8fbb96e4b37240ef",
+      "namespace": "rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b",
+      "resourceVersion": "3288858",
+      "uid": "1a3b43c8-6e7f-42be-a4a0-63f5232f48e3"
+    },
+    "spec": {
+      "allowedNamespaces": {
+        "from": "Same"
+      },
+      "cidrBlock": "10.237.0.0/24",
+      "gateway": "rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b/vpc-6f6d95e73a1f44818cd9d9606b7f2cdd",
+      "gatewayIP": "10.237.0.1",
+      "ipVersion": "IPv4",
+      "type": "VPC"
+    },
+    "status": {
+      "boundResources": {
+        "gatewayPort": "vpc.rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b.vpc-6f6d95e73a1f44818cd9d9606b7f2cdd-rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b.subnet-ec6f13bc33f2430c8fbb96e4b37240ef",
+        "switch": "rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b.subnet-ec6f13bc33f2430c8fbb96e4b37240ef"
+      },
+      "conditions": [
+        {
+          "lastTransitionTime": "2026-09-22T04:11:49Z",
+          "message": "",
+          "reason": "Initialized",
+          "status": "True",
+          "type": "Initialized"
+        },
+        {
+          "lastTransitionTime": "2026-09-22T04:11:49Z",
+          "message": "",
+          "reason": "Valid",
+          "status": "True",
+          "type": "Valid"
+        },
+        {
+          "lastTransitionTime": "2026-09-22T04:11:49Z",
+          "message": "",
+          "reason": "Ready",
+          "status": "True",
+          "type": "Ready"
+        }
+      ],
+      "gatewayMac": "fa:00:9c:fb:db:d4",
+      "observedGeneration": 1,
+      "v4availableIPrange": "10.237.0.2-10.237.0.254",
+      "v4availableIPs": 253,
+      "v4usingIPrange": "",
+      "v4usingIPs": 0
+    }
+  },
+  {
+    "apiVersion": "networking.kubercloud.com/v1",
+    "kind": "EIP",
+    "metadata": {
+      "creationTimestamp": "2026-09-22T04:10:56Z",
+      "finalizers": [
+        "networking.kubercloud.com/finalizer"
+      ],
+      "generation": 2,
+      "labels": {
+        "network.ani.io/binding-id": "584c5bbb-3bdc-4ea0-b609-5cb0f496e25c",
+        "network.ani.io/managed-by": "ani-network-service",
+        "network.ani.io/resource-id": "eip_9f335329a9f542e399a83e9d67484b9d",
+        "network.ani.io/tenant-id": "fc8620ea-5560-4207-a9f0-09b73638ca2b"
+      },
+      "managedFields": [
+        {
+          "apiVersion": "networking.kubercloud.com/v1",
+          "fieldsType": "FieldsV1",
+          "fieldsV1": {
+            "f:metadata": {
+              "f:labels": {
+                ".": {},
+                "f:network.ani.io/binding-id": {},
+                "f:network.ani.io/managed-by": {},
+                "f:network.ani.io/resource-id": {},
+                "f:network.ani.io/tenant-id": {}
+              }
+            },
+            "f:spec": {
+              ".": {},
+              "f:ipVersion": {},
+              "f:subnet": {}
+            }
+          },
+          "manager": "ani-network-service",
+          "operation": "Update",
+          "time": "2026-09-22T04:10:56Z"
+        },
+        {
+          "apiVersion": "networking.kubercloud.com/v1",
+          "fieldsType": "FieldsV1",
+          "fieldsV1": {
+            "f:metadata": {
+              "f:finalizers": {
+                ".": {},
+                "v:\"networking.kubercloud.com/finalizer\"": {}
+              }
+            },
+            "f:spec": {
+              "f:ipAddress": {}
+            }
+          },
+          "manager": "kc-networking-controller",
+          "operation": "Update",
+          "time": "2026-09-22T04:10:56Z"
+        },
+        {
+          "apiVersion": "networking.kubercloud.com/v1",
+          "fieldsType": "FieldsV1",
+          "fieldsV1": {
+            "f:status": {
+              ".": {},
+              "f:boundResource": {
+                ".": {},
+                "f:disabled": {},
+                "f:nodeName": {},
+                "f:observedGeneration": {},
+                "f:resource": {},
+                "f:resourceType": {},
+                "f:vpc": {}
+              },
+              "f:conditions": {
+                ".": {},
+                "k:{\"type\":\"Initialized\"}": {
+                  ".": {},
+                  "f:lastTransitionTime": {},
+                  "f:message": {},
+                  "f:reason": {},
+                  "f:status": {},
+                  "f:type": {}
+                },
+                "k:{\"type\":\"Valid\"}": {
+                  ".": {},
+                  "f:lastTransitionTime": {},
+                  "f:message": {},
+                  "f:reason": {},
+                  "f:status": {},
+                  "f:type": {}
+                }
+              },
+              "f:gateway": {},
+              "f:phase": {}
+            }
+          },
+          "manager": "kc-networking-controller",
+          "operation": "Update",
+          "subresource": "status",
+          "time": "2026-09-22T04:11:34Z"
+        }
+      ],
+      "name": "eip-9f335329a9f542e399a83e9d67484b9d",
+      "namespace": "rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b",
+      "resourceVersion": "3282391",
+      "uid": "9fd4cdb6-7245-452a-b77f-c77f060709d3"
+    },
+    "spec": {
+      "ipAddress": "10.242.249.2",
+      "ipVersion": "IPv4",
+      "subnet": "kcn-system/pool-bccbe24eba884dc5a377e0bf48f6a2a2"
+    },
+    "status": {
+      "boundResource": {
+        "disabled": false,
+        "nodeName": "ani-02",
+        "observedGeneration": 1,
+        "resource": "snat-20516d09f646408c9d93aa409173ad1b",
+        "resourceType": "Snat",
+        "vpc": "rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b/vpc-6f6d95e73a1f44818cd9d9606b7f2cdd"
+      },
+      "conditions": [
+        {
+          "lastTransitionTime": "2026-09-22T04:10:56Z",
+          "message": "",
+          "reason": "Initialized",
+          "status": "True",
+          "type": "Initialized"
+        },
+        {
+          "lastTransitionTime": "2026-09-22T04:10:56Z",
+          "message": "",
+          "reason": "Valid",
+          "status": "True",
+          "type": "Valid"
+        }
+      ],
+      "gateway": "kcn-system/kcn-cluster",
+      "phase": "Bound"
+    }
+  },
+  {
+    "apiVersion": "networking.kubercloud.com/v1",
+    "kind": "Snat",
+    "metadata": {
+      "creationTimestamp": "2026-09-22T04:11:33Z",
+      "finalizers": [
+        "networking.kubercloud.com/finalizer"
+      ],
+      "generation": 1,
+      "labels": {
+        "network.ani.io/binding-id": "e3d7cff2-ed5b-4046-b232-458cc8069bc5",
+        "network.ani.io/managed-by": "ani-network-service",
+        "network.ani.io/resource-id": "snat_20516d09f646408c9d93aa409173ad1b",
+        "network.ani.io/tenant-id": "fc8620ea-5560-4207-a9f0-09b73638ca2b"
+      },
+      "managedFields": [
+        {
+          "apiVersion": "networking.kubercloud.com/v1",
+          "fieldsType": "FieldsV1",
+          "fieldsV1": {
+            "f:metadata": {
+              "f:labels": {
+                ".": {},
+                "f:network.ani.io/binding-id": {},
+                "f:network.ani.io/managed-by": {},
+                "f:network.ani.io/resource-id": {},
+                "f:network.ani.io/tenant-id": {}
+              }
+            },
+            "f:spec": {
+              ".": {},
+              "f:disable": {},
+              "f:eip": {},
+              "f:vpc": {}
+            }
+          },
+          "manager": "ani-network-service",
+          "operation": "Update",
+          "time": "2026-09-22T04:11:33Z"
+        },
+        {
+          "apiVersion": "networking.kubercloud.com/v1",
+          "fieldsType": "FieldsV1",
+          "fieldsV1": {
+            "f:metadata": {
+              "f:finalizers": {
+                ".": {},
+                "v:\"networking.kubercloud.com/finalizer\"": {}
+              }
+            }
+          },
+          "manager": "kc-networking-controller",
+          "operation": "Update",
+          "time": "2026-09-22T04:11:33Z"
+        },
+        {
+          "apiVersion": "networking.kubercloud.com/v1",
+          "fieldsType": "FieldsV1",
+          "fieldsV1": {
+            "f:status": {
+              ".": {},
+              "f:conditions": {
+                ".": {},
+                "k:{\"type\":\"Valid\"}": {
+                  ".": {},
+                  "f:lastTransitionTime": {},
+                  "f:message": {},
+                  "f:reason": {},
+                  "f:status": {},
+                  "f:type": {}
+                }
+              },
+              "f:eipAddress": {},
+              "f:phase": {}
+            }
+          },
+          "manager": "kc-networking-controller",
+          "operation": "Update",
+          "subresource": "status",
+          "time": "2026-09-22T04:11:34Z"
+        }
+      ],
+      "name": "snat-20516d09f646408c9d93aa409173ad1b",
+      "namespace": "rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b",
+      "resourceVersion": "3282392",
+      "uid": "ba2d191d-c7cf-4ff5-b812-0226dbf80737"
+    },
+    "spec": {
+      "disable": false,
+      "eip": "eip-9f335329a9f542e399a83e9d67484b9d",
+      "vpc": "vpc-6f6d95e73a1f44818cd9d9606b7f2cdd"
+    },
+    "status": {
+      "conditions": [
+        {
+          "lastTransitionTime": "2026-09-22T04:11:33Z",
+          "message": "",
+          "reason": "Valid",
+          "status": "True",
+          "type": "Valid"
+        }
+      ],
+      "eipAddress": "10.242.249.2",
+      "phase": "Bound"
+    }
+  },
+  {
+    "apiVersion": "v1",
+    "kind": "Pod",
+    "metadata": {
+      "annotations": {
+        "networking.kubercloud.com/vnic": "auto-rsctl-0922-intranet-a-vnic-bhnkj"
+      },
+      "creationTimestamp": "2026-09-22T04:03:51Z",
+      "generation": 1,
+      "labels": {
+        "network.ani.io/fixture-scope": "platform-intranet-qualification",
+        "network.ani.io/instance-id": "040cf156-783a-4048-9cf2-3714ad85587e",
+        "network.ani.io/test-run": "rsctl-0922"
+      },
+      "managedFields": [
+        {
+          "apiVersion": "v1",
+          "fieldsType": "FieldsV1",
+          "fieldsV1": {
+            "f:metadata": {
+              "f:annotations": {
+                ".": {},
+                "f:networking.kubercloud.com/vnic": {}
+              }
+            }
+          },
+          "manager": "kc-networking-controller",
+          "operation": "Update",
+          "time": "2026-09-22T04:03:51Z"
+        },
+        {
+          "apiVersion": "v1",
+          "fieldsType": "FieldsV1",
+          "fieldsV1": {
+            "f:metadata": {
+              "f:labels": {
+                ".": {},
+                "f:network.ani.io/fixture-scope": {},
+                "f:network.ani.io/instance-id": {},
+                "f:network.ani.io/test-run": {}
+              }
+            },
+            "f:spec": {
+              "f:automountServiceAccountToken": {},
+              "f:containers": {
+                "k:{\"name\":\"probe\"}": {
+                  ".": {},
+                  "f:env": {
+                    ".": {},
+                    "k:{\"name\":\"ANI_WORKLOAD_ID\"}": {
+                      ".": {},
+                      "f:name": {},
+                      "f:value": {}
+                    },
+                    "k:{\"name\":\"NET05_ID\"}": {
+                      ".": {},
+                      "f:name": {},
+                      "f:value": {}
+                    },
+                    "k:{\"name\":\"NET05_PORT\"}": {
+                      ".": {},
+                      "f:name": {},
+                      "f:value": {}
+                    }
+                  },
+                  "f:image": {},
+                  "f:imagePullPolicy": {},
+                  "f:name": {},
+                  "f:ports": {
+                    ".": {},
+                    "k:{\"containerPort\":8080,\"protocol\":\"TCP\"}": {
+                      ".": {},
+                      "f:containerPort": {},
+                      "f:protocol": {}
+                    }
+                  },
+                  "f:resources": {
+                    ".": {},
+                    "f:limits": {
+                      ".": {},
+                      "f:cpu": {},
+                      "f:memory": {}
+                    },
+                    "f:requests": {
+                      ".": {},
+                      "f:cpu": {},
+                      "f:memory": {}
+                    }
+                  },
+                  "f:securityContext": {
+                    ".": {},
+                    "f:allowPrivilegeEscalation": {},
+                    "f:capabilities": {
+                      ".": {},
+                      "f:drop": {}
+                    },
+                    "f:readOnlyRootFilesystem": {}
+                  },
+                  "f:terminationMessagePath": {},
+                  "f:terminationMessagePolicy": {}
+                }
+              },
+              "f:dnsPolicy": {},
+              "f:enableServiceLinks": {},
+              "f:nodeSelector": {},
+              "f:restartPolicy": {},
+              "f:schedulerName": {},
+              "f:securityContext": {
+                ".": {},
+                "f:runAsGroup": {},
+                "f:runAsNonRoot": {},
+                "f:runAsUser": {},
+                "f:seccompProfile": {
+                  ".": {},
+                  "f:type": {}
+                }
+              },
+              "f:terminationGracePeriodSeconds": {}
+            }
+          },
+          "manager": "kubectl-create",
+          "operation": "Update",
+          "time": "2026-09-22T04:03:51Z"
+        },
+        {
+          "apiVersion": "v1",
+          "fieldsType": "FieldsV1",
+          "fieldsV1": {
+            "f:status": {
+              "f:conditions": {
+                "k:{\"type\":\"ContainersReady\"}": {
+                  ".": {},
+                  "f:lastProbeTime": {},
+                  "f:lastTransitionTime": {},
+                  "f:observedGeneration": {},
+                  "f:status": {},
+                  "f:type": {}
+                },
+                "k:{\"type\":\"Initialized\"}": {
+                  ".": {},
+                  "f:lastProbeTime": {},
+                  "f:lastTransitionTime": {},
+                  "f:observedGeneration": {},
+                  "f:status": {},
+                  "f:type": {}
+                },
+                "k:{\"type\":\"PodReadyToStartContainers\"}": {
+                  ".": {},
+                  "f:lastProbeTime": {},
+                  "f:lastTransitionTime": {},
+                  "f:observedGeneration": {},
+                  "f:status": {},
+                  "f:type": {}
+                },
+                "k:{\"type\":\"PodScheduled\"}": {
+                  "f:observedGeneration": {}
+                },
+                "k:{\"type\":\"Ready\"}": {
+                  ".": {},
+                  "f:lastProbeTime": {},
+                  "f:lastTransitionTime": {},
+                  "f:observedGeneration": {},
+                  "f:status": {},
+                  "f:type": {}
+                }
+              },
+              "f:containerStatuses": {},
+              "f:hostIP": {},
+              "f:hostIPs": {},
+              "f:observedGeneration": {},
+              "f:phase": {},
+              "f:podIP": {},
+              "f:podIPs": {
+                ".": {},
+                "k:{\"ip\":\"10.16.0.12\"}": {
+                  ".": {},
+                  "f:ip": {}
+                }
+              },
+              "f:startTime": {}
+            }
+          },
+          "manager": "kubelet",
+          "operation": "Update",
+          "subresource": "status",
+          "time": "2026-09-22T04:03:54Z"
+        }
+      ],
+      "name": "rsctl-0922-intranet-a",
+      "namespace": "rsctl-0922",
+      "resourceVersion": "3280058",
+      "uid": "afa8b566-a04f-4671-85b1-71880e576748"
+    },
+    "spec": {
+      "automountServiceAccountToken": false,
+      "containers": [
+        {
+          "env": [
+            {
+              "name": "NET05_ID",
+              "value": "rsctl-0922"
+            },
+            {
+              "name": "ANI_WORKLOAD_ID",
+              "value": "040cf156-783a-4048-9cf2-3714ad85587e"
+            },
+            {
+              "name": "NET05_PORT",
+              "value": "8080"
+            }
+          ],
+          "image": "localhost/lb02-2b3122-probe@sha256:647c2acd8e115511a18506014995ec01b7d0d62fbc05f2a6e51a5c65c2a3fcce",
+          "imagePullPolicy": "Never",
+          "name": "probe",
+          "ports": [
+            {
+              "containerPort": 8080,
+              "protocol": "TCP"
+            }
+          ],
+          "resources": {
+            "limits": {
+              "cpu": "100m",
+              "memory": "64Mi"
+            },
+            "requests": {
+              "cpu": "10m",
+              "memory": "32Mi"
+            }
+          },
+          "securityContext": {
+            "allowPrivilegeEscalation": false,
+            "capabilities": {
+              "drop": [
+                "ALL"
+              ]
+            },
+            "readOnlyRootFilesystem": true
+          },
+          "terminationMessagePath": "/dev/termination-log",
+          "terminationMessagePolicy": "File"
+        }
+      ],
+      "dnsPolicy": "ClusterFirst",
+      "enableServiceLinks": true,
+      "nodeName": "ani-02",
+      "nodeSelector": {
+        "kubernetes.io/hostname": "ani-02"
+      },
+      "preemptionPolicy": "PreemptLowerPriority",
+      "priority": 0,
+      "restartPolicy": "Always",
+      "schedulerName": "default-scheduler",
+      "securityContext": {
+        "runAsGroup": 65532,
+        "runAsNonRoot": true,
+        "runAsUser": 65532,
+        "seccompProfile": {
+          "type": "RuntimeDefault"
+        }
+      },
+      "serviceAccount": "default",
+      "serviceAccountName": "default",
+      "terminationGracePeriodSeconds": 30,
+      "tolerations": [
+        {
+          "effect": "NoExecute",
+          "key": "node.kubernetes.io/not-ready",
+          "operator": "Exists",
+          "tolerationSeconds": 300
+        },
+        {
+          "effect": "NoExecute",
+          "key": "node.kubernetes.io/unreachable",
+          "operator": "Exists",
+          "tolerationSeconds": 300
+        }
+      ]
+    },
+    "status": {
+      "conditions": [
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-09-22T04:03:54Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "PodReadyToStartContainers"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-09-22T04:03:51Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "Initialized"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-09-22T04:03:54Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "Ready"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-09-22T04:03:54Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "ContainersReady"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-09-22T04:03:51Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "PodScheduled"
+        }
+      ],
+      "containerStatuses": [
+        {
+          "allocatedResources": {
+            "cpu": "10m",
+            "memory": "32Mi"
+          },
+          "containerID": "containerd://26aaefe0038a1c161a41c4ba86ba14dfd755a6f1ba14351d1d811b0adc6df548",
+          "image": "localhost/lb02-2b3122-probe:20260915",
+          "imageID": "docker.io/library/import-2026-09-15@sha256:6dc16949364cbd67c142d6d0ca3aa6353146917816936e63beb672621fcb9295",
+          "lastState": {},
+          "name": "probe",
+          "ready": true,
+          "resources": {
+            "limits": {
+              "cpu": "100m",
+              "memory": "64Mi"
+            },
+            "requests": {
+              "cpu": "10m",
+              "memory": "32Mi"
+            }
+          },
+          "restartCount": 0,
+          "started": true,
+          "state": {
+            "running": {
+              "startedAt": "2026-09-22T04:03:53Z"
+            }
+          },
+          "user": {
+            "linux": {
+              "gid": 65532,
+              "supplementalGroups": [
+                65532
+              ],
+              "uid": 65532
+            }
+          }
+        }
+      ],
+      "hostIP": "172.16.101.11",
+      "hostIPs": [
+        {
+          "ip": "172.16.101.11"
+        }
+      ],
+      "observedGeneration": 1,
+      "phase": "Running",
+      "podIP": "10.16.0.12",
+      "podIPs": [
+        {
+          "ip": "10.16.0.12"
+        }
+      ],
+      "qosClass": "Burstable",
+      "startTime": "2026-09-22T04:03:51Z"
+    }
+  },
+  {
+    "apiVersion": "v1",
+    "kind": "Pod",
+    "metadata": {
+      "annotations": {
+        "networking.kubercloud.com/vnic": "auto-rsctl-0922-intranet-b-vnic-74892"
+      },
+      "creationTimestamp": "2026-09-22T04:03:51Z",
+      "generation": 1,
+      "labels": {
+        "network.ani.io/fixture-scope": "platform-intranet-qualification",
+        "network.ani.io/instance-id": "95a8cb3b-499c-4ec1-ae33-079dbd067578",
+        "network.ani.io/test-run": "rsctl-0922"
+      },
+      "managedFields": [
+        {
+          "apiVersion": "v1",
+          "fieldsType": "FieldsV1",
+          "fieldsV1": {
+            "f:metadata": {
+              "f:labels": {
+                ".": {},
+                "f:network.ani.io/fixture-scope": {},
+                "f:network.ani.io/instance-id": {},
+                "f:network.ani.io/test-run": {}
+              }
+            },
+            "f:spec": {
+              "f:automountServiceAccountToken": {},
+              "f:containers": {
+                "k:{\"name\":\"probe\"}": {
+                  ".": {},
+                  "f:env": {
+                    ".": {},
+                    "k:{\"name\":\"ANI_WORKLOAD_ID\"}": {
+                      ".": {},
+                      "f:name": {},
+                      "f:value": {}
+                    },
+                    "k:{\"name\":\"NET05_ID\"}": {
+                      ".": {},
+                      "f:name": {},
+                      "f:value": {}
+                    },
+                    "k:{\"name\":\"NET05_PORT\"}": {
+                      ".": {},
+                      "f:name": {},
+                      "f:value": {}
+                    }
+                  },
+                  "f:image": {},
+                  "f:imagePullPolicy": {},
+                  "f:name": {},
+                  "f:ports": {
+                    ".": {},
+                    "k:{\"containerPort\":8080,\"protocol\":\"TCP\"}": {
+                      ".": {},
+                      "f:containerPort": {},
+                      "f:protocol": {}
+                    }
+                  },
+                  "f:resources": {
+                    ".": {},
+                    "f:limits": {
+                      ".": {},
+                      "f:cpu": {},
+                      "f:memory": {}
+                    },
+                    "f:requests": {
+                      ".": {},
+                      "f:cpu": {},
+                      "f:memory": {}
+                    }
+                  },
+                  "f:securityContext": {
+                    ".": {},
+                    "f:allowPrivilegeEscalation": {},
+                    "f:capabilities": {
+                      ".": {},
+                      "f:drop": {}
+                    },
+                    "f:readOnlyRootFilesystem": {}
+                  },
+                  "f:terminationMessagePath": {},
+                  "f:terminationMessagePolicy": {}
+                }
+              },
+              "f:dnsPolicy": {},
+              "f:enableServiceLinks": {},
+              "f:nodeSelector": {},
+              "f:restartPolicy": {},
+              "f:schedulerName": {},
+              "f:securityContext": {
+                ".": {},
+                "f:runAsGroup": {},
+                "f:runAsNonRoot": {},
+                "f:runAsUser": {},
+                "f:seccompProfile": {
+                  ".": {},
+                  "f:type": {}
+                }
+              },
+              "f:terminationGracePeriodSeconds": {}
+            }
+          },
+          "manager": "kubectl-create",
+          "operation": "Update",
+          "time": "2026-09-22T04:03:51Z"
+        },
+        {
+          "apiVersion": "v1",
+          "fieldsType": "FieldsV1",
+          "fieldsV1": {
+            "f:metadata": {
+              "f:annotations": {
+                ".": {},
+                "f:networking.kubercloud.com/vnic": {}
+              }
+            }
+          },
+          "manager": "kc-networking-controller",
+          "operation": "Update",
+          "time": "2026-09-22T04:03:52Z"
+        },
+        {
+          "apiVersion": "v1",
+          "fieldsType": "FieldsV1",
+          "fieldsV1": {
+            "f:status": {
+              "f:conditions": {
+                "k:{\"type\":\"ContainersReady\"}": {
+                  ".": {},
+                  "f:lastProbeTime": {},
+                  "f:lastTransitionTime": {},
+                  "f:observedGeneration": {},
+                  "f:status": {},
+                  "f:type": {}
+                },
+                "k:{\"type\":\"Initialized\"}": {
+                  ".": {},
+                  "f:lastProbeTime": {},
+                  "f:lastTransitionTime": {},
+                  "f:observedGeneration": {},
+                  "f:status": {},
+                  "f:type": {}
+                },
+                "k:{\"type\":\"PodReadyToStartContainers\"}": {
+                  ".": {},
+                  "f:lastProbeTime": {},
+                  "f:lastTransitionTime": {},
+                  "f:observedGeneration": {},
+                  "f:status": {},
+                  "f:type": {}
+                },
+                "k:{\"type\":\"PodScheduled\"}": {
+                  "f:observedGeneration": {}
+                },
+                "k:{\"type\":\"Ready\"}": {
+                  ".": {},
+                  "f:lastProbeTime": {},
+                  "f:lastTransitionTime": {},
+                  "f:observedGeneration": {},
+                  "f:status": {},
+                  "f:type": {}
+                }
+              },
+              "f:containerStatuses": {},
+              "f:hostIP": {},
+              "f:hostIPs": {},
+              "f:observedGeneration": {},
+              "f:phase": {},
+              "f:podIP": {},
+              "f:podIPs": {
+                ".": {},
+                "k:{\"ip\":\"10.16.0.14\"}": {
+                  ".": {},
+                  "f:ip": {}
+                }
+              },
+              "f:startTime": {}
+            }
+          },
+          "manager": "kubelet",
+          "operation": "Update",
+          "subresource": "status",
+          "time": "2026-09-22T04:03:53Z"
+        }
+      ],
+      "name": "rsctl-0922-intranet-b",
+      "namespace": "rsctl-0922",
+      "resourceVersion": "3280052",
+      "uid": "13774c0d-d22e-4323-91d2-417616732b15"
+    },
+    "spec": {
+      "automountServiceAccountToken": false,
+      "containers": [
+        {
+          "env": [
+            {
+              "name": "NET05_ID",
+              "value": "rsctl-0922"
+            },
+            {
+              "name": "ANI_WORKLOAD_ID",
+              "value": "95a8cb3b-499c-4ec1-ae33-079dbd067578"
+            },
+            {
+              "name": "NET05_PORT",
+              "value": "8080"
+            }
+          ],
+          "image": "localhost/lb02-2b3122-probe@sha256:647c2acd8e115511a18506014995ec01b7d0d62fbc05f2a6e51a5c65c2a3fcce",
+          "imagePullPolicy": "Never",
+          "name": "probe",
+          "ports": [
+            {
+              "containerPort": 8080,
+              "protocol": "TCP"
+            }
+          ],
+          "resources": {
+            "limits": {
+              "cpu": "100m",
+              "memory": "64Mi"
+            },
+            "requests": {
+              "cpu": "10m",
+              "memory": "32Mi"
+            }
+          },
+          "securityContext": {
+            "allowPrivilegeEscalation": false,
+            "capabilities": {
+              "drop": [
+                "ALL"
+              ]
+            },
+            "readOnlyRootFilesystem": true
+          },
+          "terminationMessagePath": "/dev/termination-log",
+          "terminationMessagePolicy": "File"
+        }
+      ],
+      "dnsPolicy": "ClusterFirst",
+      "enableServiceLinks": true,
+      "nodeName": "ani-03",
+      "nodeSelector": {
+        "kubernetes.io/hostname": "ani-03"
+      },
+      "preemptionPolicy": "PreemptLowerPriority",
+      "priority": 0,
+      "restartPolicy": "Always",
+      "schedulerName": "default-scheduler",
+      "securityContext": {
+        "runAsGroup": 65532,
+        "runAsNonRoot": true,
+        "runAsUser": 65532,
+        "seccompProfile": {
+          "type": "RuntimeDefault"
+        }
+      },
+      "serviceAccount": "default",
+      "serviceAccountName": "default",
+      "terminationGracePeriodSeconds": 30,
+      "tolerations": [
+        {
+          "effect": "NoExecute",
+          "key": "node.kubernetes.io/not-ready",
+          "operator": "Exists",
+          "tolerationSeconds": 300
+        },
+        {
+          "effect": "NoExecute",
+          "key": "node.kubernetes.io/unreachable",
+          "operator": "Exists",
+          "tolerationSeconds": 300
+        }
+      ]
+    },
+    "status": {
+      "conditions": [
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-09-22T04:03:53Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "PodReadyToStartContainers"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-09-22T04:03:52Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "Initialized"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-09-22T04:03:53Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "Ready"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-09-22T04:03:53Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "ContainersReady"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-09-22T04:03:51Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "PodScheduled"
+        }
+      ],
+      "containerStatuses": [
+        {
+          "allocatedResources": {
+            "cpu": "10m",
+            "memory": "32Mi"
+          },
+          "containerID": "containerd://7143706b0a747c1054775dfaebc44f55e41edc3a26f5d018f6d3752e507eb236",
+          "image": "localhost/lb02-2b3122-probe:20260915",
+          "imageID": "docker.io/library/import-2026-09-15@sha256:6dc16949364cbd67c142d6d0ca3aa6353146917816936e63beb672621fcb9295",
+          "lastState": {},
+          "name": "probe",
+          "ready": true,
+          "resources": {
+            "limits": {
+              "cpu": "100m",
+              "memory": "64Mi"
+            },
+            "requests": {
+              "cpu": "10m",
+              "memory": "32Mi"
+            }
+          },
+          "restartCount": 0,
+          "started": true,
+          "state": {
+            "running": {
+              "startedAt": "2026-09-22T04:03:53Z"
+            }
+          },
+          "user": {
+            "linux": {
+              "gid": 65532,
+              "supplementalGroups": [
+                65532
+              ],
+              "uid": 65532
+            }
+          }
+        }
+      ],
+      "hostIP": "172.16.101.12",
+      "hostIPs": [
+        {
+          "ip": "172.16.101.12"
+        }
+      ],
+      "observedGeneration": 1,
+      "phase": "Running",
+      "podIP": "10.16.0.14",
+      "podIPs": [
+        {
+          "ip": "10.16.0.14"
+        }
+      ],
+      "qosClass": "Burstable",
+      "startTime": "2026-09-22T04:03:52Z"
+    }
+  },
+  {
+    "apiVersion": "v1",
+    "kind": "Pod",
+    "metadata": {
+      "annotations": {
+        "networking.kubercloud.com/subnet": "rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b/subnet-5c7286a6979f48c58a8fb49de275b9c9",
+        "networking.kubercloud.com/vnic": "auto-rsctl-0922-backend-a-vnic-wrdb6"
+      },
+      "creationTimestamp": "2026-09-22T04:12:05Z",
+      "generation": 1,
+      "labels": {
+        "network.ani.io/attachment-id": "att_ab341457d51549dcbea628f8147f8937",
+        "network.ani.io/generation": "1",
+        "network.ani.io/instance-id": "18faf959-c32c-4679-8207-a7e17197d773",
+        "network.ani.io/submission-id": "5080c1a4-c22a-4c32-992d-50de1d1c963b",
+        "network.ani.io/tenant-id": "fc8620ea-5560-4207-a9f0-09b73638ca2b",
+        "network.ani.io/test-run": "rsctl-0922"
+      },
+      "managedFields": [
+        {
+          "apiVersion": "v1",
+          "fieldsType": "FieldsV1",
+          "fieldsV1": {
+            "f:metadata": {
+              "f:annotations": {
+                "f:networking.kubercloud.com/vnic": {}
+              }
+            }
+          },
+          "manager": "kc-networking-controller",
+          "operation": "Update",
+          "time": "2026-09-22T04:12:05Z"
+        },
+        {
+          "apiVersion": "v1",
+          "fieldsType": "FieldsV1",
+          "fieldsV1": {
+            "f:metadata": {
+              "f:annotations": {
+                ".": {},
+                "f:networking.kubercloud.com/subnet": {}
+              },
+              "f:labels": {
+                ".": {},
+                "f:network.ani.io/attachment-id": {},
+                "f:network.ani.io/generation": {},
+                "f:network.ani.io/instance-id": {},
+                "f:network.ani.io/submission-id": {},
+                "f:network.ani.io/tenant-id": {},
+                "f:network.ani.io/test-run": {}
+              }
+            },
+            "f:spec": {
+              "f:automountServiceAccountToken": {},
+              "f:containers": {
+                "k:{\"name\":\"probe\"}": {
+                  ".": {},
+                  "f:env": {
+                    ".": {},
+                    "k:{\"name\":\"ANI_WORKLOAD_ID\"}": {
+                      ".": {},
+                      "f:name": {},
+                      "f:value": {}
+                    },
+                    "k:{\"name\":\"NET05_ID\"}": {
+                      ".": {},
+                      "f:name": {},
+                      "f:value": {}
+                    },
+                    "k:{\"name\":\"NET05_PORT\"}": {
+                      ".": {},
+                      "f:name": {},
+                      "f:value": {}
+                    }
+                  },
+                  "f:image": {},
+                  "f:imagePullPolicy": {},
+                  "f:name": {},
+                  "f:ports": {
+                    ".": {},
+                    "k:{\"containerPort\":8080,\"protocol\":\"TCP\"}": {
+                      ".": {},
+                      "f:containerPort": {},
+                      "f:protocol": {}
+                    }
+                  },
+                  "f:resources": {
+                    ".": {},
+                    "f:limits": {
+                      ".": {},
+                      "f:cpu": {},
+                      "f:memory": {}
+                    },
+                    "f:requests": {
+                      ".": {},
+                      "f:cpu": {},
+                      "f:memory": {}
+                    }
+                  },
+                  "f:securityContext": {
+                    ".": {},
+                    "f:allowPrivilegeEscalation": {},
+                    "f:capabilities": {
+                      ".": {},
+                      "f:drop": {}
+                    },
+                    "f:readOnlyRootFilesystem": {}
+                  },
+                  "f:terminationMessagePath": {},
+                  "f:terminationMessagePolicy": {}
+                }
+              },
+              "f:dnsPolicy": {},
+              "f:enableServiceLinks": {},
+              "f:nodeSelector": {},
+              "f:restartPolicy": {},
+              "f:schedulerName": {},
+              "f:securityContext": {
+                ".": {},
+                "f:runAsGroup": {},
+                "f:runAsNonRoot": {},
+                "f:runAsUser": {},
+                "f:seccompProfile": {
+                  ".": {},
+                  "f:type": {}
+                }
+              },
+              "f:terminationGracePeriodSeconds": {}
+            }
+          },
+          "manager": "kubectl-create",
+          "operation": "Update",
+          "time": "2026-09-22T04:12:05Z"
+        },
+        {
+          "apiVersion": "v1",
+          "fieldsType": "FieldsV1",
+          "fieldsV1": {
+            "f:status": {
+              "f:conditions": {
+                "k:{\"type\":\"ContainersReady\"}": {
+                  ".": {},
+                  "f:lastProbeTime": {},
+                  "f:lastTransitionTime": {},
+                  "f:observedGeneration": {},
+                  "f:status": {},
+                  "f:type": {}
+                },
+                "k:{\"type\":\"Initialized\"}": {
+                  ".": {},
+                  "f:lastProbeTime": {},
+                  "f:lastTransitionTime": {},
+                  "f:observedGeneration": {},
+                  "f:status": {},
+                  "f:type": {}
+                },
+                "k:{\"type\":\"PodReadyToStartContainers\"}": {
+                  ".": {},
+                  "f:lastProbeTime": {},
+                  "f:lastTransitionTime": {},
+                  "f:observedGeneration": {},
+                  "f:status": {},
+                  "f:type": {}
+                },
+                "k:{\"type\":\"PodScheduled\"}": {
+                  "f:observedGeneration": {}
+                },
+                "k:{\"type\":\"Ready\"}": {
+                  ".": {},
+                  "f:lastProbeTime": {},
+                  "f:lastTransitionTime": {},
+                  "f:observedGeneration": {},
+                  "f:status": {},
+                  "f:type": {}
+                }
+              },
+              "f:containerStatuses": {},
+              "f:hostIP": {},
+              "f:hostIPs": {},
+              "f:observedGeneration": {},
+              "f:phase": {},
+              "f:podIP": {},
+              "f:podIPs": {
+                ".": {},
+                "k:{\"ip\":\"10.237.1.2\"}": {
+                  ".": {},
+                  "f:ip": {}
+                }
+              },
+              "f:startTime": {}
+            }
+          },
+          "manager": "kubelet",
+          "operation": "Update",
+          "subresource": "status",
+          "time": "2026-09-22T04:12:07Z"
+        }
+      ],
+      "name": "rsctl-0922-backend-a",
+      "namespace": "rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b",
+      "resourceVersion": "3282617",
+      "uid": "4a750088-ac5b-407f-b78a-dc4fc8e202d9"
+    },
+    "spec": {
+      "automountServiceAccountToken": false,
+      "containers": [
+        {
+          "env": [
+            {
+              "name": "NET05_ID",
+              "value": "rsctl-0922"
+            },
+            {
+              "name": "ANI_WORKLOAD_ID",
+              "value": "18faf959-c32c-4679-8207-a7e17197d773"
+            },
+            {
+              "name": "NET05_PORT",
+              "value": "8080"
+            }
+          ],
+          "image": "localhost/lb02-2b3122-probe@sha256:647c2acd8e115511a18506014995ec01b7d0d62fbc05f2a6e51a5c65c2a3fcce",
+          "imagePullPolicy": "Never",
+          "name": "probe",
+          "ports": [
+            {
+              "containerPort": 8080,
+              "protocol": "TCP"
+            }
+          ],
+          "resources": {
+            "limits": {
+              "cpu": "100m",
+              "memory": "64Mi"
+            },
+            "requests": {
+              "cpu": "10m",
+              "memory": "32Mi"
+            }
+          },
+          "securityContext": {
+            "allowPrivilegeEscalation": false,
+            "capabilities": {
+              "drop": [
+                "ALL"
+              ]
+            },
+            "readOnlyRootFilesystem": true
+          },
+          "terminationMessagePath": "/dev/termination-log",
+          "terminationMessagePolicy": "File"
+        }
+      ],
+      "dnsPolicy": "ClusterFirst",
+      "enableServiceLinks": true,
+      "nodeName": "ani-02",
+      "nodeSelector": {
+        "kubernetes.io/hostname": "ani-02"
+      },
+      "preemptionPolicy": "PreemptLowerPriority",
+      "priority": 0,
+      "restartPolicy": "Always",
+      "schedulerName": "default-scheduler",
+      "securityContext": {
+        "runAsGroup": 65532,
+        "runAsNonRoot": true,
+        "runAsUser": 65532,
+        "seccompProfile": {
+          "type": "RuntimeDefault"
+        }
+      },
+      "serviceAccount": "default",
+      "serviceAccountName": "default",
+      "terminationGracePeriodSeconds": 30,
+      "tolerations": [
+        {
+          "effect": "NoExecute",
+          "key": "node.kubernetes.io/not-ready",
+          "operator": "Exists",
+          "tolerationSeconds": 300
+        },
+        {
+          "effect": "NoExecute",
+          "key": "node.kubernetes.io/unreachable",
+          "operator": "Exists",
+          "tolerationSeconds": 300
+        }
+      ]
+    },
+    "status": {
+      "conditions": [
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-09-22T04:12:07Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "PodReadyToStartContainers"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-09-22T04:12:05Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "Initialized"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-09-22T04:12:07Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "Ready"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-09-22T04:12:07Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "ContainersReady"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-09-22T04:12:05Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "PodScheduled"
+        }
+      ],
+      "containerStatuses": [
+        {
+          "allocatedResources": {
+            "cpu": "10m",
+            "memory": "32Mi"
+          },
+          "containerID": "containerd://a5b267f48ddfeed5276544a40e5db21c07a83b6dfe5c74c4240669c85bbff71d",
+          "image": "localhost/lb02-2b3122-probe:20260915",
+          "imageID": "docker.io/library/import-2026-09-15@sha256:6dc16949364cbd67c142d6d0ca3aa6353146917816936e63beb672621fcb9295",
+          "lastState": {},
+          "name": "probe",
+          "ready": true,
+          "resources": {
+            "limits": {
+              "cpu": "100m",
+              "memory": "64Mi"
+            },
+            "requests": {
+              "cpu": "10m",
+              "memory": "32Mi"
+            }
+          },
+          "restartCount": 0,
+          "started": true,
+          "state": {
+            "running": {
+              "startedAt": "2026-09-22T04:12:06Z"
+            }
+          },
+          "user": {
+            "linux": {
+              "gid": 65532,
+              "supplementalGroups": [
+                65532
+              ],
+              "uid": 65532
+            }
+          }
+        }
+      ],
+      "hostIP": "172.16.101.11",
+      "hostIPs": [
+        {
+          "ip": "172.16.101.11"
+        }
+      ],
+      "observedGeneration": 1,
+      "phase": "Running",
+      "podIP": "10.237.1.2",
+      "podIPs": [
+        {
+          "ip": "10.237.1.2"
+        }
+      ],
+      "qosClass": "Burstable",
+      "startTime": "2026-09-22T04:12:05Z"
+    }
+  },
+  {
+    "apiVersion": "v1",
+    "kind": "Pod",
+    "metadata": {
+      "annotations": {
+        "networking.kubercloud.com/subnet": "rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b/subnet-5c7286a6979f48c58a8fb49de275b9c9",
+        "networking.kubercloud.com/vnic": "auto-rsctl-0922-backend-b-vnic-kw6n2"
+      },
+      "creationTimestamp": "2026-09-22T04:12:06Z",
+      "generation": 1,
+      "labels": {
+        "network.ani.io/attachment-id": "att_66f3ace97aaf4cb0872fd38996cfcb75",
+        "network.ani.io/generation": "1",
+        "network.ani.io/instance-id": "680c8612-0689-4453-9a54-36b7d231d939",
+        "network.ani.io/submission-id": "08425f14-b4e5-4b2c-9b0c-bd30b2f86382",
+        "network.ani.io/tenant-id": "fc8620ea-5560-4207-a9f0-09b73638ca2b",
+        "network.ani.io/test-run": "rsctl-0922"
+      },
+      "managedFields": [
+        {
+          "apiVersion": "v1",
+          "fieldsType": "FieldsV1",
+          "fieldsV1": {
+            "f:metadata": {
+              "f:annotations": {
+                "f:networking.kubercloud.com/vnic": {}
+              }
+            }
+          },
+          "manager": "kc-networking-controller",
+          "operation": "Update",
+          "time": "2026-09-22T04:12:06Z"
+        },
+        {
+          "apiVersion": "v1",
+          "fieldsType": "FieldsV1",
+          "fieldsV1": {
+            "f:metadata": {
+              "f:annotations": {
+                ".": {},
+                "f:networking.kubercloud.com/subnet": {}
+              },
+              "f:labels": {
+                ".": {},
+                "f:network.ani.io/attachment-id": {},
+                "f:network.ani.io/generation": {},
+                "f:network.ani.io/instance-id": {},
+                "f:network.ani.io/submission-id": {},
+                "f:network.ani.io/tenant-id": {},
+                "f:network.ani.io/test-run": {}
+              }
+            },
+            "f:spec": {
+              "f:automountServiceAccountToken": {},
+              "f:containers": {
+                "k:{\"name\":\"probe\"}": {
+                  ".": {},
+                  "f:env": {
+                    ".": {},
+                    "k:{\"name\":\"ANI_WORKLOAD_ID\"}": {
+                      ".": {},
+                      "f:name": {},
+                      "f:value": {}
+                    },
+                    "k:{\"name\":\"NET05_ID\"}": {
+                      ".": {},
+                      "f:name": {},
+                      "f:value": {}
+                    },
+                    "k:{\"name\":\"NET05_PORT\"}": {
+                      ".": {},
+                      "f:name": {},
+                      "f:value": {}
+                    }
+                  },
+                  "f:image": {},
+                  "f:imagePullPolicy": {},
+                  "f:name": {},
+                  "f:ports": {
+                    ".": {},
+                    "k:{\"containerPort\":8080,\"protocol\":\"TCP\"}": {
+                      ".": {},
+                      "f:containerPort": {},
+                      "f:protocol": {}
+                    }
+                  },
+                  "f:resources": {
+                    ".": {},
+                    "f:limits": {
+                      ".": {},
+                      "f:cpu": {},
+                      "f:memory": {}
+                    },
+                    "f:requests": {
+                      ".": {},
+                      "f:cpu": {},
+                      "f:memory": {}
+                    }
+                  },
+                  "f:securityContext": {
+                    ".": {},
+                    "f:allowPrivilegeEscalation": {},
+                    "f:capabilities": {
+                      ".": {},
+                      "f:drop": {}
+                    },
+                    "f:readOnlyRootFilesystem": {}
+                  },
+                  "f:terminationMessagePath": {},
+                  "f:terminationMessagePolicy": {}
+                }
+              },
+              "f:dnsPolicy": {},
+              "f:enableServiceLinks": {},
+              "f:nodeSelector": {},
+              "f:restartPolicy": {},
+              "f:schedulerName": {},
+              "f:securityContext": {
+                ".": {},
+                "f:runAsGroup": {},
+                "f:runAsNonRoot": {},
+                "f:runAsUser": {},
+                "f:seccompProfile": {
+                  ".": {},
+                  "f:type": {}
+                }
+              },
+              "f:terminationGracePeriodSeconds": {}
+            }
+          },
+          "manager": "kubectl-create",
+          "operation": "Update",
+          "time": "2026-09-22T04:12:06Z"
+        },
+        {
+          "apiVersion": "v1",
+          "fieldsType": "FieldsV1",
+          "fieldsV1": {
+            "f:status": {
+              "f:conditions": {
+                "k:{\"type\":\"ContainersReady\"}": {
+                  ".": {},
+                  "f:lastProbeTime": {},
+                  "f:lastTransitionTime": {},
+                  "f:observedGeneration": {},
+                  "f:status": {},
+                  "f:type": {}
+                },
+                "k:{\"type\":\"Initialized\"}": {
+                  ".": {},
+                  "f:lastProbeTime": {},
+                  "f:lastTransitionTime": {},
+                  "f:observedGeneration": {},
+                  "f:status": {},
+                  "f:type": {}
+                },
+                "k:{\"type\":\"PodReadyToStartContainers\"}": {
+                  ".": {},
+                  "f:lastProbeTime": {},
+                  "f:lastTransitionTime": {},
+                  "f:observedGeneration": {},
+                  "f:status": {},
+                  "f:type": {}
+                },
+                "k:{\"type\":\"PodScheduled\"}": {
+                  "f:observedGeneration": {}
+                },
+                "k:{\"type\":\"Ready\"}": {
+                  ".": {},
+                  "f:lastProbeTime": {},
+                  "f:lastTransitionTime": {},
+                  "f:observedGeneration": {},
+                  "f:status": {},
+                  "f:type": {}
+                }
+              },
+              "f:containerStatuses": {},
+              "f:hostIP": {},
+              "f:hostIPs": {},
+              "f:observedGeneration": {},
+              "f:phase": {},
+              "f:podIP": {},
+              "f:podIPs": {
+                ".": {},
+                "k:{\"ip\":\"10.237.1.3\"}": {
+                  ".": {},
+                  "f:ip": {}
+                }
+              },
+              "f:startTime": {}
+            }
+          },
+          "manager": "kubelet",
+          "operation": "Update",
+          "subresource": "status",
+          "time": "2026-09-22T04:12:08Z"
+        }
+      ],
+      "name": "rsctl-0922-backend-b",
+      "namespace": "rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b",
+      "resourceVersion": "3282628",
+      "uid": "abd54d7a-07fd-4bd8-9b2f-a2e9450f1eac"
+    },
+    "spec": {
+      "automountServiceAccountToken": false,
+      "containers": [
+        {
+          "env": [
+            {
+              "name": "NET05_ID",
+              "value": "rsctl-0922"
+            },
+            {
+              "name": "ANI_WORKLOAD_ID",
+              "value": "680c8612-0689-4453-9a54-36b7d231d939"
+            },
+            {
+              "name": "NET05_PORT",
+              "value": "8080"
+            }
+          ],
+          "image": "localhost/lb02-2b3122-probe@sha256:647c2acd8e115511a18506014995ec01b7d0d62fbc05f2a6e51a5c65c2a3fcce",
+          "imagePullPolicy": "Never",
+          "name": "probe",
+          "ports": [
+            {
+              "containerPort": 8080,
+              "protocol": "TCP"
+            }
+          ],
+          "resources": {
+            "limits": {
+              "cpu": "100m",
+              "memory": "64Mi"
+            },
+            "requests": {
+              "cpu": "10m",
+              "memory": "32Mi"
+            }
+          },
+          "securityContext": {
+            "allowPrivilegeEscalation": false,
+            "capabilities": {
+              "drop": [
+                "ALL"
+              ]
+            },
+            "readOnlyRootFilesystem": true
+          },
+          "terminationMessagePath": "/dev/termination-log",
+          "terminationMessagePolicy": "File"
+        }
+      ],
+      "dnsPolicy": "ClusterFirst",
+      "enableServiceLinks": true,
+      "nodeName": "ani-03",
+      "nodeSelector": {
+        "kubernetes.io/hostname": "ani-03"
+      },
+      "preemptionPolicy": "PreemptLowerPriority",
+      "priority": 0,
+      "restartPolicy": "Always",
+      "schedulerName": "default-scheduler",
+      "securityContext": {
+        "runAsGroup": 65532,
+        "runAsNonRoot": true,
+        "runAsUser": 65532,
+        "seccompProfile": {
+          "type": "RuntimeDefault"
+        }
+      },
+      "serviceAccount": "default",
+      "serviceAccountName": "default",
+      "terminationGracePeriodSeconds": 30,
+      "tolerations": [
+        {
+          "effect": "NoExecute",
+          "key": "node.kubernetes.io/not-ready",
+          "operator": "Exists",
+          "tolerationSeconds": 300
+        },
+        {
+          "effect": "NoExecute",
+          "key": "node.kubernetes.io/unreachable",
+          "operator": "Exists",
+          "tolerationSeconds": 300
+        }
+      ]
+    },
+    "status": {
+      "conditions": [
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-09-22T04:12:08Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "PodReadyToStartContainers"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-09-22T04:12:06Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "Initialized"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-09-22T04:12:08Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "Ready"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-09-22T04:12:08Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "ContainersReady"
+        },
+        {
+          "lastProbeTime": null,
+          "lastTransitionTime": "2026-09-22T04:12:06Z",
+          "observedGeneration": 1,
+          "status": "True",
+          "type": "PodScheduled"
+        }
+      ],
+      "containerStatuses": [
+        {
+          "allocatedResources": {
+            "cpu": "10m",
+            "memory": "32Mi"
+          },
+          "containerID": "containerd://3da233604f65838019b6b5f01435faa23e0605b9548b001e7bd6754d9c5adf94",
+          "image": "localhost/lb02-2b3122-probe:20260915",
+          "imageID": "docker.io/library/import-2026-09-15@sha256:6dc16949364cbd67c142d6d0ca3aa6353146917816936e63beb672621fcb9295",
+          "lastState": {},
+          "name": "probe",
+          "ready": true,
+          "resources": {
+            "limits": {
+              "cpu": "100m",
+              "memory": "64Mi"
+            },
+            "requests": {
+              "cpu": "10m",
+              "memory": "32Mi"
+            }
+          },
+          "restartCount": 0,
+          "started": true,
+          "state": {
+            "running": {
+              "startedAt": "2026-09-22T04:12:08Z"
+            }
+          },
+          "user": {
+            "linux": {
+              "gid": 65532,
+              "supplementalGroups": [
+                65532
+              ],
+              "uid": 65532
+            }
+          }
+        }
+      ],
+      "hostIP": "172.16.101.12",
+      "hostIPs": [
+        {
+          "ip": "172.16.101.12"
+        }
+      ],
+      "observedGeneration": 1,
+      "phase": "Running",
+      "podIP": "10.237.1.3",
+      "podIPs": [
+        {
+          "ip": "10.237.1.3"
+        }
+      ],
+      "qosClass": "Burstable",
+      "startTime": "2026-09-22T04:12:06Z"
+    }
+  }
+]

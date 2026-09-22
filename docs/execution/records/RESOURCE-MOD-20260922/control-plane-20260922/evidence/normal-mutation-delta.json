@@ -1,0 +1,156 @@
+{
+  "at": "2026-09-22T04:24:32.132283+00:00",
+  "scope": "intentional candidate UpdateLoadBalancer plus CreateSubnet; not takeover identity comparison",
+  "removed_backend_objects": [
+    "gateway.envoyproxy.io/v1alpha1/Backend/rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b/lb-backend-36ddcb30d2094fbb9beb5941c9e89ea6",
+    "gateway.envoyproxy.io/v1alpha1/Backend/rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b/lb-backend-c3638358ec4f48b8be4c9e7764d10b2a"
+  ],
+  "added_backend_and_subnet_objects": [
+    "gateway.envoyproxy.io/v1alpha1/Backend/rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b/lb-backend-ae87fc15eda747e8a5e16586414aba33",
+    "gateway.envoyproxy.io/v1alpha1/Backend/rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b/lb-backend-b8e1dbac294a43d480f810489b4576e6",
+    "networking.kubercloud.com/v1/Subnet/rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b/subnet-49bfee315b444756ba3224a72c46c99c"
+  ],
+  "changes": [
+    {
+      "object": "gateway.envoyproxy.io/v1alpha1/BackendTrafficPolicy/rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b/lb-policy-cad3d14fa6004b16bae6d2eaae6ece5c",
+      "different_fields": [
+        "spec"
+      ],
+      "before_spec": {
+        "healthCheck": {
+          "active": {
+            "healthyThreshold": 1,
+            "interval": "5s",
+            "overrides": {
+              "port": 8080
+            },
+            "tcp": {},
+            "timeout": "3s",
+            "type": "TCP",
+            "unhealthyThreshold": 3
+          },
+          "panicThreshold": 0
+        },
+        "loadBalancer": {
+          "type": "RoundRobin"
+        },
+        "targetRefs": [
+          {
+            "group": "gateway.networking.k8s.io",
+            "kind": "HTTPRoute",
+            "name": "lb-route-9bbb0df2513647958dcf469ab7429ebb"
+          }
+        ]
+      },
+      "after_spec": {
+        "healthCheck": {
+          "active": {
+            "healthyThreshold": 1,
+            "interval": "7s",
+            "overrides": {
+              "port": 8080
+            },
+            "tcp": {},
+            "timeout": "3s",
+            "type": "TCP",
+            "unhealthyThreshold": 3
+          },
+          "panicThreshold": 0
+        },
+        "loadBalancer": {
+          "type": "RoundRobin"
+        },
+        "targetRefs": [
+          {
+            "group": "gateway.networking.k8s.io",
+            "kind": "HTTPRoute",
+            "name": "lb-route-9bbb0df2513647958dcf469ab7429ebb"
+          }
+        ]
+      }
+    },
+    {
+      "object": "gateway.networking.k8s.io/v1/HTTPRoute/rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b/lb-route-9bbb0df2513647958dcf469ab7429ebb",
+      "different_fields": [
+        "spec"
+      ],
+      "before_spec": {
+        "parentRefs": [
+          {
+            "group": "gateway.networking.k8s.io",
+            "kind": "Gateway",
+            "name": "lb-f70e064fde774daa95ececff63f5be91",
+            "sectionName": "http"
+          }
+        ],
+        "rules": [
+          {
+            "backendRefs": [
+              {
+                "group": "gateway.envoyproxy.io",
+                "kind": "Backend",
+                "name": "lb-backend-36ddcb30d2094fbb9beb5941c9e89ea6",
+                "port": 8080,
+                "weight": 1
+              },
+              {
+                "group": "gateway.envoyproxy.io",
+                "kind": "Backend",
+                "name": "lb-backend-c3638358ec4f48b8be4c9e7764d10b2a",
+                "port": 8080,
+                "weight": 1
+              }
+            ],
+            "matches": [
+              {
+                "path": {
+                  "type": "PathPrefix",
+                  "value": "/"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "after_spec": {
+        "parentRefs": [
+          {
+            "group": "gateway.networking.k8s.io",
+            "kind": "Gateway",
+            "name": "lb-f70e064fde774daa95ececff63f5be91",
+            "sectionName": "http"
+          }
+        ],
+        "rules": [
+          {
+            "backendRefs": [
+              {
+                "group": "gateway.envoyproxy.io",
+                "kind": "Backend",
+                "name": "lb-backend-b8e1dbac294a43d480f810489b4576e6",
+                "port": 8080,
+                "weight": 1
+              },
+              {
+                "group": "gateway.envoyproxy.io",
+                "kind": "Backend",
+                "name": "lb-backend-ae87fc15eda747e8a5e16586414aba33",
+                "port": 8080,
+                "weight": 1
+              }
+            ],
+            "matches": [
+              {
+                "path": {
+                  "type": "PathPrefix",
+                  "value": "/"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "result": "pass for bounded authorized object delta; all surviving object identities preserved"
+}

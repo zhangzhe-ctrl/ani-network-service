@@ -1,0 +1,23 @@
+{
+  "at": "2026-09-22T04:04:09.654573+00:00",
+  "command": [
+    "/home/chabking/workspace/ani-resource-service-runs/rsmod-20260921T1640Z/control-20260922T0400Z/private/runtime/bin/kubectl",
+    "--kubeconfig",
+    "/home/chabking/workspace/ani-resource-service-runs/rsmod-20260921T1640Z/control-20260922T0400Z/private/runtime/kubeconfig.json",
+    "--request-timeout=20s",
+    "get",
+    "configmap",
+    "kcn-config",
+    "-n",
+    "kcn-system",
+    "-o",
+    "json"
+  ],
+  "completed_at": "2026-09-22T04:04:09.794186+00:00",
+  "exit": 0,
+  "phase": "qualify",
+  "request": null,
+  "stderr": "",
+  "stdout": "{\n    \"apiVersion\": \"v1\",\n    \"data\": {\n        \"enablePortSecurity\": \"false\",\n        \"encapNetworks\": \"172.16.101.0/24\",\n        \"hasMultusCNI\": \"false\",\n        \"intranetNetworks\": \"- 172.16.101.0/24\\n- 172.16.201.0/24\\n- 172.16.202.0/24\\n- 10.96.0.0/16\\n\",\n        \"isDefaultCNI\": \"true\",\n        \"managedDevices\": \"ens35\",\n        \"nadDefaultNamespace\": \"kube-system\"\n    },\n    \"kind\": \"ConfigMap\",\n    \"metadata\": {\n        \"annotations\": {\n            \"network.ani.io/device-adoption-2f5c91188d083599\": \"a1fdc522-a807-40b7-89a6-986b0039ff43\"\n        },\n        \"creationTimestamp\": \"2026-09-14T12:26:10Z\",\n        \"name\": \"kcn-config\",\n        \"namespace\": \"kcn-system\",\n        \"resourceVersion\": \"240845\",\n        \"uid\": \"dcca6e9e-db3f-4ebe-8b27-8898e3a2939e\"\n    }\n}\n",
+  "step": "intranet-evidence"
+}

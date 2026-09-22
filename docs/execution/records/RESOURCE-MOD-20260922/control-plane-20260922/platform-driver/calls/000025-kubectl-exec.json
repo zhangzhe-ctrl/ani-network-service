@@ -1,0 +1,26 @@
+{
+  "at": "2026-09-22T04:04:14.845691+00:00",
+  "command": [
+    "/home/chabking/workspace/ani-resource-service-runs/rsmod-20260921T1640Z/control-20260922T0400Z/private/runtime/bin/kubectl",
+    "--kubeconfig",
+    "/home/chabking/workspace/ani-resource-service-runs/rsmod-20260921T1640Z/control-20260922T0400Z/private/runtime/owner-kubeconfig.json",
+    "--request-timeout=20s",
+    "exec",
+    "-n",
+    "rsctl-0922",
+    "rsctl-0922-intranet-b",
+    "-c",
+    "probe",
+    "--",
+    "getent",
+    "hosts",
+    "kubernetes.default.svc.cluster.local"
+  ],
+  "completed_at": "2026-09-22T04:04:15.394029+00:00",
+  "exit": 0,
+  "phase": "qualify",
+  "request": null,
+  "stderr": "",
+  "stdout": "10.96.0.1       kubernetes.default.svc.cluster.local\n",
+  "step": "intranet-evidence"
+}

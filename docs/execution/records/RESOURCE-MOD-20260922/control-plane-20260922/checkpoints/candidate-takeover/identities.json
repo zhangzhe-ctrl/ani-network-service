@@ -1,0 +1,2032 @@
+{
+  "networking.kubercloud.com/v1/VPC/rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b/vpc-6f6d95e73a1f44818cd9d9606b7f2cdd": {
+    "uid": "8a5ce9aa-a88e-4753-8ef6-29134d9afc35",
+    "labels": {
+      "network.ani.io/binding-id": "e06e4b6a-a475-4b8a-9bc3-89e3cd0a6ae7",
+      "network.ani.io/managed-by": "ani-network-service",
+      "network.ani.io/resource-id": "vpc_6f6d95e73a1f44818cd9d9606b7f2cdd",
+      "network.ani.io/tenant-id": "fc8620ea-5560-4207-a9f0-09b73638ca2b"
+    },
+    "owners": [],
+    "spec": {
+      "allowedNamespaces": {
+        "from": "Same"
+      },
+      "cidrBlock": "10.237.0.0/16",
+      "ipVersion": "IPv4"
+    },
+    "field_managers": [
+      "ani-network-service",
+      "kc-networking-controller"
+    ]
+  },
+  "networking.kubercloud.com/v1/Subnet/kcn-system/pool-bccbe24eba884dc5a377e0bf48f6a2a2": {
+    "uid": "c451fdc7-9cf3-4779-bc5a-b56843b4aeb2",
+    "labels": {
+      "network.ani.io/binding-id": "4630076b-5ca4-4070-b65c-52477d4940aa",
+      "network.ani.io/managed-by": "ani-network-service",
+      "network.ani.io/resource-id": "pool_bccbe24eba884dc5a377e0bf48f6a2a2",
+      "networking.kubercloud.com/gateway": "kcn-system.pool-bccbe24eba884dc5a377e0bf48f6a2a2"
+    },
+    "owners": [],
+    "spec": {
+      "allowedNamespaces": {
+        "from": "All"
+      },
+      "cidrBlock": "10.242.249.0/24",
+      "enableDHCP": false,
+      "excludeIPs": [
+        "10.242.249.1"
+      ],
+      "gateway": "kcn-system/kcn-cluster",
+      "gatewayIP": "10.242.249.1",
+      "ipVersion": "IPv4",
+      "natOutgoing": false,
+      "type": "Intranet"
+    },
+    "field_managers": [
+      "ani-network-service",
+      "kc-networking-controller"
+    ]
+  },
+  "networking.kubercloud.com/v1/Subnet/rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b/subnet-5c7286a6979f48c58a8fb49de275b9c9": {
+    "uid": "3970f05d-373b-4b3d-9600-ea9aa44a72e3",
+    "labels": {
+      "network.ani.io/binding-id": "b5583340-00e7-4cc5-a97f-d9bd341e4537",
+      "network.ani.io/managed-by": "ani-network-service",
+      "network.ani.io/resource-id": "subnet_5c7286a6979f48c58a8fb49de275b9c9",
+      "network.ani.io/tenant-id": "fc8620ea-5560-4207-a9f0-09b73638ca2b"
+    },
+    "owners": [],
+    "spec": {
+      "allowedNamespaces": {
+        "from": "Same"
+      },
+      "cidrBlock": "10.237.1.0/24",
+      "gateway": "rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b/vpc-6f6d95e73a1f44818cd9d9606b7f2cdd",
+      "gatewayIP": "10.237.1.1",
+      "ipVersion": "IPv4",
+      "type": "VPC"
+    },
+    "field_managers": [
+      "ani-network-service",
+      "kc-networking-controller"
+    ]
+  },
+  "networking.kubercloud.com/v1/Subnet/rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b/subnet-ec6f13bc33f2430c8fbb96e4b37240ef": {
+    "uid": "1a3b43c8-6e7f-42be-a4a0-63f5232f48e3",
+    "labels": {
+      "network.ani.io/binding-id": "dceb5acb-4189-434f-86b1-bf7f5bf8959a",
+      "network.ani.io/managed-by": "ani-network-service",
+      "network.ani.io/resource-id": "subnet_ec6f13bc33f2430c8fbb96e4b37240ef",
+      "network.ani.io/tenant-id": "fc8620ea-5560-4207-a9f0-09b73638ca2b"
+    },
+    "owners": [],
+    "spec": {
+      "allowedNamespaces": {
+        "from": "Same"
+      },
+      "cidrBlock": "10.237.0.0/24",
+      "gateway": "rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b/vpc-6f6d95e73a1f44818cd9d9606b7f2cdd",
+      "gatewayIP": "10.237.0.1",
+      "ipVersion": "IPv4",
+      "type": "VPC"
+    },
+    "field_managers": [
+      "ani-network-service",
+      "kc-networking-controller"
+    ]
+  },
+  "networking.kubercloud.com/v1/EIP/rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b/eip-9f335329a9f542e399a83e9d67484b9d": {
+    "uid": "9fd4cdb6-7245-452a-b77f-c77f060709d3",
+    "labels": {
+      "network.ani.io/binding-id": "584c5bbb-3bdc-4ea0-b609-5cb0f496e25c",
+      "network.ani.io/managed-by": "ani-network-service",
+      "network.ani.io/resource-id": "eip_9f335329a9f542e399a83e9d67484b9d",
+      "network.ani.io/tenant-id": "fc8620ea-5560-4207-a9f0-09b73638ca2b"
+    },
+    "owners": [],
+    "spec": {
+      "ipAddress": "10.242.249.2",
+      "ipVersion": "IPv4",
+      "subnet": "kcn-system/pool-bccbe24eba884dc5a377e0bf48f6a2a2"
+    },
+    "field_managers": [
+      "ani-network-service",
+      "kc-networking-controller"
+    ]
+  },
+  "networking.kubercloud.com/v1/Snat/rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b/snat-20516d09f646408c9d93aa409173ad1b": {
+    "uid": "ba2d191d-c7cf-4ff5-b812-0226dbf80737",
+    "labels": {
+      "network.ani.io/binding-id": "e3d7cff2-ed5b-4046-b232-458cc8069bc5",
+      "network.ani.io/managed-by": "ani-network-service",
+      "network.ani.io/resource-id": "snat_20516d09f646408c9d93aa409173ad1b",
+      "network.ani.io/tenant-id": "fc8620ea-5560-4207-a9f0-09b73638ca2b"
+    },
+    "owners": [],
+    "spec": {
+      "disable": false,
+      "eip": "eip-9f335329a9f542e399a83e9d67484b9d",
+      "vpc": "vpc-6f6d95e73a1f44818cd9d9606b7f2cdd"
+    },
+    "field_managers": [
+      "ani-network-service",
+      "kc-networking-controller"
+    ]
+  },
+  "gateway.networking.k8s.io/v1/Gateway/rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b/lb-f70e064fde774daa95ececff63f5be91": {
+    "uid": "960fe302-fa96-428b-a47b-de85a6cdb619",
+    "labels": {
+      "network.ani.io/binding-id": "8f5615bb-b16e-4a25-b9f4-87af6d9333be",
+      "network.ani.io/managed-by": "ani-network-service",
+      "network.ani.io/resource-id": "lb_f70e064fde774daa95ececff63f5be91",
+      "network.ani.io/tenant-id": "fc8620ea-5560-4207-a9f0-09b73638ca2b"
+    },
+    "owners": [],
+    "spec": {
+      "gatewayClassName": "lb-small-noeip",
+      "infrastructure": {
+        "annotations": {
+          "networking.kubercloud.com/lb_vip_address": "10.237.0.200",
+          "networking.kubercloud.com/lb_vpc": "rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b/vpc-6f6d95e73a1f44818cd9d9606b7f2cdd",
+          "networking.kubercloud.com/subnet": "rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b/subnet-ec6f13bc33f2430c8fbb96e4b37240ef"
+        }
+      },
+      "listeners": [
+        {
+          "allowedRoutes": {
+            "namespaces": {
+              "from": "Same"
+            }
+          },
+          "name": "http",
+          "port": 8081,
+          "protocol": "HTTP"
+        }
+      ]
+    },
+    "field_managers": [
+      "ani-network-service",
+      "envoy-gateway"
+    ]
+  },
+  "gateway.networking.k8s.io/v1/HTTPRoute/rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b/lb-route-9bbb0df2513647958dcf469ab7429ebb": {
+    "uid": "9213a563-7c0b-4e65-b60a-4421730e3639",
+    "labels": {
+      "network.ani.io/binding-id": "9bbb0df2-5136-4795-8dcf-469ab7429ebb",
+      "network.ani.io/managed-by": "ani-network-service",
+      "network.ani.io/resource-id": "lb_f70e064fde774daa95ececff63f5be91",
+      "network.ani.io/tenant-id": "fc8620ea-5560-4207-a9f0-09b73638ca2b"
+    },
+    "owners": [],
+    "spec": {
+      "parentRefs": [
+        {
+          "group": "gateway.networking.k8s.io",
+          "kind": "Gateway",
+          "name": "lb-f70e064fde774daa95ececff63f5be91",
+          "sectionName": "http"
+        }
+      ],
+      "rules": [
+        {
+          "backendRefs": [
+            {
+              "group": "gateway.envoyproxy.io",
+              "kind": "Backend",
+              "name": "lb-backend-36ddcb30d2094fbb9beb5941c9e89ea6",
+              "port": 8080,
+              "weight": 1
+            },
+            {
+              "group": "gateway.envoyproxy.io",
+              "kind": "Backend",
+              "name": "lb-backend-c3638358ec4f48b8be4c9e7764d10b2a",
+              "port": 8080,
+              "weight": 1
+            }
+          ],
+          "matches": [
+            {
+              "path": {
+                "type": "PathPrefix",
+                "value": "/"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "field_managers": [
+      "ani-network-service",
+      "envoy-gateway"
+    ]
+  },
+  "gateway.envoyproxy.io/v1alpha1/Backend/rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b/lb-backend-36ddcb30d2094fbb9beb5941c9e89ea6": {
+    "uid": "02f882cf-29ab-41a2-aa22-679bf1a19d64",
+    "labels": {
+      "network.ani.io/binding-id": "36ddcb30-d209-4fbb-9beb-5941c9e89ea6",
+      "network.ani.io/managed-by": "ani-network-service",
+      "network.ani.io/resource-id": "lb_f70e064fde774daa95ececff63f5be91",
+      "network.ani.io/tenant-id": "fc8620ea-5560-4207-a9f0-09b73638ca2b"
+    },
+    "owners": [],
+    "spec": {
+      "endpoints": [
+        {
+          "ip": {
+            "address": "10.237.1.3",
+            "port": 8080
+          }
+        }
+      ],
+      "type": "Endpoints"
+    },
+    "field_managers": [
+      "ani-network-service",
+      "envoy-gateway"
+    ]
+  },
+  "gateway.envoyproxy.io/v1alpha1/Backend/rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b/lb-backend-c3638358ec4f48b8be4c9e7764d10b2a": {
+    "uid": "bb30d699-2833-47b2-83fd-f8a733551942",
+    "labels": {
+      "network.ani.io/binding-id": "c3638358-ec4f-48b8-be4c-9e7764d10b2a",
+      "network.ani.io/managed-by": "ani-network-service",
+      "network.ani.io/resource-id": "lb_f70e064fde774daa95ececff63f5be91",
+      "network.ani.io/tenant-id": "fc8620ea-5560-4207-a9f0-09b73638ca2b"
+    },
+    "owners": [],
+    "spec": {
+      "endpoints": [
+        {
+          "ip": {
+            "address": "10.237.1.2",
+            "port": 8080
+          }
+        }
+      ],
+      "type": "Endpoints"
+    },
+    "field_managers": [
+      "ani-network-service",
+      "envoy-gateway"
+    ]
+  },
+  "gateway.envoyproxy.io/v1alpha1/BackendTrafficPolicy/rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b/lb-policy-cad3d14fa6004b16bae6d2eaae6ece5c": {
+    "uid": "f4ab87aa-dca0-4d3c-94b7-0467fdb4b2a0",
+    "labels": {
+      "network.ani.io/binding-id": "cad3d14f-a600-4b16-bae6-d2eaae6ece5c",
+      "network.ani.io/managed-by": "ani-network-service",
+      "network.ani.io/resource-id": "lb_f70e064fde774daa95ececff63f5be91",
+      "network.ani.io/tenant-id": "fc8620ea-5560-4207-a9f0-09b73638ca2b"
+    },
+    "owners": [],
+    "spec": {
+      "healthCheck": {
+        "active": {
+          "healthyThreshold": 1,
+          "interval": "5s",
+          "overrides": {
+            "port": 8080
+          },
+          "tcp": {},
+          "timeout": "3s",
+          "type": "TCP",
+          "unhealthyThreshold": 3
+        },
+        "panicThreshold": 0
+      },
+      "loadBalancer": {
+        "type": "RoundRobin"
+      },
+      "targetRefs": [
+        {
+          "group": "gateway.networking.k8s.io",
+          "kind": "HTTPRoute",
+          "name": "lb-route-9bbb0df2513647958dcf469ab7429ebb"
+        }
+      ]
+    },
+    "field_managers": [
+      "ani-network-service",
+      "envoy-gateway"
+    ]
+  },
+  "v1/Service/rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b/lb-f70e064fde774daa95ececff63f5be91": {
+    "uid": "bbd25e85-a2ea-4fc5-8d93-3944e0cd3da0",
+    "labels": {
+      "app.kubernetes.io/component": "proxy",
+      "app.kubernetes.io/managed-by": "envoy-gateway",
+      "app.kubernetes.io/name": "envoy",
+      "gateway.envoyproxy.io/owning-gateway-name": "lb-f70e064fde774daa95ececff63f5be91",
+      "gateway.envoyproxy.io/owning-gateway-namespace": "rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b",
+      "gateway.networking.k8s.io/gateway-name": "lb-f70e064fde774daa95ececff63f5be91"
+    },
+    "owners": [
+      {
+        "apiVersion": "gateway.networking.k8s.io/v1",
+        "kind": "Gateway",
+        "name": "lb-f70e064fde774daa95ececff63f5be91",
+        "uid": "960fe302-fa96-428b-a47b-de85a6cdb619"
+      }
+    ],
+    "spec": {
+      "clusterIP": "10.96.18.65",
+      "clusterIPs": [
+        "10.96.18.65"
+      ],
+      "internalTrafficPolicy": "Cluster",
+      "ipFamilies": [
+        "IPv4"
+      ],
+      "ipFamilyPolicy": "SingleStack",
+      "ports": [
+        {
+          "name": "http-8081",
+          "port": 8081,
+          "protocol": "TCP",
+          "targetPort": 8081
+        }
+      ],
+      "selector": {
+        "app.kubernetes.io/component": "proxy",
+        "app.kubernetes.io/managed-by": "envoy-gateway",
+        "app.kubernetes.io/name": "envoy",
+        "gateway.envoyproxy.io/owning-gateway-name": "lb-f70e064fde774daa95ececff63f5be91",
+        "gateway.envoyproxy.io/owning-gateway-namespace": "rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b",
+        "gateway.networking.k8s.io/gateway-name": "lb-f70e064fde774daa95ececff63f5be91"
+      },
+      "sessionAffinity": "None",
+      "type": "ClusterIP"
+    },
+    "field_managers": [
+      "envoy-gateway",
+      "kc-networking-controller"
+    ]
+  },
+  "apps/v1/Deployment/rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b/lb-f70e064fde774daa95ececff63f5be91": {
+    "uid": "06248023-f691-49d6-9180-7b90364330d3",
+    "labels": {
+      "app.kubernetes.io/component": "proxy",
+      "app.kubernetes.io/managed-by": "envoy-gateway",
+      "app.kubernetes.io/name": "envoy",
+      "gateway.envoyproxy.io/owning-gateway-name": "lb-f70e064fde774daa95ececff63f5be91",
+      "gateway.envoyproxy.io/owning-gateway-namespace": "rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b",
+      "gateway.networking.k8s.io/gateway-name": "lb-f70e064fde774daa95ececff63f5be91"
+    },
+    "owners": [
+      {
+        "apiVersion": "gateway.networking.k8s.io/v1",
+        "kind": "Gateway",
+        "name": "lb-f70e064fde774daa95ececff63f5be91",
+        "uid": "960fe302-fa96-428b-a47b-de85a6cdb619"
+      }
+    ],
+    "spec": {
+      "progressDeadlineSeconds": 600,
+      "replicas": 2,
+      "revisionHistoryLimit": 10,
+      "selector": {
+        "matchLabels": {
+          "app.kubernetes.io/component": "proxy",
+          "app.kubernetes.io/managed-by": "envoy-gateway",
+          "app.kubernetes.io/name": "envoy",
+          "gateway.envoyproxy.io/owning-gateway-name": "lb-f70e064fde774daa95ececff63f5be91",
+          "gateway.envoyproxy.io/owning-gateway-namespace": "rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b",
+          "gateway.networking.k8s.io/gateway-name": "lb-f70e064fde774daa95ececff63f5be91"
+        }
+      },
+      "strategy": {
+        "rollingUpdate": {
+          "maxSurge": "25%",
+          "maxUnavailable": "25%"
+        },
+        "type": "RollingUpdate"
+      },
+      "template": {
+        "metadata": {
+          "annotations": {
+            "networking.kubercloud.com/lb_vip_address": "10.237.0.200",
+            "networking.kubercloud.com/lb_vpc": "rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b/vpc-6f6d95e73a1f44818cd9d9606b7f2cdd",
+            "networking.kubercloud.com/subnet": "rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b/subnet-ec6f13bc33f2430c8fbb96e4b37240ef",
+            "prometheus.io/path": "/stats/prometheus",
+            "prometheus.io/port": "19001",
+            "prometheus.io/scrape": "true"
+          },
+          "labels": {
+            "app.kubernetes.io/component": "proxy",
+            "app.kubernetes.io/managed-by": "envoy-gateway",
+            "app.kubernetes.io/name": "envoy",
+            "gateway.envoyproxy.io/owning-gateway-name": "lb-f70e064fde774daa95ececff63f5be91",
+            "gateway.envoyproxy.io/owning-gateway-namespace": "rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b",
+            "gateway.networking.k8s.io/gateway-name": "lb-f70e064fde774daa95ececff63f5be91"
+          }
+        },
+        "spec": {
+          "automountServiceAccountToken": false,
+          "containers": [
+            {
+              "args": [
+                "--service-cluster",
+                "rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b/lb-f70e064fde774daa95ececff63f5be91",
+                "--service-node",
+                "$(ENVOY_POD_NAME)",
+                "--config-yaml",
+                "admin:\n  access_log:\n  - name: envoy.access_loggers.file\n    typed_config:\n      \"@type\": type.googleapis.com/envoy.extensions.access_loggers.file.v3.FileAccessLog\n      path: /dev/null\n  address:\n    socket_address:\n      address: 127.0.0.1\n      port_value: 19000\ncluster_manager:\n  local_cluster_name: rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b/lb-f70e064fde774daa95ececff63f5be91\nnode:\n  locality:\n    zone: $(ENVOY_SERVICE_ZONE)\ndeferredStatOptions:\n  enableDeferredCreationStats: true\nstats_config:\n  use_all_default_tags: true\n  stats_tags:\n  - regex: \\.zone(\\.(([^\\.]+)\\.))\n    tag_name: from_zone\n  - regex: \\.zone\\.[^\\.]+\\.(([^\\.]+)\\.)\n    tag_name: to_zone\n  - regex: \"^cluster(\\\\..+\\\\.(.+))\\\\.total_match_count$\"\n    tag_name: socket_match_name\n  - regex: \"circuit_breakers\\\\.((.+?)\\\\.).+\"\n    tag_name: priority\nlayered_runtime:\n  layers:\n  - name: global_config\n    static_layer:\n      envoy.restart_features.use_eds_cache_for_ads: true\n      re2.max_program_size.error_level: 4294967295\n      re2.max_program_size.warn_level: 1000\ndynamic_resources:\n  ads_config:\n    api_type: DELTA_GRPC\n    transport_api_version: V3\n    grpc_services:\n    - envoy_grpc:\n        cluster_name: xds_cluster\n    set_node_on_first_message_only: true\n  lds_config:\n    ads: {}\n    initial_fetch_timeout: 0s\n    resource_api_version: V3\n  cds_config:\n    ads: {}\n    initial_fetch_timeout: 0s\n    resource_api_version: V3\nstatic_resources:\n  listeners:\n  - name: envoy-gateway-proxy-stats-0.0.0.0-19001\n    address:\n      socket_address:\n        address: '0.0.0.0'\n        port_value: 19001\n        protocol: TCP\n    bypass_overload_manager: true\n    filter_chains:\n    - filters:\n      - name: envoy.filters.network.http_connection_manager\n        typed_config:\n          \"@type\": type.googleapis.com/envoy.extensions.filters.network.http_connection_manager.v3.HttpConnectionManager\n          stat_prefix: eg-stats-http\n          normalize_path: true\n          route_config:\n            name: local_route\n            virtual_hosts:\n            - name: prometheus_stats\n              domains:\n              - \"*\"\n              routes:\n              - match:\n                  path: /stats/prometheus\n                  headers:\n                  - name: \":method\"\n                    string_match:\n                      exact: GET\n                route:\n                  cluster: prometheus_stats\n          http_filters:\n          - name: envoy.filters.http.router\n            typed_config:\n              \"@type\": type.googleapis.com/envoy.extensions.filters.http.router.v3.Router\n  clusters:\n  - name: prometheus_stats\n    connect_timeout: 0.250s\n    type: STATIC\n    lb_policy: ROUND_ROBIN\n    load_assignment:\n      cluster_name: prometheus_stats\n      endpoints:\n      - lb_endpoints:\n        - endpoint:\n            address:\n              socket_address:\n                address: 127.0.0.1\n                port_value: 19000\n  - connect_timeout: 10s\n    eds_cluster_config:\n      eds_config:\n        ads: {}\n        resource_api_version: 'V3'\n      service_name: rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b/lb-f70e064fde774daa95ececff63f5be91\n    load_balancing_policy:\n      policies:\n      - typed_extension_config:\n          name: 'envoy.load_balancing_policies.least_request'\n          typed_config:\n            '@type': 'type.googleapis.com/envoy.extensions.load_balancing_policies.least_request.v3.LeastRequest'\n            locality_lb_config:\n              zone_aware_lb_config:\n                min_cluster_size: '1'\n    name: rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b/lb-f70e064fde774daa95ececff63f5be91\n    type: EDS\n  - connect_timeout: 10s\n    load_assignment:\n      cluster_name: xds_cluster\n      endpoints:\n      - load_balancing_weight: 1\n        lb_endpoints:\n        - load_balancing_weight: 1\n          endpoint:\n            address:\n              socket_address:\n                address: envoy-gateway.envoy-gateway-system.svc.cluster.local.\n                port_value: 18000\n    typed_extension_protocol_options:\n      envoy.extensions.upstreams.http.v3.HttpProtocolOptions:\n        \"@type\": \"type.googleapis.com/envoy.extensions.upstreams.http.v3.HttpProtocolOptions\"\n        explicit_http_config:\n          http2_protocol_options:\n            connection_keepalive:\n              interval: 30s\n              timeout: 5s\n        http_filters:\n        - name: envoy.filters.http.credential_injector\n          typed_config:\n            \"@type\": type.googleapis.com/envoy.extensions.filters.http.credential_injector.v3.CredentialInjector\n            credential:\n              name: envoy.http.injected_credentials.generic\n              typed_config:\n                \"@type\": type.googleapis.com/envoy.extensions.http.injected_credentials.generic.v3.Generic\n                credential:\n                  name: jwt-sa-bearer\n                  sds_config:\n                    path_config_source:\n                      path: /sds/xds_service_account_token.json\n                    resource_api_version: V3\n            overwrite: true\n        - name: envoy.extensions.filters.http.upstream_codec.v3.UpstreamCodec\n          typed_config:\n            \"@type\": type.googleapis.com/envoy.extensions.filters.http.upstream_codec.v3.UpstreamCodec\n    name: xds_cluster\n    type: STRICT_DNS\n    transport_socket:\n      name: envoy.transport_sockets.tls\n      typed_config:\n        \"@type\": type.googleapis.com/envoy.extensions.transport_sockets.tls.v3.UpstreamTlsContext\n        common_tls_context:\n          tls_params:\n            tls_maximum_protocol_version: TLSv1_3\n          validation_context_sds_secret_config:\n            name: xds_trusted_ca\n            sds_config:\n              path_config_source:\n                path: /sds/xds-trusted-ca.json\n              resource_api_version: V3\noverload_manager:\n  refresh_interval: 0.25s\n  resource_monitors:\n  - name: \"envoy.resource_monitors.global_downstream_max_connections\"\n    typed_config:\n      \"@type\": type.googleapis.com/envoy.extensions.resource_monitors.downstream_connections.v3.DownstreamConnectionsConfig\n      max_active_downstream_connections: 50000\n  - name: \"envoy.resource_monitors.fixed_heap\"\n    typed_config:\n      \"@type\": type.googleapis.com/envoy.extensions.resource_monitors.fixed_heap.v3.FixedHeapConfig\n      max_heap_size_bytes: 1717986918\n  actions:\n  - name: \"envoy.overload_actions.shrink_heap\"\n    triggers:\n    - name: \"envoy.resource_monitors.fixed_heap\"\n      threshold:\n        value: 0.95\n  - name: \"envoy.overload_actions.stop_accepting_requests\"\n    triggers:\n    - name: \"envoy.resource_monitors.fixed_heap\"\n      threshold:\n        value: 0.98\n",
+                "--log-level",
+                "warn",
+                "--cpuset-threads",
+                "--drain-strategy",
+                "immediate",
+                "--component-log-level",
+                "misc:error",
+                "--drain-time-s",
+                "60"
+              ],
+              "command": [
+                "envoy"
+              ],
+              "env": [
+                {
+                  "name": "ENVOY_POD_NAMESPACE",
+                  "valueFrom": {
+                    "fieldRef": {
+                      "apiVersion": "v1",
+                      "fieldPath": "metadata.namespace"
+                    }
+                  }
+                },
+                {
+                  "name": "ENVOY_POD_NAME",
+                  "valueFrom": {
+                    "fieldRef": {
+                      "apiVersion": "v1",
+                      "fieldPath": "metadata.name"
+                    }
+                  }
+                },
+                {
+                  "name": "ENVOY_SERVICE_ZONE",
+                  "valueFrom": {
+                    "fieldRef": {
+                      "apiVersion": "v1",
+                      "fieldPath": "metadata.annotations['topology.kubernetes.io/zone']"
+                    }
+                  }
+                }
+              ],
+              "image": "docker.changqingyun.cn/kubercloud/envoy:distroless-v1.38.3",
+              "imagePullPolicy": "IfNotPresent",
+              "lifecycle": {
+                "preStop": {
+                  "httpGet": {
+                    "path": "/shutdown/ready",
+                    "port": 19002,
+                    "scheme": "HTTP"
+                  }
+                }
+              },
+              "name": "envoy",
+              "ports": [
+                {
+                  "containerPort": 19001,
+                  "name": "metrics",
+                  "protocol": "TCP"
+                },
+                {
+                  "containerPort": 19003,
+                  "name": "readiness",
+                  "protocol": "TCP"
+                }
+              ],
+              "resources": {
+                "limits": {
+                  "cpu": "2",
+                  "memory": "2Gi"
+                },
+                "requests": {
+                  "cpu": "1",
+                  "memory": "1Gi"
+                }
+              },
+              "securityContext": {
+                "allowPrivilegeEscalation": false,
+                "capabilities": {
+                  "drop": [
+                    "ALL"
+                  ]
+                },
+                "privileged": false,
+                "runAsGroup": 65532,
+                "runAsNonRoot": true,
+                "runAsUser": 65532,
+                "seccompProfile": {
+                  "type": "RuntimeDefault"
+                }
+              },
+              "terminationMessagePath": "/dev/termination-log",
+              "terminationMessagePolicy": "File",
+              "volumeMounts": [
+                {
+                  "mountPath": "/certs",
+                  "name": "certs",
+                  "readOnly": true
+                },
+                {
+                  "mountPath": "/sds",
+                  "name": "sds"
+                },
+                {
+                  "mountPath": "/var/run/secrets/token",
+                  "name": "sa-token",
+                  "readOnly": true
+                }
+              ]
+            },
+            {
+              "args": [
+                "envoy",
+                "shutdown-manager"
+              ],
+              "command": [
+                "envoy-gateway"
+              ],
+              "env": [
+                {
+                  "name": "ENVOY_POD_NAMESPACE",
+                  "valueFrom": {
+                    "fieldRef": {
+                      "apiVersion": "v1",
+                      "fieldPath": "metadata.namespace"
+                    }
+                  }
+                },
+                {
+                  "name": "ENVOY_POD_NAME",
+                  "valueFrom": {
+                    "fieldRef": {
+                      "apiVersion": "v1",
+                      "fieldPath": "metadata.name"
+                    }
+                  }
+                },
+                {
+                  "name": "ENVOY_SERVICE_ZONE",
+                  "valueFrom": {
+                    "fieldRef": {
+                      "apiVersion": "v1",
+                      "fieldPath": "metadata.annotations['topology.kubernetes.io/zone']"
+                    }
+                  }
+                }
+              ],
+              "image": "docker.changqingyun.cn/kubercloud/gateway-dev:latest",
+              "imagePullPolicy": "IfNotPresent",
+              "lifecycle": {
+                "preStop": {
+                  "exec": {
+                    "command": [
+                      "envoy-gateway",
+                      "envoy",
+                      "shutdown"
+                    ]
+                  }
+                }
+              },
+              "name": "shutdown-manager",
+              "resources": {
+                "requests": {
+                  "cpu": "10m",
+                  "memory": "32Mi"
+                }
+              },
+              "securityContext": {
+                "allowPrivilegeEscalation": false,
+                "capabilities": {
+                  "drop": [
+                    "ALL"
+                  ]
+                },
+                "privileged": false,
+                "runAsGroup": 65532,
+                "runAsNonRoot": true,
+                "runAsUser": 65532,
+                "seccompProfile": {
+                  "type": "RuntimeDefault"
+                }
+              },
+              "terminationMessagePath": "/dev/termination-log",
+              "terminationMessagePolicy": "File"
+            }
+          ],
+          "dnsPolicy": "ClusterFirst",
+          "restartPolicy": "Always",
+          "schedulerName": "default-scheduler",
+          "securityContext": {},
+          "serviceAccount": "lb-f70e064fde774daa95ececff63f5be91",
+          "serviceAccountName": "lb-f70e064fde774daa95ececff63f5be91",
+          "terminationGracePeriodSeconds": 360,
+          "volumes": [
+            {
+              "name": "sa-token",
+              "projected": {
+                "defaultMode": 420,
+                "sources": [
+                  {
+                    "serviceAccountToken": {
+                      "audience": "envoy-gateway.envoy-gateway-system.svc.cluster.local",
+                      "expirationSeconds": 3600,
+                      "path": "sa-token"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "configMap": {
+                "defaultMode": 420,
+                "items": [
+                  {
+                    "key": "ca.crt",
+                    "path": "ca.crt"
+                  }
+                ],
+                "name": "lb-f70e064fde774daa95ececff63f5be91",
+                "optional": false
+              },
+              "name": "certs"
+            },
+            {
+              "configMap": {
+                "defaultMode": 420,
+                "items": [
+                  {
+                    "key": "xds-trusted-ca.json",
+                    "path": "xds-trusted-ca.json"
+                  },
+                  {
+                    "key": "xds_service_account_token.json",
+                    "path": "xds_service_account_token.json"
+                  }
+                ],
+                "name": "lb-f70e064fde774daa95ececff63f5be91",
+                "optional": false
+              },
+              "name": "sds"
+            }
+          ]
+        }
+      }
+    },
+    "field_managers": [
+      "envoy-gateway",
+      "kube-controller-manager"
+    ]
+  },
+  "apps/v1/ReplicaSet/rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b/lb-f70e064fde774daa95ececff63f5be91-6b4c7df86": {
+    "uid": "521b93e6-7969-438b-ab05-a377038a71d2",
+    "labels": {
+      "app.kubernetes.io/component": "proxy",
+      "app.kubernetes.io/managed-by": "envoy-gateway",
+      "app.kubernetes.io/name": "envoy",
+      "gateway.envoyproxy.io/owning-gateway-name": "lb-f70e064fde774daa95ececff63f5be91",
+      "gateway.envoyproxy.io/owning-gateway-namespace": "rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b",
+      "gateway.networking.k8s.io/gateway-name": "lb-f70e064fde774daa95ececff63f5be91",
+      "pod-template-hash": "6b4c7df86"
+    },
+    "owners": [
+      {
+        "apiVersion": "apps/v1",
+        "blockOwnerDeletion": true,
+        "controller": true,
+        "kind": "Deployment",
+        "name": "lb-f70e064fde774daa95ececff63f5be91",
+        "uid": "06248023-f691-49d6-9180-7b90364330d3"
+      }
+    ],
+    "spec": {
+      "replicas": 2,
+      "selector": {
+        "matchLabels": {
+          "app.kubernetes.io/component": "proxy",
+          "app.kubernetes.io/managed-by": "envoy-gateway",
+          "app.kubernetes.io/name": "envoy",
+          "gateway.envoyproxy.io/owning-gateway-name": "lb-f70e064fde774daa95ececff63f5be91",
+          "gateway.envoyproxy.io/owning-gateway-namespace": "rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b",
+          "gateway.networking.k8s.io/gateway-name": "lb-f70e064fde774daa95ececff63f5be91",
+          "pod-template-hash": "6b4c7df86"
+        }
+      },
+      "template": {
+        "metadata": {
+          "annotations": {
+            "networking.kubercloud.com/lb_vip_address": "10.237.0.200",
+            "networking.kubercloud.com/lb_vpc": "rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b/vpc-6f6d95e73a1f44818cd9d9606b7f2cdd",
+            "networking.kubercloud.com/subnet": "rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b/subnet-ec6f13bc33f2430c8fbb96e4b37240ef",
+            "prometheus.io/path": "/stats/prometheus",
+            "prometheus.io/port": "19001",
+            "prometheus.io/scrape": "true"
+          },
+          "labels": {
+            "app.kubernetes.io/component": "proxy",
+            "app.kubernetes.io/managed-by": "envoy-gateway",
+            "app.kubernetes.io/name": "envoy",
+            "gateway.envoyproxy.io/owning-gateway-name": "lb-f70e064fde774daa95ececff63f5be91",
+            "gateway.envoyproxy.io/owning-gateway-namespace": "rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b",
+            "gateway.networking.k8s.io/gateway-name": "lb-f70e064fde774daa95ececff63f5be91",
+            "pod-template-hash": "6b4c7df86"
+          }
+        },
+        "spec": {
+          "automountServiceAccountToken": false,
+          "containers": [
+            {
+              "args": [
+                "--service-cluster",
+                "rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b/lb-f70e064fde774daa95ececff63f5be91",
+                "--service-node",
+                "$(ENVOY_POD_NAME)",
+                "--config-yaml",
+                "admin:\n  access_log:\n  - name: envoy.access_loggers.file\n    typed_config:\n      \"@type\": type.googleapis.com/envoy.extensions.access_loggers.file.v3.FileAccessLog\n      path: /dev/null\n  address:\n    socket_address:\n      address: 127.0.0.1\n      port_value: 19000\ncluster_manager:\n  local_cluster_name: rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b/lb-f70e064fde774daa95ececff63f5be91\nnode:\n  locality:\n    zone: $(ENVOY_SERVICE_ZONE)\ndeferredStatOptions:\n  enableDeferredCreationStats: true\nstats_config:\n  use_all_default_tags: true\n  stats_tags:\n  - regex: \\.zone(\\.(([^\\.]+)\\.))\n    tag_name: from_zone\n  - regex: \\.zone\\.[^\\.]+\\.(([^\\.]+)\\.)\n    tag_name: to_zone\n  - regex: \"^cluster(\\\\..+\\\\.(.+))\\\\.total_match_count$\"\n    tag_name: socket_match_name\n  - regex: \"circuit_breakers\\\\.((.+?)\\\\.).+\"\n    tag_name: priority\nlayered_runtime:\n  layers:\n  - name: global_config\n    static_layer:\n      envoy.restart_features.use_eds_cache_for_ads: true\n      re2.max_program_size.error_level: 4294967295\n      re2.max_program_size.warn_level: 1000\ndynamic_resources:\n  ads_config:\n    api_type: DELTA_GRPC\n    transport_api_version: V3\n    grpc_services:\n    - envoy_grpc:\n        cluster_name: xds_cluster\n    set_node_on_first_message_only: true\n  lds_config:\n    ads: {}\n    initial_fetch_timeout: 0s\n    resource_api_version: V3\n  cds_config:\n    ads: {}\n    initial_fetch_timeout: 0s\n    resource_api_version: V3\nstatic_resources:\n  listeners:\n  - name: envoy-gateway-proxy-stats-0.0.0.0-19001\n    address:\n      socket_address:\n        address: '0.0.0.0'\n        port_value: 19001\n        protocol: TCP\n    bypass_overload_manager: true\n    filter_chains:\n    - filters:\n      - name: envoy.filters.network.http_connection_manager\n        typed_config:\n          \"@type\": type.googleapis.com/envoy.extensions.filters.network.http_connection_manager.v3.HttpConnectionManager\n          stat_prefix: eg-stats-http\n          normalize_path: true\n          route_config:\n            name: local_route\n            virtual_hosts:\n            - name: prometheus_stats\n              domains:\n              - \"*\"\n              routes:\n              - match:\n                  path: /stats/prometheus\n                  headers:\n                  - name: \":method\"\n                    string_match:\n                      exact: GET\n                route:\n                  cluster: prometheus_stats\n          http_filters:\n          - name: envoy.filters.http.router\n            typed_config:\n              \"@type\": type.googleapis.com/envoy.extensions.filters.http.router.v3.Router\n  clusters:\n  - name: prometheus_stats\n    connect_timeout: 0.250s\n    type: STATIC\n    lb_policy: ROUND_ROBIN\n    load_assignment:\n      cluster_name: prometheus_stats\n      endpoints:\n      - lb_endpoints:\n        - endpoint:\n            address:\n              socket_address:\n                address: 127.0.0.1\n                port_value: 19000\n  - connect_timeout: 10s\n    eds_cluster_config:\n      eds_config:\n        ads: {}\n        resource_api_version: 'V3'\n      service_name: rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b/lb-f70e064fde774daa95ececff63f5be91\n    load_balancing_policy:\n      policies:\n      - typed_extension_config:\n          name: 'envoy.load_balancing_policies.least_request'\n          typed_config:\n            '@type': 'type.googleapis.com/envoy.extensions.load_balancing_policies.least_request.v3.LeastRequest'\n            locality_lb_config:\n              zone_aware_lb_config:\n                min_cluster_size: '1'\n    name: rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b/lb-f70e064fde774daa95ececff63f5be91\n    type: EDS\n  - connect_timeout: 10s\n    load_assignment:\n      cluster_name: xds_cluster\n      endpoints:\n      - load_balancing_weight: 1\n        lb_endpoints:\n        - load_balancing_weight: 1\n          endpoint:\n            address:\n              socket_address:\n                address: envoy-gateway.envoy-gateway-system.svc.cluster.local.\n                port_value: 18000\n    typed_extension_protocol_options:\n      envoy.extensions.upstreams.http.v3.HttpProtocolOptions:\n        \"@type\": \"type.googleapis.com/envoy.extensions.upstreams.http.v3.HttpProtocolOptions\"\n        explicit_http_config:\n          http2_protocol_options:\n            connection_keepalive:\n              interval: 30s\n              timeout: 5s\n        http_filters:\n        - name: envoy.filters.http.credential_injector\n          typed_config:\n            \"@type\": type.googleapis.com/envoy.extensions.filters.http.credential_injector.v3.CredentialInjector\n            credential:\n              name: envoy.http.injected_credentials.generic\n              typed_config:\n                \"@type\": type.googleapis.com/envoy.extensions.http.injected_credentials.generic.v3.Generic\n                credential:\n                  name: jwt-sa-bearer\n                  sds_config:\n                    path_config_source:\n                      path: /sds/xds_service_account_token.json\n                    resource_api_version: V3\n            overwrite: true\n        - name: envoy.extensions.filters.http.upstream_codec.v3.UpstreamCodec\n          typed_config:\n            \"@type\": type.googleapis.com/envoy.extensions.filters.http.upstream_codec.v3.UpstreamCodec\n    name: xds_cluster\n    type: STRICT_DNS\n    transport_socket:\n      name: envoy.transport_sockets.tls\n      typed_config:\n        \"@type\": type.googleapis.com/envoy.extensions.transport_sockets.tls.v3.UpstreamTlsContext\n        common_tls_context:\n          tls_params:\n            tls_maximum_protocol_version: TLSv1_3\n          validation_context_sds_secret_config:\n            name: xds_trusted_ca\n            sds_config:\n              path_config_source:\n                path: /sds/xds-trusted-ca.json\n              resource_api_version: V3\noverload_manager:\n  refresh_interval: 0.25s\n  resource_monitors:\n  - name: \"envoy.resource_monitors.global_downstream_max_connections\"\n    typed_config:\n      \"@type\": type.googleapis.com/envoy.extensions.resource_monitors.downstream_connections.v3.DownstreamConnectionsConfig\n      max_active_downstream_connections: 50000\n  - name: \"envoy.resource_monitors.fixed_heap\"\n    typed_config:\n      \"@type\": type.googleapis.com/envoy.extensions.resource_monitors.fixed_heap.v3.FixedHeapConfig\n      max_heap_size_bytes: 1717986918\n  actions:\n  - name: \"envoy.overload_actions.shrink_heap\"\n    triggers:\n    - name: \"envoy.resource_monitors.fixed_heap\"\n      threshold:\n        value: 0.95\n  - name: \"envoy.overload_actions.stop_accepting_requests\"\n    triggers:\n    - name: \"envoy.resource_monitors.fixed_heap\"\n      threshold:\n        value: 0.98\n",
+                "--log-level",
+                "warn",
+                "--cpuset-threads",
+                "--drain-strategy",
+                "immediate",
+                "--component-log-level",
+                "misc:error",
+                "--drain-time-s",
+                "60"
+              ],
+              "command": [
+                "envoy"
+              ],
+              "env": [
+                {
+                  "name": "ENVOY_POD_NAMESPACE",
+                  "valueFrom": {
+                    "fieldRef": {
+                      "apiVersion": "v1",
+                      "fieldPath": "metadata.namespace"
+                    }
+                  }
+                },
+                {
+                  "name": "ENVOY_POD_NAME",
+                  "valueFrom": {
+                    "fieldRef": {
+                      "apiVersion": "v1",
+                      "fieldPath": "metadata.name"
+                    }
+                  }
+                },
+                {
+                  "name": "ENVOY_SERVICE_ZONE",
+                  "valueFrom": {
+                    "fieldRef": {
+                      "apiVersion": "v1",
+                      "fieldPath": "metadata.annotations['topology.kubernetes.io/zone']"
+                    }
+                  }
+                }
+              ],
+              "image": "docker.changqingyun.cn/kubercloud/envoy:distroless-v1.38.3",
+              "imagePullPolicy": "IfNotPresent",
+              "lifecycle": {
+                "preStop": {
+                  "httpGet": {
+                    "path": "/shutdown/ready",
+                    "port": 19002,
+                    "scheme": "HTTP"
+                  }
+                }
+              },
+              "name": "envoy",
+              "ports": [
+                {
+                  "containerPort": 19001,
+                  "name": "metrics",
+                  "protocol": "TCP"
+                },
+                {
+                  "containerPort": 19003,
+                  "name": "readiness",
+                  "protocol": "TCP"
+                }
+              ],
+              "resources": {
+                "limits": {
+                  "cpu": "2",
+                  "memory": "2Gi"
+                },
+                "requests": {
+                  "cpu": "1",
+                  "memory": "1Gi"
+                }
+              },
+              "securityContext": {
+                "allowPrivilegeEscalation": false,
+                "capabilities": {
+                  "drop": [
+                    "ALL"
+                  ]
+                },
+                "privileged": false,
+                "runAsGroup": 65532,
+                "runAsNonRoot": true,
+                "runAsUser": 65532,
+                "seccompProfile": {
+                  "type": "RuntimeDefault"
+                }
+              },
+              "terminationMessagePath": "/dev/termination-log",
+              "terminationMessagePolicy": "File",
+              "volumeMounts": [
+                {
+                  "mountPath": "/certs",
+                  "name": "certs",
+                  "readOnly": true
+                },
+                {
+                  "mountPath": "/sds",
+                  "name": "sds"
+                },
+                {
+                  "mountPath": "/var/run/secrets/token",
+                  "name": "sa-token",
+                  "readOnly": true
+                }
+              ]
+            },
+            {
+              "args": [
+                "envoy",
+                "shutdown-manager"
+              ],
+              "command": [
+                "envoy-gateway"
+              ],
+              "env": [
+                {
+                  "name": "ENVOY_POD_NAMESPACE",
+                  "valueFrom": {
+                    "fieldRef": {
+                      "apiVersion": "v1",
+                      "fieldPath": "metadata.namespace"
+                    }
+                  }
+                },
+                {
+                  "name": "ENVOY_POD_NAME",
+                  "valueFrom": {
+                    "fieldRef": {
+                      "apiVersion": "v1",
+                      "fieldPath": "metadata.name"
+                    }
+                  }
+                },
+                {
+                  "name": "ENVOY_SERVICE_ZONE",
+                  "valueFrom": {
+                    "fieldRef": {
+                      "apiVersion": "v1",
+                      "fieldPath": "metadata.annotations['topology.kubernetes.io/zone']"
+                    }
+                  }
+                }
+              ],
+              "image": "docker.changqingyun.cn/kubercloud/gateway-dev:latest",
+              "imagePullPolicy": "IfNotPresent",
+              "lifecycle": {
+                "preStop": {
+                  "exec": {
+                    "command": [
+                      "envoy-gateway",
+                      "envoy",
+                      "shutdown"
+                    ]
+                  }
+                }
+              },
+              "name": "shutdown-manager",
+              "resources": {
+                "requests": {
+                  "cpu": "10m",
+                  "memory": "32Mi"
+                }
+              },
+              "securityContext": {
+                "allowPrivilegeEscalation": false,
+                "capabilities": {
+                  "drop": [
+                    "ALL"
+                  ]
+                },
+                "privileged": false,
+                "runAsGroup": 65532,
+                "runAsNonRoot": true,
+                "runAsUser": 65532,
+                "seccompProfile": {
+                  "type": "RuntimeDefault"
+                }
+              },
+              "terminationMessagePath": "/dev/termination-log",
+              "terminationMessagePolicy": "File"
+            }
+          ],
+          "dnsPolicy": "ClusterFirst",
+          "restartPolicy": "Always",
+          "schedulerName": "default-scheduler",
+          "securityContext": {},
+          "serviceAccount": "lb-f70e064fde774daa95ececff63f5be91",
+          "serviceAccountName": "lb-f70e064fde774daa95ececff63f5be91",
+          "terminationGracePeriodSeconds": 360,
+          "volumes": [
+            {
+              "name": "sa-token",
+              "projected": {
+                "defaultMode": 420,
+                "sources": [
+                  {
+                    "serviceAccountToken": {
+                      "audience": "envoy-gateway.envoy-gateway-system.svc.cluster.local",
+                      "expirationSeconds": 3600,
+                      "path": "sa-token"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "configMap": {
+                "defaultMode": 420,
+                "items": [
+                  {
+                    "key": "ca.crt",
+                    "path": "ca.crt"
+                  }
+                ],
+                "name": "lb-f70e064fde774daa95ececff63f5be91",
+                "optional": false
+              },
+              "name": "certs"
+            },
+            {
+              "configMap": {
+                "defaultMode": 420,
+                "items": [
+                  {
+                    "key": "xds-trusted-ca.json",
+                    "path": "xds-trusted-ca.json"
+                  },
+                  {
+                    "key": "xds_service_account_token.json",
+                    "path": "xds_service_account_token.json"
+                  }
+                ],
+                "name": "lb-f70e064fde774daa95ececff63f5be91",
+                "optional": false
+              },
+              "name": "sds"
+            }
+          ]
+        }
+      }
+    },
+    "field_managers": [
+      "kube-controller-manager"
+    ]
+  },
+  "v1/Pod/rsctl-0922/rsctl-0922-intranet-a": {
+    "uid": "afa8b566-a04f-4671-85b1-71880e576748",
+    "labels": {
+      "network.ani.io/fixture-scope": "platform-intranet-qualification",
+      "network.ani.io/instance-id": "040cf156-783a-4048-9cf2-3714ad85587e",
+      "network.ani.io/test-run": "rsctl-0922"
+    },
+    "owners": [],
+    "spec": {
+      "automountServiceAccountToken": false,
+      "containers": [
+        {
+          "env": [
+            {
+              "name": "NET05_ID",
+              "value": "rsctl-0922"
+            },
+            {
+              "name": "ANI_WORKLOAD_ID",
+              "value": "040cf156-783a-4048-9cf2-3714ad85587e"
+            },
+            {
+              "name": "NET05_PORT",
+              "value": "8080"
+            }
+          ],
+          "image": "localhost/lb02-2b3122-probe@sha256:647c2acd8e115511a18506014995ec01b7d0d62fbc05f2a6e51a5c65c2a3fcce",
+          "imagePullPolicy": "Never",
+          "name": "probe",
+          "ports": [
+            {
+              "containerPort": 8080,
+              "protocol": "TCP"
+            }
+          ],
+          "resources": {
+            "limits": {
+              "cpu": "100m",
+              "memory": "64Mi"
+            },
+            "requests": {
+              "cpu": "10m",
+              "memory": "32Mi"
+            }
+          },
+          "securityContext": {
+            "allowPrivilegeEscalation": false,
+            "capabilities": {
+              "drop": [
+                "ALL"
+              ]
+            },
+            "readOnlyRootFilesystem": true
+          },
+          "terminationMessagePath": "/dev/termination-log",
+          "terminationMessagePolicy": "File"
+        }
+      ],
+      "dnsPolicy": "ClusterFirst",
+      "enableServiceLinks": true,
+      "nodeName": "ani-02",
+      "nodeSelector": {
+        "kubernetes.io/hostname": "ani-02"
+      },
+      "preemptionPolicy": "PreemptLowerPriority",
+      "priority": 0,
+      "restartPolicy": "Always",
+      "schedulerName": "default-scheduler",
+      "securityContext": {
+        "runAsGroup": 65532,
+        "runAsNonRoot": true,
+        "runAsUser": 65532,
+        "seccompProfile": {
+          "type": "RuntimeDefault"
+        }
+      },
+      "serviceAccount": "default",
+      "serviceAccountName": "default",
+      "terminationGracePeriodSeconds": 30,
+      "tolerations": [
+        {
+          "effect": "NoExecute",
+          "key": "node.kubernetes.io/not-ready",
+          "operator": "Exists",
+          "tolerationSeconds": 300
+        },
+        {
+          "effect": "NoExecute",
+          "key": "node.kubernetes.io/unreachable",
+          "operator": "Exists",
+          "tolerationSeconds": 300
+        }
+      ]
+    },
+    "field_managers": [
+      "kc-networking-controller",
+      "kubectl-create",
+      "kubelet"
+    ]
+  },
+  "v1/Pod/rsctl-0922/rsctl-0922-intranet-b": {
+    "uid": "13774c0d-d22e-4323-91d2-417616732b15",
+    "labels": {
+      "network.ani.io/fixture-scope": "platform-intranet-qualification",
+      "network.ani.io/instance-id": "95a8cb3b-499c-4ec1-ae33-079dbd067578",
+      "network.ani.io/test-run": "rsctl-0922"
+    },
+    "owners": [],
+    "spec": {
+      "automountServiceAccountToken": false,
+      "containers": [
+        {
+          "env": [
+            {
+              "name": "NET05_ID",
+              "value": "rsctl-0922"
+            },
+            {
+              "name": "ANI_WORKLOAD_ID",
+              "value": "95a8cb3b-499c-4ec1-ae33-079dbd067578"
+            },
+            {
+              "name": "NET05_PORT",
+              "value": "8080"
+            }
+          ],
+          "image": "localhost/lb02-2b3122-probe@sha256:647c2acd8e115511a18506014995ec01b7d0d62fbc05f2a6e51a5c65c2a3fcce",
+          "imagePullPolicy": "Never",
+          "name": "probe",
+          "ports": [
+            {
+              "containerPort": 8080,
+              "protocol": "TCP"
+            }
+          ],
+          "resources": {
+            "limits": {
+              "cpu": "100m",
+              "memory": "64Mi"
+            },
+            "requests": {
+              "cpu": "10m",
+              "memory": "32Mi"
+            }
+          },
+          "securityContext": {
+            "allowPrivilegeEscalation": false,
+            "capabilities": {
+              "drop": [
+                "ALL"
+              ]
+            },
+            "readOnlyRootFilesystem": true
+          },
+          "terminationMessagePath": "/dev/termination-log",
+          "terminationMessagePolicy": "File"
+        }
+      ],
+      "dnsPolicy": "ClusterFirst",
+      "enableServiceLinks": true,
+      "nodeName": "ani-03",
+      "nodeSelector": {
+        "kubernetes.io/hostname": "ani-03"
+      },
+      "preemptionPolicy": "PreemptLowerPriority",
+      "priority": 0,
+      "restartPolicy": "Always",
+      "schedulerName": "default-scheduler",
+      "securityContext": {
+        "runAsGroup": 65532,
+        "runAsNonRoot": true,
+        "runAsUser": 65532,
+        "seccompProfile": {
+          "type": "RuntimeDefault"
+        }
+      },
+      "serviceAccount": "default",
+      "serviceAccountName": "default",
+      "terminationGracePeriodSeconds": 30,
+      "tolerations": [
+        {
+          "effect": "NoExecute",
+          "key": "node.kubernetes.io/not-ready",
+          "operator": "Exists",
+          "tolerationSeconds": 300
+        },
+        {
+          "effect": "NoExecute",
+          "key": "node.kubernetes.io/unreachable",
+          "operator": "Exists",
+          "tolerationSeconds": 300
+        }
+      ]
+    },
+    "field_managers": [
+      "kc-networking-controller",
+      "kubectl-create",
+      "kubelet"
+    ]
+  },
+  "v1/Pod/rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b/lb-f70e064fde774daa95ececff63f5be91-6b4c7df86-qv6ck": {
+    "uid": "864bb65f-9e39-4d3f-b362-6dceb74ade8d",
+    "labels": {
+      "app.kubernetes.io/component": "proxy",
+      "app.kubernetes.io/managed-by": "envoy-gateway",
+      "app.kubernetes.io/name": "envoy",
+      "gateway.envoyproxy.io/owning-gateway-name": "lb-f70e064fde774daa95ececff63f5be91",
+      "gateway.envoyproxy.io/owning-gateway-namespace": "rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b",
+      "gateway.networking.k8s.io/gateway-name": "lb-f70e064fde774daa95ececff63f5be91",
+      "pod-template-hash": "6b4c7df86"
+    },
+    "owners": [
+      {
+        "apiVersion": "apps/v1",
+        "blockOwnerDeletion": true,
+        "controller": true,
+        "kind": "ReplicaSet",
+        "name": "lb-f70e064fde774daa95ececff63f5be91-6b4c7df86",
+        "uid": "521b93e6-7969-438b-ab05-a377038a71d2"
+      }
+    ],
+    "spec": {
+      "automountServiceAccountToken": false,
+      "containers": [
+        {
+          "args": [
+            "--service-cluster",
+            "rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b/lb-f70e064fde774daa95ececff63f5be91",
+            "--service-node",
+            "$(ENVOY_POD_NAME)",
+            "--config-yaml",
+            "admin:\n  access_log:\n  - name: envoy.access_loggers.file\n    typed_config:\n      \"@type\": type.googleapis.com/envoy.extensions.access_loggers.file.v3.FileAccessLog\n      path: /dev/null\n  address:\n    socket_address:\n      address: 127.0.0.1\n      port_value: 19000\ncluster_manager:\n  local_cluster_name: rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b/lb-f70e064fde774daa95ececff63f5be91\nnode:\n  locality:\n    zone: $(ENVOY_SERVICE_ZONE)\ndeferredStatOptions:\n  enableDeferredCreationStats: true\nstats_config:\n  use_all_default_tags: true\n  stats_tags:\n  - regex: \\.zone(\\.(([^\\.]+)\\.))\n    tag_name: from_zone\n  - regex: \\.zone\\.[^\\.]+\\.(([^\\.]+)\\.)\n    tag_name: to_zone\n  - regex: \"^cluster(\\\\..+\\\\.(.+))\\\\.total_match_count$\"\n    tag_name: socket_match_name\n  - regex: \"circuit_breakers\\\\.((.+?)\\\\.).+\"\n    tag_name: priority\nlayered_runtime:\n  layers:\n  - name: global_config\n    static_layer:\n      envoy.restart_features.use_eds_cache_for_ads: true\n      re2.max_program_size.error_level: 4294967295\n      re2.max_program_size.warn_level: 1000\ndynamic_resources:\n  ads_config:\n    api_type: DELTA_GRPC\n    transport_api_version: V3\n    grpc_services:\n    - envoy_grpc:\n        cluster_name: xds_cluster\n    set_node_on_first_message_only: true\n  lds_config:\n    ads: {}\n    initial_fetch_timeout: 0s\n    resource_api_version: V3\n  cds_config:\n    ads: {}\n    initial_fetch_timeout: 0s\n    resource_api_version: V3\nstatic_resources:\n  listeners:\n  - name: envoy-gateway-proxy-stats-0.0.0.0-19001\n    address:\n      socket_address:\n        address: '0.0.0.0'\n        port_value: 19001\n        protocol: TCP\n    bypass_overload_manager: true\n    filter_chains:\n    - filters:\n      - name: envoy.filters.network.http_connection_manager\n        typed_config:\n          \"@type\": type.googleapis.com/envoy.extensions.filters.network.http_connection_manager.v3.HttpConnectionManager\n          stat_prefix: eg-stats-http\n          normalize_path: true\n          route_config:\n            name: local_route\n            virtual_hosts:\n            - name: prometheus_stats\n              domains:\n              - \"*\"\n              routes:\n              - match:\n                  path: /stats/prometheus\n                  headers:\n                  - name: \":method\"\n                    string_match:\n                      exact: GET\n                route:\n                  cluster: prometheus_stats\n          http_filters:\n          - name: envoy.filters.http.router\n            typed_config:\n              \"@type\": type.googleapis.com/envoy.extensions.filters.http.router.v3.Router\n  clusters:\n  - name: prometheus_stats\n    connect_timeout: 0.250s\n    type: STATIC\n    lb_policy: ROUND_ROBIN\n    load_assignment:\n      cluster_name: prometheus_stats\n      endpoints:\n      - lb_endpoints:\n        - endpoint:\n            address:\n              socket_address:\n                address: 127.0.0.1\n                port_value: 19000\n  - connect_timeout: 10s\n    eds_cluster_config:\n      eds_config:\n        ads: {}\n        resource_api_version: 'V3'\n      service_name: rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b/lb-f70e064fde774daa95ececff63f5be91\n    load_balancing_policy:\n      policies:\n      - typed_extension_config:\n          name: 'envoy.load_balancing_policies.least_request'\n          typed_config:\n            '@type': 'type.googleapis.com/envoy.extensions.load_balancing_policies.least_request.v3.LeastRequest'\n            locality_lb_config:\n              zone_aware_lb_config:\n                min_cluster_size: '1'\n    name: rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b/lb-f70e064fde774daa95ececff63f5be91\n    type: EDS\n  - connect_timeout: 10s\n    load_assignment:\n      cluster_name: xds_cluster\n      endpoints:\n      - load_balancing_weight: 1\n        lb_endpoints:\n        - load_balancing_weight: 1\n          endpoint:\n            address:\n              socket_address:\n                address: envoy-gateway.envoy-gateway-system.svc.cluster.local.\n                port_value: 18000\n    typed_extension_protocol_options:\n      envoy.extensions.upstreams.http.v3.HttpProtocolOptions:\n        \"@type\": \"type.googleapis.com/envoy.extensions.upstreams.http.v3.HttpProtocolOptions\"\n        explicit_http_config:\n          http2_protocol_options:\n            connection_keepalive:\n              interval: 30s\n              timeout: 5s\n        http_filters:\n        - name: envoy.filters.http.credential_injector\n          typed_config:\n            \"@type\": type.googleapis.com/envoy.extensions.filters.http.credential_injector.v3.CredentialInjector\n            credential:\n              name: envoy.http.injected_credentials.generic\n              typed_config:\n                \"@type\": type.googleapis.com/envoy.extensions.http.injected_credentials.generic.v3.Generic\n                credential:\n                  name: jwt-sa-bearer\n                  sds_config:\n                    path_config_source:\n                      path: /sds/xds_service_account_token.json\n                    resource_api_version: V3\n            overwrite: true\n        - name: envoy.extensions.filters.http.upstream_codec.v3.UpstreamCodec\n          typed_config:\n            \"@type\": type.googleapis.com/envoy.extensions.filters.http.upstream_codec.v3.UpstreamCodec\n    name: xds_cluster\n    type: STRICT_DNS\n    transport_socket:\n      name: envoy.transport_sockets.tls\n      typed_config:\n        \"@type\": type.googleapis.com/envoy.extensions.transport_sockets.tls.v3.UpstreamTlsContext\n        common_tls_context:\n          tls_params:\n            tls_maximum_protocol_version: TLSv1_3\n          validation_context_sds_secret_config:\n            name: xds_trusted_ca\n            sds_config:\n              path_config_source:\n                path: /sds/xds-trusted-ca.json\n              resource_api_version: V3\noverload_manager:\n  refresh_interval: 0.25s\n  resource_monitors:\n  - name: \"envoy.resource_monitors.global_downstream_max_connections\"\n    typed_config:\n      \"@type\": type.googleapis.com/envoy.extensions.resource_monitors.downstream_connections.v3.DownstreamConnectionsConfig\n      max_active_downstream_connections: 50000\n  - name: \"envoy.resource_monitors.fixed_heap\"\n    typed_config:\n      \"@type\": type.googleapis.com/envoy.extensions.resource_monitors.fixed_heap.v3.FixedHeapConfig\n      max_heap_size_bytes: 1717986918\n  actions:\n  - name: \"envoy.overload_actions.shrink_heap\"\n    triggers:\n    - name: \"envoy.resource_monitors.fixed_heap\"\n      threshold:\n        value: 0.95\n  - name: \"envoy.overload_actions.stop_accepting_requests\"\n    triggers:\n    - name: \"envoy.resource_monitors.fixed_heap\"\n      threshold:\n        value: 0.98\n",
+            "--log-level",
+            "warn",
+            "--cpuset-threads",
+            "--drain-strategy",
+            "immediate",
+            "--component-log-level",
+            "misc:error",
+            "--drain-time-s",
+            "60"
+          ],
+          "command": [
+            "envoy"
+          ],
+          "env": [
+            {
+              "name": "ENVOY_POD_NAMESPACE",
+              "valueFrom": {
+                "fieldRef": {
+                  "apiVersion": "v1",
+                  "fieldPath": "metadata.namespace"
+                }
+              }
+            },
+            {
+              "name": "ENVOY_POD_NAME",
+              "valueFrom": {
+                "fieldRef": {
+                  "apiVersion": "v1",
+                  "fieldPath": "metadata.name"
+                }
+              }
+            },
+            {
+              "name": "ENVOY_SERVICE_ZONE",
+              "valueFrom": {
+                "fieldRef": {
+                  "apiVersion": "v1",
+                  "fieldPath": "metadata.annotations['topology.kubernetes.io/zone']"
+                }
+              }
+            }
+          ],
+          "image": "docker.changqingyun.cn/kubercloud/envoy:distroless-v1.38.3",
+          "imagePullPolicy": "IfNotPresent",
+          "lifecycle": {
+            "preStop": {
+              "httpGet": {
+                "path": "/shutdown/ready",
+                "port": 19002,
+                "scheme": "HTTP"
+              }
+            }
+          },
+          "name": "envoy",
+          "ports": [
+            {
+              "containerPort": 19001,
+              "name": "metrics",
+              "protocol": "TCP"
+            },
+            {
+              "containerPort": 19003,
+              "name": "readiness",
+              "protocol": "TCP"
+            }
+          ],
+          "resources": {
+            "limits": {
+              "cpu": "2",
+              "memory": "2Gi"
+            },
+            "requests": {
+              "cpu": "1",
+              "memory": "1Gi"
+            }
+          },
+          "securityContext": {
+            "allowPrivilegeEscalation": false,
+            "capabilities": {
+              "drop": [
+                "ALL"
+              ]
+            },
+            "privileged": false,
+            "runAsGroup": 65532,
+            "runAsNonRoot": true,
+            "runAsUser": 65532,
+            "seccompProfile": {
+              "type": "RuntimeDefault"
+            }
+          },
+          "terminationMessagePath": "/dev/termination-log",
+          "terminationMessagePolicy": "File",
+          "volumeMounts": [
+            {
+              "mountPath": "/certs",
+              "name": "certs",
+              "readOnly": true
+            },
+            {
+              "mountPath": "/sds",
+              "name": "sds"
+            },
+            {
+              "mountPath": "/var/run/secrets/token",
+              "name": "sa-token",
+              "readOnly": true
+            }
+          ]
+        },
+        {
+          "args": [
+            "envoy",
+            "shutdown-manager"
+          ],
+          "command": [
+            "envoy-gateway"
+          ],
+          "env": [
+            {
+              "name": "ENVOY_POD_NAMESPACE",
+              "valueFrom": {
+                "fieldRef": {
+                  "apiVersion": "v1",
+                  "fieldPath": "metadata.namespace"
+                }
+              }
+            },
+            {
+              "name": "ENVOY_POD_NAME",
+              "valueFrom": {
+                "fieldRef": {
+                  "apiVersion": "v1",
+                  "fieldPath": "metadata.name"
+                }
+              }
+            },
+            {
+              "name": "ENVOY_SERVICE_ZONE",
+              "valueFrom": {
+                "fieldRef": {
+                  "apiVersion": "v1",
+                  "fieldPath": "metadata.annotations['topology.kubernetes.io/zone']"
+                }
+              }
+            }
+          ],
+          "image": "docker.changqingyun.cn/kubercloud/gateway-dev:latest",
+          "imagePullPolicy": "IfNotPresent",
+          "lifecycle": {
+            "preStop": {
+              "exec": {
+                "command": [
+                  "envoy-gateway",
+                  "envoy",
+                  "shutdown"
+                ]
+              }
+            }
+          },
+          "name": "shutdown-manager",
+          "resources": {
+            "requests": {
+              "cpu": "10m",
+              "memory": "32Mi"
+            }
+          },
+          "securityContext": {
+            "allowPrivilegeEscalation": false,
+            "capabilities": {
+              "drop": [
+                "ALL"
+              ]
+            },
+            "privileged": false,
+            "runAsGroup": 65532,
+            "runAsNonRoot": true,
+            "runAsUser": 65532,
+            "seccompProfile": {
+              "type": "RuntimeDefault"
+            }
+          },
+          "terminationMessagePath": "/dev/termination-log",
+          "terminationMessagePolicy": "File"
+        }
+      ],
+      "dnsPolicy": "ClusterFirst",
+      "enableServiceLinks": true,
+      "nodeName": "ani-02",
+      "preemptionPolicy": "PreemptLowerPriority",
+      "priority": 0,
+      "restartPolicy": "Always",
+      "schedulerName": "default-scheduler",
+      "securityContext": {},
+      "serviceAccount": "lb-f70e064fde774daa95ececff63f5be91",
+      "serviceAccountName": "lb-f70e064fde774daa95ececff63f5be91",
+      "terminationGracePeriodSeconds": 360,
+      "tolerations": [
+        {
+          "effect": "NoExecute",
+          "key": "node.kubernetes.io/not-ready",
+          "operator": "Exists",
+          "tolerationSeconds": 300
+        },
+        {
+          "effect": "NoExecute",
+          "key": "node.kubernetes.io/unreachable",
+          "operator": "Exists",
+          "tolerationSeconds": 300
+        }
+      ],
+      "volumes": [
+        {
+          "name": "sa-token",
+          "projected": {
+            "defaultMode": 420,
+            "sources": [
+              {
+                "serviceAccountToken": {
+                  "audience": "envoy-gateway.envoy-gateway-system.svc.cluster.local",
+                  "expirationSeconds": 3600,
+                  "path": "sa-token"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "configMap": {
+            "defaultMode": 420,
+            "items": [
+              {
+                "key": "ca.crt",
+                "path": "ca.crt"
+              }
+            ],
+            "name": "lb-f70e064fde774daa95ececff63f5be91",
+            "optional": false
+          },
+          "name": "certs"
+        },
+        {
+          "configMap": {
+            "defaultMode": 420,
+            "items": [
+              {
+                "key": "xds-trusted-ca.json",
+                "path": "xds-trusted-ca.json"
+              },
+              {
+                "key": "xds_service_account_token.json",
+                "path": "xds_service_account_token.json"
+              }
+            ],
+            "name": "lb-f70e064fde774daa95ececff63f5be91",
+            "optional": false
+          },
+          "name": "sds"
+        }
+      ]
+    },
+    "field_managers": [
+      "kc-networking-controller",
+      "kube-controller-manager",
+      "kubelet"
+    ]
+  },
+  "v1/Pod/rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b/lb-f70e064fde774daa95ececff63f5be91-6b4c7df86-z6cln": {
+    "uid": "3a5b4b39-53f8-4a4b-916f-c445e9ef95a6",
+    "labels": {
+      "app.kubernetes.io/component": "proxy",
+      "app.kubernetes.io/managed-by": "envoy-gateway",
+      "app.kubernetes.io/name": "envoy",
+      "gateway.envoyproxy.io/owning-gateway-name": "lb-f70e064fde774daa95ececff63f5be91",
+      "gateway.envoyproxy.io/owning-gateway-namespace": "rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b",
+      "gateway.networking.k8s.io/gateway-name": "lb-f70e064fde774daa95ececff63f5be91",
+      "pod-template-hash": "6b4c7df86"
+    },
+    "owners": [
+      {
+        "apiVersion": "apps/v1",
+        "blockOwnerDeletion": true,
+        "controller": true,
+        "kind": "ReplicaSet",
+        "name": "lb-f70e064fde774daa95ececff63f5be91-6b4c7df86",
+        "uid": "521b93e6-7969-438b-ab05-a377038a71d2"
+      }
+    ],
+    "spec": {
+      "automountServiceAccountToken": false,
+      "containers": [
+        {
+          "args": [
+            "--service-cluster",
+            "rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b/lb-f70e064fde774daa95ececff63f5be91",
+            "--service-node",
+            "$(ENVOY_POD_NAME)",
+            "--config-yaml",
+            "admin:\n  access_log:\n  - name: envoy.access_loggers.file\n    typed_config:\n      \"@type\": type.googleapis.com/envoy.extensions.access_loggers.file.v3.FileAccessLog\n      path: /dev/null\n  address:\n    socket_address:\n      address: 127.0.0.1\n      port_value: 19000\ncluster_manager:\n  local_cluster_name: rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b/lb-f70e064fde774daa95ececff63f5be91\nnode:\n  locality:\n    zone: $(ENVOY_SERVICE_ZONE)\ndeferredStatOptions:\n  enableDeferredCreationStats: true\nstats_config:\n  use_all_default_tags: true\n  stats_tags:\n  - regex: \\.zone(\\.(([^\\.]+)\\.))\n    tag_name: from_zone\n  - regex: \\.zone\\.[^\\.]+\\.(([^\\.]+)\\.)\n    tag_name: to_zone\n  - regex: \"^cluster(\\\\..+\\\\.(.+))\\\\.total_match_count$\"\n    tag_name: socket_match_name\n  - regex: \"circuit_breakers\\\\.((.+?)\\\\.).+\"\n    tag_name: priority\nlayered_runtime:\n  layers:\n  - name: global_config\n    static_layer:\n      envoy.restart_features.use_eds_cache_for_ads: true\n      re2.max_program_size.error_level: 4294967295\n      re2.max_program_size.warn_level: 1000\ndynamic_resources:\n  ads_config:\n    api_type: DELTA_GRPC\n    transport_api_version: V3\n    grpc_services:\n    - envoy_grpc:\n        cluster_name: xds_cluster\n    set_node_on_first_message_only: true\n  lds_config:\n    ads: {}\n    initial_fetch_timeout: 0s\n    resource_api_version: V3\n  cds_config:\n    ads: {}\n    initial_fetch_timeout: 0s\n    resource_api_version: V3\nstatic_resources:\n  listeners:\n  - name: envoy-gateway-proxy-stats-0.0.0.0-19001\n    address:\n      socket_address:\n        address: '0.0.0.0'\n        port_value: 19001\n        protocol: TCP\n    bypass_overload_manager: true\n    filter_chains:\n    - filters:\n      - name: envoy.filters.network.http_connection_manager\n        typed_config:\n          \"@type\": type.googleapis.com/envoy.extensions.filters.network.http_connection_manager.v3.HttpConnectionManager\n          stat_prefix: eg-stats-http\n          normalize_path: true\n          route_config:\n            name: local_route\n            virtual_hosts:\n            - name: prometheus_stats\n              domains:\n              - \"*\"\n              routes:\n              - match:\n                  path: /stats/prometheus\n                  headers:\n                  - name: \":method\"\n                    string_match:\n                      exact: GET\n                route:\n                  cluster: prometheus_stats\n          http_filters:\n          - name: envoy.filters.http.router\n            typed_config:\n              \"@type\": type.googleapis.com/envoy.extensions.filters.http.router.v3.Router\n  clusters:\n  - name: prometheus_stats\n    connect_timeout: 0.250s\n    type: STATIC\n    lb_policy: ROUND_ROBIN\n    load_assignment:\n      cluster_name: prometheus_stats\n      endpoints:\n      - lb_endpoints:\n        - endpoint:\n            address:\n              socket_address:\n                address: 127.0.0.1\n                port_value: 19000\n  - connect_timeout: 10s\n    eds_cluster_config:\n      eds_config:\n        ads: {}\n        resource_api_version: 'V3'\n      service_name: rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b/lb-f70e064fde774daa95ececff63f5be91\n    load_balancing_policy:\n      policies:\n      - typed_extension_config:\n          name: 'envoy.load_balancing_policies.least_request'\n          typed_config:\n            '@type': 'type.googleapis.com/envoy.extensions.load_balancing_policies.least_request.v3.LeastRequest'\n            locality_lb_config:\n              zone_aware_lb_config:\n                min_cluster_size: '1'\n    name: rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b/lb-f70e064fde774daa95ececff63f5be91\n    type: EDS\n  - connect_timeout: 10s\n    load_assignment:\n      cluster_name: xds_cluster\n      endpoints:\n      - load_balancing_weight: 1\n        lb_endpoints:\n        - load_balancing_weight: 1\n          endpoint:\n            address:\n              socket_address:\n                address: envoy-gateway.envoy-gateway-system.svc.cluster.local.\n                port_value: 18000\n    typed_extension_protocol_options:\n      envoy.extensions.upstreams.http.v3.HttpProtocolOptions:\n        \"@type\": \"type.googleapis.com/envoy.extensions.upstreams.http.v3.HttpProtocolOptions\"\n        explicit_http_config:\n          http2_protocol_options:\n            connection_keepalive:\n              interval: 30s\n              timeout: 5s\n        http_filters:\n        - name: envoy.filters.http.credential_injector\n          typed_config:\n            \"@type\": type.googleapis.com/envoy.extensions.filters.http.credential_injector.v3.CredentialInjector\n            credential:\n              name: envoy.http.injected_credentials.generic\n              typed_config:\n                \"@type\": type.googleapis.com/envoy.extensions.http.injected_credentials.generic.v3.Generic\n                credential:\n                  name: jwt-sa-bearer\n                  sds_config:\n                    path_config_source:\n                      path: /sds/xds_service_account_token.json\n                    resource_api_version: V3\n            overwrite: true\n        - name: envoy.extensions.filters.http.upstream_codec.v3.UpstreamCodec\n          typed_config:\n            \"@type\": type.googleapis.com/envoy.extensions.filters.http.upstream_codec.v3.UpstreamCodec\n    name: xds_cluster\n    type: STRICT_DNS\n    transport_socket:\n      name: envoy.transport_sockets.tls\n      typed_config:\n        \"@type\": type.googleapis.com/envoy.extensions.transport_sockets.tls.v3.UpstreamTlsContext\n        common_tls_context:\n          tls_params:\n            tls_maximum_protocol_version: TLSv1_3\n          validation_context_sds_secret_config:\n            name: xds_trusted_ca\n            sds_config:\n              path_config_source:\n                path: /sds/xds-trusted-ca.json\n              resource_api_version: V3\noverload_manager:\n  refresh_interval: 0.25s\n  resource_monitors:\n  - name: \"envoy.resource_monitors.global_downstream_max_connections\"\n    typed_config:\n      \"@type\": type.googleapis.com/envoy.extensions.resource_monitors.downstream_connections.v3.DownstreamConnectionsConfig\n      max_active_downstream_connections: 50000\n  - name: \"envoy.resource_monitors.fixed_heap\"\n    typed_config:\n      \"@type\": type.googleapis.com/envoy.extensions.resource_monitors.fixed_heap.v3.FixedHeapConfig\n      max_heap_size_bytes: 1717986918\n  actions:\n  - name: \"envoy.overload_actions.shrink_heap\"\n    triggers:\n    - name: \"envoy.resource_monitors.fixed_heap\"\n      threshold:\n        value: 0.95\n  - name: \"envoy.overload_actions.stop_accepting_requests\"\n    triggers:\n    - name: \"envoy.resource_monitors.fixed_heap\"\n      threshold:\n        value: 0.98\n",
+            "--log-level",
+            "warn",
+            "--cpuset-threads",
+            "--drain-strategy",
+            "immediate",
+            "--component-log-level",
+            "misc:error",
+            "--drain-time-s",
+            "60"
+          ],
+          "command": [
+            "envoy"
+          ],
+          "env": [
+            {
+              "name": "ENVOY_POD_NAMESPACE",
+              "valueFrom": {
+                "fieldRef": {
+                  "apiVersion": "v1",
+                  "fieldPath": "metadata.namespace"
+                }
+              }
+            },
+            {
+              "name": "ENVOY_POD_NAME",
+              "valueFrom": {
+                "fieldRef": {
+                  "apiVersion": "v1",
+                  "fieldPath": "metadata.name"
+                }
+              }
+            },
+            {
+              "name": "ENVOY_SERVICE_ZONE",
+              "valueFrom": {
+                "fieldRef": {
+                  "apiVersion": "v1",
+                  "fieldPath": "metadata.annotations['topology.kubernetes.io/zone']"
+                }
+              }
+            }
+          ],
+          "image": "docker.changqingyun.cn/kubercloud/envoy:distroless-v1.38.3",
+          "imagePullPolicy": "IfNotPresent",
+          "lifecycle": {
+            "preStop": {
+              "httpGet": {
+                "path": "/shutdown/ready",
+                "port": 19002,
+                "scheme": "HTTP"
+              }
+            }
+          },
+          "name": "envoy",
+          "ports": [
+            {
+              "containerPort": 19001,
+              "name": "metrics",
+              "protocol": "TCP"
+            },
+            {
+              "containerPort": 19003,
+              "name": "readiness",
+              "protocol": "TCP"
+            }
+          ],
+          "resources": {
+            "limits": {
+              "cpu": "2",
+              "memory": "2Gi"
+            },
+            "requests": {
+              "cpu": "1",
+              "memory": "1Gi"
+            }
+          },
+          "securityContext": {
+            "allowPrivilegeEscalation": false,
+            "capabilities": {
+              "drop": [
+                "ALL"
+              ]
+            },
+            "privileged": false,
+            "runAsGroup": 65532,
+            "runAsNonRoot": true,
+            "runAsUser": 65532,
+            "seccompProfile": {
+              "type": "RuntimeDefault"
+            }
+          },
+          "terminationMessagePath": "/dev/termination-log",
+          "terminationMessagePolicy": "File",
+          "volumeMounts": [
+            {
+              "mountPath": "/certs",
+              "name": "certs",
+              "readOnly": true
+            },
+            {
+              "mountPath": "/sds",
+              "name": "sds"
+            },
+            {
+              "mountPath": "/var/run/secrets/token",
+              "name": "sa-token",
+              "readOnly": true
+            }
+          ]
+        },
+        {
+          "args": [
+            "envoy",
+            "shutdown-manager"
+          ],
+          "command": [
+            "envoy-gateway"
+          ],
+          "env": [
+            {
+              "name": "ENVOY_POD_NAMESPACE",
+              "valueFrom": {
+                "fieldRef": {
+                  "apiVersion": "v1",
+                  "fieldPath": "metadata.namespace"
+                }
+              }
+            },
+            {
+              "name": "ENVOY_POD_NAME",
+              "valueFrom": {
+                "fieldRef": {
+                  "apiVersion": "v1",
+                  "fieldPath": "metadata.name"
+                }
+              }
+            },
+            {
+              "name": "ENVOY_SERVICE_ZONE",
+              "valueFrom": {
+                "fieldRef": {
+                  "apiVersion": "v1",
+                  "fieldPath": "metadata.annotations['topology.kubernetes.io/zone']"
+                }
+              }
+            }
+          ],
+          "image": "docker.changqingyun.cn/kubercloud/gateway-dev:latest",
+          "imagePullPolicy": "IfNotPresent",
+          "lifecycle": {
+            "preStop": {
+              "exec": {
+                "command": [
+                  "envoy-gateway",
+                  "envoy",
+                  "shutdown"
+                ]
+              }
+            }
+          },
+          "name": "shutdown-manager",
+          "resources": {
+            "requests": {
+              "cpu": "10m",
+              "memory": "32Mi"
+            }
+          },
+          "securityContext": {
+            "allowPrivilegeEscalation": false,
+            "capabilities": {
+              "drop": [
+                "ALL"
+              ]
+            },
+            "privileged": false,
+            "runAsGroup": 65532,
+            "runAsNonRoot": true,
+            "runAsUser": 65532,
+            "seccompProfile": {
+              "type": "RuntimeDefault"
+            }
+          },
+          "terminationMessagePath": "/dev/termination-log",
+          "terminationMessagePolicy": "File"
+        }
+      ],
+      "dnsPolicy": "ClusterFirst",
+      "enableServiceLinks": true,
+      "nodeName": "ani-03",
+      "preemptionPolicy": "PreemptLowerPriority",
+      "priority": 0,
+      "restartPolicy": "Always",
+      "schedulerName": "default-scheduler",
+      "securityContext": {},
+      "serviceAccount": "lb-f70e064fde774daa95ececff63f5be91",
+      "serviceAccountName": "lb-f70e064fde774daa95ececff63f5be91",
+      "terminationGracePeriodSeconds": 360,
+      "tolerations": [
+        {
+          "effect": "NoExecute",
+          "key": "node.kubernetes.io/not-ready",
+          "operator": "Exists",
+          "tolerationSeconds": 300
+        },
+        {
+          "effect": "NoExecute",
+          "key": "node.kubernetes.io/unreachable",
+          "operator": "Exists",
+          "tolerationSeconds": 300
+        }
+      ],
+      "volumes": [
+        {
+          "name": "sa-token",
+          "projected": {
+            "defaultMode": 420,
+            "sources": [
+              {
+                "serviceAccountToken": {
+                  "audience": "envoy-gateway.envoy-gateway-system.svc.cluster.local",
+                  "expirationSeconds": 3600,
+                  "path": "sa-token"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "configMap": {
+            "defaultMode": 420,
+            "items": [
+              {
+                "key": "ca.crt",
+                "path": "ca.crt"
+              }
+            ],
+            "name": "lb-f70e064fde774daa95ececff63f5be91",
+            "optional": false
+          },
+          "name": "certs"
+        },
+        {
+          "configMap": {
+            "defaultMode": 420,
+            "items": [
+              {
+                "key": "xds-trusted-ca.json",
+                "path": "xds-trusted-ca.json"
+              },
+              {
+                "key": "xds_service_account_token.json",
+                "path": "xds_service_account_token.json"
+              }
+            ],
+            "name": "lb-f70e064fde774daa95ececff63f5be91",
+            "optional": false
+          },
+          "name": "sds"
+        }
+      ]
+    },
+    "field_managers": [
+      "kc-networking-controller",
+      "kube-controller-manager",
+      "kubelet"
+    ]
+  },
+  "v1/Pod/rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b/rsctl-0922-backend-a": {
+    "uid": "4a750088-ac5b-407f-b78a-dc4fc8e202d9",
+    "labels": {
+      "network.ani.io/attachment-id": "att_ab341457d51549dcbea628f8147f8937",
+      "network.ani.io/generation": "1",
+      "network.ani.io/instance-id": "18faf959-c32c-4679-8207-a7e17197d773",
+      "network.ani.io/submission-id": "5080c1a4-c22a-4c32-992d-50de1d1c963b",
+      "network.ani.io/tenant-id": "fc8620ea-5560-4207-a9f0-09b73638ca2b",
+      "network.ani.io/test-run": "rsctl-0922"
+    },
+    "owners": [],
+    "spec": {
+      "automountServiceAccountToken": false,
+      "containers": [
+        {
+          "env": [
+            {
+              "name": "NET05_ID",
+              "value": "rsctl-0922"
+            },
+            {
+              "name": "ANI_WORKLOAD_ID",
+              "value": "18faf959-c32c-4679-8207-a7e17197d773"
+            },
+            {
+              "name": "NET05_PORT",
+              "value": "8080"
+            }
+          ],
+          "image": "localhost/lb02-2b3122-probe@sha256:647c2acd8e115511a18506014995ec01b7d0d62fbc05f2a6e51a5c65c2a3fcce",
+          "imagePullPolicy": "Never",
+          "name": "probe",
+          "ports": [
+            {
+              "containerPort": 8080,
+              "protocol": "TCP"
+            }
+          ],
+          "resources": {
+            "limits": {
+              "cpu": "100m",
+              "memory": "64Mi"
+            },
+            "requests": {
+              "cpu": "10m",
+              "memory": "32Mi"
+            }
+          },
+          "securityContext": {
+            "allowPrivilegeEscalation": false,
+            "capabilities": {
+              "drop": [
+                "ALL"
+              ]
+            },
+            "readOnlyRootFilesystem": true
+          },
+          "terminationMessagePath": "/dev/termination-log",
+          "terminationMessagePolicy": "File"
+        }
+      ],
+      "dnsPolicy": "ClusterFirst",
+      "enableServiceLinks": true,
+      "nodeName": "ani-02",
+      "nodeSelector": {
+        "kubernetes.io/hostname": "ani-02"
+      },
+      "preemptionPolicy": "PreemptLowerPriority",
+      "priority": 0,
+      "restartPolicy": "Always",
+      "schedulerName": "default-scheduler",
+      "securityContext": {
+        "runAsGroup": 65532,
+        "runAsNonRoot": true,
+        "runAsUser": 65532,
+        "seccompProfile": {
+          "type": "RuntimeDefault"
+        }
+      },
+      "serviceAccount": "default",
+      "serviceAccountName": "default",
+      "terminationGracePeriodSeconds": 30,
+      "tolerations": [
+        {
+          "effect": "NoExecute",
+          "key": "node.kubernetes.io/not-ready",
+          "operator": "Exists",
+          "tolerationSeconds": 300
+        },
+        {
+          "effect": "NoExecute",
+          "key": "node.kubernetes.io/unreachable",
+          "operator": "Exists",
+          "tolerationSeconds": 300
+        }
+      ]
+    },
+    "field_managers": [
+      "kc-networking-controller",
+      "kubectl-create",
+      "kubelet"
+    ]
+  },
+  "v1/Pod/rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b/rsctl-0922-backend-b": {
+    "uid": "abd54d7a-07fd-4bd8-9b2f-a2e9450f1eac",
+    "labels": {
+      "network.ani.io/attachment-id": "att_66f3ace97aaf4cb0872fd38996cfcb75",
+      "network.ani.io/generation": "1",
+      "network.ani.io/instance-id": "680c8612-0689-4453-9a54-36b7d231d939",
+      "network.ani.io/submission-id": "08425f14-b4e5-4b2c-9b0c-bd30b2f86382",
+      "network.ani.io/tenant-id": "fc8620ea-5560-4207-a9f0-09b73638ca2b",
+      "network.ani.io/test-run": "rsctl-0922"
+    },
+    "owners": [],
+    "spec": {
+      "automountServiceAccountToken": false,
+      "containers": [
+        {
+          "env": [
+            {
+              "name": "NET05_ID",
+              "value": "rsctl-0922"
+            },
+            {
+              "name": "ANI_WORKLOAD_ID",
+              "value": "680c8612-0689-4453-9a54-36b7d231d939"
+            },
+            {
+              "name": "NET05_PORT",
+              "value": "8080"
+            }
+          ],
+          "image": "localhost/lb02-2b3122-probe@sha256:647c2acd8e115511a18506014995ec01b7d0d62fbc05f2a6e51a5c65c2a3fcce",
+          "imagePullPolicy": "Never",
+          "name": "probe",
+          "ports": [
+            {
+              "containerPort": 8080,
+              "protocol": "TCP"
+            }
+          ],
+          "resources": {
+            "limits": {
+              "cpu": "100m",
+              "memory": "64Mi"
+            },
+            "requests": {
+              "cpu": "10m",
+              "memory": "32Mi"
+            }
+          },
+          "securityContext": {
+            "allowPrivilegeEscalation": false,
+            "capabilities": {
+              "drop": [
+                "ALL"
+              ]
+            },
+            "readOnlyRootFilesystem": true
+          },
+          "terminationMessagePath": "/dev/termination-log",
+          "terminationMessagePolicy": "File"
+        }
+      ],
+      "dnsPolicy": "ClusterFirst",
+      "enableServiceLinks": true,
+      "nodeName": "ani-03",
+      "nodeSelector": {
+        "kubernetes.io/hostname": "ani-03"
+      },
+      "preemptionPolicy": "PreemptLowerPriority",
+      "priority": 0,
+      "restartPolicy": "Always",
+      "schedulerName": "default-scheduler",
+      "securityContext": {
+        "runAsGroup": 65532,
+        "runAsNonRoot": true,
+        "runAsUser": 65532,
+        "seccompProfile": {
+          "type": "RuntimeDefault"
+        }
+      },
+      "serviceAccount": "default",
+      "serviceAccountName": "default",
+      "terminationGracePeriodSeconds": 30,
+      "tolerations": [
+        {
+          "effect": "NoExecute",
+          "key": "node.kubernetes.io/not-ready",
+          "operator": "Exists",
+          "tolerationSeconds": 300
+        },
+        {
+          "effect": "NoExecute",
+          "key": "node.kubernetes.io/unreachable",
+          "operator": "Exists",
+          "tolerationSeconds": 300
+        }
+      ]
+    },
+    "field_managers": [
+      "kc-networking-controller",
+      "kubectl-create",
+      "kubelet"
+    ]
+  },
+  "discovery.k8s.io/v1/EndpointSlice/rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b/lb-f70e064fde774daa95ececff63f5be91-g52xr": {
+    "uid": "80cfc1de-cf54-4606-a9e2-6d79f9fc7abc",
+    "labels": {
+      "app.kubernetes.io/component": "proxy",
+      "app.kubernetes.io/managed-by": "envoy-gateway",
+      "app.kubernetes.io/name": "envoy",
+      "endpointslice.kubernetes.io/managed-by": "endpointslice-controller.k8s.io",
+      "gateway.envoyproxy.io/owning-gateway-name": "lb-f70e064fde774daa95ececff63f5be91",
+      "gateway.envoyproxy.io/owning-gateway-namespace": "rsctl-fc8620ea-5560-4207-a9f0-09b73638ca2b",
+      "gateway.networking.k8s.io/gateway-name": "lb-f70e064fde774daa95ececff63f5be91",
+      "kubernetes.io/service-name": "lb-f70e064fde774daa95ececff63f5be91"
+    },
+    "owners": [
+      {
+        "apiVersion": "v1",
+        "blockOwnerDeletion": true,
+        "controller": true,
+        "kind": "Service",
+        "name": "lb-f70e064fde774daa95ececff63f5be91",
+        "uid": "bbd25e85-a2ea-4fc5-8d93-3944e0cd3da0"
+      }
+    ],
+    "spec": null,
+    "field_managers": [
+      "kube-controller-manager"
+    ]
+  }
+}
