@@ -89,6 +89,13 @@ func run(logger *slog.Logger) error {
 	if err := c.Scan(&bc); err != nil {
 		return fmt.Errorf("scan config: %w", err)
 	}
+	switch mode := os.Getenv("ANI_NETWORK_MODE"); mode {
+	case "", "full":
+	case "vpc-read":
+		return runVPCRead(&bc, logger)
+	default:
+		return fmt.Errorf("unknown ANI_NETWORK_MODE %q", mode)
+	}
 	app, err := buildApp(&bc, logger)
 	if err != nil {
 		return fmt.Errorf("build app: %w", err)
