@@ -129,14 +129,14 @@ var kindsToWire = map[string]networkv1.OperationKind{"ensure_vpc_base_connectivi
 	"delete_load_balancer":         networkv1.OperationKind_OPERATION_KIND_DELETE_LOAD_BALANCER}
 
 func rpcError(err error) error {
-	if errors.Is(err, context.Canceled) {
+	reason := biz.ReasonOf(err)
+	if reason == "" && errors.Is(err, context.Canceled) {
 		return status.Error(codes.Canceled, "request canceled")
 	}
-	if errors.Is(err, context.DeadlineExceeded) {
+	if reason == "" && errors.Is(err, context.DeadlineExceeded) {
 		return status.Error(codes.DeadlineExceeded, "request deadline exceeded; replay creation with the same key")
 	}
 	code := codes.Internal
-	reason := biz.ReasonOf(err)
 	message := "Network request failed"
 	var failure *biz.Error
 	if errors.As(err, &failure) {

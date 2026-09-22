@@ -31,3 +31,5 @@ A/B 同 Fedora Go 1.26.7-X:nodwarf5、UTC、GOWORK=off、GOTOOLCHAIN=local；Buf
 该变更单独提交并重新完成受影响的兼容/门禁验证，不能继续声称新候选依赖版本完全不变。
 上游修复会拒绝同时缺少 `:authority` 和 `Host` 的畸形 HTTP/2 请求，并限制细碎 DATA 帧的
 缓冲内存开销；这是已授权的传输安全行为差异，不改变 Network 业务 RPC、字段、权限或持久规则。
+
+用户随后明确要求合并并推送本地 `3e40bb0`，新增 Governance 只读 mTLS 入口及原提交的依赖错误分类；[整合范围与验证](governance-merge-20260922/README.md)单独记录。服务器证书 SAN `ani-network-service` 保留以兼容已有证书，此旧名不是遗漏。此前改名前冻结的业务不变量描述保持其时点，本次显式授权增量不伪装为纯移动。

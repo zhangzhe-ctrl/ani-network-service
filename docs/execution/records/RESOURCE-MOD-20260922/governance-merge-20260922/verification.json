@@ -1,0 +1,22 @@
+{
+  "host": "fedora",
+  "result": "pass",
+  "runtime_matches_tested_manifest": true,
+  "docs_changed_after_snapshot": [
+    "docs/execution/records/RESOURCE-MOD-20260922/rename-inventory.md",
+    "docs/execution/status.md"
+  ],
+  "manifest_remote_path": "/home/chabking/workspace/ani-resource-service-runs/rsmod-20260921T1640Z/merge-governance-20260922T0703Z/evidence/tested-manifest.json",
+  "manifest_sha256": "551ad5e9d459ef2316b7cc48118f85f869b13371a2a595790c7c125fcafbaa46",
+  "commands": [
+    "make verify",
+    "INTEGRATION_TIMEOUT=20m make integration",
+    "./scripts/integration -timeout 20m -race -run 'TestGovernance|TestVPCConnectionDeadline|TestVPCDependencyDeadline' ./internal/server ./internal/data/network ./internal/service/network"
+  ],
+  "exit_codes": [
+    0,
+    0,
+    0
+  ],
+  "cleanup": "Both task PG containers removed; no Kubernetes writes"
+}

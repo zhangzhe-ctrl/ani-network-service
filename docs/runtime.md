@@ -72,3 +72,7 @@ Kratos 同时启动 gRPC、admin、共享观察与 worker。请求方退出不�
 ## 验证边界
 
 运行入口和命令见 [运行验证](runtime-verification.md)。受控 HTTP/API server 验证实际适配器请求，真实 PostgreSQL 验证持久事务，独立进程验证恢复；它们都不能证明真实 kc、OVN、kind、Pod/VM 或 IAM 已验收。
+
+## Governance VPC 只读入口
+
+`ANI_NETWORK_MODE=vpc-read` 使用真实 PostgreSQL 查询与 Governance mTLS，装配边界、环境变量及身份合同见 [只读接入规格](specs/governance-vpc-read.md)。它不运行 KC、worker 或云网络创建。结构仍由 `-migrate` 使用独立 owner 显式执行；运行角色只能读取本片数据，不因服务启动迁移或播种。

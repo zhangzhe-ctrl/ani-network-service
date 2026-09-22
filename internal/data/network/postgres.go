@@ -219,7 +219,16 @@ func (p *Postgres) GetVPC(ctx context.Context, tenant, id string) (biz.VPC, erro
 	value := vpc(row.NetworkVpc)
 	value.SubnetCount = row.SubnetCount
 	value.BaseConnectivity = &biz.BaseConnectivity{State: row.BaseState, Reason: biz.Reason(row.BaseReason), ObservedAt: row.BaseObservedAt}
-	return value, databaseFailure(err)
+	return value, vpcQueryFailure(ctx, err)
+}
+
+// Connection timeouts are dependency failures unless the caller's own deadline
+// has expired. Preserve the original cause for diagnostics.
+func vpcQueryFailure(ctx context.Context, err error) error {
+	if err != nil && errors.Is(err, context.DeadlineExceeded) && ctx.Err() == nil {
+		return &biz.Error{Reason: biz.DependencyUnavailable, Message: "Network database connection timed out", Cause: err}
+	}
+	return databaseFailure(err)
 }
 
 func (p *Postgres) GetOperation(ctx context.Context, tenant, id string) (biz.Operation, error) {

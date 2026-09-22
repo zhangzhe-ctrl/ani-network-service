@@ -4,6 +4,8 @@
 
 ## 2026-09-22：Resource 改名与 Network 模块整理
 
+用户后续授权将本地 `3e40bb0` 合入改名实施分支并推送；[整合记录](records/RESOURCE-MOD-20260922/governance-merge-20260922/README.md)区分该业务增量与此前改名验证。合并后运行源码已经增加只读入口与错误分类行为，下面的历史门禁/控制面结果不自动覆盖这次合并快照，受影响检查已在 Fedora 通过 verify、真实 PG integration（20m 上限）和定向 race，命令与退出码见整合记录；完整新版本 R4 仍未验证。
+
 状态 `in_progress`（9e491fa 精确提交的 Fedora verify/audit 与两条 CI 通过；最新真实控制面同库接管、恢复、回退、API 清理通过；Public 及必需数据面验收仍不完整，发布暂停），完整 R0—R5 尚未完成。独立分支 `codex/resource-service-modularization`，
 工作树 `/home/chabking/workspace/.worktrees/resource-service-modularization`；原工作树和历史保留。
 [实施记录](records/RESOURCE-MOD-20260922/README.md)及[改名清单](records/RESOURCE-MOD-20260922/rename-inventory.md)。
