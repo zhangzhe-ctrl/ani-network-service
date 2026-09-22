@@ -45,6 +45,14 @@ func WithEgressCaller(ctx context.Context, caller EgressCaller) context.Context 
 	return context.WithValue(ctx, egressCallerKey{}, caller)
 }
 
+// EgressCallerOf returns the trusted caller installed by a trusted inbound
+// adapter. It reports false when no caller was installed; business code must go
+// through EgressAuthorization, not read the context directly.
+func EgressCallerOf(ctx context.Context) (EgressCaller, bool) {
+	c, ok := ctx.Value(egressCallerKey{}).(EgressCaller)
+	return c, ok
+}
+
 type ContextEgressAuthorization struct{}
 
 func (ContextEgressAuthorization) Tenant(ctx context.Context, target string) (string, Attribution, error) {
