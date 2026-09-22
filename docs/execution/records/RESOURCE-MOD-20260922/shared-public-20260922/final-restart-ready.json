@@ -1,0 +1,33 @@
+{
+  "at": "2026-09-22T02:11:05.412357+00:00",
+  "reason": "Restart after all five dependent resources have been restored; initial 36 failures retained.",
+  "uid": "75b7d87f-66da-499d-a6de-cc5fe164d998",
+  "generation": 5,
+  "status": {
+    "observedGeneration": 5,
+    "replicas": 3,
+    "updatedReplicas": 3,
+    "readyReplicas": 3,
+    "availableReplicas": 3,
+    "terminatingReplicas": 0,
+    "conditions": [
+      {
+        "type": "Available",
+        "status": "True",
+        "lastUpdateTime": "2026-09-14T12:26:10Z",
+        "lastTransitionTime": "2026-09-14T12:26:10Z",
+        "reason": "MinimumReplicasAvailable",
+        "message": "Deployment has minimum availability."
+      },
+      {
+        "type": "Progressing",
+        "status": "True",
+        "lastUpdateTime": "2026-09-22T02:11:19Z",
+        "lastTransitionTime": "2026-09-14T12:26:10Z",
+        "reason": "NewReplicaSetAvailable",
+        "message": "ReplicaSet \"kcn-controller-7fc66cbb46\" has successfully progressed."
+      }
+    ]
+  },
+  "result": "pass"
+}

@@ -1,0 +1,32 @@
+{
+  "apiVersion": "networking.kubercloud.com/v1",
+  "kind": "Subnet",
+  "metadata": {
+    "name": "public",
+    "namespace": "kcn-system",
+    "labels": {
+      "app.kubernetes.io/part-of": "ani-platform",
+      "network.ani.io/purpose": "shared-public"
+    }
+  },
+  "spec": {
+    "allowedNamespaces": {
+      "from": "All"
+    },
+    "cidrBlock": "172.16.102.0/24",
+    "enableDHCP": false,
+    "excludeIPs": [
+      "172.16.102.1..172.16.102.191",
+      "172.16.102.208..172.16.102.254"
+    ],
+    "gateway": "pubdebug-20260917-egress",
+    "gatewayIP": "172.16.102.2",
+    "ipVersion": "IPv4",
+    "natOutgoing": false,
+    "type": "Public",
+    "underlayConfig": {
+      "gatewayIP": "172.16.102.1",
+      "vlanNetwork": "pubdebug-20260917-vlan0"
+    }
+  }
+}

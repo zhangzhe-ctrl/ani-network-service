@@ -1,0 +1,75 @@
+{
+  "scope": "single bounded post-replacement environment check; not R4 old/candidate comparison",
+  "cases": [
+    {
+      "case": "direct-public",
+      "source": "public-a",
+      "target": "172.16.102.193",
+      "instances": [
+        "public-b"
+      ],
+      "source_uid": "ece5f4a4-9dc5-492f-a5bb-68de3c717eb6",
+      "port": 8080,
+      "requests": 6
+    },
+    {
+      "case": "direct-public",
+      "source": "public-b",
+      "target": "172.16.102.192",
+      "instances": [
+        "public-a"
+      ],
+      "source_uid": "c83150f9-3d0d-4917-830c-509b1858172d",
+      "port": 8080,
+      "requests": 6
+    },
+    {
+      "case": "public-lb",
+      "source": "public-a",
+      "target": "172.16.102.194",
+      "instances": [
+        "backend-a",
+        "backend-b"
+      ],
+      "source_uid": "ece5f4a4-9dc5-492f-a5bb-68de3c717eb6",
+      "port": 8080,
+      "requests": 6
+    },
+    {
+      "case": "dual-public-lb",
+      "source": "public-a",
+      "target": "172.16.102.195",
+      "instances": [
+        "backend-a",
+        "backend-b"
+      ],
+      "source_uid": "ece5f4a4-9dc5-492f-a5bb-68de3c717eb6",
+      "port": 8080,
+      "requests": 6
+    },
+    {
+      "case": "public-lb",
+      "source": "public-b",
+      "target": "172.16.102.194",
+      "instances": [
+        "backend-a",
+        "backend-b"
+      ],
+      "source_uid": "c83150f9-3d0d-4917-830c-509b1858172d",
+      "port": 8080,
+      "requests": 6
+    },
+    {
+      "case": "dual-public-lb",
+      "source": "public-b",
+      "target": "172.16.102.195",
+      "instances": [
+        "backend-a",
+        "backend-b"
+      ],
+      "source_uid": "c83150f9-3d0d-4917-830c-509b1858172d",
+      "port": 8080,
+      "requests": 6
+    }
+  ]
+}

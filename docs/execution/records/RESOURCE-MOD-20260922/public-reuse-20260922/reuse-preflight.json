@@ -1,0 +1,147 @@
+{
+  "at": "2026-09-22T01:23:06.933130+00:00",
+  "host": "fedora",
+  "cluster_uid": "be57b911-892c-4e75-aa9d-4a05d819c59e",
+  "authorization": "User authorizes using existing pubdebug Public resources, but explicitly forbids deleting them.",
+  "protected": [
+    {
+      "kind": "Subnet",
+      "name": "pubdebug-20260917-public",
+      "namespace": "kcn-system",
+      "uid": "39619c25-703e-4db2-a35a-d44ee2acb780",
+      "generation": 1,
+      "labels": {
+        "manual.ani.io/run": "pubdebug-20260917",
+        "networking.kubercloud.com/gateway": "kcn-system.pubdebug-20260917-public"
+      },
+      "spec": {
+        "allowedNamespaces": {
+          "from": "Selector",
+          "selector": {
+            "matchLabels": {
+              "manual.ani.io/run": "pubdebug-20260917"
+            }
+          }
+        },
+        "cidrBlock": "172.16.102.0/24",
+        "enableDHCP": false,
+        "excludeIPs": [
+          "172.16.102.1..172.16.102.191",
+          "172.16.102.208..172.16.102.254"
+        ],
+        "gateway": "pubdebug-20260917-egress",
+        "gatewayIP": "172.16.102.2",
+        "ipVersion": "IPv4",
+        "natOutgoing": false,
+        "type": "Public",
+        "underlayConfig": {
+          "gatewayIP": "172.16.102.1",
+          "vlanNetwork": "pubdebug-20260917-vlan0"
+        }
+      },
+      "spec_sha256": "fe190b3da3f2ff520fab09c0fdf42709d7d154ae1239a232ccd784bf276ea9b0",
+      "delete_allowed": false
+    },
+    {
+      "kind": "EIPGateway",
+      "name": "pubdebug-20260917-egress",
+      "namespace": null,
+      "uid": "ee7e361a-e05d-400d-8cea-aa50d3f7b427",
+      "generation": 1,
+      "labels": {
+        "manual.ani.io/run": "pubdebug-20260917"
+      },
+      "spec": {
+        "egressType": "Host",
+        "scope": "Public"
+      },
+      "spec_sha256": "bb008a3167211b044a2f49092db56c6696cb56293fa2cd4833c692abe9a998e8",
+      "delete_allowed": false
+    },
+    {
+      "kind": "VlanNetwork",
+      "name": "pubdebug-20260917-vlan0",
+      "namespace": null,
+      "uid": "0b8dba99-e944-4bab-b93c-5a34a53f807f",
+      "generation": 1,
+      "labels": {
+        "manual.ani.io/run": "pubdebug-20260917"
+      },
+      "spec": {
+        "devName": "ens35",
+        "vlanID": 0
+      },
+      "spec_sha256": "14ff411c838dce1f8d8670cd594ebf3beb51644dc6af471a4459fe879e2d9935",
+      "delete_allowed": false
+    }
+  ],
+  "conditions": {
+    "pool": [
+      {
+        "lastTransitionTime": "2026-09-17T02:30:57Z",
+        "message": "",
+        "reason": "Initialized",
+        "status": "True",
+        "type": "Initialized"
+      },
+      {
+        "lastTransitionTime": "2026-09-17T02:30:57Z",
+        "message": "",
+        "reason": "Valid",
+        "status": "True",
+        "type": "Valid"
+      },
+      {
+        "lastTransitionTime": "2026-09-17T02:30:57Z",
+        "message": "",
+        "reason": "Ready",
+        "status": "True",
+        "type": "Ready"
+      }
+    ],
+    "gateway": [
+      {
+        "lastTransitionTime": "2026-09-17T02:30:57Z",
+        "message": "",
+        "reason": "Valid",
+        "status": "True",
+        "type": "Valid"
+      },
+      {
+        "lastTransitionTime": "2026-09-17T02:30:57Z",
+        "message": "",
+        "reason": "Initialized",
+        "status": "True",
+        "type": "Initialized"
+      },
+      {
+        "lastTransitionTime": "2026-09-17T02:30:57Z",
+        "message": "",
+        "reason": "Ready",
+        "status": "True",
+        "type": "Ready"
+      }
+    ],
+    "vlan": [
+      {
+        "lastTransitionTime": "2026-09-17T02:30:57Z",
+        "message": "",
+        "reason": "Valid",
+        "status": "True",
+        "type": "Valid"
+      },
+      {
+        "lastTransitionTime": "2026-09-17T02:30:57Z",
+        "message": "",
+        "reason": "Ready",
+        "status": "True",
+        "type": "Ready"
+      }
+    ]
+  },
+  "device_binding": {
+    "network.ani.io/device-adoption-2f5c91188d083599": "a1fdc522-a807-40b7-89a6-986b0039ff43"
+  },
+  "kubernetes_writes": 0,
+  "data_plane_requests": 0
+}

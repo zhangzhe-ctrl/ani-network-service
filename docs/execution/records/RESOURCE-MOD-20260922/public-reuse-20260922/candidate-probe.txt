@@ -1,0 +1,15 @@
+=== RUN   TestExistingManualPublicPoolReuseDiagnostic
+=== RUN   TestExistingManualPublicPoolReuseDiagnostic/pool
+    manual_reuse_diagnostic_test.go:42: observed public_pool pubdebug-20260917-public UID=39619c25-703e-4db2-a35a-d44ee2acb780: Network ownership labels absent, existing inspector rejects
+=== RUN   TestExistingManualPublicPoolReuseDiagnostic/gateway
+    manual_reuse_diagnostic_test.go:42: observed egress_gateway pubdebug-20260917-egress UID=ee7e361a-e05d-400d-8cea-aa50d3f7b427: Network ownership labels absent, existing inspector rejects
+=== RUN   TestExistingManualPublicPoolReuseDiagnostic/vlan
+    manual_reuse_diagnostic_test.go:42: observed vlan pubdebug-20260917-vlan0 UID=0b8dba99-e944-4bab-b93c-5a34a53f807f: Network ownership labels absent, existing inspector rejects
+=== NAME  TestExistingManualPublicPoolReuseDiagnostic
+    manual_reuse_diagnostic_test.go:55: actual namespace mode=Selector, product-rendered=map[from:All]; existing pool cannot be passed through unchanged
+--- PASS: TestExistingManualPublicPoolReuseDiagnostic (0.00s)
+    --- PASS: TestExistingManualPublicPoolReuseDiagnostic/pool (0.00s)
+    --- PASS: TestExistingManualPublicPoolReuseDiagnostic/gateway (0.00s)
+    --- PASS: TestExistingManualPublicPoolReuseDiagnostic/vlan (0.00s)
+PASS
+ok  	github.com/zhangzhe-ctrl/ani-resource-service/internal/data/network	0.015s

@@ -1,0 +1,172 @@
+{
+  "at": "2026-09-22T02:15:42.075269+00:00",
+  "execution_host": "fedora",
+  "source_candidate": "5f33deca4078ccfa76e7d2a4aeb0514960f17665",
+  "authorization": "User explicitly requested replacing the old task-scoped Public subnet with a shared subnet and then restarting kcn-controller. This overrides the earlier no-delete instruction for that subnet.",
+  "new_pool": {
+    "name": "kcn-system/public",
+    "uid": "679c8ab9-cf99-41f1-b1f3-0e21473a0351",
+    "spec": {
+      "allowedNamespaces": {
+        "from": "All"
+      },
+      "cidrBlock": "172.16.102.0/24",
+      "enableDHCP": false,
+      "excludeIPs": [
+        "172.16.102.1..172.16.102.191",
+        "172.16.102.208..172.16.102.254"
+      ],
+      "gateway": "pubdebug-20260917-egress",
+      "gatewayIP": "172.16.102.2",
+      "ipVersion": "IPv4",
+      "natOutgoing": false,
+      "type": "Public",
+      "underlayConfig": {
+        "gatewayIP": "172.16.102.1",
+        "vlanNetwork": "pubdebug-20260917-vlan0"
+      }
+    },
+    "status": {
+      "boundResources": {
+        "gatewayPort": "gw.pubdebug-20260917-egress-kcn-system.public",
+        "switch": "kcn-system.public"
+      },
+      "conditions": [
+        {
+          "lastTransitionTime": "2026-09-22T01:51:43Z",
+          "message": "",
+          "reason": "Initialized",
+          "status": "True",
+          "type": "Initialized"
+        },
+        {
+          "lastTransitionTime": "2026-09-22T01:51:43Z",
+          "message": "",
+          "reason": "Valid",
+          "status": "True",
+          "type": "Valid"
+        },
+        {
+          "lastTransitionTime": "2026-09-22T01:51:43Z",
+          "message": "",
+          "reason": "Ready",
+          "status": "True",
+          "type": "Ready"
+        }
+      ],
+      "gatewayMac": "fa:00:65:53:15:ac",
+      "observedGeneration": 1,
+      "underlayState": {
+        "chassisNode": "ani-01",
+        "ready": true,
+        "vlanNetwork": "pubdebug-20260917-vlan0"
+      },
+      "v4availableIPrange": "172.16.102.197-172.16.102.207",
+      "v4availableIPs": 11,
+      "v4usingIPrange": "172.16.102.192-172.16.102.196",
+      "v4usingIPs": 5
+    }
+  },
+  "controller": {
+    "generation": 5,
+    "status": {
+      "observedGeneration": 5,
+      "replicas": 3,
+      "updatedReplicas": 3,
+      "readyReplicas": 3,
+      "availableReplicas": 3,
+      "terminatingReplicas": 0,
+      "conditions": [
+        {
+          "type": "Available",
+          "status": "True",
+          "lastUpdateTime": "2026-09-14T12:26:10Z",
+          "lastTransitionTime": "2026-09-14T12:26:10Z",
+          "reason": "MinimumReplicasAvailable",
+          "message": "Deployment has minimum availability."
+        },
+        {
+          "type": "Progressing",
+          "status": "True",
+          "lastUpdateTime": "2026-09-22T02:11:19Z",
+          "lastTransitionTime": "2026-09-14T12:26:10Z",
+          "reason": "NewReplicaSetAvailable",
+          "message": "ReplicaSet \"kcn-controller-7fc66cbb46\" has successfully progressed."
+        }
+      ]
+    },
+    "new_pods": [
+      {
+        "name": "kcn-controller-7fc66cbb46-8nl5l",
+        "uid": "93e13cd2-71a1-4713-96ad-d55648a0ff00",
+        "images": [
+          {
+            "image": "docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2",
+            "imageID": "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4",
+            "ready": true
+          }
+        ]
+      },
+      {
+        "name": "kcn-controller-7fc66cbb46-js8xp",
+        "uid": "483888e6-cb38-4d36-9586-78e644bf9645",
+        "images": [
+          {
+            "image": "docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2",
+            "imageID": "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4",
+            "ready": true
+          }
+        ]
+      },
+      {
+        "name": "kcn-controller-7fc66cbb46-k5d5g",
+        "uid": "0d19486b-1068-400d-9b35-2c5b4ace83b4",
+        "images": [
+          {
+            "image": "docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2",
+            "imageID": "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4",
+            "ready": true
+          }
+        ]
+      }
+    ],
+    "spec_change": "only restartedAt annotation",
+    "restarts": 2
+  },
+  "preserved": {
+    "gateway_uid": "ee7e361a-e05d-400d-8cea-aa50d3f7b427",
+    "vlan_uid": "0b8dba99-e944-4bab-b93c-5a34a53f807f",
+    "node_uids": true,
+    "node_configuration_modified": false,
+    "kc_image_upgraded": false
+  },
+  "dependent_replacements": {
+    "eips": 3,
+    "probe_pods": 2,
+    "names_and_addresses_preserved": true,
+    "uid_changed": true,
+    "lb_or_snat_deleted": false
+  },
+  "initial_traffic": {
+    "host": "fedora",
+    "count": 36,
+    "pass": 0,
+    "fail": 36,
+    "reruns": 0,
+    "scope": "platform replacement smoke only; no renamed-service R4 or SNAT source proof"
+  },
+  "final_traffic": {
+    "host": "fedora",
+    "count": 36,
+    "pass": 0,
+    "fail": 36,
+    "reruns": 0,
+    "scope": "platform replacement smoke only; no renamed-service R4 or SNAT source proof"
+  },
+  "platform_replacement": "pass",
+  "controller_restart": "pass",
+  "public_data_plane": "fail; 36/36 timeouts before and after final restart; cause unproven",
+  "R4": "not_verified; these are platform-operation checks, not old/candidate acceptance",
+  "cleanup": "retain shared subnet and migrated dependencies; close only task transport",
+  "rollback": "private original manifests and UID receipts retained; restoring old subnet would be a new explicit operation, not a same-UID rollback"
+}

@@ -1,0 +1,544 @@
+{
+  "at": "2026-09-22T01:52:02.944173+00:00",
+  "host": "fedora",
+  "old_subnet_absent": true,
+  "new_subnet": {
+    "apiVersion": "networking.kubercloud.com/v1",
+    "kind": "Subnet",
+    "metadata": {
+      "creationTimestamp": "2026-09-22T01:51:43Z",
+      "finalizers": [
+        "networking.kubercloud.com/finalizer"
+      ],
+      "generation": 1,
+      "labels": {
+        "app.kubernetes.io/part-of": "ani-platform",
+        "network.ani.io/purpose": "shared-public",
+        "networking.kubercloud.com/gateway": "kcn-system.public"
+      },
+      "managedFields": [
+        {
+          "apiVersion": "networking.kubercloud.com/v1",
+          "fieldsType": "FieldsV1",
+          "fieldsV1": {
+            "f:metadata": {
+              "f:labels": {
+                ".": {},
+                "f:app.kubernetes.io/part-of": {},
+                "f:network.ani.io/purpose": {}
+              }
+            },
+            "f:spec": {
+              ".": {},
+              "f:allowedNamespaces": {
+                ".": {},
+                "f:from": {}
+              },
+              "f:cidrBlock": {},
+              "f:enableDHCP": {},
+              "f:excludeIPs": {},
+              "f:gateway": {},
+              "f:gatewayIP": {},
+              "f:ipVersion": {},
+              "f:natOutgoing": {},
+              "f:type": {},
+              "f:underlayConfig": {
+                ".": {},
+                "f:gatewayIP": {},
+                "f:vlanNetwork": {}
+              }
+            }
+          },
+          "manager": "Python-urllib",
+          "operation": "Update",
+          "time": "2026-09-22T01:51:43Z"
+        },
+        {
+          "apiVersion": "networking.kubercloud.com/v1",
+          "fieldsType": "FieldsV1",
+          "fieldsV1": {
+            "f:metadata": {
+              "f:finalizers": {
+                ".": {},
+                "v:\"networking.kubercloud.com/finalizer\"": {}
+              },
+              "f:labels": {
+                "f:networking.kubercloud.com/gateway": {}
+              }
+            }
+          },
+          "manager": "kc-networking-controller",
+          "operation": "Update",
+          "time": "2026-09-22T01:51:43Z"
+        },
+        {
+          "apiVersion": "networking.kubercloud.com/v1",
+          "fieldsType": "FieldsV1",
+          "fieldsV1": {
+            "f:status": {
+              ".": {},
+              "f:boundResources": {
+                ".": {},
+                "f:gatewayPort": {},
+                "f:switch": {}
+              },
+              "f:conditions": {
+                ".": {},
+                "k:{\"type\":\"Initialized\"}": {
+                  ".": {},
+                  "f:lastTransitionTime": {},
+                  "f:message": {},
+                  "f:reason": {},
+                  "f:status": {},
+                  "f:type": {}
+                },
+                "k:{\"type\":\"Ready\"}": {
+                  ".": {},
+                  "f:lastTransitionTime": {},
+                  "f:message": {},
+                  "f:reason": {},
+                  "f:status": {},
+                  "f:type": {}
+                },
+                "k:{\"type\":\"Valid\"}": {
+                  ".": {},
+                  "f:lastTransitionTime": {},
+                  "f:message": {},
+                  "f:reason": {},
+                  "f:status": {},
+                  "f:type": {}
+                }
+              },
+              "f:gatewayMac": {},
+              "f:observedGeneration": {},
+              "f:underlayState": {
+                ".": {},
+                "f:chassisNode": {},
+                "f:ready": {},
+                "f:vlanNetwork": {}
+              },
+              "f:v4availableIPrange": {},
+              "f:v4availableIPs": {},
+              "f:v4usingIPrange": {},
+              "f:v4usingIPs": {}
+            }
+          },
+          "manager": "kc-networking-controller",
+          "operation": "Update",
+          "subresource": "status",
+          "time": "2026-09-22T01:51:59Z"
+        }
+      ],
+      "name": "public",
+      "namespace": "kcn-system",
+      "resourceVersion": "3239856",
+      "uid": "679c8ab9-cf99-41f1-b1f3-0e21473a0351"
+    },
+    "spec": {
+      "allowedNamespaces": {
+        "from": "All"
+      },
+      "cidrBlock": "172.16.102.0/24",
+      "enableDHCP": false,
+      "excludeIPs": [
+        "172.16.102.1..172.16.102.191",
+        "172.16.102.208..172.16.102.254"
+      ],
+      "gateway": "pubdebug-20260917-egress",
+      "gatewayIP": "172.16.102.2",
+      "ipVersion": "IPv4",
+      "natOutgoing": false,
+      "type": "Public",
+      "underlayConfig": {
+        "gatewayIP": "172.16.102.1",
+        "vlanNetwork": "pubdebug-20260917-vlan0"
+      }
+    },
+    "status": {
+      "boundResources": {
+        "gatewayPort": "gw.pubdebug-20260917-egress-kcn-system.public",
+        "switch": "kcn-system.public"
+      },
+      "conditions": [
+        {
+          "lastTransitionTime": "2026-09-22T01:51:43Z",
+          "message": "",
+          "reason": "Initialized",
+          "status": "True",
+          "type": "Initialized"
+        },
+        {
+          "lastTransitionTime": "2026-09-22T01:51:43Z",
+          "message": "",
+          "reason": "Valid",
+          "status": "True",
+          "type": "Valid"
+        },
+        {
+          "lastTransitionTime": "2026-09-22T01:51:43Z",
+          "message": "",
+          "reason": "Ready",
+          "status": "True",
+          "type": "Ready"
+        }
+      ],
+      "gatewayMac": "fa:00:65:53:15:ac",
+      "observedGeneration": 1,
+      "underlayState": {
+        "chassisNode": "ani-01",
+        "ready": true,
+        "vlanNetwork": "pubdebug-20260917-vlan0"
+      },
+      "v4availableIPrange": "172.16.102.197-172.16.102.207",
+      "v4availableIPs": 11,
+      "v4usingIPrange": "172.16.102.192-172.16.102.196",
+      "v4usingIPs": 5
+    }
+  },
+  "controller": {
+    "uid": "75b7d87f-66da-499d-a6de-cc5fe164d998",
+    "generation": 4,
+    "status": {
+      "observedGeneration": 4,
+      "replicas": 3,
+      "updatedReplicas": 3,
+      "readyReplicas": 3,
+      "availableReplicas": 3,
+      "terminatingReplicas": 0,
+      "conditions": [
+        {
+          "type": "Available",
+          "status": "True",
+          "lastUpdateTime": "2026-09-14T12:26:10Z",
+          "lastTransitionTime": "2026-09-14T12:26:10Z",
+          "reason": "MinimumReplicasAvailable",
+          "message": "Deployment has minimum availability."
+        },
+        {
+          "type": "Progressing",
+          "status": "True",
+          "lastUpdateTime": "2026-09-22T01:51:57Z",
+          "lastTransitionTime": "2026-09-14T12:26:10Z",
+          "reason": "NewReplicaSetAvailable",
+          "message": "ReplicaSet \"kcn-controller-6b4dcbc47\" has successfully progressed."
+        }
+      ]
+    }
+  },
+  "eips": [
+    {
+      "name": "dual-eip",
+      "old_uid": "9708934d-6f6a-4c0b-b013-9f38185102c1",
+      "new_uid": "e813a311-a01e-47fe-bc29-1af36f67754f",
+      "spec": {
+        "ipAddress": "172.16.102.195",
+        "ipVersion": "IPv4",
+        "subnet": "kcn-system/public"
+      },
+      "status": {
+        "boundResource": {
+          "nodeName": "ani-01",
+          "resource": "dual-lb",
+          "resourceType": "Service",
+          "vpc": "pubdebug-20260917/tenant"
+        },
+        "conditions": [
+          {
+            "lastTransitionTime": "2026-09-22T01:51:59Z",
+            "message": "",
+            "reason": "Initialized",
+            "status": "True",
+            "type": "Initialized"
+          },
+          {
+            "lastTransitionTime": "2026-09-22T01:51:59Z",
+            "message": "",
+            "reason": "Valid",
+            "status": "True",
+            "type": "Valid"
+          }
+        ],
+        "gateway": "pubdebug-20260917-egress",
+        "phase": "Bound"
+      }
+    },
+    {
+      "name": "public-eip",
+      "old_uid": "673f7976-a3b3-46dc-bcaa-f8ed72288fc7",
+      "new_uid": "2a70eb7e-0127-46ef-8f96-0b2904e8b1df",
+      "spec": {
+        "ipAddress": "172.16.102.194",
+        "ipVersion": "IPv4",
+        "subnet": "kcn-system/public"
+      },
+      "status": {
+        "boundResource": {
+          "nodeName": "ani-01",
+          "resource": "public-lb",
+          "resourceType": "Service",
+          "vpc": "pubdebug-20260917/tenant"
+        },
+        "conditions": [
+          {
+            "lastTransitionTime": "2026-09-22T01:51:59Z",
+            "message": "",
+            "reason": "Initialized",
+            "status": "True",
+            "type": "Initialized"
+          },
+          {
+            "lastTransitionTime": "2026-09-22T01:51:59Z",
+            "message": "",
+            "reason": "Valid",
+            "status": "True",
+            "type": "Valid"
+          }
+        ],
+        "gateway": "pubdebug-20260917-egress",
+        "phase": "Bound"
+      }
+    },
+    {
+      "name": "snat-eip",
+      "old_uid": "97041456-7bf7-4b11-908a-1a7c6a10e600",
+      "new_uid": "7c010bbf-49d6-4328-a617-11413e0862b2",
+      "spec": {
+        "ipAddress": "172.16.102.196",
+        "ipVersion": "IPv4",
+        "subnet": "kcn-system/public"
+      },
+      "status": {
+        "boundResource": {
+          "disabled": false,
+          "nodeName": "ani-01",
+          "observedGeneration": 3,
+          "resource": "public-snat",
+          "resourceType": "Snat",
+          "vpc": "pubdebug-20260917/tenant"
+        },
+        "conditions": [
+          {
+            "lastTransitionTime": "2026-09-22T01:51:59Z",
+            "message": "",
+            "reason": "Initialized",
+            "status": "True",
+            "type": "Initialized"
+          },
+          {
+            "lastTransitionTime": "2026-09-22T01:51:59Z",
+            "message": "",
+            "reason": "Valid",
+            "status": "True",
+            "type": "Valid"
+          }
+        ],
+        "gateway": "pubdebug-20260917-egress",
+        "phase": "Bound"
+      }
+    }
+  ],
+  "pods": [
+    {
+      "name": "public-a",
+      "old_uid": "8953f0b2-76d3-424c-8048-a99807d82f7b",
+      "new_uid": "ece5f4a4-9dc5-492f-a5bb-68de3c717eb6",
+      "status": {
+        "observedGeneration": 1,
+        "phase": "Running",
+        "conditions": [
+          {
+            "type": "PodReadyToStartContainers",
+            "observedGeneration": 1,
+            "status": "True",
+            "lastProbeTime": null,
+            "lastTransitionTime": "2026-09-22T01:52:01Z"
+          },
+          {
+            "type": "Initialized",
+            "observedGeneration": 1,
+            "status": "True",
+            "lastProbeTime": null,
+            "lastTransitionTime": "2026-09-22T01:51:59Z"
+          },
+          {
+            "type": "Ready",
+            "observedGeneration": 1,
+            "status": "True",
+            "lastProbeTime": null,
+            "lastTransitionTime": "2026-09-22T01:52:02Z"
+          },
+          {
+            "type": "ContainersReady",
+            "observedGeneration": 1,
+            "status": "True",
+            "lastProbeTime": null,
+            "lastTransitionTime": "2026-09-22T01:52:02Z"
+          },
+          {
+            "type": "PodScheduled",
+            "observedGeneration": 1,
+            "status": "True",
+            "lastProbeTime": null,
+            "lastTransitionTime": "2026-09-22T01:51:59Z"
+          }
+        ],
+        "hostIP": "172.16.101.11",
+        "hostIPs": [
+          {
+            "ip": "172.16.101.11"
+          }
+        ],
+        "podIP": "172.16.102.192",
+        "podIPs": [
+          {
+            "ip": "172.16.102.192"
+          }
+        ],
+        "startTime": "2026-09-22T01:51:59Z",
+        "containerStatuses": [
+          {
+            "name": "probe",
+            "state": {
+              "running": {
+                "startedAt": "2026-09-22T01:52:01Z"
+              }
+            },
+            "lastState": {},
+            "ready": true,
+            "restartCount": 0,
+            "image": "localhost/lb02-2b3122-probe:20260915",
+            "imageID": "docker.io/library/import-2026-09-15@sha256:6dc16949364cbd67c142d6d0ca3aa6353146917816936e63beb672621fcb9295",
+            "containerID": "containerd://6f80647bb0c01fe942567f1b8129f85047916202291e7734dee9078a91c4c1fb",
+            "started": true,
+            "allocatedResources": {
+              "cpu": "10m",
+              "memory": "32Mi"
+            },
+            "resources": {
+              "limits": {
+                "cpu": "100m",
+                "memory": "64Mi"
+              },
+              "requests": {
+                "cpu": "10m",
+                "memory": "32Mi"
+              }
+            },
+            "user": {
+              "linux": {
+                "uid": 65532,
+                "gid": 65532,
+                "supplementalGroups": [
+                  65532
+                ]
+              }
+            }
+          }
+        ],
+        "qosClass": "Burstable"
+      }
+    },
+    {
+      "name": "public-b",
+      "old_uid": "a9b7abf8-3a2c-4352-9f0d-630e1f8296a6",
+      "new_uid": "c83150f9-3d0d-4917-830c-509b1858172d",
+      "status": {
+        "observedGeneration": 1,
+        "phase": "Running",
+        "conditions": [
+          {
+            "type": "PodReadyToStartContainers",
+            "observedGeneration": 1,
+            "status": "True",
+            "lastProbeTime": null,
+            "lastTransitionTime": "2026-09-22T01:52:02Z"
+          },
+          {
+            "type": "Initialized",
+            "observedGeneration": 1,
+            "status": "True",
+            "lastProbeTime": null,
+            "lastTransitionTime": "2026-09-22T01:51:59Z"
+          },
+          {
+            "type": "Ready",
+            "observedGeneration": 1,
+            "status": "True",
+            "lastProbeTime": null,
+            "lastTransitionTime": "2026-09-22T01:52:02Z"
+          },
+          {
+            "type": "ContainersReady",
+            "observedGeneration": 1,
+            "status": "True",
+            "lastProbeTime": null,
+            "lastTransitionTime": "2026-09-22T01:52:02Z"
+          },
+          {
+            "type": "PodScheduled",
+            "observedGeneration": 1,
+            "status": "True",
+            "lastProbeTime": null,
+            "lastTransitionTime": "2026-09-22T01:51:59Z"
+          }
+        ],
+        "hostIP": "172.16.101.12",
+        "hostIPs": [
+          {
+            "ip": "172.16.101.12"
+          }
+        ],
+        "podIP": "172.16.102.193",
+        "podIPs": [
+          {
+            "ip": "172.16.102.193"
+          }
+        ],
+        "startTime": "2026-09-22T01:51:59Z",
+        "containerStatuses": [
+          {
+            "name": "probe",
+            "state": {
+              "running": {
+                "startedAt": "2026-09-22T01:52:01Z"
+              }
+            },
+            "lastState": {},
+            "ready": true,
+            "restartCount": 0,
+            "image": "localhost/lb02-2b3122-probe:20260915",
+            "imageID": "docker.io/library/import-2026-09-15@sha256:6dc16949364cbd67c142d6d0ca3aa6353146917816936e63beb672621fcb9295",
+            "containerID": "containerd://96530808d8ef0d475bc7f3a827151dd9d4deeaa9c397e161c4291582be7d18c2",
+            "started": true,
+            "allocatedResources": {
+              "cpu": "10m",
+              "memory": "32Mi"
+            },
+            "resources": {
+              "limits": {
+                "cpu": "100m",
+                "memory": "64Mi"
+              },
+              "requests": {
+                "cpu": "10m",
+                "memory": "32Mi"
+              }
+            },
+            "user": {
+              "linux": {
+                "uid": 65532,
+                "gid": 65532,
+                "supplementalGroups": [
+                  65532
+                ]
+              }
+            }
+          }
+        ],
+        "qosClass": "Burstable"
+      }
+    }
+  ],
+  "data_plane": "not_verified; Ready is not a traffic result",
+  "R4": "not_started; authorized platform replacement precedes rename acceptance"
+}

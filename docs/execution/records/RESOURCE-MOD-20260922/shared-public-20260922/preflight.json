@@ -1,0 +1,480 @@
+{
+  "at": "2026-09-22T01:46:20.922565+00:00",
+  "host": "fedora",
+  "cluster_uid": "be57b911-892c-4e75-aa9d-4a05d819c59e",
+  "nodes": [
+    {
+      "name": "ani-01",
+      "uid": "3693178a-d4d4-4fb3-a39a-82b7d875391d",
+      "ready": "True"
+    },
+    {
+      "name": "ani-02",
+      "uid": "2f954d6f-31d0-49d9-83ee-2f8888408236",
+      "ready": "True"
+    },
+    {
+      "name": "ani-03",
+      "uid": "2507940b-6901-44c6-aadd-ba1bb6875bde",
+      "ready": "True"
+    }
+  ],
+  "old_pool": {
+    "name": "pubdebug-20260917-public",
+    "uid": "39619c25-703e-4db2-a35a-d44ee2acb780",
+    "resourceVersion": "1092201",
+    "finalizers": [
+      "networking.kubercloud.com/finalizer"
+    ],
+    "status": {
+      "boundResources": {
+        "gatewayPort": "gw.pubdebug-20260917-egress-kcn-system.pubdebug-20260917-public",
+        "switch": "kcn-system.pubdebug-20260917-public"
+      },
+      "conditions": [
+        {
+          "lastTransitionTime": "2026-09-17T02:30:57Z",
+          "message": "",
+          "reason": "Initialized",
+          "status": "True",
+          "type": "Initialized"
+        },
+        {
+          "lastTransitionTime": "2026-09-17T02:30:57Z",
+          "message": "",
+          "reason": "Valid",
+          "status": "True",
+          "type": "Valid"
+        },
+        {
+          "lastTransitionTime": "2026-09-17T02:30:57Z",
+          "message": "",
+          "reason": "Ready",
+          "status": "True",
+          "type": "Ready"
+        }
+      ],
+      "gatewayMac": "fa:00:48:74:34:85",
+      "observedGeneration": 1,
+      "underlayState": {
+        "chassisNode": "ani-01",
+        "ready": true,
+        "vlanNetwork": "pubdebug-20260917-vlan0"
+      },
+      "v4availableIPrange": "172.16.102.197-172.16.102.207",
+      "v4availableIPs": 11,
+      "v4usingIPrange": "172.16.102.192-172.16.102.196",
+      "v4usingIPs": 5
+    }
+  },
+  "new_pool": {
+    "apiVersion": "networking.kubercloud.com/v1",
+    "kind": "Subnet",
+    "metadata": {
+      "name": "public",
+      "namespace": "kcn-system",
+      "labels": {
+        "app.kubernetes.io/part-of": "ani-platform",
+        "network.ani.io/purpose": "shared-public"
+      }
+    },
+    "spec": {
+      "allowedNamespaces": {
+        "from": "All"
+      },
+      "cidrBlock": "172.16.102.0/24",
+      "enableDHCP": false,
+      "excludeIPs": [
+        "172.16.102.1..172.16.102.191",
+        "172.16.102.208..172.16.102.254"
+      ],
+      "gateway": "pubdebug-20260917-egress",
+      "gatewayIP": "172.16.102.2",
+      "ipVersion": "IPv4",
+      "natOutgoing": false,
+      "type": "Public",
+      "underlayConfig": {
+        "gatewayIP": "172.16.102.1",
+        "vlanNetwork": "pubdebug-20260917-vlan0"
+      }
+    }
+  },
+  "references": [
+    {
+      "kind": "EIP",
+      "name": "dual-eip",
+      "namespace": "pubdebug-20260917",
+      "uid": "9708934d-6f6a-4c0b-b013-9f38185102c1",
+      "spec": {
+        "ipAddress": "172.16.102.195",
+        "ipVersion": "IPv4",
+        "subnet": "kcn-system/pubdebug-20260917-public"
+      },
+      "status": {
+        "boundResource": {
+          "nodeName": "ani-01",
+          "resource": "dual-lb",
+          "resourceType": "Service",
+          "vpc": "pubdebug-20260917/tenant"
+        },
+        "conditions": [
+          {
+            "lastTransitionTime": "2026-09-17T02:31:03Z",
+            "message": "",
+            "reason": "Initialized",
+            "status": "True",
+            "type": "Initialized"
+          },
+          {
+            "lastTransitionTime": "2026-09-17T02:31:03Z",
+            "message": "",
+            "reason": "Valid",
+            "status": "True",
+            "type": "Valid"
+          }
+        ],
+        "gateway": "pubdebug-20260917-egress",
+        "phase": "Bound"
+      }
+    },
+    {
+      "kind": "EIP",
+      "name": "public-eip",
+      "namespace": "pubdebug-20260917",
+      "uid": "673f7976-a3b3-46dc-bcaa-f8ed72288fc7",
+      "spec": {
+        "ipAddress": "172.16.102.194",
+        "ipVersion": "IPv4",
+        "subnet": "kcn-system/pubdebug-20260917-public"
+      },
+      "status": {
+        "boundResource": {
+          "nodeName": "ani-01",
+          "resource": "public-lb",
+          "resourceType": "Service",
+          "vpc": "pubdebug-20260917/tenant"
+        },
+        "conditions": [
+          {
+            "lastTransitionTime": "2026-09-17T02:31:03Z",
+            "message": "",
+            "reason": "Initialized",
+            "status": "True",
+            "type": "Initialized"
+          },
+          {
+            "lastTransitionTime": "2026-09-17T02:31:03Z",
+            "message": "",
+            "reason": "Valid",
+            "status": "True",
+            "type": "Valid"
+          }
+        ],
+        "gateway": "pubdebug-20260917-egress",
+        "phase": "Bound"
+      }
+    },
+    {
+      "kind": "EIP",
+      "name": "snat-eip",
+      "namespace": "pubdebug-20260917",
+      "uid": "97041456-7bf7-4b11-908a-1a7c6a10e600",
+      "spec": {
+        "ipAddress": "172.16.102.196",
+        "ipVersion": "IPv4",
+        "subnet": "kcn-system/pubdebug-20260917-public"
+      },
+      "status": {
+        "boundResource": {
+          "disabled": false,
+          "nodeName": "ani-01",
+          "observedGeneration": 3,
+          "resource": "public-snat",
+          "resourceType": "Snat",
+          "vpc": "pubdebug-20260917/tenant"
+        },
+        "conditions": [
+          {
+            "lastTransitionTime": "2026-09-17T02:31:03Z",
+            "message": "",
+            "reason": "Initialized",
+            "status": "True",
+            "type": "Initialized"
+          },
+          {
+            "lastTransitionTime": "2026-09-17T02:31:03Z",
+            "message": "",
+            "reason": "Valid",
+            "status": "True",
+            "type": "Valid"
+          }
+        ],
+        "gateway": "pubdebug-20260917-egress",
+        "phase": "Bound"
+      }
+    }
+  ],
+  "controller": {
+    "name": "kcn-controller",
+    "uid": "75b7d87f-66da-499d-a6de-cc5fe164d998",
+    "generation": 3,
+    "replicas": 3,
+    "strategy": {
+      "type": "RollingUpdate",
+      "rollingUpdate": {
+        "maxUnavailable": "100%",
+        "maxSurge": "0%"
+      }
+    },
+    "images": [
+      "docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2"
+    ],
+    "status": {
+      "observedGeneration": 3,
+      "replicas": 3,
+      "updatedReplicas": 3,
+      "readyReplicas": 3,
+      "availableReplicas": 3,
+      "terminatingReplicas": 0,
+      "conditions": [
+        {
+          "type": "Available",
+          "status": "True",
+          "lastUpdateTime": "2026-09-14T12:26:10Z",
+          "lastTransitionTime": "2026-09-14T12:26:10Z",
+          "reason": "MinimumReplicasAvailable",
+          "message": "Deployment has minimum availability."
+        },
+        {
+          "type": "Progressing",
+          "status": "True",
+          "lastUpdateTime": "2026-09-17T03:32:04Z",
+          "lastTransitionTime": "2026-09-14T12:26:10Z",
+          "reason": "NewReplicaSetAvailable",
+          "message": "ReplicaSet \"kcn-controller-b95fbdc4b\" has successfully progressed."
+        }
+      ]
+    }
+  },
+  "permissions": [
+    {
+      "group": "networking.kubercloud.com",
+      "resource": "subnets",
+      "verb": "delete",
+      "name": "pubdebug-20260917-public",
+      "allowed": true
+    },
+    {
+      "group": "networking.kubercloud.com",
+      "resource": "subnets",
+      "verb": "create",
+      "name": "",
+      "allowed": true
+    },
+    {
+      "group": "apps",
+      "resource": "deployments",
+      "verb": "patch",
+      "name": "kcn-controller",
+      "allowed": true
+    }
+  ],
+  "installation_images": [
+    {
+      "name": "ani-node-facts-51a80915f0169d9a92ce6bf0-5f67ffbfbf-l7mmt",
+      "uid": "ef5b1a7e-6db3-4c1e-b538-5b5b7ee23607",
+      "node": "ani-01",
+      "containers": [
+        {
+          "name": "facts",
+          "image": "localhost/ani-node-facts:lb02-2b3122-20260915-v2",
+          "imageID": "docker.io/library/import-2026-09-15@sha256:735394c4f3e6822fbbb247ce7b84475233287df80b827e6ec4c504f4bcae070e",
+          "ready": true
+        }
+      ]
+    },
+    {
+      "name": "ani-node-facts-7b398d4ee406a252345c20ca-55d8965b9c-6bc6l",
+      "uid": "8cef1fd6-fd1c-4fb7-8d37-4aeaca518e82",
+      "node": "ani-02",
+      "containers": [
+        {
+          "name": "facts",
+          "image": "localhost/ani-node-facts:lb02-2b3122-20260915-v2",
+          "imageID": "docker.io/library/import-2026-09-15@sha256:735394c4f3e6822fbbb247ce7b84475233287df80b827e6ec4c504f4bcae070e",
+          "ready": true
+        }
+      ]
+    },
+    {
+      "name": "ani-node-facts-ab0e432da17dfce745d60958-5cf45bbbdd-ptlt2",
+      "uid": "b217e742-44d3-4540-832f-8e68244f579b",
+      "node": "ani-03",
+      "containers": [
+        {
+          "name": "facts",
+          "image": "localhost/ani-node-facts:lb02-2b3122-20260915-v2",
+          "imageID": "docker.io/library/import-2026-09-15@sha256:735394c4f3e6822fbbb247ce7b84475233287df80b827e6ec4c504f4bcae070e",
+          "ready": true
+        }
+      ]
+    },
+    {
+      "name": "kcn-cni-ds-fvmvz",
+      "uid": "08409e5b-eb26-4e28-a2b4-90793c818ecf",
+      "node": "ani-03",
+      "containers": [
+        {
+          "name": "kcn-cni-server",
+          "image": "docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2",
+          "imageID": "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4",
+          "ready": true
+        }
+      ]
+    },
+    {
+      "name": "kcn-cni-ds-mvzwp",
+      "uid": "0a587912-80b9-4744-b172-44e43b720971",
+      "node": "ani-01",
+      "containers": [
+        {
+          "name": "kcn-cni-server",
+          "image": "docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2",
+          "imageID": "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4",
+          "ready": true
+        }
+      ]
+    },
+    {
+      "name": "kcn-cni-ds-vbh2w",
+      "uid": "90d7f59a-abb8-4520-9930-44b98b1a654d",
+      "node": "ani-02",
+      "containers": [
+        {
+          "name": "kcn-cni-server",
+          "image": "docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2",
+          "imageID": "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4",
+          "ready": true
+        }
+      ]
+    },
+    {
+      "name": "kcn-controller-b95fbdc4b-86fd8",
+      "uid": "69f28847-35a6-4a2c-beae-fe9aaf4f86ee",
+      "node": "ani-02",
+      "containers": [
+        {
+          "name": "kcn-controller",
+          "image": "docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2",
+          "imageID": "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4",
+          "ready": true
+        }
+      ]
+    },
+    {
+      "name": "kcn-controller-b95fbdc4b-j6mm8",
+      "uid": "f3870d56-8d98-402b-abb6-5dac135a9838",
+      "node": "ani-03",
+      "containers": [
+        {
+          "name": "kcn-controller",
+          "image": "docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2",
+          "imageID": "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4",
+          "ready": true
+        }
+      ]
+    },
+    {
+      "name": "kcn-controller-b95fbdc4b-qxj6s",
+      "uid": "3896e694-7e9d-4dbe-8841-e324e4bf6cdf",
+      "node": "ani-01",
+      "containers": [
+        {
+          "name": "kcn-controller",
+          "image": "docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2",
+          "imageID": "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4",
+          "ready": true
+        }
+      ]
+    },
+    {
+      "name": "kcn-ovn-central-5dfc477ffc-5477j",
+      "uid": "cdea4914-2857-4948-91ac-91de53fdc4db",
+      "node": "ani-02",
+      "containers": [
+        {
+          "name": "ovn-central",
+          "image": "docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2",
+          "imageID": "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4",
+          "ready": true
+        }
+      ]
+    },
+    {
+      "name": "kcn-ovn-central-5dfc477ffc-6gllk",
+      "uid": "2ca506b2-c58b-4914-bce2-a293afef3dad",
+      "node": "ani-03",
+      "containers": [
+        {
+          "name": "ovn-central",
+          "image": "docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2",
+          "imageID": "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4",
+          "ready": true
+        }
+      ]
+    },
+    {
+      "name": "kcn-ovn-central-5dfc477ffc-9w7tz",
+      "uid": "43370b58-f1d5-4f0e-9a86-9c64f5529cb5",
+      "node": "ani-01",
+      "containers": [
+        {
+          "name": "ovn-central",
+          "image": "docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2",
+          "imageID": "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4",
+          "ready": true
+        }
+      ]
+    },
+    {
+      "name": "kcn-ovs-ds-7hfv8",
+      "uid": "aceecdf6-6145-480c-bfbb-6d98bbfacbbe",
+      "node": "ani-01",
+      "containers": [
+        {
+          "name": "openvswitch",
+          "image": "docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2",
+          "imageID": "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4",
+          "ready": true
+        }
+      ]
+    },
+    {
+      "name": "kcn-ovs-ds-hzz8g",
+      "uid": "85be255d-ab59-4769-8b67-cc3b26467d45",
+      "node": "ani-02",
+      "containers": [
+        {
+          "name": "openvswitch",
+          "image": "docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2",
+          "imageID": "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4",
+          "ready": true
+        }
+      ]
+    },
+    {
+      "name": "kcn-ovs-ds-n4vt8",
+      "uid": "2a2da57b-11c6-430e-be79-3bc1f8f5d1a5",
+      "node": "ani-03",
+      "containers": [
+        {
+          "name": "openvswitch",
+          "image": "docker.changqingyun.cn/kubercloud/kc-networking:v0.6.2",
+          "imageID": "sha256:b20d22301dacca0585ce8756375556b470ff5d1f28a9918f0658cbd7c9466be4",
+          "ready": true
+        }
+      ]
+    }
+  ],
+  "installation_fingerprint": "3c9f3d9f397c54e45301c0c2e39a3d0515d65fb779f06e0bb9d85c8cd675dcef"
+}
