@@ -4,9 +4,11 @@
 
 ## 2026-09-22：Resource 改名与 Network 模块整理
 
+用户最新明确要求直接交付 main 并将原仓库改名，取代此前等待 Public 补验后发布的顺序。已将包含 Governance 增量的 `9fad5b2` 快进推送到 main，原仓库改名为 `zhangzhe-ctrl/ani-resource-service`，repository ID `1362505185` 保持；正式本地目录为 `/home/chabking/workspace/ani-resource-service`。这项发布决定不把既有 fail / not_verified 改写为 pass。发布、模块消费、CI 和本地原始改动保护见 [发布收尾记录](records/RESOURCE-MOD-20260922/release-20260922/README.md)。
+
 用户后续授权将本地 `3e40bb0` 合入改名实施分支并推送；[整合记录](records/RESOURCE-MOD-20260922/governance-merge-20260922/README.md)区分该业务增量与此前改名验证。合并后运行源码已经增加只读入口与错误分类行为，下面的历史门禁/控制面结果不自动覆盖这次合并快照，受影响检查已在 Fedora 通过 verify、真实 PG integration（20m 上限）和定向 race，命令与退出码见整合记录；完整新版本 R4 仍未验证。
 
-状态 `in_progress`（9e491fa 精确提交的 Fedora verify/audit 与两条 CI 通过；最新真实控制面同库接管、恢复、回退、API 清理通过；Public 及必需数据面验收仍不完整，发布暂停），完整 R0—R5 尚未完成。独立分支 `codex/resource-service-modularization`，
+状态 `in_progress`（9e491fa 精确提交的 Fedora verify/audit 与两条 CI 通过；最新真实控制面同库接管、恢复、回退、API 清理通过；Public 及必需数据面验收仍不完整；已按最新授权交付 main 并改名），完整 R0—R5 尚未完成。独立分支 `codex/resource-service-modularization`，
 工作树 `/home/chabking/workspace/.worktrees/resource-service-modularization`；原工作树和历史保留。
 [实施记录](records/RESOURCE-MOD-20260922/README.md)及[改名清单](records/RESOURCE-MOD-20260922/rename-inventory.md)。
 
@@ -17,7 +19,7 @@
 | 兼容增量 | 独立旧客户端、旧库、cursor/回执、候选在途任务原版恢复、反向旧消费者、API 清理 | pass（受控 PG/Provider） |
 | R3 | 安全修复 8153af4 的 tools/verify/integration/race/tenant-mutations pass；后续 7b39e53 完整 audit、verify、构建、镜像入口检查 pass；运行源码逐项相同 | pass；原失败及精确公开元数据例外的 24 个正反例保留 |
 | R4 | 9e491fa 运行源码的真实同库链控制面 pass：21 个原对象接管、候选正常变更/强杀恢复、23 个对象回退、候选再次启动及 API 清理；[本轮记录](records/RESOURCE-MOD-20260922/control-plane-20260922/README.md) | 整体 not_verified：Public 产品链缺合法平台前置；本轮未跑数据面矩阵，既有严格六次计数 fail 与 Public 两轮 36/36 超时保留 |
-| R5 | 证据、清理、完整历史扫描及 SBOM 门禁已留存；实施分支用于草稿审阅，最终 head/CI 按该分支回执核对；默认分支及仓库/正式目录名保持 | not_verified；必需条件未齐，不得提前合入/改名 |
+| R5 | 已按最新用户指令交付 main，原 GitHub 仓库及本地正式目录改名，remote/worktree 引用修复；精确最终 SHA、CI、干净模块消费及供应链回执见发布收尾记录 | 发布动作 pass；其余逐项按回执判定，不代表完整 R4 通过 |
 
 后续安全依赖修复已通过门禁：原候选 grpc v1.82.1 的 GO-2026-6443 / GO-2026-6348 使 audit fail；
 用户已同意升级到同时消除漏洞的最低稳定版本。gRPC v1.83.2 新扫描零命中，完整 Fedora 门禁已通过；
@@ -28,7 +30,7 @@
 此前[手工池复用诊断](records/RESOURCE-MOD-20260922/public-reuse-20260922/README.md)保留原时点结论；原 R4 采样重叠 fail 同样保留。
 修正后的不重叠驱动已留存但本 run 未重测，全部原始请求与失败保留。
 
-用户随后要求继续测试并如实记录。新增 [2026-09-22 控制面续测](records/RESOURCE-MOD-20260922/control-plane-20260922/README.md)使用同库、同配置、原旧客户端完成候选变更、在途任务恢复和原版回退，migration checksum/applied_at、回执/cursor 与对象身份保持。新建 4 个 Subnet（含两个增量）、1 VPC、1 private LB、基础 Intranet EIP/SNAT 和两个 Attachment 均按 API 清理；占用为 0，19 个支持对象、进程、PG 与临时隧道已清理，17 个共享保护对象保持。初次等待超时、过早断言及运行器错误均保留，不将最终 pass 覆盖这些失败。该续测没有取消原 R4 数据面和 R5 发布条件。
+用户随后要求继续测试并如实记录。新增 [2026-09-22 控制面续测](records/RESOURCE-MOD-20260922/control-plane-20260922/README.md)使用同库、同配置、原旧客户端完成候选变更、在途任务恢复和原版回退，migration checksum/applied_at、回执/cursor 与对象身份保持。新建 4 个 Subnet（含两个增量）、1 VPC、1 private LB、基础 Intranet EIP/SNAT 和两个 Attachment 均按 API 清理；占用为 0，19 个支持对象、进程、PG 与临时隧道已清理，17 个共享保护对象保持。初次等待超时、过早断言及运行器错误均保留，不将最终 pass 覆盖这些失败。该续测没有完成原 R4 数据面验收；后续用户明确要求直接交付 main 并改名，按本节最新发布记录执行。
 
 故障重启后曾短暂触发原有租约/新鲜度保护，HTTPRoute 后端移除；自然恢复前的比较 fail 与
 恢复后 pass 分开留证，不声称故障期间无中断。清理与发布证据见实施记录。
