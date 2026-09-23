@@ -3,6 +3,24 @@
 状态：completed（R/V1/G/V2 全部完成 2026-09-23；范围外数据面项已显式 not_verified）。批次：GOV-RESOURCE-20260922。日期：2026-09-23。
 governance 侧改动只允许发生在隔离 worktree `/home/ubuntu/Workspace/ani-governance-worktress`。
 
+## ani-system 部署（2026-09-23，main 合并推送后）
+
+- `ani-resource-service` 部署进 `ani-system`：镜像 `anisystem-561e3f2de21e56d8`
+  （main `2b94960`，`ANI_NETWORK_MODE=governance`），独立数据库 `ani_resource`
+  （显式 `-migrate` 39 表，运行角色 `ani_resource_read` 限定 DML），
+  mTLS 复用 `ani-network-server-tls`（root CA `ani-internal-root-ca`，
+  server SAN `ani-network-service`），ConfigMap `resource-config` 携带完整配置。
+- `ani-governance`（既有部署）升级到合并后 main `91e46bb`
+  （镜像 `anisystem-134343a8e014bb50`），`ANI_NETWORK_ADDR` 指向
+  `ani-resource-service.ani-system:19090`。启动参数 `-c /app/configs`
+  （gowind bootstrap 仅认 `-c` 短参；`-conf` 会被吞成 `onf`）。
+- 链路验证：governance Pod → `ani-resource-service:19091/readyz` 200；
+  以 governance 同一身份（SAN `ani-governance`、CA `ani-internal-root-ca`）
+  经 mTLS 调 `ListVPCs` → 200、0 items（空库，符合"0 条也行"）。
+- 已知环境残留（与本批无关）：quota dispatch worker 报
+  `sys_quota_operations` 不存在——该库 `gwa_init_20260921` 未跑配额迁移，
+  属 QUOTA-GPU-LOCAL-01 的部署事项。
+
 ## 执行进度（审计勾选）
 
 - [x] R1 `internal/server/governance.go`：白名单 map（计划矩阵 20 方法）、
