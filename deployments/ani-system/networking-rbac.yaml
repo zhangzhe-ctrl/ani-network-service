@@ -1,0 +1,67 @@
+# Kubernetes identities and bindings for the ani-system deployment of
+# ani-resource-service (ANI_NETWORK_MODE=governance).
+#
+# Why this file exists: the ani-resource-service process acts as the Kubernetes
+# provider for the kcn CRDs (apiGroup networking.kubercloud.com) and for the
+# Gateway API resources used by the load-balancer slice. It resolves its client
+# from ANI_NETWORK_KUBECONFIG, which is intentionally empty in-cluster
+# (see internal/data/network/kc.go: OpenKCProvider -> rest.InClusterConfig).
+# That means the pod's ServiceAccount is the only identity available, so the
+# ServiceAccount MUST be explicitly named here and bound to the ClusterRoles
+# below. Relying on the namespace `default` ServiceAccount makes any RBAC grant
+# cluster-wide in blast radius and silently breaks on a new cluster.
+#
+# The ClusterRoles themselves live with the features that need them:
+#   - ClusterRole/ani-network-egress        -> ../egress/network-rbac.yaml
+#   - ClusterRole/ani-network-load-balancer -> ../load-balancer/network-rbac.yaml
+# Apply those two files first, then this one. See README.md.
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: ani-resource-service
+  namespace: ani-system
+---
+# Provider access to the kcn CRDs (VPC/subnet/EIP/SNAT and their observations).
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: ani-network-egress-ani-system
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: ani-network-egress
+subjects:
+  - kind: ServiceAccount
+    name: ani-resource-service
+    namespace: ani-system
+---
+# Gateway API access for the load-balancer slice. Bind it unconditionally: the
+# governance-mode run assembles the complete worker (Network + Egress + LB), so
+# the LB reconciler is live even before a tenant calls the LB routes.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: ani-network-load-balancer-ani-system
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: ani-network-load-balancer
+subjects:
+  - kind: ServiceAccount
+    name: ani-resource-service
+    namespace: ani-system
+---
+# Device adoption: narrow, name-scoped access to the kcn controller config.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: ani-network-device-adoption
+  namespace: kcn-system
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: ani-network-device-adoption
+subjects:
+  - kind: ServiceAccount
+    name: ani-resource-service
+    namespace: ani-system
