@@ -130,7 +130,7 @@ func TestGovernanceMTLSBoundary(t *testing.T) {
 		{"key-overflow", []tls.Certificate{good}, func(m metadata.MD) { m.Set("x-ani-actor", "governance:access-key:4294967296") }, tenant, "", codes.Unauthenticated},
 		{"unknown-actor", []tls.Certificate{good}, func(m metadata.MD) { m.Set("x-ani-actor", "governance:machine:42") }, tenant, "", codes.Unauthenticated},
 		{"tenant-mismatch", []tls.Certificate{good}, nil, "33333333-3333-4333-8333-333333333333", "", codes.PermissionDenied},
-		{"wrong-method", []tls.Certificate{good}, nil, tenant, "/network.v1.NetworkService/DeleteVPC", codes.PermissionDenied},
+		{"wrong-method", []tls.Certificate{good}, nil, tenant, "/network.v1.NetworkService/PrepareAttachment", codes.PermissionDenied},
 	} {
 		t.Run(tc.name, func(t *testing.T) {
 			conn, e := grpc.NewClient(lis.Addr().String(), grpc.WithTransportCredentials(credentials.NewTLS(&tls.Config{MinVersion: tls.VersionTLS13, RootCAs: roots, ServerName: "ani-network-service", Certificates: tc.certs})))

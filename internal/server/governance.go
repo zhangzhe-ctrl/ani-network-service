@@ -29,11 +29,15 @@ const OperatorHeader = "x-ani-operator"
 // never a new transport or trust contract. Keep in sync with
 // docs/plans/governance-integration.md (the plan table is authoritative).
 var governanceReadMethods = map[string]struct{}{
-	// Network domain: tenant VPC/Subnet reads and operation lookup.
+	// Network domain: tenant VPC/Subnet read+write and operation lookup.
 	"/network.v1.NetworkService/GetVPC":       {},
 	"/network.v1.NetworkService/ListVPCs":     {},
+	"/network.v1.NetworkService/CreateVPC":    {},
+	"/network.v1.NetworkService/DeleteVPC":    {},
 	"/network.v1.NetworkService/GetSubnet":    {},
 	"/network.v1.NetworkService/ListSubnets":  {},
+	"/network.v1.NetworkService/CreateSubnet": {},
+	"/network.v1.NetworkService/DeleteSubnet": {},
 	"/network.v1.NetworkService/GetOperation": {},
 	// Egress domain: tenant EIP and SNAT binding read+write.
 	"/network.v1.TenantEgressService/CreateEIP":            {},
